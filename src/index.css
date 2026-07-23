@@ -1,0 +1,461 @@
+﻿@import "tailwindcss";
+
+@theme {
+  /* Body font → Nunito Sans */
+  --font-sans: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Heading font → Nunito Sans */
+  --font-heading: "Nunito Sans", sans-serif;
+  /* Explicit body alias for use in JSX className="font-body" */
+  --font-body: "Nunito Sans", sans-serif;
+
+  /* SKM Brand Primary - Red (var(--color-brand-600)) */
+  --color-brand-50: #fff5f5;
+  --color-brand-100: #ffe0e2;
+  --color-brand-200: #ffb3b8;
+  --color-brand-300: #ff8088;
+  --color-brand-400: #ff4d57;
+  --color-brand-500: #f52030;
+  --color-brand-600: #e40a18;
+  --color-brand-650: #cd0916;
+  --color-brand-700: #b30813;
+  --color-brand-800: #85060e;
+  --color-brand-900: #5c040b;
+  --color-brand-950: #300206;
+
+  /* Page background — replaces plain white behind every page/section wrapper */
+  --color-page: #ececec;
+
+  /* Heading text — replaces plain black on section headings */
+  --color-heading: #2b2b2b;
+
+  /* SKM Brand Secondary - Gray (#666666) */
+  --color-surface-50: #fcfcfc;
+  --color-surface-100: #f0f0f0;
+  --color-surface-200: #e0e0e0;
+  --color-surface-300: #cccccc;
+  --color-surface-400: #a3a3a3;
+  --color-surface-500: #666666;
+  --color-surface-600: #575757;
+  --color-surface-700: #484848;
+  --color-surface-800: #383838;
+  --color-surface-850: #2e2e2e;
+  --color-surface-900: #242424;
+  --color-surface-950: #121212;
+}
+
+/* ── Base typography ──────────────────────────────────────────────────────── */
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.875;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.875;
+}
+
+/* ── Text selection ───────────────────────────────────────────────────────── */
+
+::selection {
+  background-color: #ff9eb1;
+  color: #1a1a1a;
+}
+
+/* ── Custom Scrollbar ─────────────────────────────────────────────────────── */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand-600) #f0f0f0;
+}
+
+.dark * {
+  scrollbar-color: var(--color-brand-600) #242424;
+}
+
+/* Webkit (Chrome, Edge, Safari) — global */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-600);
+  border-radius: 100px;
+  border: 1px solid #f0f0f0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-650);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Dark mode overrides */
+.dark ::-webkit-scrollbar-track {
+  background: #242424;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--color-brand-600);
+  border-color: #242424;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-650);
+}
+
+/* Utility class for components with internal scroll (sidebar, modals, lists) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-brand-600);
+  border-radius: 100px;
+  border: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-650);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand-600) transparent;
+}
+
+/* ── Keyframe animations ──────────────────────────────────────────────────── */
+
+/* Sticky navbar slide-in from top */
+@keyframes smooth-header {
+  0%   { transform: translateY(-30px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Dropdown / submenu reveal (scaleY from top) */
+@keyframes fade-down {
+  0%   { opacity: 0; transform: scaleY(0); visibility: hidden; }
+  100% { opacity: 1; transform: scaleY(1); visibility: visible; }
+}
+
+/* SVG icon clip-path draw effect (used on button/icon hover) */
+@keyframes qode-draw {
+  0%, 100% { clip-path: inset(-2px -2px); }
+  42%       { clip-path: inset(-2px -2px -2px 100%); }
+  43%       { clip-path: inset(-2px 100% -3px -2px); }
+}
+
+/* Image reveal — left to right (clip-path) */
+@keyframes image-reveal {
+  0%   { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0% 0 0); }
+}
+
+/* Infinite horizontal marquee */
+@keyframes scroll-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* Entrance zoom */
+@keyframes zoom-in-effect {
+  0%   { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+/* Rotating text / badge ring */
+@keyframes text-rotation {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Section label utility ────────────────────────────────────────────────── */
+
+/*
+  Usage: <span class="section-label">Our Company</span>
+  Preview reference: .section-title > span — red uppercase text + 35px trailing line
+*/
+.section-label {
+  color: var(--color-brand-600);
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.section-label::after {
+  content: "";
+  display: inline-block;
+  width: 35px;
+  height: 1px;
+  background-color: var(--color-brand-600);
+  flex-shrink: 0;
+}
+
+/* Dark mode variant */
+.dark .section-label {
+  color: #ff6b6b;
+}
+.dark .section-label::after {
+  background-color: #ff6b6b;
+}
+
+/* ── Primary button — preview primary-btn1 pattern ───────────────────────── */
+
+/*
+  Usage: <button class="btn-primary-red">Explore <svg>…</svg></button>
+  Red bg, white text, uppercase Manrope, slide-up hover fill, svg draw anim.
+*/
+.btn-primary-red {
+  background-color: var(--color-brand-600);
+  color: #fff;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  padding: 18px 48px 18px 24px;
+  border-radius: 10px 0 10px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  z-index: 1;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+.btn-primary-red::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-brand-650);
+  transform: translateY(110%);
+  border-radius: 10px 0 10px 10px;
+  z-index: -1;
+  transition: transform 0.45s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.btn-primary-red:hover::after {
+  transform: translateY(0);
+}
+
+.btn-primary-red:hover svg {
+  animation: qode-draw 0.75s cubic-bezier(0.57, 0.39, 0, 0.86) 1 forwards;
+}
+
+/* White background variant */
+.btn-primary-red.white-bg {
+  background-color: #fff;
+  color: var(--color-brand-600);
+}
+.btn-primary-red.white-bg::after {
+  background-color: var(--color-brand-600);
+}
+.btn-primary-red.white-bg:hover {
+  color: #fff;
+}
+
+/* ── Outline button — preview transparent/outline variant ────────────────── */
+
+/*
+  Usage: <button class="btn-outline-red">Learn more <svg>…</svg></button>
+*/
+.btn-outline-red {
+  border: 1px solid rgba(228, 10, 24, 0.35);
+  color: var(--color-brand-600);
+  background: transparent;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  padding: 17px 24px;
+  border-radius: 10px 0 10px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+              border-color 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  z-index: 1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-outline-red::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-brand-600);
+  transform: translateY(110%);
+  z-index: -1;
+  transition: transform 0.45s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.btn-outline-red:hover {
+  color: #fff;
+  border-color: var(--color-brand-600);
+}
+
+.btn-outline-red:hover::after {
+  transform: translateY(0);
+}
+
+/* Dark mode */
+.dark .btn-outline-red {
+  border-color: rgba(255, 107, 107, 0.4);
+  color: #ff6b6b;
+}
+.dark .btn-outline-red::after {
+  background-color: var(--color-brand-600);
+}
+.dark .btn-outline-red:hover {
+  color: #fff;
+}
+
+/* ── Preview card shadow utility ──────────────────────────────────────────── */
+
+/*
+  Usage: add class="card-preview" alongside Tailwind classes
+  Preview reference: box-shadow: 5px 3px 40px rgba(0, 72, 88, 0.1)
+*/
+.card-preview {
+  border-radius: 10px;
+  box-shadow: 5px 3px 40px rgba(0, 72, 88, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-preview:hover {
+  box-shadow: 8px 6px 50px rgba(0, 72, 88, 0.18);
+  transform: translateY(-4px);
+}
+
+/* Dark mode */
+.dark .card-preview {
+  box-shadow: 5px 3px 40px rgba(0, 0, 0, 0.3);
+}
+.dark .card-preview:hover {
+  box-shadow: 8px 6px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* ── Image reveal animation helper ───────────────────────────────────────── */
+
+/*
+  Usage: add class="img-reveal" to an image wrapper — triggers on .in-view parent
+  Apply .in-view via JS IntersectionObserver or Framer Motion whileInView
+*/
+.img-reveal {
+  clip-path: inset(0 100% 0 0);
+  animation: image-reveal 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* ── Nav icon draw on hover ───────────────────────────────────────────────── */
+
+.nav-icon-draw:hover svg {
+  animation: qode-draw 0.75s cubic-bezier(0.57, 0.39, 0, 0.86) 1 forwards;
+}
+
+/* ── Marquee helpers ──────────────────────────────────────────────────────── */
+
+/* scroll-x: moves -100% (for single-set tracks) */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-x 20s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* scroll-x-loop: moves -50% (for doubled-content seamless loops) */
+@keyframes scroll-x-loop {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-loop {
+  display: flex;
+  width: max-content;
+  animation: scroll-x-loop 24s linear infinite;
+}
+
+/* Pause entire marquee when any card inside is hovered */
+.marquee-viewport:hover .marquee-loop {
+  animation-play-state: paused;
+}
+
+/* ── Project card — diagonal white sweep on hover ─────────────────────────── */
+
+/*
+  Replicates preview's .project-card::after hover sweep:
+  A diagonal stripe (width 200%, rotated -45deg) expands from h:0 → h:250%
+  while fading from rgba(255,255,255,0.3) → transparent over 600ms.
+*/
+.project-card-skm {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card-skm::after {
+  position: absolute;
+  content: "";
+  width: 200%;
+  height: 0%;
+  left: 50%;
+  top: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%) rotate(-45deg);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.project-card-skm:hover::after {
+  height: 250%;
+  background-color: transparent;
+  transition: all 600ms linear;
+}

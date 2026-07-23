@@ -1,0 +1,298 @@
+{
+  "chunks": [
+
+    {
+      "id": "company-overview-1",
+      "text": "SKM Egg Products Export (India) Limited was established in 1996 and is one of Asia's largest integrated egg processing companies. Headquartered in Erode, Tamil Nadu, India, SKM processes up to 2 million eggs per day and produces approximately 7,500 metric tonnes of egg powder annually. The company has over 29 years of experience in egg products manufacturing and exports to more than 30 countries worldwide.",
+      "url": "https://skmegg.vercel.app/about/our-company"
+    },
+    {
+      "id": "company-overview-2",
+      "text": "SKM is a fully integrated egg processing company with its own layer farms, feed mill, egg processing plant, and in-house laboratory. The poultry farms are ISO 22000 certified and registered under European Union compartmentalization norms for biosecurity. The company processes fresh eggs daily under strict hygienic conditions using state-of-the-art automated European machinery.",
+      "url": "https://skmegg.vercel.app/about/our-company"
+    },
+    {
+      "id": "ceo-message-1",
+      "text": "CEO Mr. SKM Shree Shivkumar has said: 'SKM EGG Products is a finest example of how a strong value system and drive for excellence can keep you ahead in a competitive environment. Thinking out of the shell was a mantra we adopted consciously not just to give ourselves the edge but also to keep pushing ourselves to innovate. Today, we are one of Asia's biggest egg processing plant, the future looks both exciting and promising to us.'",
+      "url": "https://skmegg.vercel.app/about/ceo-message"
+    },
+    {
+      "id": "vision-mission-1",
+      "text": "SKM's Vision is: 'To be the leader in the sectors we operate with the responsibility of building a healthy society.' SKM's Mission pillars are: (1) Innovate and excel in what we do. (2) Maximize value for stakeholders. (3) Sustain integrity and honesty. (4) Contribute to social needs.",
+      "url": "https://skmegg.vercel.app/about/vision-mission"
+    },
+    {
+      "id": "core-ideology-1",
+      "text": "SKM's guiding motto is 'THINKING OUT OF THE SHELL' — it is not just a tagline but a reflection of the curious spirit and corporate culture of innovation at SKM. It drives SKM to challenge standards, optimize processes, and exceed global expectations. Core values include: evaluating and establishing benchmarks periodically; developing and improving products and business processes; delivering products at a competitive price; returns through dividend and wealth creation; compensating and motivating employees and partners; compliance to statutory regulations; and extending moral and financial support for social causes.",
+      "url": "https://skmegg.vercel.app/about/core-ideology"
+    },
+
+    {
+      "id": "products-overview-1",
+      "text": "SKM offers a comprehensive range of egg products: (1) Egg Powders — Whole Egg Powder, Egg Albumen Powder (Egg White Powder), Egg Yolk Powder, and Heat-Stable Egg Yolk Powder. (2) Liquid Egg Products — Liquid Whole Egg, Liquid Egg Albumen (Egg White), Liquid Egg Yolk, and Speciality Liquid Blends. (3) Speciality Products — Egg White Cubes, Customized Mixes, and Customized Packages. All products are pasteurized and manufactured under internationally aligned quality and food safety systems.",
+      "url": "https://skmegg.vercel.app/products"
+    },
+
+    {
+      "id": "whole-egg-powder-1",
+      "text": "SKM Whole Egg Powder is a pasteurized spray-dried whole hen egg powder used in bakery, confectionery, noodles, mayonnaise, and general food formulations. Applications include: bakery mixes, cakes, biscuits, dressings, omelettes, pasta, quiches, and sauces. It provides excellent emulsification, binding, coloring, and foaming properties. Typical specifications: Moisture max 4.0%, Fat min 40.0%, Protein min 45.0%.",
+      "url": "https://skmegg.vercel.app/products/whole-egg-powder"
+    },
+    {
+      "id": "whole-egg-powder-variants",
+      "text": "SKM Whole Egg Powder product variants include: W1201 (High Colour — enhanced yellow, for premium cakes and noodles), W1202 (Standard — everyday bakery, cookies), W1203 (4% Sugar — sweet doughs, sponge cakes), W1204 (De-Sugared — mayonnaise, savory soups, prevents browning), W1205 (Standard Industrial Grade), W1206 (De-Sugared Premium — retort/canned applications), W1207 (High Color Deep Golden — artisanal brioche, premium pastries), W1225 (Free Flow — automated lines, anti-caking), W1228 (Enriched — sports nutrition, meal replacements), W1259 (Sugared — chiffon cakes, aeration batters), W1260 (High Protein, min 52% protein — keto, gluten-free), W1215 (Heat Stable — hot-filled sauces), W1214 (High Gel — surimi, sausages, structured noodles).",
+      "url": "https://skmegg.vercel.app/products/whole-egg-powder"
+    },
+
+    {
+      "id": "egg-albumen-powder-1",
+      "text": "SKM Egg Albumen Powder (Egg White Powder) is a dried hen egg albumen powder used in meat and fish processing, bakery, and confectionery. It is specifically processed to yield exceptional gelling and whipping parameters. Applications include surimi, sausages, ham, meat products, fish balls, marshmallows, meringues, nougats, and confectionery. Typical specifications: Moisture max 8.0%, Protein min 80.0%.",
+      "url": "https://skmegg.vercel.app/products/egg-albumen-powder"
+    },
+    {
+      "id": "egg-albumen-powder-variants",
+      "text": "SKM Egg Albumen Powder variants: A1301 (Standard — general binding, bakery, confectionery), A1302 (High Gel 1000-1100 g/cm² — surimi, fish balls, sausages), A1303 (High Gel 1100-1200 g/cm² — hams, restructured surimi), A1304 (High Gel 1200-1300 g/cm² — premium restructured meats, vegetarian alternatives), A1305 (Super High Gel >1300 g/cm² — premium crab sticks, heavy-filled sausages), A1308 (High Whip — marshmallows, meringues, nougats, foam-based confectionery), A1310 (Hydrolysed Egg White Protein — sports nutrition, rapid absorption, min 85% protein).",
+      "url": "https://skmegg.vercel.app/products/egg-albumen-powder"
+    },
+
+    {
+      "id": "egg-yolk-powder-1",
+      "text": "SKM Egg Yolk Powder is a pasteurized spray-dried hen egg yolk powder used in mayonnaise, salad dressings, culinary sauces, custards, ice cream, cakes, sweet doughs, and bakery products. It provides rich emulsifying power, natural golden-yellow coloration, and creamy mouthfeel. Typical specifications: Moisture max 4.0%, Fat min 56.0%, Protein min 30.0%.",
+      "url": "https://skmegg.vercel.app/products/egg-yolk-powder"
+    },
+    {
+      "id": "egg-yolk-powder-variants",
+      "text": "SKM Egg Yolk Powder variants: Y1101 (Standard — mayonnaise, dressings, custards, ice cream), Y1104 (4% Salt — salted mayonnaise, hollandaise, bearnaise), Y1105 (Standard Industrial Grade — cake premixes, biscuit doughs), Y1107 (High Color — premium golden croissants, custard creams, yellow noodles), Y1225 (Free Flow — automated blending, vending). Heat Stable Egg Yolk Powder is also available, specially designed to maintain emulsifying stability under high temperatures — used in hot-process mayonnaise and pasteurized sauces.",
+      "url": "https://skmegg.vercel.app/products/egg-yolk-powder"
+    },
+
+    {
+      "id": "egg-yolk-liquid-1",
+      "text": "SKM Chilled Liquid Egg Yolk is a pasteurized liquid hen egg yolk product stored chilled (0°C to 4°C). It provides outstanding emulsification, natural golden-yellow color, and fresh creaminess. Variants include: Y1001 (Plain Chilled Yolk — mayonnaise, cakes, custards), Y1002 (11% Salt — hot sauces, dressings), Y1003 (14% Salt — highly salted mayonnaise), Y1004 (11% Salt High Color — golden mayonnaise, premium pastries), Y1008 (Stabilized 11% Salt — hot-filled processing, bearnaise). Applications: mayonnaise, salad dressings, ice cream, bakery, cosmetics.",
+      "url": "https://skmegg.vercel.app/products/egg-yolk-liquid"
+    },
+
+    {
+      "id": "egg-albumen-liquid-1",
+      "text": "SKM Liquid Egg Albumen (Egg White Liquid) is a pasteurized liquid hen egg white product. It is used in health foods, bakeries, sports nutrition, beverages, and confectionery. Available in chilled and frozen forms. Key properties include excellent foaming, whipping, and binding characteristics. Applications include bakery products, meringues, beverages, and protein-fortified foods.",
+      "url": "https://skmegg.vercel.app/products/egg-albumen-liquid"
+    },
+
+    {
+      "id": "whole-egg-liquid-1",
+      "text": "SKM Liquid Whole Egg is a pasteurized liquid blend of egg yolk and white (whole egg), convenient for industrial bakeries and food manufacturers. It provides a homogeneous mix suitable for standardized recipes. Available in chilled form. Applications: industrial bakeries, ready meal manufacturers, omelette manufacturing, and large-scale food processing.",
+      "url": "https://skmegg.vercel.app/products/whole-egg-liquid"
+    },
+
+    {
+      "id": "speciality-egg-white-cube",
+      "text": "SKM Egg White Cubes are a speciality product — fully cooked, diced egg white pieces. They are very low in calories, contain zero cholesterol, are high in protein, and provide all essential amino acids. Ideal for salads, meal prep, ready-to-eat foods, and health-conscious consumers. Great for gyms, fitness meals, and protein-focused diets.",
+      "url": "https://skmegg.vercel.app/products/egg-white-cube"
+    },
+    {
+      "id": "speciality-customized-mix",
+      "text": "SKM offers Customized Mixes — egg powder formulations blended with specific additional ingredients such as salt, sugar, or flour tailored to customer recipe specifications. Also available: Customized Packages — industrial-sized bags, tanker deliveries, cartons, or retail packaging options configured to client requirements. Speciality Liquid Egg Blends are also available with custom salt, sugar, or other ingredient additions.",
+      "url": "https://skmegg.vercel.app/products/customized-mix"
+    },
+
+    {
+      "id": "quality-certifications-1",
+      "text": "SKM holds the following international certifications: BRC Food (Global Standard for Food Safety), ISO 22000 (Food Safety Management System), EIC (Export Inspection Council — Indian export standards), ERC (European Registration Compliance — EU norms), FSSAI (Food Safety and Standards Authority of India), HALAL (meets Islamic dietary laws), KOSHER (meets Jewish dietary laws), NABL ISO/IEC 17025 (laboratory accreditation since 2006). These 8 active certifications validate SKM's commitment to food safety, quality, and global regulatory compliance.",
+      "url": "https://skmegg.vercel.app/quality/certifications"
+    },
+    {
+      "id": "quality-certifications-2",
+      "text": "SKM's BRC Food certification ensures the highest global food safety and quality management practices recognized by international retailers. The ISO 22000 certification is internationally recognized for food safety management across the entire supply chain. Halal certification confirms SKM products meet strict Islamic dietary laws, enabling access to global Halal markets. Kosher certification ensures compliance with Jewish dietary requirements for worldwide Kosher-certified distributors.",
+      "url": "https://skmegg.vercel.app/quality/certifications"
+    },
+
+    {
+      "id": "traceability-1",
+      "text": "SKM guarantees complete Farm-to-Fork traceability with full supply chain visibility. Every egg and every batch is documented and traceable. The traceability chain has 6 steps: (1) Hatchery — certified hatcheries with strict biosecurity protocols; (2) Feed Mill — controlled feed formulation with tested, residue-free ingredients; (3) Farm — registered layer farms with EU compartmentalization compliance and flock health monitoring; (4) Processing — HACCP-monitored facility with daily fresh egg intake and full CCP documentation; (5) QA & Lab Testing — NABL-accredited laboratory conducts physicochemical, microbiological, and residue testing on every batch; (6) Packaging & Dispatch — positive pressure packing rooms and cold chain management.",
+      "url": "https://skmegg.vercel.app/quality/traceability"
+    },
+    {
+      "id": "traceability-2",
+      "text": "SKM's integrated traceability system links lot codes, batch identification, and farm origin back to feed ingredients. Two key transformation stages are monitored: (1) Feed Input to Egg — monitoring feed formulations and nutritional integrity matching flock outputs; (2) Shell Egg to Finished Product — full visibility including all processing inputs, stages, and lot classifications. Packaging details and delivery destinations are digitally recorded. All Critical Control Points (CCPs) are documented and monitored under a robust HACCP framework.",
+      "url": "https://skmegg.vercel.app/quality/traceability"
+    },
+
+    {
+      "id": "quality-assurance-1",
+      "text": "SKM's quality assurance laboratory is ISO/IEC 17025 (NABL) accredited and has been operational since 2006. It supports compliance with European and Japanese regulatory standards. Quality systems are driven by HACCP, 5S, TQM, and continuous improvement practices. Analytical platforms include GC-MS, GC-ECD/FID, HPLC, LC-MS/MS, AAS, and ELISA Systems. These support comprehensive testing of feed ingredients, water, tissues, eggs, and finished products.",
+      "url": "https://skmegg.vercel.app/quality/quality-assurance"
+    },
+    {
+      "id": "quality-assurance-2",
+      "text": "SKM's quality assurance covers four main areas: (1) End-to-End Quality Control — dedicated QA team monitors parameters from raw materials to finished products; (2) Physicochemical & Functional Testing — every lot verified for protein, fat, moisture, pH, solubility, organic acids; functional testing for emulsification, foam stability, gel strength, viscosity, and baking performance; (3) Residue & Contaminant Monitoring — GC-MS/LC-MS testing ensures products are free from antibiotics and pesticides, per EU Directive 96/23; (4) Microbiological Assurance — testing for Salmonella, E. coli, Enterobacteriaceae, Total Plate Count, Staphylococcus aureus, Bacillus cereus, Yeast and Mold.",
+      "url": "https://skmegg.vercel.app/quality/quality-assurance"
+    },
+    {
+      "id": "quality-biosecurity-1",
+      "text": "SKM maintains comprehensive biosecurity across its supply chain. Disease prevention includes certified hatcheries with strict biosecurity, vector control, and continuous flock monitoring. Newcastle Disease titres are verified through serological testing. Enhanced biosecurity protocols safeguard against Avian Influenza with controlled farm access, sanitation barriers, and perimeter management. Farms are registered per EU Directive 2008/798. The processing environment uses positive pressure packing rooms, validated HACCP protocols, and structured pest management.",
+      "url": "https://skmegg.vercel.app/quality/quality-assurance"
+    },
+
+    {
+      "id": "infra-egg-processing-plant-1",
+      "text": "SKM's egg processing plant is a fully automated, EU and USDA-compliant facility with a capacity of 2 million eggs per day, producing approximately 7,500 tonnes of egg products annually. The plant is approved under Indian Export of Egg Products Quality Control & Monitoring Rules (1997) with Approval No: 05/2/EP/97. Two dedicated production lines — yolk and albumen — operate within a climate-controlled, automated environment. Sterile zones are maintained under positive pressure, supported by an automated CIP (Clean-In-Place) system.",
+      "url": "https://skmegg.vercel.app/infrastructure/egg-processing-plant"
+    },
+    {
+      "id": "infra-egg-processing-plant-2",
+      "text": "SKM's processing plant process areas include: Egg Breaking, Egg Conveyor, Egg Storage, Pre-Pasteurization, Pasteurization, Concentration, Albumen Dryer, Yolk Dryer, Blast Treatment, Cold Room, Frozen Storage, Hot Room, Liquid Filling, and CIP System. Utility systems include Boiler, Water Treatment Plant (WTP), Effluent Treatment Plant (ETP), and a Biogas facility with 70-tonne poultry litter handling capacity. Nutrient-rich liquid fertilizer generated as a by-product is supplied to farmers at no cost.",
+      "url": "https://skmegg.vercel.app/infrastructure/egg-processing-plant"
+    },
+    {
+      "id": "infra-egg-processing-plant-3",
+      "text": "SKM's processing plant maintains strict zoning protocols (red, white, and neutral areas) to prevent cross-contamination. Personnel hygiene is controlled through mandatory sanitation procedures, protective clothing, environmental swabbing, and air quality monitoring. Only microbiologically tested eggs are processed. Operations follow cGMP, SSOP, Codex Alimentarius principles, and HACCP guidelines. Customized formulations including co-dried and dry-blend solutions are developed in collaboration with customers.",
+      "url": "https://skmegg.vercel.app/infrastructure/egg-processing-plant"
+    },
+
+    {
+      "id": "infra-poultry-farm-1",
+      "text": "SKM's poultry farms are ISO 22000 certified integrated farms housing 2.4 million layers and producing approximately 164 million eggs annually. The farms include environmentally controlled (EC) sheds with full automation for feeding, watering, and egg collection. Dedicated chick and grower facilities are located separately for controlled rearing. The farms have an attached laboratory for routine analysis of water, tissues, and egg samples.",
+      "url": "https://skmegg.vercel.app/infrastructure/poultry-farm"
+    },
+    {
+      "id": "infra-poultry-farm-2",
+      "text": "SKM poultry farm biosecurity measures include: strict personnel and vehicle entry shower systems at every access point; zoned layouts to prevent cross-contamination between flocks; dedicated sanitation barriers and perimeter controls; balanced nutritionally optimized feed; daily sanitation protocols; potable water management; and safe disposal systems including an on-site incinerator. Farms are registered establishments per EU Directive 2008/798 requirements.",
+      "url": "https://skmegg.vercel.app/infrastructure/poultry-farm"
+    },
+
+    {
+      "id": "infra-feed-mill-1",
+      "text": "SKM operates an in-house feed mill that produces safe, balanced, residue-free nutrition for every stage of flock development — from chick to grower to layer. The feed mill has an in-house laboratory, and all ingredients are stored lot-wise and screened for mycotoxins, pesticide residues, and antibiotic contaminants. Only verified, residue-free inputs are used in feed formulation. Automated vehicles ensure secure, contamination-free transport to farms.",
+      "url": "https://skmegg.vercel.app/infrastructure/feed-mill"
+    },
+
+    {
+      "id": "infra-laboratory-1",
+      "text": "SKM's quality and analytical laboratory is ISO/IEC 17025 (NABL) accredited, operational since 2006. It supports compliance with European and Japanese regulatory standards. Built on 5S, TQM, Quality Circles, and HACCP principles. The lab has analytical instruments including GC-MS, GC-ECD/FID, HPLC, LC-MS/MS, AAS, and ELISA Systems. These platforms enable testing of feed ingredients, water, tissues, eggs, and finished products for antibiotics, pesticides, and contaminants per EU 96/23 and other regulations.",
+      "url": "https://skmegg.vercel.app/infrastructure/laboratory"
+    },
+    {
+      "id": "infra-laboratory-2",
+      "text": "SKM's microbiological laboratory is a controlled-environment facility for pathogen testing. Equipment includes biosafety cabinets, laminar airflow systems, and dedicated media storage. Microbiological parameters tested include: Salmonella, E. coli, Enterobacteriaceae, Total Plate Count, Staphylococcus aureus, Bacillus cereus, Yeast and Mold. Physicochemical parameters tested include: protein, fat, moisture, ash, pH, total solids, solubility, and organic acids. Functional testing evaluates emulsification, foam stability, gel strength, viscosity, and baking performance.",
+      "url": "https://skmegg.vercel.app/infrastructure/laboratory"
+    },
+    {
+      "id": "infra-laboratory-3",
+      "text": "SKM's in-house poultry disease diagnostic laboratory supports proactive flock health management through microbiological, serological, and molecular testing. Pathogens monitored include Salmonella, Newcastle Disease, Avian Influenza, and Mycoplasma. Strict biosecurity protocols, controlled sample handling, and regulatory-aligned testing frameworks ensure early detection and sustained flock health.",
+      "url": "https://skmegg.vercel.app/infrastructure/laboratory"
+    },
+
+    {
+      "id": "branches-japan-1",
+      "text": "SKM Japan is SKM's branch in Japan, strategically positioned to bridge Indian egg ingredient expertise with the Japanese market. Vision: 'To become the strategic partner in Japan for egg powder from India.' Activities of SKM Japan include: importing egg ingredients into Japan, warehousing necessary stock, coordinating transport, coordinating with Japanese veterinary authorities, interacting with customers, sales and marketing, and developing sales networking and partners.",
+      "url": "https://skmegg.vercel.app/branches/skm-japan"
+    },
+    {
+      "id": "branches-europe-1",
+      "text": "SKM Europe is SKM's branch connecting Indian egg-based ingredients with the European food industry. Vision: 'To become the strategic partner in Europe for egg based ingredients primarily sourced from India.' Activities include: importing egg ingredients into the EU, warehousing stock, coordinating transport, coordinating with EU veterinary authorities, interacting with customers, sales and marketing, new product development, and developing sales networking and partners.",
+      "url": "https://skmegg.vercel.app/branches/skm-europe"
+    },
+    {
+      "id": "branches-russia-1",
+      "text": "SKM Russia is SKM's branch establishing a trusted supply chain for Indian egg ingredients across Russia. Vision: 'To become the strategic partner in Russia for egg based ingredients primarily sourced from India.' Activities include: importing egg ingredients into Russia, warehousing stock, coordinating transport, interacting with customers, sales and marketing, and developing sales networking and partners.",
+      "url": "https://skmegg.vercel.app/branches/skm-russia"
+    },
+    {
+      "id": "branches-global",
+      "text": "SKM has a strong global presence with international branches in Japan (SKM Japan — Tokyo), Europe (SKM Europe — Netherlands), and Russia (SKM Russia). The company exports egg products to over 30 countries worldwide. The manufacturing headquarters is in Erode, Tamil Nadu, India. SKM's products comply with EU and Japanese regulatory standards, enabling supply to some of the world's most regulated food markets.",
+      "url": "https://skmegg.vercel.app/branches"
+    },
+
+    {
+      "id": "contact-corporate-office",
+      "text": "SKM Corporate Office (Headquarters) is located at: 133, 133/1, Gandhiji Road, Erode, TamilNadu - 638001. Phone: 0424-2268391. The corporate office is open Monday to Saturday, 9:00 AM to 6:00 PM (IST).",
+      "url": "https://skmegg.vercel.app/contact-us"
+    },
+    {
+      "id": "contact-processing-factory",
+      "text": "SKM Processing Factory is located at: 20th km, Erode - Karur Road, Punjai Kilambadi Village, Cholangapalayam, Modakuruchi block, Erode, Tamil Nadu - 638 154. Phone: 0424-2351532. For product inquiries, sales support, or business enquiries, customers can also use the contact form on the SKM website.",
+      "url": "https://skmegg.vercel.app/contact-us"
+    },
+
+    {
+      "id": "why-choose-skm-1",
+      "text": "Key reasons to choose SKM Egg Products: (1) Global Confidence Since 1997 — earning trust of global customers with capacity to process 2 million eggs per day. (2) End-to-End Traceability — complete supply chain control from feed origin to finished product. (3) Certified, Controlled, Compliant — ISO and BRCGS certified, HACCP-driven, verified residue control, and consistent functionality. SKM has decades of experience as a trusted global leader in egg processing with a fully integrated facility.",
+      "url": "https://skmegg.vercel.app/"
+    },
+
+    {
+      "id": "csr-community-development",
+      "text": "SKM's CSR arm is SKM Health and Mind Welfare Charity Trust – Sevai Maiyam. Under the community development program, SKM has adopted 228 families (174 in Gandhi Nagar, 54 in Rajiv Nagar) serving a total of 786 residents including 239 children and 62 elderly residents. Community support includes: individual toilets with drainage, street cleaning with trees, garbage removal, electrical street lighting. Health support includes: medical care for Dalit women through pregnancy and delivery, referrals to Erode General Hospital, post-delivery consultations, and family planning counselling.",
+      "url": "https://skmegg.vercel.app/csr/community-development"
+    },
+
+    {
+      "id": "food-safety-policy-1",
+      "text": "SKM's food safety policy is built on the foundations of HACCP, ISO 22000, and BRCGS global standards. The company is committed to producing safe, authentic, and legally compliant egg products. Key commitments include: preventing contamination at every stage of production; continuous monitoring of Critical Control Points (CCPs); regular internal and third-party audits; and maintaining a culture of food safety responsibility across all staff and departments.",
+      "url": "https://skmegg.vercel.app/quality/food-safety-policy"
+    },
+
+    {
+      "id": "quality-management-system",
+      "text": "SKM's Quality Management System is based on internationally recognized frameworks including ISO 22000, BRCGS, HACCP, 5S, TQM (Total Quality Management), and Quality Circles. The system covers raw material receipt, processing, packaging, and dispatch. Regular internal audits, management reviews, corrective actions, and continual improvement activities are integral parts of the QMS. All staff are trained in food safety and quality management principles.",
+      "url": "https://skmegg.vercel.app/quality/quality-management-system"
+    },
+
+    {
+      "id": "accolades-recognition",
+      "text": "SKM Egg Products has received multiple accolades and recognitions for its outstanding contribution to the egg processing industry, food safety, and export performance. The company is recognized by the Export Inspection Council (EIC) of India and is EU-approved and registered for export to European Union member states, confirming its compliance with some of the world's strictest food safety requirements.",
+      "url": "https://skmegg.vercel.app/about/accolades"
+    },
+
+    {
+      "id": "product-applications-bakery",
+      "text": "SKM egg products are widely used in bakery applications. Whole Egg Powder provides volume, structure, crumb binding, and golden color in cakes, biscuits, cookies, bread, muffins, and dry mixes. Egg Yolk Powder provides emulsification and rich flavor for custards, pastries, and croissants. Egg Albumen Powder (High Whip) is used in meringues, macaroons, and aerated confectionery. Liquid Whole Egg is used in industrial bakeries for standardized recipes.",
+      "url": "https://skmegg.vercel.app/products"
+    },
+    {
+      "id": "product-applications-meat-fish",
+      "text": "SKM egg products for meat and fish processing: Egg Albumen Powder (High Gel variants — A1302, A1303, A1304, A1305) are used in surimi, fish balls, fish cakes, sausages, hams, and restructured meats. They improve texture, reduce moisture loss during cooking, enhance chewiness, and improve sliceability. Super High Gel albumen is used in premium crab sticks and vegetarian meat analogues. Whole Egg Powder (High Gel W1214) is used for surimi and seafood products.",
+      "url": "https://skmegg.vercel.app/products/egg-albumen-powder"
+    },
+    {
+      "id": "product-applications-mayonnaise",
+      "text": "SKM egg products for mayonnaise and dressings: Egg Yolk Powder (Standard Y1101, Salted Y1104, High Color Y1107) provides the emulsifying backbone for mayonnaise and salad dressings. Liquid Egg Yolk (chilled, salted variants) is used by industrial mayonnaise manufacturers. Whole Egg Powder (De-Sugared W1204, W1206) is used in long-life mayonnaise and dehydrated dressing packets to prevent Maillard browning. Heat Stable variants are used in hot-processed sauces.",
+      "url": "https://skmegg.vercel.app/products/egg-yolk-powder"
+    },
+    {
+      "id": "product-applications-confectionery",
+      "text": "SKM egg products for confectionery: Egg Albumen Powder (High Whip A1308) is the key ingredient in aerated confectionery including marshmallows, nougats, meringues, macaroons, kisses, and soufflés. It provides rapid foam overrun, high volume increase, and long-lasting bubble stability. Whole Egg Powder (Sugared W1259) is used in chiffon cakes and sponge cakes for exceptional volume and fine crumb.",
+      "url": "https://skmegg.vercel.app/products/egg-albumen-powder"
+    },
+    {
+      "id": "product-applications-sports-nutrition",
+      "text": "SKM egg products for sports nutrition and health: Hydrolysed Egg White Protein (A1310) provides enzymatically hydrolysed egg white protein with rapid digestive uptake, min 85% protein, and high biological value. It is used in sports drinks, energy bars, nutritional beverages, and elderly nutrition. Whole Egg Powder (Enriched W1228, High Protein W1260) are used in sports supplements, protein bars, and fortified meal replacements.",
+      "url": "https://skmegg.vercel.app/products"
+    },
+
+    {
+      "id": "eu-usda-approval",
+      "text": "SKM's egg processing facility is EU and USDA approved. The plant is built and equipped in accordance with EU and USDA regulatory requirements. Approval No: 05/2/EP/97 under Indian Export of Egg Products Quality Control & Monitoring Rules (1997), based on EU/USDA guidelines. This EU approval allows SKM to export directly to European Union member states and other highly regulated global markets, making it one of the very few Indian egg processors with this authorization.",
+      "url": "https://skmegg.vercel.app/quality/certifications"
+    },
+
+    {
+      "id": "storage-shelf-life",
+      "text": "SKM egg powders generally have a shelf life of 24 months when stored in cool, dry conditions away from direct sunlight. Liquid egg products are available in chilled (0°C to 4°C) or frozen (-18°C) forms. Frozen liquid egg products typically have a shelf life of 18 months. All SKM products are packed under hygienic conditions in positive pressure packing rooms to maintain product integrity.",
+      "url": "https://skmegg.vercel.app/products"
+    },
+
+    {
+      "id": "packaging-options",
+      "text": "SKM offers flexible packaging options for its egg products. Egg powders are available in industrial-sized bags (25 kg, 50 kg), bulk sacks, and retail packaging. Liquid egg products are available in bulk tankers, drums (200L), Bag-in-Box, and smaller containers depending on requirements. Customized packaging configurations are available to meet specific customer and market needs.",
+      "url": "https://skmegg.vercel.app/products/customized-packages"
+    },
+
+    {
+      "id": "enquiry-process",
+      "text": "For sales inquiries, product samples, pricing, or technical assistance, customers can: (1) Use the Contact Us form on the SKM website. (2) Call the Corporate Office at 0424-2268391. (3) Call the Processing Factory at 0424-2351532. Office hours are Monday to Saturday, 9:00 AM to 6:00 PM IST. A sales representative will respond within 24 hours. SKM serves customers globally across more than 30 countries.",
+      "url": "https://skmegg.vercel.app/contact-us"
+    }
+
+  ]
+}
