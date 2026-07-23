@@ -52,7 +52,10 @@
       "Bash(cat \"C:\\\\Users\\\\it-web1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--PROJECTS-skm-website-v3---Rework\\\\434baa98-ef43-47ac-aece-1731a20ad7ba\\\\tasks\\\\b35tj4w9e.output\" 2>/dev/null; echo \"---png---\"; ls -la /d/tmp/diag_top.png 2>/dev/null)",
       "Bash(node layout_check.mjs)",
       "Bash(find / -maxdepth 3 -iname \"layout_check_1280.png\" 2>/dev/null)",
-      "Read(//d//**)"
+      "Read(//d//**)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 4319 -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Process -Id 11984)",
+      "PowerShell(Stop-Process -Id 11984 -Force)"
     ],
     "additionalDirectories": [
       "\\tmp"
