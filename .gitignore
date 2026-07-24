@@ -13,7 +13,9 @@ dist
 dist-ssr
 *.local
 
-# Large media files
+# Large media files (exceed GitHub's 100MB per-file push limit — host
+# externally, e.g. Vercel Blob/S3/Cloudflare R2/YouTube, and point the app
+# at that URL instead of a local public/ path)
 *.mp4
 *.avi
 *.mov

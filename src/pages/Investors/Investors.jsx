@@ -4,17 +4,17 @@ import SEO from '../../components/SEO/SEO';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 
-const allAssets = import.meta.glob(
-  '../../assets/investors/**/*.*',
-  { query: '?url', import: 'default', eager: true }
-);
+// Investor documents live as static files in public/documents/investors/
+// (not imported as JS modules) so Vite doesn't bundle/hash/sourcemap
+// hundreds of MB of PDFs and video into the JS build.
+import investorFiles from '../../data/investorFiles.json';
 
 function getFilesFromFolders(folderNames) {
-  return Object.entries(allAssets)
-    .filter(([path]) => folderNames.some(f => path.includes(`/investors/${f}/`)))
-    .map(([path, url]) => {
-      const name = path.split('/').pop();
+  return investorFiles
+    .filter(({ folder }) => folderNames.includes(folder))
+    .map(({ folder, name }) => {
       const ext = name.includes('.') ? name.split('.').pop().toLowerCase() : '';
+      const url = `/documents/investors/${encodeURIComponent(folder)}/${encodeURIComponent(name)}`;
       return { name, displayName: name.replace(/\.[^.]+$/, ''), url, ext };
     })
     .sort((a, b) => b.name.localeCompare(a.name));

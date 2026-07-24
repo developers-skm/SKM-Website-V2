@@ -4,7 +4,9 @@ import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 import products, { PRODUCT_CATEGORIES, getProductById } from '../../data/products';
-import ProductListPdf from '../../assets/Brouchers/Product List - SKM Egg Products Export India Limited.pdf';
+import { getBrochureUrl } from '../../data/brochureUrl';
+
+const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 
 // Products Hub — real, data-backed sections only. Fields with no genuine
 // per-product data anywhere in the repo (function/application tags, product

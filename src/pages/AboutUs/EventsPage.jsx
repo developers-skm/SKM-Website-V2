@@ -51,21 +51,8 @@ import seoul26_3 from '../../assets/Events - EXPO/Seoul Food 2026 (June 9-12)/3.
 import seoul26_4 from '../../assets/Events - EXPO/Seoul Food 2026 (June 9-12)/4.webp';
 import seoul26_5 from '../../assets/Events - EXPO/Seoul Food 2026 (June 9-12)/5.webp';
 
-// Brochure files map for download — resolved once at module load into a
-// fileName -> url lookup so repeated getBrochureUrl calls are O(1) instead
-// of re-scanning Object.keys() on every render.
-const allBrochures = import.meta.glob(
-  '../../assets/Brouchers/*.pdf',
-  { query: '?url', import: 'default', eager: true }
-);
-
-const brochureUrlByFileName = Object.entries(allBrochures).reduce((acc, [path, url]) => {
-  const fileName = path.split('/').pop();
-  acc[fileName] = url;
-  return acc;
-}, {});
-
-const getBrochureUrl = (fileName) => brochureUrlByFileName[fileName] ?? null;
+// Brochure files served as static PDFs from public/documents/brochures/.
+import { getBrochureUrl } from '../../data/brochureUrl';
 
 // Section 3 — Upcoming Exhibitions Data. SKM has genuinely exhibited at
 // each of these recurring international food-ingredient fairs before (see

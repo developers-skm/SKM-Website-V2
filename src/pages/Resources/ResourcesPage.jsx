@@ -6,6 +6,7 @@ import { containerVariants, itemVariants } from '../../utils/animationVariants';
 import products from '../../data/products';
 import applications from '../../data/applications';
 import certifications from '../../data/certifications';
+import { getBrochureUrl } from '../../data/brochureUrl';
 
 // Sections 2 + 3 — Resource filters + Technical documents, built together
 // since the filters need a real document list to act on.
@@ -234,17 +235,13 @@ function CertificationsSection() {
 // from the standalone /brochure page (src/pages/Brochure/BrochurePage.jsx)
 // directly into this resource centre, per the brief — same real PDF
 // assets (Company Profile, Full Product List, 4 product flyers),
-// auto-discovered from src/assets/Brouchers via the same import.meta.glob
-// approach, not duplicated as new data. /brochure itself stays live for
-// SEO/direct linking (same precedent as every other consolidated page this
-// session). "Download Product Portfolio" downloads the real Full Product
-// List PDF. "Download Application Guide" has no real file anywhere in the
-// repo — no dedicated application guide document exists — so it's a
-// genuinely disabled button rather than a fake download.
-const allBrochures = import.meta.glob(
-  '../../assets/Brouchers/*.pdf',
-  { query: '?url', import: 'default', eager: true }
-);
+// served as static files from public/documents/brochures/, not duplicated
+// as new data. /brochure itself stays live for SEO/direct linking (same
+// precedent as every other consolidated page this session). "Download
+// Product Portfolio" downloads the real Full Product List PDF. "Download
+// Application Guide" has no real file anywhere in the repo — no dedicated
+// application guide document exists — so it's a genuinely disabled button
+// rather than a fake download.
 
 const brochureMeta = {
   'Company Profile - SKM Egg Products Export India Limited.pdf': {
@@ -286,10 +283,9 @@ const brochureMeta = {
 };
 
 function buildBrochureEntries() {
-  return Object.entries(allBrochures).map(([path, url]) => {
-    const fileName = path.split('/').pop();
-    const meta = brochureMeta[fileName] ?? { category: 'Document', title: fileName.replace(/\.pdf$/i, ''), desc: '', featured: false };
-    return { fileName, url, ...meta };
+  return Object.keys(brochureMeta).map((fileName) => {
+    const meta = brochureMeta[fileName];
+    return { fileName, url: getBrochureUrl(fileName), ...meta };
   });
 }
 

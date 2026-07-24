@@ -5,7 +5,9 @@ import PdfFlipbook from '../../components/PdfFlipbook/PdfFlipbook';
 import { itemVariants } from '../../utils/animationVariants';
 import eppLogo from '../../assets/2. ABOUT US/Brand Identity/EPP VERTICAL LOGO_585x585px.png';
 
-import productListPdf from '../../assets/2. ABOUT US/SKM EGG PRODUCTS _ Coffee Table Book_ Final.pdf?url';
+// Served as a static file from public/documents/coffee-table-book/ so Vite
+// doesn't bundle/hash/sourcemap this 11MB PDF into the JS build.
+const productListPdf = '/documents/coffee-table-book/SKM%20EGG%20PRODUCTS%20_%20Coffee%20Table%20Book_%20Final.pdf';
 
 const books = [
   {

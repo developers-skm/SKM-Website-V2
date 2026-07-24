@@ -2,11 +2,7 @@
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
-
-const allBrochures = import.meta.glob(
-  '../../assets/Brouchers/*.pdf',
-  { query: '?url', import: 'default', eager: true }
-);
+import { getBrochureUrl } from '../../data/brochureUrl';
 
 const brochureMeta = {
   'Company Profile - SKM Egg Products Export India Limited.pdf': {
@@ -48,15 +44,9 @@ const brochureMeta = {
 };
 
 function buildEntries() {
-  return Object.entries(allBrochures).map(([path, url]) => {
-    const fileName = path.split('/').pop();
-    const meta = brochureMeta[fileName] ?? {
-      category: 'Document',
-      title: fileName.replace(/\.pdf$/i, ''),
-      desc: '',
-      featured: false,
-    };
-    return { fileName, url, ...meta };
+  return Object.keys(brochureMeta).map((fileName) => {
+    const meta = brochureMeta[fileName];
+    return { fileName, url: getBrochureUrl(fileName), ...meta };
   });
 }
 

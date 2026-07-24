@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
-import CompanyProfilePdf from '../../assets/Brouchers/Company Profile - SKM Egg Products Export India Limited.pdf';
+import { getBrochureUrl } from '../../data/brochureUrl';
+
+const CompanyProfilePdf = getBrochureUrl('Company Profile - SKM Egg Products Export India Limited.pdf');
 import FactoryImage from '../../assets/2. ABOUT US/Our Company/Factory image.webp';
 
 // Section 2 — Company overview. Real content verbatim/derived from

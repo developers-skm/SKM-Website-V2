@@ -55,7 +55,13 @@
       "Read(//d//**)",
       "PowerShell(Get-NetTCPConnection -LocalPort 4319 -ErrorAction SilentlyContinue)",
       "PowerShell(Get-Process -Id 11984)",
-      "PowerShell(Stop-Process -Id 11984 -Force)"
+      "PowerShell(Stop-Process -Id 11984 -Force)",
+      "Bash(sort -k5 -n -r)",
+      "Bash(xargs -I{} du -h {})",
+      "Bash(cp -r \"src/assets/investors/\"* \"public/documents/investors/\")",
+      "Bash(cp -r \"src/assets/Brouchers/\"* \"public/documents/brochures/\")",
+      "Bash(node -e ' *)",
+      "WebSearch"
     ],
     "additionalDirectories": [
       "\\tmp"

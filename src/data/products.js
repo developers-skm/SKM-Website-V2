@@ -19,9 +19,11 @@ import CustomizedPackagesImg from '../assets/3. PRODUCTS/Customized Packages/Pow
 // No fabricated/placeholder PDFs for the other products; the button is
 // simply omitted where no real document exists (see BrochurePage.jsx for
 // the full document list).
-import WholeEggPowderTds from '../assets/Brouchers/SKM WHOLE EGG POWDER A5 FLYER (F&B).pdf';
-import EggYolkPowderTds from '../assets/Brouchers/SKM EGG YOLK POWDER A5 FLYER (F&B).pdf';
-import EggAlbumenPowderTds from '../assets/Brouchers/SKM EGG ALBUMEN POWDER    A5 FLYER (F&B).pdf';
+import { getBrochureUrl } from './brochureUrl';
+
+const WholeEggPowderTds = getBrochureUrl('SKM WHOLE EGG POWDER A5 FLYER (F&B).pdf');
+const EggYolkPowderTds = getBrochureUrl('SKM EGG YOLK POWDER A5 FLYER (F&B).pdf');
+const EggAlbumenPowderTds = getBrochureUrl('SKM EGG ALBUMEN POWDER    A5 FLYER (F&B).pdf');
 
 export const PRODUCT_CATEGORIES = {
   POWDERS: 'Egg Powders',

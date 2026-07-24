@@ -1,6 +1,8 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import GoldenEggImg from '../../../assets/Golden Egg Picture.webp';
-import ProductListPdf from '../../../assets/Brouchers/Product List - SKM Egg Products Export India Limited.pdf';
+import { getBrochureUrl } from '../../../data/brochureUrl';
+
+const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 import useApplicationSelectorNavigation from '../../../components/Navbar/useApplicationSelectorNavigation';
 
 // Full-bleed hero — the food-application photo fills the entire section,

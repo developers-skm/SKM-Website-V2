@@ -1,5 +1,7 @@
-import companyProfilePdf from '../../assets/Brouchers/Company Profile - SKM Egg Products Export India Limited.pdf';
-import productListPdf from '../../assets/Brouchers/Product List - SKM Egg Products Export India Limited.pdf';
+import { getBrochureUrl } from '../../data/brochureUrl';
+
+const companyProfilePdf = getBrochureUrl('Company Profile - SKM Egg Products Export India Limited.pdf');
+const productListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 
 // Section 8 — documents (brief §8). Only real PDFs are listed: the
 // product's own flyer/TDS where one exists (data/products.js `tdsUrl`,
