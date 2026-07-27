@@ -11,7 +11,6 @@ export default function OurCompanyPage({ onPageChange }) {
         keywords: 'SKM Egg Products company, egg processing company India, Asia largest egg processor, egg products manufacturer India, integrated egg processing, backward integration poultry, egg processing facility Erode, egg company Tamil Nadu, egg powder company India, egg exporter India',
         canonical: 'https://www.skmegg.com/our_company',
       }}
-      breadcrumbItems={[{ label: 'About Us' }, { label: 'Our Company' }]}
       onPageChange={onPageChange}
     >
       <OurCompany />

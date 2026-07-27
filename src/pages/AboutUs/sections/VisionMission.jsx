@@ -1,15 +1,9 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
+import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 85, damping: 15 } },
-};
+const containerVariants = makeContainerVariants(0.15);
+const cardVariants = makeItemVariants({ y: 30, stiffness: 85 });
 
 const missionItems = [
   { title: "Innovate and Excel",       desc: "Innovate and excel in what we do." },

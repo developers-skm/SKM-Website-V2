@@ -55,7 +55,6 @@ export default function EggPowdersCategoryPage({ onPageChange }) {
         keywords: 'egg powder category, whole egg powder, egg yolk powder, egg albumen powder, spray dried egg powder',
         canonical: 'https://www.skmegg.com/category_powders',
       }}
-      breadcrumbLabel="Egg Powders"
       categoryLabel="Product Category"
       title="Egg Powders"
       format="Spray-dried, pasteurized egg powder — whole egg, egg yolk, and egg albumen variants, supplied as a shelf-stable dry ingredient."

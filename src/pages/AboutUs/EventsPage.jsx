@@ -177,6 +177,7 @@ export default function EventsPage({ onPageChange }) {
   const [activeMeetingEvent, setActiveMeetingEvent] = useState(null);
   const [meetingForm, setMeetingForm] = useState({ name: '', email: '', company: '', date: '', message: '' });
   const [meetingSubmitted, setMeetingSubmitted] = useState(false);
+  const [meetingError, setMeetingError] = useState('');
 
   const [activeArticle, setActiveArticle] = useState(null);
   const [activeInsight, setActiveInsight] = useState(null);
@@ -245,9 +246,10 @@ export default function EventsPage({ onPageChange }) {
   const handleBookMeeting = (e) => {
     e.preventDefault();
     if (!meetingForm.name || !meetingForm.email || !meetingForm.company) {
-      alert('Please fill in Name, Email, and Company.');
+      setMeetingError('Please fill in Name, Email, and Company.');
       return;
     }
+    setMeetingError('');
     setMeetingSubmitted(true);
     setTimeout(() => {
       setMeetingForm({ name: '', email: '', company: '', date: '', message: '' });
@@ -290,7 +292,6 @@ export default function EventsPage({ onPageChange }) {
         description: 'Explore the trade exhibitions, latest corporate news, and technical food-science insights from SKM Egg Products.',
         keywords: 'SKM Events, B2B egg powder insights, food expo, Gulfood manufacturing, Fi Asia, egg processing news',
       }}
-      breadcrumbItems={[{ label: 'About Us' }, { label: 'News & Events' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full bg-page dark:bg-surface-950 overflow-hidden text-surface-800 dark:text-surface-200">
@@ -381,6 +382,7 @@ export default function EventsPage({ onPageChange }) {
                         onClick={() => {
                           setActiveMeetingEvent(expo);
                           setMeetingForm(prev => ({ ...prev, date: '' }));
+                          setMeetingError('');
                         }}
                         className="w-full inline-flex items-center justify-center min-h-[38px] rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-bold text-[12.5px] transition-colors cursor-pointer"
                       >
@@ -718,6 +720,7 @@ export default function EventsPage({ onPageChange }) {
                     onClick={() => {
                       setActiveMeetingEvent(null);
                       setMeetingSubmitted(false);
+                      setMeetingError('');
                     }}
                     className="text-white/80 hover:text-white cursor-pointer bg-transparent border-none p-1 rounded hover:bg-white/10"
                     aria-label="Close modal"
@@ -800,6 +803,9 @@ export default function EventsPage({ onPageChange }) {
                           className="p-3 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
                         />
                       </div>
+                      {meetingError && (
+                        <p className="font-body text-[12.5px] font-medium text-red-600 dark:text-red-400">{meetingError}</p>
+                      )}
                       <button
                         type="submit"
                         className="mt-2 w-full inline-flex items-center justify-center min-h-[42px] rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-bold text-[13.5px] transition-colors cursor-pointer"

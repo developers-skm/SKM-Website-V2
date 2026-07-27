@@ -11,7 +11,6 @@ export default function PolicyPage({ onPageChange }) {
         keywords: 'egg food safety policy, HACCP egg processing policy, egg product quality policy, food safety management egg, egg manufacturer safety commitment, egg processing hygiene policy',
         canonical: 'https://www.skmegg.com/policy',
       }}
-      breadcrumbItems={[{ label: 'Quality' }, { label: 'Policy' }]}
       onPageChange={onPageChange}
     >
       <FoodSafetyPolicy />

@@ -45,7 +45,7 @@ const features = [
   },
 ];
 
-export default function SpecialityEggLiquidPage({ onPageChange, onBackHome }) {
+export default function SpecialityEggLiquidPage({ onPageChange }) {
   return (
     <div className="w-full flex flex-col bg-page dark:bg-surface-950 font-body text-left">
       <SEO

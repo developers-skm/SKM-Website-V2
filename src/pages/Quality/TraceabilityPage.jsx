@@ -11,7 +11,6 @@ export default function TraceabilityPage({ onPageChange }) {
         keywords: 'egg traceability, farm-to-fork egg, egg supply chain transparency, backward integrated egg, egg product tracking, egg processing traceability, poultry farm traceability, egg food safety traceability, traceable egg products India, egg origin tracking',
         canonical: 'https://www.skmegg.com/traceability',
       }}
-      breadcrumbItems={[{ label: 'Quality' }, { label: 'Traceability' }]}
       onPageChange={onPageChange}
     >
       <Traceability />

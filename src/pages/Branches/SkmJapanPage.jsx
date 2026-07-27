@@ -27,7 +27,6 @@ export default function SkmJapanPage({ onPageChange }) {
         keywords: 'egg powder supplier Japan, egg ingredients Japan, Indian egg powder Japan, buy egg powder Japan, egg albumen powder Japan, egg yolk powder Japan, egg product importer Japan, SKM Japan, egg powder distributor Japan',
         canonical: 'https://www.skmegg.com/skm_japan',
       }}
-      breadcrumbItems={[{ label: 'Branches' }, { label: 'SKM Japan' }]}
       onPageChange={onPageChange}
     >
       <BranchSection branch={japanData} />

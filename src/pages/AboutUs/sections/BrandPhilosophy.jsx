@@ -1,16 +1,10 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import BrandLogo from '../../../assets/2. ABOUT US/Brand Identity/EPP VERTICAL LOGO_585x585px.png';
+import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 90, damping: 15 } },
-};
+const containerVariants = makeContainerVariants(0.15);
+const itemVariants = makeItemVariants({ y: 25 });
 
 export default function BrandPhilosophy() {
   return (

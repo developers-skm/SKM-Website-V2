@@ -94,7 +94,6 @@ export default function EggAlbumenPowderPage({ onPageChange }) {
           offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'USD', seller: { '@type': 'Organization', name: 'SKM Egg Products' } }
         }
       }}
-      breadcrumbItems={[{ label: 'Products' }, { label: 'Egg Powders' }, { label: 'Egg Albumen Powder' }]}
       onPageChange={onPageChange}
       hero={{
         backgroundImage: EggAlbumenPowderMainImg,

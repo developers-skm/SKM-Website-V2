@@ -18,7 +18,6 @@ export default function JourneyPage({ onPageChange }) {
           description: 'The six-stage farm-to-product traceability chain behind every SKM egg product.',
         },
       }}
-      breadcrumbItems={[{ label: 'Our Journey' }]}
       onPageChange={onPageChange}
     >
       <JourneyStrip variant="full" onPageChange={onPageChange} />

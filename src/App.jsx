@@ -108,10 +108,6 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navigateToHome = () => {
-    handlePageChange('home');
-  };
-
   useEffect(() => {
     const handlePopState = (event) => {
       const page = event.state?.page || getPageFromPath();
@@ -140,28 +136,28 @@ function App() {
       case 'our_company':
       case 'about-company':
       case 'about-us': // Legacy fallback
-        return <OurCompanyPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <OurCompanyPage onPageChange={handlePageChange} />;
       case 'vision_mission':
       case 'about-vision-mission':
-        return <VisionMissionPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <VisionMissionPage onPageChange={handlePageChange} />;
       case 'core_ideology':
       case 'about-core-ideology':
-        return <CoreIdeologyPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <CoreIdeologyPage onPageChange={handlePageChange} />;
       case 'brand_identity':
       case 'about-brand-identity':
-        return <BrandIdentityPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <BrandIdentityPage onPageChange={handlePageChange} />;
       case 'ceo_message':
       case 'about-ceo-message':
-        return <CeoMessagePage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <CeoMessagePage onPageChange={handlePageChange} />;
       case 'accolades':
       case 'about-accolades':
-        return <AccoladesPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <AccoladesPage onPageChange={handlePageChange} />;
       case 'coffee_table_books':
       case 'about-coffee-table-books':
-        return <CoffeeTableBooksPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <CoffeeTableBooksPage onPageChange={handlePageChange} />;
       case 'events':
       case 'about-events':
-        return <EventsPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <EventsPage onPageChange={handlePageChange} />;
         
       case 'products':
         return <ProductsHubPage onPageChange={handlePageChange} prefill={prefill} />;
@@ -172,45 +168,45 @@ function App() {
       case 'category_custom':
         return <CustomSpecialtyCategoryPage onPageChange={handlePageChange} />;
       case 'whole_egg_powder':
-        return <WholeEggPowderPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <WholeEggPowderPage onPageChange={handlePageChange} />;
       case 'egg_albumen_powder':
-        return <EggAlbumenPowderPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <EggAlbumenPowderPage onPageChange={handlePageChange} />;
       case 'egg_yolk_powder':
-        return <EggYolkPowderPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <EggYolkPowderPage onPageChange={handlePageChange} />;
       case 'egg_yolk_powder_heat_stable':
-        return <EggYolkPowderHeatStablePage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <EggYolkPowderHeatStablePage onPageChange={handlePageChange} />;
       case 'egg_albumen_liquid':
-        return <EggAlbumenLiquidPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <EggAlbumenLiquidPage onPageChange={handlePageChange} />;
       case 'egg_yolk_liquid':
-        return <EggYolkLiquidPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <EggYolkLiquidPage onPageChange={handlePageChange} />;
       case 'whole_egg_liquid':
-        return <WholeEggLiquidPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <WholeEggLiquidPage onPageChange={handlePageChange} />;
       case 'customized_mix':
-        return <CustomizedMixPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <CustomizedMixPage onPageChange={handlePageChange} />;
       case 'customized_packages':
-        return <CustomizedPackagesPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <CustomizedPackagesPage onPageChange={handlePageChange} />;
       case 'speciality_egg_liquids':
-        return <SpecialityEggLiquidPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <SpecialityEggLiquidPage onPageChange={handlePageChange} />;
       case 'egg_white_cube':
-        return <EggWhiteCubePage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <EggWhiteCubePage onPageChange={handlePageChange} />;
       
       // Quality Subpages
       case 'policy':
       case 'quality-policy':
       case 'quality': // Legacy fallback
-        return <PolicyPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <PolicyPage onPageChange={handlePageChange} />;
       case 'certifications':
       case 'quality-certifications':
-        return <CertificationsPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <CertificationsPage onPageChange={handlePageChange} />;
       case 'quality_assurance':
       case 'quality-assurance':
-        return <QualityAssurancePage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <QualityAssurancePage onPageChange={handlePageChange} />;
       case 'traceability':
       case 'quality-traceability':
-        return <TraceabilityPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <TraceabilityPage onPageChange={handlePageChange} />;
       case 'quality_management_system':
       case 'quality-management-system':
-        return <QualityManagementSystemPage onBackHome={navigateToHome} onPageChange={handlePageChange} />;
+        return <QualityManagementSystemPage onPageChange={handlePageChange} />;
       case 'quality_food_safety_traceability':
         return <QualityFoodSafetyTraceabilityPage onPageChange={handlePageChange} />;
         
@@ -248,7 +244,6 @@ function App() {
       case 'contact-us':
         return (
           <ContactUs
-            onBackHome={navigateToHome}
             onPageChange={handlePageChange}
             prefill={prefill}
             onModalVisibilityChange={setIsContactModalOpen}

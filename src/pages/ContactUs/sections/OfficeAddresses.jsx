@@ -4,26 +4,11 @@ import { motion } from 'framer-motion';
 // Import images
 import CorporateImg from '../../../assets/6. CONTACT US/20240719_SKM_EGG PRODUCTS_197_SHA05676.webp';
 import FactoryImg from '../../../assets/6. CONTACT US/SKM AO Picture.jpg';
+import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 export default function OfficeAddresses() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: 'spring', stiffness: 80, damping: 15 },
-    },
-  };
+  const containerVariants = makeContainerVariants(0.15);
+  const itemVariants = makeItemVariants({ y: 30, stiffness: 80 });
 
   const locations = [
     {

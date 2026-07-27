@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
-import { itemVariants } from '../../utils/animationVariants';
+import { itemVariants, makeContainerVariants } from '../../utils/animationVariants';
 
 const coreValues = [
   {
@@ -34,10 +34,7 @@ const coreValues = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-};
+const containerVariants = makeContainerVariants(0.1);
 
 export default function CoreIdeologyPage({ onPageChange }) {
   return (
@@ -47,7 +44,6 @@ export default function CoreIdeologyPage({ onPageChange }) {
         description: 'Learn more about the guiding purpose, values, ethics, and principles that anchor SKM\'s corporate culture and operations.',
         keywords: 'SKM Core Ideology, corporate values, bio-security purpose, Thinking Out of the Shell',
       }}
-      breadcrumbItems={[{ label: 'About Us' }, { label: 'Core Ideology' }]}
       onPageChange={onPageChange}
     >
 

@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import PdfFlipbook from '../../components/PdfFlipbook/PdfFlipbook';
-import { itemVariants } from '../../utils/animationVariants';
+import { itemVariants, makeContainerVariants } from '../../utils/animationVariants';
 import eppLogo from '../../assets/2. ABOUT US/Brand Identity/EPP VERTICAL LOGO_585x585px.png';
 
 // Served as a static file from public/documents/coffee-table-book/ so Vite
@@ -23,10 +23,7 @@ const books = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-};
+const containerVariants = makeContainerVariants(0.15);
 
 export default function CoffeeTableBooksPage({ onPageChange }) {
   const [flipbook, setFlipbook] = useState(null); // { pdfUrl, title }
@@ -38,7 +35,6 @@ export default function CoffeeTableBooksPage({ onPageChange }) {
         description: 'Browse the digital archives and virtual coffee table books of SKM Egg Products, chronicling our history, infrastructure, and standards.',
         keywords: 'SKM Coffee Table Books, SKM corporate history, egg processing photography',
       }}
-      breadcrumbItems={[{ label: 'About Us' }, { label: 'Coffee Table Books' }]}
       onPageChange={onPageChange}
     >
 

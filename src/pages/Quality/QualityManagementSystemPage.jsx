@@ -11,7 +11,6 @@ export default function QualityManagementSystemPage({ onPageChange }) {
         keywords: 'egg processing quality management system, QMS egg manufacturer, egg product quality system, ISO egg QMS, continuous improvement egg processing, egg quality standards India',
         canonical: 'https://www.skmegg.com/quality_management_system',
       }}
-      breadcrumbItems={[{ label: 'Quality' }, { label: 'Quality Management System' }]}
       onPageChange={onPageChange}
     >
       <QualityManagementSystem />

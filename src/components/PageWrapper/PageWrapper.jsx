@@ -1,7 +1,7 @@
 import React from 'react';
 import SEO from '../SEO/SEO';
 
-export default function PageWrapper({ seo, breadcrumbItems, onPageChange, children }) {
+export default function PageWrapper({ seo, children }) {
   return (
     <div className="w-full flex flex-col">
       <SEO

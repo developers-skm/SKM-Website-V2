@@ -630,7 +630,6 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
         keywords: 'egg powder catalogue, liquid egg products, egg ingredient supplier, whole egg powder, whole egg liquid',
         canonical: 'https://www.skmegg.com/products',
       }}
-      breadcrumbItems={[{ label: 'Products' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">

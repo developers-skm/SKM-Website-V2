@@ -1,16 +1,10 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import FactoryImage from '../../../assets/2. ABOUT US/Our Company/Factory image.webp';
+import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 90, damping: 15 } },
-};
+const containerVariants = makeContainerVariants(0.15);
+const itemVariants = makeItemVariants({ y: 25 });
 
 const stats = [
   { value: "2 Million",  label: "Eggs processed per day",       sub: "Integrated Scale" },

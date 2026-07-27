@@ -36,7 +36,6 @@ export default function CustomSpecialtyCategoryPage({ onPageChange }) {
         keywords: 'customized egg products, custom egg powder blend, speciality egg liquid, egg white cube, customized packaging',
         canonical: 'https://www.skmegg.com/category_custom',
       }}
-      breadcrumbLabel="Customised and Specialty Products"
       categoryLabel="Product Category"
       title="Customised and Specialty Products"
       format="Custom-configured egg powder blends, speciality liquid blends, cooked egg white cube, and customised packaging — built to your exact specification rather than a fixed catalogue format."

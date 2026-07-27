@@ -10,7 +10,7 @@ import PackagingLogistics from './PackagingLogistics';
 import TraceWidget from './TraceWidget';
 import ProductDocuments from './ProductDocuments';
 import RelatedProducts from './RelatedProducts';
-import FinalEnquiryCTA from './FinalEnquiryCTA';
+import EnquiryCTABand from '../common/EnquiryCTABand';
 import { getRelatedProducts, getTdsUrl, getProductById } from '../../data/products';
 
 // Shared shell for all 11 product detail pages (Whole Egg Powder, Egg Yolk
@@ -20,7 +20,6 @@ import { getRelatedProducts, getTdsUrl, getProductById } from '../../data/produc
 // / eggshell / warm-neutral) so the page reads as distinct chapters.
 export default function ProductPage({
   seo,
-  breadcrumbItems,
   onPageChange,
   hero,
   variantsData,
@@ -173,11 +172,12 @@ export default function ProductPage({
       )}
 
       {/* Final CTA — soft red-tinted chapter, calm handoff into the footer. */}
-      <FinalEnquiryCTA
-        productName={productName}
-        productId={productId}
-        categoryLabel={hero.categoryLabel}
-        onPageChange={onPageChange}
+      <EnquiryCTABand
+        eyebrow={hero.categoryLabel}
+        heading={productName}
+        actions={[
+          { label: 'Request Sample / Get Quote', onClick: () => onPageChange('get-quote', { productId }) },
+        ]}
       />
     </div>
   );

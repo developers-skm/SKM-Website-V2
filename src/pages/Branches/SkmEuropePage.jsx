@@ -28,7 +28,6 @@ export default function SkmEuropePage({ onPageChange }) {
         keywords: 'egg powder supplier Europe, egg ingredients EU, Indian egg powder Europe, EU egg powder importer, buy egg powder Europe, egg albumen powder Europe, egg yolk powder EU, egg products European Union, EU approved egg exporter, SKM Europe, egg powder distributor Europe',
         canonical: 'https://www.skmegg.com/skm_europe',
       }}
-      breadcrumbItems={[{ label: 'Branches' }, { label: 'SKM Europe' }]}
       onPageChange={onPageChange}
     >
       <BranchSection branch={europeData} />

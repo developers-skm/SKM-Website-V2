@@ -343,7 +343,6 @@ export default function GlobalReachPage({ onPageChange }) {
         keywords: 'egg powder exporter countries, SKM Japan, SKM Europe, SKM Russia, egg products global export, egg powder international supplier',
         canonical: 'https://www.skmegg.com/global_reach',
       }}
-      breadcrumbItems={[{ label: 'Global Reach' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">

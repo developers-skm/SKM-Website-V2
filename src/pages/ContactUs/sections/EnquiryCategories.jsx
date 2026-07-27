@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 // Section 1 — Enquiry-intent selector (brief §1). Exact 4 large choices;
 // each card itself is the selection button (no separate button element).
@@ -81,14 +82,8 @@ const otherEnquiries = [
 ];
 
 export default function EnquiryCategories({ onOpenEnquiry, onPageChange }) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 90, damping: 15 } },
-  };
+  const containerVariants = makeContainerVariants(0.1);
+  const itemVariants = makeItemVariants({ y: 25 });
 
   const handleSelectIntent = (intentId) => {
     onPageChange('get-quote', { enquiryIntent: intentId });

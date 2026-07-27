@@ -10,6 +10,7 @@ import FarmImg from '../assets/5. INFRASTRUCTURE/Poultry farm/EC shed overview.w
 import ProcessingImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Pasteurization.webp';
 import LabImg from '../assets/5. INFRASTRUCTURE/Laboratory/GC and HPLC.webp';
 import DispatchImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Cold room.webp';
+import { LAYERS_HOUSED, EGGS_PER_YEAR_SHORT, EGGS_PROCESSED_PER_DAY_SHORT } from './productionFacts';
 
 const journeyStages = [
   {
@@ -35,9 +36,9 @@ const journeyStages = [
     id: 'farm',
     label: 'Farm',
     image: FarmImg,
-    tagline: '2.4 million layers, continuously monitored.',
-    description: 'Our ISO 22000 certified integrated farms house 2.4 million layers in environmentally controlled sheds with automated feeding, watering, and egg collection — registered under EU compartmentalization norms with continuous flock health monitoring.',
-    stat: { value: '164M', label: 'Eggs produced annually on our own farms' },
+    tagline: `${LAYERS_HOUSED} layers, continuously monitored.`,
+    description: `Our ISO 22000 certified integrated farms house ${LAYERS_HOUSED} layers in environmentally controlled sheds with automated feeding, watering, and egg collection — registered under EU compartmentalization norms with continuous flock health monitoring.`,
+    stat: { value: EGGS_PER_YEAR_SHORT, label: 'Eggs produced annually on our own farms' },
   },
   {
     step: '04',
@@ -46,7 +47,7 @@ const journeyStages = [
     image: ProcessingImg,
     tagline: 'Fresh eggs, processed the same day.',
     description: 'Daily fresh egg intake moves through a HACCP-monitored, EU and USDA-compliant plant — breaking, pasteurization, and drying — with full Critical Control Point (CCP) documentation at every stage.',
-    stat: { value: '2M', label: 'Eggs processed per day' },
+    stat: { value: EGGS_PROCESSED_PER_DAY_SHORT, label: 'Eggs processed per day' },
   },
   {
     step: '05',

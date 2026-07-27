@@ -615,7 +615,6 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
         keywords: 'egg product quality assurance, food safety policy, egg product certifications, NABL accredited laboratory, egg traceability, HACCP egg processing',
         canonical: 'https://www.skmegg.com/quality_food_safety_traceability',
       }}
-      breadcrumbItems={[{ label: 'Quality, Food Safety & Traceability' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">

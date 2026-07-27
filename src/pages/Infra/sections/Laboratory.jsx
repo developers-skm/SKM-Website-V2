@@ -1,6 +1,8 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import ImageSlider from '../../../components/ImageSlider/ImageSlider';
+import StatCard from '../../../components/common/StatCard';
+import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 import ResidueLabAerial from '../../../assets/5. INFRASTRUCTURE/Laboratory/Residue lab aerial view.webp';
 import ResidueLabFront from '../../../assets/5. INFRASTRUCTURE/Laboratory/Residue lab front view.webp';
@@ -107,14 +109,8 @@ const contentSections = [
 
 export default function Laboratory() {
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 15 } },
-  };
+  const containerVariants = makeContainerVariants(0.1);
+  const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
     <div className="w-full bg-page dark:bg-surface-950 overflow-hidden">
@@ -146,10 +142,7 @@ export default function Laboratory() {
       >
         <motion.div variants={itemVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {statsData.map((s, i) => (
-            <div key={i} className="p-5 bg-brand-600/4 dark:bg-brand-950/20 border border-[rgba(228, 10, 24,0.10)] dark:border-brand-900/30 rounded-[10px] flex flex-col gap-1.5 shadow-[5px_3px_40px_rgba(0,72,88,0.05)]">
-              <span className="font-heading font-bold text-[20px] sm:text-[22px] text-brand-600 dark:text-brand-400 leading-tight">{s.value}</span>
-              <span className="font-body text-[11px] font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide leading-tight">{s.label}</span>
-            </div>
+            <StatCard key={i} value={s.value} label={s.label} />
           ))}
         </motion.div>
 

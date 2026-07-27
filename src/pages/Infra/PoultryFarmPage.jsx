@@ -11,7 +11,6 @@ export default function PoultryFarmPage({ onPageChange }) {
         keywords: 'integrated poultry farm India, ISO 22000 layer farm, layer poultry farm, egg production farm India, poultry biosecurity, environmentally controlled poultry shed, commercial layer farm India, egg laying farm capacity, poultry farm Tamil Nadu, large scale egg production',
         canonical: 'https://www.skmegg.com/poultry_farm',
       }}
-      breadcrumbItems={[{ label: 'Infrastructure' }, { label: 'Poultry Farm' }]}
       onPageChange={onPageChange}
     >
       <PoultryFarm />

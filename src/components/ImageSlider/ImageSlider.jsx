@@ -30,7 +30,7 @@ function useBreakpointSPV(max = 3) {
   return spv;
 }
 
-export default function ImageSlider({ images, aspectRatio = '4/3', onImageClick, autoPlay = 0, slidesPerView = 3 }) {
+export default function ImageSlider({ images, aspectRatio = '4/3', autoPlay = 0, slidesPerView = 3 }) {
   const spv = useBreakpointSPV(slidesPerView);
   const totalPages = Math.ceil(images.length / spv);
   const maxIdx = Math.max(0, images.length - spv);
@@ -85,10 +85,7 @@ export default function ImageSlider({ images, aspectRatio = '4/3', onImageClick,
                   width: `calc((100% - ${(spv - 1) * GAP}px) / ${spv})`,
                 }}
               >
-                <div
-                  className={`project-card-skm rounded-[20px] overflow-hidden ${onImageClick ? 'cursor-pointer' : 'cursor-default'}`}
-                  onClick={() => onImageClick?.(idx + i)}
-                >
+                <div className="project-card-skm rounded-[20px] overflow-hidden cursor-default">
                   <div className="relative" style={{ aspectRatio }}>
                     <img
                       src={img.src}

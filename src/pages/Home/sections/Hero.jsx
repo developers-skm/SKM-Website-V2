@@ -56,7 +56,6 @@ export default function Hero({ onPageChange }) {
             Complete catalog of all SKM egg products — powders, liquids, customized mixes and specialty solutions available for global food producers.
           </p>
 
-          {/* Export-capability proof — verbatim, src/pages/Home/sections/TrustBar.jsx:8 */}
           <p className="font-body text-[15px] lg:text-[16px] font-semibold text-white/95 m-0">
             30+ Countries Served
           </p>

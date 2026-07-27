@@ -1,15 +1,9 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
+import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 15 } },
-};
+const containerVariants = makeContainerVariants(0.12);
+const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
 export default function BranchSection({ branch }) {
   const { name, tagline, region, vision, activities } = branch;

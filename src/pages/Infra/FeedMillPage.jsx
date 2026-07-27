@@ -11,7 +11,6 @@ export default function FeedMillPage({ onPageChange }) {
         keywords: 'poultry feed mill, in-house feed mill, residue-free poultry feed, integrated poultry feed, feed formulation poultry, poultry nutrition India, backward integration feed mill, egg product feed safety, poultry feed laboratory, animal feed quality',
         canonical: 'https://www.skmegg.com/feed_mill',
       }}
-      breadcrumbItems={[{ label: 'Infrastructure' }, { label: 'Feed Mill' }]}
       onPageChange={onPageChange}
     >
       <FeedMill />

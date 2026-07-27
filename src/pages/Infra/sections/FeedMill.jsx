@@ -1,5 +1,8 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
+import IconInfoCard from '../../../components/common/IconInfoCard';
+import StatCard from '../../../components/common/StatCard';
+import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 import FeedMillAerial from '../../../assets/5. INFRASTRUCTURE/Feed mill/Feed mill aerial view.jpg';
 
@@ -50,14 +53,8 @@ const infoBlocks = [
 ];
 
 export default function FeedMill() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 15 } },
-  };
+  const containerVariants = makeContainerVariants(0.1);
+  const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
     <div className="w-full bg-page dark:bg-surface-950 overflow-hidden">
@@ -90,10 +87,7 @@ export default function FeedMill() {
         {/* Stats */}
         <motion.div variants={itemVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {statsData.map((s, i) => (
-            <div key={i} className="p-5 bg-brand-600/4 dark:bg-brand-950/20 border border-[rgba(228, 10, 24,0.10)] dark:border-brand-900/30 rounded-[10px] flex flex-col gap-1.5 shadow-[5px_3px_40px_rgba(0,72,88,0.05)]">
-              <span className="font-heading font-bold text-[20px] sm:text-[22px] text-brand-600 dark:text-brand-400 leading-tight">{s.value}</span>
-              <span className="font-body text-[11px] font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide leading-tight">{s.label}</span>
-            </div>
+            <StatCard key={i} value={s.value} label={s.label} />
           ))}
         </motion.div>
 
@@ -136,23 +130,8 @@ export default function FeedMill() {
 
           <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {infoBlocks.map((block, i) => (
-              <motion.div
-                key={i}
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-                className="p-6 bg-white dark:bg-surface-900/50 border border-[#eee] dark:border-surface-800 rounded-[10px] flex flex-col gap-4 hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] transition-all duration-300 group"
-              >
-                <div className="w-10 h-10 rounded-[8px] bg-brand-600/6 dark:bg-brand-950/60 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                  {block.icon}
-                </div>
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-heading font-bold text-[14px] text-heading dark:text-white m-0 tracking-tight leading-snug">
-                    {block.title}
-                  </h3>
-                  <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 leading-[24px] m-0">
-                    {block.body}
-                  </p>
-                </div>
+              <motion.div key={i} variants={itemVariants} whileHover={{ y: -5 }}>
+                <IconInfoCard icon={block.icon} title={block.title} body={block.body} />
               </motion.div>
             ))}
           </motion.div>

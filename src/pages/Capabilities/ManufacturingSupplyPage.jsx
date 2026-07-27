@@ -616,7 +616,6 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
         keywords: 'egg powder manufacturing capacity, egg processing plant scale, egg product supply chain, bulk egg powder supplier, egg product export capacity',
         canonical: 'https://www.skmegg.com/manufacturing_and_supply',
       }}
-      breadcrumbItems={[{ label: 'Manufacturing and Supply' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">

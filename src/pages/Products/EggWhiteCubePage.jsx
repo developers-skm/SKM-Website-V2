@@ -51,7 +51,7 @@ const features = [
   },
 ];
 
-export default function EggWhiteCubePage({ onPageChange, onBackHome }) {
+export default function EggWhiteCubePage({ onPageChange }) {
   return (
     <div className="w-full flex flex-col bg-page dark:bg-surface-950 font-body text-left">
       <SEO

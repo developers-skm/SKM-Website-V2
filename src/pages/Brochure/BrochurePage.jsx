@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
 import { getBrochureUrl } from '../../data/brochureUrl';
+import { makeContainerVariants, makeItemVariants } from '../../utils/animationVariants';
 
 const brochureMeta = {
   'Company Profile - SKM Egg Products Export India Limited.pdf': {
@@ -53,15 +54,8 @@ const entries = buildEntries();
 const featured = entries.filter(e => e.featured);
 const flyers = entries.filter(e => !e.featured);
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 90, damping: 15 } },
-};
+const containerVariants = makeContainerVariants(0.1);
+const itemVariants = makeItemVariants({ y: 22 });
 
 function CategoryBadge({ label }) {
   const isFlyer = label === 'Product Flyer';

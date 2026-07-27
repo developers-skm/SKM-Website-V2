@@ -11,7 +11,6 @@ export default function LaboratoryPage({ onPageChange }) {
         keywords: 'NABL accredited egg laboratory, ISO 17025 egg testing, egg residue testing lab, GC-MS egg analysis, HPLC egg testing, egg microbiological testing, egg safety laboratory India, egg quality testing laboratory, physicochemical egg testing, poultry disease diagnostics, egg testing lab Tamil Nadu',
         canonical: 'https://www.skmegg.com/laboratory',
       }}
-      breadcrumbItems={[{ label: 'Infrastructure' }, { label: 'Laboratory' }]}
       onPageChange={onPageChange}
     >
       <Laboratory />

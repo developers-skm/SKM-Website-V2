@@ -95,7 +95,7 @@ const packagingData = [
   },
 ];
 
-export default function CustomizedPackagesPage({ onPageChange, onBackHome }) {
+export default function CustomizedPackagesPage({ onPageChange }) {
 
   const cardVariants = {
     hidden: { opacity: 0, y: 28 },

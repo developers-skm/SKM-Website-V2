@@ -1,4 +1,4 @@
-import { Field, inputClass } from '../FormField';
+import { Field, inputClass } from '../../../components/common/FormField';
 
 // Step 3 — Contact details (brief §2, Step 3): Name, Company, Job role,
 // Business email, Phone, Message. Adds "Job role" as a new real field on

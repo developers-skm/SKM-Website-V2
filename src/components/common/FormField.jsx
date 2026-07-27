@@ -1,8 +1,7 @@
 import React from 'react';
 
-// Shared field styling for the Get Quote flow — same underline-input visual
-// language as EnquiryModal's forms (src/pages/ContactUs/sections/EnquiryModal.jsx),
-// reused rather than re-invented.
+// Shared underline-input field styling — used by the Get Quote wizard and
+// the Contact Us enquiry modal, previously duplicated verbatim between them.
 export function Field({ label, required, error, children }) {
   return (
     <div className="flex flex-col gap-1">

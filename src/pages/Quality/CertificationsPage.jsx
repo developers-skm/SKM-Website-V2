@@ -11,7 +11,6 @@ export default function CertificationsPage({ onPageChange }) {
         keywords: 'BRCGS certified egg powder, Halal egg powder, Kosher egg products, FSSAI certified egg, EU approved egg manufacturer, USDA egg facility, NABL accredited egg laboratory, ISO 22000 egg, certified egg exporter India, BRC egg food safety, Halal certified egg India, Kosher egg powder supplier',
         canonical: 'https://www.skmegg.com/certifications',
       }}
-      breadcrumbItems={[{ label: 'Quality' }, { label: 'Certifications' }]}
       onPageChange={onPageChange}
     >
       <Certifications />

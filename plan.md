@@ -1,220 +1,110 @@
-# SKM Egg Products — Content & Navigation Strategy
+# SKM Website V4 — Cleanup & Production-Readiness Plan
 
-**Purpose of this document:** define the *thinking* behind page structure and navigation before any Figma work starts. This is not a sitemap dump — it explains *why* Booking.com, Zomato and Amazon convert so well, then translates those mechanics into a plan for a B2B egg-ingredient export business (not a consumer marketplace, which changes what "conversion" even means here).
+_Generated 2026-07-27. Scope: frontend only (React 19 + Vite 8 + Tailwind 4 SPA, ~90 routes, no backend). Based on a full-codebase audit (dead code, structural uniformity, duplication, production-readiness). All findings below were verified against the actual source (grep/read), not assumed._
 
----
-
-## 1. What SKM actually is (and why this matters for the plan)
-
-Before borrowing UX patterns from consumer apps, it's important to be honest about what SKM sells and to whom — otherwise you end up with a beautiful site that guides users toward the wrong action.
-
-- **Product**: industrial egg ingredients (egg powders, liquid egg, specialty blends) sold in bulk — not a single unit a person clicks "buy" on.
-- **Buyer**: a procurement manager, R&D/food technologist, or importer/distributor evaluating a *supplier*, not a shopper comparing prices on a single SKU.
-- **The real "conversion"** is not a purchase — it's a **qualified enquiry**: a sample request, a spec-sheet download with contact captured, or an RFQ (request for quote). Everything on the site should be designed to move a stranger toward that action with the least friction and the most confidence.
-- **Secondary audiences** exist and must not contaminate the primary flow: investors/shareholders (AGM, financials), media, and job seekers. These need their own clearly separated track, the way Amazon separates "Amazon Business" or "Sell on Amazon" from the main shopping flow.
-
-So the psychology we borrow from Booking/Zomato/Amazon isn't "make people buy faster" — it's **"make a stranger trust an unfamiliar supplier fast enough to hand over their contact details and say what they need."**
+**How to use this doc:** work top to bottom. Phase 0–1 are safe, mechanical, low-risk and should land first. Phase 2 is component extraction (medium risk, needs visual QA). Phase 3 is hardening. Phase 4 is one big architectural call (routing) that should be a deliberate decision, not a side-effect of a cleanup pass — read its trade-offs before committing to it.
 
 ---
 
-## 2. The psychology behind the three reference sites
+## Phase 0 — Delete dead code (no behavior change, do first)
 
-### Booking.com — anxiety reduction + momentum
-Booking sells something people are anxious about (spending money on a place they haven't seen, in a city they don't know). Its structure is built entirely around **collapsing anxiety at the exact moment it appears**:
+These files have **zero importers** anywhere in `src/` — confirmed via grep, not guessed. Deleting them is safe.
 
-- **One search bar, not a menu.** The homepage asks 3 questions (where, when, how many) instead of presenting 20 links. This works because deciding *what to click* is itself a cost — Booking removes that cost by asking instead of listing.
-- **Trust signals live at the point of decision, not on a separate "About" page.** Review scores, cancellation policy, "booked 12 times today" — all appear right where the user is about to commit, because that's when reassurance is actually needed.
-- **Scarcity/urgency** ("only 1 room left") converts hesitation into action by making inaction feel like the risky choice.
-- **The page never dead-ends.** Every screen has one obvious next step, and a persistent summary bar follows the user so they never lose their place.
+- [ ] `src/components/Breadcrumb/Breadcrumb.jsx` — removed from all call sites in commit `c50fbc8`, now fully orphaned (134 lines).
+- [ ] `src/components/ComingSoon.jsx` — unused; `Investors.jsx:723` has its own local `ComingSoonContent` instead.
+- [ ] `src/components/SectionContainer/SectionContainer.jsx` and `src/components/SectionContainer/PageContent.jsx` — never imported anywhere (only `CurvedDivider.jsx` in that folder is actually used). See Phase 2.2 — these were clearly *meant* to be the shared container but the codebase never adopted them.
+- [ ] `src/components/Navbar/NavDropdown.jsx` — unused; only mentioned in a comment.
+- [ ] `src/pages/AboutUs/sections/AboutHero.jsx` — unused (not imported by `AboutSKMPage.jsx`).
+- [ ] `src/pages/AboutUs/sections/FuturePreviews.jsx` — unused.
+- [ ] `src/pages/Home/sections/OurProducts.jsx` — unused (superseded by `ProductFamilies.jsx`).
+- [ ] `src/pages/Home/sections/TrustBar.jsx` — unused (`Home.jsx` never renders it). Note: this is the **only** consumer of `src/utils/useCountUp.js` — decide in Phase 2.3 whether to revive the count-up pattern via the new `StatCard` or delete the hook too.
+- [ ] `src/pages/Quality/sections/QualityHero.jsx` — unused.
+- [ ] `src/pages/GetQuote/steps/StepContact.jsx`, `StepDestination.jsx`, `StepProduct.jsx`, `StepQuantity.jsx` — 4 of the 8 files in `GetQuote/steps/` are leftovers from an earlier wizard design. `GetQuotePage.jsx:4-7` only imports `StepRequirement`, `StepCommercialDetails`, `StepContactDetails`, `StepReview`. Verify no in-progress work depends on these before deleting.
 
-**Translation for SKM**: Trust content (certifications, traceability, EU/USDA approval) is currently siloed under `/quality/*` — a destination almost nobody visits proactively. It needs to be *injected* into the product page and the enquiry flow, at the exact moment a buyer is deciding whether to trust an Indian supplier enough to request a sample.
+**Also remove:**
+- [ ] `@emailjs/browser` from `package.json` — listed as a dependency but never imported anywhere in `src/`. Dead weight in `node_modules`/install time.
+- [ ] `__q2.cjs` (repo root) — a leftover Playwright scratch script from a prior debugging session; paths inside it point to an unrelated temp scratchpad. Not referenced by anything.
+- [ ] Confirm `knowledge.json` (repo root) — it's a retrieval corpus for the external chatbot worker (`chatbot-worker.meowlovessyou.workers.dev`, wired via `src/api/chatApi.js`), not consumed by the frontend build. Keep if the chatbot still needs it, but consider moving it out of the repo root (e.g. into `scripts/` or the worker's own repo) since it's not app source.
 
-### Zomato/Swiggy — emotion before specification, curation over choice
-Food ordering apps know that appetite is emotional before it's rational:
+## Phase 1 — Fix dead/no-op props and small correctness bugs
 
-- **Visual-first discovery.** Photos of food drive the click; text/specs come after, not before.
-- **Curated carousels, not full listings.** "Top rated near you," "Because you ordered X" — the app pre-filters so the user chooses from 6 good options instead of 600 possible ones. Choice overload kills conversion.
-- **Location/context captured first**, and everything downstream is personalized to it.
-- **Shortest possible path from browse to commit** — menu → item → cart, one tap each.
+- [ ] **`breadcrumbItems` is a no-op prop.** `PageWrapper.jsx:4` and `ProductPage.jsx:23` both destructure `breadcrumbItems` but never use it (leftover from the breadcrumb removal). **44 page files** still pass it in, silently discarded. Remove the prop from the two shell components' signatures and strip `breadcrumbItems={...}` from all 44 call sites (mechanical find/replace).
+- [ ] **`onBackHome` is dropped at ~17 of ~20 call sites.** `App.jsx` passes `onBackHome={navigateToHome}` to ~20 pages (all 8 About Us subpages, 8 of 11 Product detail pages, 5 Quality subpages) but only 3 components actually use it (`CustomizedPackagesPage.jsx`, `EggWhiteCubePage.jsx`, `SpecialityEggLiquidPage.jsx`, via `ComingSoon` — which is now itself dead, Phase 0). Decide: either wire a real "back" affordance into the ~17 pages that silently ignore it, or stop passing the prop from `App.jsx` for pages that don't use it.
+- [ ] **`NotFound.jsx` has no `<SEO>` / meta tags at all** — the 404 page inherits whatever `<title>`/meta was last set by the previous page. Add an `SEO` block with `noindex`.
+- [ ] **Soft-404s are indexable.** `vercel.json`'s catch-all rewrite (`"source": "/(.*)"` → `/index.html`) means unknown URLs return HTTP 200. Combined with the missing `NotFound` SEO tag above, typo'd/legacy URLs can get indexed as low-quality duplicate pages. Fix together with the item above.
+- [ ] **`submitQuote.js` doesn't submit anywhere.** `src/pages/GetQuote/submitQuote.js:8-18` — the real `fetch()` call is commented out; it currently just resolves via `setTimeout` after a fake delay. Confirm this is intentional pre-launch scaffolding and track it as a **known blocker** before go-live (the Get Quote flow currently has no working backend target — out of scope for this frontend-only pass, but must not be forgotten).
+- [ ] Replace `alert('Please fill in Name, Email, and Company.')` in `src/pages/AboutUs/EventsPage.jsx:248` with the same inline-error UI pattern used elsewhere (`GetQuotePage.jsx`, `EnquiryModal.jsx`).
+- [ ] `src/components/ImageSlider/ImageSlider.jsx:33` exposes an `onImageClick` prop that no caller (`PoultryFarm.jsx`, `EggProcessingPlant.jsx`, `Laboratory.jsx`, `EventsPage.jsx`) ever passes — `yet-another-react-lightbox` is a dependency but is **never imported anywhere in `src/`**. Either wire it up for click-to-enlarge galleries (it's already installed) or drop the prop and the dependency.
 
-**Translation for SKM**: A visitor doesn't think "I want Egg Yolk Powder Y1104." They think "I make mayonnaise" or "I need a protein ingredient for a bakery mix." The site should let people **browse by application/industry** (Bakery, Mayonnaise & Dressings, Meat & Seafood, Confectionery, Sports Nutrition), the same emotional/contextual entry point Zomato uses for cuisine — not by SKM's internal product taxonomy (Powder vs Liquid vs Speciality), which means nothing to a first-time visitor.
+## Phase 2 — Extract shared components (fixes both "duplicate code" and "page uniformity")
 
-### Amazon — the product page is the real homepage, cross-sell keeps momentum
-Every Amazon entry point (search, ad, category browse) funnels to one place: **the product detail page**, which is deliberately built to be a self-contained decision-making unit:
+These are the biggest wins for consistency. Each item lists the files to merge and where the new component should live.
 
-- All decision-relevant info lives on *one* page: specs, reviews, Q&A, "customers also bought," return policy, price. The user never has to leave and hunt for reassurance elsewhere.
-- **Recommendation loops** ("frequently bought together," "customers also viewed") prevent dead ends — there's always a next product to consider.
-- **Breadcrumbs and persistent search** mean the user always knows where they are and can back out without feeling lost.
-- Checkout is reduced to the fewest possible steps once intent is established.
+- [ ] **`<SectionHero>`** — merges 3 byte-identical hero blocks: `AboutHero.jsx`, `QualityHero.jsx`, `ContactHero.jsx` (badge + heading + subtitle + identical gradient-glow background + identical local `containerVariants`/`itemVariants`). Note: `AboutHero`/`QualityHero` are already dead (Phase 0) — extracting this component is really about giving `ContactHero.jsx` and any *new* section pages a shared implementation instead of the pattern recurring a 4th time. Place in `src/components/common/SectionHero.jsx`.
+- [ ] **`<ImageHero>`** — merges `Applications/sections/ApplicationHero.jsx` and `ApplicationDetailHero.jsx` (full-bleed image + gradient overlay + identical primary/secondary CTA button classNames). Props: `image, alt, eyebrow, title, subtitle, primaryCta, secondaryCta`.
+- [ ] **`<IconInfoCard>` / `<IconInfoCardGrid>`** — byte-identical card markup (icon chip + title + body) duplicated across `Infra/sections/{PoultryFarm,FeedMill,EggProcessingPlant,Laboratory}.jsx`, `Quality/sections/QualityAssurance.jsx` (used twice), `CSR/{SustainabilityPage,TrustOutreachPage,EducationPage}.jsx` — 8 files total share the icon-chip style, 5 share the full card. Place in `src/components/common/`.
+- [ ] **`<StatCard>` / `<StatGrid>`** — byte-identical "big number + label" card in `Infra/sections/{PoultryFarm,EggProcessingPlant,FeedMill,Laboratory}.jsx` (4 files, static numbers). Wire `src/utils/useCountUp.js` into it (currently only used by the now-dead `TrustBar.jsx`) so all stat grids animate consistently — either always-on or via an `animated` prop.
+- [ ] **Merge `FinalEnquiryCTA` and `ApplicationFinalCTA`** — `src/components/ProductPage/FinalEnquiryCTA.jsx` and `src/pages/Applications/sections/ApplicationFinalCTA.jsx` are near-identical (same background, container, button classes). Consolidate into one `<EnquiryCTABand eyebrow heading primaryLabel onPrimary secondaryLabel? onSecondary? />` in `src/components/`. (`Home/sections/FinalEnquiry.jsx` is a genuinely different richer design — leave it alone.)
+- [ ] **De-duplicate `Field`/`inputClass`/`selectClass`.** `src/pages/GetQuote/FormField.jsx` and `src/pages/ContactUs/sections/EnquiryModal.jsx:17-44` independently define the identical form-field component. Move it to `src/components/common/FormField.jsx` and import from both features.
+- [ ] **Switch ~30 files from inline animation variants to the shared util.** `src/utils/animationVariants.js` exports `containerVariants`/`itemVariants`, but ~30 files redeclare near-identical versions locally (only stagger/stiffness numbers differ) vs. 11 files that already import it correctly. Mechanical pass: import the shared versions everywhere; if a couple of files need genuinely different timing, add named variant presets to the util rather than re-inlining.
+- [ ] **Adopt `<PageContent>` (Phase 0 flagged it dead) as the real shared container**, replacing the 64 files that hand-roll `mx-auto max-w-[Npx] px-… ` wrappers with **21 different one-off max-width values** (`1440px` ×86 occurrences, `1680px` ×37, plus one-offs like 1400/1360/1200/900/820/760/720px). Rather than reviving the exact old `PageContent.jsx`, redesign it to accept a `width` prop (`default | wide | narrow`, mapped to the 3 real widths actually needed) and migrate pages incrementally.
+- [ ] **Reconcile `journeyStages.js` and `homeJourneyStages.js`.** Both describe the same real-world production pipeline with hand-copied overlapping facts (e.g. "2.4 million layers / 164 million eggs annually" appears independently in both). Pull shared numeric facts into one constants module both import, so they can't drift out of sync.
 
-**Translation for SKM**: The **product page** (e.g. Whole Egg Powder) should become the richest page on the site — spec table, applications, relevant certifications, downloadable TDS, related case studies, cross-sell to complementary products ("manufacturers using this also use Egg Yolk Powder Y1101 for emulsification") — with a sticky "Request Sample / Get Quote" CTA that follows the user, the same way Amazon's Buy Box stays anchored.
+## Phase 3 — Standardize page-level conventions
 
-### The common thread across all three
-1. **Progressive narrowing, not a flat menu** — ask a question, then narrow, rather than presenting every link at once.
-2. **Decision-relevant info co-located at the point of decision** — don't force users to hunt across pages for reassurance.
-3. **One primary CTA per screen**, always visible.
-4. **Trust/social proof injected at the moment of anxiety**, not parked on a page nobody visits.
-5. **Segment early** ("who are you / what do you want") so everything downstream is personalized.
-6. **Visual/emotional hook before the spec dump.**
-7. **No dead ends** — every page offers a next step or a related option.
+The uniformity audit found **3 competing SEO-wiring conventions**. Pick one and migrate everything to it.
 
-This is the lens for every decision below.
+- [ ] Standardize SEO wiring: most pages go through `PageWrapper` → `SEO` (~65 pages, the intended pattern). But `ContactUs.jsx`, `Home.jsx`, `Investors.jsx`, `BrochurePage.jsx`, and 5 CSR pages call `<SEO>` directly without `PageWrapper`, and `ProductPage.jsx` (shared product-detail shell) has its own third variant. Converge on one: either every page uses `PageWrapper`, or `PageWrapper` becomes just a thin `SEO` re-export and pages call `SEO` directly and consistently — pick one, not three.
+- [ ] Break up the monolithic single-file pages that never adopted the "thin page + `sections/` folder" pattern used by AboutUs/Home/Quality/ContactUs/Infra/Applications: `Investors/Investors.jsx` (1051 lines), `Capabilities/ManufacturingSupplyPage.jsx` (717 lines), `Resources/ResourcesPage.jsx` (616 lines), `Innovation/InnovationCustomSolutionsPage.jsx` (500 lines), `GlobalReach/GlobalReachPage.jsx` (491 lines). Split each into a page shell + `sections/*.jsx`, consistent with the rest of the codebase — improves readability and makes Phase 2's shared components easier to drop in.
+- [ ] Verify the hardcoded contact info that's duplicated across files stays in sync in the meantime, and centralize it: `04242351532` appears independently in `OfficeAddresses.jsx` and `Investors.jsx`; `exportsales@skmegg.com` appears in `SEO.jsx` and separately in `RegionalRouting.jsx`. Create `src/config/contact.js` exporting these as constants, consumed everywhere.
 
----
+## Phase 4 — Production hardening (do regardless of the routing decision below)
 
-## 3. The farm-to-product story — a narrative layer running parallel to the funnel
+- [ ] **Add a top-level `ErrorBoundary`.** There is currently none anywhere in the app (`grep -r "ErrorBoundary"` → 0 matches). `App.jsx`'s `<Suspense>` only covers the chunk-loading state, not render-time exceptions — if any lazy page throws, the whole SPA white-screens with no fallback. Wrap `<Suspense>` in `App.jsx:296-309` with an `ErrorBoundary` (hand-written or `react-error-boundary`) rendering a "Something went wrong — Back to Home" fallback.
+- [ ] **Fix scroll-restore inconsistency.** `App.jsx:108`'s `handlePageChange` calls `window.scrollTo({ top: 0, behavior: 'smooth' })` on forward navigation, but the `popstate` handler (`App.jsx:115-123`) does not — pressing Back leaves scroll position wherever it was.
+- [ ] **Chain `prerender` into the build.** `package.json`'s `"build"` script is just `vite build`; `prerender` is a separate script nobody calls automatically. A naive CI `npm run build` ships with no prerendered SEO snapshots. Either add `"build": "vite build && node scripts/prerender.mjs"` or make the deploy pipeline explicitly run both.
+- [ ] **`sitemap.xml` only covers ~59 of ~90 routes** (including legacy aliases). Since `prerender.mjs` drives itself entirely off the sitemap, ~30 routes never get prerendered and fall back to the generic `index.html` shell for crawlers. Generate the sitemap from the same route list `App.jsx` uses (single source of truth) instead of hand-maintaining it.
+- [ ] **Accessibility: associate labels with inputs.** `grep -r "htmlFor"` across `src/` returns 0 matches — no `<label>` is programmatically linked to its `<input>`/`<select>` anywhere, including the shared `FormField.jsx` component (fix once there after Phase 2's de-dup, it covers both GetQuote and ContactUs). Add `id`/`htmlFor` pairing.
+- [ ] **Images: add intrinsic sizing.** 49 `<img>` tags in `src/`, zero with explicit `width`/`height` — no native CLS protection outside CSS aspect-ratio wrappers (which aren't applied everywhere, e.g. `ProductHero.jsx`, `Navbar.jsx`). Add `width`/`height` or wrap consistently in `aspect-[...]` containers.
+- [ ] **Images: standardize next-gen formats.** Manufacturing gallery already uses `.webp`; several hero images pull raw JPGs from Unsplash (`ApplicationHero.jsx`, `ProductsHubPage.jsx`) even though Unsplash's URL API supports `fm=avif`/`fm=webp` for free. Standardize.
+- [ ] **Lazy-load the home page's map section.** `react-simple-maps` (+ its `d3-geo`/topojson chain) is pulled into the **initial bundle** because `Home.jsx` is statically imported in `App.jsx` (not lazy, correctly, since it's the default route) and it statically imports `GlobalMarkets` → `ExportMarketsMap`. Wrap just that section in its own `React.lazy` + `Suspense` (or mount on scroll-into-view) so the map library doesn't block first paint for every visitor, most of whom won't scroll to it immediately. (`pdfjs-dist`/`react-pageflip` are already correctly isolated behind `CoffeeTableBooksPage`'s lazy import — good pattern, replicate it here.)
+- [ ] **Throttle `CustomCursor`'s per-frame hit-testing.** `CustomCursor.jsx:47-51` calls `document.elementFromPoint()` + `window.getComputedStyle()` on every rAF-batched mousemove frame — both force layout/style recalculation. Switch to event-delegated `mouseover`/`mouseout` checks on interactive elements instead of polling every frame.
+- [ ] **Add `prefers-reduced-motion` handling.** No guard found anywhere (`CustomCursor`, slide transitions, `NotFound.jsx`'s always-on tilt effect on `mousemove`). Respect the media query for users who've opted out of motion.
+- [ ] Gate or route `console.error` calls (`EnquiryModal.jsx:567`, `GetQuotePage.jsx:149`) through a real lightweight error-monitoring hook before launch, or at minimum wrap in `import.meta.env.DEV`.
 
-Booking, Zomato and Amazon all sell something the user already understands (a room, a meal, a product they've seen before). SKM is selling something almost no buyer has ever thought about: how a fresh egg, laid on a farm in Erode, becomes a stable, food-safe industrial ingredient that a factory on the other side of the world will trust without ever sending someone to inspect it. That gap — the buyer's inability to physically verify an overseas supplier — is exactly what a **farm-to-product origin story** is for.
+## Phase 5 — Package additions worth their weight
 
-This isn't a fourth pattern borrowed from Booking/Zomato/Amazon. It's closer to how premium provenance brands (specialty coffee, wine, single-origin ingredients) sell trust to a buyer who can't visit the source: they replace the factory visit the buyer can't make with a transparent, visual, step-by-step journey. It works on the same underlying psychology as Section 2's "trust at the moment of anxiety" — just delivered as narrative rather than as a badge or a stat.
+| Package | Replaces | Effort | Notes |
+|---|---|---|---|
+| `clsx` | ~dozens of hand-built ternary className strings (`GetQuotePage.jsx`, `StepProduct.jsx`, `ImageSlider.jsx`, etc.) | trivial | ~300B, pure readability/correctness win |
+| `tailwind-merge` (pair with `clsx`) | risk of conflicting Tailwind classes applied conditionally in the same element (seen in `GetQuotePage.jsx`) | trivial | optional but cheap insurance |
+| `react-error-boundary` | hand-written class-based error boundary | trivial | see Phase 4 |
+| `embla-carousel-react` (or `keen-slider`) | `src/components/ImageSlider/ImageSlider.jsx` (193 lines of hand-rolled breakpoints, autoplay, dot pagination, **no touch/swipe support at all**) | medium | real UX gap today — mobile users can't swipe the carousel, only tap small arrow buttons |
+| `react-hook-form` + `zod` | ~150 combined lines of hand-written `useState`-based form state + manual `validateStep`/`validate` if-chains in `GetQuotePage.jsx` and `EnquiryModal.jsx`, including a hand-copied duplicate email regex in both files | medium-large | biggest code-reduction opportunity outside routing; do after Phase 2's `FormField` consolidation |
+| `vite-imagetools` (or manual `<picture>`/`srcSet`) | raw JPG hero images with no AVIF/WebP variants | small-medium | pairs with Phase 4's image-format item |
+| bundle analyzer (`rollup-plugin-visualizer`) | no current visibility into chunk sizes | trivial, dev-only | use once to confirm the `react-simple-maps` bundle-size claim in Phase 4 and catch future regressions |
 
-SKM already has the raw material for this. The 6-step traceability chain — **Hatchery → Feed Mill → Farm → Processing → QA & Lab → Packaging & Dispatch** — currently exists as a paragraph on a Traceability subpage almost nobody navigates to unprompted. The story is real, specific, and differentiating (most competitors can't show this level of chain-of-custody). It's just trapped in the wrong information architecture.
+## Phase 6 — The big architectural call: routing (decide separately, don't bundle into this cleanup)
 
-### The key structural decision
+This is the single largest structural issue in the codebase but is a genuinely large, higher-risk migration — **surface it as a decision, not a task to execute silently.**
 
-The farm-to-product story should **not** be one destination page competing for a nav slot. It should be a thread that resurfaces at multiple points along the functional buyer journey from Section 2, each time in a form scaled to how much attention that moment has actually earned:
+`src/App.jsx` is a hand-rolled router: a 90-case `switch` on a plain `activePage` string state, manually wired to `window.history.pushState`/`popstate`. Concretely, this costs:
+- No URL query-string/param parsing at all — prefill context only survives via `history.state`, so it's lost on refresh/shared links.
+- Every one of ~90 pages gets `onPageChange` (and often `onBackHome`, `prefill`) prop-drilled by hand from `App.jsx` — this is *why* Phase 1's `onBackHome`/`breadcrumbItems` dead-prop bugs exist in the first place; a router context eliminates the whole class of bug.
+- No nested routes — hierarchy (e.g. Products → Product Detail) exists only in filenames, not in the route config.
+- Inconsistent scroll-restore between forward nav and Back button (Phase 4 patches the symptom; a real router fixes the cause).
+- No trailing-slash/case normalization — typo'd paths silently 404.
 
-| Where it appears | Form | Job it does |
-|---|---|---|
-| **Homepage**, right after the trust bar | A condensed, visual scroll strip — the 6 stages, one photo + one line each, "Hatchery → Feed Mill → Farm → Processing → Lab → Dispatch" | Plants the idea "this company is transparent about its whole process" before the visitor has invested any real time — like Booking front-loading trust signals before the pitch |
-| **Dedicated "Our Journey" page** (own nav item, full scrollytelling long-form) | Immersive narrative: photography/video, stats and a human quote at each of the 6 stages, ending with "this is how every batch reaches you" | For buyers doing real due diligence — importers, auditors, anyone who needs the closest substitute for an in-person factory audit |
-| **Product detail page** | A compact "trace this product" widget showing only the stages relevant to *that* SKU (which farms, which processing line, which lab tests apply) | Reinforces trust at the exact point of decision — reusing Amazon's product-page pattern from Section 2, but for provenance instead of specs |
-| **Quote confirmation / nurture step** | Offered as "explore our farm-to-fork journey while you wait for our team" | Fills the anxious silence after an enquiry is submitted with something that builds confidence instead of a blank waiting screen |
-
-The story and the application-first funnel are not competing navigation systems — they're two registers running in parallel: the **functional layer** (Section 5 onward) gets a buyer to the right product and a quote as fast as possible; the **narrative layer** builds the emotional trust that makes an unfamiliar overseas supplier feel safe to commit to. A buyer who only wants a spec sheet should never be forced through the story. A buyer who's hesitant should be able to reach it within one click from almost anywhere on the site.
-
----
-
-## 4. Current state vs. target model
-
-| | Current SKM site | Target model |
-|---|---|---|
-| Nav | Flat corporate menu: Home / About / Products / Quality / Infrastructure / Branches / Contact / Investors | Task-oriented: guided entry points that ask "what are you here for" and narrow from there |
-| Entry point | Generic hero banner + link grid | An "Application Finder" — the equivalent of Booking's search bar |
-| Trust content | Isolated under Quality/Infrastructure, rarely seen unless proactively browsed | Distributed inline, appearing exactly when the buyer is evaluating credibility |
-| Origin/traceability story | One paragraph on a Traceability subpage nobody finds unprompted | A narrative thread woven into homepage, a dedicated "Our Journey" page, product pages, and the post-enquiry wait (see Section 3) |
-| Product discovery | Organized by SKM's internal taxonomy (Powder/Liquid/Speciality) | Organized by buyer's problem (application/industry), with taxonomy as a secondary filter |
-| Conversion path | Single generic Contact Us form | A short, segmented enquiry/quote flow that pre-fills context and sets expectations afterward |
-| Investors/CSR/Jobs | Mixed into the same nav as buyers | Clearly separated track so it never competes with the primary buyer journey |
-
----
-
-## 5. Who actually lands on this site (segment first, like Booking asks "where are you going")
-
-| Segment | What they want | Primary next action |
-|---|---|---|
-| **Procurement / R&D at a food manufacturer** (bakery, mayo, meat, confectionery, sports nutrition) | "Does SKM make an ingredient that solves my formulation problem, and can I trust them?" | Request sample / spec sheet / quote |
-| **Importer / Distributor** | Export capability, countries served, packaging & logistics, regional contact | Partner enquiry, contact regional branch |
-| **Auditor / Regulatory / Media** | Certifications, compliance documentation, food safety policy, traceability proof | Download certificates, view compliance detail, read "Our Journey" |
-| **Investor / Shareholder** | Financials, AGM notices, governance | Investor Relations hub (fully separate track) |
-| **Job seeker / general public** | Careers, CSR | Minor path, footer-level |
-
-The homepage's job is to identify which of these five a visitor is, in the first 5 seconds — exactly like Booking's search bar identifies traveler intent before showing any content.
+**Recommendation:** migrate to `react-router-dom` (or `wouter` for a lighter footprint) once Phases 0–5 are done and stable. Doing it last means the shared components/props are already cleaned up, so the migration touches less surface area. This is a multi-day effort touching every page file's prop signature — scope and schedule it as its own project, not a line item.
 
 ---
 
-## 6. Site architecture (task-oriented, not department-oriented)
+## Suggested order of work
 
-```
-Home
-├── Find Your Product          ← mega-menu organized by APPLICATION, not product type
-│   ├── Bakery
-│   ├── Mayonnaise & Dressings
-│   ├── Meat, Fish & Seafood
-│   ├── Confectionery
-│   ├── Sports Nutrition & Health
-│   └── Custom Blends & Packaging
-│         └── [each links into filtered Product Listing → Product Detail]
-├── Our Journey                 ← the farm-to-product story (Section 3), own nav slot
-│   └── Hatchery → Feed Mill → Farm → Processing → QA & Lab → Packaging & Dispatch
-├── Why SKM (Trust Hub)        ← Quality + Certifications + Infrastructure, merged
-│   ├── Certifications (BRC, ISO 22000, HALAL, KOSHER, EU/USDA...)
-│   ├── Quality Assurance & Lab
-│   └── Infrastructure (Farms, Feed Mill, Processing Plant, Lab)
-├── Global Reach                ← Branches + export map merged
-│   ├── Interactive "we ship to your country" map
-│   ├── SKM Japan / SKM Europe / SKM Russia
-│   └── Events & Expos
-├── Resources                   ← Brochures, case studies, TDS downloads, CSR
-├── Get a Quote / Request Sample  ← persistent header CTA, always one click away
-├── About SKM (company story, CEO message, vision — for those who want depth)
-├── Investors (fully separate track — AGM, financials, governance)
-└── Contact / Careers
-```
-
-Two structural decisions worth calling out:
-- **Traceability moves out of the Trust Hub and becomes "Our Journey,"** its own first-class nav item — because it's the emotional/narrative asset from Section 3, not another compliance document to file alongside certifications.
-- **Certifications + Quality Assurance + Infrastructure stay merged as "Why SKM,"** because to a buyer they answer the same rational question ("can I trust this factory on paper?"), distinct from "Our Journey," which answers the emotional one ("can I picture and trust this process?"). Investors stays completely separate — different audience, different psychology, should never appear in the buyer's mega-menu.
-
----
-
-## 7. Homepage — page-by-page anatomy (this is the "search bar" of the site)
-
-1. **Hero: the Application Finder.** Not a slogan banner — a visual, clickable set of 5–6 industry cards (Bakery / Mayo / Meat & Seafood / Confectionery / Sports Nutrition / Custom), each with an appetite-driving photo, mirroring Zomato's cuisine tiles. This is the single highest-leverage element on the site: it segments the visitor immediately and personalizes everything downstream.
-2. **Trust bar, immediately below the fold.** 2M eggs/day, 7,500 MT/year, 30+ countries, since 1996, certification logos in a single row. This is Booking's review-score-badge equivalent — credibility signaled before any pitch is made.
-3. **"Shop by application" results** — once a user picks (or hovers) a category, show the 3–4 relevant products with one-line "solves this problem" copy, not full spec dumps.
-4. **The farm-to-product story strip** — the condensed 6-stage scroll teaser from Section 3, linking out to the full "Our Journey" page. Placed here deliberately: right after the buyer has seen *what* SKM can make for them, this answers the next unspoken question, "but can I trust where it comes from?"
-5. **Why SKM, condensed** — 3–4 trust pillars (certifications, EU/USDA approval, in-house lab, audits) each linking deeper into the Trust Hub, reinforcing the rational case right after the story made the emotional one.
-6. **Global presence** — a lightweight "select your region" prompt that routes to the relevant branch (Japan/Europe/Russia/Direct export) — this is the Amazon "deliver to your country" pattern, reassuring international buyers before they've had to ask.
-7. **Cross-sell / recommendation carousel** — "Manufacturers in [category] also use..." — keeps momentum instead of dead-ending at the trust content.
-8. **Persistent header CTA**: "Request Sample / Get Quote" — sticky, always visible, the equivalent of Booking's sticky search summary.
-
----
-
-## 8. Sample end-to-end flow (the core deliverable)
-
-```mermaid
-flowchart TD
-  A[Homepage: Application Finder] -->|selects "Mayonnaise & Dressings"| B[Application Landing Page]
-  B -->|shows 3-4 matched products + why each fits| C[Product Detail Page: Egg Yolk Powder Y1104]
-  C -->|specs, applications, certifications, TDS download, cross-sell| D{Sticky CTA:\nRequest Sample / Get Quote}
-  C -->|"Trace this product" widget| S3[Mini journey: which farm, which line, which lab tests]
-  S3 --> C
-  D --> E[Step 1: Confirm product + application\n(pre-filled from context)]
-  E --> F[Step 2: Quantity & packaging format]
-  F --> G[Step 3: Destination country\n(auto-surfaces relevant certs + branch contact)]
-  G --> H[Step 4: Contact details]
-  H --> I[Confirmation Page:\nsets expectation - "Our team replies within 24h"\n+ offers "Our Journey" story / brochure while they wait]
-  I --> J[Nurture: related products, resources, newsletter]
-
-  A -->|clicks "Our Journey"| S[Farm-to-Product Story:\nHatchery -> Feed Mill -> Farm -> Processing -> Lab -> Dispatch]
-  S -->|"See the products this process makes"| B
-
-  A -->|clicks "Why SKM"| K[Trust Hub: Certifications / Infra / QA]
-  K -->|"See products backed by these certifications"| B
-
-  A -->|clicks Global Reach| L[Country selector]
-  L --> M[Branch page: Japan / Europe / Russia / Direct]
-  M -->|CTA pre-filled with country| E
-```
-
-**Why this shape works:**
-- The buyer never has to choose from a flat 8-item menu — every step is a narrowing question, exactly like Booking's search funnel.
-- Trust content (certifications, the origin story) is reachable from the homepage but also **re-injected inline** at the product page and quote flow, not siloed.
-- The story layer (Section 3) has its own entry point ("Our Journey") for buyers actively seeking it, *and* a compact version threaded into the product page and the post-enquiry wait for buyers who didn't go looking but will still see it.
-- The quote flow is short (4 steps), each step pre-fills from prior context (application already known from step A, country already known if they came via Global Reach) — this mirrors Amazon's reduction of checkout friction once intent is established.
-- The confirmation page does real psychological work: it names a concrete response time (reduces anxiety, like Booking's "you'll get a confirmation email") and offers the origin story to explore instead of a dead end.
-- Every terminal-feeling page (Story, Trust Hub, Branch page) routes back into the product funnel instead of dead-ending — no page is an island.
-
----
-
-## 9. Content rules for each page type (what goes where)
-
-- **Application landing pages** (Bakery, Mayo, etc.): problem-first copy ("Need volume and golden color in your sponge cake?"), 3–4 matched products, one customer-style use case, single CTA into product pages. No certification lists or origin story here — that's not the anxiety at this stage.
-- **Product detail pages**: spec table, applications it solves, *relevant* certifications only (not the full list — just the ones that matter for that SKU/market), a compact "trace this product" widget, downloadable TDS, cross-sell to complementary products, sticky quote CTA. This is the Amazon product-page pattern — the single richest, most self-contained page on the site.
-- **"Our Journey" (story) page**: written to be felt, not skimmed — real photography over stock imagery, one concrete detail per stage (a number, a certification, a named safeguard) rather than generic claims, and it should end with a CTA back into products ("this is the process behind [Whole Egg Powder] — see it") so it never dead-ends as pure brand content.
-- **Trust Hub pages**: written for the skeptical buyer, not for SEO padding — lead with what a buyer needs to verify (accreditation numbers, audit frequency, lab capabilities) and end with a CTA back into products, never a dead end.
-- **Branch/Global Reach pages**: country-specific — show only the certifications and contacts relevant to that market (EU buyer sees EU approval prominently; doesn't need Kosher front and center).
-- **Quote/Enquiry flow**: never ask for information the context already gave you. If they arrived from a product page, the product is pre-filled. If from a country page, the country is pre-filled.
-- **Investors/Careers/CSR**: kept structurally outside the buyer journey — different header treatment or a clearly separate section, so it never dilutes the primary funnel the way an "Investor Relations" link sitting next to "Request Sample" would.
-
----
-
-## 10. What to take into Figma
-
-1. Wireframe the homepage in the order of Section 7 — the Application Finder is the highest-priority component to get right; everything else, including the story strip, is secondary.
-2. Design the Product Detail Page as the richest template in the system (treat it like Amazon's product page) — this template will be reused most often and does the most conversion work.
-3. Design the "Our Journey" page as a scrollytelling template distinct from every other page — it should feel like editorial/documentary content, not a corporate subpage, since its whole job is emotional trust-building.
-4. Design the 4-step Quote/Enquiry flow as its own mini-flow, with a visible progress indicator (like Booking's booking steps) and a confirmation screen that sets expectations and offers the story.
-5. Design the sticky header CTA and sticky product-page CTA as persistent components, not one-off buttons.
-6. Design the mega-menu around applications, with Our Journey, Trust Hub, Global Reach, and Investors as clearly secondary/tertiary nav weight.
+1. **Phase 0** (delete dead files) — same day, zero risk.
+2. **Phase 1** (dead props, small bugs) — 1-2 days, mostly mechanical.
+3. **Phase 2** (shared component extraction) — the bulk of the effort; do incrementally, one shared component at a time, with visual QA after each.
+4. **Phase 3** (page convention standardization) — pairs naturally with Phase 2 since you're already touching these files.
+5. **Phase 4** (production hardening) — can run in parallel with Phase 2/3, different files mostly.
+6. **Phase 5** (package additions) — pull in `clsx`/`react-error-boundary` early (cheap), `react-hook-form`/`zod` and `embla-carousel` after Phase 2's `FormField`/`ImageSlider` consolidation.
+7. **Phase 6** (routing migration) — separate decision, separate timeline, do last.

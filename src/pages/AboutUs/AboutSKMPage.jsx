@@ -523,7 +523,6 @@ export default function AboutSKMPage({ onPageChange }) {
         keywords: 'SKM Egg Products company, about SKM, egg powder manufacturer history, SKM CEO, SKM vision mission, SKM Egg Products India',
         canonical: 'https://www.skmegg.com/about_skm',
       }}
-      breadcrumbItems={[{ label: 'About SKM' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">

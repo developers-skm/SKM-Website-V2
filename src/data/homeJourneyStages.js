@@ -1,10 +1,12 @@
 // Section 5 (Home) — Farm-to-product journey. 8 stages, a data shape that
 // does not exist anywhere else in the repo (the shared journeyStages.js has
 // 6 differently-named stages, reused by HomeJourney's prior version, the
-// full Journey page, and TraceWidget — untouched by this file). Every
-// what/controlled/records field below is an exact sentence quoted directly
-// from the named source file/component, not paraphrased or invented. Source
-// is cited per stage for audit purposes.
+// full Journey page, and TraceWidget — this file's own stage shape is not
+// derived from it). The two files do share a few underlying production
+// numbers (layers housed, eggs/year, eggs/day) — those are pulled from
+// ./productionFacts.js so they can't drift apart; everything else below is
+// an exact sentence quoted directly from the named source file/component,
+// not paraphrased or invented. Source is cited per stage for audit purposes.
 
 import FeedMillLabImg from '../assets/5. INFRASTRUCTURE/Feed mill/Feed mill aerial view.webp';
 import PoultryFarmImg from '../assets/5. INFRASTRUCTURE/Poultry farm/EC shed overview.webp';
@@ -12,6 +14,7 @@ import EggCollectionImg from '../assets/5. INFRASTRUCTURE/Poultry farm/Egg colle
 import ProcessingImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Pasteurization.webp';
 import LabImg from '../assets/5. INFRASTRUCTURE/Laboratory/GC and HPLC.webp';
 import PackagingImg from '../assets/3. PRODUCTS/Customized Packages/Powder Product primary container - HDPE Bag.jpeg';
+import { LAYERS_HOUSED, EGGS_PER_YEAR, EGGS_PROCESSED_PER_DAY } from './productionFacts';
 
 const homeJourneyStages = [
   {
@@ -48,7 +51,7 @@ const homeJourneyStages = [
     // Farms" and "State-of-the-Art Facilities" info blocks).
     image: PoultryFarmImg,
     whatHappens: 'Our ISO 22000 certified poultry farms ensure the production of clean, residue-free eggs under strict biosecurity controls.',
-    whatIsControlled: 'With 2.4 million layers housed across the farm, the farms produce approximately 164 million eggs annually.',
+    whatIsControlled: `With ${LAYERS_HOUSED} layers housed across the farm, the farms produce approximately ${EGGS_PER_YEAR} eggs annually.`,
     recordsAndChecks: 'An attached laboratory routinely analyses water, tissues, and egg samples to ensure ongoing safety and quality monitoring.',
     route: 'poultry_farm',
     ctaLabel: 'View Farm Controls',
@@ -76,7 +79,7 @@ const homeJourneyStages = [
     // Excellence" info block) + src/data/journeyStages.js stage 04
     // description (shared data file, read-only, not modified).
     image: ProcessingImg,
-    whatHappens: 'Only microbiologically tested eggs are processed, with a capacity of 2 million eggs per day, producing approximately 7,500 tonnes annually.',
+    whatHappens: `Only microbiologically tested eggs are processed, with a capacity of ${EGGS_PROCESSED_PER_DAY} eggs per day, producing approximately 7,500 tonnes annually.`,
     whatIsControlled: 'Operations follow cGMP, SSOP, Codex Alimentarius principles, and HACCP guidelines.',
     recordsAndChecks: 'All activities are monitored through the integrated traceability system, ensuring food safety and full traceability.',
     route: 'egg_processing_plant',

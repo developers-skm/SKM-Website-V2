@@ -76,7 +76,6 @@ export default function WholeEggLiquidPage({ onPageChange }) {
           offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'USD', seller: { '@type': 'Organization', name: 'SKM Egg Products' } }
         }
       }}
-      breadcrumbItems={[{ label: 'Products' }, { label: 'Egg Liquids' }, { label: 'Whole Egg Liquid' }]}
       onPageChange={onPageChange}
       hero={{
         backgroundImage: WholeEggLiquidMainImg,

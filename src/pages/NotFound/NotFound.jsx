@@ -1,5 +1,6 @@
 ﻿import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import SEO from '../../components/SEO/SEO';
 
 export default function NotFound({ onPageChange }) {
   const cardRef = useRef(null);
@@ -31,6 +32,7 @@ export default function NotFound({ onPageChange }) {
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[calc(100vh-80px)] overflow-hidden bg-page dark:bg-surface-950 px-4">
+      <SEO title="Page Not Found" description="The page you're looking for doesn't exist or has been moved." noindex />
       {/* Background radial glow */}
       <div
         className="pointer-events-none absolute inset-0"

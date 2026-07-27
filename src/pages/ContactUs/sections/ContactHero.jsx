@@ -1,26 +1,10 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
+import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 export default function ContactHero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: 'spring', stiffness: 70, damping: 15 },
-    },
-  };
+  const containerVariants = makeContainerVariants(0.15, { delayChildren: 0.1 });
+  const itemVariants = makeItemVariants({ y: 30, stiffness: 70 });
 
   return (
     <div className="relative w-full bg-page dark:bg-surface-950 overflow-hidden py-[90px] sm:py-[110px] border-b border-[#eee] dark:border-surface-900">

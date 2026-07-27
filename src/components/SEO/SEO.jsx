@@ -26,7 +26,7 @@ const organizationSchema = {
   ]
 };
 
-export default function SEO({ title, description, keywords, canonical, image, jsonLd }) {
+export default function SEO({ title, description, keywords, canonical, image, jsonLd, noindex }) {
   const pageTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | Egg Powder & Liquid Egg Manufacturer`;
   const pageDescription = description || DEFAULT_DESCRIPTION;
   const canonicalUrl = canonical || (typeof window !== 'undefined' ? window.location.href : SITE_URL);
@@ -37,7 +37,7 @@ export default function SEO({ title, description, keywords, canonical, image, js
       <title>{pageTitle}</title>
       <meta name="description" content={pageDescription} />
       {keywords && <meta name="keywords" content={keywords} />}
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
       <link rel="canonical" href={canonicalUrl} />
 
       {/* Open Graph */}

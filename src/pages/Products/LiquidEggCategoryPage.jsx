@@ -43,7 +43,6 @@ export default function LiquidEggCategoryPage({ onPageChange }) {
         keywords: 'liquid egg category, whole egg liquid, egg yolk liquid, egg albumen liquid, pasteurized liquid egg',
         canonical: 'https://www.skmegg.com/category_liquids',
       }}
-      breadcrumbLabel="Liquid Egg Products"
       categoryLabel="Product Category"
       title="Liquid Egg Products"
       format="Pasteurized liquid egg — chilled or frozen — supplied as whole egg, egg yolk, or egg albumen blends, ready to dose directly into recipes."

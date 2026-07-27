@@ -74,7 +74,6 @@ export default function EggYolkPowderHeatStablePage({ onPageChange }) {
           offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'USD', seller: { '@type': 'Organization', name: 'SKM Egg Products' } }
         }
       }}
-      breadcrumbItems={[{ label: 'Products' }, { label: 'Egg Powders' }, { label: 'Egg Yolk Powder - Heat Stable' }]}
       onPageChange={onPageChange}
       hero={{
         backgroundImage: EggYolkHeatStablePowderMainImg,

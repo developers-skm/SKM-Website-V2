@@ -479,7 +479,6 @@ export default function ResourcesPage({ onPageChange }) {
         keywords: 'SKM egg products brochure, egg powder technical data sheet, egg product certifications download, SKM CSR, egg products corporate social responsibility',
         canonical: 'https://www.skmegg.com/resources',
       }}
-      breadcrumbItems={[{ label: 'Resources' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">

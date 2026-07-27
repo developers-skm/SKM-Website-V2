@@ -26,7 +26,6 @@ export default function SkmRussiaPage({ onPageChange }) {
         keywords: 'egg powder supplier Russia, egg ingredients Russia, Indian egg powder Russia, buy egg powder Russia, egg albumen powder Russia, egg yolk powder Russia, egg product importer Russia, SKM Russia, egg powder distributor Russia, egg powder export Russia',
         canonical: 'https://www.skmegg.com/skm_russia',
       }}
-      breadcrumbItems={[{ label: 'Branches' }, { label: 'SKM Russia' }]}
       onPageChange={onPageChange}
     >
       <BranchSection branch={russiaData} />

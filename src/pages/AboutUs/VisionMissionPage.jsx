@@ -11,7 +11,6 @@ export default function VisionMissionPage({ onPageChange }) {
         keywords: "SKM Egg Products vision, egg company mission, global egg processing leader, egg food safety mission, egg manufacturer values, SKM egg vision",
         canonical: 'https://www.skmegg.com/vision_mission',
       }}
-      breadcrumbItems={[{ label: 'About Us' }, { label: 'Vision & Mission' }]}
       onPageChange={onPageChange}
     >
       <VisionMission />

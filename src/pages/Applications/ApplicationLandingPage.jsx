@@ -9,7 +9,7 @@ import RecommendedProducts from './sections/RecommendedProducts';
 import ProductComparison from './sections/ProductComparison';
 import ProcessingGuidance from './sections/ProcessingGuidance';
 import RelatedResources from './sections/RelatedResources';
-import ApplicationFinalCTA from './sections/ApplicationFinalCTA';
+import EnquiryCTABand from '../../components/common/EnquiryCTABand';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Generic template driven by src/data/applications.js — one component instead
@@ -40,7 +40,6 @@ export default function ApplicationLandingPage({ applicationId, onPageChange }) 
         keywords: `egg products for ${application.title.toLowerCase()}, ${application.tags.join(', ').toLowerCase()}, egg powder application`,
         canonical: `https://www.skmegg.com/${application.page}`,
       }}
-      breadcrumbItems={[{ label: 'Applications' }, { label: application.title }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
@@ -78,7 +77,14 @@ export default function ApplicationLandingPage({ applicationId, onPageChange }) 
         <CurvedDivider bg="#f8f4ee" fill="#fdf1f0" className="dark:hidden" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
 
-        <ApplicationFinalCTA application={application} onPageChange={onPageChange} />
+        <EnquiryCTABand
+          eyebrow={application.title}
+          heading="Share Your Target Formulation With Our Team"
+          actions={[
+            { label: 'Request Technical Consultation', onClick: () => onPageChange('contact-us') },
+            { label: 'Request a Sample', variant: 'link', onClick: () => onPageChange('get-quote', { applicationId: application.id }) },
+          ]}
+        />
       </div>
     </PageWrapper>
   );

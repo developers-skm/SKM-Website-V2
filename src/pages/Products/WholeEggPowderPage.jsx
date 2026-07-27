@@ -146,7 +146,6 @@ export default function WholeEggPowderPage({ onPageChange }) {
           offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'USD', seller: { '@type': 'Organization', name: 'SKM Egg Products' } }
         }
       }}
-      breadcrumbItems={[{ label: 'Products' }, { label: 'Egg Powders' }, { label: 'Whole Egg Powder' }]}
       onPageChange={onPageChange}
       hero={{
         backgroundImage: WholeEggPowderMainImg,

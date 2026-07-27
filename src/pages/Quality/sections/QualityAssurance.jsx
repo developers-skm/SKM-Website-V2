@@ -1,5 +1,7 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
+import IconInfoCard from '../../../components/common/IconInfoCard';
+import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 // Import QA lab images
 import ConicalFlask from '../../../assets/4. QUALITY/Quality Assurance/Conical flask.webp';
@@ -85,14 +87,8 @@ const biosecurityBlocks = [
 
 
 export default function QualityAssurance() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 15 } },
-  };
+  const containerVariants = makeContainerVariants(0.1);
+  const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
     <div id="quality-assurance" className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] border-b border-[#eee] dark:border-surface-900/60 overflow-hidden">
@@ -173,23 +169,8 @@ export default function QualityAssurance() {
         {/* QA Detail Blocks */}
         <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {qaBlocks.map((block, i) => (
-            <motion.div
-              key={i}
-              variants={itemVariants}
-              whileHover={{ y: -5 }}
-              className="p-6 bg-white dark:bg-surface-900/50 border border-[#eee] dark:border-surface-800 rounded-[10px] flex flex-col gap-4 hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] transition-all duration-300 group"
-            >
-              <div className="w-10 h-10 rounded-[8px] bg-brand-600/6 dark:bg-brand-950/60 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                {block.icon}
-              </div>
-              <div className="flex flex-col gap-2">
-                <h3 className="font-heading font-bold text-[14px] text-heading dark:text-white m-0 tracking-tight leading-snug">
-                  {block.title}
-                </h3>
-                <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 leading-[24px] m-0">
-                  {block.body}
-                </p>
-              </div>
+            <motion.div key={i} variants={itemVariants} whileHover={{ y: -5 }}>
+              <IconInfoCard icon={block.icon} title={block.title} body={block.body} />
             </motion.div>
           ))}
         </motion.div>
@@ -208,23 +189,8 @@ export default function QualityAssurance() {
         {/* Biosecurity Detail Blocks */}
         <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {biosecurityBlocks.map((block, i) => (
-            <motion.div
-              key={i}
-              variants={itemVariants}
-              whileHover={{ y: -5 }}
-              className="p-6 bg-white dark:bg-surface-900/50 border border-[#eee] dark:border-surface-800 rounded-[10px] flex flex-col gap-4 hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] transition-all duration-300 group"
-            >
-              <div className="w-10 h-10 rounded-[8px] bg-brand-600/6 dark:bg-brand-950/60 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                {block.icon}
-              </div>
-              <div className="flex flex-col gap-2">
-                <h3 className="font-heading font-bold text-[14px] text-heading dark:text-white m-0 tracking-tight leading-snug">
-                  {block.title}
-                </h3>
-                <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 leading-[24px] m-0">
-                  {block.body}
-                </p>
-              </div>
+            <motion.div key={i} variants={itemVariants} whileHover={{ y: -5 }}>
+              <IconInfoCard icon={block.icon} title={block.title} body={block.body} />
             </motion.div>
           ))}
         </motion.div>

@@ -69,7 +69,6 @@ export default function CustomizedMixPage({ onPageChange }) {
           offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'USD', seller: { '@type': 'Organization', name: 'SKM Egg Products' } }
         }
       }}
-      breadcrumbItems={[{ label: 'Products' }, { label: 'Customized Mix' }]}
       onPageChange={onPageChange}
       hero={{
         backgroundImage: CustomizedMixMainImg,

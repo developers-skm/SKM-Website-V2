@@ -58,7 +58,6 @@ export default function EggAlbumenLiquidPage({ onPageChange }) {
           offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'USD', seller: { '@type': 'Organization', name: 'SKM Egg Products' } }
         }
       }}
-      breadcrumbItems={[{ label: 'Products' }, { label: 'Egg Liquids' }, { label: 'Egg Albumen Liquid' }]}
       onPageChange={onPageChange}
       hero={{
         backgroundImage: EggAlbumenLiquidMainImg,

@@ -441,7 +441,6 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
         keywords: 'custom egg powder formulation, egg ingredient development, custom egg blend manufacturer, egg functionality solutions, OEM egg powder development',
         canonical: 'https://www.skmegg.com/innovation_and_custom_solutions',
       }}
-      breadcrumbItems={[{ label: 'Innovation and Custom Solutions' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">

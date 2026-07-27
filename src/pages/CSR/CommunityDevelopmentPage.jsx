@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
+import { makeContainerVariants, makeItemVariants } from '../../utils/animationVariants';
 
 const familyStats = [
   { value: '228', label: 'Families Adopted', sub: 'Gandhi Nagar 174 · Rajiv Nagar 54' },
@@ -35,14 +36,8 @@ function ImagePlaceholder({ label, aspectClass = 'aspect-[4/3]' }) {
 }
 
 export default function CommunityDevelopmentPage({ onPageChange }) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 15 } },
-  };
+  const containerVariants = makeContainerVariants(0.12);
+  const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
     <div className="w-full flex flex-col">

@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import LCMSImage from '../../../assets/4. QUALITY/Food Safety and Quality Policy/LCMS.webp';
+import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 const commitments = [
   'Delivering safe and high functional products.',
@@ -12,14 +13,8 @@ const commitments = [
 
 
 export default function FoodSafetyPolicy() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 15 } },
-  };
+  const containerVariants = makeContainerVariants(0.12);
+  const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
     <div id="quality-policy" className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] border-b border-[#eee] dark:border-surface-900/60 overflow-hidden">

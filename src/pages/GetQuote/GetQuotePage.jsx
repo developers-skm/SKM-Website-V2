@@ -161,7 +161,6 @@ export default function GetQuotePage({ onPageChange, prefill }) {
         keywords: 'egg powder quote, egg products sample request, egg powder RFQ, bulk egg powder pricing, egg products export enquiry',
         canonical: 'https://www.skmegg.com/get-quote',
       }}
-      breadcrumbItems={[{ label: 'Request A Quote' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full bg-page dark:bg-surface-950">

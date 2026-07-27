@@ -26,7 +26,6 @@ export default function WhySKMPage({ onPageChange }) {
         keywords: 'egg powder certifications, BRCGS egg products, ISO 22000 egg powder, EU approved egg exporter, halal egg powder, kosher egg powder, egg processing plant India, NABL accredited egg lab',
         canonical: 'https://www.skmegg.com/why_skm',
       }}
-      breadcrumbItems={[{ label: 'Why SKM' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">

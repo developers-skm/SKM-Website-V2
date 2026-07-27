@@ -363,7 +363,6 @@ export default function SustainabilityCommunityPage({ onPageChange }) {
         keywords: 'SKM sustainability, SKM CSR, Sevai Maiyam, community development, wind energy, environmental policy, corporate social responsibility',
         canonical: 'https://www.skmegg.com/sustainability_and_community',
       }}
-      breadcrumbItems={[{ label: 'Sustainability and Community' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">

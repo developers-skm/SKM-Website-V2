@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import products, { PRODUCT_CATEGORIES } from '../../../data/products';
 import { getApplicationById } from '../../../data/applications';
-import { Field, selectClass } from '../FormField';
+import { Field, selectClass } from '../../../components/common/FormField';
 import { containerVariants, itemVariants } from '../../../utils/animationVariants';
 
 // Step 1 — Requirement (brief §2, Step 1): Product or application,

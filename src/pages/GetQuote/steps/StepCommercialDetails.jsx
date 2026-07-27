@@ -1,4 +1,4 @@
-import { Field, selectClass, inputClass } from '../FormField';
+import { Field, selectClass, inputClass } from '../../../components/common/FormField';
 import { getProductById } from '../../../data/products';
 import exportMarkets from '../../../data/exportMarkets';
 

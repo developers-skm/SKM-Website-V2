@@ -11,7 +11,6 @@ export default function EggProcessingPlantPage({ onPageChange }) {
         keywords: 'egg processing plant India, EU approved egg plant, USDA approved egg facility, egg processing factory, spray dryer egg powder, automated egg processing, egg powder plant Erode, egg processing capacity India, egg processing technology, pasteurized egg plant, egg product manufacturing unit',
         canonical: 'https://www.skmegg.com/egg_processing_plant',
       }}
-      breadcrumbItems={[{ label: 'Infrastructure' }, { label: 'Egg Processing Plant' }]}
       onPageChange={onPageChange}
     >
       <EggProcessingPlant />

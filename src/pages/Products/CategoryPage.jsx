@@ -45,7 +45,6 @@ import certifications from '../../data/certifications';
 // fake dedicated form).
 export default function CategoryPage({
   seo,
-  breadcrumbLabel,
   categoryLabel,
   title,
   format,
@@ -90,7 +89,6 @@ export default function CategoryPage({
   return (
     <PageWrapper
       seo={seo}
-      breadcrumbItems={[{ label: 'Products' }, { label: breadcrumbLabel }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">

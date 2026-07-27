@@ -11,7 +11,6 @@ export default function QualityAssurancePage({ onPageChange }) {
         keywords: 'egg quality assurance, HACCP egg processing, egg residue testing, egg safety testing, egg product quality control, microbiological egg testing, physicochemical egg testing, HPLC egg analysis, GC-MS egg residue, egg product compliance, egg powder quality',
         canonical: 'https://www.skmegg.com/quality_assurance',
       }}
-      breadcrumbItems={[{ label: 'Quality' }, { label: 'Quality Assurance' }]}
       onPageChange={onPageChange}
     >
       <QualityAssurance />

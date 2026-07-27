@@ -10,7 +10,6 @@ export default function CeoMessagePage({ onPageChange }) {
         description: "Read the leadership message from Mr. SKM Shree Shivkumar, highlighting SKM's journey of trust, safety, and continuous growth.",
         keywords: 'SKM Shree Shivkumar, CEO message SKM, egg products leadership',
       }}
-      breadcrumbItems={[{ label: 'About Us' }, { label: "CEO's Message" }]}
       onPageChange={onPageChange}
     >
       <CeoMessage />

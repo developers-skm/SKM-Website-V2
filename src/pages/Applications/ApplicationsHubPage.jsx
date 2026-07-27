@@ -20,7 +20,6 @@ export default function ApplicationsHubPage({ onPageChange }) {
         keywords: 'egg products by application, bakery egg powder, mayonnaise egg yolk, noodles egg powder, meat processing egg albumen',
         canonical: 'https://www.skmegg.com/applications',
       }}
-      breadcrumbItems={[{ label: 'Applications' }]}
       onPageChange={onPageChange}
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">

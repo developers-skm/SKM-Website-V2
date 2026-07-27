@@ -139,7 +139,6 @@ export default function AccoladesPage({ onPageChange }) {
         keywords: 'SKM Egg Products awards, APEDA export award, egg exporter award India, BRCGS AA egg, Padma Shree egg company, egg industry recognition, export excellence award egg, top egg manufacturer India, best egg producer award',
         canonical: 'https://www.skmegg.com/accolades',
       }}
-      breadcrumbItems={[{ label: 'About Us' }, { label: 'Accolades' }]}
       onPageChange={onPageChange}
     >
 

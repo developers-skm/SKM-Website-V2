@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
+import { makeContainerVariants, makeItemVariants } from '../../utils/animationVariants';
 
 function ImagePlaceholder({ label, aspectClass = 'aspect-[4/3]' }) {
   return (
@@ -57,14 +58,8 @@ const focusAreas = [
 ];
 
 export default function MdArticlePage({ onPageChange }) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 15 } },
-  };
+  const containerVariants = makeContainerVariants(0.1);
+  const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
     <div className="w-full flex flex-col">
