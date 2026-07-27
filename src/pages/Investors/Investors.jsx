@@ -1,7 +1,6 @@
 ﻿import { useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 
 // Investor documents live as static files in public/documents/investors/
@@ -878,11 +877,6 @@ export default function Investors({ onPageChange }) {
         description="Investor relations for SKM Egg Products — disclosures, annual reports, board information, corporate governance, shareholding patterns, and more."
         keywords="SKM investors, annual report, LODR disclosures, corporate governance, shareholding pattern, board committee"
       />
-      <Breadcrumb
-        items={[{ label: 'Investors' }]}
-        onPageChange={onPageChange}
-      />
-
       <InvestorHero onSelect={handleSelect} onDownloadAnnualReport={handleDownloadAnnualReport} />
 
       <div id={MENU_SECTION_ID} className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 py-10 lg:py-14 flex flex-col lg:flex-row gap-8 flex-1 scroll-mt-[100px] xl:scroll-mt-[120px]">

@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import { containerVariants } from '../../utils/animationVariants';
 
 // Import Assets — Powder Bag in Box
@@ -125,15 +124,6 @@ export default function CustomizedPackagesPage({ onPageChange, onBackHome }) {
           "category": "Egg Products",
           "url": "https://www.skmegg.com/customized_packages"
         }}
-      />
-
-      {/* Breadcrumb */}
-      <Breadcrumb
-        items={[
-          { label: 'Products' },
-          { label: 'Customized Packages' },
-        ]}
-        onPageChange={onPageChange}
       />
 
       {/* Hero Banner */}

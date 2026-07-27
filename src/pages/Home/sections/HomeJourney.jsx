@@ -287,7 +287,7 @@ export default function HomeJourney({ onPageChange }) {
   const headerTransition = reducedMotion ? { duration: 0.15 } : { duration: 0.55, ease: EASE_PRECISE };
 
   return (
-    <section className="w-full bg-[#FAFAF8] text-[#111111] py-20 sm:py-28 lg:py-32 border-y border-[#ECECEC] font-body transition-colors relative overflow-hidden">
+    <section className="w-full bg-[#FAFAF8] text-[#111111] py-20 sm:py-28 lg:py-32 font-body transition-colors relative overflow-hidden">
       <div className="mx-auto max-w-[1360px] w-full px-5 sm:px-8 lg:px-12 flex flex-col gap-14 sm:gap-18 relative">
 
         {/* Section Header */}

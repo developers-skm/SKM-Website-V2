@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 
 function ImagePlaceholder({ label, aspectClass = 'aspect-[4/3]' }) {
   return (
@@ -47,14 +46,6 @@ export default function EducationPage({ onPageChange }) {
         description="SKM Health and Mind Welfare Charity Trust – Sevai Maiyam. Discover how SKM's education initiative is transforming lives of 239 children in Dalit colonies through schooling, coaching, cultural programs and more."
         keywords="SKM CSR, education, Sevai Maiyam, SKM trust, dalit children, coaching centre, ABL system, Gandhi Nagar, Rajiv Nagar"
       />
-      <Breadcrumb
-        items={[
-          { label: 'CSR' },
-          { label: 'Education' },
-        ]}
-        onPageChange={onPageChange}
-      />
-
       <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}

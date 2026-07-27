@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import ProductHero from '../../components/ProductPage/ProductHero';
 import { containerVariants, itemVariants } from '../../utils/animationVariants';
 
@@ -65,15 +64,6 @@ export default function SpecialityEggLiquidPage({ onPageChange, onBackHome }) {
           "url": "https://www.skmegg.com/speciality_egg_liquids",
           "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "INR", "seller": { "@type": "Organization", "name": "SKM Egg Products" } }
         }}
-      />
-
-      <Breadcrumb
-        items={[
-          { label: 'Products' },
-          { label: 'Speciality Products' },
-          { label: 'Egg Liquids' }
-        ]}
-        onPageChange={onPageChange}
       />
 
       <ProductHero

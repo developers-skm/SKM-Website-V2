@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 
 const familyStats = [
   { value: '228', label: 'Families Adopted', sub: 'Gandhi Nagar 174 · Rajiv Nagar 54' },
@@ -52,14 +51,6 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
         description="SKM Health and Mind Welfare Charity Trust – Sevai Maiyam. Learn about SKM's community development efforts serving 228 families across Gandhi Nagar and Rajiv Nagar."
         keywords="SKM CSR, community development, Sevai Maiyam, SKM trust, social responsibility, Gandhi Nagar, Rajiv Nagar"
       />
-      <Breadcrumb
-        items={[
-          { label: 'CSR' },
-          { label: 'Community Development' },
-        ]}
-        onPageChange={onPageChange}
-      />
-
       <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}

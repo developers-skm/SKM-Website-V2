@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 
 function ImagePlaceholder({ label, aspectClass = 'aspect-[4/3]' }) {
   return (
@@ -95,14 +94,6 @@ export default function TrustOutreachPage({ onPageChange }) {
         description="Sevai Maiyam's comprehensive outreach programs covering sanitation, education, medical services, financial aid, elder care, and community welfare for adopted Dalit colonies."
         keywords="SKM CSR, trust outreach, Sevai Maiyam, social welfare, dalit colonies, education aid, medical services"
       />
-      <Breadcrumb
-        items={[
-          { label: 'CSR' },
-          { label: 'Trust Outreach Programs' },
-        ]}
-        onPageChange={onPageChange}
-      />
-
       <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}

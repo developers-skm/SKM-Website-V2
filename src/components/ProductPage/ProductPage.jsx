@@ -1,5 +1,4 @@
 import SEO from '../SEO/SEO';
-import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import ProductHero from './ProductHero';
 import StickyProductBar from './StickyProductBar';
 import SpecPanel from './SpecPanel';

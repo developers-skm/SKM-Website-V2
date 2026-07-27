@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import ProductHero from '../../components/ProductPage/ProductHero';
 import { containerVariants, itemVariants } from '../../utils/animationVariants';
 
@@ -71,15 +70,6 @@ export default function EggWhiteCubePage({ onPageChange, onBackHome }) {
           "url": "https://www.skmegg.com/egg_white_cube",
           "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "INR", "seller": { "@type": "Organization", "name": "SKM Egg Products" } }
         }}
-      />
-
-      <Breadcrumb
-        items={[
-          { label: 'Products' },
-          { label: 'Speciality Products' },
-          { label: 'Egg White Cube' }
-        ]}
-        onPageChange={onPageChange}
       />
 
       <ProductHero

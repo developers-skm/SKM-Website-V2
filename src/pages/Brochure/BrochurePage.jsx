@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import { getBrochureUrl } from '../../data/brochureUrl';
 
 const brochureMeta = {
@@ -148,8 +147,6 @@ export default function BrochurePage({ onPageChange }) {
         description="Download SKM Egg Products brochures — company profile, full product list, and individual product flyers for egg powder and liquid solutions."
         keywords="SKM brochure, egg products PDF, company profile download, product flyer, egg powder catalog"
       />
-      <Breadcrumb items={[{ label: 'Brochures & Downloads' }]} onPageChange={onPageChange} />
-
       <div className="w-full bg-page dark:bg-surface-950 py-[90px] lg:py-[120px] overflow-hidden">
         <motion.section
           variants={containerVariants}

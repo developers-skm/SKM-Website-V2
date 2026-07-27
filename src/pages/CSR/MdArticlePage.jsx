@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 
 function ImagePlaceholder({ label, aspectClass = 'aspect-[4/3]' }) {
   return (
@@ -74,14 +73,6 @@ export default function MdArticlePage({ onPageChange }) {
         description="Olirum Erode Foundation (OEF) — established to develop Erode into a preferred place of living through environmental, water, and community welfare initiatives, co-founded by SKM's Managing Director."
         keywords="OEF, Olirum Erode Foundation, SKM MD, CSR, Erode development, community welfare, SKM Shree Shivkumar"
       />
-      <Breadcrumb
-        items={[
-          { label: 'CSR' },
-          { label: 'MD Article' },
-        ]}
-        onPageChange={onPageChange}
-      />
-
       <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}

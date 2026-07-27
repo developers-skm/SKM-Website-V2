@@ -91,7 +91,7 @@ export default function WhyUs({ onPageChange }) {
   });
 
   return (
-    <div className="w-full bg-white dark:bg-surface-950 pt-[96px] pb-[80px] lg:pt-[104px] lg:pb-[88px] border-b border-[#eee] dark:border-surface-800/40">
+    <div className="w-full bg-white dark:bg-surface-950 pt-[96px] pb-[80px] lg:pt-[104px] lg:pb-[88px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
         {/* Full-width heading area — main heading is the new approved

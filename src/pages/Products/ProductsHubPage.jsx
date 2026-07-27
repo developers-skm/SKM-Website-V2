@@ -184,7 +184,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
   };
 
   return (
-    <div id="product-finder" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="product-finder" className="w-full py-[60px] lg:py-[85px] scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
         <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
           SKM Product Finder
@@ -386,7 +386,7 @@ function FamilyGroupBlock({ group, onPageChange }) {
 
 function ProductFamiliesSection({ onPageChange }) {
   return (
-    <div id="product-families" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="product-families" className="w-full py-[60px] lg:py-[85px] bg-white dark:bg-surface-900/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
         <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
           Product families
@@ -410,7 +410,7 @@ function ProductFamiliesSection({ onPageChange }) {
 // capability instead of fake filters.
 function FunctionalRequirementSection({ onPageChange }) {
   return (
-    <div id="functional-requirement" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="functional-requirement" className="w-full py-[60px] lg:py-[85px] scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
         <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
           Browse by functional requirement

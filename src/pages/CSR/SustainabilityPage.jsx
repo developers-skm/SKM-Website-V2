@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 
 const pillars = [
   {
@@ -60,14 +59,6 @@ export default function SustainabilityPage({ onPageChange }) {
         description="SKM Egg Products' commitment to sustainability — from wind energy generation and waste recycling to community welfare and environmental compliance."
         keywords="SKM sustainability, CSR, environmental policy, wind mill, carbon footprint, clean energy, SKM charitable trust"
       />
-      <Breadcrumb
-        items={[
-          { label: 'CSR' },
-          { label: 'Sustainability' },
-        ]}
-        onPageChange={onPageChange}
-      />
-
       <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}

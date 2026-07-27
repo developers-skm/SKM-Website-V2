@@ -54,19 +54,19 @@ export default function Home({ onPageChange, prefill }) {
 
       {/* 4. Why SKM, condensed — the rational case */}
       <WhyUs onPageChange={onPageChange} />
-      <CurvedDivider bg="#fff" fill="#ececec" className="dark:hidden" />
+      <CurvedDivider bg="#fff" fill="#FAFAF8" className="dark:hidden" />
       <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
 
       {/* 5. Farm-to-product journey */}
       <HomeJourney onPageChange={onPageChange} />
-      <CurvedDivider bg="#ececec" fill="#fff" className="dark:hidden" />
+      <CurvedDivider bg="#FAFAF8" fill="#fff" className="dark:hidden" />
       <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
 
       {/* 6. Quality and certification proof — also folds in TrustBar's
           former certification-marquee content, which previously interrupted
           the Section 5 -> 7 sequence at its own top-level render position. */}
       <QualityCertificationProof onPageChange={onPageChange} />
-      <CurvedDivider bg="#fff" fill="#ececec" className="dark:hidden" />
+      <CurvedDivider bg="#fff" fill="#fff" className="dark:hidden" />
       <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
 
       {/* 7. Global reach and supply support */}

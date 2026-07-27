@@ -16,7 +16,7 @@ export default function ApplicationDetailHero({ application, productFamilies, on
   };
 
   return (
-    <div className="relative w-full overflow-hidden border-b border-[#eee] dark:border-surface-800/40">
+    <div className="relative w-full overflow-hidden">
       <img
         src={application.image}
         alt={application.title}
