@@ -5,8 +5,14 @@ import InternalLink from '../../components/common/InternalLink';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 import products, { PRODUCT_CATEGORIES, getProductById } from '../../data/products';
 import { getBrochureUrl } from '../../data/brochureUrl';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
+
+// Hero background — served directly from Unsplash's CDN (photo by Shubham
+// Dhage, unsplash.com/photos/qgo7Tt_NWD0, free to use under the Unsplash
+// License) rather than bundled locally.
+const PRODUCTS_HERO_BG = 'https://images.unsplash.com/photo-1628615315488-14ec7d02daaf?q=80&w=2400&auto=format&fit=crop';
 
 // Products Hub — real, data-backed sections only. Fields with no genuine
 // per-product data anywhere in the repo (function/application tags, product
@@ -63,7 +69,22 @@ function formatSizeLabel(value) {
 function groupPackagingOptions(options, category) {
   const weights = options.filter((o) => SIZE_PATTERN.test(o));
   const labels = options.filter((o) => !SIZE_PATTERN.test(o));
-  const realLabel = category ? CATEGORY_PACKAGING_LABEL[category] : null;
+
+  if (!category) {
+    // No format selected — weights and labels here are pooled across every
+    // category's products, so there's no single real container-type they
+    // can be coherently grouped under (grouping them would silently pair
+    // weights from one product's category with an unrelated label from
+    // another's). Render every real value as its own flat pill instead.
+    return [...labels, ...weights].map((v) => ({
+      key: v,
+      label: SIZE_PATTERN.test(v) ? formatSizeLabel(v) : v,
+      value: v,
+      grouped: false,
+    }));
+  }
+
+  const realLabel = CATEGORY_PACKAGING_LABEL[category];
 
   if (weights.length > 0 && realLabel && !labels.includes(realLabel)) {
     // Category has a verified real container-type name not already present
@@ -71,7 +92,7 @@ function groupPackagingOptions(options, category) {
     return [{ key: realLabel, label: realLabel, values: weights, grouped: true }];
   }
 
-  if (labels.length === 0 && category) {
+  if (labels.length === 0) {
     // No category-level label — group each of this category's products
     // under its own real title instead (e.g. Speciality Products has 2
     // dissimilar products, Speciality Liquid Blends in ML/L and Egg White
@@ -88,11 +109,6 @@ function groupPackagingOptions(options, category) {
       }));
   }
 
-  if (labels.length === 0) {
-    // No format selected — nothing to group under, render flat pills.
-    return weights.map((w) => ({ key: w, label: formatSizeLabel(w), value: w, grouped: false }));
-  }
-
   return labels.map((label) => ({
     key: label,
     label,
@@ -107,12 +123,17 @@ function FilterPill({ active, onClick, children }) {
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`inline-flex items-center min-h-[38px] px-4 py-2 rounded-full border font-body font-semibold text-[13.5px] transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
+      className={`inline-flex items-center gap-1.5 min-h-[38px] px-4 py-2 rounded-full font-body font-semibold text-[13.5px] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
         active
-          ? 'bg-brand-600 border-brand-600 text-white'
-          : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50'
+          ? 'bg-brand-600 text-white shadow-[0_4px_14px_rgba(228,10,24,0.25)]'
+          : 'bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 text-surface-600 dark:text-surface-300 hover:border-brand-600/40 hover:text-brand-600 dark:hover:text-brand-400'
       }`}
     >
+      {active && (
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
+      )}
       {children}
     </button>
   );
@@ -169,56 +190,83 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
           SKM Product Finder
         </h2>
 
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500 mr-1">Format</span>
-            {CATEGORY_OPTIONS.map((c) => (
-              <FilterPill key={c} active={category === c} onClick={() => handleCategoryChange(category === c ? null : c)}>
-                {c}
-              </FilterPill>
-            ))}
+        <div className="flex flex-col gap-6 p-6 sm:p-7 rounded-[22px] border border-surface-200/70 dark:border-surface-800 bg-white dark:bg-surface-900 shadow-[0_2px_24px_rgba(20,16,12,0.05)]">
+          <div className="flex flex-col gap-2.5">
+            <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.08em] text-surface-400 dark:text-surface-500">Format</span>
+            <div className="inline-flex flex-wrap gap-1 p-1.5 rounded-2xl bg-surface-100/80 dark:bg-surface-800/50 border border-surface-200/60 dark:border-surface-800 w-fit">
+              {CATEGORY_OPTIONS.map((c) => {
+                const active = category === c;
+                return (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={() => handleCategoryChange(active ? null : c)}
+                    aria-pressed={active}
+                    className="relative px-4 py-2 rounded-xl font-body font-semibold text-[13.5px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-1"
+                  >
+                    {active && (
+                      <motion.span
+                        layoutId="format-active-pill"
+                        className="absolute inset-0 rounded-xl bg-brand-600 shadow-[0_4px_14px_rgba(228,10,24,0.28)]"
+                        transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                      />
+                    )}
+                    <span className={`relative z-10 ${active ? 'text-white' : 'text-surface-600 dark:text-surface-300'}`}>{c}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500 mr-1">Packaging</span>
-            {packagingGroups.map((group) =>
-              group.grouped ? (
-                <span
-                  key={group.key}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-surface-300 dark:border-surface-700 bg-white dark:bg-surface-900 pl-4 pr-1.5 py-1.5"
-                >
-                  <span className="font-body font-semibold text-[13.5px] text-surface-600 dark:text-surface-300">
+
+          <div className="flex flex-col gap-2.5">
+            <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.08em] text-surface-400 dark:text-surface-500">Packaging</span>
+            <div className="flex flex-wrap items-center gap-2">
+              {packagingGroups.map((group) =>
+                group.grouped ? (
+                  <div
+                    key={group.key}
+                    className="inline-flex items-center gap-1 rounded-2xl border border-surface-200/60 dark:border-surface-800 bg-surface-50/80 dark:bg-surface-800/40 pl-4 pr-1.5 py-1.5"
+                  >
+                    <span className="font-body font-semibold text-[12.5px] text-surface-500 dark:text-surface-400 mr-1 whitespace-nowrap">
+                      {group.label}
+                    </span>
+                    {group.values.map((value) => {
+                      const active = packaging === value;
+                      return (
+                        <button
+                          key={value}
+                          type="button"
+                          onClick={() => setPackaging(active ? null : value)}
+                          aria-pressed={active}
+                          className={`inline-flex items-center min-h-[28px] px-2.5 py-1 rounded-lg font-body font-semibold text-[12px] transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
+                            active
+                              ? 'bg-brand-600 text-white shadow-sm'
+                              : 'bg-white dark:bg-surface-900 text-surface-600 dark:text-surface-300 hover:bg-brand-600/8 dark:hover:bg-brand-950/40'
+                          }`}
+                        >
+                          {value === group.label ? value : `(${formatSizeLabel(value)})`}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <FilterPill key={group.key} active={packaging === group.value} onClick={() => setPackaging(packaging === group.value ? null : group.value)}>
                     {group.label}
-                  </span>
-                  {group.values.map((value) => (
-                    <button
-                      key={value}
-                      type="button"
-                      onClick={() => setPackaging(packaging === value ? null : value)}
-                      aria-pressed={packaging === value}
-                      className={`inline-flex items-center min-h-[30px] px-3 py-1 rounded-full border font-body font-semibold text-[12.5px] transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
-                        packaging === value
-                          ? 'bg-brand-600 border-brand-600 text-white'
-                          : 'bg-[#fdfbf7] dark:bg-surface-800 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50'
-                      }`}
-                    >
-                      {value === group.label ? value : `(${formatSizeLabel(value)})`}
-                    </button>
-                  ))}
-                </span>
-              ) : (
-                <FilterPill key={group.key} active={packaging === group.value} onClick={() => setPackaging(packaging === group.value ? null : group.value)}>
-                  {group.label}
-                </FilterPill>
-              )
-            )}
+                  </FilterPill>
+                )
+              )}
+            </div>
           </div>
 
           {(category || packaging) && (
             <button
               type="button"
               onClick={clearFilters}
-              className="self-start font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm w-fit"
+              className="self-start inline-flex items-center gap-1.5 font-body font-semibold text-[13px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm w-fit"
             >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" aria-hidden="true">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
               Clear Filters
             </button>
           )}
@@ -412,7 +460,7 @@ function ComparisonSection({ compareList, onPageChange }) {
   const compared = compareList.map(getProductById).filter(Boolean);
 
   return (
-    <div id="product-comparison" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="product-comparison" className="w-full py-[60px] lg:py-[85px] dark:border-surface-800/40 bg-white dark:bg-surface-900/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
         <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
           Product comparison
@@ -588,15 +636,22 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
 
         {/* Section 1 — Products hero */}
-        <div className="w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
+        <div className="relative w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4 overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${PRODUCTS_HERO_BG})` }}
+            role="img"
+            aria-label="Brown eggs on a white surface"
+          />
+          <div className="absolute inset-0 bg-black/15" aria-hidden="true" />
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: [0.25, 1, 0.5, 1] }}
-            className="mx-auto max-w-[820px] flex flex-col items-center gap-6"
+            className="relative z-10 mx-auto max-w-[820px] flex flex-col items-center gap-6"
           >
-            <span className="section-label justify-center">Products</span>
-            <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+            <span className="section-label justify-center !text-white">Products</span>
+            <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[52px] text-white leading-[1.15] tracking-tight m-0">
               Egg Products Engineered for Performance, Consistency and Safety.
             </h1>
 
@@ -604,23 +659,23 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
               <button
                 type="button"
                 onClick={() => scrollToSectionId('product-families')}
-                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 cursor-pointer hover:border-brand-600/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-white/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
               >
-                <span className="font-body font-semibold text-[13.5px] text-heading dark:text-white">Browse by product format</span>
+                <span className="font-body font-semibold text-[13.5px] text-white">Browse by product format</span>
               </button>
               <button
                 type="button"
                 onClick={() => scrollToSectionId('product-finder')}
-                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 cursor-pointer hover:border-brand-600/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-white/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
               >
-                <span className="font-body font-semibold text-[13.5px] text-heading dark:text-white">Browse by packaging</span>
+                <span className="font-body font-semibold text-[13.5px] text-white">Browse by packaging</span>
               </button>
               <button
                 type="button"
                 onClick={() => scrollToSectionId('functional-requirement')}
-                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 cursor-pointer hover:border-brand-600/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-white/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
               >
-                <span className="font-body font-semibold text-[13.5px] text-heading dark:text-white">Browse by functionality</span>
+                <span className="font-body font-semibold text-[13.5px] text-white">Browse by functionality</span>
               </button>
             </div>
 
@@ -636,7 +691,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
               <InternalLink
                 route="whole_egg_liquid"
                 onPageChange={onPageChange}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white dark:bg-surface-900 border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white text-white hover:bg-white/20 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
               >
                 Browse Liquid Eggs
               </InternalLink>
@@ -644,7 +699,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
               <button
                 type="button"
                 onClick={() => scrollToSectionId('functional-requirement')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 font-heading font-bold text-[13px] uppercase tracking-[0.04em] hover:border-brand-600/50 transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-white/40 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] hover:border-white/70 transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
               >
                 Find by Function
               </button>
@@ -654,15 +709,23 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
 
         {/* Section 2 — SKM Product Finder */}
         <ProductFinder onPageChange={onPageChange} compareList={compareList} setCompareList={setCompareList} />
+        <CurvedDivider bg="#ececec" fill="#fff" className="dark:hidden" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
 
         {/* Section 3 — Product families */}
         <ProductFamiliesSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#fff" fill="#ececec" className="dark:hidden" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
 
         {/* Section 4 — Browse by functional requirement */}
         <FunctionalRequirementSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#ececec" fill="#fff" className="dark:hidden" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
 
         {/* Section 5 — Product comparison */}
         <ComparisonSection compareList={compareList} onPageChange={onPageChange} />
+        <CurvedDivider bg="#fff" fill="#ececec" className="dark:hidden" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
 
         {/* Section 6 — Custom product support */}
         <CustomSupportSection onPageChange={onPageChange} />
