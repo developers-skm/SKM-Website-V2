@@ -10,28 +10,41 @@ export default function ApplicationHero({ onPageChange }) {
   };
 
   return (
-    <div className="w-full bg-white dark:bg-surface-900/40 py-16 sm:py-20 lg:py-28 text-center px-4">
-      <div className="mx-auto max-w-[820px] flex flex-col items-center gap-6">
-        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
-          <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
+    <div className="relative w-full overflow-hidden py-20 sm:py-28 lg:py-36 text-center px-4">
+      <img
+        src="https://images.unsplash.com/photo-1713176679770-1ab32be3fb38?fm=jpg&q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0"
+        srcSet="https://images.unsplash.com/photo-1713176679770-1ab32be3fb38?fm=jpg&q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0 1200w, https://images.unsplash.com/photo-1713176679770-1ab32be3fb38?fm=jpg&q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0 2400w"
+        sizes="100vw"
+        alt="Wooden crate filled with white eggs"
+        loading="eager"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <div
+        className="absolute inset-0"
+        style={{ background: 'linear-gradient(180deg, rgba(20,16,10,0.35) 0%, rgba(20,16,10,0.25) 40%, rgba(20,16,10,0.75) 88%, rgba(20,16,10,0.94) 100%)' }}
+        aria-hidden="true"
+      />
+      <div className="relative z-10 mx-auto max-w-[820px] flex flex-col items-center gap-6">
+        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-400">
+          <span className="w-5 h-px bg-brand-400" aria-hidden="true" />
           Applications Hub
         </span>
-        <h1 className="font-heading font-bold text-[38px] sm:text-[52px] lg:text-[60px] text-heading dark:text-white leading-[1.05] tracking-tight m-0">
+        <h1 className="font-heading font-bold text-[38px] sm:text-[52px] lg:text-[60px] text-white leading-[1.05] tracking-tight m-0 drop-shadow-[0_2px_20px_rgba(0,0,0,0.25)]">
           What Are We Manufacturing?
         </h1>
-        <p className="font-body text-[16px] sm:text-[18px] text-surface-600 dark:text-surface-400 leading-[1.7] m-0 max-w-[58ch]">
+        <p className="font-body text-[16px] sm:text-[18px] text-white/80 leading-[1.7] m-0 max-w-[58ch]">
           Food manufacturers usually think about the product they're developing before they think about an egg product code. Start with what you're making, and we'll point you to the right ingredient.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-2">
           <button
             onClick={scrollToCategories}
-            className="inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13.5px] uppercase tracking-[0.05em] leading-none px-8 py-[18px] rounded-[200px] transition-all duration-300 shadow-[0_8px_24px_rgba(228,10,24,0.22)] hover:shadow-[0_10px_30px_rgba(228,10,24,0.32)] cursor-pointer"
+            className="inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13.5px] uppercase tracking-[0.05em] leading-none px-8 py-[18px] rounded-[200px] transition-all duration-300 shadow-[0_8px_24px_rgba(228,10,24,0.35)] hover:shadow-[0_10px_30px_rgba(228,10,24,0.45)] cursor-pointer"
           >
             Select Your Application
           </button>
           <button
             onClick={() => onPageChange('contact-us')}
-            className="font-body font-semibold text-[14px] text-brand-600 dark:text-brand-400 hover:text-[#a80000] dark:hover:text-brand-300 underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
+            className="font-body font-semibold text-[14px] text-white/90 hover:text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
           >
             Talk to an Application Specialist
           </button>

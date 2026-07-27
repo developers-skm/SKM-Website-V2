@@ -42,13 +42,20 @@ export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial 
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full text-left">
+        <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-6 w-full text-left">
+          <div
+            className="hidden sm:block absolute top-[34px] left-[calc(16.666%+8px)] right-[calc(16.666%+8px)] h-px bg-gradient-to-r from-brand-600/25 via-brand-600/40 to-brand-600/25 dark:from-brand-400/20 dark:via-brand-400/35 dark:to-brand-400/20"
+            aria-hidden="true"
+          />
           {stages.map((stage) => (
-            <div key={stage.step} className="flex flex-col gap-2 rounded-[20px] bg-white/70 dark:bg-surface-900/40 border border-surface-200/60 dark:border-surface-800 px-6 py-7">
-              <span className="font-mono text-[12px] font-bold text-brand-600 dark:text-brand-400">
+            <div
+              key={stage.step}
+              className="group relative flex flex-col gap-3 rounded-[20px] bg-white dark:bg-surface-900/60 border border-surface-200/70 dark:border-surface-800 px-6 py-7 shadow-[0_4px_18px_rgba(36,30,24,0.06)] hover:shadow-[0_14px_34px_rgba(36,30,24,0.12)] hover:-translate-y-1 transition-all duration-300"
+            >
+              <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 text-white font-mono text-[12.5px] font-bold shadow-[0_6px_16px_rgba(228,10,24,0.3)] group-hover:scale-105 transition-transform duration-300">
                 {stage.step}
               </span>
-              <span className="font-heading font-bold text-[16px] text-heading dark:text-white">
+              <span className="font-heading font-bold text-[16.5px] text-heading dark:text-white">
                 {stage.label}
               </span>
               <p className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
@@ -61,7 +68,7 @@ export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial 
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
           <button
             onClick={onDiscussFormulation}
-            className="inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13.5px] uppercase tracking-[0.05em] leading-none px-8 py-[18px] rounded-[200px] transition-all duration-300 shadow-[0_8px_24px_rgba(228,10,24,0.22)] hover:shadow-[0_10px_30px_rgba(228,10,24,0.32)] cursor-pointer"
+            className="inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13.5px] uppercase tracking-[0.05em] leading-none px-8 py-[18px] rounded-[200px] transition-all duration-300 shadow-[0_8px_24px_rgba(228,10,24,0.28)] hover:shadow-[0_12px_32px_rgba(228,10,24,0.4)] hover:-translate-y-0.5 cursor-pointer"
           >
             Discuss Your Formulation
           </button>

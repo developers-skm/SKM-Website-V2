@@ -10,6 +10,7 @@ import ProductComparison from './sections/ProductComparison';
 import ProcessingGuidance from './sections/ProcessingGuidance';
 import RelatedResources from './sections/RelatedResources';
 import ApplicationFinalCTA from './sections/ApplicationFinalCTA';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Generic template driven by src/data/applications.js — one component instead
 // of 4 near-duplicate files. Problem-first copy, matched products, single CTA
@@ -44,6 +45,8 @@ export default function ApplicationLandingPage({ applicationId, onPageChange }) 
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
         <ApplicationDetailHero application={application} productFamilies={productFamilies} onPageChange={onPageChange} />
+        <CurvedDivider bg="transparent" fill="#f8f4ee" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px] dark:hidden" />
+        <CurvedDivider bg="transparent" fill="#121212" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px] hidden dark:block" />
 
         <ApplicationFormulationChallenges application={application} onPageChange={onPageChange} />
 
@@ -72,6 +75,8 @@ export default function ApplicationLandingPage({ applicationId, onPageChange }) 
         />
 
         <RelatedResources matchedProducts={matchedProducts} onPageChange={onPageChange} />
+        <CurvedDivider bg="#f8f4ee" fill="#fdf1f0" className="dark:hidden" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
 
         <ApplicationFinalCTA application={application} onPageChange={onPageChange} />
       </div>

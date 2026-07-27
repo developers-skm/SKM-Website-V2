@@ -82,7 +82,13 @@
       "Bash(rm -f ./__shot_tmp20.cjs)",
       "Bash(cp \"C:\\\\Users\\\\it-web1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--PROJECTS-skm-website-v3---Rework\\\\40aea2db-9e6e-4663-815b-5c40418aeeda\\\\scratchpad\\\\shot17.js\" ./__shot_tmp21.cjs)",
       "Bash(node ./__shot_tmp21.cjs)",
-      "Bash(rm -f ./__shot_tmp21.cjs)"
+      "Bash(rm -f ./__shot_tmp21.cjs)",
+      "Bash(node __hero_shot.cjs)",
+      "Bash(node __tech_support_shot.cjs)",
+      "Bash(node __brochure_shot.cjs)",
+      "Bash(node __brochure_dark.cjs)",
+      "Bash(rm __brochure_dark.cjs __brochure_shot.cjs)",
+      "Bash(rm -f __brochure_shot.cjs __brochure_dark.cjs)"
     ],
     "additionalDirectories": [
       "\\tmp"
