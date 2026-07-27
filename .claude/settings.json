@@ -88,7 +88,11 @@
       "Bash(node __brochure_shot.cjs)",
       "Bash(node __brochure_dark.cjs)",
       "Bash(rm __brochure_dark.cjs __brochure_shot.cjs)",
-      "Bash(rm -f __brochure_shot.cjs __brochure_dark.cjs)"
+      "Bash(rm -f __brochure_shot.cjs __brochure_dark.cjs)",
+      "Bash(tasklist //FI \"IMAGENAME eq chrome.exe\")",
+      "Bash(tasklist //FI \"IMAGENAME eq node.exe\")",
+      "Bash(timeout 50 node __q2.cjs)",
+      "Bash(echo \"exit: $?\")"
     ],
     "additionalDirectories": [
       "\\tmp"
