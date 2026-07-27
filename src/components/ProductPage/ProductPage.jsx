@@ -55,9 +55,6 @@ export default function ProductPage({
       {/* Hero chapter — warm white, breadcrumb folded into the same visual
           block instead of its own full-width grey bar */}
       <div className="w-full bg-white dark:bg-surface-900/40">
-        <div className="mx-auto max-w-[1440px] w-full px-5 sm:px-8 lg:px-12 pt-5 sm:pt-6">
-          <Breadcrumb items={breadcrumbItems} onPageChange={onPageChange} variant="compact" />
-        </div>
         <ProductHero
           backgroundImage={hero.backgroundImage}
           backgroundAlt={hero.backgroundAlt}
