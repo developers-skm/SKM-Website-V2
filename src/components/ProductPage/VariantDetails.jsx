@@ -1,5 +1,6 @@
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import SpecificationGrid from './SpecificationGrid';
+import { EASE_PREMIUM } from '../../utils/motionTokens';
 
 // Premium technical-document panel — large white surface, ~32px radius,
 // generous 48-64px padding, near-invisible shadow (border + surface
@@ -12,7 +13,7 @@ export default function VariantDetails({ variant, displayCode, panelId, tabId })
 
   const transition = reduceMotion
     ? { duration: 0.01 }
-    : { duration: 0.3, ease: [0.25, 1, 0.5, 1] };
+    : { duration: 0.3, ease: EASE_PREMIUM };
 
   return (
     <AnimatePresence mode="wait">

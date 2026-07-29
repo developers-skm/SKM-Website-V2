@@ -1,7 +1,13 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import applications from '../../../data/applications';
 import { getProductById } from '../../../data/products';
-import { containerVariants, itemVariants } from '../../../utils/animationVariants';
+import { EASE_PREMIUM, DURATION } from '../../../utils/motionTokens';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.07 } },
+};
+const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
 // Section 2 — application categories (brief §2). The brief lists 8
 // categories; only 4 (Bakery & Confectionery, Mayonnaise & Salad Dressing,
@@ -14,6 +20,7 @@ import { containerVariants, itemVariants } from '../../../utils/animationVariant
 // a specific "Explore X Solutions" action per the brief, rather than the
 // previous whole-card-is-a-link pattern.
 export default function ApplicationCategories({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
   return (
     <div id="application-categories" className="w-full py-16 sm:py-20 lg:py-24 scroll-mt-[100px]">
       <motion.section
@@ -21,9 +28,10 @@ export default function ApplicationCategories({ onPageChange }) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
+        transition={{ staggerChildren: reduceMotion ? 0 : 0.07 }}
         className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10"
       >
-        <motion.div variants={itemVariants} className="flex flex-col gap-4 max-w-2xl">
+        <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="flex flex-col gap-4 max-w-2xl">
           <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             Application Categories
@@ -40,17 +48,20 @@ export default function ApplicationCategories({ onPageChange }) {
               <motion.div
                 key={app.id}
                 variants={itemVariants}
-                className="group flex flex-col h-full rounded-[24px] overflow-hidden bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 hover:border-brand-600/50 shadow-[0_3px_14px_rgba(36,30,24,0.05)] hover:shadow-[0_12px_32px_rgba(36,30,24,0.1)] transition-all duration-300"
+                transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
+                className="group flex flex-col h-full rounded-[24px] overflow-hidden bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 hover:border-brand-600/50 shadow-[0_3px_14px_rgba(36,30,24,0.05)] hover:shadow-[0_12px_32px_rgba(36,30,24,0.1)] focus-within:ring-2 focus-within:ring-brand-500/40 transition-all duration-300"
               >
-                <div className="relative w-full aspect-[3/2] overflow-hidden">
+                <div className="relative w-full aspect-[3/2] overflow-hidden" style={{ maskImage: 'radial-gradient(120% 120% at 50% 0%, #000 60%, #000 100%)' }}>
                   <img
                     src={app.image}
                     alt={app.title}
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
                 </div>
-                <div className="flex flex-col gap-2 px-7 pt-6 pb-7">
+                <div className="relative flex flex-col gap-2 px-7 pt-6 pb-7">
+                  <span className="absolute left-0 top-0 h-0.5 w-0 bg-[linear-gradient(90deg,transparent,#e8b64a,transparent)] group-hover:w-full transition-all duration-500 ease-out" aria-hidden="true" />
                   <h3 className="font-heading font-bold text-[22px] text-heading dark:text-white leading-[1.2] m-0">
                     {app.title}
                   </h3>

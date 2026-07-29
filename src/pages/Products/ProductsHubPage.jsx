@@ -6,6 +6,7 @@ import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNa
 import products, { PRODUCT_CATEGORIES, getProductById } from '../../data/products';
 import { getBrochureUrl } from '../../data/brochureUrl';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
+import { EASE_PREMIUM, DURATION, fadeUp } from '../../utils/motionTokens';
 
 const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 
@@ -123,17 +124,25 @@ function FilterPill({ active, onClick, children }) {
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`inline-flex items-center gap-1.5 min-h-[38px] px-4 py-2 rounded-full font-body font-semibold text-[13.5px] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
+      className={`inline-flex items-center gap-1.5 min-h-[38px] px-4 py-2 rounded-full font-body font-semibold text-[13.5px] transition-all duration-200 focus:outline-none focus-gold ${
         active
           ? 'bg-brand-600 text-white shadow-[0_4px_14px_rgba(228,10,24,0.25)]'
-          : 'bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 text-surface-600 dark:text-surface-300 hover:border-brand-600/40 hover:text-brand-600 dark:hover:text-brand-400'
+          : 'bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 text-surface-600 dark:text-surface-300 hover:border-brand-600/40 hover:text-brand-600 dark:hover:text-brand-400 hover:-translate-y-px'
       }`}
     >
-      {active && (
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M20 6L9 17l-5-5" />
-        </svg>
-      )}
+      <AnimatePresence initial={false}>
+        {active && (
+          <motion.svg
+            initial={{ opacity: 0, scale: 0.6, width: 0 }}
+            animate={{ opacity: 1, scale: 1, width: 11 }}
+            exit={{ opacity: 0, scale: 0.6, width: 0 }}
+            transition={{ duration: DURATION.buttonHover, ease: EASE_PREMIUM }}
+            height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+          >
+            <path d="M20 6L9 17l-5-5" />
+          </motion.svg>
+        )}
+      </AnimatePresence>
       {children}
     </button>
   );
@@ -147,6 +156,7 @@ function FilterPill({ active, onClick, children }) {
 function ProductFinder({ onPageChange, compareList, setCompareList }) {
   const [category, setCategory] = useState(null);
   const [packaging, setPackaging] = useState(null);
+  const reduceMotion = useReducedMotion();
 
   const packagingOptions = useMemo(() => getPackagingOptionsForCategory(category), [category]);
   const packagingGroups = useMemo(() => groupPackagingOptions(packagingOptions, category), [packagingOptions, category]);
@@ -186,9 +196,12 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
   return (
     <div id="product-finder" className="w-full py-[60px] lg:py-[85px] scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
-        <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+        <motion.h2
+          {...fadeUp(reduceMotion, { duration: DURATION.sectionEntrance })}
+          className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+        >
           SKM Product Finder
-        </h2>
+        </motion.h2>
 
         <div className="flex flex-col gap-6 p-6 sm:p-7 rounded-[22px] border border-surface-200/70 dark:border-surface-800 bg-white dark:bg-surface-900 shadow-[0_2px_24px_rgba(20,16,12,0.05)]">
           <div className="flex flex-col gap-2.5">
@@ -202,13 +215,13 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                     type="button"
                     onClick={() => handleCategoryChange(active ? null : c)}
                     aria-pressed={active}
-                    className="relative px-4 py-2 rounded-xl font-body font-semibold text-[13.5px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-1"
+                    className="relative px-4 py-2 rounded-xl font-body font-semibold text-[13.5px] transition-colors duration-200 focus:outline-none focus-gold"
                   >
                     {active && (
                       <motion.span
                         layoutId="format-active-pill"
                         className="absolute inset-0 rounded-xl bg-brand-600 shadow-[0_4px_14px_rgba(228,10,24,0.28)]"
-                        transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                        transition={reduceMotion ? { duration: 0.01 } : { type: 'spring', stiffness: 400, damping: 32 }}
                       />
                     )}
                     <span className={`relative z-10 ${active ? 'text-white' : 'text-surface-600 dark:text-surface-300'}`}>{c}</span>
@@ -238,7 +251,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                           type="button"
                           onClick={() => setPackaging(active ? null : value)}
                           aria-pressed={active}
-                          className={`inline-flex items-center min-h-[28px] px-2.5 py-1 rounded-lg font-body font-semibold text-[12px] transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
+                          className={`inline-flex items-center min-h-[28px] px-2.5 py-1 rounded-lg font-body font-semibold text-[12px] transition-all duration-200 focus:outline-none focus-gold ${
                             active
                               ? 'bg-brand-600 text-white shadow-sm'
                               : 'bg-white dark:bg-surface-900 text-surface-600 dark:text-surface-300 hover:bg-brand-600/8 dark:hover:bg-brand-950/40'
@@ -262,7 +275,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
             <button
               type="button"
               onClick={clearFilters}
-              className="self-start inline-flex items-center gap-1.5 font-body font-semibold text-[13px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm w-fit"
+              className="self-start inline-flex items-center gap-1.5 font-body font-semibold text-[13px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-gold rounded-sm w-fit"
             >
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" aria-hidden="true">
                 <path d="M18 6L6 18M6 6l12 12" />
@@ -276,34 +289,57 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
           {filtered.length} of {products.length} products
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((product) => (
-            <div key={product.id} className="flex flex-col gap-3 p-5 rounded-[16px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
-              <img src={product.image} alt={product.title} loading="lazy" className="w-full aspect-[4/3] object-cover rounded-[10px]" />
-              <span className="font-heading font-bold text-[16px] text-heading dark:text-white">{product.title}</span>
-              <span className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-[1.5]">{product.shortDescription}</span>
-              <div className="flex items-center gap-4 mt-1">
-                <InternalLink
-                  route={product.page}
-                  onPageChange={onPageChange}
-                  className="font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
-                >
-                  View Product Details
-                </InternalLink>
-                <button
-                  type="button"
-                  onClick={() => toggleCompare(product.id)}
-                  aria-pressed={compareList.includes(product.id)}
-                  className={`font-body font-semibold text-[13.5px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm ${
-                    compareList.includes(product.id) ? 'text-brand-600 dark:text-brand-400 underline' : 'text-surface-500 dark:text-surface-400 hover:underline'
-                  }`}
-                >
-                  {compareList.includes(product.id) ? 'Added to Comparison' : 'Add to Comparison'}
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+        <motion.div layout={!reduceMotion} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence initial={false} mode="popLayout">
+            {filtered.map((product, index) => (
+              <motion.div
+                key={product.id}
+                layout={!reduceMotion}
+                initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  duration: reduceMotion ? 0.01 : DURATION.filterTransition,
+                  ease: EASE_PREMIUM,
+                  delay: reduceMotion ? 0 : Math.min(index, 6) * 0.05,
+                }}
+                whileHover={reduceMotion ? undefined : { y: -3 }}
+                className="group flex flex-col gap-3 p-5 rounded-[16px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 transition-[border-color,box-shadow] duration-300 hover:border-gold-500/50 hover:shadow-[0_10px_30px_rgba(20,16,12,0.08)]"
+              >
+                <div className="w-full aspect-[4/3] overflow-hidden rounded-[10px]">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                  />
+                </div>
+                <span className="font-heading font-bold text-[16px] text-heading dark:text-white">{product.title}</span>
+                <span className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-[1.5]">{product.shortDescription}</span>
+                <div className="flex items-center gap-4 mt-1">
+                  <InternalLink
+                    route={product.page}
+                    onPageChange={onPageChange}
+                    className="inline-flex items-center gap-1 font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-gold rounded-sm"
+                  >
+                    View Product Details
+                    <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+                  </InternalLink>
+                  <button
+                    type="button"
+                    onClick={() => toggleCompare(product.id)}
+                    aria-pressed={compareList.includes(product.id)}
+                    className={`font-body font-semibold text-[13.5px] transition-colors duration-200 focus:outline-none focus-gold rounded-sm ${
+                      compareList.includes(product.id) ? 'text-brand-600 dark:text-brand-400 underline' : 'text-surface-500 dark:text-surface-400 hover:underline'
+                    }`}
+                  >
+                    {compareList.includes(product.id) ? 'Added to Comparison' : 'Add to Comparison'}
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </div>
   );
@@ -329,7 +365,11 @@ function FamilyGroupBlock({ group, onPageChange }) {
   const listId = `hub-family-${group.id}-products`;
 
   return (
-    <div className="flex flex-col p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
+    <motion.div
+      whileHover={reduceMotion ? undefined : { y: -3 }}
+      transition={{ duration: DURATION.cardHover, ease: EASE_PREMIUM }}
+      className="flex flex-col p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 transition-[border-color,box-shadow] duration-300 hover:border-gold-500/50 hover:shadow-[0_10px_30px_rgba(20,16,12,0.08)]"
+    >
       <h3 className="font-heading font-bold text-[20px] text-heading dark:text-white m-0">{group.label}</h3>
       <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 mt-1.5 mb-4">
         {groupProducts.length} product{groupProducts.length === 1 ? '' : 's'}
@@ -338,9 +378,10 @@ function FamilyGroupBlock({ group, onPageChange }) {
       <InternalLink
         route={group.categoryRoute}
         onPageChange={onPageChange}
-        className="font-body font-semibold text-[14.5px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 self-start focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm mb-2"
+        className="group/cta inline-flex items-center gap-1 font-body font-semibold text-[14.5px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 self-start focus:outline-none focus-gold rounded-sm mb-2"
       >
         {group.ctaLabel}
+        <span className="inline-block transition-transform duration-200 group-hover/cta:translate-x-0.5" aria-hidden="true">→</span>
       </InternalLink>
 
       <button
@@ -348,7 +389,7 @@ function FamilyGroupBlock({ group, onPageChange }) {
         aria-expanded={isExpanded}
         aria-controls={listId}
         onClick={() => setIsExpanded((prev) => !prev)}
-        className="group inline-flex items-center gap-2 font-body font-semibold text-[13px] text-surface-500 dark:text-surface-400 hover:text-brand-600 dark:hover:text-brand-400 bg-transparent border-none p-0 cursor-pointer self-start focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
+        className="group inline-flex items-center gap-2 font-body font-semibold text-[13px] text-surface-500 dark:text-surface-400 hover:text-brand-600 dark:hover:text-brand-400 bg-transparent border-none p-0 cursor-pointer self-start focus:outline-none focus-gold rounded-sm"
       >
         {isExpanded ? 'Hide products' : 'Show products'}
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className={`transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} aria-hidden>
@@ -363,7 +404,7 @@ function FamilyGroupBlock({ group, onPageChange }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.25, ease: [0.25, 1, 0.5, 1] }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.25, ease: EASE_PREMIUM }}
             className="flex flex-col overflow-hidden list-none m-0 p-0 mt-3"
           >
             {groupProducts.map((product) => (
@@ -371,7 +412,7 @@ function FamilyGroupBlock({ group, onPageChange }) {
                 <InternalLink
                   route={product.page}
                   onPageChange={onPageChange}
-                  className="block py-2.5 font-body text-[14px] text-surface-700 dark:text-surface-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
+                  className="block py-2.5 font-body text-[14px] text-surface-700 dark:text-surface-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150 focus:outline-none focus-gold rounded-sm"
                 >
                   {product.title}
                 </InternalLink>
@@ -380,20 +421,32 @@ function FamilyGroupBlock({ group, onPageChange }) {
           </motion.ul>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }
 
 function ProductFamiliesSection({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
   return (
     <div id="product-families" className="w-full py-[60px] lg:py-[85px] bg-white dark:bg-surface-900/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
-        <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+        <motion.h2
+          {...fadeUp(reduceMotion, { duration: DURATION.sectionEntrance })}
+          className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+        >
           Product families
-        </h2>
+        </motion.h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {familyGroups.map((group) => (
-            <FamilyGroupBlock key={group.id} group={group} onPageChange={onPageChange} />
+          {familyGroups.map((group, index) => (
+            <motion.div
+              key={group.id}
+              initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : index * 0.06 }}
+            >
+              <FamilyGroupBlock group={group} onPageChange={onPageChange} />
+            </motion.div>
           ))}
         </div>
       </div>
@@ -409,9 +462,13 @@ function ProductFamiliesSection({ onPageChange }) {
 // function-to-product mappings; it's presented as a genuinely upcoming
 // capability instead of fake filters.
 function FunctionalRequirementSection({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
   return (
     <div id="functional-requirement" className="w-full py-[60px] lg:py-[85px] scroll-mt-[100px] xl:scroll-mt-[120px]">
-      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
+      <motion.div
+        {...fadeUp(reduceMotion, { duration: DURATION.sectionEntrance })}
+        className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6"
+      >
         <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
           Browse by functional requirement
         </h2>
@@ -440,12 +497,12 @@ function FunctionalRequirementSection({ onPageChange }) {
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(228,10,24,0.22)] focus:outline-none focus-gold"
           >
             Discuss a Functional Challenge
           </InternalLink>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -458,50 +515,70 @@ function FunctionalRequirementSection({ onPageChange }) {
 // Technical Recommendation" routes to the real get-quote flow.
 function ComparisonSection({ compareList, onPageChange }) {
   const compared = compareList.map(getProductById).filter(Boolean);
+  const reduceMotion = useReducedMotion();
 
   return (
     <div id="product-comparison" className="w-full py-[60px] lg:py-[85px] dark:border-surface-800/40 bg-white dark:bg-surface-900/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
-      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
+      <motion.div
+        {...fadeUp(reduceMotion, { duration: DURATION.sectionEntrance })}
+        className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6"
+      >
         <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
           Product comparison
         </h2>
 
-        {compared.length === 0 ? (
-          <p className="font-body text-[15px] text-surface-500 dark:text-surface-400 m-0">
-            Use "Add to Comparison" in the Product Finder above to compare products side by side.
-          </p>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse min-w-[560px]">
-              <thead>
-                <tr>
-                  <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Product</th>
-                  <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Category</th>
-                  <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Packaging Options</th>
-                  <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3">Details</th>
-                </tr>
-              </thead>
-              <tbody>
-                {compared.map((product) => (
-                  <tr key={product.id}>
-                    <td className="font-body font-semibold text-[14.5px] text-heading dark:text-white border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.title}</td>
-                    <td className="font-body text-[14px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.category}</td>
-                    <td className="font-body text-[14px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.packagingOptions.join(', ')}</td>
-                    <td className="border-b border-surface-200/70 dark:border-surface-800 py-3">
-                      <InternalLink
-                        route={product.page}
-                        onPageChange={onPageChange}
-                        className="font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
-                      >
-                        View Details
-                      </InternalLink>
-                    </td>
+        <AnimatePresence mode="wait" initial={false}>
+          {compared.length === 0 ? (
+            <motion.p
+              key="empty"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: reduceMotion ? 0.01 : DURATION.fast }}
+              className="font-body text-[15px] text-surface-500 dark:text-surface-400 m-0"
+            >
+              Use "Add to Comparison" in the Product Finder above to compare products side by side.
+            </motion.p>
+          ) : (
+            <motion.div
+              key="table"
+              initial={{ opacity: 0, y: reduceMotion ? 0 : 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: reduceMotion ? 0.01 : DURATION.filterTransition, ease: EASE_PREMIUM }}
+              className="overflow-x-auto"
+            >
+              <table className="w-full border-collapse min-w-[560px]">
+                <thead>
+                  <tr>
+                    <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Product</th>
+                    <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Category</th>
+                    <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Packaging Options</th>
+                    <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3">Details</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+                </thead>
+                <tbody>
+                  {compared.map((product) => (
+                    <tr key={product.id} className="transition-colors duration-200 hover:bg-gold-500/[0.06] dark:hover:bg-gold-500/[0.05]">
+                      <td className="font-body font-semibold text-[14.5px] text-heading dark:text-white border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.title}</td>
+                      <td className="font-body text-[14px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.category}</td>
+                      <td className="font-body text-[14px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.packagingOptions.join(', ')}</td>
+                      <td className="border-b border-surface-200/70 dark:border-surface-800 py-3">
+                        <InternalLink
+                          route={product.page}
+                          onPageChange={onPageChange}
+                          className="font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-gold rounded-sm"
+                        >
+                          View Details
+                        </InternalLink>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="flex flex-wrap items-center gap-4 mt-1">
           <button
@@ -509,10 +586,10 @@ function ComparisonSection({ compareList, onPageChange }) {
             disabled={compared.length === 0}
             title={compared.length === 0 ? 'Add products to compare first' : undefined}
             aria-disabled={compared.length === 0}
-            className={`inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full font-body font-semibold text-[15px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
+            className={`inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full font-body font-semibold text-[15px] transition-all duration-200 focus:outline-none focus-gold ${
               compared.length === 0
                 ? 'border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-600 cursor-not-allowed opacity-60'
-                : 'bg-brand-600 hover:bg-brand-700 text-white cursor-pointer'
+                : 'bg-brand-600 hover:bg-brand-700 text-white cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(228,10,24,0.22)]'
             }`}
           >
             Compare Selected Products
@@ -529,12 +606,12 @@ function ComparisonSection({ compareList, onPageChange }) {
           <InternalLink
             route="get-quote"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2 min-h-[44px] px-2 font-body font-semibold text-[15px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
+            className="inline-flex items-center gap-2 min-h-[44px] px-2 font-body font-semibold text-[15px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 focus:outline-none focus-gold rounded-sm"
           >
             Request Technical Recommendation
           </InternalLink>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -542,9 +619,29 @@ function ComparisonSection({ compareList, onPageChange }) {
 // Section 6 — Custom product support. Real routes: customized_mix,
 // customized_packages both exist in products.js/App.jsx; contact-us is real.
 function CustomSupportSection({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
   return (
-    <div id="custom-support" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
-      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
+    <div id="custom-support" className="relative w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 scroll-mt-[100px] xl:scroll-mt-[120px] overflow-hidden">
+      {!reduceMotion && (
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <motion.div
+            className="absolute -right-[10%] top-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full"
+            style={{ background: 'radial-gradient(circle, rgba(232,182,74,0.10) 0%, rgba(232,182,74,0) 70%)' }}
+            animate={{ scale: [1, 1.08, 1], opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.div
+            className="absolute -left-[8%] bottom-0 w-[320px] h-[320px] rounded-full"
+            style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%)' }}
+            animate={{ scale: [1, 1.06, 1] }}
+            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+          />
+        </div>
+      )}
+      <motion.div
+        {...fadeUp(reduceMotion, { duration: DURATION.sectionEntrance })}
+        className="relative mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6"
+      >
         <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
           Custom product support
         </h2>
@@ -555,19 +652,19 @@ function CustomSupportSection({ onPageChange }) {
           <InternalLink
             route="customized_mix"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(228,10,24,0.22)] focus:outline-none focus-gold"
           >
             Develop a Custom Solution
           </InternalLink>
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-body font-semibold text-[15px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-body font-semibold text-[15px] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-gold"
           >
             Contact Technical Team
           </InternalLink>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -579,9 +676,13 @@ function CustomSupportSection({ onPageChange }) {
 // one product list exist under src/assets/Brouchers) and are not
 // represented as separate fake downloads.
 function TechnicalResourcesSection({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
   return (
     <div id="technical-resources" className="w-full py-[60px] lg:py-[85px] scroll-mt-[100px] xl:scroll-mt-[120px]">
-      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
+      <motion.div
+        {...fadeUp(reduceMotion, { duration: DURATION.sectionEntrance })}
+        className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6"
+      >
         <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
           Technical resources
         </h2>
@@ -592,19 +693,19 @@ function TechnicalResourcesSection({ onPageChange }) {
           <InternalLink
             route="resources"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(228,10,24,0.22)] focus:outline-none focus-gold"
           >
             Open Technical Library
           </InternalLink>
           <a
             href={ProductListPdf}
             download
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-body font-semibold text-[15px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-body font-semibold text-[15px] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-gold"
           >
             Download Product Portfolio
           </a>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -643,46 +744,94 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             aria-label="Brown eggs on a white surface"
           />
           <div className="absolute inset-0 bg-black/15" aria-hidden="true" />
+
+          {!reduceMotion && (
+            <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+              {/* soft egg-outline arc */}
+              <motion.svg
+                className="absolute left-1/2 top-1/2 w-[520px] h-[520px] -translate-x-1/2 -translate-y-1/2 opacity-0"
+                viewBox="0 0 200 200"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 0.14, 0.14, 0] }}
+                transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', times: [0, 0.2, 0.8, 1] }}
+              >
+                <ellipse cx="100" cy="105" rx="62" ry="78" fill="none" stroke="#ffffff" strokeWidth="1" />
+              </motion.svg>
+              {/* warm yolk-gold drift */}
+              <motion.div
+                className="absolute w-[260px] h-[260px] rounded-full"
+                style={{ background: 'radial-gradient(circle, rgba(232,182,74,0.22) 0%, rgba(232,182,74,0) 70%)', left: '58%', top: '30%' }}
+                animate={{ x: [0, 30, -10, 0], y: [0, 20, 10, 0] }}
+                transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              {/* translucent albumen flow */}
+              <motion.div
+                className="absolute w-[380px] h-[180px] rounded-full"
+                style={{ background: 'radial-gradient(ellipse, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 70%)', left: '10%', bottom: '5%' }}
+                animate={{ x: [0, 20, 0], opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+              />
+            </div>
+          )}
+
           <motion.div
-            initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: [0.25, 1, 0.5, 1] }}
+            initial="hidden"
+            animate="visible"
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.08 } } }}
             className="relative z-10 mx-auto max-w-[820px] flex flex-col items-center gap-6"
           >
-            <span className="section-label justify-center !text-white">Products</span>
-            <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[52px] text-white leading-[1.15] tracking-tight m-0">
+            <motion.span
+              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: reduceMotion ? 0.01 : DURATION.fast, ease: EASE_PREMIUM }}
+              className="section-label justify-center !text-white"
+            >
+              Products
+            </motion.span>
+            <motion.h1
+              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 20 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
+              className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[52px] text-white leading-[1.15] tracking-tight m-0"
+            >
               Egg Products Engineered for Performance, Consistency and Safety.
-            </h1>
+            </motion.h1>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-[640px] mt-2">
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 20 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-[640px] mt-2"
+            >
               <button
                 type="button"
                 onClick={() => scrollToSectionId('product-families')}
-                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-white/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-gold-400/70 hover:bg-white/15 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-gold"
               >
                 <span className="font-body font-semibold text-[13.5px] text-white">Browse by product format</span>
               </button>
               <button
                 type="button"
                 onClick={() => scrollToSectionId('product-finder')}
-                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-white/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-gold-400/70 hover:bg-white/15 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-gold"
               >
                 <span className="font-body font-semibold text-[13.5px] text-white">Browse by packaging</span>
               </button>
               <button
                 type="button"
                 onClick={() => scrollToSectionId('functional-requirement')}
-                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-white/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-gold-400/70 hover:bg-white/15 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-gold"
               >
                 <span className="font-body font-semibold text-[13.5px] text-white">Browse by functionality</span>
               </button>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 20 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
+              className="flex flex-col sm:flex-row items-center gap-4 mt-4"
+            >
               <InternalLink
                 route="whole_egg_powder"
                 onPageChange={onPageChange}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(228,10,24,0.3)] focus:outline-none focus-gold"
               >
                 Browse Egg Powders
               </InternalLink>
@@ -690,7 +839,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
               <InternalLink
                 route="whole_egg_liquid"
                 onPageChange={onPageChange}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white text-white hover:bg-white/20 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white text-white hover:bg-white/20 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-gold"
               >
                 Browse Liquid Eggs
               </InternalLink>
@@ -698,11 +847,11 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
               <button
                 type="button"
                 onClick={() => scrollToSectionId('functional-requirement')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-white/40 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] hover:border-white/70 transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-white/40 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] hover:border-white/70 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer focus:outline-none focus-gold"
               >
                 Find by Function
               </button>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 

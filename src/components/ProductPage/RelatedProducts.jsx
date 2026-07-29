@@ -1,4 +1,6 @@
+import { motion, useReducedMotion } from 'framer-motion';
 import { PRODUCT_CATEGORIES } from '../../data/products';
+import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
 
 // Refined editorial cross-sell cards — controlled image ratio, no heavy
 // overlay (label lives in a white lower area instead of over the photo),
@@ -25,6 +27,7 @@ const CATEGORY_ROUTES = {
 };
 
 export default function RelatedProducts({ products, currentCategory, onPageChange }) {
+  const reduceMotion = useReducedMotion();
   if (!products || products.length === 0) return null;
   const categoryRoute = currentCategory ? CATEGORY_ROUTES[currentCategory] : null;
 
@@ -39,11 +42,20 @@ export default function RelatedProducts({ products, currentCategory, onPageChang
           Related Products
         </h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-80px' }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
+        className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6"
+      >
         {products.map((product) => (
-          <div
+          <motion.div
             key={product.id}
-            className="group relative flex flex-col overflow-hidden rounded-[22px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900 transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(36,30,24,0.09)]"
+            variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: DURATION.cardHover, ease: EASE_PREMIUM }}
+            whileHover={reduceMotion ? undefined : { y: -3 }}
+            className="group relative flex flex-col overflow-hidden rounded-[22px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900 transition-[box-shadow,border-color] duration-300 hover:shadow-[0_16px_40px_rgba(36,30,24,0.09)] hover:border-gold-500/40"
           >
             <button
               onClick={() => onPageChange(product.page)}
@@ -79,9 +91,9 @@ export default function RelatedProducts({ products, currentCategory, onPageChang
                 </svg>
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
       {categoryRoute && (
         <button
           onClick={() => onPageChange(categoryRoute)}

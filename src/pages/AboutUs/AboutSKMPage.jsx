@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { getBrochureUrl } from '../../data/brochureUrl';
+import { EASE_PREMIUM, DURATION, fadeUp } from '../../utils/motionTokens';
 
 const CompanyProfilePdf = getBrochureUrl('Company Profile - SKM Egg Products Export India Limited.pdf');
 import FactoryImage from '../../assets/2. ABOUT US/Our Company/Factory image.webp';
@@ -28,22 +29,29 @@ function CompanyOverviewSection({ onPageChange }) {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: reduceMotion ? 0 : -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ clipPath: reduceMotion ? 'inset(0 0 0 0)' : 'inset(0 0 0 100%)', opacity: reduceMotion ? 0 : 1 }}
+            whileInView={{ clipPath: 'inset(0 0 0 0%)', opacity: 1 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
+            transition={{ duration: reduceMotion ? 0.01 : DURATION.functional, ease: EASE_PREMIUM }}
             className="flex-1 relative w-full overflow-hidden rounded-[24px] aspect-[4/3] sm:aspect-[16/9]"
           >
-            <img src={FactoryImage} alt="SKM Eggs Factory Facility" className="w-full h-full object-cover" loading="lazy" />
+            <motion.img
+              src={FactoryImage}
+              alt="SKM Eggs Factory Facility"
+              className="w-full h-full object-cover"
+              loading="lazy"
+              initial={{ scale: reduceMotion ? 1 : 1.03 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: reduceMotion ? 0.01 : DURATION.process, ease: EASE_PREMIUM }}
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-brand-600 rounded-tr-[10px]"
+            />
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: reduceMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.6, delay: reduceMotion ? 0 : 0.1 }}
-            className="flex-1 flex flex-col gap-5"
-          >
+          <motion.div {...fadeUp(reduceMotion, { distance: 20, delay: 0.1 })} className="flex-1 flex flex-col gap-5">
             <span className="section-label">Company Overview</span>
             <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
               Who We Are
@@ -58,11 +66,15 @@ function CompanyOverviewSection({ onPageChange }) {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {OVERVIEW_STATS.map((stat) => (
-            <div key={stat.label} className="p-5 bg-[#fdfbf7] dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[10px] flex flex-col gap-1.5">
-              <span className="font-heading font-bold text-[22px] text-brand-600 dark:text-brand-400 leading-none">{stat.value}</span>
-              <span className="font-body text-[13px] text-surface-500 dark:text-surface-400">{stat.label}</span>
-            </div>
+          {OVERVIEW_STATS.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              {...fadeUp(reduceMotion, { distance: 14, duration: DURATION.cardHover, delay: i * 0.08 })}
+              className="relative p-5 bg-[#fdfbf7] dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[10px] flex flex-col gap-1.5"
+            >
+              <span className="relative font-heading font-bold text-[22px] text-brand-600 dark:text-brand-400 leading-none">{stat.value}</span>
+              <span className="relative font-body text-[13px] text-surface-500 dark:text-surface-400">{stat.label}</span>
+            </motion.div>
           ))}
         </div>
 
@@ -131,6 +143,7 @@ function CompanyJourneySection({ onPageChange }) {
           <div role="tablist" aria-label="Company journey milestones" className="relative grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-x-2 gap-y-6">
             {JOURNEY_MILESTONES.map((m, i) => {
               const isSelected = i === selectedIndex;
+              const isPassed = i < selectedIndex;
               return (
                 <button
                   key={m.year}
@@ -139,30 +152,39 @@ function CompanyJourneySection({ onPageChange }) {
                   onClick={() => setSelectedIndex(i)}
                   className="group flex flex-col items-center gap-2 bg-transparent border-none p-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-lg"
                 >
-                  <span
-                    className={`relative z-10 w-[38px] h-[38px] rounded-full flex items-center justify-center font-heading font-bold text-[10px] transition-colors duration-200 ${
-                      isSelected ? 'bg-brand-600 text-white' : 'bg-white dark:bg-surface-900 border border-surface-300 dark:border-surface-700 text-surface-500 dark:text-surface-400 group-hover:border-brand-600/50'
+                  <motion.span
+                    animate={{ scale: isSelected && !reduceMotion ? 1.08 : 1 }}
+                    transition={{ duration: 0.25, ease: EASE_PREMIUM }}
+                    className={`relative z-10 w-[38px] h-[38px] rounded-full flex items-center justify-center font-heading font-bold text-[10px] border transition-colors duration-200 ${
+                      isSelected
+                        ? 'bg-brand-600 border-brand-600 text-white'
+                        : isPassed
+                          ? 'bg-brand-600/10 border-brand-600/40 text-surface-600 dark:text-surface-300'
+                          : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-500 dark:text-surface-400 group-hover:border-brand-600/50'
                     }`}
                   >
                     {m.year.slice(0, 4)}
-                  </span>
+                  </motion.span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        <motion.div
-          key={milestone.year}
-          initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-          className="rounded-[20px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 p-7 sm:p-9 flex flex-col gap-3"
-        >
-          <span className="font-heading font-black text-[28px] text-brand-600 dark:text-brand-400 leading-none">{milestone.year}</span>
-          <h3 className="font-heading font-bold text-[20px] text-heading dark:text-white m-0">{milestone.label}</h3>
-          <p className="font-body text-[15px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">{milestone.desc}</p>
-        </motion.div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={milestone.year}
+            initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.4, ease: EASE_PREMIUM }}
+            className="rounded-[20px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 p-7 sm:p-9 flex flex-col gap-3"
+          >
+            <span className="font-heading font-black text-[28px] text-brand-600 dark:text-brand-400 leading-none">{milestone.year}</span>
+            <h3 className="font-heading font-bold text-[20px] text-heading dark:text-white m-0">{milestone.label}</h3>
+            <p className="font-body text-[15px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">{milestone.desc}</p>
+          </motion.div>
+        </AnimatePresence>
 
         <InternalLink
           route="accolades"
@@ -197,18 +219,25 @@ function LeadershipMessageSection({ onPageChange }) {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: reduceMotion ? 0.01 : 0.5 }}
+          {...fadeUp(reduceMotion, { distance: 16, duration: DURATION.sectionEntrance })}
           className="w-full bg-[#fdfbf7] dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[20px] p-8 sm:p-12 flex flex-col items-center gap-7"
         >
-          <div className="w-full border-l-4 border-brand-600 pl-7 py-2">
+          <div className="w-full relative border-l-4 border-brand-600 pl-7 py-2">
+            <motion.span
+              aria-hidden="true"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 0.25 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM }}
+              className="absolute -left-1 -top-2 font-heading font-black text-[48px] leading-none select-none text-brand-600"
+            >
+              "
+            </motion.span>
             <p className="font-body text-[16px] sm:text-[18px] font-medium leading-[1.7] text-surface-700 dark:text-surface-200 m-0 italic">
               "SKM EGG Products is a finest example of how a strong value system and drive for excellence can keep you ahead in a competitive environment. Thinking out of the shell was a mantra we adopted consciously not just to give ourselves the edge but also to keep pushing ourselves to innovate. Today, we are one of the Asia's biggest egg processing plant, the future looks both exciting and promising to us."
             </p>
           </div>
-          <div className="w-14 h-[3px] bg-brand-600 rounded-full" />
+          <div className="w-14 h-[3px] rounded-full bg-brand-600" />
           <div className="flex flex-col items-center gap-1 text-center">
             <h4 className="font-heading text-[17px] font-bold text-heading dark:text-white m-0">Mr. SKM Shree Shivkumar</h4>
             <p className="font-body text-[12px] font-bold text-brand-600 dark:text-brand-400 m-0 uppercase tracking-widest">Chief Executive Officer</p>
@@ -261,12 +290,10 @@ function VisionMissionValuesSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <motion.div
-            initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.5 }}
-            className="flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+            {...fadeUp(reduceMotion, { distance: 16, duration: DURATION.sectionEntrance })}
+            className="relative flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 overflow-hidden"
           >
+            <span aria-hidden="true" className="absolute top-0 left-6 right-6 h-[2px] bg-brand-600" />
             <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Vision</span>
             <p className="font-body text-[16px] font-medium leading-[1.6] text-surface-700 dark:text-surface-200 m-0 italic">
               "To be the leader in the sectors we operate with the responsibility of building a healthy society."
@@ -274,16 +301,15 @@ function VisionMissionValuesSection() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : 0.05 }}
-            className="flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+            {...fadeUp(reduceMotion, { distance: 16, duration: DURATION.sectionEntrance, delay: 0.06 })}
+            className="relative flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 overflow-hidden"
           >
+            <span aria-hidden="true" className="absolute top-0 left-6 right-6 h-[2px] bg-brand-600" />
             <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Mission</span>
             <ul className="flex flex-col gap-1.5 list-none m-0 p-0">
               {MISSION_ITEMS.map((item) => (
-                <li key={item} className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.5] pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-brand-600">
+                <li key={item} className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.5] pl-4 relative">
+                  <span aria-hidden="true" className="absolute left-0 text-brand-600">•</span>
                   {item}
                 </li>
               ))}
@@ -291,18 +317,23 @@ function VisionMissionValuesSection() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : 0.1 }}
-            className="flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+            {...fadeUp(reduceMotion, { distance: 16, duration: DURATION.sectionEntrance, delay: 0.12 })}
+            className="relative flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 overflow-hidden"
           >
+            <span aria-hidden="true" className="absolute top-0 left-6 right-6 h-[2px] bg-brand-600" />
             <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Values</span>
             <div className="flex flex-wrap gap-1.5">
-              {CORE_VALUES.map((value) => (
-                <span key={value} className="font-body text-[11.5px] font-medium text-surface-600 dark:text-surface-300 bg-white dark:bg-surface-800/60 border border-surface-200/70 dark:border-surface-700 px-2.5 py-1 rounded-[6px]">
+              {CORE_VALUES.map((value, i) => (
+                <motion.span
+                  key={value}
+                  initial={{ opacity: 0, y: reduceMotion ? 0 : 6 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: reduceMotion ? 0.01 : 0.3, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.12 + i * 0.06 }}
+                  className="font-body text-[11.5px] font-medium text-surface-600 dark:text-surface-300 bg-white dark:bg-surface-800/60 border border-surface-200/70 dark:border-surface-700 px-2.5 py-1 rounded-[6px]"
+                >
                   {value}
-                </span>
+                </motion.span>
               ))}
             </div>
           </motion.div>
@@ -346,24 +377,27 @@ function IntegratedBusinessModelSection({ onPageChange }) {
         <div className="relative">
           <div className="hidden lg:block absolute left-0 right-0 top-[19px] h-px bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
           <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
-            {BUSINESS_MODEL_STAGES.map((stage, i) => (
-              <motion.div
-                key={stage.label}
-                initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.06 }}
-                className="flex flex-col gap-3"
-              >
-                <span className="relative z-10 w-[38px] h-[38px] rounded-full bg-brand-600 text-white flex items-center justify-center font-heading font-bold text-[13px]">
-                  {i + 1}
-                </span>
-                <div className="flex flex-col gap-1.5 p-5 rounded-[16px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 flex-1">
-                  <h3 className="font-heading font-bold text-[15px] text-heading dark:text-white m-0">{stage.label}</h3>
-                  <p className="font-body text-[12.5px] text-surface-500 dark:text-surface-400 leading-[1.5] m-0">{stage.fact}</p>
-                </div>
-              </motion.div>
-            ))}
+            {BUSINESS_MODEL_STAGES.map((stage, i) => {
+              const delay = i * 0.12;
+              return (
+                <motion.div
+                  key={stage.label}
+                  initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : delay }}
+                  className="flex flex-col gap-3"
+                >
+                  <span className="relative z-10 w-[38px] h-[38px] rounded-full bg-brand-600 text-white flex items-center justify-center font-heading font-bold text-[13px]">
+                    {i + 1}
+                  </span>
+                  <div className="flex flex-col gap-1.5 p-5 rounded-[16px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 flex-1">
+                    <h3 className="font-heading font-bold text-[15px] text-heading dark:text-white m-0">{stage.label}</h3>
+                    <p className="font-body text-[12.5px] text-surface-500 dark:text-surface-400 leading-[1.5] m-0">{stage.fact}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
@@ -415,11 +449,15 @@ function AwardsRecognitionSection({ onPageChange }) {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {MAJOR_AWARDS.map((award) => (
-            <div key={award.name} className="flex flex-col gap-2 p-6 rounded-[16px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
+          {MAJOR_AWARDS.map((award, i) => (
+            <motion.div
+              key={award.name}
+              {...fadeUp(reduceMotion, { distance: 16, duration: DURATION.cardHover, delay: i * 0.1 })}
+              className="flex flex-col gap-3 p-6 rounded-[16px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+            >
               <h3 className="font-heading font-bold text-[15px] text-heading dark:text-white m-0">{award.name}</h3>
               <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-[1.5] m-0">{award.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -435,21 +473,30 @@ function AwardsRecognitionSection({ onPageChange }) {
           </svg>
         </button>
 
+        <AnimatePresence initial={false}>
         {showAll && (
           <motion.ul
-            initial={{ opacity: 0, y: reduceMotion ? 0 : -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-            className="flex flex-col gap-4 list-none m-0 p-0"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.4, ease: EASE_PREMIUM }}
+            className="flex flex-col gap-4 list-none m-0 p-0 overflow-hidden"
           >
-            {OTHER_AWARDS.map((award) => (
-              <li key={award} className="flex items-start gap-3">
+            {OTHER_AWARDS.map((award, i) => (
+              <motion.li
+                key={award}
+                initial={{ opacity: 0, y: reduceMotion ? 0 : -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.3, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : i * 0.06 }}
+                className="flex items-start gap-3"
+              >
                 <span className="mt-[9px] flex-shrink-0 w-1.5 h-1.5 rounded-full bg-brand-600" />
                 <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 leading-[1.6] m-0">{award}</p>
-              </li>
+              </motion.li>
             ))}
           </motion.ul>
         )}
+        </AnimatePresence>
 
         <div className="flex flex-wrap items-center gap-4">
           <InternalLink
@@ -481,10 +528,7 @@ function LocationsSection({ onPageChange }) {
   return (
     <div className="w-full py-[60px] lg:py-[85px] text-center px-4">
       <motion.div
-        initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
+        {...fadeUp(reduceMotion, { distance: 18, duration: DURATION.sectionEntrance })}
         className="mx-auto max-w-[600px] flex flex-col items-center gap-5"
       >
         <span className="section-label justify-center">Global Operations</span>
@@ -528,22 +572,40 @@ export default function AboutSKMPage({ onPageChange }) {
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
 
         {/* Section 1 — Company hero */}
-        <div className="w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
+        <div className="relative w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
           <motion.div
-            initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: [0.25, 1, 0.5, 1] }}
-            className="mx-auto max-w-[820px] flex flex-col items-center gap-6"
+            initial="hidden"
+            animate="visible"
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.1 } } }}
+            className="relative mx-auto max-w-[820px] flex flex-col items-center gap-6"
           >
-            <span className="section-label justify-center">About SKM</span>
-            <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[56px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+            <motion.span
+              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+              transition={{ duration: reduceMotion ? 0.01 : 0.45, ease: EASE_PREMIUM }}
+              className="section-label justify-center"
+            >
+              About SKM
+            </motion.span>
+            <motion.h1
+              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 20 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: EASE_PREMIUM }}
+              className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[56px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+            >
               Asia's Largest Integrated Egg Processing Facility Since 1996.
-            </h1>
-            <p className="font-body text-[16px] sm:text-[17px] text-surface-600 dark:text-surface-300 leading-[1.7] m-0 max-w-2xl">
+            </motion.h1>
+            <motion.p
+              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM }}
+              className="font-body text-[16px] sm:text-[17px] text-surface-600 dark:text-surface-300 leading-[1.7] m-0 max-w-2xl"
+            >
               Vision, mission, leadership, and values — everything a buyer needs to understand SKM, in one place.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 mt-3">
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM }}
+              className="flex flex-col sm:flex-row items-center gap-4 mt-3"
+            >
               <a
                 href={CompanyProfilePdf}
                 download
@@ -559,7 +621,7 @@ export default function AboutSKMPage({ onPageChange }) {
               >
                 Explore Our Products
               </InternalLink>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 

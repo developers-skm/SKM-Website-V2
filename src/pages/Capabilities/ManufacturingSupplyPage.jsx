@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
+import { fadeUp } from '../../utils/motionTokens';
 
 // Manufacturing and Supply — new page, Section 1 (Capabilities hero) only,
 // per this task's scope. Replaces the "Capabilities" dropdown in the navbar
@@ -78,6 +79,16 @@ const PROCESSING_CAPABILITIES = [
   },
 ];
 
+// Shared card treatment: soft hover elevation + refined border transition,
+// applied uniformly across every capability/topic/packaging card on the page.
+const CARD_INTERACTIVE = 'transition-[transform,box-shadow,border-color] duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] hover:shadow-[0_10px_28px_-14px_rgba(0,0,0,0.18)] hover:border-brand-600/30 dark:hover:border-brand-400/25 focus-within:-translate-y-[3px] focus-within:shadow-[0_10px_28px_-14px_rgba(0,0,0,0.18)]';
+
+// Shared button micro-interaction: 2px lift + controlled shadow + refined
+// background transition, applied uniformly across every CTA on the page.
+const BTN_TRANSITION = 'transition-[transform,box-shadow,background-color,border-color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] active:translate-y-0 active:duration-100';
+const BTN_PRIMARY = `inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 hover:shadow-[0_8px_20px_-8px_rgba(190,30,45,0.45)] text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] ${BTN_TRANSITION} focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2`;
+const BTN_SECONDARY = `inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] ${BTN_TRANSITION} focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2`;
+
 function EggProcessingPlantSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
@@ -106,7 +117,7 @@ function EggProcessingPlantSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.04 }}
-              className="flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+              className={`flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
             >
               <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
                 {cap.label}
@@ -122,7 +133,7 @@ function EggProcessingPlantSection({ onPageChange }) {
           <InternalLink
             route="egg_processing_plant"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className={BTN_PRIMARY}
           >
             View Processing Technology
           </InternalLink>
@@ -130,7 +141,7 @@ function EggProcessingPlantSection({ onPageChange }) {
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className={BTN_SECONDARY}
           >
             Request Facility Information
           </InternalLink>
@@ -209,7 +220,7 @@ function PoultryFarmsSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              className="flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+              className={`flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
             >
               <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
                 {cap.label}
@@ -224,7 +235,7 @@ function PoultryFarmsSection({ onPageChange }) {
         <InternalLink
           route="poultry_farm"
           onPageChange={onPageChange}
-          className="self-start inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+          className={`self-start ${BTN_PRIMARY}`}
         >
           Explore Poultry Operations
         </InternalLink>
@@ -268,7 +279,7 @@ function FeedMillSection({ onPageChange }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : 0.1 }}
-          className="max-w-3xl p-7 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+          className={`max-w-3xl p-7 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
         >
           <p className="font-body text-[15px] sm:text-[16px] text-surface-700 dark:text-surface-300 leading-[1.7] m-0">
             Every raw material entering the feed mill undergoes rigorous testing for mycotoxins, pesticide residues, and antibiotic contaminants before formulation. Strict lot-wise storage prevents cross-contamination and ensures full traceability from ingredient intake to finished feed — only verified, residue-free inputs reach the flock, which is the direct foundation for consistent, residue-free final egg products.
@@ -278,7 +289,7 @@ function FeedMillSection({ onPageChange }) {
         <InternalLink
           route="feed_mill"
           onPageChange={onPageChange}
-          className="self-start inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+          className={`self-start ${BTN_PRIMARY}`}
         >
           View Feed-Control Process
         </InternalLink>
@@ -323,7 +334,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : 0.1 }}
-          className="max-w-3xl p-7 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+          className={`max-w-3xl p-7 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
         >
           <p className="font-body text-[15px] sm:text-[16px] text-surface-700 dark:text-surface-300 leading-[1.7] m-0">
             Our NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006, runs physicochemical, microbiological, and residue testing on every batch — including GC-MS, HPLC, and LC-MS/MS screening. A controlled microbiology laboratory confirms products are free from pathogens and microbial contamination before dispatch, directly feeding the HACCP-driven release decision for every batch that leaves the plant.
@@ -333,7 +344,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
         <InternalLink
           route="laboratory"
           onPageChange={onPageChange}
-          className="self-start inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+          className={`self-start ${BTN_PRIMARY}`}
         >
           Explore Quality Testing
         </InternalLink>
@@ -399,7 +410,7 @@ function PackagingCapabilitiesSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              className="flex flex-col gap-2 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+              className={`flex flex-col gap-2 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
             >
               <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
                 {pkg.type}
@@ -428,7 +439,7 @@ function PackagingCapabilitiesSection({ onPageChange }) {
           <InternalLink
             route="customized_packages"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className={BTN_PRIMARY}
           >
             Compare Packaging Options
           </InternalLink>
@@ -436,7 +447,7 @@ function PackagingCapabilitiesSection({ onPageChange }) {
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className={BTN_SECONDARY}
           >
             Discuss Custom Packaging
           </InternalLink>
@@ -520,7 +531,7 @@ function LogisticsSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.04 }}
-              className="flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+              className={`flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
             >
               <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
                 {topic.label}
@@ -536,7 +547,7 @@ function LogisticsSection({ onPageChange }) {
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className={BTN_PRIMARY}
           >
             Discuss Export Supply
           </InternalLink>
@@ -544,7 +555,7 @@ function LogisticsSection({ onPageChange }) {
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className={BTN_SECONDARY}
           >
             Contact Logistics Team
           </InternalLink>
@@ -581,14 +592,14 @@ function FinalCTASection({ onPageChange }) {
           <InternalLink
             route="get-quote"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className={BTN_PRIMARY}
           >
             Submit Your Annual Requirement
           </InternalLink>
           <InternalLink
             route="brochure"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className={BTN_SECONDARY}
           >
             Request Company Profile
           </InternalLink>
@@ -601,12 +612,7 @@ function FinalCTASection({ onPageChange }) {
 export default function ManufacturingSupplyPage({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
-  const fadeProps = (delay = 0) => ({
-    initial: { opacity: 0, y: reduceMotion ? 0 : 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: '-100px' },
-    transition: { duration: reduceMotion ? 0.01 : 0.6, delay: reduceMotion ? 0 : delay, ease: [0.25, 1, 0.5, 1] },
-  });
+  const fadeProps = (delay = 0) => fadeUp(reduceMotion, { delay });
 
   return (
     <PageWrapper
@@ -634,28 +640,28 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
-              <motion.div {...fadeProps(0)} className="flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
+              <motion.div {...fadeProps(0)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}>
                 <span className="font-heading font-bold text-[28px] text-brand-600 dark:text-brand-400 leading-none">2M</span>
                 <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400 dark:text-surface-500">
                   Eggs processed daily
                 </span>
               </motion.div>
 
-              <motion.div {...fadeProps(0.05)} className="flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
+              <motion.div {...fadeProps(0.05)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}>
                 <span className="font-heading font-bold text-[28px] text-brand-600 dark:text-brand-400 leading-none">2.4M</span>
                 <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400 dark:text-surface-500">
                   Layers housed
                 </span>
               </motion.div>
 
-              <motion.div {...fadeProps(0.1)} className="flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
+              <motion.div {...fadeProps(0.1)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}>
                 <span className="font-heading font-bold text-[28px] text-brand-600 dark:text-brand-400 leading-none">100%</span>
                 <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400 dark:text-surface-500">
                   Residue-free feed ingredients
                 </span>
               </motion.div>
 
-              <motion.div {...fadeProps(0.15)} className="flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
+              <motion.div {...fadeProps(0.15)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}>
                 <span className="font-heading font-bold text-[28px] text-brand-600 dark:text-brand-400 leading-none">30+</span>
                 <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400 dark:text-surface-500">
                   Countries served
@@ -673,7 +679,7 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
               <InternalLink
                 route="why_skm"
                 onPageChange={onPageChange}
-                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className={BTN_PRIMARY}
               >
                 Explore Our Facilities
               </InternalLink>
@@ -681,7 +687,7 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
               <InternalLink
                 route="contact-us"
                 onPageChange={onPageChange}
-                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className={BTN_SECONDARY}
               >
                 Discuss Supply Requirements
               </InternalLink>

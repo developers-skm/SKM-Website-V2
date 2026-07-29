@@ -49,8 +49,20 @@ export default function FinalEnquiry({ onPageChange }) {
   });
 
   return (
-    <div className="w-full bg-[#fdfbf7] dark:bg-surface-950 py-[72px] lg:py-[100px]">
-      <div className="mx-auto max-w-[1200px] w-full px-6 sm:px-10 lg:px-16 flex flex-col items-center text-center gap-4">
+    <div className="relative w-full bg-[#fdfbf7] dark:bg-surface-950 py-[72px] lg:py-[100px] overflow-hidden">
+      {/* Soft expanding yolk-gold glow — anchored behind the heading/CTA,
+          low-opacity so it never competes with text contrast */}
+      <motion.div
+        aria-hidden
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(232,182,74,0.16) 0%, rgba(232,182,74,0) 70%)' }}
+        initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.85 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: reduceMotion ? 0.01 : 1.2, ease: [0.22, 1, 0.36, 1] }}
+      />
+
+      <div className="relative mx-auto max-w-[1200px] w-full px-6 sm:px-10 lg:px-16 flex flex-col items-center text-center gap-4">
 
         <motion.h2
           {...fadeProps()}

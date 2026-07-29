@@ -1,4 +1,7 @@
+import { useState } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { getBrochureUrl } from '../../data/brochureUrl';
+import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
 
 const companyProfilePdf = getBrochureUrl('Company Profile - SKM Egg Products Export India Limited.pdf');
 const productListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
@@ -13,11 +16,18 @@ const productListPdf = getBrochureUrl('Product List - SKM Egg Products Export In
 // PDFs don't exist anywhere in the codebase, so those document types are
 // omitted entirely rather than shown as broken/fake links.
 export default function ProductDocuments({ tdsUrl, productName, onRequestPack }) {
+  const reduceMotion = useReducedMotion();
+  const [confirmedUrl, setConfirmedUrl] = useState(null);
   const documents = [
     tdsUrl && { label: `${productName} — Technical Data Sheet`, url: tdsUrl },
     { label: 'Company Profile', url: companyProfilePdf },
     { label: 'Full Product List', url: productListPdf },
   ].filter(Boolean);
+
+  const handleDownloadClick = (url) => {
+    setConfirmedUrl(url);
+    window.setTimeout(() => setConfirmedUrl((current) => (current === url ? null : current)), 750);
+  };
 
   return (
     <div className="flex flex-col gap-10">
@@ -31,14 +41,22 @@ export default function ProductDocuments({ tdsUrl, productName, onRequestPack })
         </h2>
       </div>
 
-      <div className="flex flex-col rounded-[28px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 overflow-hidden">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-80px' }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
+        className="flex flex-col rounded-[28px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 overflow-hidden"
+      >
         {documents.map((doc, i) => (
-          <div
+          <motion.div
             key={doc.url}
-            className={`flex items-center justify-between gap-4 px-6 sm:px-10 py-6 ${i > 0 ? 'border-t border-surface-200/60 dark:border-surface-800' : ''}`}
+            variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 12 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: DURATION.cardHover, ease: EASE_PREMIUM }}
+            className={`group flex items-center justify-between gap-4 px-6 sm:px-10 py-6 transition-colors duration-200 hover:bg-gold-500/[0.04] dark:hover:bg-gold-500/[0.04] ${i > 0 ? 'border-t border-surface-200/60 dark:border-surface-800' : ''}`}
           >
             <div className="flex items-center gap-4 min-w-0">
-              <span className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-[12px] bg-brand-600/6 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/40">
+              <span className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-[12px] bg-brand-600/6 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/40 transition-transform duration-200 group-hover:-translate-y-0.5">
                 <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
@@ -52,13 +70,34 @@ export default function ProductDocuments({ tdsUrl, productName, onRequestPack })
               target="_blank"
               rel="noopener noreferrer"
               download
-              className="flex-shrink-0 inline-flex items-center gap-2 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] px-4 py-2.5 rounded-full border border-surface-200 dark:border-surface-700 hover:border-brand-600/30 transition-colors duration-200"
+              onClick={() => handleDownloadClick(doc.url)}
+              className="relative flex-shrink-0 inline-flex items-center gap-2 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] px-4 py-2.5 rounded-full border border-surface-200 dark:border-surface-700 hover:border-brand-600/30 transition-colors duration-200 focus:outline-none focus-gold"
             >
-              Download
+              <AnimatePresence mode="wait" initial={false}>
+                {confirmedUrl === doc.url ? (
+                  <motion.span
+                    key="confirmed"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="inline-flex items-center gap-1.5"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                    Downloading
+                  </motion.span>
+                ) : (
+                  <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+                    Download
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </a>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       <button
         onClick={onRequestPack}

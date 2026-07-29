@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { EASE_PREMIUM, DURATION } from '../../utils/motionTokens';
 
 // "Compare Selected Variants" (brief §3 table action) — a focused overlay
 // rather than a new page/route, since comparison is a transient reading
 // task tied to the table state above it.
 export default function VariantCompareModal({ variants, displayCode, onClose }) {
+  const reduceMotion = useReducedMotion();
   const specColumns = useMemo(() => {
     const keys = new Set();
     variants.forEach((v) => Object.keys(v.specifications ?? {}).forEach((k) => keys.add(k)));
@@ -16,6 +18,7 @@ export default function VariantCompareModal({ variants, displayCode, onClose }) 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ duration: reduceMotion ? 0.01 : DURATION.fast }}
       className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 sm:p-8"
       onClick={onClose}
       role="dialog"
@@ -23,10 +26,10 @@ export default function VariantCompareModal({ variants, displayCode, onClose }) 
       aria-label="Compare selected variants"
     >
       <motion.div
-        initial={{ opacity: 0, y: 16, scale: 0.98 }}
+        initial={{ opacity: 0, y: reduceMotion ? 0 : 16, scale: reduceMotion ? 1 : 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 16, scale: 0.98 }}
-        transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+        exit={{ opacity: 0, y: reduceMotion ? 0 : 16, scale: reduceMotion ? 1 : 0.98 }}
+        transition={{ duration: reduceMotion ? 0.01 : 0.25, ease: EASE_PREMIUM }}
         onClick={(e) => e.stopPropagation()}
         className="relative w-full max-w-[1100px] max-h-[85vh] overflow-auto bg-white dark:bg-surface-900 rounded-[28px] shadow-[0_30px_80px_rgba(0,0,0,0.3)] p-6 sm:p-10"
       >

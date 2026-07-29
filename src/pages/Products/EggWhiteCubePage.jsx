@@ -108,7 +108,8 @@ export default function EggWhiteCubePage({ onPageChange }) {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className="flex items-start gap-4 bg-white dark:bg-surface-900/30 border border-[#eee] dark:border-surface-800 rounded-[10px] p-5 shadow-[5px_3px_40px_rgba(0,72,88,0.04)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.10)] transition-all duration-300"
+                    whileHover={{ y: -2 }}
+                    className="flex items-start gap-4 bg-white dark:bg-surface-900/30 border border-[#eee] dark:border-surface-800 rounded-[10px] p-5 shadow-[5px_3px_40px_rgba(0,72,88,0.04)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.10)] hover:border-gold-500/40 transition-all duration-300"
                   >
                     <div className="w-10 h-10 rounded-[8px] bg-brand-600 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-brand-600/20">
                       {feature.icon}
@@ -155,7 +156,13 @@ export default function EggWhiteCubePage({ onPageChange }) {
 
       {/* Info strip */}
       <div className="w-full py-12 sm:py-16 bg-page dark:bg-surface-900/10">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8"
+        >
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               { label: 'Calories', value: 'Very Low' },
@@ -163,16 +170,17 @@ export default function EggWhiteCubePage({ onPageChange }) {
               { label: 'Protein', value: 'High' },
               { label: 'Amino Acids', value: 'Complete' },
             ].map((stat) => (
-              <div
+              <motion.div
                 key={stat.label}
-                className="bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-800 rounded-2xl px-6 py-5 flex flex-col gap-1 text-center"
+                variants={itemVariants}
+                className="bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-800 rounded-2xl px-6 py-5 flex flex-col gap-1 text-center transition-colors duration-300 hover:border-gold-500/40"
               >
                 <span className="text-[10px] font-bold uppercase tracking-widest text-surface-400 dark:text-surface-500">{stat.label}</span>
                 <span className="text-lg font-black text-brand-600 dark:text-brand-400">{stat.value}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
 
 

@@ -279,6 +279,7 @@ export default function HomeJourney({ onPageChange }) {
     offset: ['start 60%', 'end 60%'],
   });
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const dotTop = useTransform(scrollYProgress, [0, 1], ['3rem', 'calc(100% - 3rem)']);
 
   const handleVisible = useCallback((index) => {
     setActiveStage((prev) => (index > prev ? index : prev));
@@ -327,10 +328,25 @@ export default function HomeJourney({ onPageChange }) {
           <div className="hidden lg:block relative">
             <div className="absolute top-12 bottom-12 left-1/2 -translate-x-1/2 w-[1px] bg-[#DDDDDD] z-0 pointer-events-none" />
             {!reducedMotion && (
-              <motion.div
-                style={{ scaleY: lineScaleY }}
-                className="absolute top-12 bottom-12 left-1/2 -translate-x-1/2 w-[2px] bg-[#E40A18] origin-top z-0 pointer-events-none"
-              />
+              <>
+                <motion.div
+                  style={{ scaleY: lineScaleY }}
+                  className="absolute top-12 bottom-12 left-1/2 -translate-x-1/2 w-[2px] bg-[#E40A18] origin-top z-0 pointer-events-none"
+                />
+                {/* Small glowing point traveling down the progress line,
+                    tracking the same scroll progress as the line itself */}
+                <motion.div
+                  style={{ top: dotTop }}
+                  className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full z-[1] pointer-events-none"
+                  animate={{ opacity: [0.6, 1, 0.6] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  <span
+                    className="absolute inset-0 rounded-full"
+                    style={{ background: '#E8B64A', boxShadow: '0 0 10px 3px rgba(232,182,74,0.65)' }}
+                  />
+                </motion.div>
+              </>
             )}
             <div className="flex flex-col">
               {homeJourneyStages.map((stage, index) => (

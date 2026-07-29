@@ -1,3 +1,6 @@
+import { motion, useReducedMotion } from 'framer-motion';
+import { EASE_PREMIUM, DURATION, STAGGER } from '../../../utils/motionTokens';
+
 // Section 5 — technical support (brief §5). Both buttons route to the two
 // real conversion flows already used throughout the site: "Discuss Your
 // Formulation" to the real Contact Us page, "Request Trial Sample" to the
@@ -25,11 +28,20 @@ const stages = [
   },
 ];
 
+const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
+
 export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial }) {
+  const reduceMotion = useReducedMotion();
   return (
     <div className="w-full bg-[#fdf1f0] dark:bg-brand-950/20 py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto max-w-[1000px] w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-10">
-        <div className="flex flex-col items-center gap-4 max-w-2xl">
+      <motion.div
+        className="mx-auto max-w-[1000px] w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-10"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
+      >
+        <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="flex flex-col items-center gap-4 max-w-2xl">
           <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             Technical Support
@@ -40,11 +52,16 @@ export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial 
           <p className="font-body text-[17px] text-surface-600 dark:text-surface-400 leading-[1.7] m-0">
             Support doesn't stop at picking a product — our team stays involved through sampling, trials, and into full commercial supply.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-6 w-full text-left">
-          <div
+        <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="relative grid grid-cols-1 sm:grid-cols-3 gap-6 w-full text-left">
+          <motion.div
             className="hidden sm:block absolute top-[34px] left-[calc(16.666%+8px)] right-[calc(16.666%+8px)] h-px bg-gradient-to-r from-brand-600/25 via-brand-600/40 to-brand-600/25 dark:from-brand-400/20 dark:via-brand-400/35 dark:to-brand-400/20"
+            style={{ transformOrigin: '0% 50%' }}
+            initial={reduceMotion ? { scaleX: 1 } : { scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: reduceMotion ? 0.01 : DURATION.process, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.2 }}
             aria-hidden="true"
           />
           {stages.map((stage) => (
@@ -63,12 +80,12 @@ export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial 
               </p>
             </div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+        <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
           <button
             onClick={onDiscussFormulation}
-            className="inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13.5px] uppercase tracking-[0.05em] leading-none px-8 py-[18px] rounded-[200px] transition-all duration-300 shadow-[0_8px_24px_rgba(228,10,24,0.28)] hover:shadow-[0_12px_32px_rgba(228,10,24,0.4)] hover:-translate-y-0.5 cursor-pointer"
+            className="inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13.5px] uppercase tracking-[0.05em] leading-none px-8 py-[18px] rounded-[200px] transition-all duration-200 shadow-[0_8px_24px_rgba(228,10,24,0.28)] hover:shadow-[0_12px_32px_rgba(228,10,24,0.4)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
             Discuss Your Formulation
           </button>
@@ -78,8 +95,8 @@ export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial 
           >
             Request Trial Sample
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

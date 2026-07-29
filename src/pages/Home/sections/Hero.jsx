@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import GoldenEggImg from '../../../assets/Golden Egg Picture.webp';
 import { getBrochureUrl } from '../../../data/brochureUrl';
+import { EASE_PREMIUM } from '../../../utils/motionTokens';
 
 const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 import useApplicationSelectorNavigation from '../../../components/Navbar/useApplicationSelectorNavigation';
@@ -17,16 +18,51 @@ export default function Hero({ onPageChange }) {
 
   return (
     <section className="relative w-full h-[640px] sm:h-[720px] lg:h-[820px] overflow-hidden flex items-center">
-      <motion.img
-        src={GoldenEggImg}
-        alt="A cracked egg revealing a rich golden yolk"
-        fetchPriority="high"
-        loading="eager"
-        className="absolute inset-0 w-full h-full object-cover"
-        initial={{ scale: reduceMotion ? 1 : 1.08, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: reduceMotion ? 0.01 : 1.1, ease: [0.25, 1, 0.5, 1] }}
+      {/* Signature entrance — a soft curved (egg-inspired) mask sweeps open
+          from center to reveal the hero photo, instead of a plain fade.
+          Heading/CTA (below) animate on their own, independent timeline so
+          they're never gated behind this. Max ~1.4s, runs once. */}
+      <motion.div
+        className="absolute inset-0"
+        initial={reduceMotion ? false : { clipPath: 'inset(0% 42% 0% 42% round 50%)' }}
+        animate={reduceMotion ? undefined : { clipPath: 'inset(0% 0% 0% 0% round 0%)' }}
+        transition={{ duration: reduceMotion ? 0.01 : 1.4, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <motion.img
+          src={GoldenEggImg}
+          alt="A cracked egg revealing a rich golden yolk"
+          fetchPriority="high"
+          loading="eager"
+          className="absolute inset-0 w-full h-full object-cover"
+          initial={{ scale: reduceMotion ? 1 : 1.12 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: reduceMotion ? 0.01 : 8, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </motion.div>
+
+      {/* Subtle yolk-gold light gradient — low-opacity, upper-right, echoes
+          the golden yolk in the photo without competing with the scrim */}
+      <div
+        className="absolute inset-0 pointer-events-none mix-blend-soft-light"
+        style={{ background: 'radial-gradient(60% 55% at 82% 18%, rgba(232,182,74,0.5) 0%, rgba(232,182,74,0) 70%)' }}
       />
+
+      {/* Once-only warm light sweep — a soft diagonal gradient band drifts
+          slowly across the photo after the mask reveal settles, echoing the
+          yolk's warmth in motion. Plain gradient only, no shapes/icons, so
+          it never reads as a decorative symbol sitting on the photo. */}
+      {!reduceMotion && (
+        <motion.div
+          className="absolute inset-0 pointer-events-none mix-blend-soft-light"
+          style={{
+            background: 'linear-gradient(115deg, rgba(255,255,255,0) 42%, rgba(243,201,105,0.22) 50%, rgba(255,255,255,0) 58%)',
+            backgroundSize: '260% 260%',
+          }}
+          initial={{ backgroundPosition: '120% 0%', opacity: 0 }}
+          animate={{ backgroundPosition: '-20% 0%', opacity: [0, 1, 1, 0] }}
+          transition={{ duration: 3.2, delay: 1.4, ease: EASE_PREMIUM, times: [0, 0.15, 0.75, 1] }}
+        />
+      )}
 
       {/* Scrim — left-weighted so the copy stays legible while the right
           side of the photo (the yolk itself) stays clear */}

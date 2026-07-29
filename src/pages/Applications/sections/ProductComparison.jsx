@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { getVariantsForProduct } from '../../../data/productVariants';
+import { EASE_PREMIUM, DURATION } from '../../../utils/motionTokens';
 
 // Section 5 — product comparison (brief §5). Only renders once the visitor
 // has added products via Section 4's "Add to Comparison" — no fabricated
@@ -24,6 +26,7 @@ function findRecommendedVariant(application, variantsData) {
 }
 
 export default function ProductComparison({ application, comparisonIds, matchedProducts, onPageChange }) {
+  const reduceMotion = useReducedMotion();
   const comparedProducts = matchedProducts.filter((p) => comparisonIds.includes(p.id));
 
   const rows = useMemo(() => {
@@ -41,7 +44,14 @@ export default function ProductComparison({ application, comparisonIds, matchedP
   if (comparedProducts.length === 0) return null;
 
   return (
-    <div className="w-full bg-[#f8f4ee] dark:bg-surface-950 py-16 sm:py-20 lg:py-24 print:bg-white print:py-6" id="product-comparison-section">
+    <motion.div
+      initial={reduceMotion ? { opacity: 1 } : { opacity: 0, scaleX: 0.96 }}
+      animate={{ opacity: 1, scaleX: 1 }}
+      transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }}
+      style={{ transformOrigin: '50% 50%' }}
+      className="w-full bg-[#f8f4ee] dark:bg-surface-950 py-16 sm:py-20 lg:py-24 print:bg-white print:py-6"
+      id="product-comparison-section"
+    >
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400 print:text-black">
@@ -92,7 +102,7 @@ export default function ProductComparison({ application, comparisonIds, matchedP
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 print:hidden">
           <button
             onClick={() => window.print()}
-            className="self-start inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-8 py-[17px] rounded-[200px] transition-all duration-300 shadow-[0_8px_24px_rgba(228,10,24,0.22)] hover:shadow-[0_10px_30px_rgba(228,10,24,0.32)] cursor-pointer"
+            className="self-start inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-8 py-[17px] rounded-[200px] transition-all duration-200 shadow-[0_8px_24px_rgba(228,10,24,0.22)] hover:shadow-[0_10px_30px_rgba(228,10,24,0.32)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
             Download Comparison
           </button>
@@ -104,6 +114,6 @@ export default function ProductComparison({ application, comparisonIds, matchedP
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

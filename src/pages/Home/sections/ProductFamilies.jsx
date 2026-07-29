@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
 import products, { PRODUCT_CATEGORIES, getProductById } from '../../../data/products';
+import CategoryMotif from './CategoryMotif';
 
 // Section 3 — Product Families. Three large family blocks (not the full SKU
 // grid). Every format/benefit/application/storage value below is an exact
@@ -93,6 +94,8 @@ function InfoGroup({ label, children }) {
 }
 
 function FamilyBlock({ family, onPageChange }) {
+  const reduceMotion = useReducedMotion();
+
   if (family.comingSoon) {
     return (
       <article className="flex flex-col h-full rounded-[22px] overflow-hidden bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800">
@@ -117,17 +120,19 @@ function FamilyBlock({ family, onPageChange }) {
 
   const familyProducts = family.productIds.map(getProductById).filter(Boolean);
   const heroImage = familyProducts[0]?.image;
+  const motifKind = family.id === 'powders' ? 'powders' : family.id === 'liquids' ? 'liquids' : family.id === 'custom' ? 'custom' : null;
 
   return (
-    <article className="flex flex-col h-full rounded-[22px] overflow-hidden bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800">
+    <article className="group flex flex-col h-full rounded-[22px] overflow-hidden bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 transition-shadow duration-300 hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)]">
       {heroImage && (
         <div className="relative w-full aspect-[4/3] overflow-hidden">
           <img
             src={heroImage}
             alt={familyProducts[0].title}
             loading="lazy"
-            className="w-full h-full object-cover"
+            className={`w-full h-full object-cover ${reduceMotion ? '' : 'transition-transform duration-500 ease-out group-hover:scale-[1.04]'}`}
           />
+          {motifKind && <CategoryMotif kind={motifKind} />}
         </div>
       )}
 
@@ -186,6 +191,8 @@ function FamilyBlock({ family, onPageChange }) {
 }
 
 export default function ProductFamilies({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <div
       id="product-discovery"
@@ -194,18 +201,27 @@ export default function ProductFamilies({ onPageChange }) {
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10 lg:gap-12">
 
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="font-heading font-bold text-[34px] sm:text-[42px] lg:text-[48px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
         >
           Product families
         </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 xl:gap-7">
-          {families.map((family) => (
-            <FamilyBlock key={family.id} family={family} onPageChange={onPageChange} />
+          {families.map((family, i) => (
+            <motion.div
+              key={family.id}
+              initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="h-full"
+            >
+              <FamilyBlock family={family} onPageChange={onPageChange} />
+            </motion.div>
           ))}
         </div>
       </div>

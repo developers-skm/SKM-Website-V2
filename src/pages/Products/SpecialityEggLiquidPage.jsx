@@ -101,7 +101,9 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="bg-surface-50 dark:bg-surface-900/30 border border-surface-200/60 dark:border-surface-800 rounded-3xl p-6 flex flex-col gap-4"
+                whileHover={{ y: -3 }}
+                transition={{ duration: 0.3 }}
+                className="bg-surface-50 dark:bg-surface-900/30 border border-surface-200/60 dark:border-surface-800 rounded-3xl p-6 flex flex-col gap-4 transition-colors duration-300 hover:border-gold-500/40"
               >
                 <div className="w-11 h-11 rounded-2xl bg-brand-600 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-brand-600/30">
                   {feature.icon}
@@ -122,24 +124,31 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
 
       {/* Product Info Strip */}
       <div className="w-full py-12 sm:py-16 bg-page dark:bg-surface-900/10">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8"
+        >
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
               { label: 'Format', value: 'Tetra Pack', sub: 'Consumer-ready packaging' },
               { label: 'Usage', value: 'Household & RTC', sub: 'Versatile applications' },
               { label: 'Safety', value: 'Pasteurized', sub: 'Salmonella Negative / 25g' },
             ].map((stat) => (
-              <div
+              <motion.div
                 key={stat.label}
-                className="bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-800 rounded-2xl px-8 py-6 flex flex-col gap-1 text-center"
+                variants={itemVariants}
+                className="bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-800 rounded-2xl px-8 py-6 flex flex-col gap-1 text-center transition-colors duration-300 hover:border-gold-500/40"
               >
                 <span className="text-[10px] font-bold uppercase tracking-widest text-surface-400 dark:text-surface-500">{stat.label}</span>
                 <span className="text-xl font-black text-brand-600 dark:text-brand-400">{stat.value}</span>
                 <span className="text-[10px] font-semibold text-surface-500 dark:text-surface-400 uppercase tracking-wide">{stat.sub}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
 
 
