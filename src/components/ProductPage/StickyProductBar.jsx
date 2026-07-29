@@ -41,7 +41,7 @@ export default function StickyProductBar({ productName, tdsUrl, onRequestSample,
               <div className="flex items-center gap-3 flex-shrink-0">
                 <button
                   onClick={onRequestSample}
-                  className="inline-flex items-center justify-center min-h-[40px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[12px] uppercase tracking-[0.05em] leading-none px-6 py-2.5 rounded-[200px] transition-all duration-300 cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[40px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[12px] uppercase tracking-[0.05em] leading-none px-6 py-2.5 rounded-[200px] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-gold"
                 >
                   Request Sample
                 </button>

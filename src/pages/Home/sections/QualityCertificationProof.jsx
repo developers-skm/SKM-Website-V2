@@ -51,7 +51,7 @@ const TRACEABILITY_STATEMENT = 'Complete supply chain visibility — every egg, 
 
 function ProofPanel({ title, children, className = '' }) {
   return (
-    <div className={`flex flex-col gap-4 bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 rounded-[22px] p-7 lg:p-8 ${className}`}>
+    <div className={`flex flex-col gap-4 bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 rounded-[22px] p-7 lg:p-8 transition-all duration-300 hover:border-brand-600/25 hover:shadow-[0_10px_26px_rgba(36,30,24,0.08)] ${className}`}>
       <h3 className="font-heading font-bold text-[21px] lg:text-[23px] text-heading dark:text-white leading-[1.2] m-0">
         {title}
       </h3>
@@ -64,12 +64,12 @@ function CertList({ items }) {
   return (
     <ul className="flex flex-col gap-4 list-none m-0 p-0">
       {items.map((cert) => (
-        <li key={cert.id} className="flex items-start gap-4">
+        <li key={cert.id} className="group flex items-start gap-4">
           <img
             src={cert.image}
             alt={cert.name}
             loading="lazy"
-            className="w-12 h-12 object-contain flex-shrink-0 rounded-md border border-surface-200/70 dark:border-surface-800 bg-white p-1"
+            className="w-12 h-12 object-contain flex-shrink-0 rounded-md border border-surface-200/70 dark:border-surface-800 bg-white p-1 transition-all duration-300 group-hover:border-[#e8b64a]/60 group-hover:-translate-y-0.5"
           />
           <div className="flex flex-col gap-1">
             <span className="font-body font-semibold text-[15px] lg:text-[16px] text-heading dark:text-white">
@@ -139,12 +139,12 @@ export default function QualityCertificationProof({ onPageChange }) {
             <ProofPanel title="Certification logos">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
                 {allCertificates.map((cert) => (
-                  <div key={cert.id} className="flex items-start gap-3">
+                  <div key={cert.id} className="group flex items-start gap-3">
                     <img
                       src={cert.image}
                       alt={cert.name}
                       loading="lazy"
-                      className="w-11 h-11 object-contain flex-shrink-0 rounded-md border border-surface-200/70 dark:border-surface-800 bg-white p-1"
+                      className="w-11 h-11 object-contain flex-shrink-0 rounded-md border border-surface-200/70 dark:border-surface-800 bg-white p-1 transition-all duration-300 group-hover:border-[#e8b64a]/60 group-hover:-translate-y-0.5"
                     />
                     <div className="flex flex-col gap-0.5">
                       <span className="font-body font-semibold text-[15px] text-heading dark:text-white">

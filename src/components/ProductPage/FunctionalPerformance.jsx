@@ -1,3 +1,6 @@
+import { motion, useReducedMotion } from 'framer-motion';
+import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
+
 // Section 4 — functional performance (brief §4). No numeric performance-test
 // data (whip volume scores, gel-strength charts, etc.) exists as structured
 // data anywhere in the codebase — only free text embedded in specific
@@ -51,6 +54,7 @@ function findEvidence(variantsData, keywords, usedCodes) {
 }
 
 export default function FunctionalPerformance({ variantsData, productName, onDiscussPerformance, tdsUrl }) {
+  const reduceMotion = useReducedMotion();
   // Each variant can only be used as evidence once — otherwise two traits
   // that both happen to score highest on the same SKU (e.g. a high-gel
   // variant whose benefits mention both "sliceability" and "gel strength")
@@ -81,11 +85,20 @@ export default function FunctionalPerformance({ variantsData, productName, onDis
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-80px' }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+      >
         {traitsWithEvidence.map((trait) => (
-          <div
+          <motion.div
             key={trait.key}
-            className="flex flex-col gap-3 rounded-[22px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 px-6 py-7"
+            variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: DURATION.cardHover, ease: EASE_PREMIUM }}
+            whileHover={reduceMotion ? undefined : { y: -2 }}
+            className="flex flex-col gap-3 rounded-[22px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 px-6 py-7 transition-colors duration-300 hover:border-gold-500/40"
           >
             <span className="font-heading font-bold text-[16px] text-heading dark:text-white">
               {trait.label}
@@ -96,9 +109,9 @@ export default function FunctionalPerformance({ variantsData, productName, onDis
             <span className="font-mono text-[11px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider mt-1">
               {trait.variantCode} — {trait.variantName}
             </span>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
         <button

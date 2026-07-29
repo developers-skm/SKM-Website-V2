@@ -1,3 +1,6 @@
+import { motion, useReducedMotion } from 'framer-motion';
+import { EASE_PREMIUM, DURATION, STAGGER } from '../../../utils/motionTokens';
+
 // Section 1 — problem-first application hero (brief §1). Shows the primary
 // manufacturing challenge (real `problem` field), functional result (real
 // `intro` field — already describes what the product does functionally,
@@ -10,41 +13,52 @@
 // Specialist" routes to the real Contact Us page — no named/dedicated
 // specialist contact exists in the app, same pattern used throughout the
 // product detail page work.
+const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
+
 export default function ApplicationDetailHero({ application, productFamilies, onPageChange }) {
+  const reduceMotion = useReducedMotion();
   const scrollToProducts = () => {
     document.getElementById('recommended-products')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
     <div className="relative w-full overflow-hidden">
-      <img
+      <motion.img
         src={application.image}
         alt={application.title}
         className="absolute inset-0 w-full h-full object-cover"
+        initial={reduceMotion ? { scale: 1 } : { scale: 1.03 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: reduceMotion ? 0.01 : DURATION.heroSignature, ease: EASE_PREMIUM }}
       />
       <div
         className="absolute inset-0"
         style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.82) 100%)' }}
       />
-      <div className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 py-[100px] lg:py-[140px] flex flex-col gap-6 max-w-[760px]">
-        <div className="flex flex-wrap items-center gap-2">
+      <motion.div
+        className="relative z-10 mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 py-[100px] lg:py-[140px] flex flex-col gap-6 max-w-[760px]"
+        initial="hidden"
+        animate="visible"
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
+      >
+        <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="flex flex-wrap items-center gap-2">
           {application.tags.map((tag) => (
             <span key={tag} className="font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-white bg-white/15 backdrop-blur-sm border border-white/20 px-3 py-1 rounded-full">
               {tag}
             </span>
           ))}
-        </div>
+        </motion.div>
 
-        <h1 className="font-heading font-bold text-[32px] sm:text-[42px] lg:text-[48px] text-white leading-[1.15] tracking-tight m-0">
+        <motion.h1 variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="font-heading font-bold text-[32px] sm:text-[42px] lg:text-[48px] text-white leading-[1.15] tracking-tight m-0">
           {application.problem}
-        </h1>
+        </motion.h1>
 
-        <p className="font-body text-[15px] sm:text-[16px] text-white/80 leading-[28px] m-0 max-w-xl">
+        <motion.p variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="font-body text-[15px] sm:text-[16px] text-white/80 leading-[28px] m-0 max-w-xl">
           {application.intro}
-        </p>
+        </motion.p>
 
         {productFamilies.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2 mt-1">
+          <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="flex flex-wrap items-center gap-2 mt-1">
             <span className="font-body text-[12px] font-semibold uppercase tracking-[0.1em] text-white/60">
               Relevant Families:
             </span>
@@ -53,13 +67,13 @@ export default function ApplicationDetailHero({ application, productFamilies, on
                 {family}
               </span>
             ))}
-          </div>
+          </motion.div>
         )}
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-3">
+        <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-3">
           <button
             onClick={scrollToProducts}
-            className="inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13.5px] uppercase tracking-[0.05em] leading-none px-8 py-[18px] rounded-[200px] transition-all duration-300 shadow-[0_8px_24px_rgba(228,10,24,0.3)] hover:shadow-[0_10px_30px_rgba(228,10,24,0.4)] cursor-pointer"
+            className="inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13.5px] uppercase tracking-[0.05em] leading-none px-8 py-[18px] rounded-[200px] transition-all duration-200 shadow-[0_8px_24px_rgba(228,10,24,0.3)] hover:shadow-[0_10px_30px_rgba(228,10,24,0.4)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
             Find The Recommended Product
           </button>
@@ -69,8 +83,8 @@ export default function ApplicationDetailHero({ application, productFamilies, on
           >
             Talk to an Application Specialist
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

@@ -41,6 +41,12 @@
   --color-surface-850: #2e2e2e;
   --color-surface-900: #242424;
   --color-surface-950: #121212;
+
+  /* Yolk-gold accent — used sparingly for progress lines, active states,
+     small highlights and focus rings; never as the dominant page color. */
+  --color-gold-400: #f3c969;
+  --color-gold-500: #e8b64a;
+  --color-gold-600: #d19a2e;
 }
 
 /* ── Base typography ──────────────────────────────────────────────────────── */
@@ -258,6 +264,27 @@ p {
   cursor: pointer;
   border: none;
   white-space: nowrap;
+  transition: color 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+              transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-primary-red:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(228, 10, 24, 0.22);
+}
+
+.btn-primary-red:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(228, 10, 24, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary-red,
+  .btn-primary-red:hover,
+  .btn-primary-red:active {
+    transform: none;
+  }
 }
 
 .btn-primary-red::after {
@@ -317,10 +344,29 @@ p {
   position: relative;
   overflow: hidden;
   transition: color 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955),
-              border-color 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+              border-color 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+              transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 1;
   cursor: pointer;
   white-space: nowrap;
+}
+
+.btn-outline-red:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(228, 10, 24, 0.14);
+}
+
+.btn-outline-red:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-outline-red,
+  .btn-outline-red:hover,
+  .btn-outline-red:active {
+    transform: none;
+  }
 }
 
 .btn-outline-red::after {
@@ -427,6 +473,44 @@ p {
 /* Pause entire marquee when any card inside is hovered */
 .marquee-viewport:hover .marquee-loop {
   animation-play-state: paused;
+}
+
+/* ── Reduced motion — global safety net ──────────────────────────────────── */
+
+/*
+  Belt-and-braces alongside each component's own useReducedMotion() checks:
+  any element still using a raw CSS animation/transition (marquees, keyframe
+  helpers above) gets neutralized for users who've asked for less motion.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .marquee-loop {
+    animation: none !important;
+  }
+  .img-reveal {
+    animation: none !important;
+    clip-path: none !important;
+  }
+}
+
+/* ── Egg-shaped / curved image reveal ────────────────────────────────────── */
+
+/*
+  Usage: add class="egg-mask" to an image wrapper for a soft egg-inspired
+  curved silhouette (asymmetric corner radii, wider at the bottom — the
+  classic egg profile) instead of a plain rectangle. Reserved for hero
+  imagery, application-card media and product-family imagery — not applied
+  to every card.
+*/
+.egg-mask {
+  border-radius: 48% 48% 46% 46% / 56% 56% 44% 44%;
+}
+
+/* ── Yolk-gold focus ring — accessible keyboard focus, brand-aligned ─────── */
+
+.focus-gold:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-gold-500), 0 0 0 4px rgba(232, 182, 74, 0.25);
 }
 
 /* ── Project card — diagonal white sweep on hover ─────────────────────────── */

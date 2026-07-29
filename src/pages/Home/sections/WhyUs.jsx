@@ -112,14 +112,18 @@ export default function WhyUs({ onPageChange }) {
             <motion.article
               key={proof.theme}
               {...fadeProps(i * 0.1)}
-              className="lg:col-span-6 flex flex-col gap-4 bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 rounded-[22px] p-7 lg:p-8"
+              className="lg:col-span-6 flex flex-col gap-4 bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 rounded-[22px] p-7 lg:p-8 transition-all duration-300 hover:border-brand-600/30 hover:shadow-[0_10px_28px_rgba(36,30,24,0.08)]"
             >
               <p className="font-body text-[13px] lg:text-[14px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500 m-0">
                 {proof.theme}
               </p>
 
-              <div className="flex items-baseline gap-3">
-                <strong className="font-heading font-black text-[48px] lg:text-[58px] text-brand-600 dark:text-brand-400 leading-none tabular-nums">
+              <div className="relative flex items-baseline gap-3">
+                <span
+                  className="absolute -left-3 -top-3 w-14 h-14 rounded-full border border-[#e8b64a]/40 pointer-events-none"
+                  aria-hidden
+                />
+                <strong className="relative font-heading font-black text-[48px] lg:text-[58px] text-brand-600 dark:text-brand-400 leading-none tabular-nums">
                   {proof.number}
                 </strong>
                 <span className="font-body text-[15px] lg:text-[17px] font-semibold text-surface-700 dark:text-surface-300">
@@ -155,14 +159,18 @@ export default function WhyUs({ onPageChange }) {
             <motion.article
               key={proof.theme}
               {...fadeProps(i * 0.1)}
-              className="lg:col-span-4 flex flex-col gap-3.5 border border-surface-200/70 dark:border-surface-800 rounded-[18px] p-6 lg:p-7"
+              className="lg:col-span-4 flex flex-col gap-3.5 border border-surface-200/70 dark:border-surface-800 rounded-[18px] p-6 lg:p-7 transition-all duration-300 hover:border-brand-600/30 hover:shadow-[0_8px_22px_rgba(36,30,24,0.07)]"
             >
               <p className="font-body text-[13px] lg:text-[14px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500 m-0">
                 {proof.theme}
               </p>
 
-              <div className="flex items-baseline gap-2.5">
-                <strong className="font-heading font-black text-[34px] lg:text-[40px] text-brand-600 dark:text-brand-400 leading-none tabular-nums">
+              <div className="relative flex items-baseline gap-2.5">
+                <span
+                  className="absolute -left-2.5 -top-2.5 w-11 h-11 rounded-full border border-[#e8b64a]/40 pointer-events-none"
+                  aria-hidden
+                />
+                <strong className="relative font-heading font-black text-[34px] lg:text-[40px] text-brand-600 dark:text-brand-400 leading-none tabular-nums">
                   {proof.number}
                 </strong>
                 <span className="font-body text-[15px] lg:text-[16px] font-semibold text-surface-700 dark:text-surface-300">

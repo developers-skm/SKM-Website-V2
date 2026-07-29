@@ -92,7 +92,11 @@
       "Bash(tasklist //FI \"IMAGENAME eq chrome.exe\")",
       "Bash(tasklist //FI \"IMAGENAME eq node.exe\")",
       "Bash(timeout 50 node __q2.cjs)",
-      "Bash(echo \"exit: $?\")"
+      "Bash(echo \"exit: $?\")",
+      "Bash(cd \"d:\\\\PROJECTS\\\\skm-website-v3 - Rework\" && sleep 2 && cat /tmp/vite_dev.log 2>/dev/null || echo \"no log\")",
+      "Bash(node ./__screenshot_tmp.mjs)",
+      "Bash(grep -A5 \"HomeJourney.jsx$\\\\|ProductFamilies.jsx$\\\\|Hero\\\\.jsx$\\\\|ApplicationCard\\\\.jsx$\\\\|WhyUs\\\\.jsx$\\\\|QualityCertificationProof\\\\.jsx$\\\\|FinalEnquiry\\\\.jsx$\\\\|CategoryMotif\\\\.jsx$\")",
+      "Bash(node ./__screenshot_full.mjs)"
     ],
     "additionalDirectories": [
       "\\tmp"

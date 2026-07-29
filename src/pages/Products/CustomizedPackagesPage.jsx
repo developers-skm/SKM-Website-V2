@@ -1,7 +1,8 @@
 ﻿import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
 import { containerVariants } from '../../utils/animationVariants';
+import { EASE_PREMIUM, DURATION, STAGGER, GOLD } from '../../utils/motionTokens';
 
 // Import Assets — Powder Bag in Box
 import HdpeBagImg from '../../assets/3. PRODUCTS/Customized Packages/Powder Product primary container - HDPE Bag.jpeg';
@@ -96,6 +97,7 @@ const packagingData = [
 ];
 
 export default function CustomizedPackagesPage({ onPageChange, onBackHome }) {
+  const reduceMotion = useReducedMotion();
 
   const cardVariants = {
     hidden: { opacity: 0, y: 28 },
@@ -128,23 +130,53 @@ export default function CustomizedPackagesPage({ onPageChange, onBackHome }) {
 
       {/* Hero Banner */}
       <div className="relative py-[90px] bg-page dark:bg-surface-950 border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-brand-500/5 dark:bg-brand-950/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -top-12 -right-12 w-64 h-64 bg-brand-500/5 dark:bg-brand-900/5 rounded-full blur-3xl pointer-events-none" />
+        {!reduceMotion && (
+          <>
+            <motion.div
+              className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-brand-500/5 dark:bg-brand-950/5 rounded-full blur-3xl pointer-events-none"
+              animate={{ scale: [1, 1.08, 1] }}
+              transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <motion.div
+              className="absolute -top-12 -right-12 w-64 h-64 rounded-full blur-3xl pointer-events-none"
+              style={{ background: `${GOLD[500]}10` }}
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+            />
+          </>
+        )}
 
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
+          className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10"
+        >
           <div className="flex flex-col items-center text-center gap-5">
-            <span className="text-xs font-semibold uppercase tracking-widest text-brand-650 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/60 border border-brand-100 dark:border-brand-900/40 px-4 py-1.5 rounded-full">
+            <motion.span
+              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: reduceMotion ? 0.01 : DURATION.fast, ease: EASE_PREMIUM }}
+              className="text-xs font-semibold uppercase tracking-widest text-brand-650 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/60 border border-brand-100 dark:border-brand-900/40 px-4 py-1.5 rounded-full"
+            >
               Packaging Solutions
-            </span>
-            <h1 className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+            </motion.span>
+            <motion.h1
+              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 20 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
+              className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+            >
               Customized{' '}
               Packages
-            </h1>
-            <p className="text-base sm:text-lg text-surface-500 dark:text-surface-400 leading-relaxed max-w-2xl m-0 font-medium">
+            </motion.h1>
+            <motion.p
+              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 20 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
+              className="text-base sm:text-lg text-surface-500 dark:text-surface-400 leading-relaxed max-w-2xl m-0 font-medium"
+            >
               Customized packages of the products tailored for hassle-free use as per the industrial requirements. From small retail SKUs to bulk IBC pallet containers — every format is engineered for food-grade safety and logistics efficiency.
-            </p>
+            </motion.p>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Packaging Cards Grid */}
@@ -172,7 +204,8 @@ export default function CustomizedPackagesPage({ onPageChange, onBackHome }) {
               <motion.div
                 key={pkg.id}
                 variants={cardVariants}
-                className="bg-surface-50 dark:bg-surface-900/30 border border-surface-200/60 dark:border-surface-800 rounded-3xl overflow-hidden flex flex-col"
+                whileHover={reduceMotion ? undefined : { y: -3 }}
+                className="bg-surface-50 dark:bg-surface-900/30 border border-surface-200/60 dark:border-surface-800 rounded-3xl overflow-hidden flex flex-col transition-colors duration-300 hover:border-gold-500/40"
               >
                 {/* Card Header */}
                 <div className="px-6 pt-6 pb-5 border-b border-surface-200/60 dark:border-surface-800 flex items-start gap-4">

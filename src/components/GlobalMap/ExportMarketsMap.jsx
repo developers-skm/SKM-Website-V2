@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import {
   ComposableMap,
   Geographies,
   Geography,
   Marker,
+  Line,
 } from 'react-simple-maps';
 import exportMarkets from '../../data/exportMarkets';
 
@@ -20,6 +21,10 @@ const HIGHLIGHTED_IDS = new Set(EXPORT_MARKETS.map(m => m.id));
 // as "home base" on the map, not just another destination.
 const INDIA_ID = 356;
 
+// Approximate coordinates for India (origin point for the route line drawn
+// to whichever export market is currently hovered/focused).
+const INDIA_COORDINATES = [78, 21];
+
 // The interactive export-markets map + legend, extracted from the homepage's
 // GlobalMarkets section (Phase 1) so it can also anchor the "Global Reach"
 // hub page (Phase 2) — same map, two places, one implementation.
@@ -28,6 +33,8 @@ export default function ExportMarketsMap() {
   const [tooltip, setTooltip] = useState(null);
   const [isInView, setIsInView] = useState(false);
   const mapRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const hoveredMarket = EXPORT_MARKETS.find(m => m.id === hoveredId) ?? null;
 
   const handleMarkerEnter = (market, e) => {
     const rect = mapRef.current?.getBoundingClientRect();
@@ -49,11 +56,11 @@ export default function ExportMarketsMap() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 25 }}
+      initial={{ opacity: 0, y: reduceMotion ? 0 : 25 }}
       whileInView={{ opacity: 1, y: 0 }}
       onViewportEnter={() => setIsInView(true)}
       viewport={{ once: true, margin: '-100px' }}
-      transition={{ type: 'spring', stiffness: 90, damping: 15 }}
+      transition={reduceMotion ? { duration: 0.01 } : { type: 'spring', stiffness: 90, damping: 15 }}
       className="relative rounded-[20px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/20 overflow-hidden shadow-[5px_3px_40px_rgba(0,72,88,0.08)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-300"
     >
       <div className="flex flex-col lg:flex-row lg:h-[820px]">
@@ -144,6 +151,19 @@ export default function ExportMarketsMap() {
               }
             </Geographies>
 
+            {/* ── Route line — draws from India to the hovered market ── */}
+            {!reduceMotion && hoveredMarket && (
+              <Line
+                from={INDIA_COORDINATES}
+                to={hoveredMarket.coordinates}
+                stroke="#e8b64a"
+                strokeWidth={1.4}
+                strokeLinecap="round"
+                strokeDasharray="1 4"
+                className="pointer-events-none"
+              />
+            )}
+
             {/* ── Pin markers ──────────────────────────────────────── */}
             {EXPORT_MARKETS.map((market, i) => (
               <Marker
@@ -155,8 +175,10 @@ export default function ExportMarketsMap() {
                 <motion.g
                   initial={{ scale: 0, opacity: 0 }}
                   animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                  transition={{ delay: 0.3 + i * 0.025, type: 'spring', stiffness: 260, damping: 18 }}
-                  whileHover={{ scale: 1.4 }}
+                  transition={reduceMotion
+                    ? { duration: 0.01 }
+                    : { delay: 0.3 + i * 0.025, type: 'spring', stiffness: 260, damping: 18 }}
+                  whileHover={reduceMotion ? undefined : { scale: 1.4 }}
                   style={{ cursor: 'pointer' }}
                 >
                   {/* Drop shadow beneath the tip */}

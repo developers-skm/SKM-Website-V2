@@ -1,4 +1,6 @@
+import { motion, useReducedMotion } from 'framer-motion';
 import exportMarkets from '../../data/exportMarkets';
+import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
 
 // Section 6 — packaging and logistics (brief §6). "Pallet information" is
 // omitted: no per-product pallet spec (units/pallet, dimensions) exists
@@ -19,6 +21,7 @@ function collectDistinct(variantsData, key) {
 }
 
 export default function PackagingLogistics({ packagingOptions, variantsData, onViewPackaging, onDiscussDelivery }) {
+  const reduceMotion = useReducedMotion();
   const storageValues = collectDistinct(variantsData, 'storage');
 
   const facts = [
@@ -51,19 +54,36 @@ export default function PackagingLogistics({ packagingOptions, variantsData, onV
         </h2>
       </div>
 
-      <div className="rounded-[32px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 px-6 sm:px-12 lg:px-16 py-10 sm:py-14 flex flex-col gap-9 shadow-[0_20px_60px_rgba(36,30,24,0.06)]">
-        <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-7 m-0">
+      <motion.div
+        initial={reduceMotion ? undefined : { opacity: 0, y: 16 }}
+        whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: DURATION.sectionEntrance, ease: EASE_PREMIUM }}
+        className="rounded-[32px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 px-6 sm:px-12 lg:px-16 py-10 sm:py-14 flex flex-col gap-9 shadow-[0_20px_60px_rgba(36,30,24,0.06)]"
+      >
+        <motion.dl
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-7 m-0"
+        >
           {facts.map(({ label, value }) => (
-            <div key={label} className="flex flex-col gap-1.5 border-t border-surface-200/70 dark:border-surface-800 pt-4">
+            <motion.div
+              key={label}
+              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 12 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: DURATION.cardHover, ease: EASE_PREMIUM }}
+              className="flex flex-col gap-1.5 border-t border-surface-200/70 dark:border-surface-800 pt-4 px-2 -mx-2 rounded-lg transition-colors duration-200 hover:bg-gold-500/[0.06] dark:hover:bg-gold-500/[0.05]"
+            >
               <dt className="font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400 dark:text-surface-500">
                 {label}
               </dt>
               <dd className="font-heading font-bold text-[17px] text-heading dark:text-white leading-snug m-0">
                 {value}
               </dd>
-            </div>
+            </motion.div>
           ))}
-        </dl>
+        </motion.dl>
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
           <button
@@ -79,7 +99,7 @@ export default function PackagingLogistics({ packagingOptions, variantsData, onV
             Discuss Delivery Requirements
           </button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
