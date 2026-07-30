@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
 import { containerVariants } from '../../utils/animationVariants';
@@ -97,6 +97,7 @@ const packagingData = [
 ];
 
 export default function CustomizedPackagesPage({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
 
   const cardVariants = {
     hidden: { opacity: 0, y: 28 },

@@ -2,7 +2,6 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
-import CustomCursor from './components/CustomCursor/CustomCursor';
 import PageLoader from './components/PageLoader/PageLoader';
 import products from './data/products';
 
@@ -285,25 +284,22 @@ function App() {
   };
 
   return (
-    <>
-      <CustomCursor />
-      <Layout activePage={activePage} onPageChange={handlePageChange} suppressMobileActions={suppressMobileActions}>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activePage}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="w-full flex-grow flex flex-col"
-          >
-            <Suspense fallback={<PageLoader />}>
-              {renderPage()}
-            </Suspense>
-          </motion.div>
-        </AnimatePresence>
-      </Layout>
-    </>
+    <Layout activePage={activePage} onPageChange={handlePageChange} suppressMobileActions={suppressMobileActions}>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activePage}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -15 }}
+          transition={{ duration: 0.25, ease: 'easeInOut' }}
+          className="w-full flex-grow flex flex-col"
+        >
+          <Suspense fallback={<PageLoader />}>
+            {renderPage()}
+          </Suspense>
+        </motion.div>
+      </AnimatePresence>
+    </Layout>
   );
 }
 

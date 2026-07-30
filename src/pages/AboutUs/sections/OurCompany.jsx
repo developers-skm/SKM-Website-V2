@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import FactoryImage from '../../../assets/2. ABOUT US/Our Company/Factory image.webp';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
@@ -25,36 +25,35 @@ export default function OurCompany() {
 
         {/* ── Hero banner image ── */}
         <motion.div
-          variants={itemVariants}
-          className="relative w-full overflow-hidden rounded-[24px] group shadow-[0_8px_40px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.35)] aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="relative w-full overflow-hidden rounded-[24px] group shadow-[0_12px_36px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.35)] border border-surface-200/60 dark:border-surface-800 aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]"
         >
           <motion.img
             src={FactoryImage}
             alt="SKM Eggs Factory Facility"
-            className="w-full h-full object-cover select-none"
-            initial={{ clipPath: 'inset(0 100% 0 0)' }}
-            whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
-            whileHover={{ scale: 1.03 }}
-            style={{ transition: 'transform 700ms cubic-bezier(0.25,1,0.5,1)' }}
+            className="w-full h-full object-cover select-none transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            loading="eager"
           />
 
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-surface-950/65 via-surface-950/10 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
 
-          {/* Bottom badge */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 flex items-end justify-between">
-            <div className="bg-surface-950/70 backdrop-blur-md border border-white/10 px-3 py-2 sm:px-5 sm:py-3.5 rounded-[8px] flex flex-col gap-0.5 max-w-[72%] sm:max-w-none">
-              <h4 className="font-heading text-[11px] sm:text-[13px] font-bold text-white m-0 tracking-wide uppercase">
+          {/* Bottom caption */}
+          <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 lg:p-8 flex items-end justify-between gap-4">
+            <div className="flex flex-col gap-1">
+              <span className="inline-flex items-center gap-2 font-body text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.1em] text-brand-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true" />
                 Integrated Feed & Farm Facility
-              </h4>
-              <p className="font-body text-[10px] sm:text-[11px] text-surface-300 m-0 leading-normal">
-                Ensuring biosecurity and traceability at every stage
+              </span>
+              <p className="font-body text-[13px] sm:text-[14px] text-white/90 m-0 leading-normal">
+                Ensuring biosecurity and 100% traceability at every stage • Est. 1996
               </p>
             </div>
-            <span className="hidden sm:block font-body text-[9px] font-bold text-brand-400 bg-brand-950/80 border border-brand-900/60 px-3 py-1 rounded uppercase tracking-wider">
-              Established 1996
+            <span className="hidden sm:inline-flex items-center px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 font-body text-[12px] font-semibold text-white flex-shrink-0">
+              2M Eggs Processed Daily
             </span>
           </div>
         </motion.div>

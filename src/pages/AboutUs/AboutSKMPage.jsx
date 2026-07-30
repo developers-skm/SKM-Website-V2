@@ -29,29 +29,40 @@ function CompanyOverviewSection({ onPageChange }) {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
           <motion.div
-            initial={{ clipPath: reduceMotion ? 'inset(0 0 0 0)' : 'inset(0 0 0 100%)', opacity: reduceMotion ? 0 : 1 }}
-            whileInView={{ clipPath: 'inset(0 0 0 0%)', opacity: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: reduceMotion ? 0.01 : DURATION.functional, ease: EASE_PREMIUM }}
-            className="flex-1 relative w-full overflow-hidden rounded-[24px] aspect-[4/3] sm:aspect-[16/9]"
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.8, ease: EASE_PREMIUM }}
+            className="flex-1 relative w-full"
           >
-            <motion.img
-              src={FactoryImage}
-              alt="SKM Eggs Factory Facility"
-              className="w-full h-full object-cover"
-              width={1800}
-              height={1199}
-              loading="lazy"
-              decoding="async"
-              initial={{ scale: reduceMotion ? 1 : 1.03 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: reduceMotion ? 0.01 : DURATION.process, ease: EASE_PREMIUM }}
-            />
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-brand-600 rounded-tr-[10px]"
-            />
+            <div className="relative rounded-[24px] overflow-hidden aspect-[16/10] shadow-[0_12px_36px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.35)] border border-surface-200/60 dark:border-surface-800 group">
+              <motion.img
+                src={FactoryImage}
+                alt="SKM Eggs Factory Facility"
+                className="w-full h-full object-cover select-none transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                width={1800}
+                height={1199}
+                loading="eager"
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 flex items-end justify-between gap-4">
+                <div className="flex flex-col gap-1">
+                  <span className="inline-flex items-center gap-2 font-body text-[11px] font-bold uppercase tracking-[0.1em] text-brand-400">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true" />
+                    Integrated Feed & Farm Facility
+                  </span>
+                  <p className="font-body text-[13px] sm:text-[14px] font-medium text-white/90 m-0">
+                    Erode, Tamil Nadu, India • Est. 1996
+                  </p>
+                </div>
+
+                <span className="hidden sm:inline-flex items-center px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 font-body text-[12px] font-semibold text-white flex-shrink-0">
+                  2M Eggs Processed Daily
+                </span>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div {...fadeUp(reduceMotion, { distance: 20, delay: 0.1 })} className="flex-1 flex flex-col gap-5">
