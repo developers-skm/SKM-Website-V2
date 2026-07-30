@@ -71,12 +71,15 @@ const families = [
     categoryRoute: 'category_custom',
   },
   {
-    // No table/shell egg product exists in the catalogue yet — shown as an
-    // honest "Coming soon" placeholder rather than fabricated product data,
-    // matching the ComingSoon pattern used elsewhere in the app.
+    // No table/shell egg product exists in the catalogue yet — the copy
+    // below is honest that it's not launched. Image is a representative
+    // stock photo served from Unsplash's CDN (not a local asset), used
+    // only as a visual placeholder — no product data implied.
     id: 'table-eggs',
     name: 'Table Eggs',
     comingSoon: true,
+    comingSoonImage: 'https://images.unsplash.com/photo-1586802990181-a5771596eaea?auto=format&fit=crop&w=1600&q=85',
+    comingSoonImageAlt: 'Brown egg on a white paper towel',
   },
 ];
 
@@ -98,11 +101,18 @@ function FamilyBlock({ family, onPageChange }) {
 
   if (family.comingSoon) {
     return (
-      <article className="flex flex-col h-full rounded-[22px] overflow-hidden bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800">
-        <div className="relative w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-surface-100 dark:bg-surface-800/60">
-          <span className="font-body text-[11px] font-bold uppercase tracking-widest text-surface-400 dark:text-surface-500 border border-surface-300 dark:border-surface-700 rounded-full px-4 py-1.5">
-            Coming Soon
-          </span>
+      <article className="group flex flex-col h-full rounded-[22px] overflow-hidden bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800">
+        <div className="relative w-full aspect-[4/3] overflow-hidden">
+          {family.comingSoonImage && (
+            <img
+              src={family.comingSoonImage}
+              srcSet={`${family.comingSoonImage.replace('w=1600', 'w=800')} 800w, ${family.comingSoonImage} 1600w`}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              alt={family.comingSoonImageAlt || ''}
+              loading="lazy"
+              className={`w-full h-full object-cover ${reduceMotion ? '' : 'transition-transform duration-500 ease-out group-hover:scale-[1.04]'}`}
+            />
+          )}
         </div>
 
         <div className="flex flex-col flex-1 px-7 pt-6 pb-7">
@@ -111,7 +121,7 @@ function FamilyBlock({ family, onPageChange }) {
           </h3>
 
           <p className="font-body text-[15px] lg:text-[16px] text-surface-500 dark:text-surface-400 leading-[1.55] mt-5 mb-0">
-            This product family is not yet available. Check back soon, or get in touch to discuss your requirement.
+            Table eggs are on our roadmap. Get in touch to discuss your requirement ahead of launch.
           </p>
         </div>
       </article>

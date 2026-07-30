@@ -7,6 +7,12 @@ import { EASE_PREMIUM, DURATION, STAGGER } from '../../../utils/motionTokens';
 // Application Specialist" routes to the real Contact Us page — no dedicated
 // application-specialist contact flow exists in the app, same pattern used
 // throughout the product detail page work for "talk to a human" CTAs.
+//
+// Signature entrance matches Home Hero's treatment (src/pages/Home/sections/Hero.jsx):
+// a curved (egg-inspired) mask sweeps open from center to reveal the photo,
+// a soft yolk-gold radial glow sits upper-right, and a once-only diagonal
+// light sweep drifts across the image after the mask settles. Copy keeps
+// its own independent staggered entrance, never gated behind the reveal.
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
 export default function ApplicationHero({ onPageChange }) {
@@ -17,14 +23,47 @@ export default function ApplicationHero({ onPageChange }) {
 
   return (
     <div className="relative w-full overflow-hidden py-20 sm:py-28 lg:py-36 text-center px-4">
-      <img
-        src="https://images.unsplash.com/photo-1713176679770-1ab32be3fb38?fm=jpg&q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0"
-        srcSet="https://images.unsplash.com/photo-1713176679770-1ab32be3fb38?fm=jpg&q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0 1200w, https://images.unsplash.com/photo-1713176679770-1ab32be3fb38?fm=jpg&q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0 2400w"
-        sizes="100vw"
-        alt="Wooden crate filled with white eggs"
-        loading="eager"
-        className="absolute inset-0 w-full h-full object-cover"
+      <motion.div
+        className="absolute inset-0"
+        initial={reduceMotion ? false : { clipPath: 'inset(0% 42% 0% 42% round 50%)' }}
+        animate={reduceMotion ? undefined : { clipPath: 'inset(0% 0% 0% 0% round 0%)' }}
+        transition={{ duration: reduceMotion ? 0.01 : 1.4, ease: EASE_PREMIUM }}
+      >
+        <motion.img
+          src="https://images.unsplash.com/photo-1713176679770-1ab32be3fb38?fm=jpg&q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0"
+          srcSet="https://images.unsplash.com/photo-1713176679770-1ab32be3fb38?fm=jpg&q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0 1200w, https://images.unsplash.com/photo-1713176679770-1ab32be3fb38?fm=jpg&q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0 2400w"
+          sizes="100vw"
+          alt="Wooden crate filled with white eggs"
+          fetchPriority="high"
+          loading="eager"
+          className="absolute inset-0 w-full h-full object-cover"
+          initial={{ scale: reduceMotion ? 1 : 1.12 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: reduceMotion ? 0.01 : 8, ease: EASE_PREMIUM }}
+        />
+      </motion.div>
+
+      {/* Subtle yolk-gold light gradient — echoes Home Hero's upper-right glow */}
+      <div
+        className="absolute inset-0 pointer-events-none mix-blend-soft-light"
+        style={{ background: 'radial-gradient(60% 55% at 82% 18%, rgba(232,182,74,0.5) 0%, rgba(232,182,74,0) 70%)' }}
       />
+
+      {/* Once-only warm light sweep — soft diagonal band drifts across the
+          photo after the mask reveal settles */}
+      {!reduceMotion && (
+        <motion.div
+          className="absolute inset-0 pointer-events-none mix-blend-soft-light"
+          style={{
+            background: 'linear-gradient(115deg, rgba(255,255,255,0) 42%, rgba(243,201,105,0.22) 50%, rgba(255,255,255,0) 58%)',
+            backgroundSize: '260% 260%',
+          }}
+          initial={{ backgroundPosition: '120% 0%', opacity: 0 }}
+          animate={{ backgroundPosition: '-20% 0%', opacity: [0, 1, 1, 0] }}
+          transition={{ duration: 3.2, delay: 1.4, ease: EASE_PREMIUM, times: [0, 0.15, 0.75, 1] }}
+        />
+      )}
+
       <div
         className="absolute inset-0"
         style={{ background: 'linear-gradient(180deg, rgba(20,16,10,0.35) 0%, rgba(20,16,10,0.25) 40%, rgba(20,16,10,0.75) 88%, rgba(20,16,10,0.94) 100%)' }}

@@ -39,7 +39,10 @@ function CompanyOverviewSection({ onPageChange }) {
               src={FactoryImage}
               alt="SKM Eggs Factory Facility"
               className="w-full h-full object-cover"
+              width={1800}
+              height={1199}
               loading="lazy"
+              decoding="async"
               initial={{ scale: reduceMotion ? 1 : 1.03 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true, margin: '-100px' }}
@@ -566,6 +569,20 @@ export default function AboutSKMPage({ onPageChange }) {
         description: "SKM Egg Products — Asia's largest integrated egg processing facility since 1996. Company overview, history, leadership message, values, and global operations in one place.",
         keywords: 'SKM Egg Products company, about SKM, egg powder manufacturer history, SKM CEO, SKM vision mission, SKM Egg Products India',
         canonical: 'https://www.skmegg.com/about_skm',
+        jsonLd: {
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "About SKM",
+          "url": "https://www.skmegg.com/about_skm",
+          "description": "Asia's largest integrated egg processing facility since 1996. Company overview, history, leadership message, values, and global operations in one place.",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "SKM Egg Products",
+            "foundingDate": "1996",
+            "founder": { "@type": "Person", "name": "Mr. SKM Shree Shivkumar" },
+            "url": "https://www.skmegg.com",
+          },
+        },
       }}
       onPageChange={onPageChange}
     >

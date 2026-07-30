@@ -735,49 +735,65 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
 
-        {/* Section 1 — Products hero */}
+        {/* Section 1 — Products hero. A premium entrance distinct from Home's
+            center-out egg mask: the photo rises into place as a single
+            unbroken image (a slow vertical reveal + gentle upward drift,
+            like a blind lifting), while a thin gold line trails just above
+            the image's leading edge and fades once the reveal settles.
+            No split/seam across the photo — the image itself stays whole
+            throughout. Copy keeps its own independent staggered entrance. */}
         <div className="relative w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4 overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${PRODUCTS_HERO_BG})` }}
-            role="img"
-            aria-label="Brown eggs on a white surface"
-          />
+          <motion.div
+            className="absolute inset-0 overflow-hidden"
+            initial={reduceMotion ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}
+            animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+            transition={{ duration: reduceMotion ? 0.01 : 1.2, ease: EASE_PREMIUM }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${PRODUCTS_HERO_BG})` }}
+              role="img"
+              aria-label="Brown eggs on a white surface"
+              initial={{ scale: reduceMotion ? 1 : 1.08, y: reduceMotion ? 0 : 24 }}
+              animate={{ scale: 1, y: 0 }}
+              transition={{ duration: reduceMotion ? 0.01 : 1.4, ease: EASE_PREMIUM }}
+            />
+          </motion.div>
+
           <div className="absolute inset-0 bg-black/15" aria-hidden="true" />
 
+          {/* Thin gold line — trails the reveal's leading edge, then fades
+              once the image has fully settled */}
           {!reduceMotion && (
-            <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-              {/* soft egg-outline arc */}
-              <motion.svg
-                className="absolute left-1/2 top-1/2 w-[520px] h-[520px] -translate-x-1/2 -translate-y-1/2 opacity-0"
-                viewBox="0 0 200 200"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 0.14, 0.14, 0] }}
-                transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', times: [0, 0.2, 0.8, 1] }}
-              >
-                <ellipse cx="100" cy="105" rx="62" ry="78" fill="none" stroke="#ffffff" strokeWidth="1" />
-              </motion.svg>
-              {/* warm yolk-gold drift */}
-              <motion.div
-                className="absolute w-[260px] h-[260px] rounded-full"
-                style={{ background: 'radial-gradient(circle, rgba(232,182,74,0.22) 0%, rgba(232,182,74,0) 70%)', left: '58%', top: '30%' }}
-                animate={{ x: [0, 30, -10, 0], y: [0, 20, 10, 0] }}
-                transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-              />
-              {/* translucent albumen flow */}
-              <motion.div
-                className="absolute w-[380px] h-[180px] rounded-full"
-                style={{ background: 'radial-gradient(ellipse, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 70%)', left: '10%', bottom: '5%' }}
-                animate={{ x: [0, 20, 0], opacity: [0.6, 1, 0.6] }}
-                transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-              />
-            </div>
+            <motion.div
+              className="absolute inset-x-0 h-px pointer-events-none"
+              style={{ background: 'linear-gradient(90deg, rgba(243,201,105,0) 0%, rgba(243,201,105,0.85) 50%, rgba(243,201,105,0) 100%)' }}
+              initial={{ top: '100%', opacity: 1 }}
+              animate={{ top: '0%', opacity: 0 }}
+              transition={{
+                top: { duration: 1.2, ease: EASE_PREMIUM },
+                opacity: { duration: 1.5, delay: 0.3, ease: EASE_PREMIUM },
+              }}
+            />
+          )}
+
+          {/* Soft yolk-gold glow — settles upper-right once the reveal
+              completes, echoing the site's warm accent without competing
+              with the photo */}
+          {!reduceMotion && (
+            <motion.div
+              className="absolute inset-0 pointer-events-none mix-blend-soft-light"
+              style={{ background: 'radial-gradient(55% 50% at 84% 16%, rgba(232,182,74,0.45) 0%, rgba(232,182,74,0) 70%)' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1, ease: EASE_PREMIUM }}
+            />
           )}
 
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.08 } } }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.08, delayChildren: reduceMotion ? 0 : 0.75 } } }}
             className="relative z-10 mx-auto max-w-[820px] flex flex-col items-center gap-6"
           >
             <motion.span
