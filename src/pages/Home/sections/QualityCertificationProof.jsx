@@ -45,10 +45,6 @@ function byIds(ids) {
   return allCertificates.filter((c) => ids.includes(c.id));
 }
 
-// Traceability statement — exact verbatim sentence from
-// src/pages/Quality/sections/Traceability.jsx, not paraphrased.
-const TRACEABILITY_STATEMENT = 'Complete supply chain visibility — every egg, every batch, every step is documented and traceable from biosecure hatchery to final dispatch.';
-
 function ProofPanel({ title, children, className = '' }) {
   return (
     <div className={`flex flex-col gap-4 bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 rounded-[22px] p-7 lg:p-8 transition-all duration-300 hover:border-brand-600/25 hover:shadow-[0_10px_26px_rgba(36,30,24,0.08)] ${className}`}>
@@ -132,10 +128,10 @@ export default function QualityCertificationProof({ onPageChange }) {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-7 mb-8 lg:mb-9">
+        <div className="grid grid-cols-1 gap-6 lg:gap-7 mb-8 lg:mb-9">
           {/* Certification logos — full set, static wrap, with context per
-              logo (never shown alone). Spans wider than a single column. */}
-          <motion.div {...fadeProps(0.1)} className="lg:col-span-2">
+              logo (never shown alone). */}
+          <motion.div {...fadeProps(0.1)}>
             <ProofPanel title="Certification logos">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
                 {allCertificates.map((cert) => (
@@ -157,15 +153,6 @@ export default function QualityCertificationProof({ onPageChange }) {
                   </div>
                 ))}
               </div>
-            </ProofPanel>
-          </motion.div>
-
-          {/* Traceability statement — connects visually to Section 5 above */}
-          <motion.div {...fadeProps(0.2)}>
-            <ProofPanel title="Traceability statement">
-              <p className="font-body text-[16px] lg:text-[17px] text-surface-700 dark:text-surface-300 leading-[1.6] m-0">
-                {TRACEABILITY_STATEMENT}
-              </p>
             </ProofPanel>
           </motion.div>
         </div>

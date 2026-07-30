@@ -6,6 +6,7 @@ import EnquiryModal from '../ContactUs/sections/EnquiryModal';
 import certifications from '../../data/certifications';
 import homeJourneyStages from '../../data/homeJourneyStages';
 import HomeJourney from '../Home/sections/HomeJourney';
+import traceabilityHeroImage from '../../assets/4. QUALITY/Traceability/Traceability Home Section.png';
 
 // Quality, Food Safety and Traceability — combined hub page. This is a new
 // page alongside the 5 existing standalone Quality pages (Policy,
@@ -621,6 +622,11 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
 
         {/* Section 1 — Trust hero */}
         <div className="relative w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
+          <div
+            className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18] dark:opacity-[0.22]"
+            style={{ backgroundImage: `url(${traceabilityHeroImage})` }}
+            aria-hidden="true"
+          />
           <div
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(ellipse 900px 500px at 15% 0%, rgba(228,10,24,0.05), transparent 65%)' }}

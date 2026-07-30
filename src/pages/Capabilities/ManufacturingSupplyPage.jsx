@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { fadeUp } from '../../utils/motionTokens';
+import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply/supply.png';
 
 // Manufacturing and Supply — new page, Section 1 (Capabilities hero) only,
 // per this task's scope. Replaces the "Capabilities" dropdown in the navbar
@@ -627,8 +628,13 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
 
         {/* Section 1 — Capabilities hero */}
-        <div className="w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40">
-          <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
+        <div className="relative w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
+          <div
+            className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18] dark:opacity-[0.22]"
+            style={{ backgroundImage: `url(${supplyHeroImage})` }}
+            aria-hidden="true"
+          />
+          <div className="relative mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
             <motion.div {...fadeProps()} className="max-w-3xl mb-9 lg:mb-11">
               <span className="section-label">Capabilities</span>
               <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.1] tracking-tight m-0 mt-3">

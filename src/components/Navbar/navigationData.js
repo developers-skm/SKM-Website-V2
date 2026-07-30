@@ -4,6 +4,7 @@
 // MobileNavigation so labels/routes are never duplicated across components.
 
 export const utilityLinks = [
+  { label: 'Home', route: 'home' },
   { label: 'Global Presence', route: 'global_reach' },
   { label: 'Sustainability', route: 'sustainability_and_community' },
   { label: 'Investors', route: 'investors' },
