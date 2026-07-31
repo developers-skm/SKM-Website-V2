@@ -19,8 +19,15 @@ import { containerVariants, itemVariants } from '../../../utils/animationVariant
 // reads as a sudden cut), this renders one continuous strip of cards
 // (`applications` repeated 3x so there's always a real card off-screen on
 // both sides) and animates the strip's x position with a real slide on
-// every step — autoplay every 3.5s, drag/swipe, pause on hovering/focusing
-// the centered card, resume on leave/blur.
+// every step — autoplay every 3.5s continuously, plus drag/swipe.
+//
+// `isAnimatingRef` is a hard lock: autoplay, dot-clicks, and drag can only
+// ever queue ONE step forward (right-to-left) at a time. Without it, an
+// autoplay tick landing while the previous slide's transition/state update
+// hadn't settled yet could stack two `step(1)` calls back to back, which
+// visually reads as "sometimes jumps 2 cards instead of 1". The lock is
+// released only in `handleSlideComplete`, i.e. once the previous move has
+// fully finished and (if needed) the infinite-loop snap has happened.
 const AUTOPLAY_INTERVAL_MS = 3500;
 const SLIDE_TRANSITION = { duration: 0.65, ease: [0.22, 1, 0.36, 1] };
 
@@ -55,10 +62,10 @@ export default function ApplicationAreas({ onPageChange }) {
   // completes do we silently snap centerIndex back into the middle copy's
   // range, so the loop has no visible jump.
   const [centerIndex, setCenterIndex] = useState(total);
-  const [isPaused, setIsPaused] = useState(false);
   const [trackWidth, setTrackWidth] = useState(0);
   const trackRef = useRef(null);
   const cardRef = useRef(null);
+  const isAnimatingRef = useRef(false);
 
   const strip = [...applications, ...applications, ...applications];
 
@@ -71,31 +78,38 @@ export default function ApplicationAreas({ onPageChange }) {
     return () => ro.disconnect();
   }, [cardsPerView]);
 
-  const step = useCallback((delta) => {
-    setCenterIndex((prev) => prev + delta);
+  // Advances exactly one position, right-to-left, and only if no
+  // transition is currently in flight — this is what prevents skipped or
+  // stacked positions.
+  const stepForward = useCallback(() => {
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+    setCenterIndex((prev) => prev + 1);
   }, []);
 
   useEffect(() => {
-    if (total <= 1 || isPaused || reduceMotion) return undefined;
-    const id = setInterval(() => step(1), AUTOPLAY_INTERVAL_MS);
+    if (total <= 1 || reduceMotion) return undefined;
+    const id = setInterval(stepForward, AUTOPLAY_INTERVAL_MS);
     return () => clearInterval(id);
-  }, [total, isPaused, reduceMotion, step]);
+  }, [total, reduceMotion, stepForward]);
 
   // After each slide settles, if we've drifted into the first or last
   // copy of the strip, snap (no animation) back to the equivalent index
-  // in the middle copy — this is what makes the loop infinite.
+  // in the middle copy — this is what makes the loop infinite. Only after
+  // this settle do we release the lock, so the next step can't start
+  // until the current one (including the snap) has fully finished.
   const handleSlideComplete = useCallback(() => {
     setCenterIndex((prev) => {
       if (prev < total) return prev + total;
       if (prev >= total * 2) return prev - total;
       return prev;
     });
+    isAnimatingRef.current = false;
   }, [total]);
 
   const handleDragEnd = (_, info) => {
     const SWIPE_THRESHOLD = 60;
-    if (info.offset.x <= -SWIPE_THRESHOLD) step(1);
-    else if (info.offset.x >= SWIPE_THRESHOLD) step(-1);
+    if (info.offset.x <= -SWIPE_THRESHOLD) stepForward();
   };
 
   const gap = 24; // matches gap-6 (lg) — used for the pixel-accurate offset math
@@ -146,14 +160,6 @@ export default function ApplicationAreas({ onPageChange }) {
                     boxShadow: isActive ? '0 20px 44px rgba(36,30,24,0.16)' : 'none',
                   }}
                   className={`w-[78vw] sm:w-[46%] lg:w-[31%] flex-none rounded-[24px] transition-[z-index] ${isActive ? 'z-20' : 'z-10'}`}
-                  {...(isActive
-                    ? {
-                        onMouseEnter: () => setIsPaused(true),
-                        onMouseLeave: () => setIsPaused(false),
-                        onFocus: () => setIsPaused(true),
-                        onBlur: () => setIsPaused(false),
-                      }
-                    : {})}
                 >
                   <ApplicationCard app={app} onPageChange={onPageChange} isActive={isActive} />
                 </motion.div>
@@ -168,7 +174,11 @@ export default function ApplicationAreas({ onPageChange }) {
               <button
                 key={app.id}
                 type="button"
-                onClick={() => setCenterIndex(total + index)}
+                onClick={() => {
+                  if (isAnimatingRef.current) return;
+                  isAnimatingRef.current = true;
+                  setCenterIndex(total + index);
+                }}
                 aria-label={`Show ${app.title}`}
                 aria-current={activeStripIndex % total === index}
                 className={`rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
