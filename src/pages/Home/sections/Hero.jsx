@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import GoldenEggImg from '../../../assets/Golden Egg Picture.webp';
+import HeroVideo from '../../../assets/hero-video.mp4';
 import { getBrochureUrl } from '../../../data/brochureUrl';
 import { EASE_PREMIUM } from '../../../utils/motionTokens';
 
@@ -28,11 +29,15 @@ export default function Hero({ onPageChange }) {
         animate={reduceMotion ? undefined : { clipPath: 'inset(0% 0% 0% 0% round 0%)' }}
         transition={{ duration: reduceMotion ? 0.01 : 1.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <motion.img
-          src={GoldenEggImg}
-          alt="A cracked egg revealing a rich golden yolk"
-          fetchPriority="high"
-          loading="eager"
+        <motion.video
+          src={HeroVideo}
+          poster={GoldenEggImg}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
           initial={{ scale: reduceMotion ? 1 : 1.12 }}
           animate={{ scale: 1 }}
