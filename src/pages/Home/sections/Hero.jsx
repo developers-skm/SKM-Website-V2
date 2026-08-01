@@ -33,7 +33,6 @@ export default function Hero({ onPageChange }) {
           src={HeroVideo}
           poster={GoldenEggImg}
           autoPlay
-          loop
           muted
           playsInline
           preload="auto"
