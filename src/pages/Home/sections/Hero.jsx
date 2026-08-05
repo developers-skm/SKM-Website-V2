@@ -1,5 +1,4 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import GoldenEggImg from '../../../assets/Golden Egg Picture.webp';
 import HeroVideo from '../../../assets/hero-video.mp4';
 import { getBrochureUrl } from '../../../data/brochureUrl';
 import { EASE_PREMIUM } from '../../../utils/motionTokens';
@@ -31,7 +30,6 @@ export default function Hero({ onPageChange }) {
       >
         <motion.video
           src={HeroVideo}
-          poster={GoldenEggImg}
           autoPlay
           muted
           playsInline
