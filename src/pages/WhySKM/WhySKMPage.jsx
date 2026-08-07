@@ -31,7 +31,7 @@ export default function WhySKMPage({ onPageChange }) {
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
 
         {/* Hero */}
-        <div className="w-full py-[60px] lg:py-[80px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
+        <div className="w-full pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[60px] lg:pb-[80px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
           <div className="mx-auto max-w-[720px] flex flex-col items-center gap-4">
             <span className="section-label justify-center">The Rational Case</span>
             <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">

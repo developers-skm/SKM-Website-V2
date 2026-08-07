@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
+import ScrollFrameSequence from '../../components/common/ScrollFrameSequence';
 import { getBrochureUrl } from '../../data/brochureUrl';
 import { EASE_PREMIUM, DURATION, fadeUp } from '../../utils/motionTokens';
 
@@ -586,6 +587,7 @@ function LocationsSection({ onPageChange }) {
 
 export default function AboutSKMPage({ onPageChange }) {
   const reduceMotion = useReducedMotion();
+  const heroScrubRef = useRef(null);
 
   return (
     <PageWrapper
@@ -613,59 +615,79 @@ export default function AboutSKMPage({ onPageChange }) {
     >
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
 
-        {/* Section 1 — Company hero */}
-        <div className="relative w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.1 } } }}
-            className="relative mx-auto max-w-[820px] flex flex-col items-center gap-6"
-          >
-            <motion.span
-              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.45, ease: EASE_PREMIUM }}
-              className="section-label justify-center"
-            >
-              About SKM
-            </motion.span>
-            <motion.h1
-              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 20 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: EASE_PREMIUM }}
-              className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[56px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
-            >
-              Asia's Largest Integrated Egg Processing Facility Since 1996.
-            </motion.h1>
-            <motion.p
-              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM }}
-              className="font-body text-[16px] sm:text-[17px] text-surface-600 dark:text-surface-300 leading-[1.7] m-0 max-w-2xl"
-            >
-              Vision, mission, leadership, and values — everything a buyer needs to understand SKM, in one place.
-            </motion.p>
+        {/* Section 1 — Company hero. Background is a scroll-scrubbed frame
+            sequence (200 UHD frames of the facility, public/about-skm-sequence),
+            pinned via a sticky viewport inside a tall wrapper — same
+            scroll-scrub pattern as the Home hero (Home/sections/Hero.jsx). */}
+        <section ref={heroScrubRef} className="relative w-full h-[220vh]">
+          <div className="sticky top-0 h-[560px] sm:h-[620px] lg:h-[680px] w-full overflow-hidden border-b border-[#eee] dark:border-surface-800/40">
+            <ScrollFrameSequence containerRef={heroScrubRef} basePath="/about-skm-sequence" frameCount={200} />
 
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM }}
-              className="flex flex-col sm:flex-row items-center gap-4 mt-3"
-            >
-              <a
-                href={CompanyProfilePdf}
-                download
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-              >
-                Download Company Profile
-              </a>
+            {/* Left-weighted scrim — copy sits fully clear on the left,
+                right/center stays open so the globe footage still reads */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: 'linear-gradient(90deg, rgba(6,8,14,0.92) 0%, rgba(6,8,14,0.8) 32%, rgba(6,8,14,0.35) 58%, rgba(6,8,14,0.05) 78%, rgba(6,8,14,0) 100%)' }}
+            />
+            <div
+              className="absolute inset-0 sm:hidden pointer-events-none"
+              style={{ background: 'linear-gradient(180deg, rgba(6,8,14,0.55) 0%, rgba(6,8,14,0.85) 100%)' }}
+            />
 
-              <InternalLink
-                route="products"
-                onPageChange={onPageChange}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            <div className="relative z-10 w-full h-full mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-16 flex items-center text-left">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.1 } } }}
+                className="relative flex flex-col items-start gap-6 max-w-[640px]"
               >
-                Explore Our Products
-              </InternalLink>
-            </motion.div>
-          </motion.div>
-        </div>
+                <motion.span
+                  variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+                  transition={{ duration: reduceMotion ? 0.01 : 0.45, ease: EASE_PREMIUM }}
+                  className="section-label"
+                >
+                  About SKM
+                </motion.span>
+                <motion.h1
+                  variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 20 }, visible: { opacity: 1, y: 0 } }}
+                  transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: EASE_PREMIUM }}
+                  className="font-heading font-bold text-[34px] sm:text-[44px] lg:text-[52px] text-white leading-[1.12] tracking-tight m-0"
+                >
+                  Asia's Largest Integrated Egg Processing Facility Since 1996.
+                </motion.h1>
+                <motion.p
+                  variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
+                  transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM }}
+                  className="font-body text-[16px] sm:text-[17px] text-white/85 leading-[1.7] m-0"
+                >
+                  Vision, mission, leadership, and values — everything a buyer needs to understand SKM, in one place.
+                </motion.p>
+
+                <motion.div
+                  variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
+                  transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM }}
+                  className="flex flex-col sm:flex-row items-start gap-4 mt-3"
+                >
+                  <a
+                    href={CompanyProfilePdf}
+                    download
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                  >
+                    Download Company Profile
+                  </a>
+
+                  <InternalLink
+                    route="products"
+                    onPageChange={onPageChange}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-white/70 text-white hover:bg-white/10 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+                  >
+                    Explore Our Products
+                  </InternalLink>
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
 
         {/* Section 2 — Company overview */}
         <CompanyOverviewSection onPageChange={onPageChange} />

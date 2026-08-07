@@ -25,9 +25,17 @@ export default function Layout({ children, activePage, onPageChange, suppressMob
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen w-full bg-page dark:bg-surface-950 text-surface-800 dark:text-surface-100 transition-colors duration-300">
+    <div className="relative flex flex-col min-h-screen w-full bg-page dark:bg-surface-950 text-surface-800 dark:text-surface-100 transition-colors duration-300">
+      {/* Navbar's logo is `absolute` (scrolls away with the page) — this
+          wrapper is its positioning context. Its menu button is `fixed`
+          (stays put through scroll) and ignores this positioning entirely. */}
       <Navbar activePage={activePage} onPageChange={onPageChange} />
-      <main className="flex-grow w-full flex flex-col box-border pt-[76px] md:pt-[68px] pb-[76px] md:pb-0">
+      {/* No top padding here — the logo/menu float over whatever the first
+          section renders (its background must reach y=0, e.g. Hero.jsx's
+          full-bleed image). Each page's own first section is responsible
+          for reserving its own top clearance so its heading doesn't sit
+          under the logo/menu; see Hero.jsx for the homepage's version. */}
+      <main className="flex-grow w-full flex flex-col box-border pb-[76px] md:pb-0">
         {children}
       </main>
       <div ref={footerWrapperRef}>

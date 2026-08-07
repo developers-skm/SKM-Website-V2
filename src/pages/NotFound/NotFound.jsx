@@ -31,7 +31,7 @@ export default function NotFound({ onPageChange }) {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-[calc(100vh-80px)] overflow-hidden bg-page dark:bg-surface-950 px-4">
+    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden bg-page dark:bg-surface-950 px-4 pt-[100px] pb-16">
       <SEO title="Page Not Found" description="The page you're looking for doesn't exist or has been moved." noindex />
       {/* Background radial glow */}
       <div

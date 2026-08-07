@@ -74,7 +74,7 @@ export default function QualityManagementSystem() {
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
-    <div id="quality-qms" className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
+    <div id="quality-qms" className="w-full bg-page dark:bg-surface-950 pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[40px] lg:pb-[60px] overflow-hidden">
       <motion.section
         variants={containerVariants}
         initial="hidden"

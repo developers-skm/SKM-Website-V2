@@ -27,10 +27,9 @@ import { motion, useReducedMotion, useScroll, useMotionValueEvent, useTransform,
 // mobile, with instant (near-zero-duration) reveal transitions instead of
 // continuous scroll-linked motion.
 //
-// Sticky offset accounts for the site's fixed navbar (h-[68px] xl:h-[80px],
-// itself `sticky top-0 z-50` in Navbar.jsx) — the sticky panels here use
-// `top-[68px] xl:top-[80px]`, not `top-0`, so this section's sticky visual
-// never renders underneath/behind the header.
+// Navbar is a floating logo + menu button (no fixed full-width bar), so
+// the sticky panel here pins at `top-0`/full viewport height — nothing
+// fixed above it to clear.
 
 // Staggered reveal for the copy panel's children (eyebrow, heading,
 // description, stat) — each animates in individually rather than the
@@ -93,7 +92,7 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
           height (per spec: "do not force a large sticky layout on small
           screens"). */}
       <div ref={containerRef} className="hidden lg:block relative w-full" style={{ height: `${steps.length * 100}vh` }}>
-        <div className="sticky top-[68px] xl:top-[80px] h-[calc(100vh-68px)] xl:h-[calc(100vh-80px)] w-full overflow-hidden bg-page dark:bg-surface-950">
+        <div className="sticky top-0 h-screen w-full overflow-hidden bg-page dark:bg-surface-950">
           <div className="mx-auto max-w-[1680px] w-full h-full px-8 xl:px-14 flex items-stretch gap-12 xl:gap-20 py-16 xl:py-20">
 
             {/* Image — sticky large panel, the dominant element. Slight

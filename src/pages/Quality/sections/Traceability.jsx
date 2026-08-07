@@ -43,7 +43,7 @@ export default function Traceability({ onPageChange }) {
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
-    <div id="quality-traceability" className="w-full bg-page dark:bg-surface-900/40 py-[40px] lg:py-[60px] border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
+    <div id="quality-traceability" className="w-full bg-page dark:bg-surface-900/40 pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[40px] lg:pb-[60px] border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
       <motion.section
         variants={containerVariants}
         initial="hidden"

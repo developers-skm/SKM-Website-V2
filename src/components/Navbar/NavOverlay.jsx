@@ -4,8 +4,10 @@ import SKMLogo from '../../assets/LOGO/Skm-Logo-1536x332.png';
 import InternalLink from '../common/InternalLink';
 import MenuSection from './MenuSection';
 import SearchPanel from './SearchPanel';
-import { CloseIcon, SearchIcon } from './icons';
+import { CloseIcon, SearchIcon, MailIcon, PhoneIcon } from './icons';
 import { overlayColumns, utilityLinks } from './navigationData';
+
+const PHONE_NUMBER = '04242268391';
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -36,7 +38,7 @@ const listVariants = {
 // leaving the page visible below it through a semi-transparent backdrop.
 // Owns its own focus trap, Escape handling, body-scroll lock, and focus
 // restoration to the trigger button.
-export default function NavOverlay({ isOpen, onClose, activePage, onPageChange, triggerElRef, initialSearchMode, openKey }) {
+export default function NavOverlay({ isOpen, onClose, activePage, onPageChange, onContactEmail, triggerElRef, initialSearchMode, openKey }) {
   const reduceMotion = useReducedMotion();
   const overlayRef = useRef(null);
   const closeButtonRef = useRef(null);
@@ -130,6 +132,7 @@ export default function NavOverlay({ isOpen, onClose, activePage, onPageChange, 
               activePage={activePage}
               onNavigate={handleNavigate}
               onClose={onClose}
+              onContactEmail={onContactEmail}
               openMobileSection={openMobileSection}
               setOpenMobileSection={setOpenMobileSection}
               reduceMotion={reduceMotion}
@@ -152,6 +155,7 @@ function OverlayBody({
   activePage,
   onNavigate,
   onClose,
+  onContactEmail,
   openMobileSection,
   setOpenMobileSection,
   reduceMotion,
@@ -164,36 +168,12 @@ function OverlayBody({
 
   return (
     <>
-      {/* Slim top bar — logo, utility links (desktop only), search/close */}
+      {/* Slim top bar — logo, search/close. Utility links + language now
+          live in the footer strip below (see end of this component). */}
       <div className="w-full flex items-center gap-4 px-6 sm:px-10 lg:px-14 py-4 border-b border-surface-200 dark:border-surface-800 flex-shrink-0">
         <img src={SKMLogo} alt="SKM Egg Products" className="w-[120px] sm:w-[140px] h-auto object-contain flex-shrink-0" />
 
-        <nav
-          aria-label="Utility"
-          className="hidden lg:flex items-center gap-4 ml-auto overflow-x-auto"
-        >
-          {utilityLinks.map((link, index) => (
-            <Fragment key={link.label}>
-              <InternalLink
-                route={link.route}
-                onPageChange={onNavigate}
-                prefillData={link.careersIntent ? { enquiryType: 'job', intentId: crypto.randomUUID() } : undefined}
-                className="font-body text-[13px] font-semibold text-surface-600 dark:text-surface-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150 whitespace-nowrap"
-              >
-                {link.label}
-              </InternalLink>
-              {index < utilityLinks.length - 1 && (
-                <span className="w-px h-3 bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
-              )}
-            </Fragment>
-          ))}
-          <span className="w-px h-3 bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
-          <span className="font-body text-[13px] font-medium text-surface-500 dark:text-surface-400 whitespace-nowrap select-none">
-            Language · EN
-          </span>
-        </nav>
-
-        <div className="flex items-center gap-2 ml-auto lg:ml-4 flex-shrink-0">
+        <div className="flex items-center gap-2 ml-auto flex-shrink-0">
           <button
             type="button"
             onClick={() => setIsSearchMode((prev) => !prev)}
@@ -242,6 +222,55 @@ function OverlayBody({
           )}
         </AnimatePresence>
       </div>
+
+      {/* Footer strip — phone/email quick actions (formerly the vertical
+          RailNav) plus the utility links + language label (formerly the
+          TopUtilityBar), now reunited here since both bars were removed
+          in favour of this single drawer. */}
+      {!isSearchMode && (
+        <div className="flex-shrink-0 w-full border-t border-surface-200 dark:border-surface-800 px-6 sm:px-10 lg:px-14 py-4 flex flex-col sm:flex-row sm:items-center gap-4">
+          <nav aria-label="Utility" className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            {utilityLinks.map((link, index) => (
+              <Fragment key={link.label}>
+                <InternalLink
+                  route={link.route}
+                  onPageChange={onNavigate}
+                  prefillData={link.careersIntent ? { enquiryType: 'job', intentId: crypto.randomUUID() } : undefined}
+                  className="font-body text-[13px] font-semibold text-surface-600 dark:text-surface-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150 whitespace-nowrap"
+                >
+                  {link.label}
+                </InternalLink>
+                {index < utilityLinks.length - 1 && (
+                  <span className="w-px h-3 bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
+                )}
+              </Fragment>
+            ))}
+            <span className="w-px h-3 bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
+            <span className="font-body text-[13px] font-medium text-surface-500 dark:text-surface-400 whitespace-nowrap select-none">
+              Language · EN
+            </span>
+          </nav>
+
+          <div className="flex items-center gap-3 sm:ml-auto flex-shrink-0">
+            <button
+              type="button"
+              onClick={onContactEmail}
+              className="inline-flex items-center gap-2 font-body text-[13px] font-semibold text-surface-600 dark:text-surface-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
+            >
+              <MailIcon className="w-4 h-4" aria-hidden="true" />
+              Email us
+            </button>
+            <span className="w-px h-3 bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
+            <a
+              href={`tel:${PHONE_NUMBER}`}
+              className="inline-flex items-center gap-2 font-body text-[13px] font-semibold text-surface-600 dark:text-surface-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
+            >
+              <PhoneIcon className="w-4 h-4" aria-hidden="true" />
+              Call us
+            </a>
+          </div>
+        </div>
+      )}
     </>
   );
 }

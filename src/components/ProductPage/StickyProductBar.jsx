@@ -32,7 +32,7 @@ export default function StickyProductBar({ productName, tdsUrl, onRequestSample,
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: reduceMotion ? 0 : -60, opacity: 0 }}
             transition={reduceMotion ? { duration: 0.01 } : { type: 'spring', stiffness: 300, damping: 30 }}
-            className="hidden md:block fixed top-[68px] xl:top-[80px] inset-x-0 z-40 bg-white/97 dark:bg-surface-900/97 backdrop-blur-md border-b border-surface-200/70 dark:border-surface-800 shadow-[0_4px_20px_rgba(36,30,24,0.06)]"
+            className="hidden md:block fixed top-0 inset-x-0 z-40 bg-white/97 dark:bg-surface-900/97 backdrop-blur-md border-b border-surface-200/70 dark:border-surface-800 shadow-[0_4px_20px_rgba(36,30,24,0.06)]"
           >
             <div className="mx-auto max-w-[1440px] w-full px-6 lg:px-12 py-3.5 flex items-center justify-between gap-6">
               <span className="font-heading font-bold text-[16px] text-heading dark:text-white truncate">

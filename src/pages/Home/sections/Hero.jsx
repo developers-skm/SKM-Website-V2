@@ -23,7 +23,7 @@ export default function Hero({ onPageChange }) {
       ref={scrubContainerRef}
       className="relative w-full h-[250vh]"
     >
-      <div className="sticky top-0 h-[640px] sm:h-[720px] lg:h-[820px] w-full overflow-hidden flex items-center">
+      <div className="sticky top-0 h-[640px] sm:h-[720px] lg:h-[820px] w-full overflow-hidden">
         {/* Signature entrance — a soft curved (egg-inspired) mask sweeps open
             from center to reveal the hero visual, instead of a plain fade.
             Heading/CTA (below) animate on their own, independent timeline so
@@ -76,7 +76,14 @@ export default function Hero({ onPageChange }) {
           style={{ background: 'linear-gradient(180deg, rgba(20,16,10,0.5) 0%, rgba(20,16,10,0.75) 100%)' }}
         />
 
-        <div className="relative z-10 w-full mx-auto max-w-[1680px] px-6 sm:px-10 lg:px-16">
+        {/* Hero content container — left padding matches the logo's own
+            left offset (Navbar.jsx: left-5 sm:left-8 lg:left-16) so the
+            logo, headline, and everything below share one left edge. Top
+            padding is this section's own responsibility (Layout's <main>
+            reserves none, so the hero's background/image still starts at
+            y=0) — clears the logo+menu row (~60-70px tall) plus breathing
+            room before the heading. */}
+        <div className="relative z-10 w-full h-full mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-16 pt-[125px] sm:pt-[145px] lg:pt-[160px] flex items-center">
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
             animate={{ opacity: 1, y: 0 }}
