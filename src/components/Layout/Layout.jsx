@@ -27,7 +27,7 @@ export default function Layout({ children, activePage, onPageChange, suppressMob
   return (
     <div className="flex flex-col min-h-screen w-full bg-page dark:bg-surface-950 text-surface-800 dark:text-surface-100 transition-colors duration-300">
       <Navbar activePage={activePage} onPageChange={onPageChange} />
-      <main className="flex-grow w-full flex flex-col box-border pb-[76px] md:pb-0">
+      <main className="flex-grow w-full flex flex-col box-border pt-[76px] md:pt-[68px] pb-[76px] md:pb-0">
         {children}
       </main>
       <div ref={footerWrapperRef}>

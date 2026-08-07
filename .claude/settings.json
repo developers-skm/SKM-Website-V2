@@ -96,7 +96,11 @@
       "Bash(cd \"d:\\\\PROJECTS\\\\skm-website-v3 - Rework\" && sleep 2 && cat /tmp/vite_dev.log 2>/dev/null || echo \"no log\")",
       "Bash(node ./__screenshot_tmp.mjs)",
       "Bash(grep -A5 \"HomeJourney.jsx$\\\\|ProductFamilies.jsx$\\\\|Hero\\\\.jsx$\\\\|ApplicationCard\\\\.jsx$\\\\|WhyUs\\\\.jsx$\\\\|QualityCertificationProof\\\\.jsx$\\\\|FinalEnquiry\\\\.jsx$\\\\|CategoryMotif\\\\.jsx$\")",
-      "Bash(node ./__screenshot_full.mjs)"
+      "Bash(node ./__screenshot_full.mjs)",
+      "Bash(magick -version)",
+      "Bash(ffmpeg -version)",
+      "Bash(node scratch_process_frames.cjs)",
+      "Bash(find / -iname \"new for web*\" 2>/dev/null; find \"C:\\\\Users\\\\it-web1\" -iname \"*new for web*\" 2>/dev/null)"
     ],
     "additionalDirectories": [
       "\\tmp"

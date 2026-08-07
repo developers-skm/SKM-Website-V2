@@ -1,7 +1,8 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
+import ScrollFrameSequence from '../../components/common/ScrollFrameSequence';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 import products, { PRODUCT_CATEGORIES, getProductById } from '../../data/products';
 import { getBrochureUrl } from '../../data/brochureUrl';
@@ -9,11 +10,6 @@ import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 import { EASE_PREMIUM, DURATION, fadeUp } from '../../utils/motionTokens';
 
 const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
-
-// Hero background — served directly from Unsplash's CDN (photo by Shubham
-// Dhage, unsplash.com/photos/qgo7Tt_NWD0, free to use under the Unsplash
-// License) rather than bundled locally.
-const PRODUCTS_HERO_BG = 'https://images.unsplash.com/photo-1628615315488-14ec7d02daaf?q=80&w=2400&auto=format&fit=crop';
 
 // Products Hub — real, data-backed sections only. Fields with no genuine
 // per-product data anywhere in the repo (function/application tags, product
@@ -713,6 +709,7 @@ function TechnicalResourcesSection({ onPageChange }) {
 export default function ProductsHubPage({ onPageChange, prefill }) {
   const reduceMotion = useReducedMotion();
   const [compareList, setCompareList] = useState([]);
+  const heroScrubRef = useRef(null);
 
   // Mirrors Home.jsx's mount-aware scroll effect — Home's ProductFamilies
   // "Explore..." buttons navigate here with prefill.scrollTarget set to the
@@ -736,28 +733,23 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
 
         {/* Section 1 — Products hero. A premium entrance distinct from Home's
-            center-out egg mask: the photo rises into place as a single
+            center-out egg mask: the visual rises into place as a single
             unbroken image (a slow vertical reveal + gentle upward drift,
             like a blind lifting), while a thin gold line trails just above
             the image's leading edge and fades once the reveal settles.
-            No split/seam across the photo — the image itself stays whole
-            throughout. Copy keeps its own independent staggered entrance. */}
-        <div className="relative w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4 overflow-hidden">
+            The background itself is a scroll-scrubbed frame sequence (egg
+            transforming into egg powder) pinned for the scroll length of
+            the wrapper below — same mechanism as Home's Hero. Copy keeps
+            its own independent staggered entrance. */}
+        <div ref={heroScrubRef} className="relative w-full h-[180vh]">
+        <div className="sticky top-0 py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4 overflow-hidden">
           <motion.div
             className="absolute inset-0 overflow-hidden"
             initial={reduceMotion ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}
             animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
             transition={{ duration: reduceMotion ? 0.01 : 1.2, ease: EASE_PREMIUM }}
           >
-            <motion.div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${PRODUCTS_HERO_BG})` }}
-              role="img"
-              aria-label="Brown eggs on a white surface"
-              initial={{ scale: reduceMotion ? 1 : 1.08, y: reduceMotion ? 0 : 24 }}
-              animate={{ scale: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0.01 : 1.4, ease: EASE_PREMIUM }}
-            />
+            <ScrollFrameSequence containerRef={heroScrubRef} basePath="/products-sequence" frameCount={200} />
           </motion.div>
 
           <div className="absolute inset-0 bg-black/15" aria-hidden="true" />
@@ -869,6 +861,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
               </button>
             </motion.div>
           </motion.div>
+        </div>
         </div>
 
         {/* Section 2 — SKM Product Finder */}
