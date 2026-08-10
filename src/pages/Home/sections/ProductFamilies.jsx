@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
 import products, { PRODUCT_CATEGORIES, getProductById } from '../../../data/products';
 import CategoryMotif from './CategoryMotif';
+import ScrollStack, { ScrollStackItem } from '../../../components/ui/ScrollStack/ScrollStack';
 
 // Section 3 — Product Families. Three large family blocks (not the full SKU
 // grid). Every format/benefit/application/storage value below is an exact
@@ -96,31 +97,35 @@ function InfoGroup({ label, children }) {
   );
 }
 
+// Two-column product family card — left-side image, right-side content.
+// `min-width: 0` on both grid children (via `min-w-0`) is required so the
+// description text can't force the grid track wider than its column and
+// blow out the card's overall width.
 function FamilyBlock({ family, onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   if (family.comingSoon) {
     return (
-      <article className="group flex flex-col h-full rounded-[22px] overflow-hidden bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800">
-        <div className="relative w-full aspect-[4/3] overflow-hidden">
+      <article className="grid grid-cols-1 md:grid-cols-[52%_48%] lg:grid-cols-[58%_42%] w-full min-h-[420px] md:min-h-[480px] lg:h-[min(560px,68vh)] rounded-[30px] overflow-hidden isolate bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 shadow-[0_16px_44px_rgba(36,30,24,0.12)]">
+        <div className="relative min-w-0 w-full min-h-[280px] md:min-h-full overflow-hidden" style={{ aspectRatio: '16 / 10' }}>
           {family.comingSoonImage && (
             <img
               src={family.comingSoonImage}
               srcSet={`${family.comingSoonImage.replace('w=1600', 'w=800')} 800w, ${family.comingSoonImage} 1600w`}
-              sizes="(min-width: 1024px) 50vw, 100vw"
+              sizes="(min-width: 768px) 55vw, 100vw"
               alt={family.comingSoonImageAlt || ''}
               loading="lazy"
-              className={`w-full h-full object-cover ${reduceMotion ? '' : 'transition-transform duration-500 ease-out group-hover:scale-[1.04]'}`}
+              className="absolute inset-0 w-full h-full object-cover"
             />
           )}
         </div>
 
-        <div className="flex flex-col flex-1 px-7 pt-6 pb-7">
-          <h3 className="font-heading font-bold text-[24px] lg:text-[26px] text-heading dark:text-white leading-[1.2] m-0">
+        <div className="min-w-0 flex flex-col justify-center px-6 py-8 sm:px-8 md:px-9 lg:px-10 md:py-[clamp(32px,4vw,56px)]">
+          <h3 className="font-heading font-bold text-[24px] lg:text-[28px] text-heading dark:text-white leading-[1.2] m-0 mb-5">
             {family.name}
           </h3>
 
-          <p className="font-body text-[15px] lg:text-[16px] text-surface-500 dark:text-surface-400 leading-[1.55] mt-5 mb-0">
+          <p className="font-body text-[15px] lg:text-[16px] text-surface-500 dark:text-surface-400 leading-[1.55] max-w-[440px] m-0">
             Table eggs are on our roadmap. Get in touch to discuss your requirement ahead of launch.
           </p>
         </div>
@@ -133,25 +138,25 @@ function FamilyBlock({ family, onPageChange }) {
   const motifKind = family.id === 'powders' ? 'powders' : family.id === 'liquids' ? 'liquids' : family.id === 'custom' ? 'custom' : null;
 
   return (
-    <article className="group flex flex-col h-full rounded-[22px] overflow-hidden bg-[#fdfbf7] dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 transition-shadow duration-300 hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)]">
+    <article className="group grid grid-cols-1 md:grid-cols-[52%_48%] lg:grid-cols-[58%_42%] w-full min-h-[420px] md:min-h-[480px] lg:h-[min(560px,68vh)] rounded-[30px] overflow-hidden isolate bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 shadow-[0_16px_44px_rgba(36,30,24,0.12)] transition-shadow duration-300 hover:shadow-[0_20px_52px_rgba(36,30,24,0.16)]">
       {heroImage && (
-        <div className="relative w-full aspect-[4/3] overflow-hidden">
+        <div className="relative min-w-0 w-full min-h-[280px] md:min-h-full overflow-hidden" style={{ aspectRatio: '16 / 10' }}>
           <img
             src={heroImage}
             alt={familyProducts[0].title}
             loading="lazy"
-            className={`w-full h-full object-cover ${reduceMotion ? '' : 'transition-transform duration-500 ease-out group-hover:scale-[1.04]'}`}
+            className={`absolute inset-0 w-full h-full object-cover ${reduceMotion ? '' : 'transition-transform duration-500 ease-out group-hover:scale-[1.04]'}`}
           />
           {motifKind && <CategoryMotif kind={motifKind} />}
         </div>
       )}
 
-      <div className="flex flex-col flex-1 px-7 pt-6 pb-7">
-        <h3 className="font-heading font-bold text-[24px] lg:text-[26px] text-heading dark:text-white leading-[1.2] m-0">
+      <div className="min-w-0 flex flex-col justify-center overflow-hidden px-6 py-8 sm:px-8 md:px-9 lg:px-10 md:py-[clamp(32px,4vw,56px)]">
+        <h3 className="font-heading font-bold text-[24px] lg:text-[28px] text-heading dark:text-white leading-[1.2] m-0 mb-5">
           {family.name}
         </h3>
 
-        <dl className="flex flex-col gap-4 mt-5">
+        <dl className="flex flex-col gap-4 max-w-[440px]">
           {family.format && (
             <InfoGroup label="Product format">
               {family.format.join(' · ')}
@@ -179,16 +184,16 @@ function FamilyBlock({ family, onPageChange }) {
           )}
         </dl>
 
-        <div className="mt-auto pt-6">
+        <div className="mt-8">
           <InternalLink
             route={family.categoryRoute}
             onPageChange={onPageChange}
-            className="group inline-flex items-center gap-2 font-body font-semibold text-[15px] lg:text-[16px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
+            className="group/link inline-flex items-center gap-2 font-body font-semibold text-[15px] lg:text-[16px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
           >
             {family.ctaLabel}
             <svg
               width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
-              className="group-hover:translate-x-0.5 transition-transform duration-200"
+              className="group-hover/link:translate-x-0.5 transition-transform duration-200"
               aria-hidden
             >
               <path d="M5 12h14M13 6l6 6-6 6" />
@@ -198,6 +203,33 @@ function FamilyBlock({ family, onPageChange }) {
       </div>
     </article>
   );
+}
+
+// Sticky top offset for the first card, and the per-card increment that
+// produces the "stacked edge" reveal (each earlier card peeks out by this
+// many px above the current one). Navbar here is a floating logo/menu
+// button (see Navbar.jsx — absolute/fixed top-5..top-9, not a full-width
+// fixed bar), so a modest top clears it comfortably; this matches the
+// section's own existing scroll-mt-[100px] anchor offset. Smaller on
+// mobile since cards are shorter there and a large top offset would eat
+// too much of the (already-shorter) card's visible height.
+const STACK_TOP_PX = { base: 88, md: 110 };
+const STACK_EDGE_STEP_PX = { base: 10, md: 14 };
+
+// Gap (as plain margin-bottom, normal flow) between one sticky card and
+// the point where the next one starts covering it. Also — critically —
+// this is what makes the LAST card release: its own margin-bottom pushes
+// the section's closing padding (and therefore the next section) below
+// the viewport for long enough that the card scrolls out of its sticky
+// position before anything after it can appear. No scroll-math height
+// formula, no vh calculation — just normal box-model flow.
+const STACK_CARD_GAP_PX = { base: 56, md: 96 };
+
+// Builds a `clamp()` that linearly interpolates between `base` (at a
+// 375px-wide viewport) and `md` (at 768px+) — a plain CSS-native
+// responsive value, no JS resize listener/media-query state needed.
+function responsiveStackPx({ base, md }) {
+  return `clamp(${base}px, ${base}px + (${md} - ${base}) * ((100vw - 375px) / (768 - 375)), ${md}px)`;
 }
 
 export default function ProductFamilies({ onPageChange }) {
@@ -220,20 +252,26 @@ export default function ProductFamilies({ onPageChange }) {
           Product families
         </motion.h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 xl:gap-7">
-          {families.map((family, i) => (
-            <motion.div
-              key={family.id}
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="h-full"
-            >
-              <FamilyBlock family={family} onPageChange={onPageChange} />
-            </motion.div>
-          ))}
-        </div>
+        {reduceMotion ? (
+          <div className="mx-auto w-full flex flex-col gap-8" style={{ maxWidth: 'min(1180px, calc(100vw - 80px))' }}>
+            {families.map((family) => (
+              <FamilyBlock key={family.id} family={family} onPageChange={onPageChange} />
+            ))}
+          </div>
+        ) : (
+          <ScrollStack className="mx-auto" style={{ maxWidth: 'min(1180px, calc(100vw - 80px))' }}>
+            {families.map((family, index) => (
+              <ScrollStackItem
+                key={family.id}
+                index={index}
+                topOffset={`calc(${responsiveStackPx(STACK_TOP_PX)} + ${index} * ${responsiveStackPx(STACK_EDGE_STEP_PX)})`}
+                bottomSpacing={responsiveStackPx(STACK_CARD_GAP_PX)}
+              >
+                <FamilyBlock family={family} onPageChange={onPageChange} />
+              </ScrollStackItem>
+            ))}
+          </ScrollStack>
+        )}
       </div>
     </div>
   );
