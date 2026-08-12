@@ -74,9 +74,6 @@ function DesktopSticky() {
                 </motion.div>
               </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
-              <span className="absolute top-6 left-6 font-heading font-black text-[16px] text-white bg-brand-600 w-11 h-11 rounded-full flex items-center justify-center z-10">
-                {active.step}
-              </span>
               <div className="absolute top-6 right-6 bottom-6 w-[3px] rounded-full bg-white/25 z-10" aria-hidden="true">
                 <motion.div className="w-full rounded-full bg-white origin-top" style={{ scaleY: stepProgress }} />
               </div>
@@ -142,10 +139,6 @@ function StackedTimeline({ reduceMotion }) {
           {...fadeUp(reduceMotion, { delay: 0 })}
           className={`flex gap-4 py-8 ${i !== journeyStages.length - 1 ? 'border-b border-surface-200/70 dark:border-surface-800' : ''}`}
         >
-          <div className="flex flex-col items-center flex-shrink-0 w-8">
-            <span className="font-heading font-bold text-[13px] text-brand-600 dark:text-brand-400 tabular-nums">{stage.step}</span>
-            {i !== journeyStages.length - 1 && <div className="w-px bg-surface-200 dark:bg-surface-800 flex-1 mt-3" />}
-          </div>
           <div className="flex-1 flex flex-col gap-4">
             <div className="relative rounded-[8px] overflow-hidden aspect-[4/3]">
               <SafeImage src={stage.image} alt={stage.label} loading="lazy" className="w-full h-full object-cover" />

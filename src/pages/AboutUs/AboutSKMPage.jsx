@@ -152,9 +152,13 @@ const JOURNEY_MILESTONES = [
   { year: '2016', label: 'Best 5S Practice Award', desc: 'Awarded by M/S ABK-AOTS.' },
 ];
 
+// Click-to-select tab timeline: a row of year pills sits on a connecting
+// rail whose fill tracks the selected index; clicking a pill swaps the
+// detail card below via crossfade. No scroll-driving — simple and reliable.
 function CompanyJourneySection({ onPageChange }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const reduceMotion = useReducedMotion();
+  const total = JOURNEY_MILESTONES.length;
   const milestone = JOURNEY_MILESTONES[selectedIndex];
 
   return (
@@ -165,11 +169,22 @@ function CompanyJourneySection({ onPageChange }) {
           <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
             Company journey
           </h2>
+          <p className="font-body text-[15px] text-surface-500 dark:text-surface-400 leading-[1.7] m-0">
+            From our founding in 1996 to a decade of national manufacturing and export honors.
+          </p>
         </div>
 
-        <div className="relative">
-          <div className="absolute left-0 right-0 top-[19px] h-px bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
-          <div role="tablist" aria-label="Company journey milestones" className="relative grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-x-2 gap-y-6">
+        <div className="relative pt-[7px]">
+          <div className="absolute left-0 right-0 top-[22px] h-[3px] rounded-full bg-surface-200 dark:bg-surface-800" aria-hidden="true" />
+          <motion.div
+            className="absolute left-0 top-[22px] h-[3px] rounded-full bg-brand-600 origin-left"
+            initial={false}
+            animate={{ width: `${(selectedIndex / (total - 1)) * 100}%` }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.45, ease: EASE_PREMIUM }}
+            aria-hidden="true"
+          />
+
+          <div role="tablist" aria-label="Company journey milestones" className="relative grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-x-2 gap-y-8">
             {JOURNEY_MILESTONES.map((m, i) => {
               const isSelected = i === selectedIndex;
               const isPassed = i < selectedIndex;
@@ -179,21 +194,28 @@ function CompanyJourneySection({ onPageChange }) {
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => setSelectedIndex(i)}
-                  className="group flex flex-col items-center gap-2 bg-transparent border-none p-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-lg"
+                  className="group flex flex-col items-center gap-3 bg-transparent border-none p-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-lg"
                 >
                   <motion.span
-                    animate={{ scale: isSelected && !reduceMotion ? 1.08 : 1 }}
+                    animate={{ scale: isSelected && !reduceMotion ? 1.12 : 1 }}
                     transition={{ duration: 0.25, ease: EASE_PREMIUM }}
-                    className={`relative z-10 w-[38px] h-[38px] rounded-full flex items-center justify-center font-heading font-bold text-[10px] border transition-colors duration-200 ${
+                    className={`relative z-10 w-[42px] h-[42px] rounded-full flex items-center justify-center font-heading font-bold text-[10.5px] border-2 transition-colors duration-200 ${
                       isSelected
-                        ? 'bg-brand-600 border-brand-600 text-white'
+                        ? 'bg-brand-600 border-brand-600 text-white ring-4 ring-brand-600/20'
                         : isPassed
-                          ? 'bg-brand-600/10 border-brand-600/40 text-surface-600 dark:text-surface-300'
-                          : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-500 dark:text-surface-400 group-hover:border-brand-600/50'
+                          ? 'bg-brand-600 border-brand-600 text-white'
+                          : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-500 dark:text-surface-400 group-hover:border-brand-600/60'
                     }`}
                   >
                     {m.year.slice(0, 4)}
                   </motion.span>
+                  <span
+                    className={`font-body text-[11px] font-semibold uppercase tracking-wide transition-colors duration-200 hidden sm:block text-center leading-tight max-w-[90px] ${
+                      isSelected ? 'text-brand-600 dark:text-brand-400' : 'text-surface-400 dark:text-surface-600'
+                    }`}
+                  >
+                    {m.label}
+                  </span>
                 </button>
               );
             })}
@@ -207,11 +229,17 @@ function CompanyJourneySection({ onPageChange }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduceMotion ? 0.01 : 0.4, ease: EASE_PREMIUM }}
-            className="rounded-[20px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 p-7 sm:p-9 flex flex-col gap-3"
+            className="relative rounded-[20px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 p-7 sm:p-9 flex flex-col gap-3 overflow-hidden"
           >
-            <span className="font-heading font-black text-[28px] text-brand-600 dark:text-brand-400 leading-none">{milestone.year}</span>
+            <span aria-hidden="true" className="absolute top-0 left-7 sm:left-9 right-7 sm:right-9 h-[2px] bg-brand-600" />
+            <div className="flex items-center justify-between gap-4">
+              <span className="font-heading font-black text-[28px] sm:text-[32px] text-brand-600 dark:text-brand-400 leading-none tabular-nums">{milestone.year}</span>
+              <span className="font-body text-[12px] font-semibold text-surface-400 dark:text-surface-500 tabular-nums flex-shrink-0">
+                {String(selectedIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+              </span>
+            </div>
             <h3 className="font-heading font-bold text-[20px] text-heading dark:text-white m-0">{milestone.label}</h3>
-            <p className="font-body text-[15px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">{milestone.desc}</p>
+            <p className="font-body text-[15px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0 max-w-[60ch]">{milestone.desc}</p>
           </motion.div>
         </AnimatePresence>
 

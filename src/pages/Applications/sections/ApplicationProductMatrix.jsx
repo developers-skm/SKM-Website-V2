@@ -45,7 +45,10 @@ export default function ApplicationProductMatrix({ onPageChange }) {
           </h2>
         </motion.div>
 
-        <div className="overflow-x-auto rounded-[24px] border border-surface-200/60 dark:border-surface-800">
+        <motion.div
+          {...fadeUp(reduceMotion, { delay: 0.1, distance: 24 })}
+          className="overflow-x-auto rounded-[24px] border border-surface-200/60 dark:border-surface-800"
+        >
           <table className="w-full border-collapse min-w-[720px]">
             <thead>
               <tr className="bg-[#fbf7f1] dark:bg-surface-900 border-b border-surface-200/70 dark:border-surface-800">
@@ -108,7 +111,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
               ))}
             </tbody>
           </table>
-        </div>
+        </motion.div>
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
           <AnimatePresence>
@@ -146,7 +149,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
 
         <button
           onClick={() => onPageChange('brochure')}
-          className="self-start inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-8 py-[17px] rounded-[200px] transition-all duration-200 shadow-[0_8px_24px_rgba(228,10,24,0.22)] hover:shadow-[0_10px_30px_rgba(228,10,24,0.32)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+          className="self-start inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-8 py-[17px] rounded-[200px] transition-all duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] shadow-[0_8px_24px_rgba(228,10,24,0.22)] hover:shadow-[0_10px_30px_rgba(228,10,24,0.32)] hover:-translate-y-0.5 active:scale-[0.98] active:translate-y-0 cursor-pointer"
         >
           Download Application Guide
         </button>

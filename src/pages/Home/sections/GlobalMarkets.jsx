@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
-import HomeExportMap from './HomeExportMap';
+import ExportMarketsMap from '../../../components/GlobalMap/ExportMarketsMap';
 import exportMarkets from '../../../data/exportMarkets';
 import marketsByRegion from '../../../data/exportMarketRegions';
 import useCountUp from '../../../utils/useCountUp';
@@ -77,10 +77,8 @@ export default function GlobalMarkets({ onPageChange }) {
             </div>
           </motion.div>
 
-          {/* Map — large, no card framing, allowed to bleed slightly toward
-              the typography block so the two read as one composition. */}
-          <div className="lg:col-span-8 lg:-ml-8 xl:-ml-16">
-            <HomeExportMap />
+          <div className="lg:col-span-8">
+            <ExportMarketsMap />
           </div>
         </div>
 

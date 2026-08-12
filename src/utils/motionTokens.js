@@ -43,6 +43,23 @@ export function fadeUp(reduceMotion, { distance = 20, duration = DURATION.sectio
   };
 }
 
+// Card-grid entrance — heading-then-cards composition. Distance/scale scale
+// down on mobile automatically via the `mobile` flag callers pass based on
+// their own breakpoint state, or callers can just use the desktop values
+// (they still read fine at small sizes, just slightly more pronounced).
+export function cardRise(reduceMotion, { index = 0, distance = 34, stagger = 0.08, delay = 0.15, duration = 0.8 } = {}) {
+  return {
+    initial: { opacity: 0, y: reduceMotion ? 0 : distance, scale: reduceMotion ? 1 : 0.975 },
+    whileInView: { opacity: 1, y: 0, scale: 1 },
+    viewport: { once: true, margin: '-80px' },
+    transition: {
+      duration: reduceMotion ? 0.01 : duration,
+      ease: EASE_PREMIUM,
+      delay: reduceMotion ? 0 : delay + index * stagger,
+    },
+  };
+}
+
 // Masked image reveal — clip-path wipes open (bottom-to-top by default)
 // while the image itself scales down from a slight zoom to rest. Pass
 // `from` to change wipe direction ('bottom' | 'left' | 'right' | 'top').

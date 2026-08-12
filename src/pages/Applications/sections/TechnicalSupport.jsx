@@ -67,7 +67,7 @@ export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial 
           {stages.map((stage) => (
             <div
               key={stage.step}
-              className="group relative flex flex-col gap-3 rounded-[20px] bg-white dark:bg-surface-900/60 border border-surface-200/70 dark:border-surface-800 px-6 py-7 shadow-[0_4px_18px_rgba(36,30,24,0.06)] hover:shadow-[0_14px_34px_rgba(36,30,24,0.12)] hover:-translate-y-1 transition-all duration-300"
+              className="group relative flex flex-col gap-3 rounded-[20px] bg-white dark:bg-surface-900/60 border border-surface-200/70 dark:border-surface-800 px-6 py-7 shadow-[0_4px_18px_rgba(36,30,24,0.06)] hover:shadow-[0_16px_38px_rgba(36,30,24,0.13)] hover:-translate-y-[6px] transition-all duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
               <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 text-white font-mono text-[12.5px] font-bold shadow-[0_6px_16px_rgba(228,10,24,0.3)] group-hover:scale-105 transition-transform duration-300">
                 {stage.step}
@@ -85,13 +85,13 @@ export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial 
         <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
           <button
             onClick={onDiscussFormulation}
-            className="inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13.5px] uppercase tracking-[0.05em] leading-none px-8 py-[18px] rounded-[200px] transition-all duration-200 shadow-[0_8px_24px_rgba(228,10,24,0.28)] hover:shadow-[0_12px_32px_rgba(228,10,24,0.4)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            className="inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13.5px] uppercase tracking-[0.05em] leading-none px-8 py-[18px] rounded-[200px] transition-all duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] shadow-[0_8px_24px_rgba(228,10,24,0.28)] hover:shadow-[0_12px_32px_rgba(228,10,24,0.4)] hover:-translate-y-0.5 active:scale-[0.98] active:translate-y-0 cursor-pointer"
           >
             Discuss Your Formulation
           </button>
           <button
             onClick={onRequestTrial}
-            className="font-body font-semibold text-[14px] text-brand-600 dark:text-brand-400 hover:text-[#a80000] dark:hover:text-brand-300 underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
+            className="font-body font-semibold text-[14px] text-brand-600 dark:text-brand-400 hover:text-[#a80000] dark:hover:text-brand-300 underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0 active:scale-[0.98] transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
           >
             Request Trial Sample
           </button>
