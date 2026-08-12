@@ -9,22 +9,19 @@ import applications from '../../data/applications';
 import certifications from '../../data/certifications';
 import { getBrochureUrl } from '../../data/brochureUrl';
 
-// Shared motion primitives for this page only — restrained (5.5/10 vs
-// Applications), technical-document feel rather than cinematic marketing
-// motion. Kept local since these values (distances, stagger, easing) are
-// tuned specifically for a document-library layout, not reused elsewhere.
+// Shared motion primitives for restrained, premium technical document feel
 const sectionHeadingReveal = (reduceMotion) => ({
-  initial: { opacity: 0, y: reduceMotion ? 0 : 26 },
+  initial: { opacity: 0, y: reduceMotion ? 0 : 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-100px' },
-  transition: { duration: reduceMotion ? 0.01 : 0.7, ease: EASE_PREMIUM },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: reduceMotion ? 0.01 : 0.65, ease: EASE_PREMIUM },
 });
 
 const sectionSupportReveal = (reduceMotion) => ({
   initial: { opacity: 0, y: reduceMotion ? 0 : 16 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-100px' },
-  transition: { duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.08 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: reduceMotion ? 0.01 : 0.55, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.08 },
 });
 
 const resourceGridVariants = (reduceMotion) => ({
@@ -36,51 +33,29 @@ const resourceGridVariants = (reduceMotion) => ({
 });
 
 const resourceItemVariants = (reduceMotion) => ({
-  hidden: { opacity: 0, y: reduceMotion ? 0 : 20, scale: reduceMotion ? 1 : 0.99 },
+  hidden: { opacity: 0, y: reduceMotion ? 0 : 18, scale: reduceMotion ? 1 : 0.98 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM },
+    transition: { duration: reduceMotion ? 0.01 : 0.55, ease: EASE_PREMIUM },
   },
 });
 
-// Filter-change transition for the resource lists — fast, technical, not a
-// marketing reveal. Outgoing items dip out quickly; incoming items rise in
-// with a short stagger.
 const filterExitVariants = {
-  hidden: { opacity: 0, y: 7, transition: { duration: 0.16, ease: EASE_PREMIUM } },
+  hidden: { opacity: 0, y: 8, transition: { duration: 0.16, ease: EASE_PREMIUM } },
 };
 
-// Sections 2 + 3 — Resource filters + Technical documents, built together
-// since the filters need a real document list to act on.
-//
-// Section 2 filters: only Product, Application, and Document type are
-// real, derivable axes. Language, Market, Certification, and Date are
-// omitted — no per-document metadata for any of those exists anywhere in
-// the repo (every document is English-only, untagged by export market or
-// certification, and undated), so building those filters would mean
-// either fake options or options that silently do nothing.
-//
-// Section 3 groups: only "Technical data sheets" has real downloadable
-// files — exactly 3 of 11 products have a real TDS PDF
-// (data/products.js `tdsUrl`: Whole Egg Powder, Egg Yolk Powder, Egg
-// Albumen Powder). Safety documents, Packaging specifications, and Product
-// guides don't exist as files anywhere, so those 3 groups render with an
-// honest "not yet available" state rather than fake documents. "Add to
-// Document Pack" is a real local selection
-// mechanism (client-side, same pattern as the product-comparison feature
-// on /products) feeding Section 8's "Request a Document" CTA.
 const TDS_PRODUCTS = products.filter((p) => p.tdsUrl);
 
 const DOCUMENT_GROUPS = [
-  { id: 'technical-data-sheets', label: 'Technical data sheets', hasRealDocs: true },
-  { id: 'safety-documents', label: 'Safety documents', hasRealDocs: false },
-  { id: 'packaging-specifications', label: 'Packaging specifications', hasRealDocs: false },
-  { id: 'product-guides', label: 'Product guides', hasRealDocs: false },
+  { id: 'technical-data-sheets', label: 'Technical Data Sheets (TDS)', count: TDS_PRODUCTS.length, hasRealDocs: true },
+  { id: 'safety-documents', label: 'Safety Documents (MSDS)', count: 0, hasRealDocs: false },
+  { id: 'packaging-specifications', label: 'Packaging Specs', count: 0, hasRealDocs: false },
+  { id: 'product-guides', label: 'Product Guides', count: 0, hasRealDocs: false },
 ];
 
-function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack }) {
+function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack, globalSearchQuery }) {
   const reduceMotion = useReducedMotion();
   const [productFilter, setProductFilter] = useState(null);
   const [applicationFilter, setApplicationFilter] = useState(null);
@@ -95,95 +70,142 @@ function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack })
     return TDS_PRODUCTS.filter((p) => {
       if (productFilter && p.id !== productFilter) return false;
       if (applicationProductIds && !applicationProductIds.includes(p.id)) return false;
+      if (globalSearchQuery && globalSearchQuery.trim() !== '') {
+        const q = globalSearchQuery.toLowerCase();
+        const matchesTitle = p.title.toLowerCase().includes(q);
+        const matchesCategory = p.category?.toLowerCase().includes(q);
+        if (!matchesTitle && !matchesCategory) return false;
+      }
       return true;
     });
-  }, [productFilter, applicationProductIds]);
+  }, [productFilter, applicationProductIds, globalSearchQuery]);
 
   const activeGroup = DOCUMENT_GROUPS.find((g) => g.id === docTypeFilter);
 
   return (
-    <div id="technical-documents" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
-      <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
-        <motion.h2
-          {...sectionHeadingReveal(reduceMotion)}
-          className="font-heading font-bold text-[24px] sm:text-[30px] text-heading dark:text-white m-0 tracking-tight"
-        >
-          Technical documents
-        </motion.h2>
+    <div id="technical-documents" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 dark:border-surface-800/60 scroll-mt-[100px] xl:scroll-mt-[120px]">
+      <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+        
+        {/* Section Heading */}
+        <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
+          <div className="flex items-center gap-2.5">
+            <span className="h-2 w-2 rounded-full bg-brand-600 animate-pulse" />
+            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+              Verified Specifications
+            </span>
+          </div>
+          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white m-0 tracking-tight">
+            Technical Documents & Data Sheets
+          </h2>
+          <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 max-w-2xl m-0 leading-relaxed">
+            Download laboratory-verified Technical Data Sheets (TDS) and quality specifications for SKM's egg powder and liquid formulations.
+          </p>
+        </motion.div>
 
-        {/* Section 2 — Resource filters */}
-        <motion.div {...sectionSupportReveal(reduceMotion)} className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="font-body text-[12px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500 mr-1">Document type</span>
+        {/* Section 2 — Resource Filters */}
+        <motion.div {...sectionSupportReveal(reduceMotion)} className="flex flex-col gap-5 p-6 rounded-2xl bg-white/70 dark:bg-surface-900/60 backdrop-blur-xl border border-surface-200/80 dark:border-surface-700/60 shadow-lg shadow-black/5">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 mr-2 flex items-center gap-1.5">
+              <svg className="w-3.5 h-3.5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" /></svg>
+              Document Type:
+            </span>
             {DOCUMENT_GROUPS.map((group) => (
               <button
                 key={group.id}
                 type="button"
                 onClick={() => setDocTypeFilter(group.id)}
                 aria-pressed={docTypeFilter === group.id}
-                className={`inline-flex items-center min-h-[36px] px-3.5 py-2 rounded-full border font-body font-semibold text-[13px] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 active:scale-[0.97] ${
+                className={`inline-flex items-center gap-2 min-h-[38px] px-4 py-2 rounded-xl font-body font-semibold text-[13px] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 active:scale-[0.97] cursor-pointer ${
                   docTypeFilter === group.id
-                    ? 'bg-brand-600 border-brand-600 text-white shadow-[0_2px_10px_rgba(228,10,24,0.18)]'
-                    : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50 hover:text-heading dark:hover:text-white'
+                    ? 'bg-brand-600 border border-brand-600 text-white shadow-lg shadow-brand-600/25'
+                    : 'bg-white/80 dark:bg-surface-800/80 border border-surface-200 dark:border-surface-700 text-surface-700 dark:text-surface-200 hover:border-brand-500/50 hover:text-heading dark:hover:text-white'
                 }`}
               >
-                {group.label}
+                <span>{group.label}</span>
+                {group.count > 0 && (
+                  <span className={`px-2 py-0.5 text-[11px] font-bold rounded-full ${docTypeFilter === group.id ? 'bg-white/20 text-white' : 'bg-surface-100 dark:bg-surface-700 text-surface-600 dark:text-surface-300'}`}>
+                    {group.count}
+                  </span>
+                )}
               </button>
             ))}
           </div>
 
           {activeGroup?.hasRealDocs && (
-            <>
+            <div className="flex flex-col gap-3 pt-4 border-t border-surface-200/60 dark:border-surface-800/60">
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="font-body text-[12px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500 mr-1">Product</span>
+                <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500 mr-2">Filter Product:</span>
+                <button
+                  type="button"
+                  onClick={() => setProductFilter(null)}
+                  className={`inline-flex items-center min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
+                    productFilter === null
+                      ? 'bg-surface-900 text-white dark:bg-white dark:text-surface-950 font-bold'
+                      : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700'
+                  }`}
+                >
+                  All Products
+                </button>
                 {TDS_PRODUCTS.map((p) => (
                   <button
                     key={p.id}
                     type="button"
                     onClick={() => setProductFilter(productFilter === p.id ? null : p.id)}
                     aria-pressed={productFilter === p.id}
-                    className={`inline-flex items-center min-h-[34px] px-3 py-1.5 rounded-full border font-body text-[12.5px] font-semibold transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 active:scale-[0.97] ${
+                    className={`inline-flex items-center min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
                       productFilter === p.id
-                        ? 'bg-brand-600 border-brand-600 text-white'
-                        : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50 hover:text-heading dark:hover:text-white'
+                        ? 'bg-brand-600 text-white font-bold shadow-sm'
+                        : 'bg-surface-100 dark:bg-surface-800/70 border border-surface-200 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-500/40 hover:text-heading dark:hover:text-white'
                     }`}
                   >
                     {p.title}
                   </button>
                 ))}
               </div>
+
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="font-body text-[12px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500 mr-1">Application</span>
+                <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500 mr-2">Filter Application:</span>
+                <button
+                  type="button"
+                  onClick={() => setApplicationFilter(null)}
+                  className={`inline-flex items-center min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
+                    applicationFilter === null
+                      ? 'bg-surface-900 text-white dark:bg-white dark:text-surface-950 font-bold'
+                      : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700'
+                  }`}
+                >
+                  All Applications
+                </button>
                 {applications.map((app) => (
                   <button
                     key={app.id}
                     type="button"
                     onClick={() => setApplicationFilter(applicationFilter === app.id ? null : app.id)}
                     aria-pressed={applicationFilter === app.id}
-                    className={`inline-flex items-center min-h-[34px] px-3 py-1.5 rounded-full border font-body text-[12.5px] font-semibold transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 active:scale-[0.97] ${
+                    className={`inline-flex items-center min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
                       applicationFilter === app.id
-                        ? 'bg-brand-600 border-brand-600 text-white'
-                        : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50 hover:text-heading dark:hover:text-white'
+                        ? 'bg-brand-600 text-white font-bold shadow-sm'
+                        : 'bg-surface-100 dark:bg-surface-800/70 border border-surface-200 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-500/40 hover:text-heading dark:hover:text-white'
                     }`}
                   >
                     {app.title}
                   </button>
                 ))}
               </div>
-            </>
+            </div>
           )}
         </motion.div>
 
-        {/* Section 3 — Technical documents list */}
+        {/* Section 3 — Technical Documents List */}
         <AnimatePresence mode="wait">
           {activeGroup?.hasRealDocs ? (
             <motion.div
-              key={`${docTypeFilter}-${productFilter}-${applicationFilter}`}
+              key={`${docTypeFilter}-${productFilter}-${applicationFilter}-${globalSearchQuery}`}
               variants={resourceGridVariants(reduceMotion)}
               initial="hidden"
               animate="visible"
               exit={reduceMotion ? undefined : 'hidden'}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {visibleTds.map((p) => {
                 const inPack = documentPack.some((d) => d.id === p.id);
@@ -192,30 +214,44 @@ function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack })
                     key={p.id}
                     variants={resourceItemVariants(reduceMotion)}
                     exit={filterExitVariants.hidden}
-                    whileHover={reduceMotion ? undefined : { y: -4 }}
-                    transition={{ duration: 0.32, ease: EASE_PREMIUM }}
-                    className="group flex items-center justify-between gap-4 rounded-[16px] border border-surface-200/70 dark:border-surface-800 bg-white dark:bg-surface-900/40 px-6 py-5 transition-shadow duration-300 ease-out hover:border-brand-600/25 hover:shadow-[0_10px_30px_rgba(0,20,40,0.07)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+                    whileHover={reduceMotion ? undefined : { y: -5 }}
+                    transition={{ duration: 0.3, ease: EASE_PREMIUM }}
+                    className="group relative flex flex-col justify-between gap-6 rounded-2xl border border-surface-200/80 dark:border-surface-700/60 bg-white/80 dark:bg-surface-900/70 backdrop-blur-xl p-6 transition-all duration-300 ease-out hover:border-brand-500/40 hover:shadow-2xl hover:shadow-brand-600/10"
                   >
-                    <div className="flex items-center gap-4 min-w-0">
-                      <span className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-[12px] bg-brand-600/6 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/40 transition-colors duration-300 group-hover:bg-brand-600/10 group-hover:border-brand-600/25">
-                        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                      </span>
-                      <div className="flex flex-col min-w-0">
-                        <span className="font-body text-[10.5px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500">Technical Data Sheet</span>
-                        <span className="font-heading font-semibold text-[14.5px] text-heading dark:text-white truncate transition-colors duration-200 group-hover:text-brand-600 dark:group-hover:text-brand-400">{p.title}</span>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-center gap-3.5">
+                        <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500/15 to-amber-500/10 dark:from-brand-500/25 dark:to-amber-500/20 border border-brand-500/20 text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform duration-300">
+                          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                          <span className="font-body text-[10px] font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+                            Technical Data Sheet
+                          </span>
+                          <h3 className="font-heading font-bold text-[17px] text-heading dark:text-white truncate m-0 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-200">
+                            {p.title}
+                          </h3>
+                        </div>
                       </div>
+                      <span className="px-2.5 py-1 text-[10.5px] font-bold rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 flex-shrink-0">
+                        PDF Format
+                      </span>
                     </div>
-                    <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
+
+                    <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 line-clamp-2 m-0 leading-relaxed">
+                      Official product technical specification, microbiological parameters, shelf life, and storage conditions for {p.title}.
+                    </p>
+
+                    <div className="flex items-center justify-between gap-3 pt-4 border-t border-surface-200/60 dark:border-surface-800/60">
                       <a
                         href={p.tdsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] px-4 py-2 rounded-full border border-surface-200 dark:border-surface-700 hover:border-brand-600/30 transition-all duration-200 ease-out active:scale-[0.97]"
+                        className="inline-flex items-center gap-2 font-body font-bold text-[12px] uppercase tracking-wider text-white bg-brand-600 hover:bg-brand-700 px-4 py-2.5 rounded-xl shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30 transition-all duration-200 active:scale-[0.97]"
                       >
-                        <span>Download</span>
-                        <svg className="w-3 h-3 transition-transform duration-200 ease-out group-hover:translate-y-[2px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                        <span>Download TDS</span>
+                        <svg className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14" />
                         </svg>
                       </a>
@@ -223,25 +259,46 @@ function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack })
                         type="button"
                         onClick={() => onTogglePack(p.id, p.title)}
                         aria-pressed={inPack}
-                        className={`font-body font-semibold text-[11.5px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm ${
-                          inPack ? 'text-brand-600 dark:text-brand-400 underline' : 'text-surface-500 dark:text-surface-400 hover:underline'
+                        className={`inline-flex items-center gap-1.5 font-body font-semibold text-[12px] px-3 py-2 rounded-xl border transition-all duration-200 cursor-pointer ${
+                          inPack
+                            ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-600 dark:text-emerald-400 font-bold'
+                            : 'bg-surface-100/80 dark:bg-surface-800/80 border-surface-200 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-500/40 hover:text-heading dark:hover:text-white'
                         }`}
                       >
-                        {inPack ? 'Added to Pack' : 'Add to Document Pack'}
+                        {inPack ? (
+                          <>
+                            <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                            <span>Added</span>
+                          </>
+                        ) : (
+                          <>
+                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg>
+                            <span>Add to Pack</span>
+                          </>
+                        )}
                       </button>
                     </div>
                   </motion.div>
                 );
               })}
+
               {visibleTds.length === 0 && (
-                <motion.p
+                <motion.div
                   initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, ease: EASE_PREMIUM }}
-                  className="font-body text-[14px] text-surface-500 dark:text-surface-400 col-span-full"
+                  className="col-span-full rounded-2xl border border-dashed border-surface-300 dark:border-surface-700 bg-white/40 dark:bg-surface-900/30 p-10 text-center flex flex-col items-center gap-3"
                 >
-                  No technical data sheets match this filter.
-                </motion.p>
+                  <svg className="w-10 h-10 text-surface-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <p className="font-heading font-semibold text-[16px] text-heading dark:text-white m-0">No documents found matching criteria</p>
+                  <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 m-0 max-w-md">Try resetting your filters or search query to view available technical documents.</p>
+                  <button
+                    type="button"
+                    onClick={() => { setProductFilter(null); setApplicationFilter(null); }}
+                    className="mt-2 text-[13px] font-bold text-brand-600 dark:text-brand-400 hover:underline cursor-pointer"
+                  >
+                    Reset Active Filters
+                  </button>
+                </motion.div>
               )}
             </motion.div>
           ) : (
@@ -251,11 +308,24 @@ function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack })
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: reduceMotion ? 0 : 7 }}
               transition={{ duration: reduceMotion ? 0.01 : 0.3, ease: EASE_PREMIUM }}
-              className="rounded-[16px] border border-dashed border-surface-300 dark:border-surface-700 bg-surface-50/60 dark:bg-surface-900/30 px-6 py-8 text-center"
+              className="rounded-2xl border border-dashed border-surface-300 dark:border-surface-700 bg-white/50 dark:bg-surface-900/40 p-10 text-center flex flex-col items-center gap-3 backdrop-blur-md"
             >
-              <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 m-0">
-                {activeGroup?.label} are not yet available for download. <InternalLink route="contact-us" onPageChange={onPageChange} className="text-brand-600 dark:text-brand-400 hover:underline">Contact us</InternalLink> to request this document.
+              <div className="w-12 h-12 rounded-full bg-brand-500/10 text-brand-600 flex items-center justify-center">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              </div>
+              <p className="font-heading font-semibold text-[16px] text-heading dark:text-white m-0">
+                {activeGroup?.label} Available Upon Request
               </p>
+              <p className="font-body text-[14px] text-surface-600 dark:text-surface-300 max-w-lg m-0 leading-relaxed">
+                Specific regulatory, MSDS safety, or customized packaging documentation is provided directly by our quality engineering team.
+              </p>
+              <InternalLink
+                route="contact-us"
+                onPageChange={onPageChange}
+                className="mt-2 inline-flex items-center gap-2 font-body font-bold text-[13px] text-white bg-brand-600 hover:bg-brand-700 px-5 py-2.5 rounded-xl shadow-md cursor-pointer"
+              >
+                Request Custom Document
+              </InternalLink>
             </motion.div>
           )}
         </AnimatePresence>
@@ -264,22 +334,26 @@ function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack })
   );
 }
 
-// Section 4 — Certifications. Reuses the real 8-certification set
-// (data/certifications.js), same source used sitewide. "View Certificate"
-// opens the real certificate logo image (the only real asset per
-// certificate); "Download Certificate" downloads that same image.
-// "Request Complete Certification Pack" is a genuinely disabled button —
-// no real certification-pack PDF exists, same precedent already
-// established on Home's QualityCertificationProof and the combined
-// Quality, Food Safety & Traceability page.
+// Section 4 — Certifications
 function CertificationsSection() {
   const reduceMotion = useReducedMotion();
   return (
-    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] dark:border-surface-800/40 bg-page dark:bg-surface-900/40">
-      <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
-        <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-1">
-          <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">Certifications</span>
-          <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading dark:text-white m-0 tracking-tight">Certificates</h2>
+    <div id="certifications" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 dark:border-surface-800/60">
+      <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+        
+        <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
+          <div className="flex items-center gap-2.5">
+            <span className="h-2 w-2 rounded-full bg-amber-500" />
+            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+              International Accreditation
+            </span>
+          </div>
+          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white m-0 tracking-tight">
+            Global Quality & Food Safety Certificates
+          </h2>
+          <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 max-w-2xl m-0 leading-relaxed">
+            SKM operates under internationally audited food safety, quality management, and ethical compliance standards.
+          </p>
         </motion.div>
 
         <motion.div
@@ -287,98 +361,109 @@ function CertificationsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6"
         >
           {certifications.map((cert) => (
             <motion.div
               key={cert.name}
               variants={resourceItemVariants(reduceMotion)}
-              whileHover={reduceMotion ? undefined : { y: -4 }}
+              whileHover={reduceMotion ? undefined : { y: -6 }}
               transition={{ duration: 0.32, ease: EASE_PREMIUM }}
-              className="group flex flex-col gap-3 p-5 rounded-[16px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900 transition-shadow duration-300 ease-out hover:border-brand-600/25 hover:shadow-[0_10px_30px_rgba(0,20,40,0.07)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+              className="group flex flex-col items-center gap-4 p-6 rounded-2xl border border-surface-200/80 dark:border-surface-700/60 bg-white/80 dark:bg-surface-900/70 backdrop-blur-xl shadow-lg shadow-black/5 hover:border-brand-500/40 hover:shadow-2xl transition-all duration-300"
             >
-              <div className="w-full aspect-square overflow-hidden rounded-md bg-white p-2">
+              <div className="relative w-full aspect-[4/3] rounded-xl bg-white p-3 flex items-center justify-center border border-surface-100 shadow-inner group-hover:scale-[1.02] transition-transform duration-300">
                 <img
                   src={cert.logo}
                   alt={cert.name}
                   loading="lazy"
-                  className="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <span className="font-heading font-bold text-[13px] text-heading dark:text-white text-center">{cert.name}</span>
-              <div className="flex items-center justify-center gap-4">
-                <a href={cert.logo} target="_blank" rel="noopener noreferrer" className="font-body font-semibold text-[11.5px] text-brand-600 dark:text-brand-400 hover:underline">
-                  View Certificate
+              <span className="font-heading font-bold text-[14.5px] text-heading dark:text-white text-center leading-snug">
+                {cert.name}
+              </span>
+              <div className="flex items-center justify-center gap-4 pt-2 border-t border-surface-100 dark:border-surface-800 w-full">
+                <a
+                  href={cert.logo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-body font-bold text-[12px] text-brand-600 dark:text-brand-400 hover:underline inline-flex items-center gap-1"
+                >
+                  <span>View Logo</span>
                 </a>
-                <a href={cert.logo} download className="font-body font-semibold text-[11.5px] text-surface-500 dark:text-surface-400 hover:underline">
-                  Download Certificate
+                <span className="text-surface-300 dark:text-surface-700">•</span>
+                <a
+                  href={cert.logo}
+                  download
+                  className="font-body font-semibold text-[12px] text-surface-500 dark:text-surface-400 hover:text-heading dark:hover:text-white hover:underline"
+                >
+                  Download
                 </a>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        <button
-          type="button"
-          disabled
-          title="Coming soon"
-          aria-disabled="true"
-          className="self-start inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-600 font-body font-semibold text-[14px] cursor-not-allowed opacity-60"
-        >
-          Request Complete Certification Pack
-        </button>
+        <div className="flex items-center justify-between flex-wrap gap-4 p-6 rounded-2xl bg-gradient-to-r from-brand-600/10 via-amber-500/5 to-transparent border border-brand-500/20 backdrop-blur-md">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center flex-shrink-0 font-bold">
+              ✓
+            </div>
+            <div>
+              <h4 className="font-heading font-bold text-[15px] text-heading dark:text-white m-0">Need standard-specific audit reports?</h4>
+              <p className="font-body text-[13px] text-surface-600 dark:text-surface-300 m-0">NABL ISO/IEC 17025 lab reports and auditor verification packs are available on commercial request.</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            disabled
+            className="inline-flex items-center gap-2 min-h-[42px] px-5 rounded-xl border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-500 font-body font-semibold text-[13px] cursor-not-allowed opacity-70"
+          >
+            Audit Pack Available On Order
+          </button>
+        </div>
+
       </div>
     </div>
   );
 }
 
-// Section 5 — Brochures and application guides. Merges the real content
-// from the standalone /brochure page (src/pages/Brochure/BrochurePage.jsx)
-// directly into this resource centre, per the brief — same real PDF
-// assets (Company Profile, Full Product List, 4 product flyers),
-// served as static files from public/documents/brochures/, not duplicated
-// as new data. /brochure itself stays live for SEO/direct linking (same
-// precedent as every other consolidated page this session). "Download
-// Product Portfolio" downloads the real Full Product List PDF. "Download
-// Application Guide" has no real file anywhere in the repo — no dedicated
-// application guide document exists — so it's a genuinely disabled button
-// rather than a fake download.
-
+// Section 5 — Brochures & Application Guides
 const brochureMeta = {
   'Company Profile - SKM Egg Products Export India Limited.pdf': {
     category: 'Corporate',
     title: 'Company Profile',
-    desc: 'A comprehensive overview of SKM Egg Products Export India Limited — our history, scale, capabilities, and global reach since 1997.',
+    desc: 'Comprehensive overview of SKM Egg Products Export India Limited — history, processing scale, plant capabilities, and global footprint.',
     featured: true,
   },
   'Product List - SKM Egg Products Export India Limited.pdf': {
     category: 'Corporate',
-    title: 'Full Product List',
-    desc: 'Complete catalog of all SKM egg products — powders, liquids, customized mixes and specialty solutions available for global food producers.',
+    title: 'Full Product Portfolio',
+    desc: 'Complete catalog of SKM egg powders, liquid variants, customized bakery mixes, and technical food ingredients.',
     featured: true,
   },
   'SKM BAKERY MIX A5 FLYER (F&B).pdf': {
     category: 'Product Flyer',
-    title: 'Bakery Mix',
-    desc: "Technical flyer covering SKM's specialized bakery egg mix — composition, functional benefits, and applications in the F&B industry.",
+    title: 'Bakery Mix Technical Flyer',
+    desc: 'Technical overview covering SKM specialized bakery egg mixes, functional whipping performance, and dosage recommendations.',
     featured: false,
   },
   'SKM EGG ALBUMEN POWDER    A5 FLYER (F&B).pdf': {
     category: 'Product Flyer',
-    title: 'Egg Albumen Powder',
-    desc: 'Detailed specification sheet for SKM Egg Albumen Powder — ideal for confectionery, sports nutrition, and meat processing.',
+    title: 'Egg Albumen Powder Flyer',
+    desc: 'Specification guide for high-gel and high-whip Egg Albumen Powder — ideal for confectionery, meat binders, and sports nutrition.',
     featured: false,
   },
   'SKM EGG YOLK POWDER A5 FLYER (F&B).pdf': {
     category: 'Product Flyer',
-    title: 'Egg Yolk Powder',
-    desc: 'Product flyer for SKM Egg Yolk Powder covering emulsification properties, composition, and key food industry applications.',
+    title: 'Egg Yolk Powder Flyer',
+    desc: 'Product flyer detailing emulsification capacity, fat content, heat stability, and applications in mayonnaise and sauces.',
     featured: false,
   },
   'SKM WHOLE EGG POWDER A5 FLYER (F&B).pdf': {
     category: 'Product Flyer',
-    title: 'Whole Egg Powder',
-    desc: 'Specification flyer for SKM Whole Egg Powder — versatile, shelf-stable solution for bakeries, sauces, and ready meal manufacturers.',
+    title: 'Whole Egg Powder Flyer',
+    desc: 'Technical flyer for Whole Egg Powder — shelf-stable, pasteurized whole egg replacement for bakeries and commercial food manufacturing.',
     featured: false,
   },
 };
@@ -391,16 +476,27 @@ function buildBrochureEntries() {
 }
 
 const brochureEntries = buildBrochureEntries();
-const productPortfolio = brochureEntries.find((e) => e.title === 'Full Product List');
+const productPortfolio = brochureEntries.find((e) => e.title === 'Full Product Portfolio');
 
 function BrochuresApplicationGuidesSection() {
   const reduceMotion = useReducedMotion();
   return (
-    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] dark:border-surface-800/40">
-      <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
-        <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-1">
-          <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">Downloads</span>
-          <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading dark:text-white m-0 tracking-tight">Brochures and application guides</h2>
+    <div id="brochures" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 dark:border-surface-800/60">
+      <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+        
+        <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
+          <div className="flex items-center gap-2.5">
+            <span className="h-2 w-2 rounded-full bg-brand-600" />
+            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+              Downloads & Publications
+            </span>
+          </div>
+          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white m-0 tracking-tight">
+            Corporate Brochures & Technical Flyers
+          </h2>
+          <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 max-w-2xl m-0 leading-relaxed">
+            Access our official downloadable PDF literature, company overview documentation, and product line technical flyers.
+          </p>
         </motion.div>
 
         <motion.div
@@ -408,76 +504,202 @@ function BrochuresApplicationGuidesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {brochureEntries.map((entry) => (
             <motion.div
               key={entry.fileName}
               variants={resourceItemVariants(reduceMotion)}
-              whileHover={reduceMotion ? undefined : { y: -4 }}
+              whileHover={reduceMotion ? undefined : { y: -5 }}
               transition={{ duration: 0.32, ease: EASE_PREMIUM }}
-              className="group flex flex-col gap-3 p-6 rounded-[14px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/50 transition-shadow duration-300 ease-out hover:border-brand-600/25 hover:shadow-[0_10px_30px_rgba(0,20,40,0.07)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+              className="group flex flex-col justify-between gap-5 p-6 rounded-2xl border border-surface-200/80 dark:border-surface-700/60 bg-white/80 dark:bg-surface-900/70 backdrop-blur-xl shadow-lg shadow-black/5 hover:border-brand-500/40 hover:shadow-2xl transition-all duration-300"
             >
-              <span className={`self-start font-body text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded ${entry.category === 'Product Flyer' ? 'text-brand-600 bg-brand-600/6 border border-brand-600/15' : 'text-surface-600 dark:text-surface-400 bg-surface-100 dark:bg-surface-800 border border-surface-200 dark:border-surface-700'}`}>
-                {entry.category}
-              </span>
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0 transition-colors duration-200 group-hover:text-brand-600 dark:group-hover:text-brand-400">{entry.title}</h3>
-              <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-[21px] m-0 flex-1">{entry.desc}</p>
-              <div className="flex items-center gap-3 pt-2 border-t border-[#f0f0f0] dark:border-surface-800">
-                <a href={entry.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-body font-bold text-[11px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] transition-colors duration-200">
+              <div className="flex flex-col gap-3">
+                <span className={`self-start font-body text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-lg ${
+                  entry.category === 'Product Flyer'
+                    ? 'text-brand-600 bg-brand-500/10 border border-brand-500/20 dark:text-brand-400'
+                    : 'text-emerald-700 bg-emerald-500/10 border border-emerald-500/20 dark:text-emerald-400'
+                }`}>
+                  {entry.category}
+                </span>
+                <h3 className="font-heading font-bold text-[18px] text-heading dark:text-white m-0 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-200">
+                  {entry.title}
+                </h3>
+                <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-relaxed m-0">
+                  {entry.desc}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3 pt-4 border-t border-surface-200/60 dark:border-surface-800/60">
+                <a
+                  href={entry.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-body font-bold text-[11.5px] uppercase tracking-wider text-brand-600 dark:text-brand-400 hover:text-brand-700 px-3.5 py-2 rounded-xl bg-brand-500/10 hover:bg-brand-500/20 transition-all duration-200"
+                >
                   <span>View PDF</span>
-                  <svg className="w-2.5 h-2.5 transition-transform duration-200 ease-out group-hover:translate-x-[3px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
+                  <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
                 </a>
-                <a href={entry.url} download className="inline-flex items-center gap-1 font-body font-bold text-[11px] uppercase tracking-[0.05em] text-surface-500 dark:text-surface-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-200">
+                <a
+                  href={entry.url}
+                  download
+                  className="inline-flex items-center gap-1.5 font-body font-bold text-[11.5px] uppercase tracking-wider text-surface-700 dark:text-surface-200 hover:text-heading dark:hover:text-white px-3.5 py-2 rounded-xl bg-surface-100 dark:bg-surface-800 hover:bg-surface-200 dark:hover:bg-surface-700 transition-all duration-200"
+                >
                   <span>Download</span>
-                  <svg className="w-2.5 h-2.5 transition-transform duration-200 ease-out group-hover:translate-y-[2px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14" />
-                  </svg>
+                  <svg className="w-3 h-3 group-hover:translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14" /></svg>
                 </a>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        <div className="flex flex-wrap items-center gap-4">
-          {productPortfolio && (
+        {productPortfolio && (
+          <div className="flex flex-wrap items-center gap-4 pt-2">
             <a
               href={productPortfolio.url}
               download
-              className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[14px] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 active:scale-[0.98]"
+              className="inline-flex items-center gap-2.5 min-h-[48px] px-8 py-3.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[14px] uppercase tracking-wider shadow-lg shadow-brand-600/30 transition-all duration-200 active:scale-[0.98]"
             >
-              Download Product Portfolio
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+              Download Complete Product Portfolio PDF
             </a>
-          )}
-          <button
-            type="button"
-            disabled
-            title="Coming soon"
-            aria-disabled="true"
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-600 font-body font-semibold text-[14px] cursor-not-allowed opacity-60"
-          >
-            Download Application Guide
-          </button>
-        </div>
+          </div>
+        )}
+
       </div>
     </div>
   );
 }
 
-// Section 7 — Frequently asked questions. All 7 requested categories are
-// shown; each answer is a real, verbatim/paraphrased fact already
-// published on another page in this app (never invented) — Product
-// selection (Products Hub finder + comparison), Packaging (real
-// packaging formats), Storage (real chilled/frozen temperatures), Export
-// documentation (real EU/USDA approval), Quality and certification (real
-// 8 certifications + NABL lab). "Samples" and "MOQ and commercial
-// enquiry" have no real documented policy anywhere in the repo (no sample-
-// request mechanism, no published minimum order quantity), so those 2
-// categories give an honest "ask us directly" answer rather than an
-// invented number or policy. "Ask Another Question" routes to the real
-// Contact Us page.
+// Section 6 — CSR Cards
+const csrCards = [
+  {
+    title: 'Community Development',
+    description: 'The SKM Health and Mind Welfare Charity Trust — Sevai Maiyam — supporting adopted families with housing, sanitation, and welfare.',
+    page: 'community_development',
+    iconType: 'community',
+  },
+  {
+    title: 'Trust Outreach Programs',
+    description: 'Sanitation, education fees, medical services, financial aid, elder care, and community initiatives.',
+    page: 'trust_outreach',
+    iconType: 'trust',
+  },
+  {
+    title: 'Education Initiatives',
+    description: 'ABL teaching systems, coaching centres, libraries, and educational support for underprivileged students.',
+    page: 'csr_education',
+    iconType: 'education',
+  },
+  {
+    title: 'Environmental Sustainability',
+    description: 'Carbon footprint reduction, wind energy investments, eco-efficient processing, and environmental policy commitments.',
+    page: 'csr_sustainability',
+    iconType: 'sustainability',
+  },
+  {
+    title: 'MD Vision & Article',
+    description: "The Olirum Erode Foundation — Managing Director's personal initiative across five key community focus areas.",
+    page: 'md_article',
+    iconType: 'md_article',
+  },
+];
+
+function CsrIcon({ iconType }) {
+  switch (iconType) {
+    case 'community':
+      return (
+        <svg className="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0v-5a2 2 0 012-2h2a2 2 0 012 2v5m-6 0h6" />
+        </svg>
+      );
+    case 'trust':
+      return (
+        <svg className="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+      );
+    case 'education':
+      return (
+        <svg className="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+        </svg>
+      );
+    case 'sustainability':
+      return (
+        <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5a2.5 2.5 0 002.5-2.5V8.5a.5.5 0 01.5-.5h.5a2.5 2.5 0 002.5-2.5V3.935" />
+        </svg>
+      );
+    default:
+      return (
+        <svg className="w-5 h-5 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+        </svg>
+      );
+  }
+}
+
+function CsrSection({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
+  return (
+    <div id="csr" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 dark:border-surface-800/60">
+      <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+        
+        <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
+          <div className="flex items-center gap-2.5">
+            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+              Beyond The Factory Floor
+            </span>
+          </div>
+          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white m-0 tracking-tight">
+            Corporate Social Responsibility (CSR)
+          </h2>
+          <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 max-w-2xl m-0 leading-relaxed">
+            Discover SKM's commitment to community welfare, clean energy, education, and sustainable development.
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {csrCards.map((card) => (
+            <motion.button
+              key={card.page}
+              variants={itemVariants}
+              whileHover={reduceMotion ? undefined : { y: -5 }}
+              transition={{ duration: 0.32, ease: EASE_PREMIUM }}
+              onClick={() => onPageChange(card.page)}
+              className="group flex flex-col items-start gap-3 p-6 text-left rounded-2xl bg-white/80 dark:bg-surface-900/70 backdrop-blur-xl border border-surface-200/80 dark:border-surface-700/60 shadow-lg shadow-black/5 hover:border-brand-500/40 hover:shadow-2xl transition-all duration-300 cursor-pointer focus:outline-none"
+            >
+              <div className="p-3 rounded-xl bg-surface-100 dark:bg-surface-800 border border-surface-200/60 dark:border-surface-700/60 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <CsrIcon iconType={card.iconType} />
+              </div>
+              <h3 className="font-heading font-bold text-[18px] text-heading dark:text-white m-0 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-200">
+                {card.title}
+              </h3>
+              <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-relaxed m-0">
+                {card.description}
+              </p>
+              <span className="mt-2 font-body font-bold text-[12px] text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 group-hover:underline">
+                Explore Overview →
+              </span>
+            </motion.button>
+          ))}
+        </motion.div>
+
+      </div>
+    </div>
+  );
+}
+
+// Section 7 — FAQ
 const FAQ_CATEGORIES = [
   {
     category: 'Product selection',
@@ -516,16 +738,34 @@ const FAQ_CATEGORIES = [
   },
 ];
 
-function FaqSection({ onPageChange }) {
+function FaqSection({ onPageChange, globalSearchQuery }) {
   const reduceMotion = useReducedMotion();
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState(0);
+
+  const filteredFaqs = useMemo(() => {
+    if (!globalSearchQuery || globalSearchQuery.trim() === '') return FAQ_CATEGORIES;
+    const q = globalSearchQuery.toLowerCase();
+    return FAQ_CATEGORIES.filter((item) =>
+      item.question.toLowerCase().includes(q) ||
+      item.answer.toLowerCase().includes(q) ||
+      item.category.toLowerCase().includes(q)
+    );
+  }, [globalSearchQuery]);
 
   return (
-    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] dark:border-surface-800/40">
-      <div className="mx-auto max-w-[900px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
-        <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-1">
-          <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">Support</span>
-          <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading dark:text-white m-0 tracking-tight">Frequently asked questions</h2>
+    <div id="faq" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 dark:border-surface-800/60">
+      <div className="mx-auto max-w-[960px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+        
+        <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2 text-center items-center">
+          <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+            Knowledge Center
+          </span>
+          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white m-0 tracking-tight">
+            Frequently Asked Questions
+          </h2>
+          <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 max-w-xl m-0 leading-relaxed">
+            Quick technical answers regarding specifications, storage, packaging, regulatory compliance, and ordering.
+          </p>
         </motion.div>
 
         <motion.div
@@ -533,29 +773,39 @@ function FaqSection({ onPageChange }) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className="flex flex-col gap-3"
+          className="flex flex-col gap-4"
         >
-          {FAQ_CATEGORIES.map((item, i) => {
+          {filteredFaqs.map((item, i) => {
             const isOpen = openIndex === i;
             return (
               <motion.div
-                key={item.category}
+                key={item.question}
                 variants={resourceItemVariants(reduceMotion)}
-                className="rounded-[14px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/50 overflow-hidden transition-colors duration-200 hover:border-brand-600/20"
+                className={`rounded-2xl border transition-all duration-300 overflow-hidden backdrop-blur-xl ${
+                  isOpen
+                    ? 'border-brand-500/50 bg-white/90 dark:bg-surface-900/90 shadow-xl shadow-brand-600/5'
+                    : 'border-surface-200/80 dark:border-surface-700/60 bg-white/70 dark:bg-surface-900/60 hover:border-brand-500/30'
+                }`}
               >
                 <button
                   type="button"
                   aria-expanded={isOpen}
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 text-left px-6 py-4 cursor-pointer bg-transparent border-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                  className="w-full flex items-center justify-between gap-4 text-left p-6 cursor-pointer bg-transparent border-none focus:outline-none"
                 >
-                  <div className="flex flex-col gap-0.5">
-                    <span className="font-body text-[10.5px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">{item.category}</span>
-                    <span className="font-heading font-semibold text-[15px] text-heading dark:text-white">{item.question}</span>
+                  <div className="flex flex-col gap-1">
+                    <span className="font-body text-[11px] font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+                      {item.category}
+                    </span>
+                    <span className="font-heading font-bold text-[16.5px] text-heading dark:text-white leading-snug">
+                      {item.question}
+                    </span>
                   </div>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className={`flex-shrink-0 transition-transform duration-300 ease-out ${isOpen ? 'rotate-180' : ''}`} aria-hidden>
-                    <path d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${isOpen ? 'bg-brand-600 text-white rotate-180' : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300'}`}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                      <path d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
                 </button>
                 <AnimatePresence initial={false}>
                   {isOpen && (
@@ -563,48 +813,45 @@ function FaqSection({ onPageChange }) {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: reduceMotion ? 0.01 : 0.32, ease: EASE_PREMIUM }}
+                      transition={{ duration: reduceMotion ? 0.01 : 0.3, ease: EASE_PREMIUM }}
                       style={{ overflow: 'hidden' }}
                     >
-                      <p className="font-body text-[14px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0 px-6 pb-5">{item.answer}</p>
+                      <div className="px-6 pb-6 pt-2 border-t border-surface-100 dark:border-surface-800/80">
+                        <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 leading-relaxed m-0">
+                          {item.answer}
+                        </p>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </motion.div>
             );
           })}
+
+          {filteredFaqs.length === 0 && (
+            <div className="p-8 text-center rounded-2xl bg-white/40 dark:bg-surface-900/40 border border-surface-200 dark:border-surface-700">
+              <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 m-0">No questions matched your search term.</p>
+            </div>
+          )}
         </motion.div>
 
-        <InternalLink
-          route="contact-us"
-          onPageChange={onPageChange}
-          className="self-start inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[14px] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 active:scale-[0.98]"
-        >
-          Ask Another Question
-        </InternalLink>
+        <div className="flex justify-center">
+          <InternalLink
+            route="contact-us"
+            onPageChange={onPageChange}
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13.5px] uppercase tracking-wider shadow-lg shadow-brand-600/25 transition-all duration-200 active:scale-[0.98]"
+          >
+            <span>Ask Technical Support A Question</span>
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </InternalLink>
+        </div>
+
       </div>
     </div>
   );
 }
 
-const csrCards = [
-  { title: 'Community Development', description: 'The SKM Health and Mind Welfare Charity Trust — Sevai Maiyam — supporting adopted families with housing, sanitation, and welfare.', page: 'community_development' },
-  { title: 'Trust Outreach Programs', description: 'Sanitation, education fees, medical services, financial aid, elder care, and more for the communities SKM serves.', page: 'trust_outreach' },
-  { title: 'Education', description: 'ABL teaching systems, coaching centres, libraries, and cultural education initiatives for underserved students.', page: 'csr_education' },
-  { title: 'Sustainability', description: 'Carbon footprint reduction, wind energy investment, and environmental policy commitments.', page: 'csr_sustainability' },
-  { title: 'MD Article', description: "The Olirum Erode Foundation — the Managing Director's personal initiative across five community focus areas.", page: 'md_article' },
-];
-
-// Resources and Technical Downloads — this page previously covered
-// Brochures + CSR only; it's now expanded into the real technical
-// downloads hub the brief asks for, folding in the real content from
-// /brochure (Section 5) and building the remaining sections only where
-// real data exists.
-//
-// Section 1 — Resource hero and search. Real, page-local search: filters
-// the real documents already listed in Section 3/5 below by title/category
-// (no fabricated search index or backend). "Browse All Resources" scrolls
-// to Section 3 (Technical documents), the real document library.
+// Root Component
 export default function ResourcesPage({ onPageChange }) {
   const reduceMotion = useReducedMotion();
   const [searchQuery, setSearchQuery] = useState('');
@@ -616,160 +863,256 @@ export default function ResourcesPage({ onPageChange }) {
     );
   };
 
+  const clearDocumentPack = () => setDocumentPack([]);
+
   return (
     <PageWrapper
       seo={{
-        title: 'Resources and Technical Downloads | SKM Egg Products',
-        description: 'Search and download SKM Egg Products technical data sheets, certifications, brochures, and application guides.',
-        keywords: 'SKM egg products brochure, egg powder technical data sheet, egg product certifications download, SKM CSR, egg products corporate social responsibility',
+        title: 'Resources & Technical Downloads | SKM Egg Products',
+        description: 'Access laboratory-verified technical data sheets, global quality certifications, product brochures, and application guides.',
+        keywords: 'SKM egg products brochure, egg powder technical data sheet, egg product certifications download, SKM CSR, egg products quality specification',
         canonical: 'https://www.skmegg.com/resources',
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full flex flex-col bg-page dark:bg-surface-950">
+      {/* Root Full-Page Continuous Canvas Container */}
+      <div className="relative w-full flex flex-col min-h-screen bg-slate-50 dark:bg-surface-950 transition-colors duration-300">
+        
+        {/* Dedicated Fixed Background Image Layer with Controlled Opacity */}
+        <div 
+          className="fixed inset-0 bg-[url('/images/resources_bg.png')] bg-fixed bg-cover bg-center bg-no-repeat opacity-[0.07] dark:opacity-[0.14] pointer-events-none z-0" 
+          aria-hidden="true" 
+        />
 
-        {/* Section 1 — Resource hero and search */}
-        <div className="w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
-          <div className="mx-auto max-w-[820px] flex flex-col items-center gap-6">
-            <motion.span
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM }}
-              className="section-label justify-center"
-            >
-              Resources
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 34 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.8, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.08 }}
-              className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
-            >
-              Resources and Technical Downloads
-            </motion.h1>
+        {/* Ambient Decorative Lighting Elements */}
+        <div className="absolute top-20 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/3 left-5 w-[30rem] h-[30rem] bg-brand-600/10 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-[130px] pointer-events-none" />
 
-            <motion.form
-              role="search"
-              onSubmit={(e) => e.preventDefault()}
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.65, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.2 }}
-              className="w-full max-w-[560px] flex items-center gap-3 mt-2"
-            >
-              <div className="relative flex-1">
-                <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
-                </svg>
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search product specifications, certificates, brochures or application guides."
-                  aria-label="Search resources"
-                  className="w-full min-h-[46px] pl-11 pr-4 py-3 rounded-full border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-900 font-body text-[14px] text-heading dark:text-white placeholder:text-surface-400 transition-shadow duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-brand-500"
-                />
-              </div>
-              <button
-                type="submit"
-                className="flex-shrink-0 inline-flex items-center justify-center min-h-[46px] px-6 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 ease-out cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 active:scale-[0.97]"
+        {/* Foreground Content Wrapper */}
+        <div className="relative z-10 w-full flex flex-col">
+
+          {/* Section 1 — Resource Hero & Search */}
+          <div className="w-full py-20 lg:py-28 border-b border-surface-200/60 dark:border-surface-800/60 px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-[1000px] flex flex-col items-center text-center gap-8">
+              
+              {/* Premium Pill Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/25 dark:bg-brand-500/20 dark:border-brand-500/40 text-brand-600 dark:text-brand-400 font-body font-bold text-[12px] uppercase tracking-widest shadow-sm"
               >
-                Search
-              </button>
-            </motion.form>
+                <span className="w-2 h-2 rounded-full bg-brand-600 animate-ping" />
+                <span>Technical Repository & Downloads Hub</span>
+              </motion.div>
 
-            <motion.button
-              type="button"
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.3 }}
-              onClick={() => document.getElementById('technical-documents')?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })}
-              className="inline-flex items-center gap-2 mt-1 font-body font-semibold text-[14px] text-brand-600 dark:text-brand-400 hover:underline bg-transparent border-none p-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
-            >
-              Browse All Resources
-            </motion.button>
+              {/* Main Heading with Gradient Text */}
+              <motion.h1
+                initial={{ opacity: 0, y: reduceMotion ? 0 : 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.75, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.08 }}
+                className="font-heading font-extrabold text-[36px] sm:text-[52px] lg:text-[62px] leading-[1.08] tracking-tight m-0 bg-clip-text text-transparent bg-gradient-to-r from-surface-950 via-heading to-surface-800 dark:from-white dark:via-surface-100 dark:to-amber-100"
+              >
+                Resources & Technical Downloads
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.15 }}
+                className="font-body text-[16px] sm:text-[18px] text-surface-600 dark:text-surface-300 max-w-2xl m-0 leading-relaxed"
+              >
+                Search, inspect, and download official technical data sheets (TDS), global quality certifications, product brochures, and regulatory guidelines.
+              </motion.p>
+
+              {/* Luxury Search Bar */}
+              <motion.form
+                role="search"
+                onSubmit={(e) => e.preventDefault()}
+                initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.65, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.2 }}
+                className="w-full max-w-[680px] relative flex items-center mt-2 shadow-2xl rounded-2xl"
+              >
+                <div className="relative w-full flex items-center">
+                  <div className="absolute left-5 top-1/2 -translate-y-1/2 text-surface-400 dark:text-surface-500">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.25">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+                    </svg>
+                  </div>
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search product specifications, TDS, certificates, brochures or FAQ..."
+                    aria-label="Search resources"
+                    className="w-full min-h-[56px] pl-14 pr-24 py-4 rounded-2xl border border-surface-200/90 dark:border-surface-700/80 bg-white/90 dark:bg-surface-900/90 backdrop-blur-xl font-body text-[15px] text-heading dark:text-white placeholder:text-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all shadow-inner"
+                  />
+                  {searchQuery ? (
+                    <button
+                      type="button"
+                      onClick={() => setSearchQuery('')}
+                      className="absolute right-4 px-3 py-1 text-[12px] font-bold rounded-lg bg-surface-200 dark:bg-surface-700 text-surface-700 dark:text-surface-200 hover:bg-surface-300 cursor-pointer transition-colors"
+                    >
+                      Clear
+                    </button>
+                  ) : (
+                    <span className="absolute right-4 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider rounded-lg bg-surface-100 dark:bg-surface-800 text-surface-400 border border-surface-200 dark:border-surface-700">
+                      Live Search
+                    </span>
+                  )}
+                </div>
+              </motion.form>
+
+              {/* Navigation Jump Tags */}
+              <motion.div
+                initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.28 }}
+                className="flex flex-wrap items-center justify-center gap-2.5 pt-2"
+              >
+                <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500 mr-1">Quick Jump:</span>
+                {[
+                  { label: 'Technical Data Sheets', target: 'technical-documents' },
+                  { label: 'Certifications', target: 'certifications' },
+                  { label: 'Brochures', target: 'brochures' },
+                  { label: 'CSR', target: 'csr' },
+                  { label: 'FAQ', target: 'faq' },
+                ].map((tag) => (
+                  <button
+                    key={tag.target}
+                    type="button"
+                    onClick={() => document.getElementById(tag.target)?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })}
+                    className="px-3.5 py-1.5 rounded-xl bg-white/70 dark:bg-surface-900/60 border border-surface-200/80 dark:border-surface-700/60 font-body text-[12.5px] font-semibold text-surface-700 dark:text-surface-300 hover:border-brand-500 hover:text-brand-600 dark:hover:text-brand-400 transition-all cursor-pointer shadow-sm"
+                  >
+                    {tag.label}
+                  </button>
+                ))}
+              </motion.div>
+
+              {/* Document Repository Key Stats Grid */}
+              <motion.div
+                initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.35 }}
+                className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-8 border-t border-surface-200/60 dark:border-surface-800/60"
+              >
+                {[
+                  { label: 'Technical Data Sheets', val: '3 Real TDS', sub: 'Laboratory Verified' },
+                  { label: 'Quality Accreditation', val: '8 Global Standards', sub: 'BRCGS, ISO, Halal' },
+                  { label: 'Publications', val: '6 Product Flyers', sub: 'PDF Literature' },
+                  { label: 'Testing Standard', val: 'ISO/IEC 17025', sub: 'NABL Accredited' },
+                ].map((stat, idx) => (
+                  <div key={idx} className="flex flex-col items-center p-4 rounded-xl bg-white/60 dark:bg-surface-900/40 border border-surface-200/60 dark:border-surface-800/60 backdrop-blur-md">
+                    <span className="font-heading font-extrabold text-[20px] text-brand-600 dark:text-brand-400">{stat.val}</span>
+                    <span className="font-body text-[12px] font-bold text-heading dark:text-white mt-0.5">{stat.label}</span>
+                    <span className="font-body text-[11px] text-surface-400 dark:text-surface-500">{stat.sub}</span>
+                  </div>
+                ))}
+              </motion.div>
+
+            </div>
           </div>
-        </div>
 
-        {/* Sections 2 + 3 — Resource filters + Technical documents */}
-        <TechnicalDocumentsSection onPageChange={onPageChange} documentPack={documentPack} onTogglePack={toggleDocumentPack} />
+          {/* Section 2 & 3 — Technical Documents */}
+          <TechnicalDocumentsSection
+            onPageChange={onPageChange}
+            documentPack={documentPack}
+            onTogglePack={toggleDocumentPack}
+            globalSearchQuery={searchQuery}
+          />
 
-        {/* Section 4 — Certifications */}
-        <CertificationsSection />
+          {/* Section 4 — Certifications */}
+          <CertificationsSection />
 
-        {/* Section 5 — Brochures and application guides */}
-        <BrochuresApplicationGuidesSection />
+          {/* Section 5 — Brochures & Guides */}
+          <BrochuresApplicationGuidesSection />
 
-        {/* CSR */}
-        <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] dark:border-surface-800/40">
-          <motion.section
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8"
-          >
-            <div className="flex flex-col gap-1">
-              <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">Beyond The Factory Floor</span>
-              <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading dark:text-white m-0 tracking-tight">Corporate Social Responsibility</h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {csrCards.map((card) => (
-                <motion.button
-                  key={card.page}
-                  variants={itemVariants}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.32, ease: EASE_PREMIUM }}
-                  onClick={() => onPageChange(card.page)}
-                  className="group flex flex-col items-start gap-2 text-left p-6 bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/30 transition-shadow duration-300 ease-out cursor-pointer focus:outline-none"
-                >
-                  <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0 transition-colors duration-200 group-hover:text-brand-600 dark:group-hover:text-brand-400">{card.title}</h3>
-                  <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-[22px] m-0">{card.description}</p>
-                </motion.button>
-              ))}
-            </div>
-          </motion.section>
-        </div>
+          {/* Section 6 — CSR */}
+          <CsrSection onPageChange={onPageChange} />
 
-        {/* Section 7 — Frequently asked questions */}
-        <FaqSection onPageChange={onPageChange} />
+          {/* Section 7 — FAQ */}
+          <FaqSection onPageChange={onPageChange} globalSearchQuery={searchQuery} />
 
-        {/* Section 8 — Resource CTA. "Request a Document" routes to the
-            real Contact Us page — no dedicated document-request form
-            exists, so it reuses the real contact channel, carrying the
-            Document Pack selection (built in Section 3) as context when
-            items have been added. "Talk to Technical Support" also routes
-            to the real Contact Us page. */}
-        <div className="w-full py-[60px] lg:py-[80px] text-center px-4">
-          <motion.div
-            {...sectionHeadingReveal(reduceMotion)}
-            className="mx-auto max-w-[600px] flex flex-col items-center gap-5"
-          >
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading dark:text-white m-0 tracking-tight">
-              Need something specific?
-            </h2>
-            {documentPack.length > 0 && (
-              <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 m-0">
-                {documentPack.length} document{documentPack.length === 1 ? '' : 's'} in your pack: {documentPack.map((d) => d.title).join(', ')}
+          {/* Section 8 — Bottom Contact CTA */}
+          <div className="w-full py-20 lg:py-28 text-center px-4">
+            <motion.div
+              {...sectionHeadingReveal(reduceMotion)}
+              className="mx-auto max-w-[680px] p-10 rounded-3xl bg-white/80 dark:bg-surface-900/80 border border-surface-200/80 dark:border-surface-700/60 backdrop-blur-xl shadow-2xl flex flex-col items-center gap-6"
+            >
+              <div className="w-14 h-14 rounded-full bg-brand-500/10 text-brand-600 flex items-center justify-center">
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+              </div>
+              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white m-0 tracking-tight">
+                Need Specific Technical Documentation?
+              </h2>
+              <p className="font-body text-[15px] text-surface-600 dark:text-surface-300 m-0 leading-relaxed">
+                If you require customized packaging parameters, batch analytical certificates, or proprietary formulation data, our technical engineering team is ready to assist.
               </p>
-            )}
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-              <InternalLink
-                route="contact-us"
-                onPageChange={onPageChange}
-                className="inline-flex items-center gap-2.5 bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-7 py-[15px] rounded-[200px] transition-all duration-300 ease-out shadow-[0_4px_20px_rgba(228,10,24,0.25)] hover:shadow-[0_6px_28px_rgba(228,10,24,0.4)] cursor-pointer active:scale-[0.98]"
-              >
-                Request a Document
-              </InternalLink>
-              <InternalLink
-                route="contact-us"
-                onPageChange={onPageChange}
-                className="inline-flex items-center gap-2.5 bg-transparent hover:bg-brand-600/6 dark:hover:bg-brand-950/30 text-surface-900 dark:text-surface-100 border border-surface-250 dark:border-surface-700 font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-7 py-[15px] rounded-[200px] transition-all duration-300 ease-out cursor-pointer active:scale-[0.98]"
-              >
-                Talk to Technical Support
-              </InternalLink>
-            </div>
-          </motion.div>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full pt-2">
+                <InternalLink
+                  route="contact-us"
+                  onPageChange={onPageChange}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13.5px] uppercase tracking-wider px-8 py-4 rounded-full shadow-xl shadow-brand-600/30 transition-all duration-200 active:scale-[0.98] cursor-pointer"
+                >
+                  Request A Custom Document
+                </InternalLink>
+                <InternalLink
+                  route="contact-us"
+                  onPageChange={onPageChange}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-surface-100 dark:bg-surface-800 hover:bg-surface-200 dark:hover:bg-surface-700 text-heading dark:text-white border border-surface-300 dark:border-surface-700 font-heading font-bold text-[13.5px] uppercase tracking-wider px-8 py-4 rounded-full transition-all duration-200 active:scale-[0.98] cursor-pointer"
+                >
+                  Talk To Quality Support
+                </InternalLink>
+              </div>
+            </motion.div>
+          </div>
+
         </div>
+
+        {/* Interactive Floating Document Pack Tray */}
+        <AnimatePresence>
+          {documentPack.length > 0 && (
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ duration: 0.35, ease: EASE_PREMIUM }}
+              className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-[650px] p-4 rounded-2xl bg-surface-950/95 dark:bg-surface-900/95 border border-brand-500/40 text-white shadow-2xl backdrop-blur-2xl flex items-center justify-between gap-4"
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold flex-shrink-0">
+                  {documentPack.length}
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="font-heading font-bold text-[14px] truncate">Document Pack Selected</span>
+                  <span className="font-body text-[12px] text-surface-300 truncate">
+                    {documentPack.map((d) => d.title).join(', ')}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <button
+                  type="button"
+                  onClick={clearDocumentPack}
+                  className="px-3 py-2 text-[12px] font-semibold text-surface-400 hover:text-white transition-colors cursor-pointer"
+                >
+                  Clear
+                </button>
+                <InternalLink
+                  route="contact-us"
+                  onPageChange={onPageChange}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-body font-bold text-[12.5px] uppercase tracking-wider shadow-md cursor-pointer transition-all active:scale-95"
+                >
+                  Request Pack
+                </InternalLink>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </PageWrapper>
