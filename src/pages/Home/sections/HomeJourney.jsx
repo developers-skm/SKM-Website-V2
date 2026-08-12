@@ -1,395 +1,219 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, AnimatePresence, useReducedMotion, useScroll, useMotionValueEvent, useTransform } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
-import homeJourneyStages from '../../../data/homeJourneyStages';
+import SafeImage from '../../../components/common/SafeImage';
+import journeyStages from '../../../data/journeyStages';
+import { fadeUp } from '../../../utils/motionTokens';
 
-// ─────────────────────────────────────────────────────────────────
-// HomeJourney — "Farm-to-product journey" section.
-//
-// Rebuilt to match the same center vertical-timeline pattern used by
-// TraceabilityLoopJourney.jsx ("How X Is Made", src/components/
-// Traceability/TraceabilityLoopJourney.jsx) — alternating image/content
-// rows either side of a numbered node timeline, a scroll-linked progress
-// line (simple scaleY transform, not a pinned/scrubbed section), and
-// one-time IntersectionObserver fade-ins per row. Same visual language,
-// same easing token, same desktop/mobile split — fed with this section's
-// own 8-stage homeJourneyStages data instead of processChapters.
-// ─────────────────────────────────────────────────────────────────
+// Section 7 — Traceability. Home-scoped sticky scroll-driven storytelling,
+// following the same interaction pattern as components/Journey/
+// JourneyScrollSection.jsx (pinned image + copy panel, scroll-scrubbed
+// crossfade) WITHOUT modifying that shared component — JourneyScrollSection
+// is used by JourneyStrip.jsx elsewhere and per standing project rule,
+// shared components get a phase-scoped variant instead of a direct edit.
+// Per-stage scroll budget is intentionally tighter here (58vh/stage vs the
+// shared component's 100vh/stage) to avoid an excessive page length for 6
+// stages stacked on top of 5 other homepage sections. Desktop (lg+) gets
+// the sticky/pinned experience; mobile and prefers-reduced-motion both get
+// the same plain stacked vertical timeline — no pinning, no scroll-jacking.
+const EASE = [0.22, 1, 0.36, 1];
+const VH_PER_STAGE = 58;
 
-const EASE_PRECISE = [0.22, 1, 0.36, 1];
+const copyContainerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.04 } },
+  exit: { transition: { staggerChildren: 0.04, staggerDirection: -1 } },
+};
+const copyItemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.42, ease: EASE } },
+  exit: { opacity: 0, y: -8, transition: { duration: 0.22, ease: EASE } },
+};
 
-// ─────────────────────────────────────────────────────────────────
-// Stage Image
-// ─────────────────────────────────────────────────────────────────
-function StageImage({ stage }) {
-  const [imgFailed, setImgFailed] = useState(false);
-  const hasImage = Boolean(stage.image) && !imgFailed;
+function DesktopSticky() {
+  const containerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const total = journeyStages.length;
 
-  return (
-    <div className="w-full aspect-[4/3] relative overflow-hidden rounded-[20px] border border-[#ECECEC] bg-[#F7F7F5] shadow-xs flex items-center justify-center group">
-      {hasImage ? (
-        <>
-          <img
-            src={stage.image}
-            alt={stage.label}
-            width="1200"
-            height="900"
-            loading="lazy"
-            decoding="async"
-            onError={() => setImgFailed(true)}
-            className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.015]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-40 pointer-events-none" />
-        </>
-      ) : (
-        <div className="w-full h-full flex items-center justify-center text-[#888888] font-mono text-[13px] p-6 text-center" aria-hidden="true">
-          <span>{stage.label}</span>
-        </div>
-      )}
-    </div>
-  );
-}
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] });
 
-// ─────────────────────────────────────────────────────────────────
-// Stage Content
-// ─────────────────────────────────────────────────────────────────
-function StageContent({ stage, index, totalStages, entered, onPageChange }) {
-  const stepLabel = String(index + 1).padStart(2, '0');
-  const highlights = [stage.whatIsControlled, stage.recordsAndChecks].filter(Boolean);
-
-  return (
-    <div className="flex flex-col gap-4 sm:gap-5 justify-center">
-      {/* Step Number + Category */}
-      <div className="flex items-baseline gap-4">
-        <span
-          className="font-mono text-[48px] sm:text-[56px] font-extralight leading-none select-none tabular-nums"
-          style={{ color: '#E0E0E0', opacity: entered ? 0.18 : 0 }}
-        >
-          {stepLabel}
-        </span>
-        <span className="font-mono text-[10.5px] font-bold uppercase tracking-[0.24em] text-[#999999]">
-          Stage {stepLabel} / {String(totalStages).padStart(2, '0')}
-        </span>
-      </div>
-
-      {/* Title with hover underline */}
-      <div className="relative self-start group/title">
-        <h3 className="font-heading font-semibold text-[22px] sm:text-[26px] lg:text-[28px] text-[#111111] leading-[1.25] m-0 transition-colors duration-200 group-hover/title:text-[#2a2a2a]">
-          {stage.label}
-        </h3>
-        <span className="absolute left-0 -bottom-0.5 w-full h-[1.5px] bg-[#E40A18] scale-x-0 group-hover/title:scale-x-100 origin-left transition-transform duration-300" />
-      </div>
-
-      {/* Narrative */}
-      <p className="font-body text-[15px] sm:text-[15.5px] text-[#666666] leading-[1.85] m-0">
-        {stage.whatHappens}
-      </p>
-
-      {/* Highlights (what is controlled / records & checks) */}
-      {highlights.length > 0 && (
-        <div className="flex flex-col gap-2 pt-1">
-          {highlights.map((item, i) => (
-            <div key={i} className="flex items-center gap-2.5 text-[13.5px] sm:text-[14px] text-[#444444] font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E40A18] flex-shrink-0 mt-0.5 sm:mt-0" aria-hidden="true" />
-              <span>{item}</span>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {stage.route && stage.ctaLabel && (
-        <div className="pt-1">
-          <InternalLink
-            route={stage.route}
-            onPageChange={onPageChange}
-            className="group inline-flex items-center gap-2 font-body font-semibold text-[14px] text-[#E40A18] hover:text-brand-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
-          >
-            <span>{stage.ctaLabel}</span>
-            <svg width="11" height="11" viewBox="0 0 10 10" fill="currentColor" className="group-hover:translate-x-0.5 transition-transform duration-200" aria-hidden="true">
-              <path d="M10 0.0495054L10 10.0001L8.13725 10.0001L-8.22301e-08 1.8812L1.86275 -3.55691e-07L7.35294 5.5446L7.30392 0.0495053L10 0.0495054Z" />
-              <path d="M-9.6438e-05 10.0002L6.27441 10.0002L3.62736 7.32687L-9.63211e-05 7.32687L-9.6438e-05 10.0002Z" />
-            </svg>
-          </InternalLink>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────
-// Timeline Node Center Circle
-// ─────────────────────────────────────────────────────────────────
-function NodeCircle({ step, isActive, isCompleted }) {
-  return (
-    <div
-      className={`w-11 h-11 rounded-full border-2 flex items-center justify-center font-mono text-[13px] font-semibold transition-all duration-300 bg-white relative z-10 shadow-xs ${
-        isActive
-          ? 'border-[#E40A18] text-[#111111]'
-          : isCompleted
-          ? 'border-[#E40A18] text-[#E40A18]'
-          : 'border-[#D6D6D6] text-[#999999]'
-      }`}
-    >
-      {isActive ? (
-        <span className="relative flex items-center justify-center w-full h-full">
-          <span className="text-[12px] font-medium text-[#999999] opacity-35 select-none">{step}</span>
-          <span className="absolute w-2.5 h-2.5 rounded-full bg-[#E40A18]" />
-        </span>
-      ) : isCompleted ? (
-        <span className="text-[13px] font-bold text-[#E40A18]">✓</span>
-      ) : (
-        step
-      )}
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────
-// Desktop Row — 3-column grid: Left | Center Node (80px) | Right
-// ─────────────────────────────────────────────────────────────────
-function DesktopRow({ stage, index, totalStages, isActive, isCompleted, onVisible, onPageChange, reducedMotion }) {
-  const rowRef = useRef(null);
-  const [entered, setEntered] = useState(false);
-
-  useEffect(() => {
-    const el = rowRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          if (!entered) setEntered(true);
-          onVisible(index);
-        }
-      },
-      { threshold: 0, rootMargin: '-40% 0px -40% 0px' }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [entered, index, onVisible]);
-
-  const isImageLeft = index % 2 === 0;
-  const leftX = reducedMotion ? 0 : -20;
-  const rightX = reducedMotion ? 0 : 20;
-
-  const leftTransition = { duration: 0.65, ease: EASE_PRECISE, delay: 0 };
-  const rightTransition = { duration: 0.65, ease: EASE_PRECISE, delay: reducedMotion ? 0 : 0.08 };
-
-  const stepLabel = String(index + 1).padStart(2, '0');
-
-  return (
-    <div ref={rowRef} className="grid grid-cols-[1fr_80px_1fr] gap-8 items-center py-10 lg:py-12 relative">
-      <motion.div
-        initial={{ opacity: 0, x: leftX }}
-        animate={entered ? { opacity: 1, x: 0 } : {}}
-        transition={leftTransition}
-      >
-        {isImageLeft
-          ? <StageImage stage={stage} />
-          : <StageContent stage={stage} index={index} totalStages={totalStages} entered={entered} onPageChange={onPageChange} />}
-      </motion.div>
-
-      <div className="flex flex-col items-center justify-center relative h-full">
-        <NodeCircle step={stepLabel} isActive={isActive} isCompleted={isCompleted} />
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, x: rightX }}
-        animate={entered ? { opacity: 1, x: 0 } : {}}
-        transition={rightTransition}
-      >
-        {isImageLeft
-          ? <StageContent stage={stage} index={index} totalStages={totalStages} entered={entered} onPageChange={onPageChange} />
-          : <StageImage stage={stage} />}
-      </motion.div>
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────
-// Mobile Stage — node + line on the left, image + content stacked right
-// ─────────────────────────────────────────────────────────────────
-function MobileStage({ stage, index, totalStages, isActive, isCompleted, onVisible, onPageChange, reducedMotion, isLast }) {
-  const stageRef = useRef(null);
-  const [entered, setEntered] = useState(false);
-
-  useEffect(() => {
-    const el = stageRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          if (!entered) setEntered(true);
-          onVisible(index);
-        }
-      },
-      { threshold: 0.2 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [entered, index, onVisible]);
-
-  const stepLabel = String(index + 1).padStart(2, '0');
-
-  return (
-    <div ref={stageRef} className="flex gap-4 relative py-6 border-b border-[#F0F0F0] last:border-none">
-      <div className="flex flex-col items-center flex-shrink-0 w-10 relative">
-        <NodeCircle step={stepLabel} isActive={isActive} isCompleted={isCompleted} />
-        {!isLast && <div className="w-[1.5px] bg-[#E2E2E2] flex-1 my-2" />}
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: reducedMotion ? 0 : 12 }}
-        animate={entered ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.55, ease: EASE_PRECISE }}
-        className="flex-1 flex flex-col gap-4"
-      >
-        <StageImage stage={stage} />
-        <StageContent stage={stage} index={index} totalStages={totalStages} entered={entered} onPageChange={onPageChange} />
-      </motion.div>
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────
-// Main Export
-// ─────────────────────────────────────────────────────────────────
-export default function HomeJourney({ onPageChange }) {
-  const reducedMotion = useReducedMotion() ?? false;
-  const totalStages = homeJourneyStages.length;
-  const [activeStage, setActiveStage] = useState(0);
-
-  const headerRef = useRef(null);
-  const [headerEntered, setHeaderEntered] = useState(false);
-
-  useEffect(() => {
-    const el = headerRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setHeaderEntered(true); observer.disconnect(); } },
-      { threshold: 0.2 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  // Continuous vertical progress line linking Stage 01 to the last stage
-  const journeyContainerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: journeyContainerRef,
-    offset: ['start 60%', 'end 60%'],
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    const rawIndex = Math.min(total - 1, Math.floor(latest * total));
+    setActiveIndex((prev) => (prev === rawIndex ? prev : rawIndex));
   });
-  const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const dotTop = useTransform(scrollYProgress, [0, 1], ['3rem', 'calc(100% - 3rem)']);
 
-  const handleVisible = useCallback((index) => {
-    setActiveStage((prev) => (index > prev ? index : prev));
-  }, []);
+  const stepProgress = useTransform(scrollYProgress, (latest) => {
+    const scaled = latest * total;
+    return scaled - Math.floor(scaled);
+  });
 
-  const headerTransition = reducedMotion ? { duration: 0.15 } : { duration: 0.55, ease: EASE_PRECISE };
+  const active = journeyStages[activeIndex];
 
   return (
-    <section className="w-full bg-[#FAFAF8] text-[#111111] py-20 sm:py-28 lg:py-32 font-body transition-colors relative overflow-hidden">
-      <div className="mx-auto max-w-[1360px] w-full px-5 sm:px-8 lg:px-12 flex flex-col gap-14 sm:gap-18 relative">
+    <div ref={containerRef} className="relative w-full" style={{ height: `${total * VH_PER_STAGE}vh` }}>
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
+        <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
+          <div className="flex items-stretch gap-10 xl:gap-16 h-[64vh] max-h-[680px]">
 
-        {/* Section Header */}
-        <div ref={headerRef} className="flex flex-col gap-4 max-w-3xl relative z-10">
-          <motion.div
-            className="flex items-center gap-3"
-            initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
-            animate={headerEntered ? { opacity: 1, y: 0 } : {}}
-            transition={{ ...headerTransition, delay: 0 }}
-          >
-            <span className="w-5 h-[2px] bg-[#E40A18]" aria-hidden="true" />
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-[#888888]">OUR JOURNEY</span>
-          </motion.div>
-
-          <motion.h2
-            className="font-heading font-semibold text-[34px] sm:text-[44px] lg:text-[50px] text-[#111111] leading-[1.1] tracking-tight m-0"
-            initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
-            animate={headerEntered ? { opacity: 1, y: 0 } : {}}
-            transition={{ ...headerTransition, delay: reducedMotion ? 0 : 0.08 }}
-          >
-            Farm-to-product journey
-          </motion.h2>
-
-          <motion.p
-            className="font-body text-[16px] sm:text-[17px] text-[#666666] leading-[1.9] m-0 max-w-xl"
-            initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
-            animate={headerEntered ? { opacity: 1, y: 0 } : {}}
-            transition={{ ...headerTransition, delay: reducedMotion ? 0 : 0.16 }}
-          >
-            From biosecure layer farms and pathogen-free feed formulation to automated processing, NABL analytical testing, and global packaging dispatch.
-          </motion.p>
-        </div>
-
-        {/* Journey — Center Vertical Timeline Layout */}
-        <div ref={journeyContainerRef} className="relative z-10">
-          {/* Desktop */}
-          <div className="hidden lg:block relative">
-            <div className="absolute top-12 bottom-12 left-1/2 -translate-x-1/2 w-[1px] bg-[#DDDDDD] z-0 pointer-events-none" />
-            {!reducedMotion && (
-              <>
+            <div className="relative flex-[1.2] min-w-0 h-full rounded-[8px] overflow-hidden">
+              <AnimatePresence mode="sync" initial={false}>
                 <motion.div
-                  style={{ scaleY: lineScaleY }}
-                  className="absolute top-12 bottom-12 left-1/2 -translate-x-1/2 w-[2px] bg-[#E40A18] origin-top z-0 pointer-events-none"
-                />
-                {/* Small glowing point traveling down the progress line,
-                    tracking the same scroll progress as the line itself */}
-                <motion.div
-                  style={{ top: dotTop }}
-                  className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full z-[1] pointer-events-none"
-                  animate={{ opacity: [0.6, 1, 0.6] }}
-                  transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                  key={active.id}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.65, ease: EASE }}
+                  className="absolute inset-0"
                 >
-                  <span
-                    className="absolute inset-0 rounded-full"
-                    style={{ background: '#E8B64A', boxShadow: '0 0 10px 3px rgba(232,182,74,0.65)' }}
+                  <SafeImage
+                    src={active.image}
+                    alt={active.label}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
                   />
                 </motion.div>
-              </>
-            )}
-            <div className="flex flex-col">
-              {homeJourneyStages.map((stage, index) => (
-                <DesktopRow
-                  key={stage.id}
-                  stage={stage}
-                  index={index}
-                  totalStages={totalStages}
-                  isActive={index === activeStage}
-                  isCompleted={index < activeStage}
-                  onVisible={handleVisible}
-                  onPageChange={onPageChange}
-                  reducedMotion={reducedMotion}
-                />
-              ))}
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+              <span className="absolute top-6 left-6 font-heading font-black text-[16px] text-white bg-brand-600 w-11 h-11 rounded-full flex items-center justify-center z-10">
+                {active.step}
+              </span>
+              <div className="absolute top-6 right-6 bottom-6 w-[3px] rounded-full bg-white/25 z-10" aria-hidden="true">
+                <motion.div className="w-full rounded-full bg-white origin-top" style={{ scaleY: stepProgress }} />
+              </div>
             </div>
-          </div>
 
-          {/* Mobile */}
-          <div className="lg:hidden flex flex-col gap-2">
-            {homeJourneyStages.map((stage, index) => (
-              <MobileStage
-                key={stage.id}
-                stage={stage}
-                index={index}
-                totalStages={totalStages}
-                isActive={index === activeStage}
-                isCompleted={index < activeStage}
-                onVisible={handleVisible}
-                onPageChange={onPageChange}
-                reducedMotion={reducedMotion}
-                isLast={index === totalStages - 1}
-              />
-            ))}
+            <div className="relative flex-1 min-w-0 h-full flex flex-col justify-center">
+              <span className="section-label mb-6">Traceability</span>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={active.id}
+                  variants={copyContainerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  className="flex flex-col gap-5"
+                >
+                  <motion.span variants={copyItemVariants} className="font-body text-[12.5px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+                    Stage {active.step} · {total.toString().padStart(2, '0')}
+                  </motion.span>
+                  <motion.h3 variants={copyItemVariants} className="font-heading font-bold text-[34px] xl:text-[44px] text-heading dark:text-white leading-[1.08] tracking-tight m-0">
+                    {active.label}
+                  </motion.h3>
+                  <motion.p variants={copyItemVariants} className="font-body text-[16px] lg:text-[17px] text-surface-500 dark:text-surface-400 leading-[1.8] m-0 max-w-[46ch]">
+                    {active.description}
+                  </motion.p>
+                  {active.stat && (
+                    <motion.div variants={copyItemVariants} className="flex items-baseline gap-3 mt-2 pt-5 border-t border-surface-200/70 dark:border-surface-800 self-start">
+                      <span className="font-heading font-bold text-[26px] text-brand-600 dark:text-brand-400 leading-none tabular-nums">
+                        {active.stat.value}
+                      </span>
+                      <span className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-tight max-w-[220px]">
+                        {active.stat.label}
+                      </span>
+                    </motion.div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Stage index rail */}
+              <div className="flex items-center gap-2 mt-10">
+                {journeyStages.map((stage, i) => (
+                  <span
+                    key={stage.id}
+                    className={`h-[3px] rounded-full transition-all duration-500 ${i === activeIndex ? 'w-10 bg-brand-600' : 'w-4 bg-surface-200 dark:bg-surface-800'}`}
+                  />
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
 
-        {/* Footer CTA */}
-        <div className="pt-8 border-t border-[#ECECEC] flex flex-wrap items-center justify-between gap-4 relative z-10">
+function StackedTimeline({ reduceMotion }) {
+  return (
+    <div className="flex flex-col">
+      {journeyStages.map((stage, i) => (
+        <motion.div
+          key={stage.id}
+          {...fadeUp(reduceMotion, { delay: 0 })}
+          className={`flex gap-4 py-8 ${i !== journeyStages.length - 1 ? 'border-b border-surface-200/70 dark:border-surface-800' : ''}`}
+        >
+          <div className="flex flex-col items-center flex-shrink-0 w-8">
+            <span className="font-heading font-bold text-[13px] text-brand-600 dark:text-brand-400 tabular-nums">{stage.step}</span>
+            {i !== journeyStages.length - 1 && <div className="w-px bg-surface-200 dark:bg-surface-800 flex-1 mt-3" />}
+          </div>
+          <div className="flex-1 flex flex-col gap-4">
+            <div className="relative rounded-[8px] overflow-hidden aspect-[4/3]">
+              <SafeImage src={stage.image} alt={stage.label} loading="lazy" className="w-full h-full object-cover" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <h3 className="font-heading font-bold text-[22px] text-heading dark:text-white leading-[1.2] tracking-tight m-0">
+                {stage.label}
+              </h3>
+              <p className="font-body text-[14.5px] text-surface-500 dark:text-surface-400 leading-[1.7] m-0">
+                {stage.description}
+              </p>
+              {stage.stat && (
+                <div className="flex items-baseline gap-2.5 mt-1">
+                  <span className="font-heading font-bold text-[19px] text-brand-600 dark:text-brand-400 leading-none tabular-nums">
+                    {stage.stat.value}
+                  </span>
+                  <span className="font-body text-[12px] text-surface-500 dark:text-surface-400 leading-tight">
+                    {stage.stat.label}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+export default function HomeJourney({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
+  const useSticky = !reduceMotion;
+
+  return (
+    <section className="w-full bg-white dark:bg-surface-950">
+      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 pt-24 lg:pt-28">
+        <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl">
+          <span className="section-label">Traceability</span>
+          <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading dark:text-white leading-[1.05] tracking-tight m-0">
+            Farm-to-product journey
+          </h2>
+          <p className="font-body text-[16px] lg:text-[17px] text-surface-500 dark:text-surface-400 leading-[1.8] max-w-xl m-0">
+            From biosecure layer farms and pathogen-free feed formulation to automated processing, NABL analytical testing, and global packaging dispatch.
+          </p>
+        </motion.div>
+      </div>
+
+      {useSticky ? (
+        <>
+          <div className="hidden lg:block">
+            <DesktopSticky />
+          </div>
+          <div className="lg:hidden mx-auto max-w-[1680px] w-full px-6 sm:px-10 py-16">
+            <StackedTimeline reduceMotion={reduceMotion} />
+          </div>
+        </>
+      ) : (
+        <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 py-16 lg:py-20">
+          <StackedTimeline reduceMotion={reduceMotion} />
+        </div>
+      )}
+
+      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 pb-24 lg:pb-28 pt-8">
+        <div className="pt-8 border-t border-surface-200/70 dark:border-surface-800">
           <InternalLink
             route="traceability"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-[#E40A18] hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-colors duration-[250ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
             Explore Complete Traceability System
             <svg width="11" height="11" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true">
@@ -398,7 +222,6 @@ export default function HomeJourney({ onPageChange }) {
             </svg>
           </InternalLink>
         </div>
-
       </div>
     </section>
   );

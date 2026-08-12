@@ -21,7 +21,7 @@ export default function Hero({ onPageChange }) {
   return (
     <section
       ref={scrubContainerRef}
-      className="relative w-full h-[250vh]"
+      className="relative w-full h-[150vh]"
     >
       <div className="sticky top-0 h-[640px] sm:h-[720px] lg:h-[820px] w-full overflow-hidden">
         {/* Signature entrance — a soft curved (egg-inspired) mask sweeps open

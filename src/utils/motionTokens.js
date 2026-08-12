@@ -42,3 +42,30 @@ export function fadeUp(reduceMotion, { distance = 20, duration = DURATION.sectio
     transition: { duration: reduceMotion ? 0.01 : duration, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : delay },
   };
 }
+
+// Masked image reveal — clip-path wipes open (bottom-to-top by default)
+// while the image itself scales down from a slight zoom to rest. Pass
+// `from` to change wipe direction ('bottom' | 'left' | 'right' | 'top').
+const CLIP_CLOSED = {
+  bottom: 'inset(0 0 100% 0)',
+  top: 'inset(100% 0 0 0)',
+  left: 'inset(0 100% 0 0)',
+  right: 'inset(0 0 0 100%)',
+};
+
+export function maskReveal(reduceMotion, { from = 'bottom', delay = 0, duration = DURATION.process } = {}) {
+  return {
+    wrapper: {
+      initial: { clipPath: reduceMotion ? 'inset(0 0 0 0)' : CLIP_CLOSED[from] },
+      whileInView: { clipPath: 'inset(0 0 0 0)' },
+      viewport: { once: true, margin: '-100px' },
+      transition: { duration: reduceMotion ? 0.01 : duration, delay: reduceMotion ? 0 : delay, ease: EASE_PREMIUM },
+    },
+    image: {
+      initial: { scale: reduceMotion ? 1 : 1.06 },
+      whileInView: { scale: 1 },
+      viewport: { once: true, margin: '-100px' },
+      transition: { duration: reduceMotion ? 0.01 : duration + 0.2, delay: reduceMotion ? 0 : delay, ease: EASE_PREMIUM },
+    },
+  };
+}

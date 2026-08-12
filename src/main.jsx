@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import App from './App.jsx'
+import SmoothScrollProvider from './components/common/SmoothScrollProvider.jsx'
 
 // index.html carries a static baseline title/description/canonical/OG/
 // Twitter/JSON-LD as a fallback for the sliver of clients that never run
@@ -36,7 +37,9 @@ removeStaticSeoBaseline();
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HelmetProvider>
-      <App />
+      <SmoothScrollProvider>
+        <App />
+      </SmoothScrollProvider>
     </HelmetProvider>
   </StrictMode>,
 )

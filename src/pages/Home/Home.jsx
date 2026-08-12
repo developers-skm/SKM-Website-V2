@@ -9,8 +9,8 @@ import HomeJourney from './sections/HomeJourney';
 import WhyUs from './sections/WhyUs';
 import QualityCertificationProof from './sections/QualityCertificationProof';
 import GlobalMarkets from './sections/GlobalMarkets';
+import Sustainability from './sections/Sustainability';
 import FinalEnquiry from './sections/FinalEnquiry';
-import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 export default function Home({ onPageChange, prefill }) {
   // "Find Your Product"/"Find Product" and the Hero's "Find the Right Egg
@@ -52,33 +52,26 @@ export default function Home({ onPageChange, prefill }) {
       {/* 3. Application Finder — "What are you making?" */}
       <ApplicationAreas onPageChange={onPageChange} />
 
-      {/* 4. Why SKM, condensed — the rational case */}
+      {/* 4. Why SKM — key numbers, the rational case */}
       <WhyUs onPageChange={onPageChange} />
-      <CurvedDivider bg="#fff" fill="#FAFAF8" className="dark:hidden" />
-      <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
 
-      {/* 5. Farm-to-product journey */}
-      <HomeJourney onPageChange={onPageChange} />
-      <CurvedDivider bg="#FAFAF8" fill="#fff" className="dark:hidden" />
-      <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
-
-      {/* 6. Quality and certification proof — also folds in TrustBar's
-          former certification-marquee content, which previously interrupted
-          the Section 5 -> 7 sequence at its own top-level render position. */}
+      {/* 5. Quality and certification proof */}
       <QualityCertificationProof onPageChange={onPageChange} />
-      <CurvedDivider bg="#fff" fill="#fff" className="dark:hidden" />
-      <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
 
-      {/* 7. Global reach and supply support */}
+      {/* 6. Farm-to-product traceability journey */}
+      <HomeJourney onPageChange={onPageChange} />
+
+      {/* 7. Infrastructure — Asia's largest integrated processing facility */}
+      <CompanyIntro onPageChange={onPageChange} />
+
+      {/* 8. Global reach and supply support */}
       <GlobalMarkets onPageChange={onPageChange} />
 
-      {/* 8. Final conversion section */}
-      <FinalEnquiry onPageChange={onPageChange} />
+      {/* 9. Sustainability */}
+      <Sustainability onPageChange={onPageChange} />
 
-      {/* Legacy section — not yet mapped to its final PDF slot; left in
-          place, unmodified, per this task's explicit scope. Moved out of
-          the Section 5 -> 7 sequence since it is neither Section 6 nor 7. */}
-      <CompanyIntro onPageChange={onPageChange} />
+      {/* 10. Final conversion section */}
+      <FinalEnquiry onPageChange={onPageChange} />
     </div>
   );
 }

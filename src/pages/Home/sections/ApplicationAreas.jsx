@@ -1,206 +1,190 @@
-import { useState, useEffect, useCallback, useRef, useLayoutEffect } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import applications from '../../../data/applications';
-import ApplicationCard from './ApplicationCard';
 import InternalLink from '../../../components/common/InternalLink';
-import { containerVariants, itemVariants } from '../../../utils/animationVariants';
+import { getProductById } from '../../../data/products';
+import { fadeUp, EASE_PREMIUM } from '../../../utils/motionTokens';
+import SafeImage from '../../../components/common/SafeImage';
 
-// Application Finder / product-finding tool. Only 4 of the 6 approved
-// category labels (Bakery and confectionery / Mayonnaise, sauces and
-// dressings / Noodles and pasta / Meat, fish and surimi) have complete
-// approved data, images, routes, and product mappings in
-// src/data/applications.js. Protein and nutrition / Other industrial
-// applications have none of that yet — no image, no technical-need text,
-// no product mapping, no route — so per the missing-category rule they are
-// not rendered (no invented content, no reused image, no fake destination).
+// Applications — premium editorial food spread. One dominant image
+// (~60% width on desktop) crossfades to match whichever application row is
+// active; the remaining applications render as a numbered editorial index
+// (thin rules, numbering, typography) rather than a card grid. Same 4 real
+// `applications` records, routes and matched-product counts as the
+// original carousel version — presentation only, no content changes.
 //
-// Cards themselves (ApplicationCard) are unchanged — this section only
-// controls the carousel mechanics. Unlike an opacity/scale crossfade (which
-// reads as a sudden cut), this renders one continuous strip of cards
-// (`applications` repeated 3x so there's always a real card off-screen on
-// both sides) and animates the strip's x position with a real slide on
-// every step — autoplay every 3.5s continuously, plus drag/swipe.
-//
-// `isAnimatingRef` is a hard lock: autoplay, dot-clicks, and drag can only
-// ever queue ONE step forward (right-to-left) at a time. Without it, an
-// autoplay tick landing while the previous slide's transition/state update
-// hadn't settled yet could stack two `step(1)` calls back to back, which
-// visually reads as "sometimes jumps 2 cards instead of 1". The lock is
-// released only in `handleSlideComplete`, i.e. once the previous move has
-// fully finished and (if needed) the infinite-loop snap has happened.
+// Autoplay: the featured image was previously static unless a user
+// actively hovered a row (so on load/mobile/no-hover it just sat on the
+// first application forever). Now it advances on its own every 3.5s,
+// looping through all 4 applications, and pauses while the user is
+// hovering/focusing a row so it doesn't fight manual interaction. Disabled
+// entirely under prefers-reduced-motion.
 const AUTOPLAY_INTERVAL_MS = 3500;
-const SLIDE_TRANSITION = { duration: 0.65, ease: [0.22, 1, 0.36, 1] };
 
-function useCardsPerView() {
-  const [count, setCount] = useState(() =>
-    typeof window === 'undefined' ? 3 : getCountForWidth(window.innerWidth)
-  );
-
-  useEffect(() => {
-    const onResize = () => setCount(getCountForWidth(window.innerWidth));
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
-  return count;
+function matchedCount(app) {
+  return app.matchedProductIds.map(getProductById).filter(Boolean).length;
 }
 
-function getCountForWidth(width) {
-  if (width >= 1024) return 3;
-  if (width >= 640) return 2;
-  return 1;
+function ApplicationRow({ app, index, isActive, onActivate, onPageChange, reduceMotion }) {
+  return (
+    <motion.div
+      {...fadeUp(reduceMotion, { distance: 18, delay: 0.25 + index * 0.09 })}
+      className={index === 0 ? 'border-t border-surface-200/70 dark:border-surface-800' : ''}
+    >
+      <InternalLink
+        route={app.page}
+        onPageChange={onPageChange}
+        onMouseEnter={onActivate}
+        onFocus={onActivate}
+        className="group flex items-start gap-5 py-6 border-b border-surface-200/70 dark:border-surface-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
+        aria-label={`Explore ${app.title} applications`}
+      >
+        <span className={`font-body text-[13px] pt-1 tabular-nums transition-colors duration-300 ${isActive ? 'text-brand-600 dark:text-brand-400' : 'text-surface-400 dark:text-surface-600'}`}>
+          {String(index + 1).padStart(2, '0')}
+        </span>
+
+        <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+          <h3 className={`font-heading font-bold text-[20px] sm:text-[23px] leading-[1.3] m-0 transition-colors duration-300 ${isActive ? 'text-brand-600 dark:text-brand-400' : 'text-heading dark:text-white'}`}>
+            {app.title}
+          </h3>
+          <p
+            className={`font-body text-[14px] sm:text-[14.5px] text-surface-500 dark:text-surface-400 leading-[1.55] max-w-md transition-opacity duration-300 ${isActive ? 'lg:opacity-100' : 'lg:opacity-60'}`}
+          >
+            {app.problem}
+          </p>
+        </div>
+
+        <svg
+          width="13" height="13" viewBox="0 0 10 10" fill="currentColor"
+          className={`flex-shrink-0 mt-1.5 transition-all duration-300 ${isActive ? 'text-brand-600 dark:text-brand-400 translate-x-1.5' : 'text-surface-300 dark:text-surface-700'}`}
+          aria-hidden
+        >
+          <path d="M10 0.0495054L10 10.0001L8.13725 10.0001L-8.22301e-08 1.8812L1.86275 -3.55691e-07L7.35294 5.5446L7.30392 0.0495053L10 0.0495054Z" />
+          <path d="M-9.6438e-05 10.0002L6.27441 10.0002L3.62736 7.32687L-9.63211e-05 7.32687L-9.6438e-05 10.0002Z" />
+        </svg>
+      </InternalLink>
+    </motion.div>
+  );
 }
 
 export default function ApplicationAreas({ onPageChange }) {
   const reduceMotion = useReducedMotion();
-  const cardsPerView = useCardsPerView();
-  const total = applications.length;
+  const [activeId, setActiveId] = useState(applications[0]?.id);
+  const [isPaused, setIsPaused] = useState(false);
+  const active = applications.find((a) => a.id === activeId) ?? applications[0];
 
-  // `centerIndex` walks a virtual, non-wrapping sequence over the strip's
-  // middle copy of `applications` (indices [total, 2*total)). The strip
-  // itself never re-keys or wraps mid-animation — only after a slide
-  // completes do we silently snap centerIndex back into the middle copy's
-  // range, so the loop has no visible jump.
-  const [centerIndex, setCenterIndex] = useState(total);
-  const [trackWidth, setTrackWidth] = useState(0);
-  const trackRef = useRef(null);
-  const cardRef = useRef(null);
-  const isAnimatingRef = useRef(false);
-
-  const strip = [...applications, ...applications, ...applications];
-
-  useLayoutEffect(() => {
-    if (!cardRef.current) return;
-    const update = () => setTrackWidth(cardRef.current?.offsetWidth ?? 0);
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(cardRef.current);
-    return () => ro.disconnect();
-  }, [cardsPerView]);
-
-  // Advances exactly one position, right-to-left, and only if no
-  // transition is currently in flight — this is what prevents skipped or
-  // stacked positions.
-  const stepForward = useCallback(() => {
-    if (isAnimatingRef.current) return;
-    isAnimatingRef.current = true;
-    setCenterIndex((prev) => prev + 1);
+  const activateById = useCallback((id) => {
+    setActiveId(id);
   }, []);
 
+  // Autoplay — advances to the next application every 3.5s, looping
+  // continuously (including 4th → 1st, not stopping there). Pauses only
+  // while the user is actively hovering/focusing a row, then resumes the
+  // loop once they move away — it never overrides what's on screen mid-hover,
+  // but a one-time hover doesn't kill the loop forever either.
   useEffect(() => {
-    if (total <= 1 || reduceMotion) return undefined;
-    const id = setInterval(stepForward, AUTOPLAY_INTERVAL_MS);
+    if (reduceMotion || isPaused) return undefined;
+    const id = setInterval(() => {
+      setActiveId((prev) => {
+        const currentIndex = applications.findIndex((a) => a.id === prev);
+        const nextIndex = (currentIndex + 1) % applications.length;
+        return applications[nextIndex].id;
+      });
+    }, AUTOPLAY_INTERVAL_MS);
     return () => clearInterval(id);
-  }, [total, reduceMotion, stepForward]);
-
-  // After each slide settles, if we've drifted into the first or last
-  // copy of the strip, snap (no animation) back to the equivalent index
-  // in the middle copy — this is what makes the loop infinite. Only after
-  // this settle do we release the lock, so the next step can't start
-  // until the current one (including the snap) has fully finished.
-  const handleSlideComplete = useCallback(() => {
-    setCenterIndex((prev) => {
-      if (prev < total) return prev + total;
-      if (prev >= total * 2) return prev - total;
-      return prev;
-    });
-    isAnimatingRef.current = false;
-  }, [total]);
-
-  const handleDragEnd = (_, info) => {
-    const SWIPE_THRESHOLD = 60;
-    if (info.offset.x <= -SWIPE_THRESHOLD) stepForward();
-  };
-
-  const gap = 24; // matches gap-6 (lg) — used for the pixel-accurate offset math
-  const cardStep = trackWidth + gap;
-  const activeStripIndex = centerIndex; // slot currently centered
-  const offsetToCenter = -(activeStripIndex * cardStep) + (Math.floor(cardsPerView / 2) * cardStep);
+  }, [reduceMotion, isPaused]);
 
   return (
-    <div id="application-selector" className="w-full bg-white dark:bg-surface-900/40 pt-16 pb-10 lg:pt-24 lg:pb-16 xl:pt-28 xl:pb-20 scroll-mt-[100px] xl:scroll-mt-[120px]">
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col"
-      >
-        <motion.div variants={itemVariants} className="flex flex-col items-center text-center gap-3 max-w-2xl mx-auto mb-7 lg:mb-9">
-          <h2 className="font-heading font-bold text-[34px] sm:text-[40px] lg:text-[44px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
-            What we are Applied?
+    <div id="application-selector" className="w-full bg-white dark:bg-surface-900/40 pt-24 pb-24 lg:pt-32 lg:pb-32 scroll-mt-[100px] xl:scroll-mt-[120px]">
+      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
+
+        <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-12 lg:mb-16">
+          <span className="section-label">Applications</span>
+          <h2 className="font-heading font-bold text-[38px] sm:text-[52px] lg:text-[62px] text-heading dark:text-white leading-[1.02] tracking-tight m-0">
+            What we are applied for
           </h2>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="relative w-full overflow-hidden py-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+          {/* Dominant image — ~60% desktop, crossfades on active application. */}
           <motion.div
-            ref={trackRef}
-            className="flex items-stretch gap-5 lg:gap-6"
-            style={{ touchAction: 'pan-y', cursor: 'grab' }}
-            drag={trackWidth ? 'x' : false}
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.15}
-            onDragEnd={handleDragEnd}
-            animate={{ x: trackWidth ? offsetToCenter : 0 }}
-            transition={reduceMotion ? { duration: 0 } : SLIDE_TRANSITION}
-            onAnimationComplete={handleSlideComplete}
+            initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: EASE_PREMIUM }}
+            className="lg:col-span-7 relative rounded-[8px] overflow-hidden aspect-[5/4] lg:aspect-[6/5]"
           >
-            {strip.map((app, index) => {
-              const isActive = index === activeStripIndex;
-
-              return (
-                <motion.div
-                  key={index}
-                  ref={index === 0 ? cardRef : undefined}
-                  animate={{
-                    scale: isActive ? 1 : 0.92,
-                  }}
-                  transition={SLIDE_TRANSITION}
-                  style={{
-                    boxShadow: isActive ? '0 20px 44px rgba(36,30,24,0.16)' : 'none',
-                  }}
-                  className={`w-[78vw] sm:w-[46%] lg:w-[31%] flex-none rounded-[24px] transition-[z-index] ${isActive ? 'z-20' : 'z-10'}`}
-                >
-                  <ApplicationCard app={app} onPageChange={onPageChange} isActive={isActive} />
-                </motion.div>
-              );
-            })}
+            <AnimatePresence mode="sync" initial={false}>
+              <motion.div
+                key={active.id}
+                initial={{ opacity: 0, scale: reduceMotion ? 1 : 1.025 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.65, ease: EASE_PREMIUM }}
+                className="absolute inset-0"
+              >
+                <SafeImage
+                  src={active.image}
+                  alt={active.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            </AnimatePresence>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 p-8 sm:p-10 lg:p-12">
+              <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.2em] text-white/70">
+                {active.tags.join(' · ')}
+              </span>
+              <h3 className="mt-3 font-heading font-bold text-[26px] sm:text-[32px] lg:text-[36px] text-white leading-[1.1] tracking-tight m-0 max-w-md">
+                {active.title}
+              </h3>
+              <InternalLink
+                route={active.page}
+                onPageChange={onPageChange}
+                className="group mt-5 inline-flex items-center gap-2.5 font-body font-semibold text-[14px] text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded-sm"
+              >
+                Explore {matchedCount(active)} matching {matchedCount(active) === 1 ? 'product' : 'products'}
+                <svg width="11" height="11" viewBox="0 0 10 10" fill="currentColor" className="group-hover:translate-x-1 transition-transform duration-300" aria-hidden>
+                  <path d="M10 0.0495054L10 10.0001L8.13725 10.0001L-8.22301e-08 1.8812L1.86275 -3.55691e-07L7.35294 5.5446L7.30392 0.0495053L10 0.0495054Z" />
+                  <path d="M-9.6438e-05 10.0002L6.27441 10.0002L3.62736 7.32687L-9.63211e-05 7.32687L-9.6438e-05 10.0002Z" />
+                </svg>
+              </InternalLink>
+            </div>
           </motion.div>
-        </motion.div>
 
-        {total > 1 && (
-          <motion.div variants={itemVariants} className="flex items-center justify-center gap-2.5 mt-8 lg:mt-10">
-            {applications.map((app, index) => (
-              <button
+          {/* Editorial index — numbered rows, thin rules, no cards */}
+          <div
+            className="lg:col-span-5 flex flex-col"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {applications.map((app, i) => (
+              <ApplicationRow
                 key={app.id}
-                type="button"
-                onClick={() => {
-                  if (isAnimatingRef.current) return;
-                  isAnimatingRef.current = true;
-                  setCenterIndex(total + index);
-                }}
-                aria-label={`Show ${app.title}`}
-                aria-current={activeStripIndex % total === index}
-                className={`rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
-                  activeStripIndex % total === index
-                    ? 'w-3 h-3 bg-brand-600'
-                    : 'w-2.5 h-2.5 bg-surface-300 dark:bg-surface-700 hover:bg-brand-600/50'
-                }`}
+                app={app}
+                index={i}
+                isActive={app.id === active.id}
+                onActivate={() => activateById(app.id)}
+                onPageChange={onPageChange}
+                reduceMotion={reduceMotion}
               />
             ))}
-          </motion.div>
-        )}
 
-        <motion.div variants={itemVariants} className="flex justify-center mt-10 lg:mt-12">
-          <InternalLink
-            route="applications"
-            onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white dark:bg-surface-900 border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.05em] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-          >
-            View All Applications
-          </InternalLink>
-        </motion.div>
-      </motion.div>
+            <motion.div {...fadeUp(reduceMotion, { delay: 0.6 })} className="mt-8">
+              <InternalLink
+                route="applications"
+                onPageChange={onPageChange}
+                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white dark:bg-surface-900 border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.05em] transition-all duration-[250ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+              >
+                View All Applications
+              </InternalLink>
+            </motion.div>
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 }
