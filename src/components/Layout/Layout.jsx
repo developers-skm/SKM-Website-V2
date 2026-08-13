@@ -12,8 +12,10 @@ import MobileStickyActions from '../Navbar/MobileStickyActions';
 export default function Layout({ children, activePage, onPageChange, suppressMobileActions }) {
   const footerWrapperRef = useRef(null);
   const [footerVisible, setFooterVisible] = useState(false);
+  const isOffline = activePage === 'offline';
 
   useEffect(() => {
+    if (isOffline) return undefined;
     const target = footerWrapperRef.current;
     if (!target) return undefined;
     const observer = new IntersectionObserver(
@@ -22,32 +24,28 @@ export default function Layout({ children, activePage, onPageChange, suppressMob
     );
     observer.observe(target);
     return () => observer.disconnect();
-  }, []);
+  }, [isOffline]);
 
   return (
     <div className="relative flex flex-col min-h-screen w-full overflow-x-clip bg-page dark:bg-surface-950 text-surface-800 dark:text-surface-100 transition-colors duration-300">
-      {/* Navbar's logo is `absolute` (scrolls away with the page) — this
-          wrapper is its positioning context. Its menu button is `fixed`
-          (stays put through scroll) and ignores this positioning entirely. */}
       <Navbar activePage={activePage} onPageChange={onPageChange} />
-      {/* No top padding here — the logo/menu float over whatever the first
-          section renders (its background must reach y=0, e.g. Hero.jsx's
-          full-bleed image). Each page's own first section is responsible
-          for reserving its own top clearance so its heading doesn't sit
-          under the logo/menu; see Hero.jsx for the homepage's version. */}
-      <main className="flex-grow w-full flex flex-col box-border pb-[76px] md:pb-0">
+      <main className={`flex-grow w-full flex flex-col box-border ${isOffline ? 'pb-0' : 'pb-[76px] md:pb-0'}`}>
         {children}
       </main>
-      <div ref={footerWrapperRef}>
-        <Footer onPageChange={onPageChange} />
-      </div>
-      <ScrollToTopButton />
-      <Chatbot />
-      <MobileStickyActions
-        activePage={activePage}
-        onPageChange={onPageChange}
-        suppressed={Boolean(suppressMobileActions) || footerVisible}
-      />
+      {!isOffline && (
+        <>
+          <div ref={footerWrapperRef}>
+            <Footer onPageChange={onPageChange} />
+          </div>
+          <ScrollToTopButton />
+          <Chatbot />
+          <MobileStickyActions
+            activePage={activePage}
+            onPageChange={onPageChange}
+            suppressed={Boolean(suppressMobileActions) || footerVisible}
+          />
+        </>
+      )}
     </div>
   );
 }
