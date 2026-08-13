@@ -100,7 +100,7 @@ function InternshipForm({ formData, errors, onChange }) {
       </Field>
 
       <Field label="Application Period" required error={errors.periodFrom}>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1">
             <span className="text-[9px] font-semibold text-surface-400 uppercase tracking-widest">From</span>
             <input type="date" name="periodFrom" value={formData.periodFrom} onChange={onChange} className={inputClass(errors.periodFrom)} />

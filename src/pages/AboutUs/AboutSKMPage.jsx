@@ -150,6 +150,31 @@ const JOURNEY_MILESTONES = [
 ];
 
 function CompanyJourneySection({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
+
+  if (reduceMotion) {
+    return <MobileJourneyTimeline onPageChange={onPageChange} isReducedMotion />;
+  }
+
+  return (
+    <>
+      <div className="hidden lg:block">
+        <DesktopJourneyTimeline onPageChange={onPageChange} />
+      </div>
+      <div className="lg:hidden">
+        <MobileJourneyTimeline onPageChange={onPageChange} />
+      </div>
+    </>
+  );
+}
+
+// Desktop / large-viewport — pinned scroll-driven timeline (320vh scroll
+// track, sticky panel, scroll-scrubbed year progression). Hidden below lg
+// so mobile never receives a forced sticky layout or scroll-jacked height
+// (same pattern as JourneyScrollSection/HomeJourney/TraceabilityLoopJourney
+// — pinned sticky sections don't translate to short/narrow touch
+// viewports).
+function DesktopJourneyTimeline({ onPageChange }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const containerRef = useRef(null);
   const reduceMotion = useReducedMotion();
@@ -305,6 +330,66 @@ function CompanyJourneySection({ onPageChange }) {
               </motion.div>
             </AnimatePresence>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Mobile / tablet (< lg) and reduced-motion fallback — plain stacked
+// milestone list, reveal-on-scroll (whileInView) per card instead of a
+// pinned/scroll-scrubbed timeline. No sticky container, no 320vh scroll
+// track — those don't translate to short, narrow touch viewports.
+function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
+  return (
+    <section className="relative w-full border-b border-[#eee] dark:border-surface-800/40 bg-page dark:bg-surface-950 py-[52px]">
+      <div className="mx-auto max-w-[720px] w-full px-4 sm:px-6 flex flex-col gap-8">
+        <div className="flex flex-col gap-3">
+          <span className="section-label">Our History</span>
+          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+            Company journey
+          </h2>
+          <p className="font-body text-[14px] sm:text-[15px] text-surface-500 dark:text-surface-400 leading-[1.6] m-0">
+            SKM's history from founding in 1996 through two decades of honors.
+          </p>
+          <InternalLink
+            route="accolades"
+            onPageChange={onPageChange}
+            className="self-start inline-flex items-center gap-2.5 min-h-[42px] px-6 py-2.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[12.5px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 mt-1"
+          >
+            Explore Our History
+          </InternalLink>
+        </div>
+
+        <div className="relative flex flex-col">
+          <div className="absolute left-[20px] top-2 bottom-2 w-[2px] bg-surface-200 dark:bg-surface-800" aria-hidden="true" />
+
+          {JOURNEY_MILESTONES.map((m) => (
+            <motion.div
+              key={m.year}
+              initial={{ opacity: 0, y: isReducedMotion ? 0 : 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: isReducedMotion ? 0.01 : 0.5, ease: EASE_PREMIUM, delay: isReducedMotion ? 0 : 0.05 }}
+              className="relative flex gap-5 pb-8 last:pb-0"
+            >
+              <span className="relative z-10 flex-shrink-0 w-[42px] h-[42px] rounded-full flex items-center justify-center font-heading font-bold text-[10px] border-2 bg-brand-600 border-brand-600 text-white">
+                {m.year.slice(0, 4)}
+              </span>
+
+              <div className="flex flex-col gap-1.5 pt-1.5">
+                <span className="inline-flex items-center w-fit px-3 py-1 rounded-full bg-brand-600/10 dark:bg-brand-500/15 font-body text-[11px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                  {m.tag}
+                </span>
+                <h3 className="font-heading font-bold text-[19px] text-heading dark:text-white leading-[1.25] m-0">
+                  {m.year} — {m.label}
+                </h3>
+                <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 leading-[1.6] m-0">
+                  {m.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

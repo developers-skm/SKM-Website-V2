@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { EASE_PREMIUM, DURATION, STAGGER } from '../../../utils/motionTokens';
 
@@ -6,8 +7,30 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
+// Below Tailwind's `sm` breakpoint, mobile GPUs struggle to composite a
+// clip-path mask + a simultaneous 8s image-scale transform + two
+// mix-blend-soft-light layers all at once on a large remote image — that
+// combination is what read as "hanging/lagging" on phones. Desktop keeps
+// the full signature entrance; mobile gets a plain, cheap fade/scale
+// instead (still animated, just without the compositing-heavy layers).
+function useIsMobileViewport() {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window === 'undefined' ? false : window.innerWidth < 640
+  );
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  return isMobile;
+}
+
 export default function ApplicationHero({ onPageChange }) {
   const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobileViewport();
+  const skipHeavyMotion = reduceMotion || isMobile;
 
   const scrollToCategories = () => {
     document.getElementById('application-categories')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -15,12 +38,12 @@ export default function ApplicationHero({ onPageChange }) {
 
   return (
     <section className="relative w-full h-[640px] sm:h-[720px] lg:h-[820px] overflow-hidden flex items-center">
-      {/* Signature entrance — curved mask sweeps open from center matching Home Hero */}
+      {/* Signature entrance — curved mask sweeps open from center matching Home Hero. Desktop only: skipped on mobile, see useIsMobileViewport above. */}
       <motion.div
         className="absolute inset-0"
-        initial={reduceMotion ? false : { clipPath: 'inset(0% 42% 0% 42% round 50%)' }}
-        animate={reduceMotion ? undefined : { clipPath: 'inset(0% 0% 0% 0% round 0%)' }}
-        transition={{ duration: reduceMotion ? 0.01 : 1.4, ease: [0.22, 1, 0.36, 1] }}
+        initial={skipHeavyMotion ? false : { clipPath: 'inset(0% 42% 0% 42% round 50%)' }}
+        animate={skipHeavyMotion ? undefined : { clipPath: 'inset(0% 0% 0% 0% round 0%)' }}
+        transition={{ duration: skipHeavyMotion ? 0.01 : 1.4, ease: [0.22, 1, 0.36, 1] }}
       >
         <motion.img
           src="https://images.unsplash.com/photo-1713176679770-1ab32be3fb38?fm=jpg&q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0"
@@ -30,20 +53,20 @@ export default function ApplicationHero({ onPageChange }) {
           fetchPriority="high"
           loading="eager"
           className="absolute inset-0 w-full h-full object-cover select-none"
-          initial={{ scale: reduceMotion ? 1 : 1.12 }}
+          initial={{ scale: reduceMotion ? 1 : isMobile ? 1.04 : 1.12 }}
           animate={{ scale: 1 }}
-          transition={{ duration: reduceMotion ? 0.01 : 8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: reduceMotion ? 0.01 : isMobile ? 1.1 : 8, ease: [0.22, 1, 0.36, 1] }}
         />
       </motion.div>
 
-      {/* Subtle yolk-gold light gradient — upper-right, echoes Home Hero */}
+      {/* Subtle yolk-gold light gradient — upper-right, echoes Home Hero. mix-blend-soft-light disables GPU fast-path compositing, so it's desktop-only. */}
       <div
-        className="absolute inset-0 pointer-events-none mix-blend-soft-light"
+        className="hidden sm:block absolute inset-0 pointer-events-none mix-blend-soft-light"
         style={{ background: 'radial-gradient(60% 55% at 82% 18%, rgba(232,182,74,0.5) 0%, rgba(232,182,74,0) 70%)' }}
       />
 
-      {/* Once-only warm light sweep — soft diagonal gradient band drifts slowly */}
-      {!reduceMotion && (
+      {/* Once-only warm light sweep — soft diagonal gradient band drifts slowly. Desktop only, same compositing-cost reason as above. */}
+      {!skipHeavyMotion && (
         <motion.div
           className="absolute inset-0 pointer-events-none mix-blend-soft-light"
           style={{
@@ -120,7 +143,7 @@ export default function ApplicationHero({ onPageChange }) {
 
             <button
               onClick={() => onPageChange('contact-us')}
-              className="inline-flex items-center justify-center gap-2 min-h-[46px] px-6 rounded-[10px] border border-white/40 bg-white/10 backdrop-blur-sm text-white font-heading font-bold text-[13px] uppercase tracking-[0.03em] hover:bg-white hover:text-heading hover:border-white transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 min-h-[46px] px-6 rounded-[10px] border border-white/40 bg-white/10 sm:backdrop-blur-sm text-white font-heading font-bold text-[13px] uppercase tracking-[0.03em] hover:bg-white hover:text-heading hover:border-white transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
             >
               Talk to an Application Specialist
             </button>

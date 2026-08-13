@@ -87,7 +87,7 @@ function MarketMapDetailSection({ onPageChange }) {
               type="button"
               onClick={() => setSelected(market)}
               aria-pressed={selected.id === market.id}
-              className={`inline-flex items-center gap-2 min-h-[38px] px-3.5 py-2 rounded-full border font-body text-[13px] font-semibold transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
+              className={`inline-flex items-center gap-2 min-h-[44px] sm:min-h-[38px] px-3.5 py-2 rounded-full border font-body text-[13px] font-semibold transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
                 selected.id === market.id
                   ? 'bg-brand-600 border-brand-600 text-white'
                   : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50'

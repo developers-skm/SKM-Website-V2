@@ -259,7 +259,7 @@ export default function CategoryPage({
                     type="button"
                     onClick={() => setActiveTag(activeTag === tag.label ? null : tag.label)}
                     aria-pressed={activeTag === tag.label}
-                    className={`inline-flex items-center min-h-[38px] px-4 py-2 rounded-full border font-body font-semibold text-[13.5px] transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
+                    className={`inline-flex items-center min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-full border font-body font-semibold text-[13.5px] transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
                       activeTag === tag.label
                         ? 'bg-brand-600 border-brand-600 text-white'
                         : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50'

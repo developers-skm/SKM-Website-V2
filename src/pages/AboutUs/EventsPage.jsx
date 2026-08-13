@@ -384,7 +384,7 @@ export default function EventsPage({ onPageChange }) {
                           setMeetingForm(prev => ({ ...prev, date: '' }));
                           setMeetingError('');
                         }}
-                        className="w-full inline-flex items-center justify-center min-h-[38px] rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-bold text-[12.5px] transition-colors cursor-pointer"
+                        className="w-full inline-flex items-center justify-center min-h-[44px] sm:min-h-[38px] rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-bold text-[12.5px] transition-colors cursor-pointer"
                       >
                         Book a Meeting at This Event
                       </button>
@@ -392,7 +392,7 @@ export default function EventsPage({ onPageChange }) {
                         <button
                           type="button"
                           onClick={() => downloadIcs(expo)}
-                          className="w-full inline-flex items-center justify-center min-h-[38px] rounded-full border border-surface-200 dark:border-surface-700 hover:border-brand-600 dark:hover:border-brand-500 hover:text-brand-600 dark:hover:text-brand-400 text-surface-600 dark:text-surface-300 font-body font-semibold text-[12.5px] transition-colors cursor-pointer bg-transparent"
+                          className="w-full inline-flex items-center justify-center min-h-[44px] sm:min-h-[38px] rounded-full border border-surface-200 dark:border-surface-700 hover:border-brand-600 dark:hover:border-brand-500 hover:text-brand-600 dark:hover:text-brand-400 text-surface-600 dark:text-surface-300 font-body font-semibold text-[12.5px] transition-colors cursor-pointer bg-transparent"
                         >
                           <svg className="w-3.5 h-3.5 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -405,7 +405,7 @@ export default function EventsPage({ onPageChange }) {
                           disabled
                           title="Dates not yet confirmed for this event"
                           aria-disabled="true"
-                          className="w-full inline-flex items-center justify-center min-h-[38px] rounded-full border border-surface-200 dark:border-surface-700 text-surface-350 dark:text-surface-600 font-body font-semibold text-[12.5px] cursor-not-allowed opacity-60 bg-transparent"
+                          className="w-full inline-flex items-center justify-center min-h-[44px] sm:min-h-[38px] rounded-full border border-surface-200 dark:border-surface-700 text-surface-350 dark:text-surface-600 font-body font-semibold text-[12.5px] cursor-not-allowed opacity-60 bg-transparent"
                         >
                           <svg className="w-3.5 h-3.5 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -555,7 +555,7 @@ export default function EventsPage({ onPageChange }) {
                   type="button"
                   onClick={() => setSelectedTopic(topic)}
                   aria-pressed={selectedTopic === topic}
-                  className={`inline-flex items-center min-h-[38px] px-5 py-1.5 rounded-full border font-body text-[13px] font-semibold transition-all duration-200 cursor-pointer ${
+                  className={`inline-flex items-center min-h-[44px] sm:min-h-[38px] px-5 py-1.5 rounded-full border font-body text-[13px] font-semibold transition-all duration-200 cursor-pointer ${
                     selectedTopic === topic
                       ? 'bg-brand-600 border-brand-600 text-white shadow-md'
                       : 'bg-white dark:bg-surface-900 border-surface-200 dark:border-surface-800 text-surface-600 dark:text-surface-300 hover:border-brand-600/50 hover:bg-brand-600/5'
@@ -600,7 +600,7 @@ export default function EventsPage({ onPageChange }) {
                         <button
                           type="button"
                           onClick={() => setActiveInsight(insight)}
-                          className="inline-flex items-center min-h-[34px] px-4 rounded-full border border-surface-200 dark:border-surface-700 hover:border-brand-600 dark:hover:border-brand-500 hover:text-brand-600 dark:hover:text-brand-400 font-body font-bold text-[12px] uppercase tracking-wider text-surface-600 dark:text-surface-300 transition-colors cursor-pointer bg-transparent"
+                          className="inline-flex items-center min-h-[44px] sm:min-h-[34px] px-4 rounded-full border border-surface-200 dark:border-surface-700 hover:border-brand-600 dark:hover:border-brand-500 hover:text-brand-600 dark:hover:text-brand-400 font-body font-bold text-[12px] uppercase tracking-wider text-surface-600 dark:text-surface-300 transition-colors cursor-pointer bg-transparent"
                         >
                           Read Insight
                         </button>
@@ -608,7 +608,7 @@ export default function EventsPage({ onPageChange }) {
                           <a
                             href={brochureUrl}
                             download
-                            className="inline-flex items-center min-h-[34px] px-4 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-bold text-[12px] uppercase tracking-wider transition-colors cursor-pointer"
+                            className="inline-flex items-center min-h-[44px] sm:min-h-[34px] px-4 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-bold text-[12px] uppercase tracking-wider transition-colors cursor-pointer"
                           >
                             Download Guide
                           </a>
@@ -616,7 +616,7 @@ export default function EventsPage({ onPageChange }) {
                           <button
                             type="button"
                             disabled
-                            className="inline-flex items-center min-h-[34px] px-4 rounded-full bg-surface-200 dark:bg-surface-800 text-surface-400 dark:text-surface-600 font-body font-bold text-[12px] uppercase tracking-wider cursor-not-allowed"
+                            className="inline-flex items-center min-h-[44px] sm:min-h-[34px] px-4 rounded-full bg-surface-200 dark:bg-surface-800 text-surface-400 dark:text-surface-600 font-body font-bold text-[12px] uppercase tracking-wider cursor-not-allowed"
                             title="Guide document coming soon"
                           >
                             Download Guide
@@ -874,7 +874,7 @@ export default function EventsPage({ onPageChange }) {
                   <button
                     type="button"
                     onClick={() => setActiveArticle(null)}
-                    className="inline-flex items-center justify-center min-h-[36px] px-5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[13px] transition-colors cursor-pointer"
+                    className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[36px] px-5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[13px] transition-colors cursor-pointer"
                   >
                     Close Article
                   </button>
@@ -943,7 +943,7 @@ export default function EventsPage({ onPageChange }) {
                       <a
                         href={activeInsightBrochureUrl}
                         download
-                        className="inline-flex items-center min-h-[36px] px-5 rounded-full border border-surface-250 dark:border-surface-700 hover:border-brand-600 hover:text-brand-600 text-surface-600 dark:text-surface-300 font-body font-semibold text-[13px] transition-colors cursor-pointer bg-white dark:bg-surface-900"
+                        className="inline-flex items-center min-h-[44px] sm:min-h-[36px] px-5 rounded-full border border-surface-250 dark:border-surface-700 hover:border-brand-600 hover:text-brand-600 text-surface-600 dark:text-surface-300 font-body font-semibold text-[13px] transition-colors cursor-pointer bg-white dark:bg-surface-900"
                       >
                         Download PDF Guide
                       </a>
@@ -951,7 +951,7 @@ export default function EventsPage({ onPageChange }) {
                     <button
                       type="button"
                       onClick={() => setActiveInsight(null)}
-                      className="inline-flex items-center justify-center min-h-[36px] px-5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[13px] transition-colors cursor-pointer"
+                      className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[36px] px-5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[13px] transition-colors cursor-pointer"
                     >
                       Close Insight
                     </button>

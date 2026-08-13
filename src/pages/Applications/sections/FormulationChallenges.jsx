@@ -47,8 +47,7 @@ export default function FormulationChallenges({ onPageChange }) {
                 key={challenge.id}
                 variants={itemVariants}
                 transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
-                whileHover={reduceMotion ? undefined : { y: -4 }}
-                className="group flex flex-col rounded-[22px] border border-surface-200/60 dark:border-surface-800 hover:border-brand-600/40 bg-white dark:bg-surface-900/40 px-6 py-7 shadow-[0_2px_10px_rgba(36,30,24,0.04)] hover:shadow-[0_10px_28px_rgba(36,30,24,0.09)] transition-[border-color,box-shadow] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className="group flex flex-col rounded-[22px] border border-surface-200/60 dark:border-surface-800 hover:border-brand-600/40 hover:-translate-y-1 bg-white dark:bg-surface-900/40 px-6 py-7 shadow-[0_2px_10px_rgba(36,30,24,0.04)] hover:shadow-[0_10px_28px_rgba(36,30,24,0.09)] transition-[border-color,box-shadow,transform] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
               >
                 <h3 className="font-heading font-bold text-[18px] text-heading dark:text-white m-0">
                   {challenge.label}

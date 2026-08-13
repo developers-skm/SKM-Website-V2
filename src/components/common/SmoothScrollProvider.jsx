@@ -18,11 +18,11 @@ export default function SmoothScrollProvider({ children }) {
     if (prefersReducedMotion) return undefined;
 
     const lenis = new Lenis({
-      duration: 2.2,
-      easing: (t) => 1 - Math.pow(1 - t, 5),
+      duration: 0.9,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
       smoothWheel: true,
-      wheelMultiplier: 0.25,
-      touchMultiplier: 0.3,
+      wheelMultiplier: 0.85,
+      touchMultiplier: 1,
     });
 
     let rafId;

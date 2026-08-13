@@ -158,7 +158,7 @@ export default function StepRequirement({ formData, setFormData, enquiryIntent }
                 type="button"
                 onClick={() => handleProductTypeChange(opt.value)}
                 aria-pressed={formData.productType === opt.value}
-                className={`flex-1 min-h-[38px] px-3 py-2 rounded-full border font-body text-[12.5px] font-semibold transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
+                className={`flex-1 min-h-[44px] sm:min-h-[38px] px-3 py-2 rounded-full border font-body text-[12.5px] font-semibold transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
                   formData.productType === opt.value
                     ? 'bg-brand-600 border-brand-600 text-white'
                     : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50'

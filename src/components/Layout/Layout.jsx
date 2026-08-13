@@ -25,7 +25,7 @@ export default function Layout({ children, activePage, onPageChange, suppressMob
   }, []);
 
   return (
-    <div className="relative flex flex-col min-h-screen w-full bg-page dark:bg-surface-950 text-surface-800 dark:text-surface-100 transition-colors duration-300">
+    <div className="relative flex flex-col min-h-screen w-full overflow-x-hidden bg-page dark:bg-surface-950 text-surface-800 dark:text-surface-100 transition-colors duration-300">
       {/* Navbar's logo is `absolute` (scrolls away with the page) — this
           wrapper is its positioning context. Its menu button is `fixed`
           (stays put through scroll) and ignores this positioning entirely. */}

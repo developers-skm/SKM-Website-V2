@@ -114,7 +114,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                 type="button"
                 onClick={() => setDocTypeFilter(group.id)}
                 aria-pressed={docTypeFilter === group.id}
-                className={`inline-flex items-center gap-2 min-h-[38px] px-4 py-2 rounded-xl font-body font-semibold text-[13px] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 active:scale-[0.97] cursor-pointer ${
+                className={`inline-flex items-center gap-2 min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-xl font-body font-semibold text-[13px] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 active:scale-[0.97] cursor-pointer ${
                   docTypeFilter === group.id
                     ? 'bg-brand-600 border border-brand-600 text-white shadow-lg shadow-brand-600/25'
                     : 'bg-white/80 dark:bg-surface-800/80 border border-surface-200 dark:border-surface-700 text-surface-700 dark:text-surface-200 hover:border-brand-500/50 hover:text-heading dark:hover:text-white'
@@ -137,7 +137,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                 <button
                   type="button"
                   onClick={() => setProductFilter(null)}
-                  className={`inline-flex items-center min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
+                  className={`inline-flex items-center min-h-[44px] sm:min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
                     productFilter === null
                       ? 'bg-surface-900 text-white dark:bg-white dark:text-surface-950 font-bold'
                       : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700'
@@ -151,7 +151,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                     type="button"
                     onClick={() => setProductFilter(productFilter === p.id ? null : p.id)}
                     aria-pressed={productFilter === p.id}
-                    className={`inline-flex items-center min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
+                    className={`inline-flex items-center min-h-[44px] sm:min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
                       productFilter === p.id
                         ? 'bg-brand-600 text-white font-bold shadow-sm'
                         : 'bg-surface-100 dark:bg-surface-800/70 border border-surface-200 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-500/40 hover:text-heading dark:hover:text-white'
@@ -167,7 +167,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                 <button
                   type="button"
                   onClick={() => setApplicationFilter(null)}
-                  className={`inline-flex items-center min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
+                  className={`inline-flex items-center min-h-[44px] sm:min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
                     applicationFilter === null
                       ? 'bg-surface-900 text-white dark:bg-white dark:text-surface-950 font-bold'
                       : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700'
@@ -181,7 +181,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                     type="button"
                     onClick={() => setApplicationFilter(applicationFilter === app.id ? null : app.id)}
                     aria-pressed={applicationFilter === app.id}
-                    className={`inline-flex items-center min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
+                    className={`inline-flex items-center min-h-[44px] sm:min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
                       applicationFilter === app.id
                         ? 'bg-brand-600 text-white font-bold shadow-sm'
                         : 'bg-surface-100 dark:bg-surface-800/70 border border-surface-200 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-500/40 hover:text-heading dark:hover:text-white'

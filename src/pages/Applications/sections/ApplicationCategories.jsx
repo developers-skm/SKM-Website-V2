@@ -49,8 +49,7 @@ export default function ApplicationCategories({ onPageChange }) {
                 key={app.id}
                 variants={itemVariants}
                 transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
-                whileHover={reduceMotion ? undefined : { y: -7 }}
-                className="group flex flex-col h-full rounded-[24px] overflow-hidden bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 hover:border-brand-600/50 shadow-[0_3px_14px_rgba(36,30,24,0.05)] hover:shadow-[0_16px_36px_rgba(36,30,24,0.12)] focus-within:ring-2 focus-within:ring-brand-500/40 transition-[border-color,box-shadow] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className="group flex flex-col h-full rounded-[24px] overflow-hidden bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 hover:border-brand-600/50 hover:-translate-y-[7px] shadow-[0_3px_14px_rgba(36,30,24,0.05)] hover:shadow-[0_16px_36px_rgba(36,30,24,0.12)] focus-within:ring-2 focus-within:ring-brand-500/40 transition-[border-color,box-shadow] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
                 style={{ transitionProperty: 'border-color, box-shadow, transform' }}
               >
                 <div className="relative w-full aspect-[3/2] overflow-hidden" style={{ maskImage: 'radial-gradient(120% 120% at 50% 0%, #000 60%, #000 100%)' }}>

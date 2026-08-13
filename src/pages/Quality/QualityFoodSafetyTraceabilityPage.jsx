@@ -324,7 +324,7 @@ function CertificationsApprovalsSection({ onPageChange }) {
               type="button"
               onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
               aria-pressed={activeCategory === cat}
-              className={`inline-flex items-center min-h-[38px] px-4 py-2 rounded-full border font-body font-semibold text-[13.5px] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
+              className={`inline-flex items-center min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-full border font-body font-semibold text-[13.5px] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
                 activeCategory === cat
                   ? 'bg-brand-600 border-brand-600 text-white shadow-[0_4px_14px_rgba(228,10,24,0.3)]'
                   : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50 hover:-translate-y-0.5'

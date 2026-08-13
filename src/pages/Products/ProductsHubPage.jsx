@@ -120,7 +120,7 @@ function FilterPill({ active, onClick, children }) {
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`inline-flex items-center gap-1.5 min-h-[38px] px-4 py-2 rounded-full font-body font-semibold text-[13.5px] transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-gold ${
+      className={`inline-flex items-center gap-1.5 min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-full font-body font-semibold text-[13.5px] transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-gold ${
         active
           ? 'bg-gold-500 text-heading border border-transparent shadow-[0_2px_10px_rgba(232,182,74,0.35)]'
           : 'bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 text-surface-600 dark:text-surface-300 hover:border-gold-500/50 hover:text-heading dark:hover:text-white hover:-translate-y-px'
@@ -263,7 +263,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                           type="button"
                           onClick={() => setPackaging(active ? null : value)}
                           aria-pressed={active}
-                          className={`inline-flex items-center min-h-[28px] px-2.5 py-1 rounded-lg font-body font-semibold text-[12px] transition-all duration-[220ms] focus:outline-none focus-gold ${
+                          className={`inline-flex items-center min-h-[44px] sm:min-h-[28px] px-2.5 py-1 rounded-lg font-body font-semibold text-[12px] transition-all duration-[220ms] focus:outline-none focus-gold ${
                             active
                               ? 'bg-gold-500 text-heading shadow-sm'
                               : 'bg-white dark:bg-surface-900 text-surface-600 dark:text-surface-300 hover:bg-gold-500/10 dark:hover:bg-gold-500/10'

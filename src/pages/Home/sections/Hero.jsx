@@ -1,11 +1,32 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import ScrollFrameSequence from '../../../components/common/ScrollFrameSequence';
+import PlayOnceFrameSequence from '../../../components/common/PlayOnceFrameSequence';
 import { getBrochureUrl } from '../../../data/brochureUrl';
 import { EASE_PREMIUM } from '../../../utils/motionTokens';
 
 const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 import useApplicationSelectorNavigation from '../../../components/Navbar/useApplicationSelectorNavigation';
+
+// Below Tailwind's `sm` breakpoint (640px), the hero drops the tall
+// scroll-scrub wrapper — on short mobile viewports the sticky content is
+// shorter than the wrapper needed to give the frame-scrub room to work,
+// which either shows as dead scroll space or, if shrunk too far, as a
+// scrub that finishes in a single swipe. Mobile instead plays the same
+// frame sequence once, automatically, in a normal-height section.
+function useIsMobileViewport() {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window === 'undefined' ? false : window.innerWidth < 640
+  );
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  return isMobile;
+}
 
 // Full-bleed hero — the food-application photo fills the entire section,
 // copy sits on top of it with a left-weighted gradient scrim for
@@ -17,13 +38,14 @@ export default function Hero({ onPageChange }) {
   const reduceMotion = useReducedMotion();
   const scrollToApplicationSelector = useApplicationSelectorNavigation();
   const scrubContainerRef = useRef(null);
+  const isMobile = useIsMobileViewport();
 
   return (
     <section
       ref={scrubContainerRef}
-      className="relative w-full h-[150vh]"
+      className={isMobile ? 'relative w-full h-[640px]' : 'relative w-full h-[150vh]'}
     >
-      <div className="sticky top-0 h-[640px] sm:h-[720px] lg:h-[820px] w-full overflow-hidden">
+      <div className={isMobile ? 'relative h-[640px] w-full overflow-hidden' : 'sticky top-0 h-[640px] sm:h-[720px] lg:h-[820px] w-full overflow-hidden'}>
         {/* Signature entrance — a soft curved (egg-inspired) mask sweeps open
             from center to reveal the hero visual, instead of a plain fade.
             Heading/CTA (below) animate on their own, independent timeline so
@@ -34,11 +56,16 @@ export default function Hero({ onPageChange }) {
           animate={reduceMotion ? undefined : { clipPath: 'inset(0% 0% 0% 0% round 0%)' }}
           transition={{ duration: reduceMotion ? 0.01 : 1.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Egg-cracking frame sequence, scrubbed by scroll position through
-              the tall wrapper section above — frame 1 (whole egg) at the top
-              of the hero, frame 240 (cracked, spilled) once the user has
-              scrolled through it. */}
-          <ScrollFrameSequence containerRef={scrubContainerRef} basePath="/hero-sequence" frameCount={200} />
+          {/* Egg-cracking frame sequence. Desktop/tablet: scrubbed by scroll
+              position through the tall wrapper section above — frame 1
+              (whole egg) at the top of the hero, frame 200 (cracked,
+              spilled) once the user has scrolled through it. Mobile: plays
+              once automatically instead (see useIsMobileViewport above). */}
+          {isMobile ? (
+            <PlayOnceFrameSequence basePath="/hero-sequence" frameCount={200} reduceMotion={reduceMotion} />
+          ) : (
+            <ScrollFrameSequence containerRef={scrubContainerRef} basePath="/hero-sequence" frameCount={200} />
+          )}
         </motion.div>
 
         {/* Subtle yolk-gold light gradient — low-opacity, upper-right, echoes
@@ -83,7 +110,7 @@ export default function Hero({ onPageChange }) {
             reserves none, so the hero's background/image still starts at
             y=0) — clears the logo+menu row (~60-70px tall) plus breathing
             room before the heading. */}
-        <div className="relative z-10 w-full h-full mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-16 pt-[125px] sm:pt-[145px] lg:pt-[160px] flex items-center">
+        <div className="relative z-10 w-full h-full mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-16 pt-[125px] sm:pt-[145px] lg:pt-[160px] flex items-start sm:items-center">
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
             animate={{ opacity: 1, y: 0 }}
