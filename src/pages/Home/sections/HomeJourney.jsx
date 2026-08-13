@@ -51,9 +51,9 @@ function DesktopSticky() {
 
   return (
     <div ref={containerRef} className="relative w-full" style={{ height: `${total * VH_PER_STAGE}vh` }}>
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
+      <div className="sticky top-0 min-h-screen max-h-screen w-full overflow-hidden flex items-center">
         <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
-          <div className="flex items-stretch gap-10 xl:gap-16 h-[64vh] max-h-[680px]">
+          <div className="flex items-stretch gap-10 xl:gap-16 h-[min(80vh,860px)]">
 
             <div className="relative flex-[1.2] min-w-0 h-full rounded-[8px] overflow-hidden">
               <AnimatePresence mode="sync" initial={false}>
