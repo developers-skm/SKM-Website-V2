@@ -86,7 +86,7 @@ export default function ApplicationHero({ onPageChange }) {
       />
       <div
         className="absolute inset-0 sm:hidden"
-        style={{ background: 'linear-gradient(180deg, rgba(20,16,10,0.5) 0%, rgba(20,16,10,0.78) 100%)' }}
+        style={{ background: 'linear-gradient(180deg, rgba(20,16,10,0.28) 0%, rgba(20,16,10,0.52) 100%)' }}
       />
 
       <div className="relative z-10 w-full mx-auto max-w-[1680px] px-6 sm:px-10 lg:px-16">

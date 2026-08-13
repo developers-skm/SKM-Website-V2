@@ -89,7 +89,7 @@ export default function TrustOutreachPage({ onPageChange }) {
         description="Sevai Maiyam's comprehensive outreach programs covering sanitation, education, medical services, financial aid, elder care, and community welfare for adopted Dalit colonies."
         keywords="SKM CSR, trust outreach, Sevai Maiyam, social welfare, dalit colonies, education aid, medical services"
       />
-      <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
+      <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}
           initial="hidden"

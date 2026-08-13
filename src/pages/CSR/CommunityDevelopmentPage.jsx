@@ -46,7 +46,7 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
         description="SKM Health and Mind Welfare Charity Trust – Sevai Maiyam. Learn about SKM's community development efforts serving 228 families across Gandhi Nagar and Rajiv Nagar."
         keywords="SKM CSR, community development, Sevai Maiyam, SKM trust, social responsibility, Gandhi Nagar, Rajiv Nagar"
       />
-      <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
+      <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}
           initial="hidden"

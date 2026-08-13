@@ -628,7 +628,7 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
 
         {/* Section 1 — Capabilities hero */}
-        <div className="relative w-full py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
+        <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
           <div
             className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18] dark:opacity-[0.22]"
             style={{ backgroundImage: `url(${supplyHeroImage})` }}

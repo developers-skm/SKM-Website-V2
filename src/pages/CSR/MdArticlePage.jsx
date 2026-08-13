@@ -68,7 +68,7 @@ export default function MdArticlePage({ onPageChange }) {
         description="Olirum Erode Foundation (OEF) — established to develop Erode into a preferred place of living through environmental, water, and community welfare initiatives, co-founded by SKM's Managing Director."
         keywords="OEF, Olirum Erode Foundation, SKM MD, CSR, Erode development, community welfare, SKM Shree Shivkumar"
       />
-      <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
+      <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}
           initial="hidden"

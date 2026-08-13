@@ -446,7 +446,7 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
 
         {/* Section 1 — Challenge-first hero */}
-        <div className="w-full py-[80px] lg:py-[110px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
+        <div className="w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[110px] lg:pb-[110px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}

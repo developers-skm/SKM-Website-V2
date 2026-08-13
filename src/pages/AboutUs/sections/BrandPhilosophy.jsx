@@ -8,7 +8,7 @@ const itemVariants = makeItemVariants({ y: 25 });
 
 export default function BrandPhilosophy() {
   return (
-    <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] border-b border-[#eee] dark:border-surface-900/60 overflow-hidden">
+    <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] border-b border-[#eee] dark:border-surface-900/60 overflow-hidden">
       <motion.section
         variants={containerVariants}
         initial="hidden"

@@ -120,7 +120,7 @@ function FilterPill({ active, onClick, children }) {
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`inline-flex items-center gap-1.5 min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-full font-body font-semibold text-[13.5px] transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-gold ${
+      className={`inline-flex items-center gap-1.5 min-h-[38px] px-4 py-2 rounded-full font-body font-semibold text-[13.5px] transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-gold ${
         active
           ? 'bg-gold-500 text-heading border border-transparent shadow-[0_2px_10px_rgba(232,182,74,0.35)]'
           : 'bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 text-surface-600 dark:text-surface-300 hover:border-gold-500/50 hover:text-heading dark:hover:text-white hover:-translate-y-px'
@@ -214,11 +214,11 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
 
         <motion.div
           {...fadeUp(reduceMotion, { duration: 0.8, distance: 28, delay: reduceMotion ? 0 : 0.14 })}
-          className="flex flex-col gap-7 p-6 sm:p-8 rounded-[20px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900 shadow-[0_1px_2px_rgba(20,16,12,0.04),0_16px_40px_-16px_rgba(20,16,12,0.10)] transition-shadow duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_1px_2px_rgba(20,16,12,0.05),0_22px_50px_-18px_rgba(20,16,12,0.14)]"
+          className="flex flex-col gap-6 sm:gap-7 p-5 sm:p-8 rounded-[16px] sm:rounded-[20px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900 shadow-[0_1px_2px_rgba(20,16,12,0.04),0_16px_40px_-16px_rgba(20,16,12,0.10)] transition-shadow duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_1px_2px_rgba(20,16,12,0.05),0_22px_50px_-18px_rgba(20,16,12,0.14)]"
         >
           <div className="flex flex-col gap-3">
             <span className="font-body text-[11px] font-semibold uppercase tracking-[0.1em] text-surface-400 dark:text-surface-500">Format</span>
-            <div className="inline-flex flex-wrap gap-1 p-1.5 rounded-full bg-white dark:bg-surface-900 border border-surface-200/60 dark:border-surface-800 w-fit">
+            <div className="flex flex-wrap gap-2 sm:inline-flex sm:flex-wrap sm:gap-1 sm:p-1.5 sm:rounded-full sm:bg-white sm:dark:bg-surface-900 sm:border sm:border-surface-200/60 sm:dark:border-surface-800 w-full sm:w-fit">
               {CATEGORY_OPTIONS.map((c) => {
                 const active = category === c;
                 return (
@@ -227,12 +227,16 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                     type="button"
                     onClick={() => handleCategoryChange(active ? null : c)}
                     aria-pressed={active}
-                    className="relative px-4 py-2 rounded-full font-body font-semibold text-[13.5px] transition-colors duration-[220ms] focus:outline-none focus-gold"
+                    className={`relative min-h-[44px] sm:min-h-0 px-4 py-2 rounded-full font-body font-semibold text-[13.5px] transition-colors duration-[220ms] focus:outline-none focus-gold border sm:border-0 ${
+                      active
+                        ? 'bg-gold-500 border-transparent text-heading'
+                        : 'bg-white dark:bg-surface-900 border-surface-200/70 dark:border-surface-800 text-surface-600 dark:text-surface-300'
+                    }`}
                   >
                     {active && (
                       <motion.span
                         layoutId="format-active-pill"
-                        className="absolute inset-0 rounded-full bg-gold-500"
+                        className="hidden sm:block absolute inset-0 rounded-full bg-gold-500"
                         transition={reduceMotion ? { duration: 0.01 } : { duration: 0.32, ease: EASE_PREMIUM }}
                       />
                     )}
@@ -250,7 +254,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                 group.grouped ? (
                   <div
                     key={group.key}
-                    className="inline-flex items-center gap-1 rounded-2xl border border-surface-200/50 dark:border-surface-800 bg-surface-50/70 dark:bg-surface-800/30 pl-4 pr-1.5 py-1.5"
+                    className="flex flex-wrap items-center gap-1.5 rounded-xl sm:rounded-2xl border border-surface-200/50 dark:border-surface-800 bg-surface-50/70 dark:bg-surface-800/30 px-3 py-2 sm:pl-4 sm:pr-1.5 sm:py-1.5"
                   >
                     <span className="font-body font-semibold text-[12.5px] text-surface-500 dark:text-surface-400 mr-1 whitespace-nowrap">
                       {group.label}
@@ -263,7 +267,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                           type="button"
                           onClick={() => setPackaging(active ? null : value)}
                           aria-pressed={active}
-                          className={`inline-flex items-center min-h-[44px] sm:min-h-[28px] px-2.5 py-1 rounded-lg font-body font-semibold text-[12px] transition-all duration-[220ms] focus:outline-none focus-gold ${
+                          className={`inline-flex items-center min-h-[36px] sm:min-h-[28px] px-2.5 py-1 rounded-lg font-body font-semibold text-[12px] transition-all duration-[220ms] focus:outline-none focus-gold ${
                             active
                               ? 'bg-gold-500 text-heading shadow-sm'
                               : 'bg-white dark:bg-surface-900 text-surface-600 dark:text-surface-300 hover:bg-gold-500/10 dark:hover:bg-gold-500/10'
@@ -550,6 +554,7 @@ function FunctionalRequirementSection({ onPageChange }) {
 function ComparisonSection({ compareList, onPageChange }) {
   const compared = compareList.map(getProductById).filter(Boolean);
   const reduceMotion = useReducedMotion();
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   return (
     <div id="product-comparison" className="w-full py-[60px] lg:py-[85px] dark:border-surface-800/40 bg-white dark:bg-surface-900/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
@@ -580,43 +585,91 @@ function ComparisonSection({ compareList, onPageChange }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: reduceMotion ? 0.01 : 0.85, ease: EASE_PREMIUM }}
-              className="overflow-x-auto"
+              className="flex flex-col gap-2.5"
             >
-              <table className="w-full border-collapse min-w-[560px]">
-                <thead>
-                  <tr>
-                    <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Product</th>
-                    <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Category</th>
-                    <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Packaging Options</th>
-                    <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3">Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {compared.map((product, index) => (
-                    <motion.tr
-                      key={product.id}
-                      initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.15 + Math.min(index, 6) * 0.07 }}
-                      className="transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-gold-500/[0.08] dark:hover:bg-gold-500/[0.07]"
-                    >
-                      <td className="font-body font-semibold text-[14.5px] text-heading dark:text-white border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.title}</td>
-                      <td className="font-body text-[14px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.category}</td>
-                      <td className="font-body text-[14px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.packagingOptions.join(', ')}</td>
-                      <td className="border-b border-surface-200/70 dark:border-surface-800 py-3">
-                        <InternalLink
-                          route={product.page}
-                          onPageChange={onPageChange}
-                          className="group/link inline-flex items-center gap-1 font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 focus:outline-none focus-gold rounded-sm"
+              <div className="relative">
+                <div
+                  onScroll={(e) => {
+                    if (!hasScrolled && e.currentTarget.scrollLeft > 12) setHasScrolled(true);
+                  }}
+                  className="overflow-x-auto"
+                >
+                  <table className="w-full border-collapse min-w-[560px]">
+                    <thead>
+                      <tr>
+                        <th className="sticky left-0 z-20 bg-white dark:bg-surface-900/40 text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">Product</th>
+                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Category</th>
+                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Packaging Options</th>
+                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3">Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {compared.map((product, index) => (
+                        <motion.tr
+                          key={product.id}
+                          initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.15 + Math.min(index, 6) * 0.07 }}
+                          className="group/row transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-gold-500/[0.08] dark:hover:bg-gold-500/[0.07]"
                         >
-                          View Details
-                          <span className="inline-block transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/link:translate-x-[5px]" aria-hidden="true">→</span>
-                        </InternalLink>
-                      </td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
+                          <td className="sticky left-0 z-10 bg-white dark:bg-surface-900/40 font-body font-semibold text-[14.5px] text-heading dark:text-white border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/row:bg-gold-500/[0.08] dark:group-hover/row:bg-gold-500/[0.07]">{product.title}</td>
+                          <td className="font-body text-[14px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.category}</td>
+                          <td className="font-body text-[14px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.packagingOptions.join(', ')}</td>
+                          <td className="border-b border-surface-200/70 dark:border-surface-800 py-3">
+                            <InternalLink
+                              route={product.page}
+                              onPageChange={onPageChange}
+                              className="group/link inline-flex items-center gap-1 font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 focus:outline-none focus-gold rounded-sm"
+                            >
+                              View Details
+                              <span className="inline-block transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/link:translate-x-[5px]" aria-hidden="true">→</span>
+                            </InternalLink>
+                          </td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Scroll-right hint — fades a gradient + bouncing arrow
+                    over the table's right edge until the user scrolls it. */}
+                <AnimatePresence>
+                  {!hasScrolled && (
+                    <motion.div
+                      initial={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
+                      className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-white dark:from-surface-900/90 from-30% via-white/70 dark:via-surface-900/60 to-transparent flex items-center justify-end pr-3"
+                      aria-hidden="true"
+                    >
+                      <motion.svg
+                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                        className="text-brand-600"
+                        animate={reduceMotion ? undefined : { x: [0, 4, 0] }}
+                        transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
+                      >
+                        <path d="M9 6l6 6-6 6" />
+                      </motion.svg>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <AnimatePresence>
+                {!hasScrolled && (
+                  <motion.span
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
+                    className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400 dark:text-surface-500"
+                  >
+                    Scroll right to view more details
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M9 6l6 6-6 6" />
+                    </svg>
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </motion.div>
           )}
         </AnimatePresence>
@@ -791,7 +844,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             the wrapper below — same mechanism as Home's Hero. Copy keeps
             its own independent staggered entrance. */}
         <div ref={heroScrubRef} className="relative w-full h-[180vh]">
-        <div className="sticky top-0 py-[70px] lg:py-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4 overflow-hidden">
+        <div className="sticky top-0 pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4 overflow-hidden">
           <motion.div
             className="absolute inset-0 overflow-hidden"
             initial={reduceMotion ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}

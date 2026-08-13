@@ -141,7 +141,7 @@ export default function BrochurePage({ onPageChange }) {
         description="Download SKM Egg Products brochures — company profile, full product list, and individual product flyers for egg powder and liquid solutions."
         keywords="SKM brochure, egg products PDF, company profile download, product flyer, egg powder catalog"
       />
-      <div className="w-full bg-page dark:bg-surface-950 py-[90px] lg:py-[120px] overflow-hidden">
+      <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[90px] sm:pt-[130px] lg:pt-[120px] lg:pb-[120px] overflow-hidden">
         <motion.section
           variants={containerVariants}
           initial="hidden"

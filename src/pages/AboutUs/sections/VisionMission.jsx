@@ -14,7 +14,7 @@ const missionItems = [
 
 export default function VisionMission() {
   return (
-    <div className="w-full bg-page dark:bg-surface-900/40 py-[40px] lg:py-[60px] border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
+    <div className="w-full bg-page dark:bg-surface-900/40 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
       <motion.section
         variants={containerVariants}
         initial="hidden"

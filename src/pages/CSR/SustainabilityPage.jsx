@@ -54,7 +54,7 @@ export default function SustainabilityPage({ onPageChange }) {
         description="SKM Egg Products' commitment to sustainability — from wind energy generation and waste recycling to community welfare and environmental compliance."
         keywords="SKM sustainability, CSR, environmental policy, wind mill, carbon footprint, clean energy, SKM charitable trust"
       />
-      <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
+      <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}
           initial="hidden"

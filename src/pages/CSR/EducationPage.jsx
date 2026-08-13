@@ -41,7 +41,7 @@ export default function EducationPage({ onPageChange }) {
         description="SKM Health and Mind Welfare Charity Trust – Sevai Maiyam. Discover how SKM's education initiative is transforming lives of 239 children in Dalit colonies through schooling, coaching, cultural programs and more."
         keywords="SKM CSR, education, Sevai Maiyam, SKM trust, dalit children, coaching centre, ABL system, Gandhi Nagar, Rajiv Nagar"
       />
-      <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
+      <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}
           initial="hidden"

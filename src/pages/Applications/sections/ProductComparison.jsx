@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useMemo, useState } from 'react';
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { getVariantsForProduct } from '../../../data/productVariants';
 import { EASE_PREMIUM, DURATION } from '../../../utils/motionTokens';
 
@@ -27,6 +27,7 @@ function findRecommendedVariant(application, variantsData) {
 
 export default function ProductComparison({ application, comparisonIds, matchedProducts, onPageChange }) {
   const reduceMotion = useReducedMotion();
+  const [hasScrolled, setHasScrolled] = useState(false);
   const comparedProducts = matchedProducts.filter((p) => comparisonIds.includes(p.id));
 
   const rows = useMemo(() => {
@@ -63,40 +64,88 @@ export default function ProductComparison({ application, comparisonIds, matchedP
           </h2>
         </div>
 
-        <div className="overflow-x-auto rounded-[24px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 print:border-none print:rounded-none">
-          <table className="w-full border-collapse min-w-[600px]">
-            <thead>
-              <tr className="border-b border-surface-200/70 dark:border-surface-800">
-                <th className="text-left px-5 py-4 font-body text-[11px] font-bold uppercase tracking-wider text-surface-400" />
-                {rows.entries.map(({ product, variant }) => (
-                  <th key={product.id} className="text-left px-5 py-4 align-bottom">
-                    <span className="block font-heading font-bold text-[15px] text-heading dark:text-white print:text-black leading-tight">{product.title}</span>
-                    {variant && <span className="block font-mono text-[11px] font-bold text-brand-600 dark:text-brand-400 print:text-black mt-1">{variant.code} — {variant.name}</span>}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-surface-200/50 dark:border-surface-800/60">
-                <th scope="row" className="text-left px-5 py-3.5 font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400 whitespace-nowrap">Format</th>
-                {rows.entries.map(({ product }) => (
-                  <td key={product.id} className="px-5 py-3.5 font-body text-[13.5px] text-surface-700 dark:text-surface-300 print:text-black">
-                    {product.packagingOptions?.join(', ') ?? '—'}
-                  </td>
-                ))}
-              </tr>
-              {rows.specKeys.map((key) => (
-                <tr key={key} className="border-b border-surface-200/50 dark:border-surface-800/60 last:border-b-0">
-                  <th scope="row" className="text-left px-5 py-3.5 font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400 whitespace-nowrap">{key}</th>
-                  {rows.entries.map(({ product, variant }) => (
-                    <td key={product.id} className="px-5 py-3.5 font-body text-[13.5px] text-surface-700 dark:text-surface-300 print:text-black">
-                      {variant?.specifications?.[key] ?? '—'}
-                    </td>
+        <div className="flex flex-col gap-2.5">
+          <div className="relative">
+            <div
+              onScroll={(e) => {
+                if (!hasScrolled && e.currentTarget.scrollLeft > 12) setHasScrolled(true);
+              }}
+              className="overflow-x-auto rounded-[24px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 print:border-none print:rounded-none"
+            >
+              <table className="w-full border-collapse min-w-[600px]">
+                <thead>
+                  <tr className="border-b border-surface-200/70 dark:border-surface-800">
+                    <th className="sticky left-0 z-20 bg-white dark:bg-surface-900/40 text-left px-5 py-4 font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] print:static print:shadow-none" />
+                    {rows.entries.map(({ product, variant }) => (
+                      <th key={product.id} className="text-left px-5 py-4 align-bottom">
+                        <span className="block font-heading font-bold text-[15px] text-heading dark:text-white print:text-black leading-tight">{product.title}</span>
+                        {variant && <span className="block font-mono text-[11px] font-bold text-brand-600 dark:text-brand-400 print:text-black mt-1">{variant.code} — {variant.name}</span>}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-surface-200/50 dark:border-surface-800/60">
+                    <th scope="row" className="sticky left-0 z-10 bg-white dark:bg-surface-900/40 text-left px-5 py-3.5 font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400 whitespace-nowrap shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] print:static print:shadow-none">Format</th>
+                    {rows.entries.map(({ product }) => (
+                      <td key={product.id} className="px-5 py-3.5 font-body text-[13.5px] text-surface-700 dark:text-surface-300 print:text-black">
+                        {product.packagingOptions?.join(', ') ?? '—'}
+                      </td>
+                    ))}
+                  </tr>
+                  {rows.specKeys.map((key) => (
+                    <tr key={key} className="border-b border-surface-200/50 dark:border-surface-800/60 last:border-b-0">
+                      <th scope="row" className="sticky left-0 z-10 bg-white dark:bg-surface-900/40 text-left px-5 py-3.5 font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400 whitespace-nowrap shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] print:static print:shadow-none">{key}</th>
+                      {rows.entries.map(({ product, variant }) => (
+                        <td key={product.id} className="px-5 py-3.5 font-body text-[13.5px] text-surface-700 dark:text-surface-300 print:text-black">
+                          {variant?.specifications?.[key] ?? '—'}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Scroll-right hint — fades a gradient + bouncing arrow over
+                the table's right edge until the user scrolls it. */}
+            <AnimatePresence>
+              {!hasScrolled && (
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
+                  className="lg:hidden print:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 rounded-r-[24px] bg-gradient-to-l from-white dark:from-surface-900/90 from-30% via-white/70 dark:via-surface-900/60 to-transparent flex items-center justify-end pr-3"
+                  aria-hidden="true"
+                >
+                  <motion.svg
+                    width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                    className="text-brand-600"
+                    animate={reduceMotion ? undefined : { x: [0, 4, 0] }}
+                    transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <path d="M9 6l6 6-6 6" />
+                  </motion.svg>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <AnimatePresence>
+            {!hasScrolled && (
+              <motion.span
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
+                className="lg:hidden print:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400 dark:text-surface-500"
+              >
+                Scroll right to view more products
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
+              </motion.span>
+            )}
+          </AnimatePresence>
         </div>
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 print:hidden">

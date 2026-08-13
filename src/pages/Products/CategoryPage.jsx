@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { getProductById } from '../../data/products';
@@ -58,6 +58,7 @@ export default function CategoryPage({
 }) {
   const reduceMotion = useReducedMotion();
   const [activeTag, setActiveTag] = useState(null);
+  const [hasScrolledMatrix, setHasScrolledMatrix] = useState(false);
 
   const categoryProducts = useMemo(
     () => categoryProductIds.map(getProductById).filter(Boolean),
@@ -94,7 +95,7 @@ export default function CategoryPage({
       <div className="w-full flex flex-col bg-page dark:bg-surface-950">
 
         {/* Section 1 — Category hero */}
-        <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40">
+        <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[85px] lg:pb-[85px] border-b border-[#eee] dark:border-surface-800/40">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
             <motion.div {...fadeProps()} className="max-w-3xl mb-9 lg:mb-11">
               <span className="section-label">{categoryLabel}</span>
@@ -292,40 +293,88 @@ export default function CategoryPage({
               <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
                 Application matrix
               </h2>
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse min-w-[640px]">
-                  <thead>
-                    <tr>
-                      <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Product</th>
-                      {allApplications.map((app) => (
-                        <th key={app} className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">
-                          {app}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {categoryProducts.map((product) => {
-                      const meta = productMeta[product.id] ?? {};
-                      return (
-                        <tr key={product.id}>
-                          <td className="font-body font-semibold text-[14px] text-heading dark:text-white border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">
-                            {product.title}
-                          </td>
+              <div className="flex flex-col gap-2.5">
+                <div className="relative">
+                  <div
+                    onScroll={(e) => {
+                      if (!hasScrolledMatrix && e.currentTarget.scrollLeft > 12) setHasScrolledMatrix(true);
+                    }}
+                    className="overflow-x-auto"
+                  >
+                    <table className="w-full border-collapse min-w-[640px]">
+                      <thead>
+                        <tr>
+                          <th className="sticky left-0 z-20 bg-white dark:bg-surface-900/40 text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">Product</th>
                           {allApplications.map((app) => (
-                            <td key={app} className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">
-                              {meta.applications?.includes(app) ? (
-                                <span className="text-brand-600 dark:text-brand-400 font-bold" aria-label="Suitable">
-                                  ✓
-                                </span>
-                              ) : ''}
-                            </td>
+                            <th key={app} className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">
+                              {app}
+                            </th>
                           ))}
                         </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                      </thead>
+                      <tbody>
+                        {categoryProducts.map((product) => {
+                          const meta = productMeta[product.id] ?? {};
+                          return (
+                            <tr key={product.id}>
+                              <td className="sticky left-0 z-10 bg-white dark:bg-surface-900/40 font-body font-semibold text-[14px] text-heading dark:text-white border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">
+                                {product.title}
+                              </td>
+                              {allApplications.map((app) => (
+                                <td key={app} className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">
+                                  {meta.applications?.includes(app) ? (
+                                    <span className="text-brand-600 dark:text-brand-400 font-bold" aria-label="Suitable">
+                                      ✓
+                                    </span>
+                                  ) : ''}
+                                </td>
+                              ))}
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Scroll-right hint — fades a gradient + bouncing arrow
+                      over the table's right edge until the user scrolls it. */}
+                  <AnimatePresence>
+                    {!hasScrolledMatrix && (
+                      <motion.div
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
+                        className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-white dark:from-surface-900/90 from-30% via-white/70 dark:via-surface-900/60 to-transparent flex items-center justify-end pr-3"
+                        aria-hidden="true"
+                      >
+                        <motion.svg
+                          width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                          className="text-brand-600"
+                          animate={reduceMotion ? undefined : { x: [0, 4, 0] }}
+                          transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
+                        >
+                          <path d="M9 6l6 6-6 6" />
+                        </motion.svg>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <AnimatePresence>
+                  {!hasScrolledMatrix && (
+                    <motion.span
+                      initial={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
+                      className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400 dark:text-surface-500"
+                    >
+                      Scroll right to view more applications
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" />
+                      </svg>
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </div>
 
               <div className="flex flex-wrap items-center gap-4 mt-1">

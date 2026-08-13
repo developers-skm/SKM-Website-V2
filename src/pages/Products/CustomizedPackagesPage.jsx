@@ -129,7 +129,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
       />
 
       {/* Hero Banner */}
-      <div className="relative py-[90px] bg-page dark:bg-surface-950 border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
+      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page dark:bg-surface-950 border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
         {!reduceMotion && (
           <>
             <motion.div

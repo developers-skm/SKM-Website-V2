@@ -857,7 +857,7 @@ export default function ResourcesPage({ onPageChange }) {
         <div className="relative z-10 w-full flex flex-col">
 
           {/* Section 1 — Resource Hero & Search */}
-          <div className="w-full py-20 lg:py-28 border-b border-surface-200/60 dark:border-surface-800/60 px-4 sm:px-6 lg:px-8">
+          <div className="w-full pt-[110px] pb-20 sm:pt-[130px] lg:pt-28 lg:pb-28 border-b border-surface-200/60 dark:border-surface-800/60 px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-[1000px] flex flex-col items-center text-center gap-8">
               
               {/* Premium Pill Badge */}

@@ -167,7 +167,7 @@ export default function GetQuotePage({ onPageChange, prefill }) {
         {isSubmitted ? (
           <ConfirmationScreen formData={formData} onPageChange={onPageChange} />
         ) : (
-          <div className="mx-auto max-w-[760px] w-full px-4 sm:px-6 lg:px-8 py-[50px] lg:py-[70px] flex flex-col gap-10">
+          <div className="mx-auto max-w-[760px] w-full px-4 sm:px-6 lg:px-8 pt-[110px] pb-[50px] sm:pt-[130px] lg:pt-[70px] lg:pb-[70px] flex flex-col gap-10">
 
             {intentCopy && (
               <div className="flex flex-col gap-1.5">

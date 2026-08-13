@@ -87,7 +87,7 @@ export default function ConfirmationScreen({ formData, onPageChange }) {
 
   return (
     <div className="w-full flex flex-col">
-      <div className="mx-auto max-w-[640px] w-full px-4 sm:px-6 lg:px-8 py-[70px] lg:py-[90px] text-center flex flex-col items-center gap-6">
+      <div className="mx-auto max-w-[640px] w-full px-4 sm:px-6 lg:px-8 pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[90px] lg:pb-[90px] text-center flex flex-col items-center gap-6">
         <motion.div
           initial={{ scale: 0.85, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}

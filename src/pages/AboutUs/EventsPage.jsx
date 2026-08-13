@@ -297,7 +297,7 @@ export default function EventsPage({ onPageChange }) {
       <div className="w-full bg-page dark:bg-surface-950 overflow-hidden text-surface-800 dark:text-surface-200">
         
         {/* Section 1 — Hero */}
-        <div className="relative w-full py-[80px] lg:py-[120px] bg-gradient-to-b from-brand-600/5 via-transparent to-transparent border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
+        <div className="relative w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[120px] lg:pb-[120px] bg-gradient-to-b from-brand-600/5 via-transparent to-transparent border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,var(--color-brand-100/10)_0%,transparent_50%)] pointer-events-none" />
           <motion.div
             initial={{ opacity: 0, y: 20 }}

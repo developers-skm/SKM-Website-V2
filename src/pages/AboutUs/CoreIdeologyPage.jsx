@@ -47,7 +47,7 @@ export default function CoreIdeologyPage({ onPageChange }) {
       onPageChange={onPageChange}
     >
 
-      <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] overflow-hidden">
+      <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <motion.section
           variants={containerVariants}
           initial="hidden"

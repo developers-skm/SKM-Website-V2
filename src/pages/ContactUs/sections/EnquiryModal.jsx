@@ -62,8 +62,8 @@ function JobForm({ formData, errors, onChange }) {
         <textarea name="jobDescription" rows="3" value={formData.jobDescription} onChange={onChange} className={`${inputClass(false)} resize-none`} placeholder="Brief description of your experience and skills..." />
       </Field>
 
-      <Field label="Upload Resume (.pdf, .doc)">
-        <UploadZone />
+      <Field label="Upload Resume (.pdf, .doc)" error={errors.resume}>
+        <UploadZone file={formData.resume} onFileChange={onChange} error={errors.resume} />
       </Field>
     </>
   );
@@ -116,8 +116,8 @@ function InternshipForm({ formData, errors, onChange }) {
         <input type="number" name="personsApplied" value={formData.personsApplied} onChange={onChange} min="1" className={inputClass(false)} placeholder="e.g. 2" />
       </Field>
 
-      <Field label="Upload Bonafide (If Available)">
-        <UploadZone />
+      <Field label="Upload Bonafide (If Available)" error={errors.resume}>
+        <UploadZone file={formData.resume} onFileChange={onChange} error={errors.resume} />
       </Field>
     </>
   );
@@ -219,8 +219,8 @@ function VendorForm({ formData, errors, onChange }) {
         <textarea name="message" rows="5" value={formData.message} onChange={onChange} className={`${inputClass(errors.message)} resize-none`} placeholder="Describe the products you manufacture or supply..." />
       </Field>
 
-      <Field label="Upload Brochure / Catalogue (.pdf, .doc)">
-        <UploadZone />
+      <Field label="Upload Brochure / Catalogue (.pdf, .doc)" error={errors.resume}>
+        <UploadZone file={formData.resume} onFileChange={onChange} error={errors.resume} />
       </Field>
     </>
   );
@@ -275,8 +275,8 @@ function ServiceForm({ formData, errors, onChange }) {
         <textarea name="message" rows="5" value={formData.message} onChange={onChange} className={`${inputClass(errors.message)} resize-none`} placeholder="Describe the services you offer..." />
       </Field>
 
-      <Field label="Upload Brochure / Catalogue (.pdf, .doc)">
-        <UploadZone />
+      <Field label="Upload Brochure / Catalogue (.pdf, .doc)" error={errors.resume}>
+        <UploadZone file={formData.resume} onFileChange={onChange} error={errors.resume} />
       </Field>
     </>
   );
@@ -368,17 +368,104 @@ function GenericForm({ formData, errors, onChange, enquiryType }) {
       </Field>
 
       {(enquiryType === 'job' || enquiryType === 'internship') && (
-        <Field label="Upload Resume / CV (.pdf, .doc)">
-          <UploadZone />
+        <Field label="Upload Resume / CV (.pdf, .doc)" error={errors.resume}>
+          <UploadZone file={formData.resume} onFileChange={onChange} error={errors.resume} />
         </Field>
       )}
     </>
   );
 }
 
-function UploadZone() {
+const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
+const ACCEPTED_UPLOAD_EXTENSIONS = ['.pdf', '.doc', '.docx'];
+
+function formatFileSize(bytes) {
+  if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function UploadZone({ file, onFileChange, error }) {
+  const inputRef = React.useRef(null);
+  const [isDragOver, setIsDragOver] = useState(false);
+
+  const applyFile = (selected) => {
+    if (!selected) return;
+    const extension = `.${selected.name.split('.').pop().toLowerCase()}`;
+    if (!ACCEPTED_UPLOAD_EXTENSIONS.includes(extension)) {
+      onFileChange({ target: { name: 'resume', value: null, type: 'file-error', fileError: 'Only PDF or DOC/DOCX files are accepted.' } });
+      return;
+    }
+    if (selected.size > MAX_UPLOAD_BYTES) {
+      onFileChange({ target: { name: 'resume', value: null, type: 'file-error', fileError: 'File is larger than 5MB.' } });
+      return;
+    }
+    onFileChange({ target: { name: 'resume', value: selected, type: 'file' } });
+  };
+
+  const handleInputChange = (e) => applyFile(e.target.files?.[0]);
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    applyFile(e.dataTransfer.files?.[0]);
+  };
+
+  const clearFile = (e) => {
+    e.stopPropagation();
+    if (inputRef.current) inputRef.current.value = '';
+    onFileChange({ target: { name: 'resume', value: null, type: 'file' } });
+  };
+
+  if (file) {
+    return (
+      <div className="mt-1 w-full border border-surface-300 dark:border-surface-700 rounded-lg p-4 bg-surface-50/50 dark:bg-surface-900/20 flex items-center gap-3">
+        <div className="w-8 h-8 rounded-md bg-brand-50 dark:bg-brand-950/40 flex items-center justify-center text-brand-600 dark:text-brand-400 flex-shrink-0">
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <div className="flex flex-col min-w-0 flex-1">
+          <span className="font-body text-xs font-semibold text-surface-700 dark:text-surface-300 truncate">{file.name}</span>
+          <span className="font-body text-[11px] text-surface-400 dark:text-surface-600">{formatFileSize(file.size)}</span>
+        </div>
+        <button
+          type="button"
+          onClick={clearFile}
+          className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-surface-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors cursor-pointer"
+          aria-label="Remove file"
+        >
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div className="mt-1 w-full border border-dashed border-surface-300 dark:border-surface-700 rounded-lg p-4 bg-surface-50/50 dark:bg-surface-900/20 flex items-center gap-3 cursor-pointer hover:border-brand-500 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 transition-all select-none group">
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={() => inputRef.current?.click()}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); inputRef.current?.click(); } }}
+      onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}
+      onDragLeave={() => setIsDragOver(false)}
+      onDrop={handleDrop}
+      className={`mt-1 w-full border border-dashed rounded-lg p-4 flex items-center gap-3 cursor-pointer transition-all select-none group ${
+        isDragOver
+          ? 'border-brand-500 bg-brand-50/30 dark:bg-brand-950/20'
+          : error
+          ? 'border-red-400 bg-red-50/30 dark:bg-red-950/10'
+          : 'border-surface-300 dark:border-surface-700 bg-surface-50/50 dark:bg-surface-900/20 hover:border-brand-500 hover:bg-brand-50/30 dark:hover:bg-brand-950/20'
+      }`}
+    >
+      <input
+        ref={inputRef}
+        type="file"
+        accept={ACCEPTED_UPLOAD_EXTENSIONS.join(',')}
+        onChange={handleInputChange}
+        className="hidden"
+      />
       <div className="w-8 h-8 rounded-md bg-surface-100 dark:bg-surface-800 flex items-center justify-center text-surface-400 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors flex-shrink-0">
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -420,6 +507,7 @@ const defaultFormData = {
   feedbackType: 'Feedback',
   partnerCategory: 'Packaging Materials',
   message: '',
+  resume: null,
 };
 
 const modalConfig = {
@@ -460,7 +548,11 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
   const config = modalConfig[enquiryType] ?? modalConfig.general;
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, fileError } = e.target;
+    if (type === 'file-error') {
+      setErrors(prev => ({ ...prev, resume: fileError }));
+      return;
+    }
     setFormData(prev => ({ ...prev, [name]: value }));
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: null }));
   };
@@ -524,10 +616,25 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
     };
 
     try {
+      let body;
+      let headers;
+      if (formData.resume) {
+        const form = new FormData();
+        Object.entries(payload).forEach(([key, val]) => {
+          if (val !== null) form.append(key, val);
+        });
+        form.append('resume', formData.resume);
+        body = form;
+        headers = { Accept: 'application/json' };
+      } else {
+        body = JSON.stringify(payload);
+        headers = { 'Content-Type': 'application/json', Accept: 'application/json' };
+      }
+
       const res = await fetch(`${API_URL}/api/v1/contact/submit`, {
         method:  'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body:    JSON.stringify(payload),
+        headers,
+        body,
       });
       const data = await res.json();
       if (res.ok) {

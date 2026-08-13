@@ -23,6 +23,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
   const [checked, setChecked] = useState([]);
   const [hoverCol, setHoverCol] = useState(null);
   const [hoverRow, setHoverRow] = useState(null);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const reduceMotion = useReducedMotion();
 
   const allProductIds = Array.from(new Set(applications.flatMap((a) => a.matchedProductIds)));
@@ -45,72 +46,119 @@ export default function ApplicationProductMatrix({ onPageChange }) {
           </h2>
         </motion.div>
 
-        <motion.div
-          {...fadeUp(reduceMotion, { delay: 0.1, distance: 24 })}
-          className="overflow-x-auto rounded-[24px] border border-surface-200/60 dark:border-surface-800"
-        >
-          <table className="w-full border-collapse min-w-[720px]">
-            <thead>
-              <tr className="bg-[#fbf7f1] dark:bg-surface-900 border-b border-surface-200/70 dark:border-surface-800">
-                <th className="text-left px-5 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400">
-                  Application
-                </th>
-                {columnProducts.map((product) => (
-                  <th
-                    key={product.id}
-                    onMouseEnter={() => setHoverCol(product.id)}
-                    onMouseLeave={() => setHoverCol(null)}
-                    className={`px-4 py-4 font-body text-[11px] font-bold uppercase tracking-wider whitespace-nowrap transition-colors duration-200 ${hoverCol === product.id ? 'text-brand-600 dark:text-brand-400 bg-[#f3c969]/10' : 'text-surface-500 dark:text-surface-400'}`}
-                  >
-                    <label className="flex flex-col items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={checked.includes(product.id)}
-                        onChange={() => toggle(product.id)}
-                        onFocus={() => setHoverCol(product.id)}
-                        onBlur={() => setHoverCol(null)}
-                        aria-label={`Select ${product.title} to compare`}
-                        className="w-4 h-4 accent-brand-600 cursor-pointer"
-                      />
-                      <span className="text-center leading-tight">{product.title}</span>
-                    </label>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {applications.map((app) => (
-                <tr
-                  key={app.id}
-                  onMouseEnter={() => setHoverRow(app.id)}
-                  onMouseLeave={() => setHoverRow(null)}
-                  className={`border-b border-surface-200/50 dark:border-surface-800/60 last:border-b-0 transition-colors duration-200 ${hoverRow === app.id ? 'bg-[#f3c969]/6' : ''}`}
-                >
-                  <td className={`px-5 py-4 font-heading font-semibold text-[14.5px] whitespace-nowrap transition-colors duration-200 ${hoverRow === app.id ? 'text-brand-600 dark:text-brand-400' : 'text-heading dark:text-white'}`}>
-                    {app.title}
-                  </td>
-                  {columnProducts.map((product) => {
-                    const isMatch = app.matchedProductIds.includes(product.id);
-                    const isActiveIntersection = isMatch && (hoverRow === app.id || hoverCol === product.id);
-                    return (
-                      <td key={product.id} className="px-4 py-4 text-center">
-                        {isMatch && (
-                          <motion.svg
-                            className={`w-4 h-4 mx-auto ${isActiveIntersection ? 'text-[#d19a2e]' : 'text-brand-600'}`}
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-label="Recommended"
-                            animate={{ scale: isActiveIntersection && !reduceMotion ? 1.2 : 1 }}
-                            transition={{ duration: 0.2, ease: EASE_PREMIUM }}
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </motion.svg>
-                        )}
+        <motion.div {...fadeUp(reduceMotion, { delay: 0.1, distance: 24 })} className="flex flex-col gap-2.5">
+          <div className="relative">
+            <div
+              onScroll={(e) => {
+                if (!hasScrolled && e.currentTarget.scrollLeft > 12) setHasScrolled(true);
+              }}
+              className="overflow-x-auto rounded-[24px] border border-surface-200/60 dark:border-surface-800"
+            >
+              <table className="w-full border-collapse min-w-[720px]">
+                <thead>
+                  <tr className="bg-[#fbf7f1] dark:bg-surface-900 border-b border-surface-200/70 dark:border-surface-800">
+                    <th className="sticky left-0 z-20 bg-[#fbf7f1] dark:bg-surface-900 text-left px-5 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">
+                      Application
+                    </th>
+                    {columnProducts.map((product) => (
+                      <th
+                        key={product.id}
+                        onMouseEnter={() => setHoverCol(product.id)}
+                        onMouseLeave={() => setHoverCol(null)}
+                        className={`px-4 py-4 font-body text-[11px] font-bold uppercase tracking-wider whitespace-nowrap transition-colors duration-200 ${hoverCol === product.id ? 'text-brand-600 dark:text-brand-400 bg-[#f3c969]/10' : 'text-surface-500 dark:text-surface-400'}`}
+                      >
+                        <label className="flex flex-col items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={checked.includes(product.id)}
+                            onChange={() => toggle(product.id)}
+                            onFocus={() => setHoverCol(product.id)}
+                            onBlur={() => setHoverCol(null)}
+                            aria-label={`Select ${product.title} to compare`}
+                            className="w-4 h-4 accent-brand-600 cursor-pointer"
+                          />
+                          <span className="text-center leading-tight">{product.title}</span>
+                        </label>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {applications.map((app) => (
+                    <tr
+                      key={app.id}
+                      onMouseEnter={() => setHoverRow(app.id)}
+                      onMouseLeave={() => setHoverRow(null)}
+                      className={`border-b border-surface-200/50 dark:border-surface-800/60 last:border-b-0 transition-colors duration-200 ${hoverRow === app.id ? 'bg-[#f3c969]/6' : ''}`}
+                    >
+                      <td
+                        className={`sticky left-0 z-10 px-5 py-4 font-heading font-semibold text-[14.5px] whitespace-nowrap transition-colors duration-200 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] ${hoverRow === app.id ? 'bg-[#f3c969]/6 text-brand-600 dark:text-brand-400' : 'bg-white dark:bg-surface-900/40 text-heading dark:text-white'}`}
+                      >
+                        {app.title}
                       </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                      {columnProducts.map((product) => {
+                        const isMatch = app.matchedProductIds.includes(product.id);
+                        const isActiveIntersection = isMatch && (hoverRow === app.id || hoverCol === product.id);
+                        return (
+                          <td key={product.id} className="px-4 py-4 text-center">
+                            {isMatch && (
+                              <motion.svg
+                                className={`w-4 h-4 mx-auto ${isActiveIntersection ? 'text-[#d19a2e]' : 'text-brand-600'}`}
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-label="Recommended"
+                                animate={{ scale: isActiveIntersection && !reduceMotion ? 1.2 : 1 }}
+                                transition={{ duration: 0.2, ease: EASE_PREMIUM }}
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </motion.svg>
+                            )}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Scroll-right hint — fades a gradient + bouncing arrow over
+                the table's right edge until the user scrolls it. */}
+            <AnimatePresence>
+              {!hasScrolled && (
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
+                  className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 rounded-r-[24px] bg-gradient-to-l from-white dark:from-surface-900/90 from-30% via-white/70 dark:via-surface-900/60 to-transparent flex items-center justify-end pr-3"
+                  aria-hidden="true"
+                >
+                  <motion.svg
+                    width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                    className="text-brand-600"
+                    animate={reduceMotion ? undefined : { x: [0, 4, 0] }}
+                    transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <path d="M9 6l6 6-6 6" />
+                  </motion.svg>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <AnimatePresence>
+            {!hasScrolled && (
+              <motion.span
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
+                className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400 dark:text-surface-500"
+              >
+                Scroll right to view more products
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
+              </motion.span>
+            )}
+          </AnimatePresence>
         </motion.div>
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3">

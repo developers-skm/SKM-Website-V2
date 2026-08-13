@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 // Section 3 — searchable, filterable comparison table (brief §3).
 //
@@ -79,6 +80,8 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
   // on every subsequent selection).
   const [checked, setChecked] = useState(() => (selectedCode ? [selectedCode] : []));
   const [activeFilters, setActiveFilters] = useState([]);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   const specColumns = useMemo(() => {
     const keys = new Set();
@@ -229,26 +232,35 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
           Column widths/alignment: unchanged from the original table — same
           <th>/<td> classes, same text-left / w-12 rules, only the sticky
           plumbing and background were added. */}
-      <div
-        className="rounded-[24px] border border-surface-200/60 dark:border-surface-800 overflow-y-auto overflow-x-auto"
-        style={{ maxHeight: '70vh' }}
-      >
+      <div className="relative">
+        <div
+          onScroll={(e) => {
+            if (!hasScrolled && e.currentTarget.scrollLeft > 12) setHasScrolled(true);
+          }}
+          className="rounded-[24px] border border-surface-200/60 dark:border-surface-800 overflow-y-auto overflow-x-auto"
+          style={{ maxHeight: '70vh' }}
+        >
         <table className="w-full border-separate border-spacing-0 min-w-[720px]">
           <thead>
             {/* Sticky is applied per-<th>, not on <tr>/<thead> — <tr> is not
                 a reliable position:sticky context across browsers (Safari
                 in particular). Each <th> gets its own position:sticky;
                 top:0; z-index:10 plus a solid background so scrolling rows
-                never show through the gaps between cells. */}
+                never show through the gaps between cells. The checkbox +
+                Code columns are additionally pinned horizontally
+                (left:0/left:48px) so the row identifier stays visible while
+                scrolling right through the spec columns on mobile — same
+                dual-axis sticky corner as VariantTable's own vertical
+                pattern, just extended to the left edge too. */}
             <tr className="border-b border-surface-200/70 dark:border-surface-800 shadow-[0_1px_0_rgba(0,0,0,0.04)]">
               <th
                 className="w-12 px-4 py-4 bg-[#fbf7f1] dark:bg-surface-900"
                 aria-label="Select for comparison"
-                style={{ position: 'sticky', top: 0, zIndex: 10 }}
+                style={{ position: 'sticky', top: 0, left: 0, zIndex: 20 }}
               />
               <th
-                className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 bg-[#fbf7f1] dark:bg-surface-900"
-                style={{ position: 'sticky', top: 0, zIndex: 10 }}
+                className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 bg-[#fbf7f1] dark:bg-surface-900 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]"
+                style={{ position: 'sticky', top: 0, left: 48, zIndex: 20 }}
               >
                 Code
               </th>
@@ -293,12 +305,22 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
               // looks like a bug (checkbox says one thing, button says
               // another).
               const showInComparisonBadge = isChecked && !isSelected;
+              // Sticky cells paint over whatever sits behind them, so the
+              // row's own hover/selected background must be carried
+              // explicitly on the sticky cells too — the same requirement
+              // as ApplicationProductMatrix's hoverRow handling.
+              const rowBg = isSelected
+                ? 'bg-brand-600/[0.04] dark:bg-brand-950/10'
+                : 'bg-white dark:bg-surface-900 group-hover/row:bg-surface-50 dark:group-hover/row:bg-surface-900/40';
               return (
                 <tr
                   key={variant.code}
-                  className={`border-b border-surface-200/50 dark:border-surface-800/60 last:border-b-0 transition-colors ${isSelected ? 'bg-brand-600/[0.04] dark:bg-brand-950/10' : 'hover:bg-surface-50 dark:hover:bg-surface-900/40'}`}
+                  className={`group/row border-b border-surface-200/50 dark:border-surface-800/60 last:border-b-0 transition-colors ${isSelected ? 'bg-brand-600/[0.04] dark:bg-brand-950/10' : 'hover:bg-surface-50 dark:hover:bg-surface-900/40'}`}
                 >
-                  <td className="px-4 py-4">
+                  <td
+                    className={`px-4 py-4 transition-colors duration-150 ${rowBg}`}
+                    style={{ position: 'sticky', left: 0, zIndex: 10 }}
+                  >
                     <input
                       type="checkbox"
                       checked={isChecked}
@@ -307,7 +329,10 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
                       className="w-4 h-4 accent-brand-600 cursor-pointer"
                     />
                   </td>
-                  <td className="px-4 py-4 font-mono text-[12.5px] font-bold text-brand-600 dark:text-brand-400 whitespace-nowrap">
+                  <td
+                    className={`px-4 py-4 font-mono text-[12.5px] font-bold text-brand-600 dark:text-brand-400 whitespace-nowrap shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] transition-colors duration-150 ${rowBg}`}
+                    style={{ position: 'sticky', left: 48, zIndex: 10 }}
+                  >
                     {displayCode(variant.code)}
                   </td>
                   <td className="px-4 py-4 font-heading font-semibold text-[14.5px] text-heading dark:text-white">
@@ -345,7 +370,47 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
             )}
           </tbody>
         </table>
+        </div>
+
+        {/* Scroll-right hint — fades a gradient + bouncing arrow over the
+            table's right edge until the user scrolls it. */}
+        <AnimatePresence>
+          {!hasScrolled && (
+            <motion.div
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
+              className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 rounded-r-[24px] bg-gradient-to-l from-white dark:from-surface-900 from-30% via-white/70 dark:via-surface-900/60 to-transparent flex items-center justify-end pr-3"
+              aria-hidden="true"
+            >
+              <motion.svg
+                width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                className="text-brand-600"
+                animate={reduceMotion ? undefined : { x: [0, 4, 0] }}
+                transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <path d="M9 6l6 6-6 6" />
+              </motion.svg>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
+
+      <AnimatePresence>
+        {!hasScrolled && (
+          <motion.span
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
+            className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400 dark:text-surface-500"
+          >
+            Scroll right to view more specifications
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </motion.span>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
