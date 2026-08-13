@@ -11,14 +11,20 @@ function copyOfflineAssets() {
     buildStart() {
       const srcAssets = path.resolve(__dirname, 'src/assets/images/offline-cracked-wifi-egg.png');
       const destPublic = path.resolve(__dirname, 'public/images/offline-cracked-wifi-egg.png');
+      const dataUriFile = path.resolve(__dirname, 'src/assets/images/offlineEggPngDataUri.js');
 
-      if (fs.existsSync(srcAssets) && !fs.existsSync(destPublic)) {
+      if (fs.existsSync(srcAssets)) {
         try {
           fs.mkdirSync(path.dirname(destPublic), { recursive: true });
           fs.copyFileSync(srcAssets, destPublic);
-          console.log('[copy-offline-assets] Synchronized offline hero image to public directory');
+
+          const buffer = fs.readFileSync(srcAssets);
+          const base64 = buffer.toString('base64');
+          const content = `// Auto-generated PNG Data URI for offline page\nexport const offlineEggPngDataUri = "data:image/png;base64,${base64}";\nexport default offlineEggPngDataUri;\n`;
+          fs.writeFileSync(dataUriFile, content, 'utf-8');
+          console.log('[copy-offline-assets] Synchronized offline PNG image and generated Base64 module');
         } catch (e) {
-          console.error('[copy-offline-assets] Error copying image:', e);
+          console.error('[copy-offline-assets] Error processing offline image:', e);
         }
       }
     }

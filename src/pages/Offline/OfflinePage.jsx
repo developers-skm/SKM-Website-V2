@@ -1,78 +1,14 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
-import OfflineEggImg from '../../assets/images/offline-cracked-wifi-egg.png';
+import OfflineEggPng from '../../assets/images/offline-cracked-wifi-egg.png?inline';
 import { useNetworkStatus } from '../../hooks/useNetworkStatus';
-
-function OfflineEggSvg() {
-  return (
-    <svg className="w-full h-full text-brand-600" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="yolkGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#FAD961" />
-          <stop offset="100%" stopColor="#F76B1C" />
-        </radialGradient>
-        <linearGradient id="eggShell" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFFFFF" />
-          <stop offset="100%" stopColor="#E2E8F0" />
-        </linearGradient>
-        <linearGradient id="wifiArc" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#E40A18" />
-          <stop offset="50%" stopColor="#F3C969" />
-          <stop offset="100%" stopColor="#E40A18" />
-        </linearGradient>
-      </defs>
-
-      {/* Ambient background glow */}
-      <circle cx="100" cy="115" r="70" fill="url(#yolkGlow)" opacity="0.2" filter="blur(20px)" />
-
-      {/* Cracked Eggshell Base */}
-      <path
-        d="M55 130 C55 168, 145 168, 145 130 C145 118, 134 112, 128 118 L116 106 L105 118 L95 106 L84 118 L73 108 C67 116, 55 118, 55 130 Z"
-        fill="url(#eggShell)"
-        stroke="#CBD5E1"
-        strokeWidth="2.5"
-      />
-
-      {/* Floating Golden Egg Yolk */}
-      <circle cx="100" cy="112" r="22" fill="url(#yolkGlow)" />
-      <circle cx="93" cy="105" r="6" fill="#FFFFFF" opacity="0.5" />
-
-      {/* Wi-Fi Signal Arc 1 (Inner) */}
-      <path
-        d="M76 86 A 30 30 0 0 1 124 86"
-        stroke="url(#wifiArc)"
-        strokeWidth="5.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-
-      {/* Wi-Fi Signal Arc 2 (Middle) */}
-      <path
-        d="M62 70 A 48 48 0 0 1 138 70"
-        stroke="url(#wifiArc)"
-        strokeWidth="5.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-
-      {/* Wi-Fi Signal Arc 3 (Outer) */}
-      <path
-        d="M48 54 A 64 64 0 0 1 152 54"
-        stroke="url(#wifiArc)"
-        strokeWidth="5.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-    </svg>
-  );
-}
 
 export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
   const { isOnline, isChecking, checkConnection } = useNetworkStatus();
   const [errorMessage, setErrorMessage] = useState('');
   const [reconnected, setReconnected] = useState(false);
-  const [imgFailed, setImgFailed] = useState(false);
+  const [imageSrc, setImageSrc] = useState(OfflineEggPng || '/images/offline-cracked-wifi-egg.png');
 
   // Auto-restore when network connectivity returns
   useEffect(() => {
@@ -103,6 +39,12 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
       }, 1000);
     } else {
       setErrorMessage('Unable to reconnect. Check your internet connection and try again.');
+    }
+  };
+
+  const handleImageError = () => {
+    if (imageSrc !== '/images/offline-cracked-wifi-egg.png') {
+      setImageSrc('/images/offline-cracked-wifi-egg.png');
     }
   };
 
@@ -161,7 +103,7 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
           {reconnected ? 'RECONNECTED' : 'OFFLINE'}
         </motion.div>
 
-        {/* Hero Visual Container */}
+        {/* Hero PNG Image Visual Container */}
         <motion.div
           animate={
             isChecking
@@ -173,24 +115,20 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
               ? { duration: 1, repeat: Infinity, ease: 'easeInOut' }
               : { duration: 4, repeat: Infinity, ease: 'easeInOut' }
           }
-          className="relative w-44 h-44 sm:w-56 sm:h-56 aspect-square mb-6 group"
+          className="relative w-48 h-48 sm:w-60 sm:h-60 aspect-square mb-6 group"
         >
           {/* Ambient Glow behind Image */}
           <div className="absolute inset-2 rounded-full bg-gradient-to-tr from-brand-600/15 via-gold-400/20 to-transparent blur-2xl transition-opacity duration-500 group-hover:opacity-100 opacity-80" />
 
           {/* Premium Image Frame */}
           <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/60 dark:border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.4)] bg-white/50 dark:bg-surface-900/50 backdrop-blur-sm p-4 flex items-center justify-center">
-            {!imgFailed ? (
-              <img
-                src={OfflineEggImg}
-                alt="SKM Offline — Looks like the connection cracked visual concept"
-                onError={() => setImgFailed(true)}
-                className="w-full h-full object-contain rounded-2xl select-none transition-transform duration-700 group-hover:scale-[1.02]"
-                loading="eager"
-              />
-            ) : (
-              <OfflineEggSvg />
-            )}
+            <img
+              src={imageSrc}
+              alt="SKM Offline — Looks like the connection cracked visual concept"
+              onError={handleImageError}
+              className="w-full h-full object-contain rounded-2xl select-none transition-transform duration-700 group-hover:scale-[1.02]"
+              loading="eager"
+            />
           </div>
         </motion.div>
 
