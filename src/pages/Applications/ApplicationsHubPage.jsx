@@ -22,23 +22,23 @@ export default function ApplicationsHubPage({ onPageChange }) {
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full flex flex-col bg-page dark:bg-surface-950">
+      <div className="w-full flex flex-col bg-page">
 
         <ApplicationHero onPageChange={onPageChange} />
-        <CurvedDivider bg="transparent" fill="#ececec" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px] dark:hidden" />
-        <CurvedDivider bg="transparent" fill="#121212" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px] hidden dark:block" />
+        <CurvedDivider bg="transparent" fill="#ececec" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px]" />
+        <CurvedDivider bg="transparent" fill="#121212" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px] hidden" />
 
         <ApplicationCategories onPageChange={onPageChange} />
-        <CurvedDivider bg="#ececec" fill="#f8f4ee" className="dark:hidden" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
+        <CurvedDivider bg="#ececec" fill="#f8f4ee" className="" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         <FormulationChallenges onPageChange={onPageChange} />
-        <CurvedDivider bg="#f8f4ee" fill="#fff" className="dark:hidden" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
+        <CurvedDivider bg="#f8f4ee" fill="#fff" className="" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         <ApplicationProductMatrix onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#fdf1f0" className="dark:hidden" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
+        <CurvedDivider bg="#fff" fill="#fdf1f0" className="" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         <TechnicalSupport
           onDiscussFormulation={() => onPageChange('contact-us')}

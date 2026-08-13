@@ -17,7 +17,7 @@ export default function TopUtilityBar({ onPageChange, logoButtonRef }) {
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 260, damping: 22, mass: 0.8 }}
-      className="hidden md:block fixed top-0 inset-x-0 z-40 bg-[#fbfaf8]/95 dark:bg-surface-950/95 backdrop-blur-sm border-b border-surface-200 dark:border-surface-800"
+      className="hidden md:block fixed top-0 inset-x-0 z-40 bg-[#fbfaf8]/95 backdrop-blur-sm border-b border-surface-200"
     >
       <div className="mx-auto max-w-[1680px] px-6 lg:px-10 h-[68px] flex items-center gap-4">
         <button
@@ -41,17 +41,17 @@ export default function TopUtilityBar({ onPageChange, logoButtonRef }) {
                 route={link.route}
                 onPageChange={onPageChange}
                 prefillData={link.careersIntent ? { enquiryType: 'job', intentId: crypto.randomUUID() } : undefined}
-                className="font-body text-[14px] font-semibold text-surface-600 dark:text-surface-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150 whitespace-nowrap"
+                className="font-body text-[14px] font-semibold text-surface-600 hover:text-brand-600 transition-colors duration-150 whitespace-nowrap"
               >
                 {link.label}
               </InternalLink>
               {index < utilityLinks.length - 1 && (
-                <span className="w-px h-3 bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
+                <span className="w-px h-3 bg-surface-300" aria-hidden="true" />
               )}
             </Fragment>
           ))}
-          <span className="w-px h-3 bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
-          <span className="font-body text-[14px] font-medium text-surface-500 dark:text-surface-400 whitespace-nowrap select-none">
+          <span className="w-px h-3 bg-surface-300" aria-hidden="true" />
+          <span className="font-body text-[14px] font-medium text-surface-500 whitespace-nowrap select-none">
             Language · EN
           </span>
         </nav>

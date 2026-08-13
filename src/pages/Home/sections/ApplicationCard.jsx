@@ -34,10 +34,10 @@ export default function ApplicationCard({ app, onPageChange, isActive = true }) 
         aria-labelledby={titleId}
         aria-describedby={detailsId}
         aria-pressed={isSelected}
-        className={`group relative flex flex-col h-full rounded-[24px] overflow-hidden bg-white dark:bg-surface-900 border transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
+        className={`group relative flex flex-col h-full rounded-[24px] overflow-hidden bg-white border transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
           isSelected
             ? 'border-brand-600 shadow-[0_10px_28px_rgba(228,10,24,0.12)]'
-            : 'border-surface-200/70 dark:border-surface-800 shadow-[0_3px_14px_rgba(36,30,24,0.05)] hover:border-brand-600/50 hover:shadow-[0_12px_32px_rgba(36,30,24,0.1)]'
+            : 'border-surface-200/70 shadow-[0_3px_14px_rgba(36,30,24,0.05)] hover:border-brand-600/50 hover:shadow-[0_12px_32px_rgba(36,30,24,0.1)]'
         }`}
       >
         <div className="relative block min-h-[300px] sm:min-h-[340px] lg:min-h-[380px] overflow-hidden">
@@ -71,32 +71,32 @@ export default function ApplicationCard({ app, onPageChange, isActive = true }) 
           </div>
         </div>
 
-        <div id={detailsId} className="relative z-10 -mt-px flex flex-col bg-white dark:bg-surface-900 px-6 py-6">
+        <div id={detailsId} className="relative z-10 -mt-px flex flex-col bg-white px-6 py-6">
           {matchingProductCount > 0 && (
             <>
-              <p className="font-body text-base font-medium text-heading dark:text-white m-0">
+              <p className="font-body text-base font-medium text-heading m-0">
                 {matchingProductCount} matching {matchingProductCount === 1 ? 'product' : 'products'}
               </p>
               <div className="mt-6">
-                <p className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500 m-0 mb-1.5">
+                <p className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 m-0 mb-1.5">
                   Recommended product types
                 </p>
-                <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 leading-[1.5] m-0">
+                <p className="font-body text-[14px] text-surface-500 leading-[1.5] m-0">
                   {matchedProducts.map((p) => p.title).join(' · ')}
                 </p>
               </div>
             </>
           )}
 
-          <div className="mt-5 pt-4 border-t border-surface-200/80 dark:border-surface-800 flex items-center justify-between">
+          <div className="mt-5 pt-4 border-t border-surface-200/80 flex items-center justify-between">
             <span className={`font-body font-semibold text-[14px] lg:text-[15px] transition-colors duration-200 ${
-              isSelected ? 'text-brand-700 dark:text-brand-300' : 'text-brand-600 dark:text-brand-400 group-hover:text-brand-700 dark:group-hover:text-brand-300'
+              isSelected ? 'text-brand-700' : 'text-brand-600 group-hover:text-brand-700'
             }`}>
               Find Products for {app.title}
             </span>
             <svg
               width="11" height="11" viewBox="0 0 10 10" fill="currentColor"
-              className={`text-brand-600 dark:text-brand-400 ${reduceMotion ? '' : 'group-hover:translate-x-1 transition-transform duration-200'}`}
+              className={`text-brand-600 ${reduceMotion ? '' : 'group-hover:translate-x-1 transition-transform duration-200'}`}
               aria-hidden
             >
               <path d="M10 0.0495054L10 10.0001L8.13725 10.0001L-8.22301e-08 1.8812L1.86275 -3.55691e-07L7.35294 5.5446L7.30392 0.0495053L10 0.0495054Z" />

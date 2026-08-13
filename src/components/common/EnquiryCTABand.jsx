@@ -3,15 +3,15 @@
 // landing pages, which previously duplicated this section byte-for-byte.
 export default function EnquiryCTABand({ eyebrow, heading, actions }) {
   return (
-    <section className="w-full bg-[#fdf1f0] dark:bg-brand-950/20 py-14 sm:py-20 lg:py-24">
+    <section className="w-full bg-[#fdf1f0] py-14 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[900px] w-full px-5 sm:px-8 lg:px-12 flex flex-col items-center text-center gap-5">
         {eyebrow && (
-          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             {eyebrow}
           </span>
         )}
-        <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white m-0 tracking-tight leading-[1.15]">
+        <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight leading-[1.15]">
           {heading}
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-2">
@@ -20,7 +20,7 @@ export default function EnquiryCTABand({ eyebrow, heading, actions }) {
               <button
                 key={action.label}
                 onClick={action.onClick}
-                className="font-body font-semibold text-[14px] text-brand-600 dark:text-brand-400 hover:text-[#a80000] dark:hover:text-brand-300 underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
+                className="font-body font-semibold text-[14px] text-brand-600 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
               >
                 {action.label}
               </button>

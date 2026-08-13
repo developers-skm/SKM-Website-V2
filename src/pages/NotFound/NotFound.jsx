@@ -31,7 +31,7 @@ export default function NotFound({ onPageChange }) {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden bg-page dark:bg-surface-950 px-4 pt-[100px] pb-16">
+    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden bg-page px-4 pt-[100px] pb-16">
       <SEO title="Page Not Found" description="The page you're looking for doesn't exist or has been moved." noindex />
       {/* Background radial glow */}
       <div
@@ -107,7 +107,7 @@ export default function NotFound({ onPageChange }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.4 }}
-          className="font-heading text-2xl sm:text-3xl font-bold text-surface-800 dark:text-surface-100 mb-3"
+          className="font-heading text-2xl sm:text-3xl font-bold text-surface-800 mb-3"
         >
           Page Not Found
         </motion.h1>
@@ -117,7 +117,7 @@ export default function NotFound({ onPageChange }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.5 }}
-          className="text-surface-500 dark:text-surface-400 text-base sm:text-lg max-w-md leading-relaxed mb-10"
+          className="text-surface-500 text-base sm:text-lg max-w-md leading-relaxed mb-10"
         >
           The page you're looking for doesn't exist or has been moved.
           Let's get you back on track.

@@ -34,11 +34,11 @@ export default function RelatedProducts({ products, currentCategory, onPageChang
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4 max-w-2xl">
-        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
           <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
           You May Also Need
         </span>
-        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white tracking-tight m-0 leading-[1.1]">
+        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading tracking-tight m-0 leading-[1.1]">
           Related Products
         </h2>
       </div>
@@ -55,7 +55,7 @@ export default function RelatedProducts({ products, currentCategory, onPageChang
             variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: DURATION.cardHover, ease: EASE_PREMIUM }}
             whileHover={reduceMotion ? undefined : { y: -3 }}
-            className="group relative flex flex-col overflow-hidden rounded-[22px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900 transition-[box-shadow,border-color] duration-300 hover:shadow-[0_16px_40px_rgba(36,30,24,0.09)] hover:border-gold-500/40"
+            className="group relative flex flex-col overflow-hidden rounded-[22px] border border-surface-200/60 bg-white transition-[box-shadow,border-color] duration-300 hover:shadow-[0_16px_40px_rgba(36,30,24,0.09)] hover:border-gold-500/40"
           >
             <button
               onClick={() => onPageChange(product.page)}
@@ -69,17 +69,17 @@ export default function RelatedProducts({ products, currentCategory, onPageChang
               />
             </button>
             <div className="flex flex-col gap-3 px-5 py-6">
-              <h3 className="font-heading font-bold text-[17px] text-heading dark:text-white m-0 leading-tight">
+              <h3 className="font-heading font-bold text-[17px] text-heading m-0 leading-tight">
                 {product.title}
               </h3>
               {product.shortDescription && (
-                <p className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+                <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
                   {product.shortDescription}
                 </p>
               )}
               <button
                 onClick={() => onPageChange(product.page)}
-                className="mt-1 self-start inline-flex items-center gap-1.5 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] cursor-pointer bg-transparent border-none p-0"
+                className="mt-1 self-start inline-flex items-center gap-1.5 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] cursor-pointer bg-transparent border-none p-0"
               >
                 Compare With {product.title}
                 <svg
@@ -97,7 +97,7 @@ export default function RelatedProducts({ products, currentCategory, onPageChang
       {categoryRoute && (
         <button
           onClick={() => onPageChange(categoryRoute)}
-          className="self-start font-body font-bold text-[13px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
+          className="self-start font-body font-bold text-[13px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
         >
           View Related Products
         </button>

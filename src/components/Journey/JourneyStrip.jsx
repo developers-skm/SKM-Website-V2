@@ -17,7 +17,7 @@ export default function JourneyStrip({ variant = 'compact', onPageChange }) {
 
 function CompactJourney({ onPageChange }) {
   return (
-    <div className="w-full bg-page dark:bg-surface-950 py-[40px] lg:py-[60px] border-b border-[#eee] dark:border-surface-800/40">
+    <div className="w-full bg-page py-[40px] lg:py-[60px] border-b border-[#eee]">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -28,16 +28,16 @@ function CompactJourney({ onPageChange }) {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="flex flex-col gap-4 max-w-xl">
             <span className="section-label">From Farm To Your Formulation</span>
-            <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[44px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[44px] text-heading leading-[1.1] tracking-tight m-0">
               Our Journey
             </h2>
-            <p className="font-body text-[15px] text-surface-500 dark:text-surface-400 leading-[26px] m-0">
+            <p className="font-body text-[15px] text-surface-500 leading-[26px] m-0">
               Six documented stages carry every egg from a biosecure hatchery to your factory floor — see the process behind every batch.
             </p>
           </div>
           <button
             onClick={() => onPageChange?.('journey')}
-            className="group inline-flex items-center gap-2 font-body font-semibold text-[13px] uppercase tracking-[0.05em] text-brand-600 hover:text-brand-700 dark:hover:text-brand-400 bg-transparent border-none p-0 cursor-pointer whitespace-nowrap self-start sm:self-auto"
+            className="group inline-flex items-center gap-2 font-body font-semibold text-[13px] uppercase tracking-[0.05em] text-brand-600 hover:text-brand-700 bg-transparent border-none p-0 cursor-pointer whitespace-nowrap self-start sm:self-auto"
           >
             See The Full Journey
             <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" className="group-hover:translate-x-0.5 transition-transform duration-200" aria-hidden>
@@ -54,7 +54,7 @@ function CompactJourney({ onPageChange }) {
               variants={itemVariants}
               whileHover={{ y: -4 }}
               onClick={() => onPageChange?.('journey')}
-              className="group relative flex flex-col rounded-[14px] overflow-hidden aspect-[3/4] cursor-pointer border border-[#eee] dark:border-surface-800 focus:outline-none"
+              className="group relative flex flex-col rounded-[14px] overflow-hidden aspect-[3/4] cursor-pointer border border-[#eee] focus:outline-none"
             >
               <img
                 src={stage.image}
@@ -82,7 +82,7 @@ function CompactJourney({ onPageChange }) {
 
 function FullJourney({ onPageChange }) {
   return (
-    <div className="w-full bg-page dark:bg-surface-950">
+    <div className="w-full bg-page">
       {/* Intro */}
       <motion.div
         variants={containerVariants}
@@ -96,13 +96,13 @@ function FullJourney({ onPageChange }) {
         </motion.span>
         <motion.h1
           variants={itemVariants}
-          className="font-heading font-bold text-[38px] sm:text-[52px] lg:text-[60px] text-heading dark:text-white leading-[1.05] tracking-tight m-0"
+          className="font-heading font-bold text-[38px] sm:text-[52px] lg:text-[60px] text-heading leading-[1.05] tracking-tight m-0"
         >
           Our Journey
         </motion.h1>
         <motion.p
           variants={itemVariants}
-          className="font-body text-[16px] sm:text-[18px] text-surface-500 dark:text-surface-400 leading-[30px] m-0 max-w-2xl"
+          className="font-body text-[16px] sm:text-[18px] text-surface-500 leading-[30px] m-0 max-w-2xl"
         >
           Most buyers can't visit an egg processing plant across the world before they trust it. So we're showing you the whole chain instead — six documented stages, from a biosecure hatchery to the cold chain that carries your order to your door.
         </motion.p>
@@ -117,13 +117,13 @@ function FullJourney({ onPageChange }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
-        className="w-full bg-page dark:bg-surface-900/40 border-t border-[#eee] dark:border-surface-800/40 py-[70px] lg:py-[90px]"
+        className="w-full bg-page border-t border-[#eee] py-[70px] lg:py-[90px]"
       >
         <div className="mx-auto max-w-[700px] w-full px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-6">
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading leading-[1.15] tracking-tight m-0">
             This is the process behind every product we make.
           </h2>
-          <p className="font-body text-[15px] text-surface-500 dark:text-surface-400 leading-[26px] m-0">
+          <p className="font-body text-[15px] text-surface-500 leading-[26px] m-0">
             Explore the egg powders and liquid egg products this chain produces, or talk to us about your formulation.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -135,7 +135,7 @@ function FullJourney({ onPageChange }) {
             </button>
             <button
               onClick={() => onPageChange?.('get-quote')}
-              className="inline-flex items-center gap-2.5 bg-transparent hover:bg-brand-600/6 dark:hover:bg-brand-950/30 text-surface-900 dark:text-surface-100 border border-surface-250 dark:border-surface-700 font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-7 py-[15px] rounded-[200px] transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center gap-2.5 bg-transparent hover:bg-brand-600/6 text-surface-900 border border-surface-250 font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-7 py-[15px] rounded-[200px] transition-all duration-300 cursor-pointer"
             >
               Request A Quote
             </button>

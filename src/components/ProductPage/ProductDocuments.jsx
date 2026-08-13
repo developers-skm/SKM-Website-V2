@@ -32,11 +32,11 @@ export default function ProductDocuments({ tdsUrl, productName, onRequestPack })
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4 max-w-2xl">
-        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
           <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
           Resources
         </span>
-        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1]">
+        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
           Documents
         </h2>
       </div>
@@ -46,22 +46,22 @@ export default function ProductDocuments({ tdsUrl, productName, onRequestPack })
         whileInView="visible"
         viewport={{ once: true, margin: '-80px' }}
         variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
-        className="flex flex-col rounded-[28px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 overflow-hidden"
+        className="flex flex-col rounded-[28px] border border-surface-200/60 bg-white overflow-hidden"
       >
         {documents.map((doc, i) => (
           <motion.div
             key={doc.url}
             variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 12 }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: DURATION.cardHover, ease: EASE_PREMIUM }}
-            className={`group flex items-center justify-between gap-4 px-6 sm:px-10 py-6 transition-colors duration-200 hover:bg-gold-500/[0.04] dark:hover:bg-gold-500/[0.04] ${i > 0 ? 'border-t border-surface-200/60 dark:border-surface-800' : ''}`}
+            className={`group flex items-center justify-between gap-4 px-6 sm:px-10 py-6 transition-colors duration-200 hover:bg-gold-500/[0.04] ${i > 0 ? 'border-t border-surface-200/60' : ''}`}
           >
             <div className="flex items-center gap-4 min-w-0">
-              <span className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-[12px] bg-brand-600/6 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/40 transition-transform duration-200 group-hover:-translate-y-0.5">
+              <span className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-[12px] bg-brand-600/6 border border-brand-600/12 transition-transform duration-200 group-hover:-translate-y-0.5">
                 <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </span>
-              <span className="font-heading font-semibold text-[15px] sm:text-[16px] text-heading dark:text-white truncate">
+              <span className="font-heading font-semibold text-[15px] sm:text-[16px] text-heading truncate">
                 {doc.label}
               </span>
             </div>
@@ -71,7 +71,7 @@ export default function ProductDocuments({ tdsUrl, productName, onRequestPack })
               rel="noopener noreferrer"
               download
               onClick={() => handleDownloadClick(doc.url)}
-              className="relative flex-shrink-0 inline-flex items-center gap-2 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] px-4 py-2.5 rounded-full border border-surface-200 dark:border-surface-700 hover:border-brand-600/30 transition-colors duration-200 focus:outline-none focus-gold"
+              className="relative flex-shrink-0 inline-flex items-center gap-2 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] px-4 py-2.5 rounded-full border border-surface-200 hover:border-brand-600/30 transition-colors duration-200 focus:outline-none focus-gold"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {confirmedUrl === doc.url ? (

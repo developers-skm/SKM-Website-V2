@@ -69,7 +69,7 @@ export default function Certifications() {
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
-    <div id="quality-certifications" className="w-full bg-page dark:bg-surface-900/40 pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[40px] lg:pb-[60px] border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
+    <div id="quality-certifications" className="w-full bg-page pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[40px] lg:pb-[60px] border-b border-[#eee] overflow-hidden">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -87,14 +87,14 @@ export default function Certifications() {
           </motion.span>
           <motion.h2
             variants={itemVariants}
-            className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+            className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0"
           >
             Our{' '}
             Certifications
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="font-body text-[16px] text-surface-500 dark:text-surface-400 max-w-2xl leading-[30px] m-0"
+            className="font-body text-[16px] text-surface-500 max-w-2xl leading-[30px] m-0"
           >
             Internationally recognized certifications that validate our commitment to food safety, quality, and compliance across global markets.
           </motion.p>
@@ -110,7 +110,7 @@ export default function Certifications() {
               key={cert.id}
               variants={itemVariants}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="relative bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[10px] overflow-hidden shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/30 transition-all duration-300 group"
+              className="relative bg-white border border-[#eee] rounded-[10px] overflow-hidden shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/30 transition-all duration-300 group"
             >
               {/* Background glow on hover */}
               <div className="absolute inset-0 bg-brand-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -127,7 +127,7 @@ export default function Certifications() {
 
               {/* Cert Name */}
               <div className="relative px-5 pb-4 text-center">
-                <p className="font-heading font-bold text-[12px] text-surface-700 dark:text-surface-300 uppercase tracking-wider m-0">
+                <p className="font-heading font-bold text-[12px] text-surface-700 uppercase tracking-wider m-0">
                   {cert.name}
                 </p>
               </div>
@@ -141,7 +141,7 @@ export default function Certifications() {
           variants={itemVariants}
           className="flex items-center justify-center text-center"
         >
-          <span className="font-body text-[12px] font-semibold text-brand-600 dark:text-brand-400">
+          <span className="font-body text-[12px] font-semibold text-brand-600">
             {certificates.length} Active Certifications &amp; Accreditations
           </span>
         </motion.div>

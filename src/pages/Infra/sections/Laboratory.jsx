@@ -113,20 +113,20 @@ export default function Laboratory() {
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
-    <div className="w-full bg-page dark:bg-surface-950 overflow-hidden">
+    <div className="w-full bg-page overflow-hidden">
 
       {/* ── Hero ── */}
-      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page dark:bg-surface-950 border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 dark:bg-brand-950/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page border-b border-[#eee] overflow-hidden">
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-6 items-start">
           <span className="section-label">
             Infrastructure
           </span>
-          <h1 className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h1 className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading leading-[1.1] tracking-tight m-0">
             Quality &{' '}
             Laboratory
           </h1>
-          <p className="font-body text-[16px] leading-[30px] text-surface-500 dark:text-surface-400 max-w-2xl m-0">
+          <p className="font-body text-[16px] leading-[30px] text-surface-500 max-w-2xl m-0">
             Our ISO/IEC 17025 (NABL) accredited laboratory, operational since 2006, supports compliance with European and Japanese regulatory standards. Built on 5S, TQM, Quality Circles, and HACCP principles, the facility ensures disciplined control from raw material to finished product.
           </p>
         </div>
@@ -149,7 +149,7 @@ export default function Laboratory() {
         {/* Featured image */}
         <motion.div
           variants={itemVariants}
-          className="relative rounded-[20px] overflow-hidden border border-[#eee] dark:border-surface-800 shadow-[5px_3px_40px_rgba(0,72,88,0.08)] group aspect-[4/3] sm:aspect-[16/9] lg:aspect-[16/7]"
+          className="relative rounded-[20px] overflow-hidden border border-[#eee] shadow-[5px_3px_40px_rgba(0,72,88,0.08)] group aspect-[4/3] sm:aspect-[16/9] lg:aspect-[16/7]"
         >
           <img
             src={ResidueLabAerial}
@@ -165,7 +165,7 @@ export default function Laboratory() {
       </motion.section>
 
       {/* ── Gallery ── */}
-      <div className="w-full bg-page dark:bg-surface-900/10 border-t border-b border-surface-100 dark:border-surface-800/40 py-16 lg:py-20">
+      <div className="w-full bg-page border-t border-b border-surface-100 py-16 lg:py-20">
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -174,11 +174,11 @@ export default function Laboratory() {
           className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10"
         >
           <motion.div variants={itemVariants} className="flex flex-col gap-2">
-            <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">Lab Facilities</span>
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading dark:text-white tracking-tight m-0">
+            <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Lab Facilities</span>
+            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading tracking-tight m-0">
               Laboratory Gallery
             </h2>
-            <p className="font-body text-[15px] text-surface-500 dark:text-surface-400 max-w-2xl m-0 leading-[26px]">
+            <p className="font-body text-[15px] text-surface-500 max-w-2xl m-0 leading-[26px]">
               A dedicated Quality Assurance team oversees systematic monitoring, validation, and documentation across all production stages.
             </p>
           </motion.div>
@@ -190,7 +190,7 @@ export default function Laboratory() {
       </div>
 
       {/* ── Content Sections ── */}
-      <div className="w-full bg-page dark:bg-surface-950 py-16 lg:py-24">
+      <div className="w-full bg-page py-16 lg:py-24">
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -202,7 +202,7 @@ export default function Laboratory() {
             <span className="section-label justify-center">
               Lab Capabilities
             </span>
-            <h2 className="font-heading font-bold text-[34px] sm:text-[40px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[34px] sm:text-[40px] text-heading leading-[1.1] tracking-tight m-0">
               Analytical{' '}
               Excellence
             </h2>
@@ -214,30 +214,30 @@ export default function Laboratory() {
                 key={i}
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
-                className="p-6 bg-white dark:bg-surface-900/50 border border-[#eee] dark:border-surface-800 rounded-[10px] flex flex-col gap-4 hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] transition-all duration-300 group"
+                className="p-6 bg-white border border-[#eee] rounded-[10px] flex flex-col gap-4 hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] transition-all duration-300 group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-[8px] bg-brand-600/6 dark:bg-brand-950/60 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                  <div className="w-10 h-10 rounded-[8px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center text-brand-600 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                     {section.icon}
                   </div>
-                  <h3 className="font-heading font-bold text-[14px] text-heading dark:text-white m-0 tracking-tight leading-snug pt-2">
+                  <h3 className="font-heading font-bold text-[14px] text-heading m-0 tracking-tight leading-snug pt-2">
                     {section.title}
                   </h3>
                 </div>
-                <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 leading-[24px] m-0">
+                <p className="font-body text-[14px] text-surface-500 leading-[24px] m-0">
                   {section.description}
                 </p>
 
                 {/* Primary chips */}
                 <div className="flex flex-col gap-2">
-                  <span className="font-body text-[10px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+                  <span className="font-body text-[10px] font-bold uppercase tracking-widest text-brand-600">
                     {section.chipLabel}
                   </span>
                   <div className="flex flex-wrap gap-2">
                     {section.chips.map((chip, j) => (
                       <span
                         key={j}
-                        className="font-body text-[10px] font-medium uppercase tracking-wide text-surface-600 dark:text-surface-300 bg-white dark:bg-surface-800/60 border border-[#eee] dark:border-surface-700 px-2.5 py-1 rounded-[6px]"
+                        className="font-body text-[10px] font-medium uppercase tracking-wide text-surface-600 bg-white border border-[#eee] px-2.5 py-1 rounded-[6px]"
                       >
                         {chip}
                       </span>
@@ -248,14 +248,14 @@ export default function Laboratory() {
                 {/* Extra chips (microbiological params) */}
                 {section.extraChips && (
                   <div className="flex flex-col gap-2">
-                    <span className="font-body text-[10px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+                    <span className="font-body text-[10px] font-bold uppercase tracking-widest text-brand-600">
                       {section.extraChipLabel}
                     </span>
                     <div className="flex flex-wrap gap-2">
                       {section.extraChips.map((chip, j) => (
                         <span
                           key={j}
-                          className="font-body text-[10px] font-medium uppercase tracking-wide text-surface-600 dark:text-surface-300 bg-white dark:bg-surface-800/60 border border-[#eee] dark:border-surface-700 px-2.5 py-1 rounded-[6px]"
+                          className="font-body text-[10px] font-medium uppercase tracking-wide text-surface-600 bg-white border border-[#eee] px-2.5 py-1 rounded-[6px]"
                         >
                           {chip}
                         </span>

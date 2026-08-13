@@ -107,7 +107,7 @@ export default function Chatbot() {
       const parsedElements = parts.map((part, partIdx) => {
         // Odd indexes are the matched groups inside **
         if (partIdx % 2 === 1) {
-          return <strong key={partIdx} className="font-semibold text-heading dark:text-white">{part}</strong>;
+          return <strong key={partIdx} className="font-semibold text-heading">{part}</strong>;
         }
         // Handle links within text [label](url)
         const linkParts = part.split(/\[(.*?)\]\((.*?)\)/g);
@@ -119,7 +119,7 @@ export default function Chatbot() {
                 <a 
                   key={subIdx} 
                   href={url} 
-                  className="text-brand-600 dark:text-brand-400 underline hover:text-brand-700 dark:hover:text-brand-300 font-medium transition-colors"
+                  className="text-brand-600 underline hover:text-brand-700 font-medium transition-colors"
                 >
                   {subPart}
                 </a>
@@ -136,7 +136,7 @@ export default function Chatbot() {
       if (isBullet) {
         return (
           <div key={index} className="flex items-start gap-2 my-1.5 pl-1">
-            <span className="text-brand-600 dark:text-brand-400 mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-brand-600 dark:bg-brand-400" />
+            <span className="text-brand-600 mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-brand-600" />
             <span className="flex-grow">{parsedElements}</span>
           </div>
         );
@@ -216,7 +216,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85, y: 30 }}
             transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-            className="fixed bottom-[151px] md:bottom-[95px] left-[5%] right-[5%] sm:left-auto sm:right-[30px] z-50 w-auto sm:w-[400px] h-[520px] max-h-[65vh] sm:max-h-[75vh] flex flex-col rounded-2xl border border-[#eee] dark:border-surface-800 bg-white/95 dark:bg-surface-900/95 backdrop-blur-md shadow-[0_12px_40px_rgba(0,0,0,0.15)] overflow-hidden font-sans text-sm"
+            className="fixed bottom-[151px] md:bottom-[95px] left-[5%] right-[5%] sm:left-auto sm:right-[30px] z-50 w-auto sm:w-[400px] h-[520px] max-h-[65vh] sm:max-h-[75vh] flex flex-col rounded-2xl border border-[#eee] bg-white/95 backdrop-blur-md shadow-[0_12px_40px_rgba(0,0,0,0.15)] overflow-hidden font-sans text-sm"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 bg-gradient-to-r from-brand-600 to-brand-700 text-white relative shadow-sm">
@@ -273,7 +273,7 @@ export default function Chatbot() {
             </div>
 
             {/* Messages Box */}
-            <div className="flex-grow overflow-y-auto px-4 py-4 space-y-4 custom-scrollbar bg-surface-50/40 dark:bg-surface-950/20">
+            <div className="flex-grow overflow-y-auto px-4 py-4 space-y-4 custom-scrollbar bg-surface-50/40">
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -283,15 +283,15 @@ export default function Chatbot() {
                     className={`max-w-[85%] rounded-2xl px-4 py-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)] border text-[13px] leading-relaxed font-body ${
                       msg.sender === 'user'
                         ? 'bg-brand-600 text-white border-brand-600 rounded-tr-none'
-                        : 'bg-white dark:bg-surface-850 text-surface-700 dark:text-surface-200 border-[#eee] dark:border-surface-800/60 rounded-tl-none'
+                        : 'bg-white text-surface-700 border-[#eee] rounded-tl-none'
                     }`}
                   >
                     {msg.sender === 'bot' ? (
                       <>
                         {renderMessageText(msg.text)}
                         {msg.sources && msg.sources.length > 0 && (
-                          <div className="mt-2.5 pt-2 border-t border-surface-100 dark:border-surface-700/60">
-                            <p className="text-[11px] font-semibold text-surface-400 dark:text-surface-500 uppercase tracking-wide mb-1">Sources</p>
+                          <div className="mt-2.5 pt-2 border-t border-surface-100">
+                            <p className="text-[11px] font-semibold text-surface-400 uppercase tracking-wide mb-1">Sources</p>
                             <ul className="space-y-1">
                               {msg.sources.map((src, i) => (
                                 <li key={i}>
@@ -299,7 +299,7 @@ export default function Chatbot() {
                                     href={src}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-[11px] text-brand-600 dark:text-brand-400 underline underline-offset-2 hover:text-brand-700 dark:hover:text-brand-300 break-all transition-colors"
+                                    className="text-[11px] text-brand-600 underline underline-offset-2 hover:text-brand-700 break-all transition-colors"
                                   >
                                     {src}
                                   </a>
@@ -317,10 +317,10 @@ export default function Chatbot() {
               {/* Typing indicator */}
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="bg-white dark:bg-surface-850 border border-[#eee] dark:border-surface-800/60 rounded-2xl rounded-tl-none px-4 py-3.5 shadow-sm flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-surface-400 dark:bg-surface-500 animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-surface-400 dark:bg-surface-500 animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-surface-400 dark:bg-surface-500 animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <div className="bg-white border border-[#eee] rounded-2xl rounded-tl-none px-4 py-3.5 shadow-sm flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-surface-400 animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-surface-400 animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-surface-400 animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
               )}
@@ -329,14 +329,14 @@ export default function Chatbot() {
 
 
             {/* Input Bar */}
-            <div className="flex items-center px-4 py-2 border-t border-surface-100 dark:border-surface-800 bg-white dark:bg-surface-900 gap-2">
+            <div className="flex items-center px-4 py-2 border-t border-surface-100 bg-white gap-2">
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask about egg powders, liquid products..."
-                className="flex-grow bg-transparent text-surface-800 dark:text-surface-100 placeholder-surface-400 dark:placeholder-surface-500 text-[13px] py-2.5 focus:outline-none border-none"
+                className="flex-grow bg-transparent text-surface-800 placeholder-surface-400 text-[13px] py-2.5 focus:outline-none border-none"
                 disabled={isTyping}
               />
               <button
@@ -345,7 +345,7 @@ export default function Chatbot() {
                 className={`w-8.5 h-8.5 rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none flex-shrink-0 ${
                   inputValue.trim() && !isTyping
                     ? 'bg-brand-600 text-white shadow-[0_2px_8px_rgba(228, 10, 24,0.25)] hover:scale-105 cursor-pointer'
-                    : 'bg-surface-100 dark:bg-surface-800 text-surface-400 dark:text-surface-600 cursor-default'
+                    : 'bg-surface-100 text-surface-400 cursor-default'
                 }`}
                 title="Send message"
               >

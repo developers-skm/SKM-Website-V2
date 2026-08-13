@@ -118,11 +118,11 @@ export default function ImageSlider({ images, aspectRatio = '4/3', autoPlay = 0,
           disabled={page === 0}
           aria-label="Previous slides"
           style={{ minWidth: 45, maxWidth: 45, height: 45, border: '1px solid rgba(0,0,0,0.3)' }}
-          className="flex-shrink-0 flex items-center justify-center rounded-full bg-transparent transition-all duration-500 hover:bg-brand-600 hover:!border-brand-600 disabled:opacity-50 disabled:cursor-not-allowed group dark:!border-white/30"
+          className="flex-shrink-0 flex items-center justify-center rounded-full bg-transparent transition-all duration-500 hover:bg-brand-600 hover:!border-brand-600 disabled:opacity-50 disabled:cursor-not-allowed group"
         >
           <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"
             style={{ color: 'rgba(0,0,0,0.3)' }}
-            className="group-hover:!text-white transition-colors duration-500 dark:!text-white/50"
+            className="group-hover:!text-white transition-colors duration-500"
           >
             <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
           </svg>
@@ -173,11 +173,11 @@ export default function ImageSlider({ images, aspectRatio = '4/3', autoPlay = 0,
           disabled={page === totalPages - 1}
           aria-label="Next slides"
           style={{ minWidth: 45, maxWidth: 45, height: 45, border: '1px solid rgba(0,0,0,0.3)' }}
-          className="flex-shrink-0 flex items-center justify-center rounded-full bg-transparent transition-all duration-500 hover:bg-brand-600 hover:!border-brand-600 disabled:opacity-50 disabled:cursor-not-allowed group dark:!border-white/30"
+          className="flex-shrink-0 flex items-center justify-center rounded-full bg-transparent transition-all duration-500 hover:bg-brand-600 hover:!border-brand-600 disabled:opacity-50 disabled:cursor-not-allowed group"
         >
           <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"
             style={{ color: 'rgba(0,0,0,0.3)' }}
-            className="group-hover:!text-white transition-colors duration-500 dark:!text-white/50"
+            className="group-hover:!text-white transition-colors duration-500"
           >
             <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
           </svg>

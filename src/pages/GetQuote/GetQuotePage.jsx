@@ -163,7 +163,7 @@ export default function GetQuotePage({ onPageChange, prefill }) {
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full bg-page dark:bg-surface-950">
+      <div className="w-full bg-page">
         {isSubmitted ? (
           <ConfirmationScreen formData={formData} onPageChange={onPageChange} />
         ) : (
@@ -171,10 +171,10 @@ export default function GetQuotePage({ onPageChange, prefill }) {
 
             {intentCopy && (
               <div className="flex flex-col gap-1.5">
-                <h1 className="font-heading font-bold text-[26px] sm:text-[30px] text-heading dark:text-white m-0 tracking-tight">
+                <h1 className="font-heading font-bold text-[26px] sm:text-[30px] text-heading m-0 tracking-tight">
                   {intentCopy.heading}
                 </h1>
-                <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 m-0">
+                <p className="font-body text-[14px] text-surface-500 m-0">
                   {intentCopy.description}
                 </p>
               </div>
@@ -197,8 +197,8 @@ export default function GetQuotePage({ onPageChange, prefill }) {
                           isActive
                             ? 'bg-brand-600 text-white'
                             : isDone
-                              ? 'bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 border border-brand-300 dark:border-brand-800'
-                              : 'bg-surface-100 dark:bg-surface-800 text-surface-400 dark:text-surface-500'
+                              ? 'bg-brand-50 text-brand-600 border border-brand-300'
+                              : 'bg-surface-100 text-surface-400'
                         }`}
                       >
                         {isDone ? (
@@ -207,12 +207,12 @@ export default function GetQuotePage({ onPageChange, prefill }) {
                           </svg>
                         ) : s.id}
                       </span>
-                      <span className={`hidden sm:inline font-body text-[11.5px] font-semibold uppercase tracking-wide ${isActive ? 'text-surface-800 dark:text-white' : 'text-surface-400 dark:text-surface-500'}`}>
+                      <span className={`hidden sm:inline font-body text-[11.5px] font-semibold uppercase tracking-wide ${isActive ? 'text-surface-800' : 'text-surface-400'}`}>
                         {s.label}
                       </span>
                     </button>
                     {i < STEPS.length - 1 && (
-                      <span className={`flex-1 h-px ${s.id < step ? 'bg-brand-300 dark:bg-brand-800' : 'bg-surface-200 dark:bg-surface-800'}`} />
+                      <span className={`flex-1 h-px ${s.id < step ? 'bg-brand-300' : 'bg-surface-200'}`} />
                     )}
                   </React.Fragment>
                 );
@@ -240,7 +240,7 @@ export default function GetQuotePage({ onPageChange, prefill }) {
             </AnimatePresence>
 
             {submitError && (
-              <div className="flex items-start gap-2.5 font-body text-xs text-red-600 dark:text-red-400 font-medium bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/40 rounded-lg px-4 py-3">
+              <div className="flex items-start gap-2.5 font-body text-xs text-red-600 font-medium bg-red-50 border border-red-200 rounded-lg px-4 py-3">
                 <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
@@ -249,11 +249,11 @@ export default function GetQuotePage({ onPageChange, prefill }) {
             )}
 
             {/* Nav buttons */}
-            <div className="flex items-center justify-between gap-4 pt-2 border-t border-[#eee] dark:border-surface-800">
+            <div className="flex items-center justify-between gap-4 pt-2 border-t border-[#eee]">
               <button
                 onClick={goBack}
                 disabled={step === 1}
-                className="font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-500 dark:text-surface-400 hover:text-surface-800 dark:hover:text-white disabled:opacity-0 disabled:pointer-events-none transition-colors duration-200 cursor-pointer bg-transparent border-none py-3"
+                className="font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-500 hover:text-surface-800 disabled:opacity-0 disabled:pointer-events-none transition-colors duration-200 cursor-pointer bg-transparent border-none py-3"
               >
                 ← Back
               </button>

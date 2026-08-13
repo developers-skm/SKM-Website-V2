@@ -32,15 +32,15 @@ const applicationsData = [
 // built for that broader story.
 function InnovationBanner({ onPageChange }) {
   return (
-    <div className="w-full bg-[#fdfbf7] dark:bg-surface-900 border-b border-[#eee] dark:border-surface-800/40 py-6 px-5 sm:px-8 lg:px-12">
+    <div className="w-full bg-[#fdfbf7] border-b border-[#eee] py-6 px-5 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-[1440px] w-full flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="font-body text-[14.5px] text-surface-700 dark:text-surface-300 leading-[1.6] m-0 text-center sm:text-left">
+        <p className="font-body text-[14.5px] text-surface-700 leading-[1.6] m-0 text-center sm:text-left">
           This is one example of a custom formulation. SKM develops egg functionality for your specific product and processing challenge.
         </p>
         <InternalLink
           route="innovation_and_custom_solutions"
           onPageChange={onPageChange}
-          className="flex-shrink-0 inline-flex items-center gap-2 font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm whitespace-nowrap"
+          className="flex-shrink-0 inline-flex items-center gap-2 font-body font-semibold text-[13.5px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm whitespace-nowrap"
         >
           Explore Custom Development
         </InternalLink>

@@ -142,7 +142,7 @@ export default function AccoladesPage({ onPageChange }) {
       onPageChange={onPageChange}
     >
 
-      <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
+      <div className="w-full bg-page pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
 
           {/* ── Header ── */}
@@ -158,14 +158,14 @@ export default function AccoladesPage({ onPageChange }) {
             </motion.span>
             <motion.h2
               variants={itemVariants}
-              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.1] tracking-tight m-0 uppercase"
+              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0 uppercase"
             >
               Accolades &amp;{' '}
               Achievements
             </motion.h2>
             <motion.p
               variants={itemVariants}
-              className="font-body text-[16px] text-surface-500 dark:text-surface-400 max-w-2xl leading-[30px] m-0"
+              className="font-body text-[16px] text-surface-500 max-w-2xl leading-[30px] m-0"
             >
               Our dedication to food safety, supply chain transparency, and export standards has been
               recognized by national and global authorities.
@@ -226,14 +226,14 @@ export default function AccoladesPage({ onPageChange }) {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
-            className="bg-surface-50/50 dark:bg-surface-900/20 border border-[#eee] dark:border-surface-800 rounded-[10px] p-8 sm:p-10 shadow-[5px_3px_40px_rgba(0,72,88,0.06)]"
+            className="bg-surface-50/50 border border-[#eee] rounded-[10px] p-8 sm:p-10 shadow-[5px_3px_40px_rgba(0,72,88,0.06)]"
           >
             <motion.span variants={itemVariants} className="section-label mb-4 inline-flex">
               More Recognitions
             </motion.span>
             <motion.h3
               variants={itemVariants}
-              className="font-heading font-bold text-[24px] sm:text-[28px] text-heading dark:text-white m-0 mb-6"
+              className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 mb-6"
             >
               Other Awards &amp; Achievements
             </motion.h3>
@@ -241,7 +241,7 @@ export default function AccoladesPage({ onPageChange }) {
               {otherAwards.map((award, index) => (
                 <motion.li key={index} variants={itemVariants} className="flex items-start gap-3">
                   <span className="mt-[9px] flex-shrink-0 w-1.5 h-1.5 rounded-full bg-brand-600" />
-                  <p className="font-body text-[15px] text-surface-500 dark:text-surface-400 leading-[26px] m-0">
+                  <p className="font-body text-[15px] text-surface-500 leading-[26px] m-0">
                     {award}
                   </p>
                 </motion.li>

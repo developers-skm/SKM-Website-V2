@@ -33,7 +33,7 @@ const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 
 export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial }) {
   const reduceMotion = useReducedMotion();
   return (
-    <div className="w-full bg-[#fdf1f0] dark:bg-brand-950/20 py-16 sm:py-20 lg:py-24">
+    <div className="w-full bg-[#fdf1f0] py-16 sm:py-20 lg:py-24">
       <motion.div
         className="mx-auto max-w-[1000px] w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-10"
         initial="hidden"
@@ -42,21 +42,21 @@ export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial 
         variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
       >
         <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="flex flex-col items-center gap-4 max-w-2xl">
-          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             Technical Support
           </span>
-          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1]">
+          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
             From Product Selection To Commercial Supply
           </h2>
-          <p className="font-body text-[17px] text-surface-600 dark:text-surface-400 leading-[1.7] m-0">
+          <p className="font-body text-[17px] text-surface-600 leading-[1.7] m-0">
             Support doesn't stop at picking a product — our team stays involved through sampling, trials, and into full commercial supply.
           </p>
         </motion.div>
 
         <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="relative grid grid-cols-1 sm:grid-cols-3 gap-6 w-full text-left">
           <motion.div
-            className="hidden sm:block absolute top-[34px] left-[calc(16.666%+8px)] right-[calc(16.666%+8px)] h-px bg-gradient-to-r from-brand-600/25 via-brand-600/40 to-brand-600/25 dark:from-brand-400/20 dark:via-brand-400/35 dark:to-brand-400/20"
+            className="hidden sm:block absolute top-[34px] left-[calc(16.666%+8px)] right-[calc(16.666%+8px)] h-px bg-gradient-to-r from-brand-600/25 via-brand-600/40 to-brand-600/25"
             style={{ transformOrigin: '0% 50%' }}
             initial={reduceMotion ? { scaleX: 1 } : { scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
@@ -67,15 +67,15 @@ export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial 
           {stages.map((stage) => (
             <div
               key={stage.step}
-              className="group relative flex flex-col gap-3 rounded-[20px] bg-white dark:bg-surface-900/60 border border-surface-200/70 dark:border-surface-800 px-6 py-7 shadow-[0_4px_18px_rgba(36,30,24,0.06)] hover:shadow-[0_16px_38px_rgba(36,30,24,0.13)] hover:-translate-y-[6px] transition-all duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+              className="group relative flex flex-col gap-3 rounded-[20px] bg-white border border-surface-200/70 px-6 py-7 shadow-[0_4px_18px_rgba(36,30,24,0.06)] hover:shadow-[0_16px_38px_rgba(36,30,24,0.13)] hover:-translate-y-[6px] transition-all duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
               <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 text-white font-mono text-[12.5px] font-bold shadow-[0_6px_16px_rgba(228,10,24,0.3)] group-hover:scale-105 transition-transform duration-300">
                 {stage.step}
               </span>
-              <span className="font-heading font-bold text-[16.5px] text-heading dark:text-white">
+              <span className="font-heading font-bold text-[16.5px] text-heading">
                 {stage.label}
               </span>
-              <p className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+              <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
                 {stage.description}
               </p>
             </div>
@@ -91,7 +91,7 @@ export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial 
           </button>
           <button
             onClick={onRequestTrial}
-            className="font-body font-semibold text-[14px] text-brand-600 dark:text-brand-400 hover:text-[#a80000] dark:hover:text-brand-300 underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0 active:scale-[0.98] transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="font-body font-semibold text-[14px] text-brand-600 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0 active:scale-[0.98] transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
           >
             Request Trial Sample
           </button>

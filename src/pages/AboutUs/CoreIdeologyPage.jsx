@@ -47,7 +47,7 @@ export default function CoreIdeologyPage({ onPageChange }) {
       onPageChange={onPageChange}
     >
 
-      <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
+      <div className="w-full bg-page pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -62,12 +62,12 @@ export default function CoreIdeologyPage({ onPageChange }) {
             </motion.span>
             <motion.h2
               variants={itemVariants}
-              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.1] tracking-tight m-0 uppercase"
+              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0 uppercase"
             >
               Core{' '}
               Ideology &amp; Values
             </motion.h2>
-            <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 dark:text-surface-400 max-w-2xl leading-[30px] m-0">
+            <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 max-w-2xl leading-[30px] m-0">
               At SKM, our business operations are built upon a foundation of shared vision, strong ethics, and a futuristic mindset that inspires sustainable development.
             </motion.p>
           </div>
@@ -75,16 +75,16 @@ export default function CoreIdeologyPage({ onPageChange }) {
           {/* Core mantra — border-l-4 preview blockquote pattern */}
           <motion.div
             variants={itemVariants}
-            className="border-l-4 border-brand-600 pl-8 py-6 bg-brand-600/3 dark:bg-surface-900/70 rounded-r-[10px] max-w-4xl mx-auto w-full text-center relative overflow-hidden group"
+            className="border-l-4 border-brand-600 pl-8 py-6 bg-brand-600/3 rounded-r-[10px] max-w-4xl mx-auto w-full text-center relative overflow-hidden group"
           >
             <div className="absolute right-0 bottom-0 w-48 h-48 bg-brand-600/4 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
-            <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 leading-none">
+            <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 leading-none">
               Our Guiding Light
             </span>
-            <h3 className="font-heading text-[22px] sm:text-[30px] font-bold tracking-wider text-brand-600 dark:text-white m-0 mt-3 mb-4 uppercase">
+            <h3 className="font-heading text-[22px] sm:text-[30px] font-bold tracking-wider text-brand-600 m-0 mt-3 mb-4 uppercase">
               "THINKING OUT OF THE SHELL"
             </h3>
-            <p className="font-body text-[16px] text-surface-500 dark:text-surface-400 leading-[30px] max-w-2xl mx-auto m-0">
+            <p className="font-body text-[16px] text-surface-500 leading-[30px] max-w-2xl mx-auto m-0">
               It is not just a tagline, but a reflection of the curious spirit and corporate culture of innovation we have at SKM. It drives us to challenge standards, optimize processes, and exceed global standards.
             </p>
           </motion.div>
@@ -96,16 +96,16 @@ export default function CoreIdeologyPage({ onPageChange }) {
                 key={idx}
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
-                className={`relative overflow-hidden rounded-[10px] bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 p-6 flex items-start gap-5 hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] transition-all duration-300${idx === coreValues.length - 1 && coreValues.length % 2 !== 0 ? ' sm:col-span-2 sm:max-w-lg sm:mx-auto sm:w-full' : ''}`}
+                className={`relative overflow-hidden rounded-[10px] bg-white border border-[#eee] p-6 flex items-start gap-5 hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] transition-all duration-300${idx === coreValues.length - 1 && coreValues.length % 2 !== 0 ? ' sm:col-span-2 sm:max-w-lg sm:mx-auto sm:w-full' : ''}`}
               >
-                <div className="flex-shrink-0 w-11 h-11 rounded-[10px] bg-brand-600/6 dark:bg-brand-950/60 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400">
+                <div className="flex-shrink-0 w-11 h-11 rounded-[10px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center text-brand-600">
                   {value.icon}
                 </div>
                 <div className="flex items-start gap-3 min-w-0">
-                  <span className="font-heading font-bold text-[13px] text-brand-600/40 dark:text-brand-700 leading-none mt-[3px] flex-shrink-0">
+                  <span className="font-heading font-bold text-[13px] text-brand-600/40 leading-none mt-[3px] flex-shrink-0">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
-                  <h4 className="font-heading text-[15px] font-bold text-surface-800 dark:text-white m-0 leading-snug">
+                  <h4 className="font-heading text-[15px] font-bold text-surface-800 m-0 leading-snug">
                     {value.title}
                   </h4>
                 </div>

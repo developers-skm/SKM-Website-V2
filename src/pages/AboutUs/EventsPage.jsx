@@ -294,10 +294,10 @@ export default function EventsPage({ onPageChange }) {
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full bg-page dark:bg-surface-950 overflow-hidden text-surface-800 dark:text-surface-200">
+      <div className="w-full bg-page overflow-hidden text-surface-800">
         
         {/* Section 1 — Hero */}
-        <div className="relative w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[120px] lg:pb-[120px] bg-gradient-to-b from-brand-600/5 via-transparent to-transparent border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
+        <div className="relative w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[120px] lg:pb-[120px] bg-gradient-to-b from-brand-600/5 via-transparent to-transparent border-b border-[#eee] text-center px-4">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,var(--color-brand-100/10)_0%,transparent_50%)] pointer-events-none" />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -305,13 +305,13 @@ export default function EventsPage({ onPageChange }) {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="mx-auto max-w-[850px] flex flex-col items-center gap-6 relative z-10"
           >
-            <span className="section-label justify-center bg-brand-600/10 text-brand-600 dark:text-brand-400 font-semibold px-3 py-1 rounded-full text-[12px] uppercase tracking-wider">
+            <span className="section-label justify-center bg-brand-600/10 text-brand-600 font-semibold px-3 py-1 rounded-full text-[12px] uppercase tracking-wider">
               Corporate Feed
             </span>
-            <h1 className="font-heading font-bold text-[38px] sm:text-[50px] lg:text-[62px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+            <h1 className="font-heading font-bold text-[38px] sm:text-[50px] lg:text-[62px] text-heading leading-[1.1] tracking-tight m-0">
               News, Insights &amp; Events
             </h1>
-            <p className="font-body text-[16px] sm:text-[18px] text-surface-500 dark:text-surface-400 max-w-2xl leading-[1.6] m-0">
+            <p className="font-body text-[16px] sm:text-[18px] text-surface-500 max-w-2xl leading-[1.6] m-0">
               Combine trade exhibitions, company news and technical insights.
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-4">
@@ -325,7 +325,7 @@ export default function EventsPage({ onPageChange }) {
               <button
                 type="button"
                 onClick={() => handleScrollTo('technical-insights')}
-                className="inline-flex items-center justify-center min-h-[46px] px-7 rounded-full border border-surface-300 dark:border-surface-700 hover:border-brand-600 hover:text-brand-600 dark:hover:text-brand-400 font-heading font-bold text-[14px] uppercase tracking-[0.05em] transition-all duration-200 cursor-pointer bg-white dark:bg-surface-900"
+                className="inline-flex items-center justify-center min-h-[46px] px-7 rounded-full border border-surface-300 hover:border-brand-600 hover:text-brand-600 font-heading font-bold text-[14px] uppercase tracking-[0.05em] transition-all duration-200 cursor-pointer bg-white"
               >
                 Read Latest Insights
               </button>
@@ -334,13 +334,13 @@ export default function EventsPage({ onPageChange }) {
         </div>
 
         {/* Section 2 — Upcoming Exhibitions */}
-        <section id="upcoming-exhibitions" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee] dark:border-surface-800/40">
+        <section id="upcoming-exhibitions" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
             <div className="flex flex-col gap-2 max-w-3xl">
-              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
                 Upcoming Exhibitions
               </h2>
-              <p className="font-body text-[14.5px] text-surface-500 dark:text-surface-400 leading-[1.6]">
+              <p className="font-body text-[14.5px] text-surface-500 leading-[1.6]">
                 Meet our export trade representatives in person at the world’s leading food ingredient expositions. Secure a direct B2B consultation slot.
               </p>
             </div>
@@ -349,13 +349,13 @@ export default function EventsPage({ onPageChange }) {
               {upcomingExhibitions.map((expo) => (
                 <div
                   key={expo.id}
-                  className="flex flex-col bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[16px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:border-brand-600/30 group"
+                  className="flex flex-col bg-white border border-[#eee] rounded-[16px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:border-brand-600/30 group"
                 >
-                  <div className="relative h-[160px] w-full overflow-hidden bg-surface-100 dark:bg-surface-800 flex flex-col items-center justify-center gap-1.5">
+                  <div className="relative h-[160px] w-full overflow-hidden bg-surface-100 flex flex-col items-center justify-center gap-1.5">
                     <svg className="w-6 h-6 text-brand-600/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    <span className="font-body text-[11px] font-bold uppercase tracking-widest text-surface-400 dark:text-surface-500">
+                    <span className="font-body text-[11px] font-bold uppercase tracking-widest text-surface-400">
                       Coming Soon
                     </span>
                     <div className="absolute top-3 left-3 bg-brand-600 text-white font-body text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow">
@@ -365,18 +365,18 @@ export default function EventsPage({ onPageChange }) {
 
                   <div className="p-5 flex-grow flex flex-col justify-between gap-4">
                     <div className="flex flex-col gap-2">
-                      <span className="font-body text-[11px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-wide">
+                      <span className="font-body text-[11px] font-bold text-surface-400 uppercase tracking-wide">
                         {expo.date}
                       </span>
-                      <h3 className="font-heading text-[17px] font-bold text-heading dark:text-white m-0 group-hover:text-brand-600 transition-colors">
+                      <h3 className="font-heading text-[17px] font-bold text-heading m-0 group-hover:text-brand-600 transition-colors">
                         {expo.title}
                       </h3>
-                      <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-snug">
+                      <p className="font-body text-[13px] text-surface-500 leading-snug">
                         SKM has exhibited at this fair before and plans to attend again — full schedule details will be published once confirmed.
                       </p>
                     </div>
 
-                    <div className="flex flex-col gap-2 pt-2 border-t border-[#f3f3f3] dark:border-surface-800">
+                    <div className="flex flex-col gap-2 pt-2 border-t border-[#f3f3f3]">
                       <button
                         type="button"
                         onClick={() => {
@@ -392,7 +392,7 @@ export default function EventsPage({ onPageChange }) {
                         <button
                           type="button"
                           onClick={() => downloadIcs(expo)}
-                          className="w-full inline-flex items-center justify-center min-h-[44px] sm:min-h-[38px] rounded-full border border-surface-200 dark:border-surface-700 hover:border-brand-600 dark:hover:border-brand-500 hover:text-brand-600 dark:hover:text-brand-400 text-surface-600 dark:text-surface-300 font-body font-semibold text-[12.5px] transition-colors cursor-pointer bg-transparent"
+                          className="w-full inline-flex items-center justify-center min-h-[44px] sm:min-h-[38px] rounded-full border border-surface-200 hover:border-brand-600 hover:text-brand-600 text-surface-600 font-body font-semibold text-[12.5px] transition-colors cursor-pointer bg-transparent"
                         >
                           <svg className="w-3.5 h-3.5 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -405,7 +405,7 @@ export default function EventsPage({ onPageChange }) {
                           disabled
                           title="Dates not yet confirmed for this event"
                           aria-disabled="true"
-                          className="w-full inline-flex items-center justify-center min-h-[44px] sm:min-h-[38px] rounded-full border border-surface-200 dark:border-surface-700 text-surface-350 dark:text-surface-600 font-body font-semibold text-[12.5px] cursor-not-allowed opacity-60 bg-transparent"
+                          className="w-full inline-flex items-center justify-center min-h-[44px] sm:min-h-[38px] rounded-full border border-surface-200 text-surface-350 font-body font-semibold text-[12.5px] cursor-not-allowed opacity-60 bg-transparent"
                         >
                           <svg className="w-3.5 h-3.5 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -422,13 +422,13 @@ export default function EventsPage({ onPageChange }) {
         </section>
 
         {/* Section 3 — Participated Events */}
-        <section id="participated-events" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee] dark:border-surface-800/40">
+        <section id="participated-events" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
             <div className="flex flex-col gap-2 max-w-3xl">
-              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
                 Participated Events
               </h2>
-              <p className="font-body text-[14.5px] text-surface-500 dark:text-surface-400 leading-[1.6]">
+              <p className="font-body text-[14.5px] text-surface-500 leading-[1.6]">
                 A look back at the international food ingredient expositions where SKM has exhibited in person, 2023–2026.
               </p>
             </div>
@@ -437,9 +437,9 @@ export default function EventsPage({ onPageChange }) {
               {pastExhibitions.map((past) => (
                 <div
                   key={past.title}
-                  className="flex flex-col bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[16px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:border-brand-600/30 group"
+                  className="flex flex-col bg-white border border-[#eee] rounded-[16px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:border-brand-600/30 group"
                 >
-                  <div className="relative h-[160px] w-full overflow-hidden bg-surface-100 dark:bg-surface-800">
+                  <div className="relative h-[160px] w-full overflow-hidden bg-surface-100">
                     {past.images && past.images.length > 0 ? (
                       <div className="[&>div:first-child>div:last-child]:hidden [&_.project-card-skm]:!rounded-none h-full w-full">
                         <ImageSlider
@@ -460,16 +460,16 @@ export default function EventsPage({ onPageChange }) {
                   </div>
 
                   <div className="p-5 flex-grow flex flex-col gap-2">
-                    <span className="font-body text-[11px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-wide">
+                    <span className="font-body text-[11px] font-bold text-surface-400 uppercase tracking-wide">
                       {past.dateRange}
                     </span>
-                    <h3 className="font-heading text-[17px] font-bold text-heading dark:text-white m-0 group-hover:text-brand-600 transition-colors">
+                    <h3 className="font-heading text-[17px] font-bold text-heading m-0 group-hover:text-brand-600 transition-colors">
                       {past.title}
                     </h3>
-                    <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-snug m-0">
+                    <p className="font-body text-[13px] text-surface-500 leading-snug m-0">
                       {past.desc}
                     </p>
-                    <span className="font-body text-[11.5px] text-surface-400 dark:text-surface-500 font-medium mt-1">
+                    <span className="font-body text-[11.5px] text-surface-400 font-medium mt-1">
                       {past.location}
                     </span>
                   </div>
@@ -480,13 +480,13 @@ export default function EventsPage({ onPageChange }) {
         </section>
 
         {/* Section 4 — Company News */}
-        <section id="company-news" className="w-full py-[60px] lg:py-[90px] bg-surface-50/50 dark:bg-surface-900/20 border-b border-[#eee] dark:border-surface-800/40">
+        <section id="company-news" className="w-full py-[60px] lg:py-[90px] bg-surface-50/50 border-b border-[#eee]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
             <div className="flex flex-col gap-2 max-w-3xl">
-              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
                 Company News
               </h2>
-              <p className="font-body text-[14.5px] text-surface-500 dark:text-surface-400 leading-[1.6]">
+              <p className="font-body text-[14.5px] text-surface-500 leading-[1.6]">
                 Stay informed with the latest organizational announcements, operations milestones, and sustainability expansion news from SKM.
               </p>
             </div>
@@ -495,33 +495,33 @@ export default function EventsPage({ onPageChange }) {
               {companyNews.map((article) => (
                 <div
                   key={article.id}
-                  className="flex flex-col justify-between bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[16px] p-6 shadow-sm hover:shadow-lg transition-all duration-300 relative group hover:border-brand-600/30"
+                  className="flex flex-col justify-between bg-white border border-[#eee] rounded-[16px] p-6 shadow-sm hover:shadow-lg transition-all duration-300 relative group hover:border-brand-600/30"
                 >
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
-                      <span className="bg-brand-600/8 border border-brand-600/15 text-brand-600 dark:text-brand-400 text-[10.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
+                      <span className="bg-brand-600/8 border border-brand-600/15 text-brand-600 text-[10.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
                         {article.category}
                       </span>
-                      <span className="font-body text-[12px] text-surface-400 dark:text-surface-500">
+                      <span className="font-body text-[12px] text-surface-400">
                         {article.date}
                       </span>
                     </div>
-                    <h3 className="font-heading text-[18px] font-bold text-heading dark:text-white m-0 leading-tight group-hover:text-brand-600 transition-colors">
+                    <h3 className="font-heading text-[18px] font-bold text-heading m-0 leading-tight group-hover:text-brand-600 transition-colors">
                       {article.title}
                     </h3>
-                    <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-[1.6] m-0">
+                    <p className="font-body text-[13.5px] text-surface-500 leading-[1.6] m-0">
                       {article.excerpt}
                     </p>
                   </div>
 
-                  <div className="mt-5 pt-4 border-t border-[#f5f5f5] dark:border-surface-800/80 flex items-center justify-between">
-                    <span className="font-body text-[12px] text-surface-450 dark:text-surface-500">
+                  <div className="mt-5 pt-4 border-t border-[#f5f5f5] flex items-center justify-between">
+                    <span className="font-body text-[12px] text-surface-450">
                       {article.readTime}
                     </span>
                     <button
                       type="button"
                       onClick={() => setActiveArticle(article)}
-                      className="inline-flex items-center gap-1 font-body font-bold text-[12.5px] uppercase tracking-wider text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 transition-colors bg-transparent border-none p-0 cursor-pointer"
+                      className="inline-flex items-center gap-1 font-body font-bold text-[12.5px] uppercase tracking-wider text-brand-600 hover:text-brand-700 transition-colors bg-transparent border-none p-0 cursor-pointer"
                     >
                       Read Article
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -536,19 +536,19 @@ export default function EventsPage({ onPageChange }) {
         </section>
 
         {/* Section 5 — Technical Insights */}
-        <section id="technical-insights" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee] dark:border-surface-800/40">
+        <section id="technical-insights" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
             <div className="flex flex-col gap-2 max-w-3xl">
-              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
                 Technical Insights
               </h2>
-              <p className="font-body text-[14.5px] text-surface-500 dark:text-surface-400 leading-[1.6]">
+              <p className="font-body text-[14.5px] text-surface-500 leading-[1.6]">
                 Scientific analysis, product parameters, and application guidelines from our R&amp;D food technologies and NABL lab managers.
               </p>
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-2 pb-2 border-b border-[#eee] dark:border-surface-800">
+            <div className="flex flex-wrap items-center gap-2 pb-2 border-b border-[#eee]">
               {topics.map((topic) => (
                 <button
                   key={topic}
@@ -558,7 +558,7 @@ export default function EventsPage({ onPageChange }) {
                   className={`inline-flex items-center min-h-[44px] sm:min-h-[38px] px-5 py-1.5 rounded-full border font-body text-[13px] font-semibold transition-all duration-200 cursor-pointer ${
                     selectedTopic === topic
                       ? 'bg-brand-600 border-brand-600 text-white shadow-md'
-                      : 'bg-white dark:bg-surface-900 border-surface-200 dark:border-surface-800 text-surface-600 dark:text-surface-300 hover:border-brand-600/50 hover:bg-brand-600/5'
+                      : 'bg-white border-surface-200 text-surface-600 hover:border-brand-600/50 hover:bg-brand-600/5'
                   }`}
                 >
                   {topic}
@@ -578,29 +578,29 @@ export default function EventsPage({ onPageChange }) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.25 }}
-                    className="flex flex-col justify-between bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[16px] p-6 shadow-sm hover:shadow-md transition-all hover:border-brand-600/25"
+                    className="flex flex-col justify-between bg-white border border-[#eee] rounded-[16px] p-6 shadow-sm hover:shadow-md transition-all hover:border-brand-600/25"
                   >
                     <div className="flex flex-col gap-3">
-                      <span className="font-body text-[11px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">
+                      <span className="font-body text-[11px] font-bold text-brand-600 uppercase tracking-widest">
                         Topic: {insight.topic}
                       </span>
-                      <h3 className="font-heading text-[18px] font-bold text-heading dark:text-white m-0 leading-snug">
+                      <h3 className="font-heading text-[18px] font-bold text-heading m-0 leading-snug">
                         {insight.title}
                       </h3>
-                      <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-[1.6] m-0">
+                      <p className="font-body text-[13.5px] text-surface-500 leading-[1.6] m-0">
                         {insight.excerpt}
                       </p>
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-[#f5f5f5] dark:border-surface-800/80 flex flex-wrap items-center justify-between gap-3">
-                      <span className="font-body text-[12px] text-surface-400 dark:text-surface-500">
+                    <div className="mt-6 pt-4 border-t border-[#f5f5f5] flex flex-wrap items-center justify-between gap-3">
+                      <span className="font-body text-[12px] text-surface-400">
                         {insight.readTime}
                       </span>
                       <div className="flex items-center gap-3">
                         <button
                           type="button"
                           onClick={() => setActiveInsight(insight)}
-                          className="inline-flex items-center min-h-[44px] sm:min-h-[34px] px-4 rounded-full border border-surface-200 dark:border-surface-700 hover:border-brand-600 dark:hover:border-brand-500 hover:text-brand-600 dark:hover:text-brand-400 font-body font-bold text-[12px] uppercase tracking-wider text-surface-600 dark:text-surface-300 transition-colors cursor-pointer bg-transparent"
+                          className="inline-flex items-center min-h-[44px] sm:min-h-[34px] px-4 rounded-full border border-surface-200 hover:border-brand-600 hover:text-brand-600 font-body font-bold text-[12px] uppercase tracking-wider text-surface-600 transition-colors cursor-pointer bg-transparent"
                         >
                           Read Insight
                         </button>
@@ -616,7 +616,7 @@ export default function EventsPage({ onPageChange }) {
                           <button
                             type="button"
                             disabled
-                            className="inline-flex items-center min-h-[44px] sm:min-h-[34px] px-4 rounded-full bg-surface-200 dark:bg-surface-800 text-surface-400 dark:text-surface-600 font-body font-bold text-[12px] uppercase tracking-wider cursor-not-allowed"
+                            className="inline-flex items-center min-h-[44px] sm:min-h-[34px] px-4 rounded-full bg-surface-200 text-surface-400 font-body font-bold text-[12px] uppercase tracking-wider cursor-not-allowed"
                             title="Guide document coming soon"
                           >
                             Download Guide
@@ -634,18 +634,18 @@ export default function EventsPage({ onPageChange }) {
 
         {/* Section 6 — Subscribe */}
         <section id="subscribe" className="w-full py-[80px] lg:py-[100px] bg-gradient-to-t from-brand-600/5 via-transparent to-transparent text-center px-4">
-          <div className="mx-auto max-w-[650px] bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[24px] p-8 sm:p-10 shadow-lg flex flex-col items-center gap-6 relative">
-            <div className="w-12 h-12 rounded-full bg-brand-600/10 flex items-center justify-center text-brand-600 dark:text-brand-400">
+          <div className="mx-auto max-w-[650px] bg-white border border-[#eee] rounded-[24px] p-8 sm:p-10 shadow-lg flex flex-col items-center gap-6 relative">
+            <div className="w-12 h-12 rounded-full bg-brand-600/10 flex items-center justify-center text-brand-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 19v-8.93a2 2 0 01.89-1.664l8-5.333a2 2 0 012.22 0l8 5.333A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-2.25-1.5a2 2 0 00-2.22 0l-2.25 1.5" />
               </svg>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading dark:text-white m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">
                 Subscribe to SKM Updates
               </h2>
-              <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 max-w-md mx-auto leading-relaxed">
+              <p className="font-body text-[14px] text-surface-500 max-w-md mx-auto leading-relaxed">
                 Stay updated on upcoming exhibitions, new corporate news releases, and industrial egg ingredient guidelines.
               </p>
             </div>
@@ -654,13 +654,13 @@ export default function EventsPage({ onPageChange }) {
               <motion.div
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="w-full bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800/30 p-5 rounded-xl flex flex-col items-center gap-2"
+                className="w-full bg-green-50 border border-green-200 p-5 rounded-xl flex flex-col items-center gap-2"
               >
-                <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <h4 className="font-heading font-bold text-[15px] text-green-800 dark:text-green-400 m-0">Subscription Successful!</h4>
-                <p className="font-body text-[13px] text-green-700 dark:text-green-550 m-0">Thank you for subscribing to SKM Updates.</p>
+                <h4 className="font-heading font-bold text-[15px] text-green-800 m-0">Subscription Successful!</h4>
+                <p className="font-body text-[13px] text-green-700 m-0">Thank you for subscribing to SKM Updates.</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubscribe} className="w-full flex flex-col gap-2">
@@ -674,7 +674,7 @@ export default function EventsPage({ onPageChange }) {
                     }}
                     placeholder="Enter your professional email address"
                     aria-label="Email address for subscription"
-                    className="flex-grow min-h-[46px] px-4 rounded-full border border-surface-250 dark:border-surface-800 bg-white dark:bg-surface-900 font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500 placeholder:text-surface-400"
+                    className="flex-grow min-h-[46px] px-4 rounded-full border border-surface-250 bg-white font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500 placeholder:text-surface-400"
                   />
                   <button
                     type="submit"
@@ -706,7 +706,7 @@ export default function EventsPage({ onPageChange }) {
                 initial={{ scale: 0.95, y: 10 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.95, y: 10 }}
-                className="relative w-full max-w-[520px] bg-white dark:bg-surface-900 rounded-[20px] shadow-2xl overflow-hidden border border-[#eee] dark:border-surface-800"
+                className="relative w-full max-w-[520px] bg-white rounded-[20px] shadow-2xl overflow-hidden border border-[#eee]"
               >
                 <div className="bg-brand-600 text-white px-6 py-5 flex items-center justify-between">
                   <div className="flex flex-col gap-0.5">
@@ -738,13 +738,13 @@ export default function EventsPage({ onPageChange }) {
                       animate={{ scale: 1, opacity: 1 }}
                       className="flex flex-col items-center gap-3 py-8 text-center"
                     >
-                      <div className="w-14 h-14 rounded-full bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800/30 flex items-center justify-center text-green-600 dark:text-green-400">
+                      <div className="w-14 h-14 rounded-full bg-green-50 border border-green-200 flex items-center justify-center text-green-600">
                         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
                         </svg>
                       </div>
-                      <h4 className="font-heading font-bold text-[18px] text-green-800 dark:text-green-400 m-0">Meeting Slot Requested!</h4>
-                      <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 max-w-sm">
+                      <h4 className="font-heading font-bold text-[18px] text-green-800 m-0">Meeting Slot Requested!</h4>
+                      <p className="font-body text-[13.5px] text-surface-500 max-w-sm">
                         Thank you for scheduling a meeting at <strong>{activeMeetingEvent.country}</strong>. Our export team will verify availability and contact you shortly.
                       </p>
                     </motion.div>
@@ -758,7 +758,7 @@ export default function EventsPage({ onPageChange }) {
                           value={meetingForm.name}
                           onChange={(e) => setMeetingForm(prev => ({ ...prev, name: e.target.value }))}
                           placeholder="Your Name"
-                          className="min-h-[40px] px-3.5 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500"
+                          className="min-h-[40px] px-3.5 rounded-lg border border-surface-200 bg-white font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500"
                         />
                       </div>
                       <div className="flex flex-col gap-1.5">
@@ -769,7 +769,7 @@ export default function EventsPage({ onPageChange }) {
                           value={meetingForm.email}
                           onChange={(e) => setMeetingForm(prev => ({ ...prev, email: e.target.value }))}
                           placeholder="you@company.com"
-                          className="min-h-[40px] px-3.5 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500"
+                          className="min-h-[40px] px-3.5 rounded-lg border border-surface-200 bg-white font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500"
                         />
                       </div>
                       <div className="flex flex-col gap-1.5">
@@ -780,7 +780,7 @@ export default function EventsPage({ onPageChange }) {
                           value={meetingForm.company}
                           onChange={(e) => setMeetingForm(prev => ({ ...prev, company: e.target.value }))}
                           placeholder="Your Company Ltd"
-                          className="min-h-[40px] px-3.5 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500"
+                          className="min-h-[40px] px-3.5 rounded-lg border border-surface-200 bg-white font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500"
                         />
                       </div>
                       <div className="flex flex-col gap-1.5">
@@ -790,7 +790,7 @@ export default function EventsPage({ onPageChange }) {
                           value={meetingForm.date}
                           onChange={(e) => setMeetingForm(prev => ({ ...prev, date: e.target.value }))}
                           placeholder={activeMeetingEvent.date}
-                          className="min-h-[40px] px-3.5 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500"
+                          className="min-h-[40px] px-3.5 rounded-lg border border-surface-200 bg-white font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500"
                         />
                       </div>
                       <div className="flex flex-col gap-1.5">
@@ -800,11 +800,11 @@ export default function EventsPage({ onPageChange }) {
                           value={meetingForm.message}
                           onChange={(e) => setMeetingForm(prev => ({ ...prev, message: e.target.value }))}
                           placeholder="Please let us know which egg product specifications you are interested in."
-                          className="p-3 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
+                          className="p-3 rounded-lg border border-surface-200 bg-white font-body text-[14px] focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
                         />
                       </div>
                       {meetingError && (
-                        <p className="font-body text-[12.5px] font-medium text-red-600 dark:text-red-400">{meetingError}</p>
+                        <p className="font-body text-[12.5px] font-medium text-red-600">{meetingError}</p>
                       )}
                       <button
                         type="submit"
@@ -835,21 +835,21 @@ export default function EventsPage({ onPageChange }) {
                 initial={{ scale: 0.95, y: 10 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.95, y: 10 }}
-                className="relative w-full max-w-[650px] bg-white dark:bg-surface-900 rounded-[20px] shadow-2xl overflow-hidden border border-[#eee] dark:border-surface-800"
+                className="relative w-full max-w-[650px] bg-white rounded-[20px] shadow-2xl overflow-hidden border border-[#eee]"
               >
-                <div className="p-6 border-b border-[#eee] dark:border-surface-800 flex items-center justify-between bg-surface-50 dark:bg-surface-900/60">
+                <div className="p-6 border-b border-[#eee] flex items-center justify-between bg-surface-50">
                   <div className="flex items-center gap-3">
-                    <span className="bg-brand-600/8 border border-brand-600/15 text-brand-600 dark:text-brand-400 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">
+                    <span className="bg-brand-600/8 border border-brand-600/15 text-brand-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">
                       {activeArticle.category}
                     </span>
-                    <span className="font-body text-[12px] text-surface-400 dark:text-surface-500">
+                    <span className="font-body text-[12px] text-surface-400">
                       {activeArticle.date}
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setActiveArticle(null)}
-                    className="text-surface-400 hover:text-surface-700 dark:hover:text-white cursor-pointer bg-transparent border-none p-1 rounded hover:bg-surface-200 dark:hover:bg-surface-800"
+                    className="text-surface-400 hover:text-surface-700 cursor-pointer bg-transparent border-none p-1 rounded hover:bg-surface-200"
                     aria-label="Close article"
                   >
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -859,16 +859,16 @@ export default function EventsPage({ onPageChange }) {
                 </div>
 
                 <div className="p-6 max-h-[70vh] overflow-y-auto">
-                  <h2 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading dark:text-white m-0 leading-tight mb-4">
+                  <h2 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 leading-tight mb-4">
                     {activeArticle.title}
                   </h2>
-                  <div className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 leading-relaxed space-y-4 whitespace-pre-line">
+                  <div className="font-body text-[14.5px] text-surface-600 leading-relaxed space-y-4 whitespace-pre-line">
                     {activeArticle.content}
                   </div>
                 </div>
 
-                <div className="p-6 border-t border-[#eee] dark:border-surface-800 flex justify-between items-center bg-surface-50 dark:bg-surface-900/60">
-                  <span className="font-body text-[12px] text-surface-450 dark:text-surface-500">
+                <div className="p-6 border-t border-[#eee] flex justify-between items-center bg-surface-50">
+                  <span className="font-body text-[12px] text-surface-450">
                     Estimated read time: {activeArticle.readTime}
                   </span>
                   <button
@@ -899,21 +899,21 @@ export default function EventsPage({ onPageChange }) {
                 initial={{ scale: 0.95, y: 10 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.95, y: 10 }}
-                className="relative w-full max-w-[680px] bg-white dark:bg-surface-900 rounded-[20px] shadow-2xl overflow-hidden border border-[#eee] dark:border-surface-800"
+                className="relative w-full max-w-[680px] bg-white rounded-[20px] shadow-2xl overflow-hidden border border-[#eee]"
               >
-                <div className="p-6 border-b border-[#eee] dark:border-surface-800 flex items-center justify-between bg-surface-50 dark:bg-surface-900/60">
+                <div className="p-6 border-b border-[#eee] flex items-center justify-between bg-surface-50">
                   <div className="flex items-center gap-3">
-                    <span className="bg-brand-600/8 border border-brand-600/15 text-brand-600 dark:text-brand-400 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">
+                    <span className="bg-brand-600/8 border border-brand-600/15 text-brand-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">
                       Technical Insight
                     </span>
-                    <span className="font-body text-[12px] text-surface-400 dark:text-surface-500 uppercase tracking-widest font-semibold">
+                    <span className="font-body text-[12px] text-surface-400 uppercase tracking-widest font-semibold">
                       {activeInsight.topic}
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setActiveInsight(null)}
-                    className="text-surface-400 hover:text-surface-700 dark:hover:text-white cursor-pointer bg-transparent border-none p-1 rounded hover:bg-surface-200 dark:hover:bg-surface-800"
+                    className="text-surface-400 hover:text-surface-700 cursor-pointer bg-transparent border-none p-1 rounded hover:bg-surface-200"
                     aria-label="Close insight"
                   >
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -923,19 +923,19 @@ export default function EventsPage({ onPageChange }) {
                 </div>
 
                 <div className="p-6 max-h-[70vh] overflow-y-auto">
-                  <h2 className="font-heading font-bold text-[22px] sm:text-[25px] text-heading dark:text-white m-0 leading-tight mb-4">
+                  <h2 className="font-heading font-bold text-[22px] sm:text-[25px] text-heading m-0 leading-tight mb-4">
                     {activeInsight.title}
                   </h2>
-                  <div className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 leading-relaxed whitespace-pre-line bg-surface-50 dark:bg-surface-950 p-4 rounded-xl mb-4 border border-[#eee] dark:border-surface-850">
+                  <div className="font-body text-[14.5px] text-surface-600 leading-relaxed whitespace-pre-line bg-surface-50 p-4 rounded-xl mb-4 border border-[#eee]">
                     <strong>Summary:</strong> {activeInsight.excerpt}
                   </div>
-                  <div className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 leading-relaxed space-y-4 whitespace-pre-line">
+                  <div className="font-body text-[14.5px] text-surface-600 leading-relaxed space-y-4 whitespace-pre-line">
                     {activeInsight.content}
                   </div>
                 </div>
 
-                <div className="p-6 border-t border-[#eee] dark:border-surface-800 flex justify-between items-center bg-surface-50 dark:bg-surface-900/60">
-                  <span className="font-body text-[12px] text-surface-400 dark:text-surface-500">
+                <div className="p-6 border-t border-[#eee] flex justify-between items-center bg-surface-50">
+                  <span className="font-body text-[12px] text-surface-400">
                     {activeInsight.readTime}
                   </span>
                   <div className="flex gap-2.5">
@@ -943,7 +943,7 @@ export default function EventsPage({ onPageChange }) {
                       <a
                         href={activeInsightBrochureUrl}
                         download
-                        className="inline-flex items-center min-h-[44px] sm:min-h-[36px] px-5 rounded-full border border-surface-250 dark:border-surface-700 hover:border-brand-600 hover:text-brand-600 text-surface-600 dark:text-surface-300 font-body font-semibold text-[13px] transition-colors cursor-pointer bg-white dark:bg-surface-900"
+                        className="inline-flex items-center min-h-[44px] sm:min-h-[36px] px-5 rounded-full border border-surface-250 hover:border-brand-600 hover:text-brand-600 text-surface-600 font-body font-semibold text-[13px] transition-colors cursor-pointer bg-white"
                       >
                         Download PDF Guide
                       </a>

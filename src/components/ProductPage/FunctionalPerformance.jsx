@@ -73,14 +73,14 @@ export default function FunctionalPerformance({ variantsData, productName, onDis
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4 max-w-2xl">
-        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
           <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
           Functional Performance
         </span>
-        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1]">
+        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
           How {productName} Performs
         </h2>
-        <p className="font-body text-[17px] text-surface-600 dark:text-surface-400 leading-[1.7] m-0">
+        <p className="font-body text-[17px] text-surface-600 leading-[1.7] m-0">
           Functional behaviour evidenced across the variant range, drawn directly from each SKU's own specification.
         </p>
       </div>
@@ -98,15 +98,15 @@ export default function FunctionalPerformance({ variantsData, productName, onDis
             variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: DURATION.cardHover, ease: EASE_PREMIUM }}
             whileHover={reduceMotion ? undefined : { y: -2 }}
-            className="flex flex-col gap-3 rounded-[22px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 px-6 py-7 transition-colors duration-300 hover:border-gold-500/40"
+            className="flex flex-col gap-3 rounded-[22px] border border-surface-200/60 bg-white px-6 py-7 transition-colors duration-300 hover:border-gold-500/40"
           >
-            <span className="font-heading font-bold text-[16px] text-heading dark:text-white">
+            <span className="font-heading font-bold text-[16px] text-heading">
               {trait.label}
             </span>
-            <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 leading-[1.7] m-0">
+            <p className="font-body text-[14.5px] text-surface-600 leading-[1.7] m-0">
               {trait.quote}
             </p>
-            <span className="font-mono text-[11px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider mt-1">
+            <span className="font-mono text-[11px] font-bold text-brand-600 uppercase tracking-wider mt-1">
               {trait.variantCode} — {trait.variantName}
             </span>
           </motion.div>
@@ -125,7 +125,7 @@ export default function FunctionalPerformance({ variantsData, productName, onDis
             href={tdsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:text-[#a80000] dark:hover:text-brand-300 underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200"
+            className="font-body font-semibold text-[13.5px] text-brand-600 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200"
           >
             Download Functional Guide
           </a>

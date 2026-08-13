@@ -58,11 +58,11 @@ export default function RecommendedApplications({ applicationsData, variantsData
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4 max-w-2xl">
-        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
           <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
           Recommended For
         </span>
-        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1]">
+        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
           Recommended Applications
         </h2>
       </div>
@@ -80,29 +80,29 @@ export default function RecommendedApplications({ applicationsData, variantsData
             variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: DURATION.cardHover, ease: EASE_PREMIUM }}
             whileHover={reduceMotion ? undefined : { y: -2 }}
-            className="flex flex-col gap-4 rounded-[22px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 px-6 py-7 transition-colors duration-300 hover:border-gold-500/40"
+            className="flex flex-col gap-4 rounded-[22px] border border-surface-200/60 bg-white px-6 py-7 transition-colors duration-300 hover:border-gold-500/40"
           >
-            <h3 className="font-heading font-bold text-[18px] text-heading dark:text-white m-0">
+            <h3 className="font-heading font-bold text-[18px] text-heading m-0">
               {card.name}
             </h3>
 
             <div className="flex flex-col gap-1">
-              <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500">
+              <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400">
                 Why It Fits
               </span>
-              <p className="font-body text-[14px] text-surface-600 dark:text-surface-300 leading-[1.65] m-0">
+              <p className="font-body text-[14px] text-surface-600 leading-[1.65] m-0">
                 {card.description}
               </p>
             </div>
 
             {card.recommendedVariants.length > 0 && (
-              <div className="flex flex-col gap-1.5 pt-3 border-t border-surface-200/60 dark:border-surface-800">
-                <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500">
+              <div className="flex flex-col gap-1.5 pt-3 border-t border-surface-200/60">
+                <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400">
                   {card.recommendedVariants.length > 1 ? 'Recommended Variants' : 'Recommended Variant'}
                 </span>
                 <div className="flex flex-col gap-1">
                   {card.recommendedVariants.map((variant) => (
-                    <span key={variant.code} className="font-mono text-[12px] font-bold text-brand-600 dark:text-brand-400">
+                    <span key={variant.code} className="font-mono text-[12px] font-bold text-brand-600">
                       {displayCode(variant.code)} — {variant.name}
                     </span>
                   ))}
@@ -113,7 +113,7 @@ export default function RecommendedApplications({ applicationsData, variantsData
             {card.guide && (
               <button
                 onClick={() => onPageChange(card.guide.page)}
-                className="group/link mt-auto self-start inline-flex items-center gap-1.5 font-body font-bold text-[12.5px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] cursor-pointer bg-transparent border-none p-0"
+                className="group/link mt-auto self-start inline-flex items-center gap-1.5 font-body font-bold text-[12.5px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] cursor-pointer bg-transparent border-none p-0"
               >
                 View {card.guide.title} Application
                 <svg className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
@@ -127,7 +127,7 @@ export default function RecommendedApplications({ applicationsData, variantsData
 
       <button
         onClick={() => onPageChange('applications')}
-        className="self-start font-body font-bold text-[13px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
+        className="self-start font-body font-bold text-[13px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
       >
         View All Applications
       </button>

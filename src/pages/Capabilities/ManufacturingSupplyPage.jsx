@@ -82,19 +82,19 @@ const PROCESSING_CAPABILITIES = [
 
 // Shared card treatment: soft hover elevation + refined border transition,
 // applied uniformly across every capability/topic/packaging card on the page.
-const CARD_INTERACTIVE = 'transition-[transform,box-shadow,border-color] duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] hover:shadow-[0_10px_28px_-14px_rgba(0,0,0,0.18)] hover:border-brand-600/30 dark:hover:border-brand-400/25 focus-within:-translate-y-[3px] focus-within:shadow-[0_10px_28px_-14px_rgba(0,0,0,0.18)]';
+const CARD_INTERACTIVE = 'transition-[transform,box-shadow,border-color] duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] hover:shadow-[0_10px_28px_-14px_rgba(0,0,0,0.18)] hover:border-brand-600/30 focus-within:-translate-y-[3px] focus-within:shadow-[0_10px_28px_-14px_rgba(0,0,0,0.18)]';
 
 // Shared button micro-interaction: 2px lift + controlled shadow + refined
 // background transition, applied uniformly across every CTA on the page.
 const BTN_TRANSITION = 'transition-[transform,box-shadow,background-color,border-color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] active:translate-y-0 active:duration-100';
 const BTN_PRIMARY = `inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 hover:shadow-[0_8px_20px_-8px_rgba(190,30,45,0.45)] text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] ${BTN_TRANSITION} focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2`;
-const BTN_SECONDARY = `inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] ${BTN_TRANSITION} focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2`;
+const BTN_SECONDARY = `inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] ${BTN_TRANSITION} focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2`;
 
 function EggProcessingPlantSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="egg-processing-plant" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div id="egg-processing-plant" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -105,7 +105,7 @@ function EggProcessingPlantSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Manufacturing</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Egg processing plant
           </h2>
         </motion.div>
@@ -118,12 +118,12 @@ function EggProcessingPlantSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.04 }}
-              className={`flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
+              className={`flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}
             >
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">
                 {cap.label}
               </h3>
-              <p className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+              <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
                 {cap.fact}
               </p>
             </motion.div>
@@ -197,7 +197,7 @@ function PoultryFarmsSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="integrated-poultry-farms" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40">
+    <div id="integrated-poultry-farms" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -208,7 +208,7 @@ function PoultryFarmsSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Farm Operations</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Integrated poultry farms
           </h2>
         </motion.div>
@@ -221,12 +221,12 @@ function PoultryFarmsSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              className={`flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
+              className={`flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}
             >
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">
                 {cap.label}
               </h3>
-              <p className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+              <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
                 {cap.fact}
               </p>
             </motion.div>
@@ -259,7 +259,7 @@ function FeedMillSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="feed-mill-raw-material-control" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div id="feed-mill-raw-material-control" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
 
         <motion.div
@@ -270,7 +270,7 @@ function FeedMillSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Raw-Material Control</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Feed mill and raw-material control
           </h2>
         </motion.div>
@@ -280,9 +280,9 @@ function FeedMillSection({ onPageChange }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : 0.1 }}
-          className={`max-w-3xl p-7 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
+          className={`max-w-3xl p-7 rounded-[20px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}
         >
-          <p className="font-body text-[15px] sm:text-[16px] text-surface-700 dark:text-surface-300 leading-[1.7] m-0">
+          <p className="font-body text-[15px] sm:text-[16px] text-surface-700 leading-[1.7] m-0">
             Every raw material entering the feed mill undergoes rigorous testing for mycotoxins, pesticide residues, and antibiotic contaminants before formulation. Strict lot-wise storage prevents cross-contamination and ensures full traceability from ingredient intake to finished feed — only verified, residue-free inputs reach the flock, which is the direct foundation for consistent, residue-free final egg products.
           </p>
         </motion.div>
@@ -314,7 +314,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="laboratory-release-controls" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40">
+    <div id="laboratory-release-controls" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
 
         <motion.div
@@ -325,7 +325,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Laboratory</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Laboratory and release controls
           </h2>
         </motion.div>
@@ -335,9 +335,9 @@ function LaboratoryReleaseSection({ onPageChange }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : 0.1 }}
-          className={`max-w-3xl p-7 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
+          className={`max-w-3xl p-7 rounded-[20px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}
         >
-          <p className="font-body text-[15px] sm:text-[16px] text-surface-700 dark:text-surface-300 leading-[1.7] m-0">
+          <p className="font-body text-[15px] sm:text-[16px] text-surface-700 leading-[1.7] m-0">
             Our NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006, runs physicochemical, microbiological, and residue testing on every batch — including GC-MS, HPLC, and LC-MS/MS screening. A controlled microbiology laboratory confirms products are free from pathogens and microbial contamination before dispatch, directly feeding the HACCP-driven release decision for every batch that leaves the plant.
           </p>
         </motion.div>
@@ -387,7 +387,7 @@ function PackagingCapabilitiesSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="packaging-capabilities" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div id="packaging-capabilities" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -398,7 +398,7 @@ function PackagingCapabilitiesSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Packaging</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Packaging capabilities
           </h2>
         </motion.div>
@@ -411,22 +411,22 @@ function PackagingCapabilitiesSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              className={`flex flex-col gap-2 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
+              className={`flex flex-col gap-2 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}
             >
-              <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+              <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600">
                 {pkg.type}
               </span>
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">
                 {pkg.title}
               </h3>
-              <span className="font-body text-[12.5px] text-surface-500 dark:text-surface-400">
+              <span className="font-body text-[12.5px] text-surface-500">
                 {pkg.subtitle}
               </span>
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {pkg.skus.map((sku) => (
                   <span
                     key={sku}
-                    className="font-body text-[11.5px] font-semibold text-surface-600 dark:text-surface-300 bg-white dark:bg-surface-800/60 border border-surface-200/70 dark:border-surface-700 px-2.5 py-1 rounded-[6px]"
+                    className="font-body text-[11.5px] font-semibold text-surface-600 bg-white border border-surface-200/70 px-2.5 py-1 rounded-[6px]"
                   >
                     {sku}
                   </span>
@@ -508,7 +508,7 @@ function LogisticsSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="logistics-supply-continuity" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div id="logistics-supply-continuity" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -519,7 +519,7 @@ function LogisticsSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Logistics</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Logistics and supply continuity
           </h2>
         </motion.div>
@@ -532,12 +532,12 @@ function LogisticsSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.04 }}
-              className={`flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}
+              className={`flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}
             >
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">
                 {topic.label}
               </h3>
-              <p className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+              <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
                 {topic.fact}
               </p>
             </motion.div>
@@ -586,7 +586,7 @@ function FinalCTASection({ onPageChange }) {
         transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
         className="mx-auto max-w-[600px] flex flex-col items-center gap-5"
       >
-        <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading dark:text-white m-0 tracking-tight">
+        <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
           Ready to plan your supply with SKM?
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -625,58 +625,58 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full flex flex-col bg-page dark:bg-surface-950">
+      <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 — Capabilities hero */}
-        <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
+        <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] overflow-hidden">
           <div
-            className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18] dark:opacity-[0.22]"
+            className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18]"
             style={{ backgroundImage: `url(${supplyHeroImage})` }}
             aria-hidden="true"
           />
           <div className="relative mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
             <motion.div {...fadeProps()} className="max-w-3xl mb-9 lg:mb-11">
               <span className="section-label">Capabilities</span>
-              <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.1] tracking-tight m-0 mt-3">
+              <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0 mt-3">
                 Manufacturing and Supply
               </h1>
-              <p className="font-body text-[16px] sm:text-[17px] text-surface-600 dark:text-surface-300 leading-[1.7] m-0 mt-4 max-w-2xl">
+              <p className="font-body text-[16px] sm:text-[17px] text-surface-600 leading-[1.7] m-0 mt-4 max-w-2xl">
                 International buyers need confidence not only in product quality, but also in production scale, supply consistency, packaging, and logistics.
               </p>
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
-              <motion.div {...fadeProps(0)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}>
-                <span className="font-heading font-bold text-[28px] text-brand-600 dark:text-brand-400 leading-none">2M</span>
-                <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400 dark:text-surface-500">
+              <motion.div {...fadeProps(0)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}>
+                <span className="font-heading font-bold text-[28px] text-brand-600 leading-none">2M</span>
+                <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400">
                   Eggs processed daily
                 </span>
               </motion.div>
 
-              <motion.div {...fadeProps(0.05)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}>
-                <span className="font-heading font-bold text-[28px] text-brand-600 dark:text-brand-400 leading-none">2.4M</span>
-                <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400 dark:text-surface-500">
+              <motion.div {...fadeProps(0.05)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}>
+                <span className="font-heading font-bold text-[28px] text-brand-600 leading-none">2.4M</span>
+                <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400">
                   Layers housed
                 </span>
               </motion.div>
 
-              <motion.div {...fadeProps(0.1)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}>
-                <span className="font-heading font-bold text-[28px] text-brand-600 dark:text-brand-400 leading-none">100%</span>
-                <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400 dark:text-surface-500">
+              <motion.div {...fadeProps(0.1)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}>
+                <span className="font-heading font-bold text-[28px] text-brand-600 leading-none">100%</span>
+                <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400">
                   Residue-free feed ingredients
                 </span>
               </motion.div>
 
-              <motion.div {...fadeProps(0.15)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 ${CARD_INTERACTIVE}`}>
-                <span className="font-heading font-bold text-[28px] text-brand-600 dark:text-brand-400 leading-none">30+</span>
-                <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400 dark:text-surface-500">
+              <motion.div {...fadeProps(0.15)} className={`flex flex-col gap-1.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}>
+                <span className="font-heading font-bold text-[28px] text-brand-600 leading-none">30+</span>
+                <span className="font-body text-[12.5px] font-medium uppercase tracking-wide text-surface-400">
                   Countries served
                 </span>
               </motion.div>
             </div>
 
             <motion.div {...fadeProps(0.2)} className="mt-9 lg:mt-11 max-w-3xl">
-              <p className="font-body text-[15px] text-surface-600 dark:text-surface-300 leading-[1.7] m-0">
+              <p className="font-body text-[15px] text-surface-600 leading-[1.7] m-0">
                 An integrated operating model — hatchery, feed mill, poultry farm, processing plant, and laboratory — under one supply chain, with dedicated regional branches coordinating import, warehousing, and compliance close to your market.
               </p>
             </motion.div>

@@ -47,7 +47,7 @@ const features = [
 
 export default function SpecialityEggLiquidPage({ onPageChange }) {
   return (
-    <div className="w-full flex flex-col bg-page dark:bg-surface-950 font-body text-left">
+    <div className="w-full flex flex-col bg-page font-body text-left">
       <SEO
         title="Specialty Egg Liquids | Tetra Pack Pasteurized Egg Products"
         description="SKM's specialty egg liquids in convenient tetra pack format for household, RTC & institutional use. Pasteurized for safety. Ready-to-use liquid eggs — convenient, hygienic, and shelf-stable."
@@ -76,7 +76,7 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
       />
 
       {/* Key Features Grid */}
-      <div className="w-full py-[40px] lg:py-[60px] border-b border-[#eee] dark:border-surface-900/60">
+      <div className="w-full py-[40px] lg:py-[60px] border-b border-[#eee]">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -88,10 +88,10 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
             <span className="section-label">
               Product Highlights
             </span>
-            <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white uppercase tracking-wider m-0">
+            <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading uppercase tracking-wider m-0">
               Why Easy Egg Liquids?
             </h2>
-            <p className="text-sm text-surface-400 dark:text-surface-500 font-medium max-w-2xl m-0">
+            <p className="text-sm text-surface-400 font-medium max-w-2xl m-0">
               Convenience-first egg liquid products designed to simplify egg usage at home and in the food service industry.
             </p>
           </div>
@@ -103,16 +103,16 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
                 variants={itemVariants}
                 whileHover={{ y: -3 }}
                 transition={{ duration: 0.3 }}
-                className="bg-surface-50 dark:bg-surface-900/30 border border-surface-200/60 dark:border-surface-800 rounded-3xl p-6 flex flex-col gap-4 transition-colors duration-300 hover:border-gold-500/40"
+                className="bg-surface-50 border border-surface-200/60 rounded-3xl p-6 flex flex-col gap-4 transition-colors duration-300 hover:border-gold-500/40"
               >
                 <div className="w-11 h-11 rounded-2xl bg-brand-600 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-brand-600/30">
                   {feature.icon}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h3 className="font-heading font-bold text-[13px] text-heading dark:text-white uppercase tracking-wider m-0">
+                  <h3 className="font-heading font-bold text-[13px] text-heading uppercase tracking-wider m-0">
                     {feature.title}
                   </h3>
-                  <p className="text-xs text-surface-500 dark:text-surface-400 leading-relaxed m-0">
+                  <p className="text-xs text-surface-500 leading-relaxed m-0">
                     {feature.description}
                   </p>
                 </div>
@@ -123,7 +123,7 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
       </div>
 
       {/* Product Info Strip */}
-      <div className="w-full py-12 sm:py-16 bg-page dark:bg-surface-900/10">
+      <div className="w-full py-12 sm:py-16 bg-page">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -140,11 +140,11 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
               <motion.div
                 key={stat.label}
                 variants={itemVariants}
-                className="bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-800 rounded-2xl px-8 py-6 flex flex-col gap-1 text-center transition-colors duration-300 hover:border-gold-500/40"
+                className="bg-white border border-surface-200 rounded-2xl px-8 py-6 flex flex-col gap-1 text-center transition-colors duration-300 hover:border-gold-500/40"
               >
-                <span className="text-[10px] font-bold uppercase tracking-widest text-surface-400 dark:text-surface-500">{stat.label}</span>
-                <span className="text-xl font-black text-brand-600 dark:text-brand-400">{stat.value}</span>
-                <span className="text-[10px] font-semibold text-surface-500 dark:text-surface-400 uppercase tracking-wide">{stat.sub}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-surface-400">{stat.label}</span>
+                <span className="text-xl font-black text-brand-600">{stat.value}</span>
+                <span className="text-[10px] font-semibold text-surface-500 uppercase tracking-wide">{stat.sub}</span>
               </motion.div>
             ))}
           </div>

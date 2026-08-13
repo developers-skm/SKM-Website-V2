@@ -92,7 +92,7 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
           height (per spec: "do not force a large sticky layout on small
           screens"). */}
       <div ref={containerRef} className="hidden lg:block relative w-full" style={{ height: `${steps.length * 100}vh` }}>
-        <div className="sticky top-0 h-screen w-full overflow-hidden bg-page dark:bg-surface-950">
+        <div className="sticky top-0 h-screen w-full overflow-hidden bg-page">
           <div className="mx-auto max-w-[1680px] w-full h-full px-8 xl:px-14 flex items-stretch gap-12 xl:gap-20 py-16 xl:py-20">
 
             {/* Image — sticky large panel, the dominant element. Slight
@@ -146,21 +146,21 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
                   exit="exit"
                   className="flex flex-col gap-6"
                 >
-                  <motion.span variants={copyItemVariants} className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+                  <motion.span variants={copyItemVariants} className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600">
                     Stage {steps[activeIndex].step ?? activeIndex + 1} · {steps[activeIndex].label}
                   </motion.span>
-                  <motion.h3 variants={copyItemVariants} className="font-heading font-bold text-[32px] xl:text-[40px] text-heading dark:text-white leading-[1.12] tracking-tight m-0">
+                  <motion.h3 variants={copyItemVariants} className="font-heading font-bold text-[32px] xl:text-[40px] text-heading leading-[1.12] tracking-tight m-0">
                     {steps[activeIndex].title ?? steps[activeIndex].tagline}
                   </motion.h3>
-                  <motion.p variants={copyItemVariants} className="font-body text-[16px] text-surface-500 dark:text-surface-400 leading-[28px] m-0 max-w-[42ch]">
+                  <motion.p variants={copyItemVariants} className="font-body text-[16px] text-surface-500 leading-[28px] m-0 max-w-[42ch]">
                     {steps[activeIndex].description}
                   </motion.p>
                   {steps[activeIndex].stat && (
-                    <motion.div variants={copyItemVariants} className="inline-flex items-center gap-4 mt-3 p-4 bg-surface-50 dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[10px] self-start">
-                      <span className="font-heading font-bold text-[26px] text-brand-600 dark:text-brand-400 leading-none">
+                    <motion.div variants={copyItemVariants} className="inline-flex items-center gap-4 mt-3 p-4 bg-surface-50 border border-[#eee] rounded-[10px] self-start">
+                      <span className="font-heading font-bold text-[26px] text-brand-600 leading-none">
                         {steps[activeIndex].stat.value}
                       </span>
-                      <span className="font-body text-[12px] text-surface-500 dark:text-surface-400 leading-tight max-w-[160px]">
+                      <span className="font-body text-[12px] text-surface-500 leading-tight max-w-[160px]">
                         {steps[activeIndex].stat.label}
                       </span>
                     </motion.div>
@@ -190,7 +190,7 @@ function MobileJourneyList({ steps, isReducedMotion = false }) {
       {steps.map((step, i) => (
         <article
           key={step.id}
-          className={`w-full ${i !== steps.length - 1 ? 'border-b border-[#eee] dark:border-surface-800/40' : ''}`}
+          className={`w-full ${i !== steps.length - 1 ? 'border-b border-[#eee]' : ''}`}
         >
           <div className="mx-auto max-w-[720px] w-full px-4 sm:px-6 py-[44px] lg:py-[56px] flex flex-col gap-6">
             <motion.div
@@ -219,21 +219,21 @@ function MobileJourneyList({ steps, isReducedMotion = false }) {
               transition={{ duration: isReducedMotion ? 0.01 : 0.5, ease: [0.25, 1, 0.5, 1], delay: isReducedMotion ? 0 : 0.08 }}
               className="flex flex-col gap-3"
             >
-              <span className="font-body text-[11.5px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+              <span className="font-body text-[11.5px] font-bold uppercase tracking-widest text-brand-600">
                 Stage {step.step ?? i + 1} · {step.label}
               </span>
-              <h3 className="font-heading font-bold text-[24px] text-heading dark:text-white leading-[1.2] tracking-tight m-0">
+              <h3 className="font-heading font-bold text-[24px] text-heading leading-[1.2] tracking-tight m-0">
                 {step.title ?? step.tagline}
               </h3>
-              <p className="font-body text-[14.5px] text-surface-500 dark:text-surface-400 leading-[25px] m-0">
+              <p className="font-body text-[14.5px] text-surface-500 leading-[25px] m-0">
                 {step.description}
               </p>
               {step.stat && (
-                <div className="inline-flex items-center gap-3 mt-1 p-3.5 bg-surface-50 dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[10px] self-start">
-                  <span className="font-heading font-bold text-[19px] text-brand-600 dark:text-brand-400 leading-none">
+                <div className="inline-flex items-center gap-3 mt-1 p-3.5 bg-surface-50 border border-[#eee] rounded-[10px] self-start">
+                  <span className="font-heading font-bold text-[19px] text-brand-600 leading-none">
                     {step.stat.value}
                   </span>
-                  <span className="font-body text-[11px] text-surface-500 dark:text-surface-400 leading-tight max-w-[140px]">
+                  <span className="font-body text-[11px] text-surface-500 leading-tight max-w-[140px]">
                     {step.stat.label}
                   </span>
                 </div>

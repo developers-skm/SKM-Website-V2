@@ -83,7 +83,7 @@ function ChallengesSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="challenges-skm-can-support" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div id="challenges-skm-can-support" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -94,7 +94,7 @@ function ChallengesSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Formulation Challenges</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Challenges SKM can support
           </h2>
         </motion.div>
@@ -107,12 +107,12 @@ function ChallengesSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.04 }}
-              className="flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+              className="flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7]"
             >
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">
                 {challenge.label}
               </h3>
-              <p className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+              <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
                 {challenge.fact}
               </p>
             </motion.div>
@@ -154,7 +154,7 @@ function CoDevelopmentProcessSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="co-development-process" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40">
+    <div id="co-development-process" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -165,7 +165,7 @@ function CoDevelopmentProcessSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">How We Work Together</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Co-development process
           </h2>
         </motion.div>
@@ -178,12 +178,12 @@ function CoDevelopmentProcessSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              className="flex flex-col gap-2.5 p-4 rounded-[16px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+              className="flex flex-col gap-2.5 p-4 rounded-[16px] border border-surface-200/70 bg-[#fdfbf7]"
             >
               <span className="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center font-heading font-bold text-[13px] flex-shrink-0">
                 {i + 1}
               </span>
-              <span className="font-body font-semibold text-[13.5px] text-heading dark:text-white leading-[1.4]">
+              <span className="font-body font-semibold text-[13.5px] text-heading leading-[1.4]">
                 {stage}
               </span>
             </motion.div>
@@ -238,7 +238,7 @@ function RDCapabilitySection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="rd-application-capability" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div id="rd-application-capability" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -249,7 +249,7 @@ function RDCapabilitySection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">R&amp;D</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             R&amp;D and application capability
           </h2>
         </motion.div>
@@ -262,12 +262,12 @@ function RDCapabilitySection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              className="flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+              className="flex flex-col gap-3 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7]"
             >
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">
                 {cap.title}
               </h3>
-              <p className="font-body text-[14px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+              <p className="font-body text-[14px] text-surface-600 leading-[1.6] m-0">
                 {cap.description}
               </p>
             </motion.div>
@@ -286,7 +286,7 @@ function RDCapabilitySection({ onPageChange }) {
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
             Book a Technical Discussion
           </InternalLink>
@@ -320,7 +320,7 @@ function ExistingSpecialtySolutionsSection({ onPageChange }) {
   const solutions = SPECIALTY_SOLUTION_IDS.map((s) => ({ ...s, product: getProductById(s.id) })).filter((s) => s.product);
 
   return (
-    <div id="existing-specialty-solutions" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40">
+    <div id="existing-specialty-solutions" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -331,7 +331,7 @@ function ExistingSpecialtySolutionsSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Already Available</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Existing specialty solutions
           </h2>
         </motion.div>
@@ -344,18 +344,18 @@ function ExistingSpecialtySolutionsSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              className="flex flex-col gap-3 p-5 rounded-[16px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+              className="flex flex-col gap-3 p-5 rounded-[16px] border border-surface-200/70 bg-[#fdfbf7]"
             >
               <img src={product.image} alt={product.title} loading="lazy" className="w-full aspect-[4/3] object-cover rounded-[10px]" />
-              <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+              <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600">
                 {label}
               </span>
-              <span className="font-heading font-bold text-[16px] text-heading dark:text-white">{product.title}</span>
-              <span className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-[1.5]">{product.shortDescription}</span>
+              <span className="font-heading font-bold text-[16px] text-heading">{product.title}</span>
+              <span className="font-body text-[13.5px] text-surface-500 leading-[1.5]">{product.shortDescription}</span>
               <InternalLink
                 route={product.page}
                 onPageChange={onPageChange}
-                className="mt-1 font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm self-start"
+                className="mt-1 font-body font-semibold text-[13.5px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm self-start"
               >
                 View Product
               </InternalLink>
@@ -375,7 +375,7 @@ function ExistingSpecialtySolutionsSection({ onPageChange }) {
           <InternalLink
             route="get-quote"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
             Request a Custom Sample
           </InternalLink>
@@ -406,7 +406,7 @@ function FinalCTASection({ onPageChange }) {
         transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
         className="mx-auto max-w-[600px] flex flex-col items-center gap-5"
       >
-        <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading dark:text-white m-0 tracking-tight">
+        <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
           Ready to solve your formulation challenge?
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -420,7 +420,7 @@ function FinalCTASection({ onPageChange }) {
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
             Arrange a Technical Call
           </InternalLink>
@@ -443,10 +443,10 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full flex flex-col bg-page dark:bg-surface-950">
+      <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 — Challenge-first hero */}
-        <div className="w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[110px] lg:pb-[110px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
+        <div className="w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[110px] lg:pb-[110px] border-b border-[#eee] text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -454,7 +454,7 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
             className="mx-auto max-w-[820px] flex flex-col items-center gap-7"
           >
             <span className="section-label justify-center">Innovation and Custom Solutions</span>
-            <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[56px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+            <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[56px] text-heading leading-[1.15] tracking-tight m-0">
               Let us develop the egg functionality your product requires.
             </h1>
 
@@ -470,7 +470,7 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
               <InternalLink
                 route="contact-us"
                 onPageChange={onPageChange}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
               >
                 Talk to R&amp;D
               </InternalLink>

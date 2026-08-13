@@ -50,16 +50,16 @@ export default function ProductComparison({ application, comparisonIds, matchedP
       animate={{ opacity: 1, scaleX: 1 }}
       transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }}
       style={{ transformOrigin: '50% 50%' }}
-      className="w-full bg-[#f8f4ee] dark:bg-surface-950 py-16 sm:py-20 lg:py-24 print:bg-white print:py-6"
+      className="w-full bg-[#f8f4ee] py-16 sm:py-20 lg:py-24 print:bg-white print:py-6"
       id="product-comparison-section"
     >
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
-          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400 print:text-black">
+          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 print:text-black">
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             Comparison
           </span>
-          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1] print:text-black">
+          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1] print:text-black">
             Compare Products For {application.title}
           </h2>
         </div>
@@ -70,34 +70,34 @@ export default function ProductComparison({ application, comparisonIds, matchedP
               onScroll={(e) => {
                 if (!hasScrolled && e.currentTarget.scrollLeft > 12) setHasScrolled(true);
               }}
-              className="overflow-x-auto rounded-[24px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 print:border-none print:rounded-none"
+              className="overflow-x-auto rounded-[24px] border border-surface-200/60 bg-white print:border-none print:rounded-none"
             >
               <table className="w-full border-collapse min-w-[600px]">
                 <thead>
-                  <tr className="border-b border-surface-200/70 dark:border-surface-800">
-                    <th className="sticky left-0 z-20 bg-white dark:bg-surface-900/40 text-left px-5 py-4 font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] print:static print:shadow-none" />
+                  <tr className="border-b border-surface-200/70">
+                    <th className="sticky left-0 z-20 bg-white text-left px-5 py-4 font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] print:static print:shadow-none" />
                     {rows.entries.map(({ product, variant }) => (
                       <th key={product.id} className="text-left px-5 py-4 align-bottom">
-                        <span className="block font-heading font-bold text-[15px] text-heading dark:text-white print:text-black leading-tight">{product.title}</span>
-                        {variant && <span className="block font-mono text-[11px] font-bold text-brand-600 dark:text-brand-400 print:text-black mt-1">{variant.code} — {variant.name}</span>}
+                        <span className="block font-heading font-bold text-[15px] text-heading print:text-black leading-tight">{product.title}</span>
+                        {variant && <span className="block font-mono text-[11px] font-bold text-brand-600 print:text-black mt-1">{variant.code} — {variant.name}</span>}
                       </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-surface-200/50 dark:border-surface-800/60">
-                    <th scope="row" className="sticky left-0 z-10 bg-white dark:bg-surface-900/40 text-left px-5 py-3.5 font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400 whitespace-nowrap shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] print:static print:shadow-none">Format</th>
+                  <tr className="border-b border-surface-200/50">
+                    <th scope="row" className="sticky left-0 z-10 bg-white text-left px-5 py-3.5 font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400 whitespace-nowrap shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] print:static print:shadow-none">Format</th>
                     {rows.entries.map(({ product }) => (
-                      <td key={product.id} className="px-5 py-3.5 font-body text-[13.5px] text-surface-700 dark:text-surface-300 print:text-black">
+                      <td key={product.id} className="px-5 py-3.5 font-body text-[13.5px] text-surface-700 print:text-black">
                         {product.packagingOptions?.join(', ') ?? '—'}
                       </td>
                     ))}
                   </tr>
                   {rows.specKeys.map((key) => (
-                    <tr key={key} className="border-b border-surface-200/50 dark:border-surface-800/60 last:border-b-0">
-                      <th scope="row" className="sticky left-0 z-10 bg-white dark:bg-surface-900/40 text-left px-5 py-3.5 font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400 whitespace-nowrap shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] print:static print:shadow-none">{key}</th>
+                    <tr key={key} className="border-b border-surface-200/50 last:border-b-0">
+                      <th scope="row" className="sticky left-0 z-10 bg-white text-left px-5 py-3.5 font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400 whitespace-nowrap shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] print:static print:shadow-none">{key}</th>
                       {rows.entries.map(({ product, variant }) => (
-                        <td key={product.id} className="px-5 py-3.5 font-body text-[13.5px] text-surface-700 dark:text-surface-300 print:text-black">
+                        <td key={product.id} className="px-5 py-3.5 font-body text-[13.5px] text-surface-700 print:text-black">
                           {variant?.specifications?.[key] ?? '—'}
                         </td>
                       ))}
@@ -115,7 +115,7 @@ export default function ProductComparison({ application, comparisonIds, matchedP
                   initial={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                  className="lg:hidden print:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 rounded-r-[24px] bg-gradient-to-l from-white dark:from-surface-900/90 from-30% via-white/70 dark:via-surface-900/60 to-transparent flex items-center justify-end pr-3"
+                  className="lg:hidden print:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 rounded-r-[24px] bg-gradient-to-l from-white from-30% via-white/70 to-transparent flex items-center justify-end pr-3"
                   aria-hidden="true"
                 >
                   <motion.svg
@@ -137,7 +137,7 @@ export default function ProductComparison({ application, comparisonIds, matchedP
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                className="lg:hidden print:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400 dark:text-surface-500"
+                className="lg:hidden print:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400"
               >
                 Scroll right to view more products
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -157,7 +157,7 @@ export default function ProductComparison({ application, comparisonIds, matchedP
           </button>
           <button
             onClick={() => onPageChange('contact-us')}
-            className="font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:text-[#a80000] dark:hover:text-brand-300 underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
+            className="font-body font-semibold text-[13.5px] text-brand-600 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
           >
             Ask SKM To Recommend
           </button>

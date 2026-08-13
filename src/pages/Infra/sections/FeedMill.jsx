@@ -57,20 +57,20 @@ export default function FeedMill() {
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
-    <div className="w-full bg-page dark:bg-surface-950 overflow-hidden">
+    <div className="w-full bg-page overflow-hidden">
 
       {/* ── Hero ── */}
-      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page dark:bg-surface-950 border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 dark:bg-brand-950/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page border-b border-[#eee] overflow-hidden">
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-6 items-start">
           <span className="section-label">
             Infrastructure
           </span>
-          <h1 className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h1 className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading leading-[1.1] tracking-tight m-0">
             Feed{' '}
             Mill
           </h1>
-          <p className="font-body text-[16px] leading-[30px] text-surface-500 dark:text-surface-400 max-w-2xl m-0">
+          <p className="font-body text-[16px] leading-[30px] text-surface-500 max-w-2xl m-0">
             An integrated, in-house feed mill producing safe, balanced, residue-free nutrition for every stage of flock development — from chick to layer.
           </p>
         </div>
@@ -94,7 +94,7 @@ export default function FeedMill() {
         {/* Featured aerial image */}
         <motion.div
           variants={itemVariants}
-          className="relative rounded-[20px] overflow-hidden border border-[#eee] dark:border-surface-800 shadow-[5px_3px_40px_rgba(0,72,88,0.08)] group aspect-[4/3] sm:aspect-[16/9] lg:aspect-[16/7]"
+          className="relative rounded-[20px] overflow-hidden border border-[#eee] shadow-[5px_3px_40px_rgba(0,72,88,0.08)] group aspect-[4/3] sm:aspect-[16/9] lg:aspect-[16/7]"
         >
           <img
             src={FeedMillAerial}
@@ -110,7 +110,7 @@ export default function FeedMill() {
       </motion.section>
 
       {/* ── Info Blocks ── */}
-      <div className="w-full bg-page dark:bg-surface-900/10 border-t border-surface-100 dark:border-surface-800/40 py-16 lg:py-24">
+      <div className="w-full bg-page border-t border-surface-100 py-16 lg:py-24">
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -122,7 +122,7 @@ export default function FeedMill() {
             <span className="section-label justify-center">
               Mill Operations
             </span>
-            <h2 className="font-heading font-bold text-[34px] sm:text-[40px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[34px] sm:text-[40px] text-heading leading-[1.1] tracking-tight m-0">
               Safe Nutrition,{' '}
               Controlled Inputs
             </h2>

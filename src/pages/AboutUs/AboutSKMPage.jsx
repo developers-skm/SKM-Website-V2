@@ -26,7 +26,7 @@ function CompanyOverviewSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
           <motion.div
@@ -39,7 +39,7 @@ function CompanyOverviewSection({ onPageChange }) {
             <motion.div
               variants={{ hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: reduceMotion ? 0.01 : 0.9, ease: EASE_PREMIUM }}
-              className="relative rounded-[24px] overflow-hidden aspect-[16/10] shadow-[0_12px_36px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.35)] border border-surface-200/60 dark:border-surface-800 group"
+              className="relative rounded-[24px] overflow-hidden aspect-[16/10] shadow-[0_12px_36px_rgba(0,0,0,0.08)] border border-surface-200/60 group"
             >
               <motion.img
                 src={FactoryImage}
@@ -82,13 +82,13 @@ function CompanyOverviewSection({ onPageChange }) {
 
           <motion.div {...fadeUp(reduceMotion, { distance: 20, delay: 0.1 })} className="flex-1 flex flex-col gap-5">
             <span className="section-label">Company Overview</span>
-            <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
               Who We Are
             </h2>
-            <p className="font-body text-[15px] text-surface-600 dark:text-surface-300 leading-[1.7] m-0">
+            <p className="font-body text-[15px] text-surface-600 leading-[1.7] m-0">
               Established in 1996, SKM Egg Products began its journey with a clear commitment to excellence in egg processing. Today, we operate as one of Asia's largest integrated egg processing facilities, combining advanced production technology with internationally aligned quality systems.
             </p>
-            <p className="font-body text-[15px] text-surface-600 dark:text-surface-300 leading-[1.7] m-0">
+            <p className="font-body text-[15px] text-surface-600 leading-[1.7] m-0">
               Supported by fully integrated back-end farms, our operations process up to 2 million eggs per day, producing approximately 7,500 metric tonnes of egg powder annually — serving food manufacturers across bakery, mayonnaise, meat & fish, and noodles & pasta industries.
             </p>
           </motion.div>
@@ -99,10 +99,10 @@ function CompanyOverviewSection({ onPageChange }) {
             <motion.div
               key={stat.label}
               {...fadeUp(reduceMotion, { distance: 14, duration: DURATION.cardHover, delay: i * 0.08 })}
-              className="relative p-5 bg-[#fdfbf7] dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[10px] flex flex-col gap-1.5"
+              className="relative p-5 bg-[#fdfbf7] border border-[#eee] rounded-[10px] flex flex-col gap-1.5"
             >
-              <span className="relative font-heading font-bold text-[22px] text-brand-600 dark:text-brand-400 leading-none">{stat.value}</span>
-              <span className="relative font-body text-[13px] text-surface-500 dark:text-surface-400">{stat.label}</span>
+              <span className="relative font-heading font-bold text-[22px] text-brand-600 leading-none">{stat.value}</span>
+              <span className="relative font-body text-[13px] text-surface-500">{stat.label}</span>
             </motion.div>
           ))}
         </div>
@@ -207,16 +207,16 @@ function DesktopJourneyTimeline({ onPageChange }) {
 
   return (
     <section ref={containerRef} className="relative w-full h-[320vh]">
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-center border-b border-[#eee] dark:border-surface-800/40 bg-page dark:bg-surface-950 overflow-hidden py-6">
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-center border-b border-[#eee] bg-page overflow-hidden py-6">
         <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8 lg:gap-12">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="flex flex-col gap-3 max-w-2xl">
               <span className="section-label">Our History</span>
-              <h2 className="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+              <h2 className="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-heading leading-[1.15] tracking-tight m-0">
                 Company journey
               </h2>
-              <p className="font-body text-[14px] sm:text-[15px] text-surface-500 dark:text-surface-400 leading-[1.6] m-0">
+              <p className="font-body text-[14px] sm:text-[15px] text-surface-500 leading-[1.6] m-0">
                 Scroll down to travel through SKM's history from founding in 1996 through two decades of honors.
               </p>
             </div>
@@ -232,7 +232,7 @@ function DesktopJourneyTimeline({ onPageChange }) {
 
           {/* Timeline Controls & Horizontal Progress Line */}
           <div className="relative pt-[7px]">
-            <div className="absolute left-0 right-0 top-[22px] h-[3px] rounded-full bg-surface-200 dark:bg-surface-800" aria-hidden="true" />
+            <div className="absolute left-0 right-0 top-[22px] h-[3px] rounded-full bg-surface-200" aria-hidden="true" />
             <motion.div
               className="absolute left-0 top-[22px] h-[3px] rounded-full bg-brand-600 origin-left"
               style={{ width: progressFill }}
@@ -260,14 +260,14 @@ function DesktopJourneyTimeline({ onPageChange }) {
                           ? 'bg-brand-600 border-brand-600 text-white ring-4 ring-brand-600/25 shadow-[0_0_16px_rgba(228,10,24,0.35)]'
                           : isPassed
                             ? 'bg-brand-600 border-brand-600 text-white'
-                            : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-500 dark:text-surface-400 group-hover:border-brand-600/60'
+                            : 'bg-white border-surface-300 text-surface-500 group-hover:border-brand-600/60'
                       }`}
                     >
                       {m.year.slice(0, 4)}
                     </motion.span>
                     <span
                       className={`font-body text-[11px] font-semibold uppercase tracking-wide transition-colors duration-200 hidden sm:block text-center leading-tight max-w-[90px] ${
-                        isSelected ? 'text-brand-600 dark:text-brand-400 font-bold' : 'text-surface-400 dark:text-surface-600'
+                        isSelected ? 'text-brand-600 font-bold' : 'text-surface-400'
                       }`}
                     >
                       {m.label}
@@ -287,12 +287,12 @@ function DesktopJourneyTimeline({ onPageChange }) {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: reduceMotion ? 0 : -16, scale: reduceMotion ? 1 : 0.98 }}
                 transition={{ duration: reduceMotion ? 0.01 : 0.45, ease: EASE_PREMIUM }}
-                className="relative rounded-[24px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 p-8 sm:p-10 flex flex-col gap-4 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+                className="relative rounded-[24px] border border-[#eee] bg-[#fdfbf7] p-8 sm:p-10 flex flex-col gap-4 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.04)]"
               >
                 {/* Background Watermark Year */}
                 <span
                   aria-hidden="true"
-                  className="absolute right-4 -bottom-6 font-heading font-black text-[100px] sm:text-[140px] text-surface-900/[0.04] dark:text-white/[0.03] select-none pointer-events-none leading-none tabular-nums"
+                  className="absolute right-4 -bottom-6 font-heading font-black text-[100px] sm:text-[140px] text-surface-900/[0.04] select-none pointer-events-none leading-none tabular-nums"
                 >
                   {milestone.year}
                 </span>
@@ -300,28 +300,28 @@ function DesktopJourneyTimeline({ onPageChange }) {
                 <span aria-hidden="true" className="absolute top-0 left-0 right-0 h-[3px] bg-brand-600" />
 
                 <div className="flex items-center justify-between gap-4 relative z-10">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-brand-600/10 dark:bg-brand-500/15 font-body text-[11px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-brand-600/10 font-body text-[11px] font-bold uppercase tracking-wider text-brand-600">
                     {milestone.tag}
                   </span>
-                  <span className="font-body text-[12px] font-bold text-surface-400 dark:text-surface-500 tabular-nums flex-shrink-0">
+                  <span className="font-body text-[12px] font-bold text-surface-400 tabular-nums flex-shrink-0">
                     {String(selectedIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
                   </span>
                 </div>
 
                 <div className="flex flex-col gap-2 relative z-10">
-                  <span className="font-heading font-black text-[32px] sm:text-[42px] text-brand-600 dark:text-brand-400 leading-none tabular-nums">
+                  <span className="font-heading font-black text-[32px] sm:text-[42px] text-brand-600 leading-none tabular-nums">
                     {milestone.year}
                   </span>
-                  <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading dark:text-white m-0">
+                  <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0">
                     {milestone.label}
                   </h3>
                 </div>
 
-                <p className="font-body text-[15px] sm:text-[16px] text-surface-600 dark:text-surface-300 leading-[1.7] m-0 max-w-[65ch] relative z-10">
+                <p className="font-body text-[15px] sm:text-[16px] text-surface-600 leading-[1.7] m-0 max-w-[65ch] relative z-10">
                   {milestone.desc}
                 </p>
 
-                <div className="flex items-center gap-2 pt-2 text-[12px] font-body text-surface-400 dark:text-surface-500 relative z-10">
+                <div className="flex items-center gap-2 pt-2 text-[12px] font-body text-surface-400 relative z-10">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M12 5v14M19 12l-7 7-7-7" />
                   </svg>
@@ -342,14 +342,14 @@ function DesktopJourneyTimeline({ onPageChange }) {
 // track — those don't translate to short, narrow touch viewports.
 function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
   return (
-    <section className="relative w-full border-b border-[#eee] dark:border-surface-800/40 bg-page dark:bg-surface-950 py-[52px]">
+    <section className="relative w-full border-b border-[#eee] bg-page py-[52px]">
       <div className="mx-auto max-w-[720px] w-full px-4 sm:px-6 flex flex-col gap-8">
         <div className="flex flex-col gap-3">
           <span className="section-label">Our History</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
             Company journey
           </h2>
-          <p className="font-body text-[14px] sm:text-[15px] text-surface-500 dark:text-surface-400 leading-[1.6] m-0">
+          <p className="font-body text-[14px] sm:text-[15px] text-surface-500 leading-[1.6] m-0">
             SKM's history from founding in 1996 through two decades of honors.
           </p>
           <InternalLink
@@ -362,7 +362,7 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
         </div>
 
         <div className="relative flex flex-col">
-          <div className="absolute left-[20px] top-2 bottom-2 w-[2px] bg-surface-200 dark:bg-surface-800" aria-hidden="true" />
+          <div className="absolute left-[20px] top-2 bottom-2 w-[2px] bg-surface-200" aria-hidden="true" />
 
           {JOURNEY_MILESTONES.map((m) => (
             <motion.div
@@ -378,13 +378,13 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
               </span>
 
               <div className="flex flex-col gap-1.5 pt-1.5">
-                <span className="inline-flex items-center w-fit px-3 py-1 rounded-full bg-brand-600/10 dark:bg-brand-500/15 font-body text-[11px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                <span className="inline-flex items-center w-fit px-3 py-1 rounded-full bg-brand-600/10 font-body text-[11px] font-bold uppercase tracking-wider text-brand-600">
                   {m.tag}
                 </span>
-                <h3 className="font-heading font-bold text-[19px] text-heading dark:text-white leading-[1.25] m-0">
+                <h3 className="font-heading font-bold text-[19px] text-heading leading-[1.25] m-0">
                   {m.year} — {m.label}
                 </h3>
-                <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 leading-[1.6] m-0">
+                <p className="font-body text-[14px] text-surface-500 leading-[1.6] m-0">
                   {m.desc}
                 </p>
               </div>
@@ -407,18 +407,18 @@ function LeadershipMessageSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1000px] w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-8">
         <div className="flex flex-col items-center gap-3 text-center">
           <span className="section-label justify-center">Leadership Message</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
             A Message From Our CEO
           </h2>
         </div>
 
         <motion.div
           {...fadeUp(reduceMotion, { distance: 16, duration: DURATION.sectionEntrance })}
-          className="w-full bg-[#fdfbf7] dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[20px] p-8 sm:p-12 flex flex-col items-center gap-7"
+          className="w-full bg-[#fdfbf7] border border-[#eee] rounded-[20px] p-8 sm:p-12 flex flex-col items-center gap-7"
         >
           <div className="w-full relative border-l-4 border-brand-600 pl-7 py-2">
             <motion.span
@@ -431,21 +431,21 @@ function LeadershipMessageSection({ onPageChange }) {
             >
               "
             </motion.span>
-            <p className="font-body text-[16px] sm:text-[18px] font-medium leading-[1.7] text-surface-700 dark:text-surface-200 m-0 italic">
+            <p className="font-body text-[16px] sm:text-[18px] font-medium leading-[1.7] text-surface-700 m-0 italic">
               "SKM EGG Products is a finest example of how a strong value system and drive for excellence can keep you ahead in a competitive environment. Thinking out of the shell was a mantra we adopted consciously not just to give ourselves the edge but also to keep pushing ourselves to innovate. Today, we are one of the Asia's biggest egg processing plant, the future looks both exciting and promising to us."
             </p>
           </div>
           <div className="w-14 h-[3px] rounded-full bg-brand-600" />
           <div className="flex flex-col items-center gap-1 text-center">
-            <h4 className="font-heading text-[17px] font-bold text-heading dark:text-white m-0">Mr. SKM Shree Shivkumar</h4>
-            <p className="font-body text-[12px] font-bold text-brand-600 dark:text-brand-400 m-0 uppercase tracking-widest">Chief Executive Officer</p>
+            <h4 className="font-heading text-[17px] font-bold text-heading m-0">Mr. SKM Shree Shivkumar</h4>
+            <p className="font-body text-[12px] font-bold text-brand-600 m-0 uppercase tracking-widest">Chief Executive Officer</p>
           </div>
         </motion.div>
 
         <InternalLink
           route="ceo_message"
           onPageChange={onPageChange}
-          className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+          className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
         >
           Read Full Leadership Message
         </InternalLink>
@@ -477,11 +477,11 @@ function VisionMissionValuesSection() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40">
+    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Purpose &amp; Direction</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
             Vision, mission and values
           </h2>
         </div>
@@ -489,24 +489,24 @@ function VisionMissionValuesSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <motion.div
             {...fadeUp(reduceMotion, { distance: 16, duration: DURATION.sectionEntrance })}
-            className="relative flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 overflow-hidden"
+            className="relative flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] bg-[#fdfbf7] overflow-hidden"
           >
             <span aria-hidden="true" className="absolute top-0 left-6 right-6 h-[2px] bg-brand-600" />
-            <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Vision</span>
-            <p className="font-body text-[16px] font-medium leading-[1.6] text-surface-700 dark:text-surface-200 m-0 italic">
+            <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600">Vision</span>
+            <p className="font-body text-[16px] font-medium leading-[1.6] text-surface-700 m-0 italic">
               "To be the leader in the sectors we operate with the responsibility of building a healthy society."
             </p>
           </motion.div>
 
           <motion.div
             {...fadeUp(reduceMotion, { distance: 16, duration: DURATION.sectionEntrance, delay: 0.06 })}
-            className="relative flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 overflow-hidden"
+            className="relative flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] bg-[#fdfbf7] overflow-hidden"
           >
             <span aria-hidden="true" className="absolute top-0 left-6 right-6 h-[2px] bg-brand-600" />
-            <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Mission</span>
+            <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600">Mission</span>
             <ul className="flex flex-col gap-1.5 list-none m-0 p-0">
               {MISSION_ITEMS.map((item) => (
-                <li key={item} className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.5] pl-4 relative">
+                <li key={item} className="font-body text-[13.5px] text-surface-600 leading-[1.5] pl-4 relative">
                   <span aria-hidden="true" className="absolute left-0 text-brand-600">•</span>
                   {item}
                 </li>
@@ -516,10 +516,10 @@ function VisionMissionValuesSection() {
 
           <motion.div
             {...fadeUp(reduceMotion, { distance: 16, duration: DURATION.sectionEntrance, delay: 0.12 })}
-            className="relative flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 overflow-hidden"
+            className="relative flex flex-col gap-3 p-6 rounded-[18px] border border-[#eee] bg-[#fdfbf7] overflow-hidden"
           >
             <span aria-hidden="true" className="absolute top-0 left-6 right-6 h-[2px] bg-brand-600" />
-            <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Values</span>
+            <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600">Values</span>
             <div className="flex flex-wrap gap-1.5">
               {CORE_VALUES.map((value, i) => (
                 <motion.span
@@ -528,7 +528,7 @@ function VisionMissionValuesSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-80px' }}
                   transition={{ duration: reduceMotion ? 0.01 : 0.3, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.12 + i * 0.06 }}
-                  className="font-body text-[11.5px] font-medium text-surface-600 dark:text-surface-300 bg-white dark:bg-surface-800/60 border border-surface-200/70 dark:border-surface-700 px-2.5 py-1 rounded-[6px]"
+                  className="font-body text-[11.5px] font-medium text-surface-600 bg-white border border-surface-200/70 px-2.5 py-1 rounded-[6px]"
                 >
                   {value}
                 </motion.span>
@@ -563,17 +563,17 @@ function IntegratedBusinessModelSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">One Supply Chain</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
             Integrated business model
           </h2>
         </div>
 
         <div className="relative">
-          <div className="hidden lg:block absolute left-0 right-0 top-[19px] h-px bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
+          <div className="hidden lg:block absolute left-0 right-0 top-[19px] h-px bg-surface-300" aria-hidden="true" />
           <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
             {BUSINESS_MODEL_STAGES.map((stage, i) => {
               const delay = i * 0.12;
@@ -589,9 +589,9 @@ function IntegratedBusinessModelSection({ onPageChange }) {
                   <span className="relative z-10 w-[38px] h-[38px] rounded-full bg-brand-600 text-white flex items-center justify-center font-heading font-bold text-[13px]">
                     {i + 1}
                   </span>
-                  <div className="flex flex-col gap-1.5 p-5 rounded-[16px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 flex-1">
-                    <h3 className="font-heading font-bold text-[15px] text-heading dark:text-white m-0">{stage.label}</h3>
-                    <p className="font-body text-[12.5px] text-surface-500 dark:text-surface-400 leading-[1.5] m-0">{stage.fact}</p>
+                  <div className="flex flex-col gap-1.5 p-5 rounded-[16px] border border-[#eee] bg-[#fdfbf7] flex-1">
+                    <h3 className="font-heading font-bold text-[15px] text-heading m-0">{stage.label}</h3>
+                    <p className="font-body text-[12.5px] text-surface-500 leading-[1.5] m-0">{stage.fact}</p>
                   </div>
                 </motion.div>
               );
@@ -637,11 +637,11 @@ function AwardsRecognitionSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Honors &amp; Recognitions</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
             Awards and recognitions
           </h2>
         </div>
@@ -651,10 +651,10 @@ function AwardsRecognitionSection({ onPageChange }) {
             <motion.div
               key={award.name}
               {...fadeUp(reduceMotion, { distance: 16, duration: DURATION.cardHover, delay: i * 0.1 })}
-              className="flex flex-col gap-3 p-6 rounded-[16px] border border-[#eee] dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900"
+              className="flex flex-col gap-3 p-6 rounded-[16px] border border-[#eee] bg-[#fdfbf7]"
             >
-              <h3 className="font-heading font-bold text-[15px] text-heading dark:text-white m-0">{award.name}</h3>
-              <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-[1.5] m-0">{award.desc}</p>
+              <h3 className="font-heading font-bold text-[15px] text-heading m-0">{award.name}</h3>
+              <p className="font-body text-[13px] text-surface-500 leading-[1.5] m-0">{award.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -663,7 +663,7 @@ function AwardsRecognitionSection({ onPageChange }) {
           type="button"
           aria-expanded={showAll}
           onClick={() => setShowAll((prev) => !prev)}
-          className="self-start inline-flex items-center gap-2 font-body font-semibold text-[14px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 bg-transparent border-none p-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
+          className="self-start inline-flex items-center gap-2 font-body font-semibold text-[14px] text-brand-600 hover:text-brand-700 bg-transparent border-none p-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
         >
           {showAll ? 'Show Fewer Awards' : 'Show More Awards'}
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className={`transition-transform duration-200 ${showAll ? 'rotate-180' : ''}`} aria-hidden>
@@ -689,7 +689,7 @@ function AwardsRecognitionSection({ onPageChange }) {
                 className="flex items-start gap-3"
               >
                 <span className="mt-[9px] flex-shrink-0 w-1.5 h-1.5 rounded-full bg-brand-600" />
-                <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 leading-[1.6] m-0">{award}</p>
+                <p className="font-body text-[14px] text-surface-500 leading-[1.6] m-0">{award}</p>
               </motion.li>
             ))}
           </motion.ul>
@@ -707,7 +707,7 @@ function AwardsRecognitionSection({ onPageChange }) {
           <InternalLink
             route="coffee_table_books"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2 font-body font-semibold text-[14px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
+            className="inline-flex items-center gap-2 font-body font-semibold text-[14px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
           >
             See Our Coffee Table Books
           </InternalLink>
@@ -730,7 +730,7 @@ function LocationsSection({ onPageChange }) {
         className="mx-auto max-w-[600px] flex flex-col items-center gap-5"
       >
         <span className="section-label justify-center">Global Operations</span>
-        <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading dark:text-white m-0 tracking-tight">
+        <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
           Exporting to 30+ countries, with regional branches in Japan, Europe, and Russia.
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
@@ -744,7 +744,7 @@ function LocationsSection({ onPageChange }) {
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
             Contact SKM
           </InternalLink>
@@ -782,14 +782,14 @@ export default function AboutSKMPage({ onPageChange }) {
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full flex flex-col bg-page dark:bg-surface-950">
+      <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 — Company hero. Background is a scroll-scrubbed frame
             sequence (200 UHD frames of the facility, public/about-skm-sequence),
             pinned via a sticky viewport inside a tall wrapper — same
             scroll-scrub pattern as the Home hero (Home/sections/Hero.jsx). */}
         <section ref={heroScrubRef} className="relative w-full h-[220vh]">
-          <div className="sticky top-0 h-[560px] sm:h-[620px] lg:h-[680px] w-full overflow-hidden border-b border-[#eee] dark:border-surface-800/40">
+          <div className="sticky top-0 h-[560px] sm:h-[620px] lg:h-[680px] w-full overflow-hidden border-b border-[#eee]">
             <ScrollFrameSequence containerRef={heroScrubRef} basePath="/about-skm-sequence" frameCount={200} />
 
             {/* Left-weighted scrim — copy sits fully clear on the left,

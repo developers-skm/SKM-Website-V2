@@ -49,7 +49,7 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
   };
 
   return (
-    <div className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center overflow-x-hidden bg-page dark:bg-surface-950 px-6 sm:px-12 lg:px-16 py-12 lg:py-0 select-none">
+    <div className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center overflow-x-hidden bg-page px-6 sm:px-12 lg:px-16 py-12 lg:py-0 select-none">
       <SEO
         title="Offline | SKM Egg Products"
         description="No internet connection detected. Please check your connection and try again."
@@ -106,7 +106,7 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
               src={imageSrc}
               alt="SKM Offline — Connection cracked concept"
               onError={handleImageError}
-              className="relative z-10 w-full h-full object-contain filter drop-shadow-[0_16px_32px_rgba(0,0,0,0.06)] dark:drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              className="relative z-10 w-full h-full object-contain filter drop-shadow-[0_16px_32px_rgba(0,0,0,0.06)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
               loading="eager"
             />
           </motion.div>
@@ -124,7 +124,7 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: 0.15 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50/80 dark:bg-surface-900/80 border border-brand-200/50 dark:border-brand-900/40 text-brand-700 dark:text-brand-400 font-bold text-xs tracking-widest uppercase mb-6 shadow-xs backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50/80 border border-brand-200/50 text-brand-700 font-bold text-xs tracking-widest uppercase mb-6 shadow-xs backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
               <span
@@ -142,12 +142,12 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
           </motion.div>
 
           {/* Headline */}
-          <h1 className="font-heading text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-surface-900 dark:text-surface-50 tracking-tight leading-[1.15] mb-4">
+          <h1 className="font-heading text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-surface-900 tracking-tight leading-[1.15] mb-4">
             Looks like the connection cracked.
           </h1>
 
           {/* Supporting Description */}
-          <p className="text-surface-600 dark:text-surface-300 text-base sm:text-lg leading-relaxed max-w-md lg:max-w-lg mb-8">
+          <p className="text-surface-600 text-base sm:text-lg leading-relaxed max-w-md lg:max-w-lg mb-8">
             We couldn't connect to the SKM website. Check your internet connection and try again.
           </p>
 
@@ -163,8 +163,8 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
                 role="alert"
                 aria-live="polite"
               >
-                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-sm font-medium text-left">
-                  <svg className="w-5 h-5 flex-shrink-0 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 text-sm font-medium text-left">
+                  <svg className="w-5 h-5 flex-shrink-0 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                   </svg>
                   <span>{errorMessage}</span>
@@ -181,8 +181,8 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
                 role="status"
                 aria-live="polite"
               >
-                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-sm font-medium text-left">
-                  <svg className="w-5 h-5 flex-shrink-0 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 text-sm font-medium text-left">
+                  <svg className="w-5 h-5 flex-shrink-0 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                   </svg>
                   <span>Connection restored! Restoring page...</span>
@@ -221,7 +221,7 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
             {/* Secondary Quiet Action: Back to Home */}
             <button
               onClick={() => onPageChange && onPageChange('home')}
-              className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-surface-600 dark:text-surface-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors py-2 px-3 group"
+              className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-surface-600 hover:text-brand-600 transition-colors py-2 px-3 group"
             >
               <span>Back to Home</span>
               <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

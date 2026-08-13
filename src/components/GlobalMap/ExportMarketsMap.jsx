@@ -61,14 +61,14 @@ export default function ExportMarketsMap() {
       onViewportEnter={() => setIsInView(true)}
       viewport={{ once: true, margin: '-100px' }}
       transition={reduceMotion ? { duration: 0.01 } : { type: 'spring', stiffness: 90, damping: 15 }}
-      className="relative rounded-[20px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/20 overflow-hidden shadow-[5px_3px_40px_rgba(0,72,88,0.08)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-300"
+      className="relative rounded-[20px] border border-[#eee] bg-white overflow-hidden shadow-[5px_3px_40px_rgba(0,72,88,0.08)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-300"
     >
       <div className="flex flex-col lg:flex-row lg:h-[820px]">
 
         {/* ── Legend ──────────────────────────────────────────────── */}
-        <div className="order-2 lg:order-1 lg:w-[188px] xl:w-[208px] shrink-0 border-t lg:border-t-0 lg:border-r border-[#eee] dark:border-surface-800">
+        <div className="order-2 lg:order-1 lg:w-[188px] xl:w-[208px] shrink-0 border-t lg:border-t-0 lg:border-r border-[#eee]">
           <div className="p-4 lg:p-5 h-full flex flex-col">
-            <p className="text-[10px] font-heading font-bold uppercase tracking-[0.1em] text-surface-400 dark:text-surface-500 mb-3 shrink-0">
+            <p className="text-[10px] font-heading font-bold uppercase tracking-[0.1em] text-surface-400 mb-3 shrink-0">
               Export Markets · {EXPORT_MARKETS.length} Countries
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-0.5 lg:overflow-y-auto lg:flex-1 lg:min-h-0">
@@ -76,8 +76,8 @@ export default function ExportMarketsMap() {
                 <div
                   key={market.id}
                   className={`flex items-center gap-2 px-2 py-[7px] rounded-lg transition-all duration-150 cursor-default select-none ${hoveredId === market.id
-                    ? 'bg-red-50 dark:bg-red-900/20'
-                    : 'hover:bg-surface-50 dark:hover:bg-surface-800/50'
+                    ? 'bg-red-50'
+                    : 'hover:bg-surface-50'
                     }`}
                   onMouseEnter={() => setHoveredId(market.id)}
                   onMouseLeave={() => setHoveredId(null)}
@@ -91,7 +91,7 @@ export default function ExportMarketsMap() {
                     className="rounded-[2px] shrink-0 object-cover"
                     style={{ boxShadow: '0 0 0 0.5px rgba(0,0,0,0.15)' }}
                   />
-                  <span className="text-[11px] font-medium text-surface-700 dark:text-surface-300 whitespace-nowrap overflow-hidden text-ellipsis">
+                  <span className="text-[11px] font-medium text-surface-700 whitespace-nowrap overflow-hidden text-ellipsis">
                     {market.name}
                   </span>
                 </div>
@@ -103,7 +103,7 @@ export default function ExportMarketsMap() {
         {/* ── Map ─────────────────────────────────────────────────── */}
         <div
           ref={mapRef}
-          className="order-1 lg:order-2 flex-1 relative bg-[#dde6ef] dark:bg-surface-800/40 min-h-[220px] sm:min-h-[300px]"
+          className="order-1 lg:order-2 flex-1 relative bg-[#dde6ef] min-h-[220px] sm:min-h-[300px]"
         >
           {/* Subtle brand-red gradient wash */}
           <div className="absolute inset-0 bg-gradient-to-br from-brand-600/4 to-transparent pointer-events-none z-10" />
@@ -223,7 +223,7 @@ export default function ExportMarketsMap() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.88, y: -4 }}
                 transition={{ duration: 0.14 }}
-                className="absolute pointer-events-none z-20 bg-white dark:bg-surface-800 border border-[#e5e5e5] dark:border-surface-700 rounded-xl px-3 py-2 shadow-xl flex items-center gap-2"
+                className="absolute pointer-events-none z-20 bg-white border border-[#e5e5e5] rounded-xl px-3 py-2 shadow-xl flex items-center gap-2"
                 style={{
                   left: Math.min(
                     tooltip.x + 14,
@@ -241,7 +241,7 @@ export default function ExportMarketsMap() {
                   className="rounded-[2px] shrink-0 object-cover"
                   style={{ boxShadow: '0 0 0 0.5px rgba(0,0,0,0.15)' }}
                 />
-                <span className="text-[12px] font-semibold text-surface-800 dark:text-white whitespace-nowrap">
+                <span className="text-[12px] font-semibold text-surface-800 whitespace-nowrap">
                   {tooltip.name}
                 </span>
               </motion.div>

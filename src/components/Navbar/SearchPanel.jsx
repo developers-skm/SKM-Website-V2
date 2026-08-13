@@ -35,17 +35,17 @@ export default function SearchPanel({ onNavigate, inputRef }) {
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Search the website…"
           aria-label="Search website"
-          className="flex-grow bg-transparent border-none outline-none text-[20px] md:text-[24px] font-heading font-semibold text-surface-800 dark:text-surface-100 placeholder-surface-400 dark:placeholder-surface-500"
+          className="flex-grow bg-transparent border-none outline-none text-[20px] md:text-[24px] font-heading font-semibold text-surface-800 placeholder-surface-400"
         />
       </div>
 
       <div className="mt-6">
         {query.trim() === '' ? (
-          <p className="text-surface-500 dark:text-surface-400 text-[14px] font-body">
+          <p className="text-surface-500 text-[14px] font-body">
             Start typing to search pages across the site.
           </p>
         ) : results.length === 0 ? (
-          <p className="text-surface-500 dark:text-surface-400 text-[14px] font-body">
+          <p className="text-surface-500 text-[14px] font-body">
             No matches for &ldquo;{query}&rdquo;. Try a different term, such as a product or page name.
           </p>
         ) : (
@@ -55,7 +55,7 @@ export default function SearchPanel({ onNavigate, inputRef }) {
                 <button
                   type="button"
                   onClick={() => handleSelect(item.route, item.careersIntent ? { enquiryType: 'job', intentId: crypto.randomUUID() } : undefined)}
-                  className="w-full text-left flex items-center min-h-[44px] px-3 py-2 rounded-lg font-body text-[16px] font-semibold text-surface-800 dark:text-surface-100 hover:bg-brand-600/8 hover:text-brand-600 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                  className="w-full text-left flex items-center min-h-[44px] px-3 py-2 rounded-lg font-body text-[16px] font-semibold text-surface-800 hover:bg-brand-600/8 hover:text-brand-600 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
                 >
                   {item.label}
                 </button>

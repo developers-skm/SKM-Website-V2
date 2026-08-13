@@ -29,26 +29,26 @@ function ApplicationRow({ app, index, isActive, onActivate, onPageChange, reduce
   return (
     <motion.div
       {...fadeUp(reduceMotion, { distance: 18, delay: 0.25 + index * 0.09 })}
-      className={index === 0 ? 'border-t border-surface-200/70 dark:border-surface-800' : ''}
+      className={index === 0 ? 'border-t border-surface-200/70' : ''}
     >
       <InternalLink
         route={app.page}
         onPageChange={onPageChange}
         onMouseEnter={onActivate}
         onFocus={onActivate}
-        className="group flex items-start gap-5 py-6 border-b border-surface-200/70 dark:border-surface-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
+        className="group flex items-start gap-5 py-6 border-b border-surface-200/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
         aria-label={`Explore ${app.title} applications`}
       >
-        <span className={`font-body text-[13px] pt-1 tabular-nums transition-colors duration-300 ${isActive ? 'text-brand-600 dark:text-brand-400' : 'text-surface-400 dark:text-surface-600'}`}>
+        <span className={`font-body text-[13px] pt-1 tabular-nums transition-colors duration-300 ${isActive ? 'text-brand-600' : 'text-surface-400'}`}>
           {String(index + 1).padStart(2, '0')}
         </span>
 
         <div className="flex-1 min-w-0 flex flex-col gap-1.5">
-          <h3 className={`font-heading font-bold text-[20px] sm:text-[23px] leading-[1.3] m-0 transition-colors duration-300 ${isActive ? 'text-brand-600 dark:text-brand-400' : 'text-heading dark:text-white'}`}>
+          <h3 className={`font-heading font-bold text-[20px] sm:text-[23px] leading-[1.3] m-0 transition-colors duration-300 ${isActive ? 'text-brand-600' : 'text-heading'}`}>
             {app.title}
           </h3>
           <p
-            className={`font-body text-[14px] sm:text-[14.5px] text-surface-500 dark:text-surface-400 leading-[1.55] max-w-md transition-opacity duration-300 ${isActive ? 'lg:opacity-100' : 'lg:opacity-60'}`}
+            className={`font-body text-[14px] sm:text-[14.5px] text-surface-500 leading-[1.55] max-w-md transition-opacity duration-300 ${isActive ? 'lg:opacity-100' : 'lg:opacity-60'}`}
           >
             {app.problem}
           </p>
@@ -56,7 +56,7 @@ function ApplicationRow({ app, index, isActive, onActivate, onPageChange, reduce
 
         <svg
           width="13" height="13" viewBox="0 0 10 10" fill="currentColor"
-          className={`flex-shrink-0 mt-1.5 transition-all duration-300 ${isActive ? 'text-brand-600 dark:text-brand-400 translate-x-1.5' : 'text-surface-300 dark:text-surface-700'}`}
+          className={`flex-shrink-0 mt-1.5 transition-all duration-300 ${isActive ? 'text-brand-600 translate-x-1.5' : 'text-surface-300'}`}
           aria-hidden
         >
           <path d="M10 0.0495054L10 10.0001L8.13725 10.0001L-8.22301e-08 1.8812L1.86275 -3.55691e-07L7.35294 5.5446L7.30392 0.0495053L10 0.0495054Z" />
@@ -95,12 +95,12 @@ export default function ApplicationAreas({ onPageChange }) {
   }, [reduceMotion, isPaused]);
 
   return (
-    <div id="application-selector" className="w-full bg-white dark:bg-surface-900/40 pt-24 pb-24 lg:pt-32 lg:pb-32 scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="application-selector" className="w-full bg-white pt-24 pb-24 lg:pt-32 lg:pb-32 scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-12 lg:mb-16">
           <span className="section-label">Applications</span>
-          <h2 className="font-heading font-bold text-[38px] sm:text-[52px] lg:text-[62px] text-heading dark:text-white leading-[1.02] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[38px] sm:text-[52px] lg:text-[62px] text-heading leading-[1.02] tracking-tight m-0">
             What we are applied for
           </h2>
         </motion.div>
@@ -176,7 +176,7 @@ export default function ApplicationAreas({ onPageChange }) {
               <InternalLink
                 route="applications"
                 onPageChange={onPageChange}
-                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white dark:bg-surface-900 border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.05em] transition-all duration-[250ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.05em] transition-all duration-[250ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
               >
                 View All Applications
               </InternalLink>

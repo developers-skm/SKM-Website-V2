@@ -34,14 +34,14 @@ export default function ApplicationProductMatrix({ onPageChange }) {
   };
 
   return (
-    <div className="w-full bg-white dark:bg-surface-900/40 py-16 sm:py-20 lg:py-24">
+    <div className="w-full bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl">
-          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             Product Matrix
           </span>
-          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1]">
+          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
             Recommended Products By Application
           </h2>
         </motion.div>
@@ -52,12 +52,12 @@ export default function ApplicationProductMatrix({ onPageChange }) {
               onScroll={(e) => {
                 if (!hasScrolled && e.currentTarget.scrollLeft > 12) setHasScrolled(true);
               }}
-              className="overflow-x-auto rounded-[24px] border border-surface-200/60 dark:border-surface-800"
+              className="overflow-x-auto rounded-[24px] border border-surface-200/60"
             >
               <table className="w-full border-collapse min-w-[720px]">
                 <thead>
-                  <tr className="bg-[#fbf7f1] dark:bg-surface-900 border-b border-surface-200/70 dark:border-surface-800">
-                    <th className="sticky left-0 z-20 bg-[#fbf7f1] dark:bg-surface-900 text-left px-5 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">
+                  <tr className="bg-[#fbf7f1] border-b border-surface-200/70">
+                    <th className="sticky left-0 z-20 bg-[#fbf7f1] text-left px-5 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">
                       Application
                     </th>
                     {columnProducts.map((product) => (
@@ -65,7 +65,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
                         key={product.id}
                         onMouseEnter={() => setHoverCol(product.id)}
                         onMouseLeave={() => setHoverCol(null)}
-                        className={`px-4 py-4 font-body text-[11px] font-bold uppercase tracking-wider whitespace-nowrap transition-colors duration-200 ${hoverCol === product.id ? 'text-brand-600 dark:text-brand-400 bg-[#f3c969]/10' : 'text-surface-500 dark:text-surface-400'}`}
+                        className={`px-4 py-4 font-body text-[11px] font-bold uppercase tracking-wider whitespace-nowrap transition-colors duration-200 ${hoverCol === product.id ? 'text-brand-600 bg-[#f3c969]/10' : 'text-surface-500'}`}
                       >
                         <label className="flex flex-col items-center gap-2 cursor-pointer">
                           <input
@@ -89,10 +89,10 @@ export default function ApplicationProductMatrix({ onPageChange }) {
                       key={app.id}
                       onMouseEnter={() => setHoverRow(app.id)}
                       onMouseLeave={() => setHoverRow(null)}
-                      className={`border-b border-surface-200/50 dark:border-surface-800/60 last:border-b-0 transition-colors duration-200 ${hoverRow === app.id ? 'bg-[#f3c969]/6' : ''}`}
+                      className={`border-b border-surface-200/50 last:border-b-0 transition-colors duration-200 ${hoverRow === app.id ? 'bg-[#f3c969]/6' : ''}`}
                     >
                       <td
-                        className={`sticky left-0 z-10 px-5 py-4 font-heading font-semibold text-[14.5px] whitespace-nowrap transition-colors duration-200 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] ${hoverRow === app.id ? 'bg-[#f3c969]/6 text-brand-600 dark:text-brand-400' : 'bg-white dark:bg-surface-900/40 text-heading dark:text-white'}`}
+                        className={`sticky left-0 z-10 px-5 py-4 font-heading font-semibold text-[14.5px] whitespace-nowrap transition-colors duration-200 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] ${hoverRow === app.id ? 'bg-[#f3c969]/6 text-brand-600' : 'bg-white text-heading'}`}
                       >
                         {app.title}
                       </td>
@@ -128,7 +128,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
                   initial={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                  className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 rounded-r-[24px] bg-gradient-to-l from-white dark:from-surface-900/90 from-30% via-white/70 dark:via-surface-900/60 to-transparent flex items-center justify-end pr-3"
+                  className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 rounded-r-[24px] bg-gradient-to-l from-white from-30% via-white/70 to-transparent flex items-center justify-end pr-3"
                   aria-hidden="true"
                 >
                   <motion.svg
@@ -150,7 +150,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400 dark:text-surface-500"
+                className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400"
               >
                 Scroll right to view more products
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -171,7 +171,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
                 transition={{ duration: reduceMotion ? 0.01 : DURATION.filterTransition, ease: EASE_PREMIUM }}
                 className="flex flex-wrap items-center gap-3"
               >
-                <span className="font-body text-[13px] text-surface-500 dark:text-surface-400">
+                <span className="font-body text-[13px] text-surface-500">
                   {checked.length} selected:
                 </span>
                 {checked.map((id) => {
@@ -184,7 +184,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: reduceMotion ? 0.01 : DURATION.fast, ease: EASE_PREMIUM }}
                       onClick={() => onPageChange(product.page)}
-                      className="inline-flex items-center gap-1.5 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] cursor-pointer bg-transparent border border-brand-600/20 hover:border-brand-600/40 rounded-full px-4 py-2"
+                      className="inline-flex items-center gap-1.5 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] cursor-pointer bg-transparent border border-brand-600/20 hover:border-brand-600/40 rounded-full px-4 py-2"
                     >
                       {product.title}
                     </motion.button>

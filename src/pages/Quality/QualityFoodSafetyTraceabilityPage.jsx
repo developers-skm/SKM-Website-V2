@@ -38,7 +38,7 @@ import traceabilityHeroImage from '../../assets/4. QUALITY/Traceability/Traceabi
 // Traceability" routes to the existing Traceability page.
 function TraceabilityJourneySection({ onPageChange }) {
   return (
-    <div id="farm-to-product-traceability" className="w-full border-b border-[#eee] dark:border-surface-800/40">
+    <div id="farm-to-product-traceability" className="w-full border-b border-[#eee]">
       <HomeJourney onPageChange={onPageChange} />
     </div>
   );
@@ -105,7 +105,7 @@ function QualityGatesSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="quality-gates" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40">
+    <div id="quality-gates" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -116,7 +116,7 @@ function QualityGatesSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Quality Gates</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Quality screening by production stage
           </h2>
         </motion.div>
@@ -129,15 +129,15 @@ function QualityGatesSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.04 }}
-              className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-white dark:bg-surface-900 shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/25 hover:-translate-y-1 transition-all duration-300"
+              className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 bg-white shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/25 hover:-translate-y-1 transition-all duration-300"
             >
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-brand-600/8 dark:bg-brand-950/50 font-mono text-[11px] font-bold text-brand-600 dark:text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-brand-600/8 font-mono text-[11px] font-bold text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">
                 {gate.label}
               </h3>
-              <p className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+              <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
                 {gate.fact}
               </p>
             </motion.div>
@@ -197,7 +197,7 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="laboratory-capabilities" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div id="laboratory-capabilities" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -208,7 +208,7 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">NABL-Accredited Laboratory</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Laboratory capabilities
           </h2>
         </motion.div>
@@ -221,19 +221,19 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              className="group flex flex-col gap-4 p-6 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 transition-all duration-300"
+              className="group flex flex-col gap-4 p-6 rounded-[20px] border border-surface-200/70 bg-[#fdfbf7] shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 transition-all duration-300"
             >
-              <h3 className="font-heading font-bold text-[18px] text-heading dark:text-white m-0">
+              <h3 className="font-heading font-bold text-[18px] text-heading m-0">
                 {cap.title}
               </h3>
-              <p className="font-body text-[14px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+              <p className="font-body text-[14px] text-surface-600 leading-[1.6] m-0">
                 {cap.description}
               </p>
               <div className="flex flex-wrap gap-2">
                 {cap.chips.map((chip) => (
                   <span
                     key={chip}
-                    className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300 bg-brand-600/6 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/40 px-2.5 py-1 rounded-full"
+                    className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-brand-700 bg-brand-600/6 border border-brand-600/12 px-2.5 py-1 rounded-full"
                   >
                     {chip}
                   </span>
@@ -257,7 +257,7 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
             disabled
             title="Coming soon"
             aria-disabled="true"
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-600 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
+            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 text-surface-400 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
           >
             Download Laboratory Accreditation
           </button>
@@ -300,7 +300,7 @@ function CertificationsApprovalsSection({ onPageChange }) {
     : certifications;
 
   return (
-    <div id="certifications-approvals" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+    <div id="certifications-approvals" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
 
         <motion.div
@@ -311,13 +311,13 @@ function CertificationsApprovalsSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Certifications</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Certifications and approvals
           </h2>
         </motion.div>
 
         <div className="flex flex-wrap items-center gap-2.5">
-          <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500 mr-1">Filter</span>
+          <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 mr-1">Filter</span>
           {CERT_FILTER_AXES.map((cat) => (
             <button
               key={cat}
@@ -327,7 +327,7 @@ function CertificationsApprovalsSection({ onPageChange }) {
               className={`inline-flex items-center min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-full border font-body font-semibold text-[13.5px] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
                 activeCategory === cat
                   ? 'bg-brand-600 border-brand-600 text-white shadow-[0_4px_14px_rgba(228,10,24,0.3)]'
-                  : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50 hover:-translate-y-0.5'
+                  : 'bg-white border-surface-300 text-surface-600 hover:border-brand-600/50 hover:-translate-y-0.5'
               }`}
             >
               {cat}
@@ -337,7 +337,7 @@ function CertificationsApprovalsSection({ onPageChange }) {
             <button
               type="button"
               onClick={() => setActiveCategory(null)}
-              className="font-body font-semibold text-[13px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
+              className="font-body font-semibold text-[13px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
             >
               Clear Filter
             </button>
@@ -348,25 +348,25 @@ function CertificationsApprovalsSection({ onPageChange }) {
           {visibleCerts.map((cert) => (
             <div
               key={cert.name}
-              className="group flex flex-col gap-3 p-5 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 hover:-translate-y-1 transition-all duration-300"
+              className="group flex flex-col gap-3 p-5 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7] shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 hover:-translate-y-1 transition-all duration-300"
             >
               <img src={cert.logo} alt={cert.name} loading="lazy" className="w-full aspect-square object-contain rounded-[12px] bg-white p-2 shadow-[0_2px_10px_rgba(36,30,24,0.06)]" />
-              <span className="font-heading font-bold text-[13.5px] text-heading dark:text-white text-center">
+              <span className="font-heading font-bold text-[13.5px] text-heading text-center">
                 {cert.name}
               </span>
-              <div className="flex items-center justify-center gap-4 pt-1 border-t border-surface-200/60 dark:border-surface-800">
+              <div className="flex items-center justify-center gap-4 pt-1 border-t border-surface-200/60">
                 <a
                   href={cert.logo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-body font-semibold text-[12px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm mt-2"
+                  className="font-body font-semibold text-[12px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm mt-2"
                 >
                   View Certificate
                 </a>
                 <a
                   href={cert.logo}
                   download
-                  className="font-body font-semibold text-[12px] text-surface-500 dark:text-surface-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm mt-2"
+                  className="font-body font-semibold text-[12px] text-surface-500 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm mt-2"
                 >
                   Download
                 </a>
@@ -378,7 +378,7 @@ function CertificationsApprovalsSection({ onPageChange }) {
         <InternalLink
           route="contact-us"
           onPageChange={onPageChange}
-          className="self-start inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+          className="self-start inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
         >
           Request Market-Specific Documentation
         </InternalLink>
@@ -437,7 +437,7 @@ function QualityManagementSystemSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="quality-management-system-overview" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40">
+    <div id="quality-management-system-overview" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -448,7 +448,7 @@ function QualityManagementSystemSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Quality Management System</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Quality management system
           </h2>
         </motion.div>
@@ -461,12 +461,12 @@ function QualityManagementSystemSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.04 }}
-              className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 transition-all duration-300"
+              className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 bg-[#fdfbf7] shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 transition-all duration-300"
             >
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">
                 {topic.label}
               </h3>
-              <p className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+              <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
                 {topic.fact}
               </p>
             </motion.div>
@@ -485,7 +485,7 @@ function QualityManagementSystemSection({ onPageChange }) {
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
             Request Quality Documentation
           </InternalLink>
@@ -538,7 +538,7 @@ function IncidentResponseSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="traceability-incident-response" className="w-full py-[60px] lg:py-[85px] bg-white dark:bg-surface-900/40">
+    <div id="traceability-incident-response" className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -549,7 +549,7 @@ function IncidentResponseSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Incident Response</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Traceability and incident response
           </h2>
         </motion.div>
@@ -562,12 +562,12 @@ function IncidentResponseSection({ onPageChange }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 transition-all duration-300"
+              className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 bg-[#fdfbf7] shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 transition-all duration-300"
             >
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">
                 {topic.label}
               </h3>
-              <p className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+              <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
                 {topic.fact}
               </p>
             </motion.div>
@@ -586,7 +586,7 @@ function IncidentResponseSection({ onPageChange }) {
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
             Contact Quality Assurance
           </InternalLink>
@@ -618,12 +618,12 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full flex flex-col bg-page dark:bg-surface-950">
+      <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 — Trust hero */}
-        <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
+        <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] overflow-hidden">
           <div
-            className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18] dark:opacity-[0.22]"
+            className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18]"
             style={{ backgroundImage: `url(${traceabilityHeroImage})` }}
             aria-hidden="true"
           />
@@ -635,68 +635,68 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
           <div className="relative mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
             <motion.div {...fadeProps()} className="max-w-3xl mb-9 lg:mb-11">
               <span className="section-label">Quality, Food Safety &amp; Traceability</span>
-              <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.1] tracking-tight m-0 mt-3">
+              <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0 mt-3">
                 Can this supplier consistently deliver a safe, compliant and traceable ingredient?
               </h1>
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
               {/* Quality promise */}
-              <motion.div {...fadeProps(0)} className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-white dark:bg-surface-900 shadow-[0_4px_20px_rgba(36,30,24,0.05)] hover:shadow-[0_16px_40px_rgba(36,30,24,0.1)] hover:-translate-y-1 transition-all duration-300">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-[12px] bg-gradient-to-br from-brand-600/10 to-brand-600/[0.02] dark:from-brand-950/60 dark:to-brand-950/20 border border-brand-600/15 dark:border-brand-900/40">
-                  <svg className="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+              <motion.div {...fadeProps(0)} className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 bg-white shadow-[0_4px_20px_rgba(36,30,24,0.05)] hover:shadow-[0_16px_40px_rgba(36,30,24,0.1)] hover:-translate-y-1 transition-all duration-300">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-[12px] bg-gradient-to-br from-brand-600/10 to-brand-600/[0.02] border border-brand-600/15">
+                  <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                   </svg>
                 </span>
-                <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500">
+                <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400">
                   Quality promise
                 </span>
-                <span className="font-body text-[15px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+                <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
                   We at SKM, as manufacturer and supplier of eggs and egg products, are committed to delivering safe and high functional products.
                 </span>
               </motion.div>
 
               {/* Main certifications */}
-              <motion.div {...fadeProps(0.05)} className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-white dark:bg-surface-900 shadow-[0_4px_20px_rgba(36,30,24,0.05)] hover:shadow-[0_16px_40px_rgba(36,30,24,0.1)] hover:-translate-y-1 transition-all duration-300">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-[12px] bg-gradient-to-br from-brand-600/10 to-brand-600/[0.02] dark:from-brand-950/60 dark:to-brand-950/20 border border-brand-600/15 dark:border-brand-900/40">
-                  <svg className="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+              <motion.div {...fadeProps(0.05)} className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 bg-white shadow-[0_4px_20px_rgba(36,30,24,0.05)] hover:shadow-[0_16px_40px_rgba(36,30,24,0.1)] hover:-translate-y-1 transition-all duration-300">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-[12px] bg-gradient-to-br from-brand-600/10 to-brand-600/[0.02] border border-brand-600/15">
+                  <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </span>
-                <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500">
+                <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400">
                   Main certifications
                 </span>
-                <span className="font-body text-[15px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+                <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
                   {certifications.map((c) => c.name).join(', ')}
                 </span>
               </motion.div>
 
               {/* Laboratory accreditation */}
-              <motion.div {...fadeProps(0.1)} className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-white dark:bg-surface-900 shadow-[0_4px_20px_rgba(36,30,24,0.05)] hover:shadow-[0_16px_40px_rgba(36,30,24,0.1)] hover:-translate-y-1 transition-all duration-300">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-[12px] bg-gradient-to-br from-brand-600/10 to-brand-600/[0.02] dark:from-brand-950/60 dark:to-brand-950/20 border border-brand-600/15 dark:border-brand-900/40">
-                  <svg className="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+              <motion.div {...fadeProps(0.1)} className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 bg-white shadow-[0_4px_20px_rgba(36,30,24,0.05)] hover:shadow-[0_16px_40px_rgba(36,30,24,0.1)] hover:-translate-y-1 transition-all duration-300">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-[12px] bg-gradient-to-br from-brand-600/10 to-brand-600/[0.02] border border-brand-600/15">
+                  <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
                   </svg>
                 </span>
-                <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500">
+                <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400">
                   Laboratory accreditation
                 </span>
-                <span className="font-body text-[15px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+                <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
                   NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006 — physicochemical, microbiological, and residue testing on every batch.
                 </span>
               </motion.div>
 
               {/* Traceability coverage */}
-              <motion.div {...fadeProps(0.15)} className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 dark:border-surface-800 bg-white dark:bg-surface-900 shadow-[0_4px_20px_rgba(36,30,24,0.05)] hover:shadow-[0_16px_40px_rgba(36,30,24,0.1)] hover:-translate-y-1 transition-all duration-300">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-[12px] bg-gradient-to-br from-brand-600/10 to-brand-600/[0.02] dark:from-brand-950/60 dark:to-brand-950/20 border border-brand-600/15 dark:border-brand-900/40">
-                  <svg className="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+              <motion.div {...fadeProps(0.15)} className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 bg-white shadow-[0_4px_20px_rgba(36,30,24,0.05)] hover:shadow-[0_16px_40px_rgba(36,30,24,0.1)] hover:-translate-y-1 transition-all duration-300">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-[12px] bg-gradient-to-br from-brand-600/10 to-brand-600/[0.02] border border-brand-600/15">
+                  <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
                   </svg>
                 </span>
-                <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500">
+                <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400">
                   Traceability coverage
                 </span>
-                <span className="font-body text-[15px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+                <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
                   Complete supply chain visibility — every egg, every batch, every step documented and traceable from biosecure hatchery to final dispatch.
                 </span>
               </motion.div>
@@ -708,7 +708,7 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
                 disabled
                 title="Coming soon"
                 aria-disabled="true"
-                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-600 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
+                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 text-surface-400 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
               >
                 Download Certification Pack
               </button>

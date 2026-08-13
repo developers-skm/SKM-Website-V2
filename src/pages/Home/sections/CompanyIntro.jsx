@@ -52,7 +52,7 @@ const blocks = [
 
 function ContentBlock({ block, index, onEnter, reduceMotion }) {
   return (
-    <div className="relative py-14 lg:py-20 border-t border-surface-200/70 dark:border-surface-800 first:border-t-0 first:pt-0">
+    <div className="relative py-14 lg:py-20 border-t border-surface-200/70 first:border-t-0 first:pt-0">
       {/* Invisible tripwire — tracks which block is active for the sticky
           image, decoupled from the entrance fade below so scrolling back up
           doesn't replay the content reveal every time. */}
@@ -63,13 +63,13 @@ function ContentBlock({ block, index, onEnter, reduceMotion }) {
         viewport={{ once: false, margin: '-45% 0px -45% 0px' }}
       />
       <motion.div {...fadeUp(reduceMotion, { distance: 28, duration: 0.8 })} className="flex flex-col gap-4">
-        <span className="font-body text-[12.5px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+        <span className="font-body text-[12.5px] font-bold uppercase tracking-widest text-brand-600">
           {block.eyebrow}
         </span>
-        <h3 className="font-heading font-bold text-[26px] sm:text-[30px] lg:text-[34px] text-heading dark:text-white leading-[1.15] tracking-tight m-0">
+        <h3 className="font-heading font-bold text-[26px] sm:text-[30px] lg:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
           {block.title}
         </h3>
-        <p className="font-body text-[15.5px] lg:text-[16.5px] text-surface-500 dark:text-surface-400 leading-[1.8] max-w-lg m-0">
+        <p className="font-body text-[15.5px] lg:text-[16.5px] text-surface-500 leading-[1.8] max-w-lg m-0">
           {block.body}
         </p>
         {/* Mobile-only inline image, since sticky panel is desktop-only */}
@@ -94,23 +94,23 @@ export default function CompanyIntro({ onPageChange }) {
   const active = blocks[activeIndex];
 
   return (
-    <div className="w-full bg-white dark:bg-surface-900/40 py-20 lg:py-28">
+    <div className="w-full bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-10">
           <span className="section-label">Infrastructure</span>
-          <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading dark:text-white leading-[1.05] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading leading-[1.05] tracking-tight m-0">
             Asia's largest integrated egg processing facility.
           </h2>
         </motion.div>
 
-        <motion.div {...fadeUp(reduceMotion, { delay: 0.1 })} className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 border-y border-surface-200/70 dark:border-surface-800 py-8 mb-14 lg:mb-16">
+        <motion.div {...fadeUp(reduceMotion, { delay: 0.1 })} className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 border-y border-surface-200/70 py-8 mb-14 lg:mb-16">
           {stats.map((stat) => (
             <div key={stat.label} className="flex flex-col gap-1.5">
-              <span className="font-heading font-bold text-[22px] sm:text-[26px] text-brand-600 dark:text-brand-400 leading-none tabular-nums">
+              <span className="font-heading font-bold text-[22px] sm:text-[26px] text-brand-600 leading-none tabular-nums">
                 {stat.value}
               </span>
-              <span className="font-body text-[12.5px] sm:text-[13px] text-surface-500 dark:text-surface-400 leading-tight">
+              <span className="font-body text-[12.5px] sm:text-[13px] text-surface-500 leading-tight">
                 {stat.label}
               </span>
             </div>
@@ -160,7 +160,7 @@ export default function CompanyIntro({ onPageChange }) {
               <InternalLink
                 route="egg_processing_plant"
                 onPageChange={onPageChange}
-                className="group inline-flex items-center gap-2 font-body font-semibold text-[15px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
+                className="group inline-flex items-center gap-2 font-body font-semibold text-[15px] text-brand-600 hover:text-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
               >
                 More About Our Facility
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" className={reduceMotion ? '' : 'group-hover:translate-x-0.5 transition-transform duration-[250ms]'} aria-hidden>

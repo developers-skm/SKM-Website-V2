@@ -92,38 +92,38 @@ export default function CategoryPage({
       seo={seo}
       onPageChange={onPageChange}
     >
-      <div className="w-full flex flex-col bg-page dark:bg-surface-950">
+      <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 — Category hero */}
-        <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[85px] lg:pb-[85px] border-b border-[#eee] dark:border-surface-800/40">
+        <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[85px] lg:pb-[85px] border-b border-[#eee]">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
             <motion.div {...fadeProps()} className="max-w-3xl mb-9 lg:mb-11">
               <span className="section-label">{categoryLabel}</span>
-              <h1 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[50px] text-heading dark:text-white leading-[1.1] tracking-tight m-0 mt-3">
+              <h1 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[50px] text-heading leading-[1.1] tracking-tight m-0 mt-3">
                 {title}
               </h1>
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
               {format && (
-                <motion.div {...fadeProps(0)} className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
-                  <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">
+                <motion.div {...fadeProps(0)} className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7]">
+                  <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400">
                     What the format is
                   </span>
-                  <span className="font-body text-[15px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+                  <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
                     {format}
                   </span>
                 </motion.div>
               )}
 
               {advantages && (
-                <motion.div {...fadeProps(0.05)} className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
-                  <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">
+                <motion.div {...fadeProps(0.05)} className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7]">
+                  <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400">
                     Main operational advantages
                   </span>
                   <ul className="flex flex-col gap-1.5 list-none m-0 p-0">
                     {advantages.map((a) => (
-                      <li key={a} className="font-body text-[14.5px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+                      <li key={a} className="font-body text-[14.5px] text-surface-700 leading-[1.6]">
                         {a}
                       </li>
                     ))}
@@ -132,22 +132,22 @@ export default function CategoryPage({
               )}
 
               {whoUsesIt && (
-                <motion.div {...fadeProps(0.1)} className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
-                  <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">
+                <motion.div {...fadeProps(0.1)} className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7]">
+                  <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400">
                     Who commonly uses it
                   </span>
-                  <span className="font-body text-[15px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+                  <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
                     {whoUsesIt}
                   </span>
                 </motion.div>
               )}
 
               {storage && (
-                <motion.div {...fadeProps(0.15)} className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
-                  <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">
+                <motion.div {...fadeProps(0.15)} className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7]">
+                  <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400">
                     Storage and supply considerations
                   </span>
-                  <span className="font-body text-[15px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+                  <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
                     {storage}
                   </span>
                 </motion.div>
@@ -169,7 +169,7 @@ export default function CategoryPage({
                 disabled
                 title="Coming soon"
                 aria-disabled="true"
-                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-600 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
+                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 text-surface-400 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
               >
                 Request Category Guide
               </button>
@@ -178,9 +178,9 @@ export default function CategoryPage({
         </div>
 
         {/* Section 2 — Product cards */}
-        <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+        <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
-            <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
               Products in this category
             </h2>
 
@@ -188,37 +188,37 @@ export default function CategoryPage({
               {visibleProducts.map((product) => {
                 const meta = productMeta[product.id] ?? {};
                 return (
-                  <div key={product.id} className="flex flex-col gap-3 p-5 rounded-[16px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
+                  <div key={product.id} className="flex flex-col gap-3 p-5 rounded-[16px] border border-surface-200/70 bg-[#fdfbf7]">
                     <img src={product.image} alt={product.title} loading="lazy" className="w-full aspect-[4/3] object-cover rounded-[10px]" />
-                    <span className="font-heading font-bold text-[16px] text-heading dark:text-white">{product.title}</span>
+                    <span className="font-heading font-bold text-[16px] text-heading">{product.title}</span>
 
                     {meta.codeRange && (
-                      <span className="font-body text-[12.5px] text-surface-400 dark:text-surface-500">
+                      <span className="font-body text-[12.5px] text-surface-400">
                         Product codes: {meta.codeRange}
                       </span>
                     )}
 
                     {meta.functionality && (
-                      <span className="font-body text-[13.5px] text-surface-700 dark:text-surface-300 leading-[1.5]">
-                        <strong className="font-semibold text-heading dark:text-white">Main functionality: </strong>
+                      <span className="font-body text-[13.5px] text-surface-700 leading-[1.5]">
+                        <strong className="font-semibold text-heading">Main functionality: </strong>
                         {meta.functionality}
                       </span>
                     )}
 
                     {meta.applications?.length > 0 && (
-                      <span className="font-body text-[13.5px] text-surface-700 dark:text-surface-300 leading-[1.5]">
-                        <strong className="font-semibold text-heading dark:text-white">Main applications: </strong>
+                      <span className="font-body text-[13.5px] text-surface-700 leading-[1.5]">
+                        <strong className="font-semibold text-heading">Main applications: </strong>
                         {meta.applications.join(', ')}
                       </span>
                     )}
 
-                    <span className="font-body text-[13.5px] text-surface-700 dark:text-surface-300 leading-[1.5]">
-                      <strong className="font-semibold text-heading dark:text-white">Format and packaging: </strong>
+                    <span className="font-body text-[13.5px] text-surface-700 leading-[1.5]">
+                      <strong className="font-semibold text-heading">Format and packaging: </strong>
                       {product.packagingOptions.join(', ')}
                     </span>
 
-                    <span className="font-body text-[12.5px] text-surface-500 dark:text-surface-400 leading-[1.5]">
-                      <strong className="font-semibold text-heading dark:text-white">Certifications: </strong>
+                    <span className="font-body text-[12.5px] text-surface-500 leading-[1.5]">
+                      <strong className="font-semibold text-heading">Certifications: </strong>
                       {certifications.map((c) => c.name).join(', ')}
                     </span>
 
@@ -226,7 +226,7 @@ export default function CategoryPage({
                       <InternalLink
                         route={product.page}
                         onPageChange={onPageChange}
-                        className="font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
+                        className="font-body font-semibold text-[13.5px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
                       >
                         View Product
                       </InternalLink>
@@ -234,7 +234,7 @@ export default function CategoryPage({
                         route="products"
                         onPageChange={onPageChange}
                         prefillData={{ scrollTarget: 'product-finder' }}
-                        className="font-body font-semibold text-[13px] text-surface-500 dark:text-surface-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
+                        className="font-body font-semibold text-[13px] text-surface-500 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
                       >
                         Add to Comparison
                       </InternalLink>
@@ -248,9 +248,9 @@ export default function CategoryPage({
 
         {/* Section 3 — Choose by functionality */}
         {functionalityTags?.length > 0 && (
-          <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40">
+          <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
             <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
-              <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+              <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
                 Choose by functionality
               </h2>
               <div className="flex flex-wrap items-center gap-2.5">
@@ -263,7 +263,7 @@ export default function CategoryPage({
                     className={`inline-flex items-center min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-full border font-body font-semibold text-[13.5px] transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
                       activeTag === tag.label
                         ? 'bg-brand-600 border-brand-600 text-white'
-                        : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50'
+                        : 'bg-white border-surface-300 text-surface-600 hover:border-brand-600/50'
                     }`}
                   >
                     {tag.label}
@@ -274,12 +274,12 @@ export default function CategoryPage({
                 <button
                   type="button"
                   onClick={() => setActiveTag(null)}
-                  className="self-start font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm w-fit"
+                  className="self-start font-body font-semibold text-[13.5px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm w-fit"
                 >
                   Show All Products
                 </button>
               )}
-              <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 m-0" aria-live="polite">
+              <p className="font-body text-[14px] text-surface-500 m-0" aria-live="polite">
                 Showing {visibleProducts.length} of {categoryProducts.length} products — see Section 2 above.
               </p>
             </div>
@@ -288,9 +288,9 @@ export default function CategoryPage({
 
         {/* Section 4 — Application matrix */}
         {allApplications.length > 0 && (
-          <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40 bg-white dark:bg-surface-900/40">
+          <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
             <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
-              <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+              <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
                 Application matrix
               </h2>
               <div className="flex flex-col gap-2.5">
@@ -304,9 +304,9 @@ export default function CategoryPage({
                     <table className="w-full border-collapse min-w-[640px]">
                       <thead>
                         <tr>
-                          <th className="sticky left-0 z-20 bg-white dark:bg-surface-900/40 text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">Product</th>
+                          <th className="sticky left-0 z-20 bg-white text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">Product</th>
                           {allApplications.map((app) => (
-                            <th key={app} className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">
+                            <th key={app} className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3 pr-4">
                               {app}
                             </th>
                           ))}
@@ -317,13 +317,13 @@ export default function CategoryPage({
                           const meta = productMeta[product.id] ?? {};
                           return (
                             <tr key={product.id}>
-                              <td className="sticky left-0 z-10 bg-white dark:bg-surface-900/40 font-body font-semibold text-[14px] text-heading dark:text-white border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">
+                              <td className="sticky left-0 z-10 bg-white font-body font-semibold text-[14px] text-heading border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">
                                 {product.title}
                               </td>
                               {allApplications.map((app) => (
-                                <td key={app} className="font-body text-[13.5px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">
+                                <td key={app} className="font-body text-[13.5px] text-surface-600 border-b border-surface-200/70 py-3 pr-4">
                                   {meta.applications?.includes(app) ? (
-                                    <span className="text-brand-600 dark:text-brand-400 font-bold" aria-label="Suitable">
+                                    <span className="text-brand-600 font-bold" aria-label="Suitable">
                                       ✓
                                     </span>
                                   ) : ''}
@@ -344,7 +344,7 @@ export default function CategoryPage({
                         initial={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                        className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-white dark:from-surface-900/90 from-30% via-white/70 dark:via-surface-900/60 to-transparent flex items-center justify-end pr-3"
+                        className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-white from-30% via-white/70 to-transparent flex items-center justify-end pr-3"
                         aria-hidden="true"
                       >
                         <motion.svg
@@ -366,7 +366,7 @@ export default function CategoryPage({
                       initial={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                      className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400 dark:text-surface-500"
+                      className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400"
                     >
                       Scroll right to view more applications
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -383,7 +383,7 @@ export default function CategoryPage({
                   disabled
                   title="Coming soon"
                   aria-disabled="true"
-                  className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-600 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
+                  className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 text-surface-400 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
                 >
                   Download Application Matrix
                 </button>
@@ -400,37 +400,37 @@ export default function CategoryPage({
         )}
 
         {/* Section 5 — Packaging, storage and delivery */}
-        <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] dark:border-surface-800/40">
+        <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
-            <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
               Packaging, storage and delivery
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
-                <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">
+              <div className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7]">
+                <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400">
                   Packaging options
                 </span>
-                <span className="font-body text-[15px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+                <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
                   {Array.from(new Set(categoryProducts.flatMap((p) => p.packagingOptions))).join(', ')}
                 </span>
               </div>
 
               {storage && (
-                <div className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
-                  <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">
+                <div className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7]">
+                  <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400">
                     Storage temperature
                   </span>
-                  <span className="font-body text-[15px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+                  <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
                     {storage}
                   </span>
                 </div>
               )}
 
-              <div className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900">
-                <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">
+              <div className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7]">
+                <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400">
                   Shipment formats
                 </span>
-                <span className="font-body text-[15px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+                <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
                   Bulk export and containerized shipment, 30+ countries served.
                 </span>
               </div>
@@ -448,7 +448,7 @@ export default function CategoryPage({
               <InternalLink
                 route="contact-us"
                 onPageChange={onPageChange}
-                className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-body font-semibold text-[15px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-body font-semibold text-[15px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
               >
                 Ask About Export Availability
               </InternalLink>
@@ -459,7 +459,7 @@ export default function CategoryPage({
         {/* Section 6 — Closing CTA */}
         <div className="w-full py-[60px] lg:py-[85px] text-center px-4">
           <div className="mx-auto max-w-[600px] flex flex-col items-center gap-5">
-            <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading dark:text-white m-0 tracking-tight">
+            <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
               Ready to move forward with {title}?
             </h2>
             <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -473,7 +473,7 @@ export default function CategoryPage({
               <InternalLink
                 route="get-quote"
                 onPageChange={onPageChange}
-                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
               >
                 Request a Quote
               </InternalLink>

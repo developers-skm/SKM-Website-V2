@@ -83,28 +83,28 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
   const activeGroup = DOCUMENT_GROUPS.find((g) => g.id === docTypeFilter);
 
   return (
-    <div id="technical-documents" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 dark:border-surface-800/60 scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="technical-documents" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         {/* Section Heading */}
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
           <div className="flex items-center">
-            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600">
               Verified Specifications
             </span>
           </div>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white m-0 tracking-tight">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
             Technical Documents & Data Sheets
           </h2>
-          <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 max-w-2xl m-0 leading-relaxed">
+          <p className="font-body text-[14.5px] text-surface-600 max-w-2xl m-0 leading-relaxed">
             Download laboratory-verified Technical Data Sheets (TDS) and quality specifications for SKM's egg powder and liquid formulations.
           </p>
         </motion.div>
 
         {/* Section 2 — Resource Filters */}
-        <motion.div {...sectionSupportReveal(reduceMotion)} className="flex flex-col gap-5 p-6 rounded-2xl bg-white/70 dark:bg-surface-900/60 backdrop-blur-xl border border-surface-200/80 dark:border-surface-700/60 shadow-lg shadow-black/5">
+        <motion.div {...sectionSupportReveal(reduceMotion)} className="flex flex-col gap-5 p-6 rounded-2xl bg-white/70 backdrop-blur-xl border border-surface-200/80 shadow-lg shadow-black/5">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 mr-2 flex items-center gap-1.5">
+            <span className="font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 mr-2 flex items-center gap-1.5">
               <svg className="w-3.5 h-3.5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" /></svg>
               Document Type:
             </span>
@@ -117,12 +117,12 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                 className={`inline-flex items-center gap-2 min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-xl font-body font-semibold text-[13px] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 active:scale-[0.97] cursor-pointer ${
                   docTypeFilter === group.id
                     ? 'bg-brand-600 border border-brand-600 text-white shadow-lg shadow-brand-600/25'
-                    : 'bg-white/80 dark:bg-surface-800/80 border border-surface-200 dark:border-surface-700 text-surface-700 dark:text-surface-200 hover:border-brand-500/50 hover:text-heading dark:hover:text-white'
+                    : 'bg-white/80 border border-surface-200 text-surface-700 hover:border-brand-500/50 hover:text-heading'
                 }`}
               >
                 <span>{group.label}</span>
                 {group.count > 0 && (
-                  <span className={`px-2 py-0.5 text-[11px] font-bold rounded-full ${docTypeFilter === group.id ? 'bg-white/20 text-white' : 'bg-surface-100 dark:bg-surface-700 text-surface-600 dark:text-surface-300'}`}>
+                  <span className={`px-2 py-0.5 text-[11px] font-bold rounded-full ${docTypeFilter === group.id ? 'bg-white/20 text-white' : 'bg-surface-100 text-surface-600'}`}>
                     {group.count}
                   </span>
                 )}
@@ -131,16 +131,16 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
           </div>
 
           {activeGroup?.hasRealDocs && (
-            <div className="flex flex-col gap-3 pt-4 border-t border-surface-200/60 dark:border-surface-800/60">
+            <div className="flex flex-col gap-3 pt-4 border-t border-surface-200/60">
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500 mr-2">Filter Product:</span>
+                <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 mr-2">Filter Product:</span>
                 <button
                   type="button"
                   onClick={() => setProductFilter(null)}
                   className={`inline-flex items-center min-h-[44px] sm:min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
                     productFilter === null
-                      ? 'bg-surface-900 text-white dark:bg-white dark:text-surface-950 font-bold'
-                      : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700'
+                      ? 'bg-surface-900 text-white font-bold'
+                      : 'bg-surface-100 text-surface-600 hover:bg-surface-200'
                   }`}
                 >
                   All Products
@@ -154,7 +154,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                     className={`inline-flex items-center min-h-[44px] sm:min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
                       productFilter === p.id
                         ? 'bg-brand-600 text-white font-bold shadow-sm'
-                        : 'bg-surface-100 dark:bg-surface-800/70 border border-surface-200 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-500/40 hover:text-heading dark:hover:text-white'
+                        : 'bg-surface-100 border border-surface-200 text-surface-600 hover:border-brand-500/40 hover:text-heading'
                     }`}
                   >
                     {p.title}
@@ -163,14 +163,14 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
               </div>
 
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500 mr-2">Filter Application:</span>
+                <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 mr-2">Filter Application:</span>
                 <button
                   type="button"
                   onClick={() => setApplicationFilter(null)}
                   className={`inline-flex items-center min-h-[44px] sm:min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
                     applicationFilter === null
-                      ? 'bg-surface-900 text-white dark:bg-white dark:text-surface-950 font-bold'
-                      : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700'
+                      ? 'bg-surface-900 text-white font-bold'
+                      : 'bg-surface-100 text-surface-600 hover:bg-surface-200'
                   }`}
                 >
                   All Applications
@@ -184,7 +184,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                     className={`inline-flex items-center min-h-[44px] sm:min-h-[32px] px-3 py-1 rounded-lg font-body text-[12px] font-semibold transition-all cursor-pointer ${
                       applicationFilter === app.id
                         ? 'bg-brand-600 text-white font-bold shadow-sm'
-                        : 'bg-surface-100 dark:bg-surface-800/70 border border-surface-200 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-500/40 hover:text-heading dark:hover:text-white'
+                        : 'bg-surface-100 border border-surface-200 text-surface-600 hover:border-brand-500/40 hover:text-heading'
                     }`}
                   >
                     {app.title}
@@ -214,34 +214,34 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                     exit={filterExitVariants.hidden}
                     whileHover={reduceMotion ? undefined : { y: -5 }}
                     transition={{ duration: 0.3, ease: EASE_PREMIUM }}
-                    className="group relative flex flex-col justify-between gap-6 rounded-2xl border border-surface-200/80 dark:border-surface-700/60 bg-white/80 dark:bg-surface-900/70 backdrop-blur-xl p-6 transition-all duration-300 ease-out hover:border-brand-500/40 hover:shadow-2xl hover:shadow-brand-600/10"
+                    className="group relative flex flex-col justify-between gap-6 rounded-2xl border border-surface-200/80 bg-white/80 backdrop-blur-xl p-6 transition-all duration-300 ease-out hover:border-brand-500/40 hover:shadow-2xl hover:shadow-brand-600/10"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex items-center gap-3.5">
-                        <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500/15 to-amber-500/10 dark:from-brand-500/25 dark:to-amber-500/20 border border-brand-500/20 text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform duration-300">
+                        <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500/15 to-amber-500/10 border border-brand-500/20 text-brand-600 group-hover:scale-110 transition-transform duration-300">
                           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                           </svg>
                         </div>
                         <div className="flex flex-col min-w-0">
-                          <span className="font-body text-[10px] font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+                          <span className="font-body text-[10px] font-extrabold uppercase tracking-widest text-brand-600">
                             Technical Data Sheet
                           </span>
-                          <h3 className="font-heading font-bold text-[17px] text-heading dark:text-white truncate m-0 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-200">
+                          <h3 className="font-heading font-bold text-[17px] text-heading truncate m-0 group-hover:text-brand-600 transition-colors duration-200">
                             {p.title}
                           </h3>
                         </div>
                       </div>
-                      <span className="px-2.5 py-1 text-[10.5px] font-bold rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 flex-shrink-0">
+                      <span className="px-2.5 py-1 text-[10.5px] font-bold rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 flex-shrink-0">
                         PDF Format
                       </span>
                     </div>
 
-                    <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 line-clamp-2 m-0 leading-relaxed">
+                    <p className="font-body text-[13px] text-surface-500 line-clamp-2 m-0 leading-relaxed">
                       Official product technical specification, microbiological parameters, shelf life, and storage conditions for {p.title}.
                     </p>
 
-                    <div className="flex items-center pt-4 border-t border-surface-200/60 dark:border-surface-800/60">
+                    <div className="flex items-center pt-4 border-t border-surface-200/60">
                       <a
                         href={p.tdsUrl}
                         target="_blank"
@@ -262,15 +262,15 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                 <motion.div
                   initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="col-span-full rounded-2xl border border-dashed border-surface-300 dark:border-surface-700 bg-white/40 dark:bg-surface-900/30 p-10 text-center flex flex-col items-center gap-3"
+                  className="col-span-full rounded-2xl border border-dashed border-surface-300 bg-white/40 p-10 text-center flex flex-col items-center gap-3"
                 >
                   <svg className="w-10 h-10 text-surface-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  <p className="font-heading font-semibold text-[16px] text-heading dark:text-white m-0">No documents found matching criteria</p>
-                  <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 m-0 max-w-md">Try resetting your filters or search query to view available technical documents.</p>
+                  <p className="font-heading font-semibold text-[16px] text-heading m-0">No documents found matching criteria</p>
+                  <p className="font-body text-[13.5px] text-surface-500 m-0 max-w-md">Try resetting your filters or search query to view available technical documents.</p>
                   <button
                     type="button"
                     onClick={() => { setProductFilter(null); setApplicationFilter(null); }}
-                    className="mt-2 text-[13px] font-bold text-brand-600 dark:text-brand-400 hover:underline cursor-pointer"
+                    className="mt-2 text-[13px] font-bold text-brand-600 hover:underline cursor-pointer"
                   >
                     Reset Active Filters
                   </button>
@@ -284,15 +284,15 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: reduceMotion ? 0 : 7 }}
               transition={{ duration: reduceMotion ? 0.01 : 0.3, ease: EASE_PREMIUM }}
-              className="rounded-2xl border border-dashed border-surface-300 dark:border-surface-700 bg-white/50 dark:bg-surface-900/40 p-10 text-center flex flex-col items-center gap-3 backdrop-blur-md"
+              className="rounded-2xl border border-dashed border-surface-300 bg-white/50 p-10 text-center flex flex-col items-center gap-3 backdrop-blur-md"
             >
               <div className="w-12 h-12 rounded-full bg-brand-500/10 text-brand-600 flex items-center justify-center">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
               </div>
-              <p className="font-heading font-semibold text-[16px] text-heading dark:text-white m-0">
+              <p className="font-heading font-semibold text-[16px] text-heading m-0">
                 {activeGroup?.label} Available Upon Request
               </p>
-              <p className="font-body text-[14px] text-surface-600 dark:text-surface-300 max-w-lg m-0 leading-relaxed">
+              <p className="font-body text-[14px] text-surface-600 max-w-lg m-0 leading-relaxed">
                 Specific regulatory, MSDS safety, or customized packaging documentation is provided directly by our quality engineering team.
               </p>
               <InternalLink
@@ -314,19 +314,19 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
 function CertificationsSection() {
   const reduceMotion = useReducedMotion();
   return (
-    <div id="certifications" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 dark:border-surface-800/60">
+    <div id="certifications" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
           <div className="flex items-center">
-            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600">
               International Accreditation
             </span>
           </div>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white m-0 tracking-tight">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
             Global Quality & Food Safety Certificates
           </h2>
-          <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 max-w-2xl m-0 leading-relaxed">
+          <p className="font-body text-[14.5px] text-surface-600 max-w-2xl m-0 leading-relaxed">
             SKM operates under internationally audited food safety, quality management, and ethical compliance standards.
           </p>
         </motion.div>
@@ -344,7 +344,7 @@ function CertificationsSection() {
               variants={resourceItemVariants(reduceMotion)}
               whileHover={reduceMotion ? undefined : { y: -6 }}
               transition={{ duration: 0.32, ease: EASE_PREMIUM }}
-              className="group flex flex-col items-center gap-4 p-6 rounded-2xl border border-surface-200/80 dark:border-surface-700/60 bg-white/80 dark:bg-surface-900/70 backdrop-blur-xl shadow-lg shadow-black/5 hover:border-brand-500/40 hover:shadow-2xl transition-all duration-300"
+              className="group flex flex-col items-center gap-4 p-6 rounded-2xl border border-surface-200/80 bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5 hover:border-brand-500/40 hover:shadow-2xl transition-all duration-300"
             >
               <div className="relative w-full aspect-[4/3] rounded-xl bg-white p-3 flex items-center justify-center border border-surface-100 shadow-inner group-hover:scale-[1.02] transition-transform duration-300">
                 <img
@@ -354,23 +354,23 @@ function CertificationsSection() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="font-heading font-bold text-[14.5px] text-heading dark:text-white text-center leading-snug">
+              <span className="font-heading font-bold text-[14.5px] text-heading text-center leading-snug">
                 {cert.name}
               </span>
-              <div className="flex items-center justify-center gap-4 pt-2 border-t border-surface-100 dark:border-surface-800 w-full">
+              <div className="flex items-center justify-center gap-4 pt-2 border-t border-surface-100 w-full">
                 <a
                   href={cert.logo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-body font-bold text-[12px] text-brand-600 dark:text-brand-400 hover:underline inline-flex items-center gap-1"
+                  className="font-body font-bold text-[12px] text-brand-600 hover:underline inline-flex items-center gap-1"
                 >
                   <span>View Logo</span>
                 </a>
-                <span className="text-surface-300 dark:text-surface-700">•</span>
+                <span className="text-surface-300">•</span>
                 <a
                   href={cert.logo}
                   download
-                  className="font-body font-semibold text-[12px] text-surface-500 dark:text-surface-400 hover:text-heading dark:hover:text-white hover:underline"
+                  className="font-body font-semibold text-[12px] text-surface-500 hover:text-heading hover:underline"
                 >
                   Download
                 </a>
@@ -385,14 +385,14 @@ function CertificationsSection() {
               ✓
             </div>
             <div>
-              <h4 className="font-heading font-bold text-[15px] text-heading dark:text-white m-0">Need standard-specific audit reports?</h4>
-              <p className="font-body text-[13px] text-surface-600 dark:text-surface-300 m-0">NABL ISO/IEC 17025 lab reports and auditor verification packs are available on commercial request.</p>
+              <h4 className="font-heading font-bold text-[15px] text-heading m-0">Need standard-specific audit reports?</h4>
+              <p className="font-body text-[13px] text-surface-600 m-0">NABL ISO/IEC 17025 lab reports and auditor verification packs are available on commercial request.</p>
             </div>
           </div>
           <button
             type="button"
             disabled
-            className="inline-flex items-center gap-2 min-h-[42px] px-5 rounded-xl border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-500 font-body font-semibold text-[13px] cursor-not-allowed opacity-70"
+            className="inline-flex items-center gap-2 min-h-[42px] px-5 rounded-xl border border-surface-300 text-surface-400 font-body font-semibold text-[13px] cursor-not-allowed opacity-70"
           >
             Audit Pack Available On Order
           </button>
@@ -456,19 +456,19 @@ const productPortfolio = brochureEntries.find((e) => e.title === 'Full Product P
 function BrochuresApplicationGuidesSection() {
   const reduceMotion = useReducedMotion();
   return (
-    <div id="brochures" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 dark:border-surface-800/60">
+    <div id="brochures" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
           <div className="flex items-center">
-            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600">
               Downloads & Publications
             </span>
           </div>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white m-0 tracking-tight">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
             Corporate Brochures & Technical Flyers
           </h2>
-          <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 max-w-2xl m-0 leading-relaxed">
+          <p className="font-body text-[14.5px] text-surface-600 max-w-2xl m-0 leading-relaxed">
             Access our official downloadable PDF literature, company overview documentation, and product line technical flyers.
           </p>
         </motion.div>
@@ -486,30 +486,30 @@ function BrochuresApplicationGuidesSection() {
               variants={resourceItemVariants(reduceMotion)}
               whileHover={reduceMotion ? undefined : { y: -5 }}
               transition={{ duration: 0.32, ease: EASE_PREMIUM }}
-              className="group flex flex-col justify-between gap-5 p-6 rounded-2xl border border-surface-200/80 dark:border-surface-700/60 bg-white/80 dark:bg-surface-900/70 backdrop-blur-xl shadow-lg shadow-black/5 hover:border-brand-500/40 hover:shadow-2xl transition-all duration-300"
+              className="group flex flex-col justify-between gap-5 p-6 rounded-2xl border border-surface-200/80 bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5 hover:border-brand-500/40 hover:shadow-2xl transition-all duration-300"
             >
               <div className="flex flex-col gap-3">
                 <span className={`self-start font-body text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-lg ${
                   entry.category === 'Product Flyer'
-                    ? 'text-brand-600 bg-brand-500/10 border border-brand-500/20 dark:text-brand-400'
-                    : 'text-emerald-700 bg-emerald-500/10 border border-emerald-500/20 dark:text-emerald-400'
+                    ? 'text-brand-600 bg-brand-500/10 border border-brand-500/20'
+                    : 'text-emerald-700 bg-emerald-500/10 border border-emerald-500/20'
                 }`}>
                   {entry.category}
                 </span>
-                <h3 className="font-heading font-bold text-[18px] text-heading dark:text-white m-0 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-200">
+                <h3 className="font-heading font-bold text-[18px] text-heading m-0 group-hover:text-brand-600 transition-colors duration-200">
                   {entry.title}
                 </h3>
-                <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-relaxed m-0">
+                <p className="font-body text-[13.5px] text-surface-500 leading-relaxed m-0">
                   {entry.desc}
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 pt-4 border-t border-surface-200/60 dark:border-surface-800/60">
+              <div className="flex items-center gap-3 pt-4 border-t border-surface-200/60">
                 <a
                   href={entry.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 font-body font-bold text-[11.5px] uppercase tracking-wider text-brand-600 dark:text-brand-400 hover:text-brand-700 px-3.5 py-2 rounded-xl bg-brand-500/10 hover:bg-brand-500/20 transition-all duration-200"
+                  className="inline-flex items-center gap-1.5 font-body font-bold text-[11.5px] uppercase tracking-wider text-brand-600 hover:text-brand-700 px-3.5 py-2 rounded-xl bg-brand-500/10 hover:bg-brand-500/20 transition-all duration-200"
                 >
                   <span>View PDF</span>
                   <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
@@ -517,7 +517,7 @@ function BrochuresApplicationGuidesSection() {
                 <a
                   href={entry.url}
                   download
-                  className="inline-flex items-center gap-1.5 font-body font-bold text-[11.5px] uppercase tracking-wider text-surface-700 dark:text-surface-200 hover:text-heading dark:hover:text-white px-3.5 py-2 rounded-xl bg-surface-100 dark:bg-surface-800 hover:bg-surface-200 dark:hover:bg-surface-700 transition-all duration-200"
+                  className="inline-flex items-center gap-1.5 font-body font-bold text-[11.5px] uppercase tracking-wider text-surface-700 hover:text-heading px-3.5 py-2 rounded-xl bg-surface-100 hover:bg-surface-200 transition-all duration-200"
                 >
                   <span>Download</span>
                   <svg className="w-3 h-3 group-hover:translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14" /></svg>
@@ -583,32 +583,32 @@ function CsrIcon({ iconType }) {
   switch (iconType) {
     case 'community':
       return (
-        <svg className="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0v-5a2 2 0 012-2h2a2 2 0 012 2v5m-6 0h6" />
         </svg>
       );
     case 'trust':
       return (
-        <svg className="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
           <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
         </svg>
       );
     case 'education':
       return (
-        <svg className="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
         </svg>
       );
     case 'sustainability':
       return (
-        <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+        <svg className="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5a2.5 2.5 0 002.5-2.5V8.5a.5.5 0 01.5-.5h.5a2.5 2.5 0 002.5-2.5V3.935" />
         </svg>
       );
     default:
       return (
-        <svg className="w-5 h-5 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+        <svg className="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
           <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
         </svg>
       );
@@ -618,19 +618,19 @@ function CsrIcon({ iconType }) {
 function CsrSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
   return (
-    <div id="csr" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 dark:border-surface-800/60">
+    <div id="csr" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
           <div className="flex items-center">
-            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600">
               Beyond The Factory Floor
             </span>
           </div>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white m-0 tracking-tight">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
             Corporate Social Responsibility (CSR)
           </h2>
-          <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 max-w-2xl m-0 leading-relaxed">
+          <p className="font-body text-[14.5px] text-surface-600 max-w-2xl m-0 leading-relaxed">
             Discover SKM's commitment to community welfare, clean energy, education, and sustainable development.
           </p>
         </motion.div>
@@ -649,18 +649,18 @@ function CsrSection({ onPageChange }) {
               whileHover={reduceMotion ? undefined : { y: -5 }}
               transition={{ duration: 0.32, ease: EASE_PREMIUM }}
               onClick={() => onPageChange(card.page)}
-              className="group flex flex-col items-start gap-3 p-6 text-left rounded-2xl bg-white/80 dark:bg-surface-900/70 backdrop-blur-xl border border-surface-200/80 dark:border-surface-700/60 shadow-lg shadow-black/5 hover:border-brand-500/40 hover:shadow-2xl transition-all duration-300 cursor-pointer focus:outline-none"
+              className="group flex flex-col items-start gap-3 p-6 text-left rounded-2xl bg-white/80 backdrop-blur-xl border border-surface-200/80 shadow-lg shadow-black/5 hover:border-brand-500/40 hover:shadow-2xl transition-all duration-300 cursor-pointer focus:outline-none"
             >
-              <div className="p-3 rounded-xl bg-surface-100 dark:bg-surface-800 border border-surface-200/60 dark:border-surface-700/60 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="p-3 rounded-xl bg-surface-100 border border-surface-200/60 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <CsrIcon iconType={card.iconType} />
               </div>
-              <h3 className="font-heading font-bold text-[18px] text-heading dark:text-white m-0 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-200">
+              <h3 className="font-heading font-bold text-[18px] text-heading m-0 group-hover:text-brand-600 transition-colors duration-200">
                 {card.title}
               </h3>
-              <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-relaxed m-0">
+              <p className="font-body text-[13.5px] text-surface-500 leading-relaxed m-0">
                 {card.description}
               </p>
-              <span className="mt-2 font-body font-bold text-[12px] text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 group-hover:underline">
+              <span className="mt-2 font-body font-bold text-[12px] text-brand-600 inline-flex items-center gap-1 group-hover:underline">
                 Explore Overview →
               </span>
             </motion.button>
@@ -726,17 +726,17 @@ function FaqSection({ onPageChange, globalSearchQuery }) {
   }, [globalSearchQuery]);
 
   return (
-    <div id="faq" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 dark:border-surface-800/60">
+    <div id="faq" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60">
       <div className="mx-auto max-w-[960px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2 text-center items-center">
-          <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+          <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600">
             Knowledge Center
           </span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white m-0 tracking-tight">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
             Frequently Asked Questions
           </h2>
-          <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 max-w-xl m-0 leading-relaxed">
+          <p className="font-body text-[14.5px] text-surface-600 max-w-xl m-0 leading-relaxed">
             Quick technical answers regarding specifications, storage, packaging, regulatory compliance, and ordering.
           </p>
         </motion.div>
@@ -756,8 +756,8 @@ function FaqSection({ onPageChange, globalSearchQuery }) {
                 variants={resourceItemVariants(reduceMotion)}
                 className={`rounded-2xl border transition-all duration-300 overflow-hidden backdrop-blur-xl ${
                   isOpen
-                    ? 'border-brand-500/50 bg-white/90 dark:bg-surface-900/90 shadow-xl shadow-brand-600/5'
-                    : 'border-surface-200/80 dark:border-surface-700/60 bg-white/70 dark:bg-surface-900/60 hover:border-brand-500/30'
+                    ? 'border-brand-500/50 bg-white/90 shadow-xl shadow-brand-600/5'
+                    : 'border-surface-200/80 bg-white/70 hover:border-brand-500/30'
                 }`}
               >
                 <button
@@ -767,14 +767,14 @@ function FaqSection({ onPageChange, globalSearchQuery }) {
                   className="w-full flex items-center justify-between gap-4 text-left p-6 cursor-pointer bg-transparent border-none focus:outline-none"
                 >
                   <div className="flex flex-col gap-1">
-                    <span className="font-body text-[11px] font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+                    <span className="font-body text-[11px] font-extrabold uppercase tracking-widest text-brand-600">
                       {item.category}
                     </span>
-                    <span className="font-heading font-bold text-[16.5px] text-heading dark:text-white leading-snug">
+                    <span className="font-heading font-bold text-[16.5px] text-heading leading-snug">
                       {item.question}
                     </span>
                   </div>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${isOpen ? 'bg-brand-600 text-white rotate-180' : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300'}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${isOpen ? 'bg-brand-600 text-white rotate-180' : 'bg-surface-100 text-surface-600'}`}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                       <path d="M19 9l-7 7-7-7" />
                     </svg>
@@ -789,8 +789,8 @@ function FaqSection({ onPageChange, globalSearchQuery }) {
                       transition={{ duration: reduceMotion ? 0.01 : 0.3, ease: EASE_PREMIUM }}
                       style={{ overflow: 'hidden' }}
                     >
-                      <div className="px-6 pb-6 pt-2 border-t border-surface-100 dark:border-surface-800/80">
-                        <p className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 leading-relaxed m-0">
+                      <div className="px-6 pb-6 pt-2 border-t border-surface-100">
+                        <p className="font-body text-[14.5px] text-surface-600 leading-relaxed m-0">
                           {item.answer}
                         </p>
                       </div>
@@ -802,8 +802,8 @@ function FaqSection({ onPageChange, globalSearchQuery }) {
           })}
 
           {filteredFaqs.length === 0 && (
-            <div className="p-8 text-center rounded-2xl bg-white/40 dark:bg-surface-900/40 border border-surface-200 dark:border-surface-700">
-              <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 m-0">No questions matched your search term.</p>
+            <div className="p-8 text-center rounded-2xl bg-white/40 border border-surface-200">
+              <p className="font-body text-[14px] text-surface-500 m-0">No questions matched your search term.</p>
             </div>
           )}
         </motion.div>
@@ -840,11 +840,11 @@ export default function ResourcesPage({ onPageChange }) {
       onPageChange={onPageChange}
     >
       {/* Root Full-Page Continuous Canvas Container */}
-      <div className="relative w-full flex flex-col min-h-screen bg-slate-50 dark:bg-surface-950 transition-colors duration-300">
+      <div className="relative w-full flex flex-col min-h-screen bg-slate-50 transition-colors duration-300">
         
         {/* Dedicated Fixed Background Image Layer with Controlled Opacity */}
         <div 
-          className="fixed inset-0 bg-[url('/images/resources_bg.png')] bg-fixed bg-cover bg-center bg-no-repeat opacity-[0.12] dark:opacity-[0.18] pointer-events-none z-0"
+          className="fixed inset-0 bg-[url('/images/resources_bg.png')] bg-fixed bg-cover bg-center bg-no-repeat opacity-[0.12] pointer-events-none z-0"
           aria-hidden="true" 
         />
 
@@ -857,7 +857,7 @@ export default function ResourcesPage({ onPageChange }) {
         <div className="relative z-10 w-full flex flex-col">
 
           {/* Section 1 — Resource Hero & Search */}
-          <div className="w-full pt-[110px] pb-20 sm:pt-[130px] lg:pt-28 lg:pb-28 border-b border-surface-200/60 dark:border-surface-800/60 px-4 sm:px-6 lg:px-8">
+          <div className="w-full pt-[110px] pb-20 sm:pt-[130px] lg:pt-28 lg:pb-28 border-b border-surface-200/60 px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-[1000px] flex flex-col items-center text-center gap-8">
               
               {/* Premium Pill Badge */}
@@ -865,7 +865,7 @@ export default function ResourcesPage({ onPageChange }) {
                 initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/25 dark:bg-brand-500/20 dark:border-brand-500/40 text-brand-600 dark:text-brand-400 font-body font-bold text-[12px] uppercase tracking-widest shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/25 text-brand-600 font-body font-bold text-[12px] uppercase tracking-widest shadow-sm"
               >
                 <span>Technical Repository & Downloads Hub</span>
               </motion.div>
@@ -875,7 +875,7 @@ export default function ResourcesPage({ onPageChange }) {
                 initial={{ opacity: 0, y: reduceMotion ? 0 : 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: reduceMotion ? 0.01 : 0.75, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.08 }}
-                className="font-heading font-extrabold text-[36px] sm:text-[52px] lg:text-[62px] leading-[1.08] tracking-tight m-0 bg-clip-text text-transparent bg-gradient-to-r from-surface-950 via-heading to-surface-800 dark:from-white dark:via-surface-100 dark:to-amber-100"
+                className="font-heading font-extrabold text-[36px] sm:text-[52px] lg:text-[62px] leading-[1.08] tracking-tight m-0 bg-clip-text text-transparent bg-gradient-to-r from-surface-950 via-heading to-surface-800"
               >
                 Resources & Technical Downloads
               </motion.h1>
@@ -884,7 +884,7 @@ export default function ResourcesPage({ onPageChange }) {
                 initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.15 }}
-                className="font-body text-[16px] sm:text-[18px] text-surface-600 dark:text-surface-300 max-w-2xl m-0 leading-relaxed"
+                className="font-body text-[16px] sm:text-[18px] text-surface-600 max-w-2xl m-0 leading-relaxed"
               >
                 Search, inspect, and download official technical data sheets (TDS), global quality certifications, product brochures, and regulatory guidelines.
               </motion.p>
@@ -899,7 +899,7 @@ export default function ResourcesPage({ onPageChange }) {
                 className="w-full max-w-[680px] relative flex items-center mt-2 shadow-2xl rounded-2xl"
               >
                 <div className="relative w-full flex items-center">
-                  <div className="absolute left-5 top-1/2 -translate-y-1/2 text-surface-400 dark:text-surface-500">
+                  <div className="absolute left-5 top-1/2 -translate-y-1/2 text-surface-400">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.25">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
                     </svg>
@@ -910,18 +910,18 @@ export default function ResourcesPage({ onPageChange }) {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search product specifications, TDS, certificates, brochures or FAQ..."
                     aria-label="Search resources"
-                    className="w-full min-h-[56px] pl-14 pr-24 py-4 rounded-2xl border border-surface-200/90 dark:border-surface-700/80 bg-white/90 dark:bg-surface-900/90 backdrop-blur-xl font-body text-[15px] text-heading dark:text-white placeholder:text-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all shadow-inner"
+                    className="w-full min-h-[56px] pl-14 pr-24 py-4 rounded-2xl border border-surface-200/90 bg-white/90 backdrop-blur-xl font-body text-[15px] text-heading placeholder:text-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all shadow-inner"
                   />
                   {searchQuery ? (
                     <button
                       type="button"
                       onClick={() => setSearchQuery('')}
-                      className="absolute right-4 px-3 py-1 text-[12px] font-bold rounded-lg bg-surface-200 dark:bg-surface-700 text-surface-700 dark:text-surface-200 hover:bg-surface-300 cursor-pointer transition-colors"
+                      className="absolute right-4 px-3 py-1 text-[12px] font-bold rounded-lg bg-surface-200 text-surface-700 hover:bg-surface-300 cursor-pointer transition-colors"
                     >
                       Clear
                     </button>
                   ) : (
-                    <span className="absolute right-4 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider rounded-lg bg-surface-100 dark:bg-surface-800 text-surface-400 border border-surface-200 dark:border-surface-700">
+                    <span className="absolute right-4 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider rounded-lg bg-surface-100 text-surface-400 border border-surface-200">
                       Live Search
                     </span>
                   )}
@@ -935,7 +935,7 @@ export default function ResourcesPage({ onPageChange }) {
                 transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.28 }}
                 className="flex flex-wrap items-center justify-center gap-2.5 pt-2"
               >
-                <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500 mr-1">Quick Jump:</span>
+                <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400 mr-1">Quick Jump:</span>
                 {[
                   { label: 'Technical Data Sheets', target: 'technical-documents' },
                   { label: 'Certifications', target: 'certifications' },
@@ -947,7 +947,7 @@ export default function ResourcesPage({ onPageChange }) {
                     key={tag.target}
                     type="button"
                     onClick={() => document.getElementById(tag.target)?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })}
-                    className="px-3.5 py-1.5 rounded-xl bg-white/70 dark:bg-surface-900/60 border border-surface-200/80 dark:border-surface-700/60 font-body text-[12.5px] font-semibold text-surface-700 dark:text-surface-300 hover:border-brand-500 hover:text-brand-600 dark:hover:text-brand-400 transition-all cursor-pointer shadow-sm"
+                    className="px-3.5 py-1.5 rounded-xl bg-white/70 border border-surface-200/80 font-body text-[12.5px] font-semibold text-surface-700 hover:border-brand-500 hover:text-brand-600 transition-all cursor-pointer shadow-sm"
                   >
                     {tag.label}
                   </button>
@@ -959,7 +959,7 @@ export default function ResourcesPage({ onPageChange }) {
                 initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.35 }}
-                className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-8 border-t border-surface-200/60 dark:border-surface-800/60"
+                className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-8 border-t border-surface-200/60"
               >
                 {[
                   { label: 'Technical Data Sheets', val: '3 Real TDS', sub: 'Laboratory Verified' },
@@ -967,10 +967,10 @@ export default function ResourcesPage({ onPageChange }) {
                   { label: 'Publications', val: '6 Product Flyers', sub: 'PDF Literature' },
                   { label: 'Testing Standard', val: 'ISO/IEC 17025', sub: 'NABL Accredited' },
                 ].map((stat, idx) => (
-                  <div key={idx} className="flex flex-col items-center p-4 rounded-xl bg-white/60 dark:bg-surface-900/40 border border-surface-200/60 dark:border-surface-800/60 backdrop-blur-md">
-                    <span className="font-heading font-extrabold text-[20px] text-brand-600 dark:text-brand-400">{stat.val}</span>
-                    <span className="font-body text-[12px] font-bold text-heading dark:text-white mt-0.5">{stat.label}</span>
-                    <span className="font-body text-[11px] text-surface-400 dark:text-surface-500">{stat.sub}</span>
+                  <div key={idx} className="flex flex-col items-center p-4 rounded-xl bg-white/60 border border-surface-200/60 backdrop-blur-md">
+                    <span className="font-heading font-extrabold text-[20px] text-brand-600">{stat.val}</span>
+                    <span className="font-body text-[12px] font-bold text-heading mt-0.5">{stat.label}</span>
+                    <span className="font-body text-[11px] text-surface-400">{stat.sub}</span>
                   </div>
                 ))}
               </motion.div>
@@ -1000,15 +1000,15 @@ export default function ResourcesPage({ onPageChange }) {
           <div className="w-full py-20 lg:py-28 text-center px-4">
             <motion.div
               {...sectionHeadingReveal(reduceMotion)}
-              className="mx-auto max-w-[680px] p-10 rounded-3xl bg-white/80 dark:bg-surface-900/80 border border-surface-200/80 dark:border-surface-700/60 backdrop-blur-xl shadow-2xl flex flex-col items-center gap-6"
+              className="mx-auto max-w-[680px] p-10 rounded-3xl bg-white/80 border border-surface-200/80 backdrop-blur-xl shadow-2xl flex flex-col items-center gap-6"
             >
               <div className="w-14 h-14 rounded-full bg-brand-500/10 text-brand-600 flex items-center justify-center">
                 <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
               </div>
-              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
                 Need Specific Technical Documentation?
               </h2>
-              <p className="font-body text-[15px] text-surface-600 dark:text-surface-300 m-0 leading-relaxed">
+              <p className="font-body text-[15px] text-surface-600 m-0 leading-relaxed">
                 If you require customized packaging parameters, batch analytical certificates, or proprietary formulation data, our technical engineering team is ready to assist.
               </p>
               
@@ -1023,7 +1023,7 @@ export default function ResourcesPage({ onPageChange }) {
                 <InternalLink
                   route="contact-us"
                   onPageChange={onPageChange}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-surface-100 dark:bg-surface-800 hover:bg-surface-200 dark:hover:bg-surface-700 text-heading dark:text-white border border-surface-300 dark:border-surface-700 font-heading font-bold text-[13.5px] uppercase tracking-wider px-8 py-4 rounded-full transition-all duration-200 active:scale-[0.98] cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-surface-100 hover:bg-surface-200 text-heading border border-surface-300 font-heading font-bold text-[13.5px] uppercase tracking-wider px-8 py-4 rounded-full transition-all duration-200 active:scale-[0.98] cursor-pointer"
                 >
                   Talk To Quality Support
                 </InternalLink>

@@ -17,7 +17,7 @@ export default function FoodSafetyPolicy() {
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
-    <div id="quality-policy" className="w-full bg-page dark:bg-surface-950 pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[40px] lg:pb-[60px] border-b border-[#eee] dark:border-surface-900/60 overflow-hidden">
+    <div id="quality-policy" className="w-full bg-page pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[40px] lg:pb-[60px] border-b border-[#eee] overflow-hidden">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -35,14 +35,14 @@ export default function FoodSafetyPolicy() {
           </motion.span>
           <motion.h2
             variants={itemVariants}
-            className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+            className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0"
           >
             Food Safety &amp;{' '}
             Quality Policy
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="font-body text-[16px] text-surface-500 dark:text-surface-400 max-w-2xl leading-[30px] m-0"
+            className="font-body text-[16px] text-surface-500 max-w-2xl leading-[30px] m-0"
           >
             We at SKM, as manufacturer and supplier of eggs and egg products, are committed to delight our customers through:
           </motion.p>
@@ -56,7 +56,7 @@ export default function FoodSafetyPolicy() {
             className="flex-1 w-full relative flex justify-center items-start group"
           >
             <div className="absolute w-[80%] h-[80%] -right-4 -bottom-4 bg-brand-600/10 rounded-full blur-3xl group-hover:bg-brand-600/15 transition-all duration-500 -z-10 pointer-events-none" />
-            <div className="w-full max-w-2xl rounded-[20px] border border-[#eee] dark:border-surface-800 bg-white/70 dark:bg-surface-900/40 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-500 overflow-hidden">
+            <div className="w-full max-w-2xl rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-500 overflow-hidden">
               <motion.div className="relative rounded-[16px] overflow-hidden aspect-[4/3] w-full" initial={{ clipPath: 'inset(0 100% 0 0)' }} whileInView={{ clipPath: 'inset(0 0% 0 0)' }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1] }}>
                 <motion.img
                   src={LCMSImage}
@@ -86,14 +86,14 @@ export default function FoodSafetyPolicy() {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="flex items-start gap-4 p-4 bg-white dark:bg-surface-900/50 border border-[#eee] dark:border-surface-800/60 rounded-[10px] hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.08)] transition-all duration-300 group"
+                className="flex items-start gap-4 p-4 bg-white border border-[#eee] rounded-[10px] hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.08)] transition-all duration-300 group"
               >
-                <div className="flex-shrink-0 w-8 h-8 rounded-[8px] bg-brand-600/6 dark:bg-brand-950/60 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform duration-300">
+                <div className="flex-shrink-0 w-8 h-8 rounded-[8px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center text-brand-600 group-hover:scale-110 transition-transform duration-300">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <p className="font-body text-[15px] font-medium text-surface-700 dark:text-surface-300 leading-[26px] m-0">
+                <p className="font-body text-[15px] font-medium text-surface-700 leading-[26px] m-0">
                   {item}
                 </p>
               </motion.div>
@@ -104,17 +104,17 @@ export default function FoodSafetyPolicy() {
         {/* Row 2: QMS Content — full width below */}
         <motion.div
           variants={itemVariants}
-          className="border-l-4 border-brand-600 pl-8 py-6 bg-[rgba(228, 10, 24,0.02)] dark:bg-brand-950/15 rounded-r-[10px] flex flex-col gap-4"
+          className="border-l-4 border-brand-600 pl-8 py-6 bg-[rgba(228, 10, 24,0.02)] rounded-r-[10px] flex flex-col gap-4"
         >
-          <p className="text-sm sm:text-base text-surface-600 dark:text-surface-350 leading-relaxed m-0 font-body">
+          <p className="text-sm sm:text-base text-surface-600 leading-relaxed m-0 font-body">
             Our Quality Management System is designed to deliver safe, consistent products in full alignment with defined customer specifications.
           </p>
-          <p className="text-sm sm:text-base text-surface-600 dark:text-surface-350 leading-relaxed m-0 font-body">
+          <p className="text-sm sm:text-base text-surface-600 leading-relaxed m-0 font-body">
             Built on internationally recognized quality management principles, the system integrates structured management review, preventive action, and a process-driven approach led by strong top management commitment. The focus remains on measurable performance and continuous improvement across the organization.
           </p>
-          <p className="text-sm sm:text-base text-surface-600 dark:text-surface-350 leading-relaxed m-0 font-body">
+          <p className="text-sm sm:text-base text-surface-600 leading-relaxed m-0 font-body">
             Our food safety framework is based on{' '}
-            <strong className="text-brand-600 dark:text-brand-400">HACCP principles</strong>, ensuring controlled and documented monitoring from hatchery and feed mill through farming, processing, handling, and final delivery.
+            <strong className="text-brand-600">HACCP principles</strong>, ensuring controlled and documented monitoring from hatchery and feed mill through farming, processing, handling, and final delivery.
           </p>
         </motion.div>
       </motion.section>

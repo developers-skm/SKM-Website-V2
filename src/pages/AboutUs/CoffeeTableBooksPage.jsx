@@ -38,7 +38,7 @@ export default function CoffeeTableBooksPage({ onPageChange }) {
       onPageChange={onPageChange}
     >
 
-      <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
+      <div className="w-full bg-page pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -53,12 +53,12 @@ export default function CoffeeTableBooksPage({ onPageChange }) {
             </motion.span>
             <motion.h2
               variants={itemVariants}
-              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.1] tracking-tight m-0 uppercase"
+              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0 uppercase"
             >
               Coffee Table{' '}
               Books
             </motion.h2>
-            <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 dark:text-surface-400 max-w-2xl leading-[30px] m-0">
+            <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 max-w-2xl leading-[30px] m-0">
               Delve into our rich history, state-of-the-art facilities, and bio-security frameworks through our premium digital coffee table books.
             </motion.p>
           </div>
@@ -71,13 +71,13 @@ export default function CoffeeTableBooksPage({ onPageChange }) {
                 variants={itemVariants}
                 className={`flex flex-col ${
                   idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                } gap-10 items-center justify-between bg-surface-50/50 dark:bg-surface-900/20 border border-[#eee] dark:border-surface-800 p-8 sm:p-10 rounded-[10px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] transition-shadow duration-300`}
+                } gap-10 items-center justify-between bg-surface-50/50 border border-[#eee] p-8 sm:p-10 rounded-[10px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] transition-shadow duration-300`}
               >
                 {/* Book cover thumbnail */}
                 <div className="flex-shrink-0 relative flex justify-center items-center group">
-                  <div className="absolute w-[80%] h-[80%] bg-brand-600/6 dark:bg-brand-650/5 rounded-full blur-3xl group-hover:bg-[rgba(228, 10, 24,0.10)] transition-all duration-500 -z-10 pointer-events-none" />
-                  <div className="w-full max-w-[260px] rounded-[20px] border border-[#eee] dark:border-surface-800 bg-surface-50 dark:bg-surface-900/40 p-5 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-500 flex flex-col items-center gap-4">
-                    <div className="relative bg-page dark:bg-surface-950 p-5 rounded-[16px] border border-[#eee] dark:border-surface-800/80 w-full aspect-square flex items-center justify-center">
+                  <div className="absolute w-[80%] h-[80%] bg-brand-600/6 rounded-full blur-3xl group-hover:bg-[rgba(228, 10, 24,0.10)] transition-all duration-500 -z-10 pointer-events-none" />
+                  <div className="w-full max-w-[260px] rounded-[20px] border border-[#eee] bg-surface-50 p-5 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-500 flex flex-col items-center gap-4">
+                    <div className="relative bg-page p-5 rounded-[16px] border border-[#eee] w-full aspect-square flex items-center justify-center">
                       <motion.img
                         src={book.coverImage}
                         alt={book.title}
@@ -88,10 +88,10 @@ export default function CoffeeTableBooksPage({ onPageChange }) {
                       />
                     </div>
                     <div className="text-center flex flex-col gap-1 select-none">
-                      <h4 className="font-heading text-[13px] font-bold text-heading dark:text-white m-0 tracking-wide">
+                      <h4 className="font-heading text-[13px] font-bold text-heading m-0 tracking-wide">
                         {book.subtitle}
                       </h4>
-                      <p className="font-body text-[11px] text-surface-400 dark:text-surface-500 m-0">
+                      <p className="font-body text-[11px] text-surface-400 m-0">
                         {book.release}
                       </p>
                     </div>
@@ -100,18 +100,18 @@ export default function CoffeeTableBooksPage({ onPageChange }) {
                 {/* Book details */}
                 <div className="flex-grow text-left flex flex-col gap-5 max-w-xl">
                   <div className="flex items-center gap-3">
-                    <span className="font-body text-[11px] font-bold uppercase tracking-wider text-brand-600 bg-brand-600/6 dark:bg-brand-950/70 border border-brand-600/12 dark:border-brand-900/30 px-3 py-1 rounded">
+                    <span className="font-body text-[11px] font-bold uppercase tracking-wider text-brand-600 bg-brand-600/6 border border-brand-600/12 px-3 py-1 rounded">
                       {book.release}
                     </span>
-                    <span className="font-body text-[12px] text-surface-400 dark:text-surface-500 font-medium uppercase tracking-wider">
+                    <span className="font-body text-[12px] text-surface-400 font-medium uppercase tracking-wider">
                       {book.pages}
                     </span>
                   </div>
 
-                  <h3 className="font-heading text-[22px] sm:text-[26px] font-bold text-surface-800 dark:text-white m-0">
+                  <h3 className="font-heading text-[22px] sm:text-[26px] font-bold text-surface-800 m-0">
                     {book.title}
                   </h3>
-                  <p className="font-body text-[15px] text-surface-500 dark:text-surface-400 leading-[26px] m-0">
+                  <p className="font-body text-[15px] text-surface-500 leading-[26px] m-0">
                     {book.desc}
                   </p>
 

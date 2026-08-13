@@ -5,7 +5,7 @@ import React from 'react';
 export function Field({ label, required, error, children }) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="font-body text-[11px] font-semibold uppercase tracking-wider text-surface-500 dark:text-surface-400">
+      <label className="font-body text-[11px] font-semibold uppercase tracking-wider text-surface-500">
         {label}{required && <span className="text-brand-600 ml-0.5">*</span>}
       </label>
       {children}
@@ -22,11 +22,11 @@ export function Field({ label, required, error, children }) {
 }
 
 export const inputClass = (hasError) =>
-  `w-full px-0 py-2 bg-transparent border-0 border-b font-body text-surface-850 dark:text-surface-100 text-sm font-medium transition-all focus:outline-none focus:ring-0 ${
+  `w-full px-0 py-2 bg-transparent border-0 border-b font-body text-surface-850 text-sm font-medium transition-all focus:outline-none focus:ring-0 ${
     hasError
-      ? 'border-red-400 dark:border-red-500 placeholder:text-red-300 dark:placeholder:text-red-700'
-      : 'border-surface-250 dark:border-surface-700 focus:border-brand-600 dark:focus:border-brand-400 placeholder:text-surface-350 dark:placeholder:text-surface-600'
+      ? 'border-red-400 placeholder:text-red-300'
+      : 'border-surface-250 focus:border-brand-600 placeholder:text-surface-350'
   }`;
 
 export const selectClass =
-  'w-full px-0 py-2 bg-transparent border-0 border-b border-surface-250 dark:border-surface-700 font-body text-surface-850 dark:text-surface-100 text-sm font-medium focus:outline-none focus:border-brand-600 dark:focus:border-brand-400 transition-all cursor-pointer';
+  'w-full px-0 py-2 bg-transparent border-0 border-b border-surface-250 font-body text-surface-850 text-sm font-medium focus:outline-none focus:border-brand-600 transition-all cursor-pointer';

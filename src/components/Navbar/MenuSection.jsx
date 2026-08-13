@@ -17,7 +17,7 @@ export default function MenuSection({ title, links, activePage, onNavigate, isMo
   const bodyId = useId();
 
   return (
-    <motion.div variants={columnVariants} className="border-b border-surface-200 dark:border-surface-800 sm:border-none py-2 sm:py-0">
+    <motion.div variants={columnVariants} className="border-b border-surface-200 sm:border-none py-2 sm:py-0">
       <h3 className="hidden sm:block font-heading font-bold text-[13px] uppercase tracking-[0.1em] text-brand-600 m-0">
         {title}
       </h3>

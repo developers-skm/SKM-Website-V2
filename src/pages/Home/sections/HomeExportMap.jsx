@@ -170,13 +170,13 @@ export default function HomeExportMap() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: -4 }}
             transition={{ duration: 0.15 }}
-            className="absolute pointer-events-none z-20 bg-white dark:bg-surface-800 border border-surface-200/70 dark:border-surface-700 rounded-lg px-3 py-1.5 shadow-md"
+            className="absolute pointer-events-none z-20 bg-white border border-surface-200/70 rounded-lg px-3 py-1.5 shadow-md"
             style={{
               left: Math.min(tooltip.x + 12, (tooltip.containerWidth ?? 500) - 140),
               top: Math.max(tooltip.y - 40, 8),
             }}
           >
-            <span className="text-[12px] font-semibold text-surface-800 dark:text-white whitespace-nowrap">
+            <span className="text-[12px] font-semibold text-surface-800 whitespace-nowrap">
               {tooltip.name}
             </span>
           </motion.div>

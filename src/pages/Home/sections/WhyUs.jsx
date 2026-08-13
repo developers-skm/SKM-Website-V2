@@ -59,7 +59,7 @@ function StatNumber({ value, featured }) {
   return (
     <strong
       ref={ref}
-      className={`block font-heading font-black text-brand-600 dark:text-brand-400 leading-[0.85] tracking-tight tabular-nums m-0 ${
+      className={`block font-heading font-black text-brand-600 leading-[0.85] tracking-tight tabular-nums m-0 ${
         featured
           ? 'text-[22vw] sm:text-[100px] lg:text-[128px]'
           : 'text-[16vw] sm:text-[68px] lg:text-[84px]'
@@ -73,10 +73,10 @@ function StatNumber({ value, featured }) {
 function MilestoneNumber({ prefix, number }) {
   return (
     <div className="flex flex-col">
-      <span className="font-body text-[13px] sm:text-[15px] font-bold uppercase tracking-[0.2em] text-surface-400 dark:text-surface-500 mb-1">
+      <span className="font-body text-[13px] sm:text-[15px] font-bold uppercase tracking-[0.2em] text-surface-400 mb-1">
         {prefix}
       </span>
-      <strong className="block font-heading font-black text-[16vw] sm:text-[68px] lg:text-[84px] text-brand-600 dark:text-brand-400 leading-[0.85] tracking-tight tabular-nums m-0">
+      <strong className="block font-heading font-black text-[16vw] sm:text-[68px] lg:text-[84px] text-brand-600 leading-[0.85] tracking-tight tabular-nums m-0">
         {number}
       </strong>
     </div>
@@ -101,22 +101,22 @@ function ProofRow({ proof, index, onPageChange, reduceMotion, isDimmed, onFocusR
         ) : (
           <StatNumber value={proof.number} featured={proof.featured} />
         )}
-        <span className="font-body text-[12.5px] sm:text-[13.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500 mt-1">
+        <span className="font-body text-[12.5px] sm:text-[13.5px] font-semibold uppercase tracking-wide text-surface-400 mt-1">
           {proof.label}
         </span>
       </div>
 
       <div className={`sm:col-span-8 flex flex-col gap-2.5 ${proof.featured ? 'sm:pt-4 lg:pt-6' : 'sm:pt-2'}`}>
-        <h3 className={`font-heading font-bold text-heading dark:text-white leading-[1.25] m-0 transition-transform duration-300 group-hover:translate-x-1 ${proof.featured ? 'text-[24px] lg:text-[30px]' : 'text-[21px] lg:text-[25px]'}`}>
+        <h3 className={`font-heading font-bold text-heading leading-[1.25] m-0 transition-transform duration-300 group-hover:translate-x-1 ${proof.featured ? 'text-[24px] lg:text-[30px]' : 'text-[21px] lg:text-[25px]'}`}>
           {proof.title}
         </h3>
-        <p className="font-body text-[15.5px] lg:text-[17px] text-surface-600 dark:text-surface-400 leading-[1.7] max-w-xl m-0">
+        <p className="font-body text-[15.5px] lg:text-[17px] text-surface-600 leading-[1.7] max-w-xl m-0">
           {proof.description}
         </p>
         <InternalLink
           route={proof.page}
           onPageChange={onPageChange}
-          className="group/link self-start inline-flex items-center gap-2 font-body font-semibold text-[14.5px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 mt-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
+          className="group/link self-start inline-flex items-center gap-2 font-body font-semibold text-[14.5px] text-brand-600 hover:text-brand-700 mt-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
         >
           Learn More
           <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" className={reduceMotion ? '' : 'group-hover/link:translate-x-0.5 transition-transform duration-200'} aria-hidden>
@@ -133,7 +133,7 @@ function ProofRow({ proof, index, onPageChange, reduceMotion, isDimmed, onFocusR
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: reduceMotion ? 0.01 : 0.8, delay: reduceMotion ? 0 : index * 0.1 + 0.15, ease: EASE_PREMIUM }}
         className={`sm:col-span-12 h-px origin-left mt-2 transition-colors duration-300 ${
-          isDimmed ? 'bg-surface-200/80 dark:bg-surface-800' : 'bg-brand-600/40 dark:bg-brand-400/40'
+          isDimmed ? 'bg-surface-200/80' : 'bg-brand-600/40'
         }`}
       />
     </motion.div>
@@ -149,7 +149,7 @@ export default function WhyUs({ onPageChange }) {
   }, []);
 
   return (
-    <div className="w-full bg-white dark:bg-surface-950 pt-[110px] pb-[100px] lg:pt-[136px] lg:pb-[128px]">
+    <div className="w-full bg-white pt-[110px] pb-[100px] lg:pt-[136px] lg:pb-[128px]">
       <div className="mx-auto max-w-[1560px] w-full px-6 sm:px-10 lg:px-16">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
@@ -158,16 +158,16 @@ export default function WhyUs({ onPageChange }) {
           <div className="lg:col-span-4">
             <motion.div {...fadeUp(reduceMotion)} className="lg:sticky lg:top-32 flex flex-col gap-4 max-w-sm">
               <span className="section-label">Why SKM</span>
-              <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading dark:text-white leading-[1.05] tracking-tight m-0">
+              <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading leading-[1.05] tracking-tight m-0">
                 Why manufacturers choose SKM
               </h2>
-              <p className="font-body text-[15.5px] lg:text-[16.5px] text-surface-500 dark:text-surface-400 leading-[1.7] m-0">
+              <p className="font-body text-[15.5px] lg:text-[16.5px] text-surface-500 leading-[1.7] m-0">
                 Uncompromising standards in every single egg.
               </p>
               <InternalLink
                 route="why_skm"
                 onPageChange={onPageChange}
-                className="mt-3 inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 dark:border-surface-700 font-body font-semibold text-[15px] text-heading dark:text-white hover:border-brand-600 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 self-start"
+                className="mt-3 inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 font-body font-semibold text-[15px] text-heading hover:border-brand-600 hover:text-brand-600 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 self-start"
               >
                 Why Choose SKM
                 <svg width="11" height="11" viewBox="0 0 10 10" fill="currentColor" aria-hidden>
@@ -185,7 +185,7 @@ export default function WhyUs({ onPageChange }) {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: reduceMotion ? 0.01 : 0.9, ease: EASE_PREMIUM }}
-              className="h-px bg-surface-200/80 dark:bg-surface-800 origin-left"
+              className="h-px bg-surface-200/80 origin-left"
             />
             <div className="flex flex-col">
               {proofs.map((proof, i) => (

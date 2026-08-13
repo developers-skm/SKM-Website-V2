@@ -146,7 +146,7 @@ function FamilyCard({ family, onPageChange }) {
   if (family.comingSoon) {
     return (
       <TiltCard reduceMotion={reduceMotion}>
-        <article className="group flex flex-col h-full rounded-[24px] overflow-hidden isolate bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 shadow-[0_16px_44px_rgba(36,30,24,0.12)]">
+        <article className="group flex flex-col h-full rounded-[24px] overflow-hidden isolate bg-white border border-surface-200/70 shadow-[0_16px_44px_rgba(36,30,24,0.12)]">
           <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4 / 3' }}>
             {family.comingSoonImage && (
               <SafeImage
@@ -161,10 +161,10 @@ function FamilyCard({ family, onPageChange }) {
           </div>
 
           <div className="flex flex-col flex-1 px-6 py-6 sm:px-7 sm:py-7">
-            <h3 className="font-heading font-bold text-[20px] lg:text-[22px] text-heading dark:text-white leading-[1.2] m-0 mb-3">
+            <h3 className="font-heading font-bold text-[20px] lg:text-[22px] text-heading leading-[1.2] m-0 mb-3">
               {family.name}
             </h3>
-            <p className="font-body text-[14px] lg:text-[15px] text-surface-500 dark:text-surface-400 leading-[1.55] m-0">
+            <p className="font-body text-[14px] lg:text-[15px] text-surface-500 leading-[1.55] m-0">
               Table eggs are on our roadmap. Get in touch to discuss your requirement ahead of launch.
             </p>
           </div>
@@ -180,7 +180,7 @@ function FamilyCard({ family, onPageChange }) {
 
   return (
     <TiltCard reduceMotion={reduceMotion}>
-      <article className="group flex flex-col h-full rounded-[24px] overflow-hidden isolate bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 shadow-[0_16px_44px_rgba(36,30,24,0.12)] transition-shadow duration-300 hover:shadow-[0_20px_52px_rgba(36,30,24,0.16)]">
+      <article className="group flex flex-col h-full rounded-[24px] overflow-hidden isolate bg-white border border-surface-200/70 shadow-[0_16px_44px_rgba(36,30,24,0.12)] transition-shadow duration-300 hover:shadow-[0_20px_52px_rgba(36,30,24,0.16)]">
         {heroImage && (
           <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4 / 3' }}>
             <SafeImage
@@ -194,18 +194,18 @@ function FamilyCard({ family, onPageChange }) {
         )}
 
         <div className="flex flex-col flex-1 px-6 py-6 sm:px-7 sm:py-7">
-          <h3 className="font-heading font-bold text-[20px] lg:text-[22px] text-heading dark:text-white leading-[1.2] m-0 mb-3">
+          <h3 className="font-heading font-bold text-[20px] lg:text-[22px] text-heading leading-[1.2] m-0 mb-3">
             {family.name}
           </h3>
 
           {family.format && (
-            <p className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400 m-0 mb-3">
+            <p className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-brand-600 m-0 mb-3">
               {family.format.join(' · ')}
             </p>
           )}
 
           {firstBenefit && (
-            <p className="font-body text-[14px] lg:text-[15px] text-surface-600 dark:text-surface-400 leading-[1.55] m-0 line-clamp-3">
+            <p className="font-body text-[14px] lg:text-[15px] text-surface-600 leading-[1.55] m-0 line-clamp-3">
               {firstBenefit}
             </p>
           )}
@@ -214,7 +214,7 @@ function FamilyCard({ family, onPageChange }) {
             <InternalLink
               route={family.categoryRoute}
               onPageChange={onPageChange}
-              className="group/link inline-flex items-center gap-2 font-body font-semibold text-[14px] lg:text-[15px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
+              className="group/link inline-flex items-center gap-2 font-body font-semibold text-[14px] lg:text-[15px] text-brand-600 hover:text-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
             >
               {family.ctaLabel}
               <svg
@@ -238,7 +238,7 @@ export default function ProductFamilies({ onPageChange }) {
   return (
     <div
       id="product-discovery"
-      className="w-full overflow-x-hidden bg-white dark:bg-surface-900/40 py-[60px] lg:py-[85px] scroll-mt-[100px] xl:scroll-mt-[120px]"
+      className="w-full overflow-x-hidden bg-white py-[60px] lg:py-[85px] scroll-mt-[100px] xl:scroll-mt-[120px]"
     >
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10 lg:gap-12">
 
@@ -247,7 +247,7 @@ export default function ProductFamilies({ onPageChange }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="font-heading font-bold text-[34px] sm:text-[42px] lg:text-[48px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+          className="font-heading font-bold text-[34px] sm:text-[42px] lg:text-[48px] text-heading leading-[1.1] tracking-tight m-0"
         >
           Product families
         </motion.h2>

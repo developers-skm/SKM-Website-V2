@@ -36,7 +36,7 @@ const SALES_EMAIL = 'exportsales@skmegg.com';
 
 export default function RegionalRouting({ onPageChange }) {
   return (
-    <div className="w-full bg-page dark:bg-surface-950 py-[70px] lg:py-[90px] border-b border-[#eee] dark:border-surface-900">
+    <div className="w-full bg-page py-[70px] lg:py-[90px] border-b border-[#eee]">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -46,10 +46,10 @@ export default function RegionalRouting({ onPageChange }) {
       >
         <motion.div variants={itemVariants} className="flex flex-col gap-2 text-center">
           <span className="section-label justify-center">Contact Routing</span>
-          <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading dark:text-white m-0 tracking-tight">
+          <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
             Reach the right team
           </h2>
-          <p className="font-body text-[14px] text-surface-500 dark:text-surface-400 max-w-xl mx-auto m-0">
+          <p className="font-body text-[14px] text-surface-500 max-w-xl mx-auto m-0">
             Corporate office and factory details are above — here's who to contact for sales, quality documentation, regional support, or investor matters.
           </p>
         </motion.div>
@@ -58,11 +58,11 @@ export default function RegionalRouting({ onPageChange }) {
           {/* Sales enquiries */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col gap-4 p-6 rounded-[14px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/40"
+            className="flex flex-col gap-4 p-6 rounded-[14px] border border-[#eee] bg-white"
           >
             <div className="flex flex-col gap-1">
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">Sales Enquiries</h3>
-              <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-[21px] m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">Sales Enquiries</h3>
+              <p className="font-body text-[13px] text-surface-500 leading-[21px] m-0">
                 Product, pricing, and export sales questions.
               </p>
             </div>
@@ -77,18 +77,18 @@ export default function RegionalRouting({ onPageChange }) {
           {/* Quality or documentation enquiries */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col gap-4 p-6 rounded-[14px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/40"
+            className="flex flex-col gap-4 p-6 rounded-[14px] border border-[#eee] bg-white"
           >
             <div className="flex flex-col gap-1">
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">Quality &amp; Documentation</h3>
-              <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-[21px] m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">Quality &amp; Documentation</h3>
+              <p className="font-body text-[13px] text-surface-500 leading-[21px] m-0">
                 Certifications, food safety policy, and traceability documents.
               </p>
             </div>
             <InternalLink
               route="quality_food_safety_traceability"
               onPageChange={onPageChange}
-              className="mt-auto inline-flex items-center justify-center gap-2 border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600 hover:text-white font-heading font-bold text-[12px] uppercase tracking-wide px-4 py-2.5 rounded-full transition-colors duration-200"
+              className="mt-auto inline-flex items-center justify-center gap-2 border border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white font-heading font-bold text-[12px] uppercase tracking-wide px-4 py-2.5 rounded-full transition-colors duration-200"
             >
               View Documentation
             </InternalLink>
@@ -97,18 +97,18 @@ export default function RegionalRouting({ onPageChange }) {
           {/* Investor contact */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col gap-4 p-6 rounded-[14px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/40"
+            className="flex flex-col gap-4 p-6 rounded-[14px] border border-[#eee] bg-white"
           >
             <div className="flex flex-col gap-1">
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">Investor Contact</h3>
-              <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-[21px] m-0">
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">Investor Contact</h3>
+              <p className="font-body text-[13px] text-surface-500 leading-[21px] m-0">
                 Shareholder services and registrar &amp; transfer agent details.
               </p>
             </div>
             <InternalLink
               route="investors"
               onPageChange={onPageChange}
-              className="mt-auto inline-flex items-center justify-center gap-2 border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600 hover:text-white font-heading font-bold text-[12px] uppercase tracking-wide px-4 py-2.5 rounded-full transition-colors duration-200"
+              className="mt-auto inline-flex items-center justify-center gap-2 border border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white font-heading font-bold text-[12px] uppercase tracking-wide px-4 py-2.5 rounded-full transition-colors duration-200"
             >
               View Investor Contact
             </InternalLink>
@@ -117,18 +117,18 @@ export default function RegionalRouting({ onPageChange }) {
 
         {/* Regional offices */}
         <motion.div variants={itemVariants} className="flex flex-col gap-4">
-          <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">Regional Offices</h3>
+          <h3 className="font-heading font-bold text-[16px] text-heading m-0">Regional Offices</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {branches.map((branch) => (
               <div
                 key={branch.page}
-                className="flex items-center justify-between gap-4 p-5 rounded-[14px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/40"
+                className="flex items-center justify-between gap-4 p-5 rounded-[14px] border border-[#eee] bg-white"
               >
-                <span className="font-heading font-bold text-[14px] text-surface-800 dark:text-white">{branch.name}</span>
+                <span className="font-heading font-bold text-[14px] text-surface-800">{branch.name}</span>
                 <InternalLink
                   route={branch.page}
                   onPageChange={onPageChange}
-                  className="font-body text-[11.5px] font-bold uppercase tracking-wide text-brand-600 dark:text-brand-400 hover:underline whitespace-nowrap"
+                  className="font-body text-[11.5px] font-bold uppercase tracking-wide text-brand-600 hover:underline whitespace-nowrap"
                 >
                   Contact Regional Office →
                 </InternalLink>

@@ -83,11 +83,11 @@ const archiveItems = menuItems.filter((m) => !m.recommended);
 
 function SectionHeader({ label }) {
   return (
-    <div className="flex flex-col gap-2 pb-6 border-b border-[#eee] dark:border-surface-800">
-      <span className="font-body text-[11px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">
+    <div className="flex flex-col gap-2 pb-6 border-b border-[#eee]">
+      <span className="font-body text-[11px] font-medium uppercase tracking-widest text-brand-600">
         Investors
       </span>
-      <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading dark:text-white tracking-tight m-0">
+      <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading tracking-tight m-0">
         {label}
       </h2>
     </div>
@@ -123,15 +123,15 @@ function DocumentRow({ file }) {
       href={file.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center gap-4 px-4 py-3.5 rounded-[10px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/50 hover:border-brand-600/30 dark:hover:border-brand-900/60 hover:bg-[rgba(228, 10, 24,0.02)] dark:hover:bg-brand-950/20 transition-all duration-200"
+      className="group flex items-center gap-4 px-4 py-3.5 rounded-[10px] border border-[#eee] bg-white hover:border-brand-600/30 hover:bg-[rgba(228, 10, 24,0.02)] transition-all duration-200"
     >
-      <div className="flex-shrink-0 w-9 h-9 rounded-[8px] bg-brand-600/6 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center">
+      <div className="flex-shrink-0 w-9 h-9 rounded-[8px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center">
         <FileIcon ext={file.ext} />
       </div>
-      <span className="flex-1 font-body text-[13px] font-medium text-surface-700 dark:text-surface-300 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-200 min-w-0 truncate">
+      <span className="flex-1 font-body text-[13px] font-medium text-surface-700 group-hover:text-brand-600 transition-colors duration-200 min-w-0 truncate">
         {file.displayName}
       </span>
-      <div className="flex-shrink-0 flex items-center gap-1.5 text-surface-300 dark:text-surface-600 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-200">
+      <div className="flex-shrink-0 flex items-center gap-1.5 text-surface-300 group-hover:text-brand-600 transition-colors duration-200">
         <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:inline">
           {file.ext}
         </span>
@@ -190,27 +190,27 @@ function CommitteeAccordion({ committee, index }) {
   const contentRef = useRef(null);
 
   return (
-    <div className="rounded-[10px] border border-[#eee] dark:border-surface-800 overflow-hidden bg-white dark:bg-surface-900/50">
+    <div className="rounded-[10px] border border-[#eee] overflow-hidden bg-white">
       <button
         onClick={() => setOpen(prev => !prev)}
-        className="w-full flex items-center justify-between px-5 py-4 gap-4 text-left group transition-colors duration-200 hover:bg-surface-50 dark:hover:bg-surface-800/40"
+        className="w-full flex items-center justify-between px-5 py-4 gap-4 text-left group transition-colors duration-200 hover:bg-surface-50"
       >
         <div className="flex items-center gap-3 min-w-0">
-          <div className="flex-shrink-0 w-8 h-8 rounded-[8px] bg-brand-600/6 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center">
-            <svg className="w-4 h-4 text-brand-600 dark:text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+          <div className="flex-shrink-0 w-8 h-8 rounded-[8px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center">
+            <svg className="w-4 h-4 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
           </div>
-          <span className="font-heading font-bold text-[13px] text-surface-800 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-200 truncate">
+          <span className="font-heading font-bold text-[13px] text-surface-800 group-hover:text-brand-600 transition-colors duration-200 truncate">
             {committee.title}
           </span>
         </div>
         <div className="flex-shrink-0 flex items-center gap-2">
-          <span className="hidden sm:inline text-[10px] font-bold uppercase tracking-widest text-surface-400 dark:text-surface-500">
+          <span className="hidden sm:inline text-[10px] font-bold uppercase tracking-widest text-surface-400">
             {committee.members.length} members
           </span>
           <svg
-            className={`w-4 h-4 text-surface-400 dark:text-surface-500 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+            className={`w-4 h-4 text-surface-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -228,19 +228,19 @@ function CommitteeAccordion({ committee, index }) {
             transition={{ duration: 0.22, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div ref={contentRef} className="border-t border-[#eee] dark:border-surface-800 px-5 py-4 flex flex-col gap-2">
+            <div ref={contentRef} className="border-t border-[#eee] px-5 py-4 flex flex-col gap-2">
               {committee.members.map((member, i) => (
                 <div
                   key={i}
-                  className="flex items-center justify-between gap-4 px-4 py-3 rounded-[8px] bg-surface-50/80 dark:bg-surface-800/40 border border-[#eee] dark:border-surface-800"
+                  className="flex items-center justify-between gap-4 px-4 py-3 rounded-[8px] bg-surface-50/80 border border-[#eee]"
                 >
-                  <span className="font-body text-[13px] font-medium text-surface-700 dark:text-surface-300 min-w-0 truncate">
+                  <span className="font-body text-[13px] font-medium text-surface-700 min-w-0 truncate">
                     {member.name}
                   </span>
                   <span className={`flex-shrink-0 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full ${
                     member.role === 'Chairperson'
-                      ? 'bg-brand-600/8 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 border border-brand-600/15 dark:border-brand-900/50'
-                      : 'bg-surface-100 dark:bg-surface-700/50 text-surface-500 dark:text-surface-400 border border-[#eee] dark:border-surface-700'
+                      ? 'bg-brand-600/8 text-brand-600 border border-brand-600/15'
+                      : 'bg-surface-100 text-surface-500 border border-[#eee]'
                   }`}>
                     {member.role}
                   </span>
@@ -267,29 +267,29 @@ function InvestorContactContent({ label }) {
       <div className="flex flex-col gap-4">
 
         {/* Registrar and Transfer Agent */}
-        <div className="rounded-[10px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/50 overflow-hidden">
-          <div className="flex items-center gap-3 px-5 py-3.5 border-b border-[#eee] dark:border-surface-800 bg-surface-50/60 dark:bg-surface-800/30">
-            <div className="flex-shrink-0 w-7 h-7 rounded-[7px] bg-brand-600/6 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center">
-              <svg className="w-3.5 h-3.5 text-brand-600 dark:text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+        <div className="rounded-[10px] border border-[#eee] bg-white overflow-hidden">
+          <div className="flex items-center gap-3 px-5 py-3.5 border-b border-[#eee] bg-surface-50/60">
+            <div className="flex-shrink-0 w-7 h-7 rounded-[7px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center">
+              <svg className="w-3.5 h-3.5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
             </div>
-            <p className="font-heading font-bold text-[12px] text-surface-800 dark:text-white m-0">
+            <p className="font-heading font-bold text-[12px] text-surface-800 m-0">
               Registrar and Transfer Agent
             </p>
           </div>
           <div className="px-5 py-4 flex flex-col gap-3">
-            <p className="font-body font-bold text-[13px] text-surface-800 dark:text-white m-0">
+            <p className="font-body font-bold text-[13px] text-surface-800 m-0">
               MUFG Intime India Private Limited
             </p>
-            <p className="font-body text-[12px] text-surface-500 dark:text-surface-400 m-0 leading-relaxed">
+            <p className="font-body text-[12px] text-surface-500 m-0 leading-relaxed">
               "Surya", 35, Mayflower Avenue, Behind Senthil Nagar<br />
               Sowripalayam Road<br />
               Coimbatore – 641028
             </p>
             <a
               href="mailto:coimbatore@linkintime.co.in"
-              className="inline-flex items-center gap-1.5 font-body text-[12px] font-medium text-brand-600 dark:text-brand-400 hover:underline w-fit"
+              className="inline-flex items-center gap-1.5 font-body text-[12px] font-medium text-brand-600 hover:underline w-fit"
             >
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -300,30 +300,30 @@ function InvestorContactContent({ label }) {
         </div>
 
         {/* Compliance Officer */}
-        <div className="rounded-[10px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/50 overflow-hidden">
-          <div className="flex items-center gap-3 px-5 py-3.5 border-b border-[#eee] dark:border-surface-800 bg-surface-50/60 dark:bg-surface-800/30">
-            <div className="flex-shrink-0 w-7 h-7 rounded-[7px] bg-brand-600/6 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center">
-              <svg className="w-3.5 h-3.5 text-brand-600 dark:text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+        <div className="rounded-[10px] border border-[#eee] bg-white overflow-hidden">
+          <div className="flex items-center gap-3 px-5 py-3.5 border-b border-[#eee] bg-surface-50/60">
+            <div className="flex-shrink-0 w-7 h-7 rounded-[7px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center">
+              <svg className="w-3.5 h-3.5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <p className="font-heading font-bold text-[12px] text-surface-800 dark:text-white m-0">
+            <p className="font-heading font-bold text-[12px] text-surface-800 m-0">
               Compliance Officer
             </p>
           </div>
           <div className="px-5 py-4 flex flex-col gap-3">
             <div>
-              <p className="font-body font-bold text-[13px] text-surface-800 dark:text-white m-0">P. Sekar</p>
-              <p className="font-body text-[11px] text-surface-400 dark:text-surface-500 m-0 mt-0.5">Company Secretary</p>
+              <p className="font-body font-bold text-[13px] text-surface-800 m-0">P. Sekar</p>
+              <p className="font-body text-[11px] text-surface-400 m-0 mt-0.5">Company Secretary</p>
             </div>
-            <p className="font-body text-[12px] text-surface-500 dark:text-surface-400 m-0 leading-relaxed">
+            <p className="font-body text-[12px] text-surface-500 m-0 leading-relaxed">
               133, 133/1, Gandhiji Road<br />
               Erode – 638001
             </p>
             <div className="flex flex-col gap-1.5">
               <a
                 href="tel:04242351532"
-                className="inline-flex items-center gap-1.5 font-body text-[12px] font-medium text-surface-600 dark:text-surface-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-200 w-fit"
+                className="inline-flex items-center gap-1.5 font-body text-[12px] font-medium text-surface-600 hover:text-brand-600 transition-colors duration-200 w-fit"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -332,7 +332,7 @@ function InvestorContactContent({ label }) {
               </a>
               <a
                 href="tel:9585558325"
-                className="inline-flex items-center gap-1.5 font-body text-[12px] font-medium text-surface-600 dark:text-surface-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-200 w-fit"
+                className="inline-flex items-center gap-1.5 font-body text-[12px] font-medium text-surface-600 hover:text-brand-600 transition-colors duration-200 w-fit"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -341,7 +341,7 @@ function InvestorContactContent({ label }) {
               </a>
               <a
                 href="mailto:shares@skmegg.com"
-                className="inline-flex items-center gap-1.5 font-body text-[12px] font-medium text-brand-600 dark:text-brand-400 hover:underline w-fit"
+                className="inline-flex items-center gap-1.5 font-body text-[12px] font-medium text-brand-600 hover:underline w-fit"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -368,7 +368,7 @@ function BoardCommitteeContent({ label }) {
     >
       <SectionHeader label={label} />
       <div className="flex flex-col gap-3">
-        <p className="font-body text-[11px] font-bold uppercase tracking-widest text-surface-400 dark:text-surface-500 m-0 pb-2 border-b border-[#eee] dark:border-surface-800">
+        <p className="font-body text-[11px] font-bold uppercase tracking-widest text-surface-400 m-0 pb-2 border-b border-[#eee]">
           Composition of Board Committees
         </p>
         {boardCommittees.map((committee, i) => (
@@ -379,17 +379,17 @@ function BoardCommitteeContent({ label }) {
   );
 }
 
-const txt = 'font-body text-[12px] leading-relaxed text-surface-600 dark:text-surface-400 m-0';
-const bold = 'font-body text-[12px] leading-relaxed font-semibold text-surface-700 dark:text-surface-300 m-0';
+const txt = 'font-body text-[12px] leading-relaxed text-surface-600 m-0';
+const bold = 'font-body text-[12px] leading-relaxed font-semibold text-surface-700 m-0';
 
 function PolicySection({ roman, title, children }) {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-baseline gap-2">
-        <span className="font-heading font-bold text-[11px] text-brand-600 dark:text-brand-400 uppercase tracking-widest flex-shrink-0">
+        <span className="font-heading font-bold text-[11px] text-brand-600 uppercase tracking-widest flex-shrink-0">
           {roman}.
         </span>
-        <span className="font-heading font-bold text-[12px] text-surface-800 dark:text-white uppercase tracking-wide">
+        <span className="font-heading font-bold text-[12px] text-surface-800 uppercase tracking-wide">
           {title}
         </span>
       </div>
@@ -402,13 +402,13 @@ function PolicySection({ roman, title, children }) {
 
 function CodeOfConductPolicy() {
   return (
-    <div className="rounded-[10px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/50 overflow-hidden">
+    <div className="rounded-[10px] border border-[#eee] bg-white overflow-hidden">
       {/* Company header */}
-      <div className="px-6 py-5 border-b border-[#eee] dark:border-surface-800 bg-surface-50/60 dark:bg-surface-800/30 text-center flex flex-col gap-1">
-        <p className="font-heading font-bold text-[13px] text-heading dark:text-white m-0 uppercase tracking-wide">
+      <div className="px-6 py-5 border-b border-[#eee] bg-surface-50/60 text-center flex flex-col gap-1">
+        <p className="font-heading font-bold text-[13px] text-heading m-0 uppercase tracking-wide">
           SKM Egg Products Export India Limited
         </p>
-        <p className="font-body text-[11px] text-surface-500 dark:text-surface-400 m-0">
+        <p className="font-body text-[11px] text-surface-500 m-0">
           Regd Off: 185, Chennimalai Road, Erode – 638 001 – Tamil Nadu
         </p>
       </div>
@@ -416,7 +416,7 @@ function CodeOfConductPolicy() {
       <div className="px-6 py-7 flex flex-col gap-7">
 
         {/* Title */}
-        <p className="font-heading font-bold text-[13px] text-heading dark:text-white uppercase tracking-wide text-center m-0">
+        <p className="font-heading font-bold text-[13px] text-heading uppercase tracking-wide text-center m-0">
           Code of Conduct to Regulate, Monitor and Report Trading by Insiders
         </p>
 
@@ -438,16 +438,16 @@ function CodeOfConductPolicy() {
               { n: '4.', label: '"Compliance Officer"', def: 'means the Company Secretary of the Company and in his absence such officer as the Board may designate.' },
             ].map(({ n, label, def }) => (
               <li key={n} className="flex gap-2">
-                <span className="font-body text-[12px] font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0">{n}</span>
-                <p className={txt}><span className="font-semibold text-surface-700 dark:text-surface-300">{label}</span> {def}</p>
+                <span className="font-body text-[12px] font-semibold text-surface-700 flex-shrink-0">{n}</span>
+                <p className={txt}><span className="font-semibold text-surface-700">{label}</span> {def}</p>
               </li>
             ))}
 
             {/* Definition 5 - Connected Person (has sub-items) */}
             <li className="flex gap-2">
-              <span className="font-body text-[12px] font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0">5.</span>
+              <span className="font-body text-[12px] font-semibold text-surface-700 flex-shrink-0">5.</span>
               <div className="flex flex-col gap-2">
-                <p className={txt}><span className="font-semibold text-surface-700 dark:text-surface-300">"Connected Person"</span> means</p>
+                <p className={txt}><span className="font-semibold text-surface-700">"Connected Person"</span> means</p>
                 <div className="flex gap-2">
                   <span className={`${txt} flex-shrink-0`}>a)</span>
                   <p className={txt}>any person who is or has during the six months prior to the concerned act been associated with the Company, directly or indirectly, in any capacity including by reason of frequent communication with its officers or by being in any contractual, fiduciary or employment relationship or by being director, officer or an employee of the Company or holds any position including a professional or business relationship between himself and the Company whether temporary or permanent, that allows such person, directly or indirectly, access to unpublished price sensitive information or is reasonably expected to allow such access.</p>
@@ -494,16 +494,16 @@ function CodeOfConductPolicy() {
               { n: '16.', label: '"Trading Window"', def: 'shall mean that period specified by the Compliance Officer during which Insiders and Designated Persons and their immediate relatives are prohibited from any form of dealing in the Company\'s Securities.' },
             ].map(({ n, label, def }) => (
               <li key={n} className="flex gap-2">
-                <span className="font-body text-[12px] font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0">{n}</span>
-                <p className={txt}><span className="font-semibold text-surface-700 dark:text-surface-300">{label}</span> {def}</p>
+                <span className="font-body text-[12px] font-semibold text-surface-700 flex-shrink-0">{n}</span>
+                <p className={txt}><span className="font-semibold text-surface-700">{label}</span> {def}</p>
               </li>
             ))}
 
             {/* Definition 17 - UPSI (has sub-items) */}
             <li className="flex gap-2">
-              <span className="font-body text-[12px] font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0">17.</span>
+              <span className="font-body text-[12px] font-semibold text-surface-700 flex-shrink-0">17.</span>
               <div className="flex flex-col gap-1.5">
-                <p className={txt}><span className="font-semibold text-surface-700 dark:text-surface-300">"Unpublished Price Sensitive Information" (UPSI)</span> means any information relating the Company or its Securities, directly or indirectly that is not generally available which upon becoming generally available, is likely to materially affect the price of the securities and shall ordinarily include but not restricted to, information relating to the following:</p>
+                <p className={txt}><span className="font-semibold text-surface-700">"Unpublished Price Sensitive Information" (UPSI)</span> means any information relating the Company or its Securities, directly or indirectly that is not generally available which upon becoming generally available, is likely to materially affect the price of the securities and shall ordinarily include but not restricted to, information relating to the following:</p>
                 <ol className="flex flex-col gap-1 list-none p-0 m-0 pl-2">
                   {[
                     'Periodical financial results of the Company (quarterly, half-yearly and annual).',
@@ -550,20 +550,20 @@ function CodeOfConductPolicy() {
               'The Compliance Officer shall put in place Chinese Walls procedures and processes for permitting or prohibiting any Designated Person to cross the Wall.',
             ].map((item, i) => (
               <li key={i} className="flex gap-2">
-                <span className="font-body text-[12px] font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0">{i + 1}.</span>
+                <span className="font-body text-[12px] font-semibold text-surface-700 flex-shrink-0">{i + 1}.</span>
                 <p className={txt}>{item}</p>
               </li>
             ))}
 
             {/* Item 8 with subsections a, b, c, d */}
             <li className="flex gap-2">
-              <span className="font-body text-[12px] font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0">8.</span>
+              <span className="font-body text-[12px] font-semibold text-surface-700 flex-shrink-0">8.</span>
               <div className="flex flex-col gap-3">
                 <p className={txt}>The Compliance Officer shall also require Insiders, Connected Persons or Designated Persons to report in prescribed format their holding and trading in securities from time to time.</p>
 
                 {/* 8a */}
                 <div className="flex gap-2">
-                  <span className={`${txt} font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0`}>a)</span>
+                  <span className={`${txt} font-semibold text-surface-700 flex-shrink-0`}>a)</span>
                   <div className="flex flex-col gap-2">
                     <p className={bold}>Reporting requirements for transactions &amp; securities</p>
                     <p className={txt}>Every promoter, key managerial person, director shall disclose to the Compliance Officer in writing, the details of the securities held by him / her, the date from which securities are held, the number of securities held at the time of implementation of the Code of Conduct for prevention of the Insider Trading or joining the Company or becoming the Director of the Company and such other information relating to the Securities as the Compliance Officer may require.</p>
@@ -586,7 +586,7 @@ function CodeOfConductPolicy() {
 
                 {/* 8b */}
                 <div className="flex gap-2">
-                  <span className={`${txt} font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0`}>b)</span>
+                  <span className={`${txt} font-semibold text-surface-700 flex-shrink-0`}>b)</span>
                   <div className="flex flex-col gap-2">
                     <p className={bold}>Pre-clearance of trades and trading plans</p>
                     <ol className="flex flex-col gap-1.5 list-none p-0 m-0">
@@ -618,7 +618,7 @@ function CodeOfConductPolicy() {
 
                 {/* 8c */}
                 <div className="flex gap-2">
-                  <span className={`${txt} font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0`}>c)</span>
+                  <span className={`${txt} font-semibold text-surface-700 flex-shrink-0`}>c)</span>
                   <div className="flex flex-col gap-1.5">
                     <p className={bold}>Trading Window</p>
                     <p className={txt}>Trading Window shall be closed 20 days prior to any matter related or concerning UPSI is to be considered by the Board / Committee of the Board. During the period when the Trading Window is closed, the Insiders and their Dependant Family Members and Designated Persons shall be prohibited from Trading. The exact dates of each closure of the Trading Window shall be intimated to Designated Persons and it is the responsibility of each Designated Person to ensure compliance with this Code and by each of Insider's Dependant Family Members. The Trading Window shall open after the expiry of 48 hours from the time of publication of UPSI.</p>
@@ -627,7 +627,7 @@ function CodeOfConductPolicy() {
 
                 {/* 8d */}
                 <div className="flex gap-2">
-                  <span className={`${txt} font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0`}>d)</span>
+                  <span className={`${txt} font-semibold text-surface-700 flex-shrink-0`}>d)</span>
                   <div className="flex flex-col gap-1.5">
                     <p className={bold}>Chinese Wall</p>
                     <p className={txt}>The Compliance Officer is empowered to apply Chinese Wall in respect of matters relating to UPSI. Any agenda concerning UPSI in the Board / Committee Notice and Agenda can be shared prior to commencement of the Board Meeting / Committee Meeting in order to limit access to and sharing of UPSI. Any Insider or Connected Person or Designated Person shall not access or share UPSI to any person excepting sharing such UPSI in compliance of a statutory requirement without the prior written approval of the Compliance Officer.</p>
@@ -651,7 +651,7 @@ function CodeOfConductPolicy() {
               'The Managing Director after consideration of the investigation report shall communicate the findings to the person being investigated and accord him an opportunity of being heard before taking any action as contemplated in these rules.',
             ].map((item, i) => (
               <li key={i} className="flex gap-2">
-                <span className="font-body text-[12px] font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0">{i + 1}.</span>
+                <span className="font-body text-[12px] font-semibold text-surface-700 flex-shrink-0">{i + 1}.</span>
                 <p className={txt}>{item}</p>
               </li>
             ))}
@@ -668,13 +668,13 @@ function CodeOfConductPolicy() {
               'The action by the Company shall not preclude SEBI from taking any action in case of violation of the Regulations.',
             ].map((item, i) => (
               <li key={i} className="flex gap-2">
-                <span className="font-body text-[12px] font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0">{i + 1}.</span>
+                <span className="font-body text-[12px] font-semibold text-surface-700 flex-shrink-0">{i + 1}.</span>
                 <p className={txt}>{item}</p>
               </li>
             ))}
 
             <li className="flex gap-2">
-              <span className="font-body text-[12px] font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0">5.</span>
+              <span className="font-body text-[12px] font-semibold text-surface-700 flex-shrink-0">5.</span>
               <div className="flex flex-col gap-2">
                 <p className={txt}>The Managing Director shall upon receipt of the report as above and based on the finding contained therein be entitled to take action against the person found guilty for violation of this Code as he may in his absolute discretion deem fit including but not restricted to:</p>
                 <div className="flex gap-2">
@@ -689,7 +689,7 @@ function CodeOfConductPolicy() {
             </li>
 
             <li className="flex gap-2">
-              <span className="font-body text-[12px] font-semibold text-surface-700 dark:text-surface-300 flex-shrink-0">6.</span>
+              <span className="font-body text-[12px] font-semibold text-surface-700 flex-shrink-0">6.</span>
               <div className="flex flex-col gap-2">
                 <p className={txt}>Under Section 15G of the SEBI Act, any Insider who indulges in insider trading in contravention of Regulation 3 is liable to a maximum penalty of Rs.25 crore or three times the amount of profits made out of insider trading, whichever is higher. Under Section 24 of the SEBI Act, any one who contravenes the Regulations is punishable with imprisonment for a maximum period of ten years or with fine which may extend to Rs.25 crore or with both.</p>
                 <p className={`${bold}`}>Information to SEBI in case of violation of SEBI (Prohibition of Insider Trading) Regulations, 2015</p>
@@ -705,12 +705,12 @@ function CodeOfConductPolicy() {
         </PolicySection>
 
         {/* Signature block */}
-        <div className="flex flex-col gap-1 pt-4 border-t border-[#eee] dark:border-surface-800">
+        <div className="flex flex-col gap-1 pt-4 border-t border-[#eee]">
           <p className={txt}>For &amp; on Behalf of the Board of Directors of</p>
-          <p className={`${txt} font-semibold text-surface-700 dark:text-surface-300`}>SKM EGG PRODUCTS EXPORT INDIA LIMITED</p>
+          <p className={`${txt} font-semibold text-surface-700`}>SKM EGG PRODUCTS EXPORT INDIA LIMITED</p>
           <div className="mt-4 flex flex-col gap-0.5">
             <p className={txt}>Sd/-</p>
-            <p className={`${txt} font-semibold text-surface-700 dark:text-surface-300`}>Shree Shivkumar S K M</p>
+            <p className={`${txt} font-semibold text-surface-700`}>Shree Shivkumar S K M</p>
             <p className={txt}>Managing Director</p>
           </div>
         </div>
@@ -730,15 +730,15 @@ function ComingSoonContent({ label }) {
       className="flex flex-col gap-6"
     >
       <SectionHeader label={label} />
-      <div className="flex flex-col items-center justify-center py-24 gap-5 rounded-[10px] border border-dashed border-[#eee] dark:border-surface-800 bg-surface-50/50 dark:bg-surface-900/20">
-        <div className="w-14 h-14 rounded-[10px] bg-brand-600/6 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center">
-          <svg className="w-6 h-6 text-brand-600 dark:text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+      <div className="flex flex-col items-center justify-center py-24 gap-5 rounded-[10px] border border-dashed border-[#eee] bg-surface-50/50">
+        <div className="w-14 h-14 rounded-[10px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center">
+          <svg className="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
           </svg>
         </div>
         <div className="text-center flex flex-col gap-1.5">
-          <p className="text-sm font-bold text-surface-700 dark:text-surface-300 m-0">Content coming soon</p>
-          <p className="text-xs text-surface-400 dark:text-surface-500 m-0 max-w-xs">
+          <p className="text-sm font-bold text-surface-700 m-0">Content coming soon</p>
+          <p className="text-xs text-surface-400 m-0 max-w-xs">
             This section is being prepared. Please check back shortly.
           </p>
         </div>
@@ -776,7 +776,7 @@ function SectionContent({ value, label }) {
       <SectionHeader label={label} />
 
       {videos.map((video, i) => (
-        <div key={i} className="rounded-[12px] overflow-hidden border border-[#eee] dark:border-surface-800 bg-black">
+        <div key={i} className="rounded-[12px] overflow-hidden border border-[#eee] bg-black">
           <video controls className="w-full max-h-[480px] object-contain" src={video.url}>
             Your browser does not support the video tag.
           </video>
@@ -802,14 +802,14 @@ function SectionContent({ value, label }) {
 // already renders (no separate/duplicated content).
 function InvestorHero({ onSelect, onDownloadAnnualReport }) {
   return (
-    <div className="relative w-full bg-page dark:bg-surface-950 overflow-hidden pt-[110px] pb-[70px] sm:pt-[130px] sm:pb-[90px] lg:pt-[90px] border-b border-[#eee] dark:border-surface-900">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_120%,var(--color-brand-50)_0%,transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_120%,var(--color-brand-950)_0%,transparent_50%)] pointer-events-none opacity-100 dark:opacity-80" />
+    <div className="relative w-full bg-page overflow-hidden pt-[110px] pb-[70px] sm:pt-[130px] sm:pb-[90px] lg:pt-[90px] border-b border-[#eee]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_120%,var(--color-brand-50)_0%,transparent_50%)] pointer-events-none opacity-100" />
       <div className="relative mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-6 z-10">
         <span className="section-label justify-center">Investor Relations</span>
-        <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[56px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+        <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[56px] text-heading leading-[1.1] tracking-tight m-0">
           Investor Relations
         </h1>
-        <p className="font-body text-[15px] sm:text-[16px] text-surface-500 dark:text-surface-350 max-w-2xl leading-[27px] m-0">
+        <p className="font-body text-[15px] sm:text-[16px] text-surface-500 max-w-2xl leading-[27px] m-0">
           Financial results, annual reports, stock-exchange disclosures, shareholding information, and corporate governance for SKM Egg Products Export India Limited.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
@@ -821,19 +821,19 @@ function InvestorHero({ onSelect, onDownloadAnnualReport }) {
           </button>
           <button
             onClick={onDownloadAnnualReport}
-            className="inline-flex items-center gap-2 bg-transparent hover:bg-brand-600/6 dark:hover:bg-brand-950/30 text-surface-900 dark:text-surface-100 border border-surface-250 dark:border-surface-700 font-heading font-bold text-[12.5px] uppercase tracking-[0.05em] leading-none px-6 py-[13px] rounded-[200px] transition-all duration-300 cursor-pointer"
+            className="inline-flex items-center gap-2 bg-transparent hover:bg-brand-600/6 text-surface-900 border border-surface-250 font-heading font-bold text-[12.5px] uppercase tracking-[0.05em] leading-none px-6 py-[13px] rounded-[200px] transition-all duration-300 cursor-pointer"
           >
             Download Annual Report
           </button>
           <button
             onClick={() => onSelect('disclosures_lodr')}
-            className="inline-flex items-center gap-2 bg-transparent hover:bg-brand-600/6 dark:hover:bg-brand-950/30 text-surface-900 dark:text-surface-100 border border-surface-250 dark:border-surface-700 font-heading font-bold text-[12.5px] uppercase tracking-[0.05em] leading-none px-6 py-[13px] rounded-[200px] transition-all duration-300 cursor-pointer"
+            className="inline-flex items-center gap-2 bg-transparent hover:bg-brand-600/6 text-surface-900 border border-surface-250 font-heading font-bold text-[12.5px] uppercase tracking-[0.05em] leading-none px-6 py-[13px] rounded-[200px] transition-all duration-300 cursor-pointer"
           >
             Search Disclosures
           </button>
           <button
             onClick={() => onSelect('investor_contact')}
-            className="inline-flex items-center gap-2 bg-transparent hover:bg-brand-600/6 dark:hover:bg-brand-950/30 text-surface-900 dark:text-surface-100 border border-surface-250 dark:border-surface-700 font-heading font-bold text-[12.5px] uppercase tracking-[0.05em] leading-none px-6 py-[13px] rounded-[200px] transition-all duration-300 cursor-pointer"
+            className="inline-flex items-center gap-2 bg-transparent hover:bg-brand-600/6 text-surface-900 border border-surface-250 font-heading font-bold text-[12.5px] uppercase tracking-[0.05em] leading-none px-6 py-[13px] rounded-[200px] transition-all duration-300 cursor-pointer"
           >
             Contact Investor Relations
           </button>
@@ -871,7 +871,7 @@ export default function Investors({ onPageChange }) {
   };
 
   return (
-    <div className="w-full flex flex-col min-h-screen bg-page dark:bg-surface-950">
+    <div className="w-full flex flex-col min-h-screen bg-page">
       <SEO
         title="Investors | SKM Egg Products"
         description="Investor relations for SKM Egg Products — disclosures, annual reports, board information, corporate governance, shareholding patterns, and more."
@@ -885,7 +885,7 @@ export default function Investors({ onPageChange }) {
         <div className="lg:hidden w-full flex flex-col gap-3">
           <button
             onClick={() => setMobileMenuOpen(prev => !prev)}
-            className="w-full flex items-center justify-between px-5 py-3.5 rounded-[10px] bg-white dark:bg-surface-900/50 border border-[#eee] dark:border-surface-800 font-heading font-bold text-[13px] text-surface-800 dark:text-white focus:outline-none"
+            className="w-full flex items-center justify-between px-5 py-3.5 rounded-[10px] bg-white border border-[#eee] font-heading font-bold text-[13px] text-surface-800 focus:outline-none"
           >
             <span className="truncate pr-2 text-left text-xs">{activeLabel}</span>
             <svg
@@ -905,18 +905,18 @@ export default function Investors({ onPageChange }) {
                 transition={{ duration: 0.22, ease: 'easeInOut' }}
                 className="overflow-hidden"
               >
-                <div className="rounded-[10px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900 overflow-hidden shadow-[5px_3px_40px_rgba(0,72,88,0.1)] flex flex-col">
-                  <p className="font-body text-[10px] font-bold uppercase tracking-widest text-surface-400 dark:text-surface-500 px-5 pt-3 pb-2">
+                <div className="rounded-[10px] border border-[#eee] bg-white overflow-hidden shadow-[5px_3px_40px_rgba(0,72,88,0.1)] flex flex-col">
+                  <p className="font-body text-[10px] font-bold uppercase tracking-widest text-surface-400 px-5 pt-3 pb-2">
                     Most Used
                   </p>
                   {recommendedItems.map((item) => (
                     <button
                       key={item.value}
                       onClick={() => handleSelect(item.value)}
-                      className={`w-full text-left px-5 py-3 font-body text-[12px] font-medium border-b border-[#eee] dark:border-surface-800 last:border-0 transition-colors duration-200 ${
+                      className={`w-full text-left px-5 py-3 font-body text-[12px] font-medium border-b border-[#eee] last:border-0 transition-colors duration-200 ${
                         activeItem === item.value
-                          ? 'text-brand-600 dark:text-brand-400 bg-brand-600/5 dark:bg-brand-950/30'
-                          : 'text-surface-600 dark:text-surface-400 hover:bg-surface-50 dark:hover:bg-surface-800/50 hover:text-brand-600 dark:hover:text-brand-400'
+                          ? 'text-brand-600 bg-brand-600/5'
+                          : 'text-surface-600 hover:bg-surface-50 hover:text-brand-600'
                       }`}
                     >
                       {item.label}
@@ -925,7 +925,7 @@ export default function Investors({ onPageChange }) {
 
                   <button
                     onClick={() => setShowArchive((prev) => !prev)}
-                    className="w-full text-left px-5 py-3 font-body text-[11.5px] font-bold uppercase tracking-wide text-brand-600 dark:text-brand-400 border-t border-b border-[#eee] dark:border-surface-800 bg-surface-50/60 dark:bg-surface-800/30"
+                    className="w-full text-left px-5 py-3 font-body text-[11.5px] font-bold uppercase tracking-wide text-brand-600 border-t border-b border-[#eee] bg-surface-50/60"
                   >
                     {showArchive ? 'Hide' : 'View'} All Categories ({archiveItems.length})
                   </button>
@@ -934,10 +934,10 @@ export default function Investors({ onPageChange }) {
                     <button
                       key={item.value}
                       onClick={() => handleSelect(item.value)}
-                      className={`w-full text-left px-5 py-3 font-body text-[12px] font-medium border-b border-[#eee] dark:border-surface-800 last:border-0 transition-colors duration-200 ${
+                      className={`w-full text-left px-5 py-3 font-body text-[12px] font-medium border-b border-[#eee] last:border-0 transition-colors duration-200 ${
                         activeItem === item.value
-                          ? 'text-brand-600 dark:text-brand-400 bg-brand-600/5 dark:bg-brand-950/30'
-                          : 'text-surface-600 dark:text-surface-400 hover:bg-surface-50 dark:hover:bg-surface-800/50 hover:text-brand-600 dark:hover:text-brand-400'
+                          ? 'text-brand-600 bg-brand-600/5'
+                          : 'text-surface-600 hover:bg-surface-50 hover:text-brand-600'
                       }`}
                     >
                       {item.label}
@@ -952,7 +952,7 @@ export default function Investors({ onPageChange }) {
         {/* Desktop: sticky sidebar */}
         <aside className="hidden lg:flex flex-col w-72 xl:w-80 flex-shrink-0">
           <div className="sticky top-24 flex flex-col gap-0.5 max-h-[calc(100vh-120px)] overflow-y-auto pr-2 custom-scrollbar">
-            <p className="font-body text-[10px] font-bold uppercase tracking-widest text-surface-400 dark:text-surface-500 px-3 pb-3 mb-1 border-b border-[#eee] dark:border-surface-800">
+            <p className="font-body text-[10px] font-bold uppercase tracking-widest text-surface-400 px-3 pb-3 mb-1 border-b border-[#eee]">
               Most Used
             </p>
             {recommendedItems.map((item) => {
@@ -963,8 +963,8 @@ export default function Investors({ onPageChange }) {
                   onClick={() => handleSelect(item.value)}
                   className={`w-full text-left px-4 py-2.5 rounded-[8px] font-body text-[12px] font-medium leading-snug transition-all duration-200 cursor-pointer focus:outline-none relative ${
                     isActive
-                      ? 'text-brand-600 dark:text-brand-400 bg-brand-600/5 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/50'
-                      : 'text-surface-600 dark:text-surface-400 hover:bg-surface-50 dark:hover:bg-surface-900/50 hover:text-brand-600 dark:hover:text-brand-400 border border-transparent'
+                      ? 'text-brand-600 bg-brand-600/5 border border-brand-600/12'
+                      : 'text-surface-600 hover:bg-surface-50 hover:text-brand-600 border border-transparent'
                   }`}
                 >
                   {isActive && (
@@ -982,7 +982,7 @@ export default function Investors({ onPageChange }) {
             <button
               onClick={() => setShowArchive((prev) => !prev)}
               aria-expanded={showArchive}
-              className="w-full flex items-center justify-between gap-2 text-left px-4 py-2.5 mt-2 rounded-[8px] font-body text-[11px] font-bold uppercase tracking-wide text-brand-600 dark:text-brand-400 bg-brand-600/5 dark:bg-brand-950/30 border border-brand-600/12 dark:border-brand-900/40 cursor-pointer focus:outline-none"
+              className="w-full flex items-center justify-between gap-2 text-left px-4 py-2.5 mt-2 rounded-[8px] font-body text-[11px] font-bold uppercase tracking-wide text-brand-600 bg-brand-600/5 border border-brand-600/12 cursor-pointer focus:outline-none"
             >
               <span>All Categories ({archiveItems.length})</span>
               <svg
@@ -1008,7 +1008,7 @@ export default function Investors({ onPageChange }) {
                       value={archiveSearch}
                       onChange={(e) => setArchiveSearch(e.target.value)}
                       placeholder="Search all categories…"
-                      className="w-full px-3 py-2 rounded-[7px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900 font-body text-[12px] text-surface-700 dark:text-surface-300 placeholder:text-surface-350 dark:placeholder:text-surface-600 focus:outline-none focus:border-brand-600/50"
+                      className="w-full px-3 py-2 rounded-[7px] border border-[#eee] bg-white font-body text-[12px] text-surface-700 placeholder:text-surface-350 focus:outline-none focus:border-brand-600/50"
                     />
                   </div>
                   {filteredArchiveItems.map((item) => {
@@ -1019,8 +1019,8 @@ export default function Investors({ onPageChange }) {
                         onClick={() => handleSelect(item.value)}
                         className={`w-full text-left px-4 py-2.5 rounded-[8px] font-body text-[12px] font-medium leading-snug transition-all duration-200 cursor-pointer focus:outline-none relative ${
                           isActive
-                            ? 'text-brand-600 dark:text-brand-400 bg-brand-600/5 dark:bg-brand-950/40 border border-brand-600/12 dark:border-brand-900/50'
-                            : 'text-surface-600 dark:text-surface-400 hover:bg-surface-50 dark:hover:bg-surface-900/50 hover:text-brand-600 dark:hover:text-brand-400 border border-transparent'
+                            ? 'text-brand-600 bg-brand-600/5 border border-brand-600/12'
+                            : 'text-surface-600 hover:bg-surface-50 hover:text-brand-600 border border-transparent'
                         }`}
                       >
                         {item.label}
@@ -1028,7 +1028,7 @@ export default function Investors({ onPageChange }) {
                     );
                   })}
                   {filteredArchiveItems.length === 0 && (
-                    <p className="font-body text-[11.5px] text-surface-400 dark:text-surface-500 px-4 py-2">
+                    <p className="font-body text-[11.5px] text-surface-400 px-4 py-2">
                       No categories match "{archiveSearch}".
                     </p>
                   )}

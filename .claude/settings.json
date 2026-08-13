@@ -101,7 +101,8 @@
       "Bash(ffmpeg -version)",
       "Bash(node scratch_process_frames.cjs)",
       "Bash(find / -iname \"new for web*\" 2>/dev/null; find \"C:\\\\Users\\\\it-web1\" -iname \"*new for web*\" 2>/dev/null)",
-      "Bash(taskkill //F //PID 12192)"
+      "Bash(taskkill //F //PID 12192)",
+      "Bash(git rm *)"
     ],
     "additionalDirectories": [
       "\\tmp"

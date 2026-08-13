@@ -125,20 +125,20 @@ export default function EggProcessingPlant() {
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
-    <div className="w-full bg-page dark:bg-surface-950 overflow-hidden">
+    <div className="w-full bg-page overflow-hidden">
 
       {/* ── Hero ── */}
-      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page dark:bg-surface-950 border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 dark:bg-brand-950/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page border-b border-[#eee] overflow-hidden">
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-6 items-start">
           <span className="section-label">
             Infrastructure
           </span>
-          <h1 className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h1 className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading leading-[1.1] tracking-tight m-0">
             Egg Processing{' '}
             Plant
           </h1>
-          <p className="font-body text-[16px] leading-[30px] text-surface-500 dark:text-surface-400 max-w-2xl m-0">
+          <p className="font-body text-[16px] leading-[30px] text-surface-500 max-w-2xl m-0">
             A fully automated, EU & USDA-compliant egg processing facility with a capacity of 2 million eggs per day, producing premium egg products under stringent food safety standards.
           </p>
         </div>
@@ -153,8 +153,8 @@ export default function EggProcessingPlant() {
         className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 py-16 lg:py-20 flex flex-col gap-10"
       >
         <motion.div variants={itemVariants} className="flex flex-col gap-2">
-          <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">Campus</span>
-          <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading dark:text-white tracking-tight m-0">
+          <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Campus</span>
+          <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading tracking-tight m-0">
             Campus Overview
           </h2>
         </motion.div>
@@ -169,7 +169,7 @@ export default function EggProcessingPlant() {
         {/* Grand Campus Overview Image */}
         <motion.div
           variants={itemVariants}
-          className="relative w-full overflow-hidden rounded-[24px] group shadow-[0_8px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)] aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]"
+          className="relative w-full overflow-hidden rounded-[24px] group shadow-[0_8px_40px_rgba(0,0,0,0.12)] aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]"
         >
           <img
             src={CampusOverview}
@@ -193,7 +193,7 @@ export default function EggProcessingPlant() {
       </motion.section>
 
       {/* ── Process Area ── */}
-      <div className="w-full bg-page dark:bg-surface-900/10 border-t border-b border-surface-100 dark:border-surface-800/40 py-16 lg:py-20">
+      <div className="w-full bg-page border-t border-b border-surface-100 py-16 lg:py-20">
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -202,11 +202,11 @@ export default function EggProcessingPlant() {
           className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10"
         >
           <motion.div variants={itemVariants} className="flex flex-col gap-2">
-            <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">Inside the Plant</span>
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading dark:text-white tracking-tight m-0">
+            <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Inside the Plant</span>
+            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading tracking-tight m-0">
               Process Area
             </h2>
-            <p className="font-body text-[15px] text-surface-500 dark:text-surface-400 max-w-2xl m-0 leading-[26px]">
+            <p className="font-body text-[15px] text-surface-500 max-w-2xl m-0 leading-[26px]">
               Two dedicated production lines for yolk and albumen operate in a fully automated, climate-controlled sterile environment.
             </p>
           </motion.div>
@@ -218,7 +218,7 @@ export default function EggProcessingPlant() {
       </div>
 
       {/* ── Utility Area ── */}
-      <div className="w-full bg-page dark:bg-surface-950 py-16 lg:py-20">
+      <div className="w-full bg-page py-16 lg:py-20">
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -227,11 +227,11 @@ export default function EggProcessingPlant() {
           className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10"
         >
           <motion.div variants={itemVariants} className="flex flex-col gap-2">
-            <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">Support Systems</span>
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading dark:text-white tracking-tight m-0">
+            <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Support Systems</span>
+            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading tracking-tight m-0">
               Utility Area
             </h2>
-            <p className="font-body text-[15px] text-surface-500 dark:text-surface-400 max-w-2xl m-0 leading-[26px]">
+            <p className="font-body text-[15px] text-surface-500 max-w-2xl m-0 leading-[26px]">
               Utility systems are housed separately to prevent contamination, supporting efficient and sustainable plant operations.
             </p>
           </motion.div>
@@ -243,7 +243,7 @@ export default function EggProcessingPlant() {
       </div>
 
       {/* ── Info Blocks ── */}
-      <div className="w-full bg-page dark:bg-surface-900/10 border-t border-surface-100 dark:border-surface-800/40 py-16 lg:py-24">
+      <div className="w-full bg-page border-t border-surface-100 py-16 lg:py-24">
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -255,7 +255,7 @@ export default function EggProcessingPlant() {
             <span className="section-label justify-center">
               Plant Operations
             </span>
-            <h2 className="font-heading font-bold text-[34px] sm:text-[40px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[34px] sm:text-[40px] text-heading leading-[1.1] tracking-tight m-0">
               Standards &{' '}
               Sustainability
             </h2>

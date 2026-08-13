@@ -14,7 +14,7 @@ const stats = [
 
 export default function OurCompany() {
   return (
-    <div className="w-full bg-page dark:bg-surface-950 pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[40px] lg:pb-[60px] border-b border-[#eee] dark:border-surface-900/60 overflow-hidden">
+    <div className="w-full bg-page pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[40px] lg:pb-[60px] border-b border-[#eee] overflow-hidden">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -29,7 +29,7 @@ export default function OurCompany() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full overflow-hidden rounded-[24px] group shadow-[0_12px_36px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.35)] border border-surface-200/60 dark:border-surface-800 aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]"
+          className="relative w-full overflow-hidden rounded-[24px] group shadow-[0_12px_36px_rgba(0,0,0,0.08)] border border-surface-200/60 aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]"
         >
           <motion.img
             src={FactoryImage}
@@ -67,7 +67,7 @@ export default function OurCompany() {
             </motion.span>
             <motion.h2
               variants={itemVariants}
-              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0"
             >
               A Commitment to <br />
               Excellence in processing
@@ -75,13 +75,13 @@ export default function OurCompany() {
           </div>
 
           <div className="flex-1 flex flex-col gap-4 lg:pt-2">
-            <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 dark:text-surface-400 leading-[30px] m-0">
+            <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 leading-[30px] m-0">
               Established in 1996, SKM Egg Products began its journey with a clear commitment to excellence in egg processing.
             </motion.p>
-            <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 dark:text-surface-400 leading-[30px] m-0">
+            <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 leading-[30px] m-0">
               Today, we operate as one of Asia's largest integrated egg processing facilities, combining advanced production technology with internationally aligned quality systems. Supported by fully integrated back-end farms, our operations process up to 2 million eggs per day, producing approximately 7,500 metric tonnes of egg powder annually.
             </motion.p>
-            <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 dark:text-surface-400 leading-[30px] m-0">
+            <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 leading-[30px] m-0">
               The quality and safety of the raw material is ensured with the <strong>backward integration</strong> of our own layer farm and feed mill. Our poultry farm is ISO 22000 certified. Bio-security is maintained, and our poultry farms are registered under compartmentalization as per European Union norms.
             </motion.p>
           </div>
@@ -92,16 +92,16 @@ export default function OurCompany() {
           {stats.map((stat, i) => (
             <div
               key={i}
-              className="p-5 bg-white dark:bg-surface-900/40 border border-[#eee] dark:border-surface-800 rounded-[10px] flex flex-col gap-1.5 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] hover:border-brand-600/30 transition-all duration-300"
+              className="p-5 bg-white border border-[#eee] rounded-[10px] flex flex-col gap-1.5 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] hover:border-brand-600/30 transition-all duration-300"
             >
-              <span className="font-heading font-bold text-[22px] text-brand-600 dark:text-brand-400 leading-none">
+              <span className="font-heading font-bold text-[22px] text-brand-600 leading-none">
                 {stat.value}
               </span>
               <div className="flex flex-col gap-0.5">
-                <span className="font-body text-[13px] font-medium text-surface-700 dark:text-surface-300 leading-tight">
+                <span className="font-body text-[13px] font-medium text-surface-700 leading-tight">
                   {stat.label}
                 </span>
-                <span className="font-body text-[11px] text-surface-400 dark:text-surface-500 font-medium tracking-wide uppercase">
+                <span className="font-body text-[11px] text-surface-400 font-medium tracking-wide uppercase">
                   {stat.sub}
                 </span>
               </div>

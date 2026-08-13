@@ -92,7 +92,7 @@ export default function ConfirmationScreen({ formData, onPageChange }) {
           initial={{ scale: 0.85, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-          className="w-16 h-16 rounded-full bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-center text-emerald-600 dark:text-emerald-400"
+          className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600"
         >
           <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -100,23 +100,23 @@ export default function ConfirmationScreen({ formData, onPageChange }) {
         </motion.div>
 
         <div className="flex flex-col gap-3">
-          <h1 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading dark:text-white m-0 tracking-tight">
+          <h1 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
             Your enquiry is in.
           </h1>
-          <p className="font-body text-[11.5px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 m-0">
+          <p className="font-body text-[11.5px] font-bold uppercase tracking-wider text-brand-600 m-0">
             Reference: {referenceNumber}
           </p>
-          <p className="font-body text-[15px] text-surface-500 dark:text-surface-400 leading-[26px] m-0">
-            {product ? <>A member of our export sales team will review your interest in <strong className="text-surface-700 dark:text-surface-200">{product.title}</strong> and</> : sampleProducts.length ? 'Our export sales team will review your sample request and' : 'Our export sales team will review your request and'} reply within <strong className="text-surface-700 dark:text-surface-200">24 hours</strong> to <strong className="text-surface-700 dark:text-surface-200">{formData.email}</strong>.
+          <p className="font-body text-[15px] text-surface-500 leading-[26px] m-0">
+            {product ? <>A member of our export sales team will review your interest in <strong className="text-surface-700">{product.title}</strong> and</> : sampleProducts.length ? 'Our export sales team will review your sample request and' : 'Our export sales team will review your request and'} reply within <strong className="text-surface-700">24 hours</strong> to <strong className="text-surface-700">{formData.email}</strong>.
           </p>
         </div>
 
         {/* Requirement summary */}
-        <div className="w-full rounded-[14px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/40 px-5 py-4 text-left flex flex-col gap-2">
-          <span className="font-body text-[11px] font-bold uppercase tracking-wide text-surface-400 dark:text-surface-500">
+        <div className="w-full rounded-[14px] border border-[#eee] bg-white px-5 py-4 text-left flex flex-col gap-2">
+          <span className="font-body text-[11px] font-bold uppercase tracking-wide text-surface-400">
             Requirement Summary
           </span>
-          <div className="flex flex-col gap-1 font-body text-[13.5px] text-surface-700 dark:text-surface-200">
+          <div className="flex flex-col gap-1 font-body text-[13.5px] text-surface-700">
             {sampleProducts.length > 0 && <span>Products: {sampleProducts.map((p) => p.title).join(', ')}</span>}
             {!sampleProducts.length && product && <span>Product: {product.title}</span>}
             {formData.quantity && <span>Estimated Volume: {formData.quantity}</span>}
@@ -130,14 +130,14 @@ export default function ConfirmationScreen({ formData, onPageChange }) {
               <button
                 key={link.route}
                 onClick={() => onPageChange(link.route)}
-                className="font-body text-[12px] font-semibold text-brand-600 dark:text-brand-400 hover:underline bg-transparent border-none cursor-pointer px-0"
+                className="font-body text-[12px] font-semibold text-brand-600 hover:underline bg-transparent border-none cursor-pointer px-0"
               >
                 View {link.label} →
               </button>
             ))}
             <button
               onClick={() => onPageChange('resources')}
-              className="font-body text-[12px] font-semibold text-brand-600 dark:text-brand-400 hover:underline bg-transparent border-none cursor-pointer px-0"
+              className="font-body text-[12px] font-semibold text-brand-600 hover:underline bg-transparent border-none cursor-pointer px-0"
             >
               Browse Resources →
             </button>
@@ -152,7 +152,7 @@ export default function ConfirmationScreen({ formData, onPageChange }) {
           </button>
           <button
             onClick={handleDownloadSummary}
-            className="inline-flex items-center gap-2.5 bg-transparent hover:bg-brand-600/6 dark:hover:bg-brand-950/30 text-surface-900 dark:text-surface-100 border border-surface-250 dark:border-surface-700 font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-7 py-[15px] rounded-[200px] transition-all duration-300 cursor-pointer"
+            className="inline-flex items-center gap-2.5 bg-transparent hover:bg-brand-600/6 text-surface-900 border border-surface-250 font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-7 py-[15px] rounded-[200px] transition-all duration-300 cursor-pointer"
           >
             Download Enquiry Summary
           </button>

@@ -90,21 +90,21 @@ function DesktopSticky() {
                   exit="exit"
                   className="flex flex-col gap-5"
                 >
-                  <motion.span variants={copyItemVariants} className="font-body text-[12.5px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+                  <motion.span variants={copyItemVariants} className="font-body text-[12.5px] font-bold uppercase tracking-widest text-brand-600">
                     Stage {active.step} · {total.toString().padStart(2, '0')}
                   </motion.span>
-                  <motion.h3 variants={copyItemVariants} className="font-heading font-bold text-[34px] xl:text-[44px] text-heading dark:text-white leading-[1.08] tracking-tight m-0">
+                  <motion.h3 variants={copyItemVariants} className="font-heading font-bold text-[34px] xl:text-[44px] text-heading leading-[1.08] tracking-tight m-0">
                     {active.label}
                   </motion.h3>
-                  <motion.p variants={copyItemVariants} className="font-body text-[16px] lg:text-[17px] text-surface-500 dark:text-surface-400 leading-[1.8] m-0 max-w-[46ch]">
+                  <motion.p variants={copyItemVariants} className="font-body text-[16px] lg:text-[17px] text-surface-500 leading-[1.8] m-0 max-w-[46ch]">
                     {active.description}
                   </motion.p>
                   {active.stat && (
-                    <motion.div variants={copyItemVariants} className="flex items-baseline gap-3 mt-2 pt-5 border-t border-surface-200/70 dark:border-surface-800 self-start">
-                      <span className="font-heading font-bold text-[26px] text-brand-600 dark:text-brand-400 leading-none tabular-nums">
+                    <motion.div variants={copyItemVariants} className="flex items-baseline gap-3 mt-2 pt-5 border-t border-surface-200/70 self-start">
+                      <span className="font-heading font-bold text-[26px] text-brand-600 leading-none tabular-nums">
                         {active.stat.value}
                       </span>
-                      <span className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-tight max-w-[220px]">
+                      <span className="font-body text-[13px] text-surface-500 leading-tight max-w-[220px]">
                         {active.stat.label}
                       </span>
                     </motion.div>
@@ -117,7 +117,7 @@ function DesktopSticky() {
                 {journeyStages.map((stage, i) => (
                   <span
                     key={stage.id}
-                    className={`h-[3px] rounded-full transition-all duration-500 ${i === activeIndex ? 'w-10 bg-brand-600' : 'w-4 bg-surface-200 dark:bg-surface-800'}`}
+                    className={`h-[3px] rounded-full transition-all duration-500 ${i === activeIndex ? 'w-10 bg-brand-600' : 'w-4 bg-surface-200'}`}
                   />
                 ))}
               </div>
@@ -137,25 +137,25 @@ function StackedTimeline({ reduceMotion }) {
         <motion.div
           key={stage.id}
           {...fadeUp(reduceMotion, { delay: 0 })}
-          className={`flex gap-4 py-8 ${i !== journeyStages.length - 1 ? 'border-b border-surface-200/70 dark:border-surface-800' : ''}`}
+          className={`flex gap-4 py-8 ${i !== journeyStages.length - 1 ? 'border-b border-surface-200/70' : ''}`}
         >
           <div className="flex-1 flex flex-col gap-4">
             <div className="relative rounded-[8px] overflow-hidden aspect-[4/3]">
               <SafeImage src={stage.image} alt={stage.label} loading="lazy" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="font-heading font-bold text-[22px] text-heading dark:text-white leading-[1.2] tracking-tight m-0">
+              <h3 className="font-heading font-bold text-[22px] text-heading leading-[1.2] tracking-tight m-0">
                 {stage.label}
               </h3>
-              <p className="font-body text-[14.5px] text-surface-500 dark:text-surface-400 leading-[1.7] m-0">
+              <p className="font-body text-[14.5px] text-surface-500 leading-[1.7] m-0">
                 {stage.description}
               </p>
               {stage.stat && (
                 <div className="flex items-baseline gap-2.5 mt-1">
-                  <span className="font-heading font-bold text-[19px] text-brand-600 dark:text-brand-400 leading-none tabular-nums">
+                  <span className="font-heading font-bold text-[19px] text-brand-600 leading-none tabular-nums">
                     {stage.stat.value}
                   </span>
-                  <span className="font-body text-[12px] text-surface-500 dark:text-surface-400 leading-tight">
+                  <span className="font-body text-[12px] text-surface-500 leading-tight">
                     {stage.stat.label}
                   </span>
                 </div>
@@ -173,14 +173,14 @@ export default function HomeJourney({ onPageChange }) {
   const useSticky = !reduceMotion;
 
   return (
-    <section className="w-full bg-white dark:bg-surface-950">
+    <section className="w-full bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 pt-24 lg:pt-28">
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Traceability</span>
-          <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading dark:text-white leading-[1.05] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading leading-[1.05] tracking-tight m-0">
             Farm-to-product journey
           </h2>
-          <p className="font-body text-[16px] lg:text-[17px] text-surface-500 dark:text-surface-400 leading-[1.8] max-w-xl m-0">
+          <p className="font-body text-[16px] lg:text-[17px] text-surface-500 leading-[1.8] max-w-xl m-0">
             From biosecure layer farms and pathogen-free feed formulation to automated processing, NABL analytical testing, and global packaging dispatch.
           </p>
         </motion.div>
@@ -202,7 +202,7 @@ export default function HomeJourney({ onPageChange }) {
       )}
 
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 pb-24 lg:pb-28 pt-8">
-        <div className="pt-8 border-t border-surface-200/70 dark:border-surface-800">
+        <div className="pt-8 border-t border-surface-200/70">
           <InternalLink
             route="traceability"
             onPageChange={onPageChange}

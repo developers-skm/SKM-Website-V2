@@ -42,10 +42,10 @@ export default function ApplicationLandingPage({ applicationId, onPageChange }) 
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full flex flex-col bg-page dark:bg-surface-950">
+      <div className="w-full flex flex-col bg-page">
         <ApplicationDetailHero application={application} productFamilies={productFamilies} onPageChange={onPageChange} />
-        <CurvedDivider bg="transparent" fill="#f8f4ee" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px] dark:hidden" />
-        <CurvedDivider bg="transparent" fill="#121212" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px] hidden dark:block" />
+        <CurvedDivider bg="transparent" fill="#f8f4ee" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px]" />
+        <CurvedDivider bg="transparent" fill="#121212" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px] hidden" />
 
         <ApplicationFormulationChallenges application={application} onPageChange={onPageChange} />
 
@@ -74,8 +74,8 @@ export default function ApplicationLandingPage({ applicationId, onPageChange }) 
         />
 
         <RelatedResources matchedProducts={matchedProducts} onPageChange={onPageChange} />
-        <CurvedDivider bg="#f8f4ee" fill="#fdf1f0" className="dark:hidden" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
+        <CurvedDivider bg="#f8f4ee" fill="#fdf1f0" className="" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         <EnquiryCTABand
           eyebrow={application.title}

@@ -173,7 +173,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search variants by code, name, or application…"
             aria-label="Search variants"
-            className="w-full min-h-[44px] pl-11 pr-4 py-3 rounded-full border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-900 font-body text-[14px] text-heading dark:text-white placeholder:text-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500"
+            className="w-full min-h-[44px] pl-11 pr-4 py-3 rounded-full border border-surface-200 bg-white font-body text-[14px] text-heading placeholder:text-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -183,7 +183,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
         <div className="flex flex-col gap-3">
           {filterGroups.map((group) => (
             <div key={group.axis} className="flex flex-wrap items-center gap-2">
-              <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500 mr-1 whitespace-nowrap">
+              <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400 mr-1 whitespace-nowrap">
                 {group.axis}
               </span>
               {group.options.map((opt) => {
@@ -197,7 +197,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
                     className={`inline-flex items-center min-h-[32px] px-3.5 py-1.5 rounded-full border font-body font-semibold text-[12.5px] transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
                       active
                         ? 'bg-brand-600 border-brand-600 text-white'
-                        : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50'
+                        : 'bg-white border-surface-300 text-surface-600 hover:border-brand-600/50'
                     }`}
                   >
                     {opt.label}
@@ -210,7 +210,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
             <button
               type="button"
               onClick={() => setActiveFilters([])}
-              className="self-start font-body font-semibold text-[13px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm w-fit"
+              className="self-start font-body font-semibold text-[13px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm w-fit"
             >
               Clear Filters
             </button>
@@ -237,7 +237,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
           onScroll={(e) => {
             if (!hasScrolled && e.currentTarget.scrollLeft > 12) setHasScrolled(true);
           }}
-          className="rounded-[24px] border border-surface-200/60 dark:border-surface-800 overflow-y-auto overflow-x-auto"
+          className="rounded-[24px] border border-surface-200/60 overflow-y-auto overflow-x-auto"
           style={{ maxHeight: '70vh' }}
         >
         <table className="w-full border-separate border-spacing-0 min-w-[720px]">
@@ -252,20 +252,20 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
                 scrolling right through the spec columns on mobile — same
                 dual-axis sticky corner as VariantTable's own vertical
                 pattern, just extended to the left edge too. */}
-            <tr className="border-b border-surface-200/70 dark:border-surface-800 shadow-[0_1px_0_rgba(0,0,0,0.04)]">
+            <tr className="border-b border-surface-200/70 shadow-[0_1px_0_rgba(0,0,0,0.04)]">
               <th
-                className="w-12 px-4 py-4 bg-[#fbf7f1] dark:bg-surface-900"
+                className="w-12 px-4 py-4 bg-[#fbf7f1]"
                 aria-label="Select for comparison"
                 style={{ position: 'sticky', top: 0, left: 0, zIndex: 20 }}
               />
               <th
-                className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 bg-[#fbf7f1] dark:bg-surface-900 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]"
+                className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 bg-[#fbf7f1] shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]"
                 style={{ position: 'sticky', top: 0, left: 48, zIndex: 20 }}
               >
                 Code
               </th>
               <th
-                className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 bg-[#fbf7f1] dark:bg-surface-900"
+                className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 bg-[#fbf7f1]"
                 style={{ position: 'sticky', top: 0, zIndex: 10 }}
               >
                 Name
@@ -273,14 +273,14 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
               {specColumns.map((key) => (
                 <th
                   key={key}
-                  className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 whitespace-nowrap bg-[#fbf7f1] dark:bg-surface-900"
+                  className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 whitespace-nowrap bg-[#fbf7f1]"
                   style={{ position: 'sticky', top: 0, zIndex: 10 }}
                 >
                   {key}
                 </th>
               ))}
               <th
-                className="px-4 py-4 bg-[#fbf7f1] dark:bg-surface-900 text-right"
+                className="px-4 py-4 bg-[#fbf7f1] text-right"
                 style={{ position: 'sticky', top: 0, zIndex: 10 }}
               >
                 {checked.length > 0 && (
@@ -310,12 +310,12 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
               // explicitly on the sticky cells too — the same requirement
               // as ApplicationProductMatrix's hoverRow handling.
               const rowBg = isSelected
-                ? 'bg-brand-600/[0.04] dark:bg-brand-950/10'
-                : 'bg-white dark:bg-surface-900 group-hover/row:bg-surface-50 dark:group-hover/row:bg-surface-900/40';
+                ? 'bg-brand-600/[0.04]'
+                : 'bg-white group-hover/row:bg-surface-50';
               return (
                 <tr
                   key={variant.code}
-                  className={`group/row border-b border-surface-200/50 dark:border-surface-800/60 last:border-b-0 transition-colors ${isSelected ? 'bg-brand-600/[0.04] dark:bg-brand-950/10' : 'hover:bg-surface-50 dark:hover:bg-surface-900/40'}`}
+                  className={`group/row border-b border-surface-200/50 last:border-b-0 transition-colors ${isSelected ? 'bg-brand-600/[0.04]' : 'hover:bg-surface-50'}`}
                 >
                   <td
                     className={`px-4 py-4 transition-colors duration-150 ${rowBg}`}
@@ -330,29 +330,29 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
                     />
                   </td>
                   <td
-                    className={`px-4 py-4 font-mono text-[12.5px] font-bold text-brand-600 dark:text-brand-400 whitespace-nowrap shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] transition-colors duration-150 ${rowBg}`}
+                    className={`px-4 py-4 font-mono text-[12.5px] font-bold text-brand-600 whitespace-nowrap shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] transition-colors duration-150 ${rowBg}`}
                     style={{ position: 'sticky', left: 48, zIndex: 10 }}
                   >
                     {displayCode(variant.code)}
                   </td>
-                  <td className="px-4 py-4 font-heading font-semibold text-[14.5px] text-heading dark:text-white">
+                  <td className="px-4 py-4 font-heading font-semibold text-[14.5px] text-heading">
                     {variant.name}
                   </td>
                   {specColumns.map((key) => (
-                    <td key={key} className="px-4 py-4 font-body text-[13px] text-surface-600 dark:text-surface-300 whitespace-nowrap">
+                    <td key={key} className="px-4 py-4 font-body text-[13px] text-surface-600 whitespace-nowrap">
                       {variant.specifications?.[key] ?? '—'}
                     </td>
                   ))}
                   <td className="px-4 py-4">
                     <div className="flex items-center justify-end gap-2 flex-wrap">
                       {showInComparisonBadge && (
-                        <span className="inline-flex items-center min-h-[28px] font-body font-bold text-[10.5px] uppercase tracking-[0.04em] text-surface-500 dark:text-surface-400 bg-surface-100 dark:bg-surface-800 px-2.5 py-1 rounded-full whitespace-nowrap">
+                        <span className="inline-flex items-center min-h-[28px] font-body font-bold text-[10.5px] uppercase tracking-[0.04em] text-surface-500 bg-surface-100 px-2.5 py-1 rounded-full whitespace-nowrap">
                           In Comparison
                         </span>
                       )}
                       <button
                         onClick={() => handleSelectVariant(variant.code)}
-                        className="whitespace-nowrap inline-flex items-center min-h-[36px] font-body font-bold text-[12px] uppercase tracking-[0.04em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] cursor-pointer bg-transparent border-none px-3 py-2 rounded-full hover:bg-brand-600/[0.06]"
+                        className="whitespace-nowrap inline-flex items-center min-h-[36px] font-body font-bold text-[12px] uppercase tracking-[0.04em] text-brand-600 hover:text-[#a80000] cursor-pointer bg-transparent border-none px-3 py-2 rounded-full hover:bg-brand-600/[0.06]"
                       >
                         {isSelected ? 'Selected' : 'Select This Variant'}
                       </button>
@@ -380,7 +380,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-              className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 rounded-r-[24px] bg-gradient-to-l from-white dark:from-surface-900 from-30% via-white/70 dark:via-surface-900/60 to-transparent flex items-center justify-end pr-3"
+              className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 rounded-r-[24px] bg-gradient-to-l from-white from-30% via-white/70 to-transparent flex items-center justify-end pr-3"
               aria-hidden="true"
             >
               <motion.svg
@@ -402,7 +402,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-            className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400 dark:text-surface-500"
+            className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400"
           >
             Scroll right to view more specifications
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

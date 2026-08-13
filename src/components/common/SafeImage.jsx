@@ -35,7 +35,7 @@ const SafeImage = forwardRef(function SafeImage(
         ref={ref}
         role="img"
         aria-label={alt}
-        className={`flex items-center justify-center bg-surface-100 dark:bg-surface-900 text-surface-400 dark:text-surface-600 ${className}`}
+        className={`flex items-center justify-center bg-surface-100 text-surface-400 ${className}`}
       >
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1z" />

@@ -63,10 +63,10 @@ export default function StepRequirement({ formData, setFormData, enquiryIntent }
   return (
     <div className="flex flex-col gap-7">
       <div className="flex flex-col gap-1.5">
-        <h2 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading dark:text-white m-0 tracking-tight">
+        <h2 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 tracking-tight">
           {isSampleCart ? 'Which products do you need samples or documents for?' : 'What do you need?'}
         </h2>
-        <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 m-0">
+        <p className="font-body text-[13.5px] text-surface-500 m-0">
           {isSampleCart
             ? 'Select one or more products — we\'ll send samples and technical documents for everything you pick.'
             : application
@@ -99,8 +99,8 @@ export default function StepRequirement({ formData, setFormData, enquiryIntent }
               aria-pressed={isSampleCart ? isSelected : undefined}
               className={`group relative flex items-center gap-3 text-left p-3 rounded-[12px] border transition-all duration-200 cursor-pointer focus:outline-none ${
                 isSelected
-                  ? 'border-brand-500 bg-brand-50/60 dark:bg-brand-950/30 shadow-[0_4px_20px_rgba(228,10,24,0.12)]'
-                  : 'border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900 hover:border-brand-300 dark:hover:border-brand-800'
+                  ? 'border-brand-500 bg-brand-50/60 shadow-[0_4px_20px_rgba(228,10,24,0.12)]'
+                  : 'border-[#eee] bg-white hover:border-brand-300'
               }`}
             >
               <div className="relative w-14 h-14 rounded-[8px] overflow-hidden flex-shrink-0">
@@ -108,14 +108,14 @@ export default function StepRequirement({ formData, setFormData, enquiryIntent }
               </div>
               <div className="flex flex-col gap-0.5 min-w-0">
                 {isRecommended && (
-                  <span className="font-body text-[9.5px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                  <span className="font-body text-[9.5px] font-bold uppercase tracking-wider text-brand-600">
                     Recommended
                   </span>
                 )}
-                <span className="font-heading font-bold text-[13px] text-surface-800 dark:text-white leading-tight truncate">
+                <span className="font-heading font-bold text-[13px] text-surface-800 leading-tight truncate">
                   {product.title}
                 </span>
-                <span className="font-body text-[10.5px] text-surface-400 dark:text-surface-500 truncate">
+                <span className="font-body text-[10.5px] text-surface-400 truncate">
                   {product.category}
                 </span>
               </div>
@@ -132,7 +132,7 @@ export default function StepRequirement({ formData, setFormData, enquiryIntent }
       </motion.div>
 
       {isSampleCart && (
-        <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 m-0" aria-live="polite">
+        <p className="font-body text-[13px] text-surface-500 m-0" aria-live="polite">
           {(formData.sampleProductIds ?? []).length} product{(formData.sampleProductIds ?? []).length === 1 ? '' : 's'} selected
         </p>
       )}
@@ -161,7 +161,7 @@ export default function StepRequirement({ formData, setFormData, enquiryIntent }
                 className={`flex-1 min-h-[44px] sm:min-h-[38px] px-3 py-2 rounded-full border font-body text-[12.5px] font-semibold transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
                   formData.productType === opt.value
                     ? 'bg-brand-600 border-brand-600 text-white'
-                    : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50'
+                    : 'bg-white border-surface-300 text-surface-600 hover:border-brand-600/50'
                 }`}
               >
                 {opt.label}

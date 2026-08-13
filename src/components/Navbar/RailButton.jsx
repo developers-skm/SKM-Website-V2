@@ -16,7 +16,7 @@ const RailButton = forwardRef(function RailButton(
       </span>
       <span
         role="presentation"
-        className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-md bg-surface-900 dark:bg-surface-100 px-3 py-1.5 text-[13px] font-semibold text-white dark:text-surface-900 opacity-0 translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 group-focus-visible:translate-x-0"
+        className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-md bg-surface-900 px-3 py-1.5 text-[13px] font-semibold text-white opacity-0 translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 group-focus-visible:translate-x-0"
       >
         {label}
       </span>

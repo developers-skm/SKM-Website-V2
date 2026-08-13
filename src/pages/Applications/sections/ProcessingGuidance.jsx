@@ -68,14 +68,14 @@ export default function ProcessingGuidance({ application, matchedProducts, onDow
   if (facts.length === 0 && toleranceEvidence.length === 0) return null;
 
   return (
-    <div className="w-full bg-white dark:bg-surface-900/40 py-16 sm:py-20 lg:py-24">
+    <div className="w-full bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1000px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4">
-          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             Processing Guidance
           </span>
-          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1]">
+          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
             Processing &amp; Usage Guidance
           </h2>
         </motion.div>
@@ -92,12 +92,12 @@ export default function ProcessingGuidance({ application, matchedProducts, onDow
               key={label}
               variants={itemVariants}
               transition={{ duration: reduceMotion ? 0.01 : DURATION.functional, ease: EASE_PREMIUM }}
-              className="flex flex-col gap-2 rounded-[20px] border border-surface-200/60 dark:border-surface-800 px-6 py-6"
+              className="flex flex-col gap-2 rounded-[20px] border border-surface-200/60 px-6 py-6"
             >
-              <span className="font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500">
+              <span className="font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-400">
                 {label}
               </span>
-              <p className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
+              <p className="font-heading font-bold text-[16px] text-heading m-0">
                 {value}
               </p>
             </motion.div>
@@ -107,15 +107,15 @@ export default function ProcessingGuidance({ application, matchedProducts, onDow
             <motion.div
               variants={itemVariants}
               transition={{ duration: reduceMotion ? 0.01 : DURATION.functional, ease: EASE_PREMIUM }}
-              className="flex flex-col gap-2 rounded-[20px] border border-surface-200/60 dark:border-surface-800 px-6 py-6 sm:col-span-2"
+              className="flex flex-col gap-2 rounded-[20px] border border-surface-200/60 px-6 py-6 sm:col-span-2"
             >
-              <span className="font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-400 dark:text-surface-500">
+              <span className="font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-400">
                 Processing Tolerance
               </span>
               <ul className="flex flex-col gap-2 m-0 pl-4">
                 {toleranceEvidence.map((v) => (
-                  <li key={v.code} className="font-body text-[14px] text-surface-600 dark:text-surface-300 leading-[1.6]">
-                    <span className="font-mono text-[11.5px] font-bold text-brand-600 dark:text-brand-400 mr-2">{v.code}</span>
+                  <li key={v.code} className="font-body text-[14px] text-surface-600 leading-[1.6]">
+                    <span className="font-mono text-[11.5px] font-bold text-brand-600 mr-2">{v.code}</span>
                     {v.benefits ?? v.description}
                   </li>
                 ))}
@@ -133,7 +133,7 @@ export default function ProcessingGuidance({ application, matchedProducts, onDow
           </button>
           <button
             onClick={onContactSupport}
-            className="font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:text-[#a80000] dark:hover:text-brand-300 underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
+            className="font-body font-semibold text-[13.5px] text-brand-600 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
           >
             Contact Technical Support
           </button>

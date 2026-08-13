@@ -48,7 +48,7 @@ function Story({ story, index, reduceMotion }) {
   const fromX = reduceMotion ? 0 : isEven ? -24 : 24;
 
   return (
-    <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center py-16 lg:py-20 ${index !== 0 ? 'border-t border-surface-200/70 dark:border-surface-800' : ''}`}>
+    <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center py-16 lg:py-20 ${index !== 0 ? 'border-t border-surface-200/70' : ''}`}>
       <motion.div
         initial={{ opacity: 0, x: fromX }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -65,19 +65,19 @@ function Story({ story, index, reduceMotion }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: reduceMotion ? 0.01 : 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="block font-heading font-black text-[90px] sm:text-[110px] lg:text-[130px] text-brand-600/[0.07] dark:text-brand-400/[0.08] leading-[0.75] select-none -mb-6"
+          className="block font-heading font-black text-[90px] sm:text-[110px] lg:text-[130px] text-brand-600/[0.07] leading-[0.75] select-none -mb-6"
           aria-hidden
         >
           {story.number}
         </motion.span>
         <motion.div {...fadeUp(reduceMotion, { delay: 0.1 })} className="flex flex-col gap-4">
-          <span className="font-body text-[12.5px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+          <span className="font-body text-[12.5px] font-bold uppercase tracking-widest text-brand-600">
             {story.eyebrow}
           </span>
-          <h3 className="font-heading font-bold text-[28px] sm:text-[34px] lg:text-[38px] text-heading dark:text-white leading-[1.15] tracking-tight m-0 max-w-md">
+          <h3 className="font-heading font-bold text-[28px] sm:text-[34px] lg:text-[38px] text-heading leading-[1.15] tracking-tight m-0 max-w-md">
             {story.title}
           </h3>
-          <p className="font-body text-[15.5px] lg:text-[16.5px] text-surface-500 dark:text-surface-400 leading-[1.8] max-w-md m-0">
+          <p className="font-body text-[15.5px] lg:text-[16.5px] text-surface-500 leading-[1.8] max-w-md m-0">
             {story.body}
           </p>
         </motion.div>
@@ -90,12 +90,12 @@ export default function Sustainability({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full bg-white dark:bg-surface-950 py-20 lg:py-28">
+    <div className="w-full bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-4">
           <span className="section-label">Sustainability</span>
-          <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading dark:text-white leading-[1.05] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading leading-[1.05] tracking-tight m-0">
             Sustainable &amp; socially responsible.
           </h2>
         </motion.div>
@@ -106,11 +106,11 @@ export default function Sustainability({ onPageChange }) {
           ))}
         </div>
 
-        <motion.div {...fadeUp(reduceMotion, { delay: 0.1 })} className="pt-10 lg:pt-12 border-t border-surface-200/70 dark:border-surface-800">
+        <motion.div {...fadeUp(reduceMotion, { delay: 0.1 })} className="pt-10 lg:pt-12 border-t border-surface-200/70">
           <InternalLink
             route="csr_sustainability"
             onPageChange={onPageChange}
-            className="group inline-flex items-center gap-2 font-body font-semibold text-[15px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
+            className="group inline-flex items-center gap-2 font-body font-semibold text-[15px] text-brand-600 hover:text-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
           >
             Explore Our CSR &amp; Sustainability Programs
             <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" className={reduceMotion ? '' : 'group-hover:translate-x-0.5 transition-transform duration-[250ms]'} aria-hidden>

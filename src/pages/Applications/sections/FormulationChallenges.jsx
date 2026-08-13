@@ -17,7 +17,7 @@ export default function FormulationChallenges({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full bg-[#f8f4ee] dark:bg-surface-950 py-16 sm:py-20 lg:py-24">
+    <div className="w-full bg-[#f8f4ee] py-16 sm:py-20 lg:py-24">
       <motion.div
         className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10"
         initial="hidden"
@@ -26,14 +26,14 @@ export default function FormulationChallenges({ onPageChange }) {
         variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
       >
         <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="flex flex-col gap-4 max-w-2xl">
-          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             Formulation Challenges
           </span>
-          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1]">
+          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
             Browse By Formulation Challenge
           </h2>
-          <p className="font-body text-[17px] text-surface-600 dark:text-surface-400 leading-[1.7] m-0">
+          <p className="font-body text-[17px] text-surface-600 leading-[1.7] m-0">
             Already know the functional problem you're solving? Start there instead.
           </p>
         </motion.div>
@@ -47,18 +47,18 @@ export default function FormulationChallenges({ onPageChange }) {
                 key={challenge.id}
                 variants={itemVariants}
                 transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
-                className="group flex flex-col rounded-[22px] border border-surface-200/60 dark:border-surface-800 hover:border-brand-600/40 hover:-translate-y-1 bg-white dark:bg-surface-900/40 px-6 py-7 shadow-[0_2px_10px_rgba(36,30,24,0.04)] hover:shadow-[0_10px_28px_rgba(36,30,24,0.09)] transition-[border-color,box-shadow,transform] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className="group flex flex-col rounded-[22px] border border-surface-200/60 hover:border-brand-600/40 hover:-translate-y-1 bg-white px-6 py-7 shadow-[0_2px_10px_rgba(36,30,24,0.04)] hover:shadow-[0_10px_28px_rgba(36,30,24,0.09)] transition-[border-color,box-shadow,transform] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
               >
-                <h3 className="font-heading font-bold text-[18px] text-heading dark:text-white m-0">
+                <h3 className="font-heading font-bold text-[18px] text-heading m-0">
                   {challenge.label}
                 </h3>
-                <p className="font-body text-[14px] text-surface-600 dark:text-surface-300 leading-[1.6] mt-2 mb-4">
+                <p className="font-body text-[14px] text-surface-600 leading-[1.6] mt-2 mb-4">
                   {challenge.description}
                 </p>
                 <button
                   onClick={() => setOpenId(isOpen ? null : challenge.id)}
                   aria-expanded={isOpen}
-                  className="self-start inline-flex items-center gap-1.5 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] cursor-pointer bg-transparent border-none p-0"
+                  className="self-start inline-flex items-center gap-1.5 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] cursor-pointer bg-transparent border-none p-0"
                 >
                   Find Products For This Challenge
                   <svg
@@ -78,12 +78,12 @@ export default function FormulationChallenges({ onPageChange }) {
                       transition={{ duration: reduceMotion ? 0.01 : DURATION.filterTransition, ease: EASE_PREMIUM }}
                       className="overflow-hidden"
                     >
-                      <div className="flex flex-col gap-2 mt-5 pt-5 border-t border-surface-200/60 dark:border-surface-800">
+                      <div className="flex flex-col gap-2 mt-5 pt-5 border-t border-surface-200/60">
                         {matchedProducts.map((product) => (
                           <button
                             key={product.id}
                             onClick={() => onPageChange(product.page)}
-                            className="group/item flex items-center justify-between gap-3 text-left font-body font-semibold text-[14px] text-heading dark:text-white hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer bg-transparent border-none p-0 py-1"
+                            className="group/item flex items-center justify-between gap-3 text-left font-body font-semibold text-[14px] text-heading hover:text-brand-600 cursor-pointer bg-transparent border-none p-0 py-1"
                           >
                             {product.title}
                             <svg className="w-3.5 h-3.5 flex-shrink-0 group-hover/item:translate-x-1 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

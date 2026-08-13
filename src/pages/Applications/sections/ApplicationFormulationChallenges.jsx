@@ -36,7 +36,7 @@ export default function ApplicationFormulationChallenges({ application, onPageCh
   if (relevantChallenges.length === 0) return null;
 
   return (
-    <div className="w-full bg-[#f8f4ee] dark:bg-surface-950 py-16 sm:py-20 lg:py-24">
+    <div className="w-full bg-[#f8f4ee] py-16 sm:py-20 lg:py-24">
       <motion.div
         className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10"
         initial="hidden"
@@ -45,11 +45,11 @@ export default function ApplicationFormulationChallenges({ application, onPageCh
         variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
       >
         <motion.div variants={itemVariants} transition={{ duration: reduceMotion ? 0.01 : DURATION.sectionEntrance, ease: EASE_PREMIUM }} className="flex flex-col gap-4 max-w-2xl">
-          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             Formulation Challenges
           </span>
-          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1]">
+          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
             Common Challenges In {application.title}
           </h2>
         </motion.div>
@@ -62,18 +62,18 @@ export default function ApplicationFormulationChallenges({ application, onPageCh
                 key={challenge.id}
                 variants={itemVariants}
                 transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
-                className="group flex flex-col gap-3 rounded-[22px] border border-surface-200/60 dark:border-surface-800 hover:border-brand-600/40 bg-white dark:bg-surface-900/40 px-6 py-7 transition-colors duration-300"
+                className="group flex flex-col gap-3 rounded-[22px] border border-surface-200/60 hover:border-brand-600/40 bg-white px-6 py-7 transition-colors duration-300"
               >
-                <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">
+                <h3 className="font-heading font-bold text-[16px] text-heading m-0">
                   {challenge.label}
                 </h3>
-                <p className="font-body text-[14px] text-surface-600 dark:text-surface-300 leading-[1.6] m-0">
+                <p className="font-body text-[14px] text-surface-600 leading-[1.6] m-0">
                   {challenge.description}
                 </p>
                 {solutionProduct && (
                   <button
                     onClick={() => onPageChange(solutionProduct.page)}
-                    className="mt-1 self-start inline-flex items-center gap-1.5 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] cursor-pointer bg-transparent border-none p-0"
+                    className="mt-1 self-start inline-flex items-center gap-1.5 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] cursor-pointer bg-transparent border-none p-0"
                   >
                     See SKM Solution
                     <svg className="w-3.5 h-3.5 flex-shrink-0 group-hover:translate-x-0.5 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

@@ -91,7 +91,7 @@ export default function QualityAssurance() {
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
-    <div id="quality-assurance" className="w-full bg-page dark:bg-surface-950 pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[40px] lg:pb-[60px] border-b border-[#eee] dark:border-surface-900/60 overflow-hidden">
+    <div id="quality-assurance" className="w-full bg-page pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[40px] lg:pb-[60px] border-b border-[#eee] overflow-hidden">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -109,14 +109,14 @@ export default function QualityAssurance() {
           </motion.span>
           <motion.h2
             variants={itemVariants}
-            className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+            className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0"
           >
             Quality Assurance &amp;{' '}
             Laboratory Excellence
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="font-body text-[16px] text-surface-500 dark:text-surface-400 max-w-3xl leading-[30px] m-0"
+            className="font-body text-[16px] text-surface-500 max-w-3xl leading-[30px] m-0"
           >
             Our ISO/IEC 17025 (NABL) accredited laboratory, operational since 2006, supports compliance with European and Japanese regulatory standards. Quality systems are driven by HACCP, 5S, TQM, and continuous improvement practices, ensuring disciplined control across every stage of production.
           </motion.p>
@@ -130,24 +130,24 @@ export default function QualityAssurance() {
           {qaStats.map((stat, i) => (
             <div
               key={i}
-              className="p-5 bg-brand-600/4 dark:bg-brand-950/20 border border-[rgba(228, 10, 24,0.10)] dark:border-brand-900/30 rounded-[10px] flex flex-col gap-1.5 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] transition-all duration-300"
+              className="p-5 bg-brand-600/4 border border-[rgba(228, 10, 24,0.10)] rounded-[10px] flex flex-col gap-1.5 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] transition-all duration-300"
             >
               <span className="text-2xl">{stat.icon}</span>
-              <span className="font-heading font-bold text-[15px] text-brand-600 dark:text-brand-400 leading-tight">{stat.value}</span>
-              <span className="text-[10px] font-semibold text-surface-500 dark:text-surface-400 uppercase tracking-wide leading-tight">{stat.label}</span>
+              <span className="font-heading font-bold text-[15px] text-brand-600 leading-tight">{stat.value}</span>
+              <span className="text-[10px] font-semibold text-surface-500 uppercase tracking-wide leading-tight">{stat.label}</span>
             </div>
           ))}
         </motion.div>
 
         {/* Lab Photo Gallery */}
         <motion.div variants={itemVariants} className="flex flex-col gap-4">
-          <h3 className="text-sm font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest m-0 text-center">Our Laboratory Facilities</h3>
+          <h3 className="text-sm font-bold text-surface-400 uppercase tracking-widest m-0 text-center">Our Laboratory Facilities</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             {qaImages.map((img, i) => (
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.03, y: -4 }}
-                className="relative rounded-[20px] overflow-hidden aspect-[3/4] border border-[#eee] dark:border-surface-800 group hover:shadow-[5px_3px_40px_rgba(0,72,88,0.12)] hover:border-brand-600/30 transition-all duration-300"
+                className="relative rounded-[20px] overflow-hidden aspect-[3/4] border border-[#eee] group hover:shadow-[5px_3px_40px_rgba(0,72,88,0.12)] hover:border-brand-600/30 transition-all duration-300"
               >
                 <img
                   src={img.src}
@@ -178,9 +178,9 @@ export default function QualityAssurance() {
         {/* Section divider and header for Farm Biosecurity & Process Control */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col items-center gap-3 mt-8 border-t border-surface-100 dark:border-surface-800/60 pt-12 text-center"
+          className="flex flex-col items-center gap-3 mt-8 border-t border-surface-100 pt-12 text-center"
         >
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-surface-850 dark:text-white leading-tight tracking-tight m-0">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-surface-850 leading-tight tracking-tight m-0">
             Farm Biosecurity &amp; Process Control
           </h3>
           <div className="h-[3px] w-12 bg-brand-600 rounded-full" />

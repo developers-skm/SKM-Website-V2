@@ -109,7 +109,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
   };
 
   return (
-    <div className="w-full flex flex-col bg-page dark:bg-surface-950 font-body text-left">
+    <div className="w-full flex flex-col bg-page font-body text-left">
       {/* SEO */}
       <SEO
         title="Egg Product Packaging | Bulk Egg Powder & Liquid Packaging Options"
@@ -129,11 +129,11 @@ export default function CustomizedPackagesPage({ onPageChange }) {
       />
 
       {/* Hero Banner */}
-      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page dark:bg-surface-950 border-b border-[#eee] dark:border-surface-800/40 overflow-hidden">
+      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page border-b border-[#eee] overflow-hidden">
         {!reduceMotion && (
           <>
             <motion.div
-              className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-brand-500/5 dark:bg-brand-950/5 rounded-full blur-3xl pointer-events-none"
+              className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none"
               animate={{ scale: [1, 1.08, 1] }}
               transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
             />
@@ -156,14 +156,14 @@ export default function CustomizedPackagesPage({ onPageChange }) {
             <motion.span
               variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: reduceMotion ? 0.01 : DURATION.fast, ease: EASE_PREMIUM }}
-              className="text-xs font-semibold uppercase tracking-widest text-brand-650 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/60 border border-brand-100 dark:border-brand-900/40 px-4 py-1.5 rounded-full"
+              className="text-xs font-semibold uppercase tracking-widest text-brand-650 bg-brand-50 border border-brand-100 px-4 py-1.5 rounded-full"
             >
               Packaging Solutions
             </motion.span>
             <motion.h1
               variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 20 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
-              className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+              className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading leading-[1.1] tracking-tight m-0"
             >
               Customized{' '}
               Packages
@@ -171,7 +171,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
             <motion.p
               variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 20 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
-              className="text-base sm:text-lg text-surface-500 dark:text-surface-400 leading-relaxed max-w-2xl m-0 font-medium"
+              className="text-base sm:text-lg text-surface-500 leading-relaxed max-w-2xl m-0 font-medium"
             >
               Customized packages of the products tailored for hassle-free use as per the industrial requirements. From small retail SKUs to bulk IBC pallet containers — every format is engineered for food-grade safety and logistics efficiency.
             </motion.p>
@@ -190,10 +190,10 @@ export default function CustomizedPackagesPage({ onPageChange }) {
         >
           {/* Section Header */}
           <div className="flex flex-col gap-2">
-            <span className="text-xs font-semibold uppercase tracking-widest text-brand-650 dark:text-brand-400">
+            <span className="text-xs font-semibold uppercase tracking-widest text-brand-650">
               Available Formats
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-surface-850 dark:text-white uppercase tracking-wider m-0">
+            <h2 className="text-2xl sm:text-3xl font-black text-surface-850 uppercase tracking-wider m-0">
               Package Type Overview
             </h2>
           </div>
@@ -205,27 +205,27 @@ export default function CustomizedPackagesPage({ onPageChange }) {
                 key={pkg.id}
                 variants={cardVariants}
                 whileHover={reduceMotion ? undefined : { y: -3 }}
-                className="bg-surface-50 dark:bg-surface-900/30 border border-surface-200/60 dark:border-surface-800 rounded-3xl overflow-hidden flex flex-col transition-colors duration-300 hover:border-gold-500/40"
+                className="bg-surface-50 border border-surface-200/60 rounded-3xl overflow-hidden flex flex-col transition-colors duration-300 hover:border-gold-500/40"
               >
                 {/* Card Header */}
-                <div className="px-6 pt-6 pb-5 border-b border-surface-200/60 dark:border-surface-800 flex items-start gap-4">
+                <div className="px-6 pt-6 pb-5 border-b border-surface-200/60 flex items-start gap-4">
                   {/* Type Badge + Icon */}
                   <div className="w-10 h-10 rounded-2xl bg-brand-600 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-brand-600/30">
                     {pkg.icon}
                   </div>
                   <div className="flex flex-col gap-1 flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-body text-[10px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+                      <span className="font-body text-[10px] font-bold uppercase tracking-widest text-brand-600">
                         {pkg.type} Package
                       </span>
-                      <span className="text-[10px] font-bold bg-surface-200 dark:bg-surface-800 text-surface-600 dark:text-surface-400 px-2 py-0.5 rounded-full uppercase tracking-wide">
+                      <span className="text-[10px] font-bold bg-surface-200 text-surface-600 px-2 py-0.5 rounded-full uppercase tracking-wide">
                         {pkg.subtitle}
                       </span>
                     </div>
-                    <h3 className="text-lg sm:text-xl font-black text-surface-850 dark:text-white m-0 leading-snug">
+                    <h3 className="text-lg sm:text-xl font-black text-surface-850 m-0 leading-snug">
                       {pkg.type} Package in {pkg.title}
                     </h3>
-                    <p className="text-xs text-surface-500 dark:text-surface-400 leading-relaxed m-0 mt-1">
+                    <p className="text-xs text-surface-500 leading-relaxed m-0 mt-1">
                       {pkg.description}
                     </p>
                   </div>
@@ -237,7 +237,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
                     return (
                       <div
                         key={imgIndex}
-                        className="relative flex-1 rounded-2xl overflow-hidden aspect-[4/3] bg-surface-100 dark:bg-surface-950 group border border-surface-200/60 dark:border-surface-800"
+                        className="relative flex-1 rounded-2xl overflow-hidden aspect-[4/3] bg-surface-100 group border border-surface-200/60"
                       >
                         <img
                           src={img.src}
@@ -262,16 +262,16 @@ export default function CustomizedPackagesPage({ onPageChange }) {
                 {/* SKU Section */}
                 <div className="px-6 pb-6 pt-5 flex flex-col gap-3 mt-auto">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-surface-500 dark:text-surface-400">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-surface-500">
                       Package SKU's
                     </span>
-                    <div className="flex-1 h-px bg-surface-200 dark:bg-surface-800" />
+                    <div className="flex-1 h-px bg-surface-200" />
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {pkg.skus.map((sku) => (
                       <span
                         key={sku}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-800 font-body text-[12px] font-bold text-surface-800 dark:text-white shadow-sm"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white border border-surface-200 font-body text-[12px] font-bold text-surface-800 shadow-sm"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-brand-600 flex-shrink-0" />
                         {sku}

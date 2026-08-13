@@ -53,7 +53,7 @@ const features = [
 
 export default function EggWhiteCubePage({ onPageChange }) {
   return (
-    <div className="w-full flex flex-col bg-page dark:bg-surface-950 font-body text-left">
+    <div className="w-full flex flex-col bg-page font-body text-left">
       <SEO
         title="Egg White Cube | High Protein Zero Cholesterol Egg Product"
         description="SKM Egg White Cubes — high protein, zero cholesterol, low calorie specialty egg product. Essential amino acids for fitness & nutrition. A convenient ready-to-eat egg white format."
@@ -82,7 +82,7 @@ export default function EggWhiteCubePage({ onPageChange }) {
       />
 
       {/* Key Features + Product Image side by side */}
-      <div className="w-full py-[40px] lg:py-[60px] border-b border-[#eee] dark:border-surface-900/60">
+      <div className="w-full py-[40px] lg:py-[60px] border-b border-[#eee]">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-12 items-start">
 
@@ -98,7 +98,7 @@ export default function EggWhiteCubePage({ onPageChange }) {
                 <span className="section-label">
                   Nutritional Benefits
                 </span>
-                <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading dark:text-white uppercase tracking-wider m-0">
+                <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading uppercase tracking-wider m-0">
                   A Great Choice For Everyone
                 </h2>
               </div>
@@ -109,16 +109,16 @@ export default function EggWhiteCubePage({ onPageChange }) {
                     key={index}
                     variants={itemVariants}
                     whileHover={{ y: -2 }}
-                    className="flex items-start gap-4 bg-white dark:bg-surface-900/30 border border-[#eee] dark:border-surface-800 rounded-[10px] p-5 shadow-[5px_3px_40px_rgba(0,72,88,0.04)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.10)] hover:border-gold-500/40 transition-all duration-300"
+                    className="flex items-start gap-4 bg-white border border-[#eee] rounded-[10px] p-5 shadow-[5px_3px_40px_rgba(0,72,88,0.04)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.10)] hover:border-gold-500/40 transition-all duration-300"
                   >
                     <div className="w-10 h-10 rounded-[8px] bg-brand-600 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-brand-600/20">
                       {feature.icon}
                     </div>
                     <div className="flex flex-col gap-1">
-                      <h3 className="font-heading font-bold text-[13px] text-heading dark:text-white uppercase tracking-wider m-0">
+                      <h3 className="font-heading font-bold text-[13px] text-heading uppercase tracking-wider m-0">
                         {feature.title}
                       </h3>
-                      <p className="text-xs text-surface-500 dark:text-surface-400 leading-relaxed m-0">
+                      <p className="text-xs text-surface-500 leading-relaxed m-0">
                         {feature.description}
                       </p>
                     </div>
@@ -155,7 +155,7 @@ export default function EggWhiteCubePage({ onPageChange }) {
       </div>
 
       {/* Info strip */}
-      <div className="w-full py-12 sm:py-16 bg-page dark:bg-surface-900/10">
+      <div className="w-full py-12 sm:py-16 bg-page">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -173,10 +173,10 @@ export default function EggWhiteCubePage({ onPageChange }) {
               <motion.div
                 key={stat.label}
                 variants={itemVariants}
-                className="bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-800 rounded-2xl px-6 py-5 flex flex-col gap-1 text-center transition-colors duration-300 hover:border-gold-500/40"
+                className="bg-white border border-surface-200 rounded-2xl px-6 py-5 flex flex-col gap-1 text-center transition-colors duration-300 hover:border-gold-500/40"
               >
-                <span className="text-[10px] font-bold uppercase tracking-widest text-surface-400 dark:text-surface-500">{stat.label}</span>
-                <span className="text-lg font-black text-brand-600 dark:text-brand-400">{stat.value}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-surface-400">{stat.label}</span>
+                <span className="text-lg font-black text-brand-600">{stat.value}</span>
               </motion.div>
             ))}
           </div>

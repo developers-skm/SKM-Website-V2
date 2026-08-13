@@ -5,11 +5,11 @@ import { makeContainerVariants, makeItemVariants } from '../../utils/animationVa
 
 function ImagePlaceholder({ label, aspectClass = 'aspect-[4/3]' }) {
   return (
-    <div className={`relative w-full ${aspectClass} rounded-2xl bg-surface-100 dark:bg-surface-800/60 border-2 border-dashed border-surface-200 dark:border-surface-700 flex flex-col items-center justify-center gap-3 overflow-hidden`}>
-      <svg className="w-10 h-10 text-surface-300 dark:text-surface-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
+    <div className={`relative w-full ${aspectClass} rounded-2xl bg-surface-100 border-2 border-dashed border-surface-200 flex flex-col items-center justify-center gap-3 overflow-hidden`}>
+      <svg className="w-10 h-10 text-surface-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
       </svg>
-      <p className="text-[10px] font-semibold uppercase tracking-widest text-surface-400 dark:text-surface-500 m-0 text-center px-4">{label}</p>
+      <p className="text-[10px] font-semibold uppercase tracking-widest text-surface-400 m-0 text-center px-4">{label}</p>
     </div>
   );
 }
@@ -68,7 +68,7 @@ export default function MdArticlePage({ onPageChange }) {
         description="Olirum Erode Foundation (OEF) — established to develop Erode into a preferred place of living through environmental, water, and community welfare initiatives, co-founded by SKM's Managing Director."
         keywords="OEF, Olirum Erode Foundation, SKM MD, CSR, Erode development, community welfare, SKM Shree Shivkumar"
       />
-      <div className="w-full bg-page dark:bg-surface-950 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
+      <div className="w-full bg-page pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -87,14 +87,14 @@ export default function MdArticlePage({ onPageChange }) {
             </motion.span>
             <motion.h2
               variants={itemVariants}
-              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0"
             >
               Olirum Erode{' '}
               Foundation
             </motion.h2>
             <motion.p
               variants={itemVariants}
-              className="text-base sm:text-lg font-semibold text-surface-500 dark:text-surface-400 m-0 uppercase tracking-widest"
+              className="text-base sm:text-lg font-semibold text-surface-500 m-0 uppercase tracking-widest"
             >
               OEF
             </motion.p>
@@ -102,16 +102,16 @@ export default function MdArticlePage({ onPageChange }) {
 
           {/* ── Foundation Overview ── */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6">
-            <p className="font-body text-[15px] text-surface-600 dark:text-surface-350 leading-[26px] m-0">
-              <strong className="text-surface-850 dark:text-white">Olirum Erode Foundation (OEF)</strong> has been established with the objective of developing Erode into a preferred place of living by creating and maintaining a hygienic and green environment, and also by developing and conserving water bodies available in the city. A <strong className="text-brand-600 dark:text-brand-400">30-member team</strong> — all successful entrepreneurs in Erode — joined together to establish this foundation.
+            <p className="font-body text-[15px] text-surface-600 leading-[26px] m-0">
+              <strong className="text-surface-850">Olirum Erode Foundation (OEF)</strong> has been established with the objective of developing Erode into a preferred place of living by creating and maintaining a hygienic and green environment, and also by developing and conserving water bodies available in the city. A <strong className="text-brand-600">30-member team</strong> — all successful entrepreneurs in Erode — joined together to establish this foundation.
             </p>
 
             {/* Images row 1 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="rounded-[20px] border border-[#eee] dark:border-surface-800 bg-white/70 dark:bg-surface-900/40 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
+              <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
                 <ImagePlaceholder label="OEF — image coming soon" aspectClass="aspect-[4/3]" />
               </div>
-              <div className="rounded-[20px] border border-[#eee] dark:border-surface-800 bg-white/70 dark:bg-surface-900/40 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
+              <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
                 <ImagePlaceholder label="OEF — image coming soon" aspectClass="aspect-[4/3]" />
               </div>
             </div>
@@ -119,21 +119,21 @@ export default function MdArticlePage({ onPageChange }) {
 
           {/* ── Mission & MD's Role ── */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6">
-            <div className="border-l-4 border-brand-600 pl-8 py-6 bg-[rgba(228, 10, 24,0.02)] dark:bg-brand-950/15 rounded-r-[10px] flex flex-col gap-4">
-              <p className="font-body text-[15px] text-surface-600 dark:text-surface-350 leading-[26px] m-0">
-                OEF is a <strong className="text-surface-850 dark:text-white">non-political and non-business affiliated organisation</strong>; however, individuals, business organisations and establishments can directly participate and contribute to the development of Erode. OEF is committed to developing Erode by joining hands with the common public and in collaboration with the State Government and the Erode Corporation.
+            <div className="border-l-4 border-brand-600 pl-8 py-6 bg-[rgba(228, 10, 24,0.02)] rounded-r-[10px] flex flex-col gap-4">
+              <p className="font-body text-[15px] text-surface-600 leading-[26px] m-0">
+                OEF is a <strong className="text-surface-850">non-political and non-business affiliated organisation</strong>; however, individuals, business organisations and establishments can directly participate and contribute to the development of Erode. OEF is committed to developing Erode by joining hands with the common public and in collaboration with the State Government and the Erode Corporation.
               </p>
-              <p className="font-body text-[15px] text-surface-600 dark:text-surface-350 leading-[26px] m-0">
-                This foundation has Trustees, Advisors and Mentors for effective functioning and implementation of welfare activities. <strong className="text-brand-600 dark:text-brand-400">Mr. SKM. Shree Shivkumar</strong>, our Managing Director, is one of the founders in establishing OEF.
+              <p className="font-body text-[15px] text-surface-600 leading-[26px] m-0">
+                This foundation has Trustees, Advisors and Mentors for effective functioning and implementation of welfare activities. <strong className="text-brand-600">Mr. SKM. Shree Shivkumar</strong>, our Managing Director, is one of the founders in establishing OEF.
               </p>
             </div>
 
             {/* Images row 2 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="rounded-[20px] border border-[#eee] dark:border-surface-800 bg-white/70 dark:bg-surface-900/40 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
+              <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
                 <ImagePlaceholder label="OEF event — image coming soon" aspectClass="aspect-[4/3]" />
               </div>
-              <div className="rounded-[20px] border border-[#eee] dark:border-surface-800 bg-white/70 dark:bg-surface-900/40 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
+              <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
                 <ImagePlaceholder label="OEF founders — image coming soon" aspectClass="aspect-[4/3]" />
               </div>
             </div>
@@ -142,20 +142,20 @@ export default function MdArticlePage({ onPageChange }) {
           {/* ── Launch Event ── */}
           <motion.div
             variants={itemVariants}
-            className="relative overflow-hidden rounded-[10px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/50 p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start shadow-[5px_3px_40px_rgba(0,72,88,0.05)]"
+            className="relative overflow-hidden rounded-[10px] border border-[#eee] bg-white p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start shadow-[5px_3px_40px_rgba(0,72,88,0.05)]"
           >
-            <div className="flex-shrink-0 w-12 h-12 rounded-[10px] bg-brand-600/6 dark:bg-brand-950/60 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400">
+            <div className="flex-shrink-0 w-12 h-12 rounded-[10px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center text-brand-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400">Launch Event</span>
-              <h3 className="font-heading font-bold text-[15px] text-heading dark:text-white m-0 tracking-tight">
+              <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-600">Launch Event</span>
+              <h3 className="font-heading font-bold text-[15px] text-heading m-0 tracking-tight">
                 Grand Inauguration — 04 June 2015
               </h3>
-              <p className="text-sm text-surface-600 dark:text-surface-400 leading-relaxed m-0">
-                The establishment of OEF was made public in a grand manner at <strong className="text-surface-700 dark:text-surface-300">Vellalar College Ground</strong> on <strong className="text-brand-600 dark:text-brand-400">04.06.2015</strong>. Mr. <strong className="text-surface-700 dark:text-surface-300">S. Suriya</strong>, the famous Tamil cinema actor and founder of <strong className="text-surface-700 dark:text-surface-300">Agaram Foundation, Chennai</strong>, participated as Chief Guest.
+              <p className="text-sm text-surface-600 leading-relaxed m-0">
+                The establishment of OEF was made public in a grand manner at <strong className="text-surface-700">Vellalar College Ground</strong> on <strong className="text-brand-600">04.06.2015</strong>. Mr. <strong className="text-surface-700">S. Suriya</strong>, the famous Tamil cinema actor and founder of <strong className="text-surface-700">Agaram Foundation, Chennai</strong>, participated as Chief Guest.
               </p>
             </div>
           </motion.div>
@@ -163,8 +163,8 @@ export default function MdArticlePage({ onPageChange }) {
           {/* ── Focus Areas ── */}
           <motion.div variants={itemVariants} className="flex flex-col gap-8">
             <div className="text-center flex flex-col items-center gap-3">
-              <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">Strategic Focus</span>
-              <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading dark:text-white tracking-tight m-0">
+              <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Strategic Focus</span>
+              <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading tracking-tight m-0">
                 OEF will mainly focus its activities on the following areas
               </h3>
             </div>
@@ -175,12 +175,12 @@ export default function MdArticlePage({ onPageChange }) {
                   key={i}
                   variants={itemVariants}
                   whileHover={{ y: -5 }}
-                  className="flex flex-col items-center gap-3 p-5 bg-white dark:bg-surface-900/50 border border-[#eee] dark:border-surface-800/60 rounded-[10px] hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.08)] transition-all duration-300 group text-center"
+                  className="flex flex-col items-center gap-3 p-5 bg-white border border-[#eee] rounded-[10px] hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.08)] transition-all duration-300 group text-center"
                 >
-                  <div className="w-12 h-12 rounded-[10px] bg-brand-600/6 dark:bg-brand-950/60 border border-brand-600/12 dark:border-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-12 h-12 rounded-[10px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center text-brand-600 group-hover:scale-110 transition-transform duration-300">
                     {area.icon}
                   </div>
-                  <span className="font-heading font-bold text-[12px] text-heading dark:text-white uppercase tracking-wide leading-tight">
+                  <span className="font-heading font-bold text-[12px] text-heading uppercase tracking-wide leading-tight">
                     {area.label}
                   </span>
                 </motion.div>
@@ -191,14 +191,14 @@ export default function MdArticlePage({ onPageChange }) {
           {/* ── Call to Action Quote ── */}
           <motion.div
             variants={itemVariants}
-            className="border-l-4 border-brand-600 pl-8 py-6 bg-[rgba(228, 10, 24,0.02)] dark:bg-brand-950/15 rounded-r-[10px] flex flex-col sm:flex-row items-start sm:items-center gap-6"
+            className="border-l-4 border-brand-600 pl-8 py-6 bg-[rgba(228, 10, 24,0.02)] rounded-r-[10px] flex flex-col sm:flex-row items-start sm:items-center gap-6"
           >
             <div className="flex-shrink-0 w-12 h-12 rounded-[10px] bg-brand-600 flex items-center justify-center shadow-md shadow-brand-600/20">
               <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </div>
-            <p className="text-base sm:text-lg font-semibold text-brand-900 dark:text-brand-100 leading-relaxed m-0 italic">
+            <p className="text-base sm:text-lg font-semibold text-brand-900 leading-relaxed m-0 italic">
               "Let us join to strengthen OEF and contribute our shares also for the development of our Erode city."
             </p>
           </motion.div>

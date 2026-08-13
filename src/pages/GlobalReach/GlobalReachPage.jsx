@@ -74,9 +74,9 @@ function MarketMapDetailSection({ onPageChange }) {
   const region = regionForMarket(selected.name);
 
   return (
-    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] dark:border-surface-800/40">
+    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee]">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
-        <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading dark:text-white m-0 tracking-tight">
+        <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">
           Select a market
         </h2>
 
@@ -90,7 +90,7 @@ function MarketMapDetailSection({ onPageChange }) {
               className={`inline-flex items-center gap-2 min-h-[44px] sm:min-h-[38px] px-3.5 py-2 rounded-full border font-body text-[13px] font-semibold transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
                 selected.id === market.id
                   ? 'bg-brand-600 border-brand-600 text-white'
-                  : 'bg-white dark:bg-surface-900 border-surface-300 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-600/50'
+                  : 'bg-white border-surface-300 text-surface-600 hover:border-brand-600/50'
               }`}
             >
               <span>{market.flag}</span>
@@ -104,31 +104,31 @@ function MarketMapDetailSection({ onPageChange }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 rounded-[18px] border border-[#eee] dark:border-surface-800 bg-white dark:bg-surface-900/40 p-6 sm:p-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 rounded-[18px] border border-[#eee] bg-white p-6 sm:p-8"
         >
           <div className="flex flex-col gap-1.5">
-            <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">Products available</span>
-            <span className="font-body text-[14px] text-surface-700 dark:text-surface-300 leading-[1.6]">Full catalogue — egg powders, liquid egg products, and customised/specialty solutions.</span>
+            <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Products available</span>
+            <span className="font-body text-[14px] text-surface-700 leading-[1.6]">Full catalogue — egg powders, liquid egg products, and customised/specialty solutions.</span>
           </div>
           <div className="flex flex-col gap-1.5">
-            <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">Relevant certification</span>
-            <span className="font-body text-[14px] text-surface-700 dark:text-surface-300 leading-[1.6]">{ALL_CERT_NAMES}</span>
+            <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Relevant certification</span>
+            <span className="font-body text-[14px] text-surface-700 leading-[1.6]">{ALL_CERT_NAMES}</span>
           </div>
           <div className="flex flex-col gap-1.5">
-            <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">Regional office</span>
-            <span className="font-body text-[14px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+            <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Regional office</span>
+            <span className="font-body text-[14px] text-surface-700 leading-[1.6]">
               {region ? region.office : 'Served directly from India HQ — no dedicated regional office for this market.'}
             </span>
           </div>
           <div className="flex flex-col gap-1.5">
-            <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">Contact person or team</span>
-            <span className="font-body text-[14px] text-surface-700 dark:text-surface-300 leading-[1.6]">
+            <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Contact person or team</span>
+            <span className="font-body text-[14px] text-surface-700 leading-[1.6]">
               {region ? `${region.branchName} sales and customer team.` : 'India HQ export sales team.'}
             </span>
           </div>
-          <div className="sm:col-span-2 lg:col-span-4 flex flex-col gap-1.5 pt-4 border-t border-surface-200/60 dark:border-surface-800">
-            <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400 dark:text-surface-500">Delivery format</span>
-            <span className="font-body text-[14px] text-surface-700 dark:text-surface-300 leading-[1.6]">{DELIVERY_FORMATS}</span>
+          <div className="sm:col-span-2 lg:col-span-4 flex flex-col gap-1.5 pt-4 border-t border-surface-200/60">
+            <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Delivery format</span>
+            <span className="font-body text-[14px] text-surface-700 leading-[1.6]">{DELIVERY_FORMATS}</span>
           </div>
         </motion.div>
 
@@ -186,7 +186,7 @@ const EXPORT_REGULATORY_TOPICS = [
 
 function ExportRegulatorySupportSection({ onPageChange }) {
   return (
-    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] dark:border-surface-800/40 bg-page dark:bg-surface-900/40">
+    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] bg-page">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -194,7 +194,7 @@ function ExportRegulatorySupportSection({ onPageChange }) {
         viewport={{ once: true, margin: '-100px' }}
         className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8"
       >
-        <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading dark:text-white m-0 tracking-tight">
+        <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">
           Export and regulatory support
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -202,10 +202,10 @@ function ExportRegulatorySupportSection({ onPageChange }) {
             <motion.div
               key={topic.id}
               variants={itemVariants}
-              className="flex flex-col gap-2 p-6 bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)]"
+              className="flex flex-col gap-2 p-6 bg-white border border-[#eee] rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)]"
             >
-              <h3 className="font-heading font-bold text-[15px] text-heading dark:text-white m-0">{topic.label}</h3>
-              <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-[21px] m-0">{topic.fact}</p>
+              <h3 className="font-heading font-bold text-[15px] text-heading m-0">{topic.label}</h3>
+              <p className="font-body text-[13px] text-surface-500 leading-[21px] m-0">{topic.fact}</p>
             </motion.div>
           ))}
         </div>
@@ -237,7 +237,7 @@ const PACKAGING_TRANSPORT = [
 
 function PackagingTransportSection({ onPageChange }) {
   return (
-    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] dark:border-surface-800/40">
+    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee]">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -245,7 +245,7 @@ function PackagingTransportSection({ onPageChange }) {
         viewport={{ once: true, margin: '-100px' }}
         className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8"
       >
-        <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading dark:text-white m-0 tracking-tight">
+        <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">
           Packaging and transportation
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -253,10 +253,10 @@ function PackagingTransportSection({ onPageChange }) {
             <motion.div
               key={item.id}
               variants={itemVariants}
-              className="flex flex-col gap-2 p-6 bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)]"
+              className="flex flex-col gap-2 p-6 bg-white border border-[#eee] rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)]"
             >
-              <h3 className="font-heading font-bold text-[15px] text-heading dark:text-white m-0">{item.label}</h3>
-              <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-[21px] m-0">{item.fact}</p>
+              <h3 className="font-heading font-bold text-[15px] text-heading m-0">{item.label}</h3>
+              <p className="font-body text-[13px] text-surface-500 leading-[21px] m-0">{item.fact}</p>
             </motion.div>
           ))}
         </div>
@@ -272,7 +272,7 @@ function PackagingTransportSection({ onPageChange }) {
           <InternalLink
             route="customized_packages"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-body font-semibold text-[14px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-body font-semibold text-[14px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
             View Packaging Options
           </InternalLink>
@@ -291,7 +291,7 @@ function PackagingTransportSection({ onPageChange }) {
 // routes to the real get-quote flow.
 function CustomerProofSection({ onPageChange }) {
   return (
-    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] dark:border-surface-800/40 bg-page dark:bg-surface-900/40">
+    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] bg-page">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -300,8 +300,8 @@ function CustomerProofSection({ onPageChange }) {
         className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8"
       >
         <div className="flex flex-col gap-2">
-          <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">Industries Served</span>
-          <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading dark:text-white m-0 tracking-tight">
+          <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Industries Served</span>
+          <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">
             Trusted across food manufacturing
           </h2>
         </div>
@@ -312,11 +312,11 @@ function CustomerProofSection({ onPageChange }) {
               variants={itemVariants}
               whileHover={{ y: -4 }}
               onClick={() => onPageChange(app.page)}
-              className="flex flex-col overflow-hidden text-left bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/30 transition-all duration-300 cursor-pointer focus:outline-none"
+              className="flex flex-col overflow-hidden text-left bg-white border border-[#eee] rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/30 transition-all duration-300 cursor-pointer focus:outline-none"
             >
               <img src={app.image} alt={app.title} loading="lazy" className="w-full aspect-[4/3] object-cover" />
               <div className="flex flex-col gap-1 p-5">
-                <h3 className="font-heading font-bold text-[15px] text-heading dark:text-white m-0">{app.title}</h3>
+                <h3 className="font-heading font-bold text-[15px] text-heading m-0">{app.title}</h3>
               </div>
             </motion.button>
           ))}
@@ -345,16 +345,16 @@ export default function GlobalReachPage({ onPageChange }) {
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full flex flex-col bg-page dark:bg-surface-950">
+      <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 — Global hero */}
-        <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[80px] lg:pb-[80px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4">
+        <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[80px] lg:pb-[80px] border-b border-[#eee] text-center px-4">
           <div className="mx-auto max-w-[720px] flex flex-col items-center gap-5">
             <span className="section-label justify-center">Export Markets & Branches</span>
-            <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+            <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
               Global Reach
             </h1>
-            <p className="font-body text-[15px] sm:text-[16px] text-surface-500 dark:text-surface-400 leading-[28px] m-0">
+            <p className="font-body text-[15px] sm:text-[16px] text-surface-500 leading-[28px] m-0">
               SKM exports to 30+ countries, with dedicated regional branches in Japan, Europe, and Russia coordinating import, warehousing, and compliance close to your market.
             </p>
 
@@ -370,7 +370,7 @@ export default function GlobalReachPage({ onPageChange }) {
               <InternalLink
                 route="contact-us"
                 onPageChange={onPageChange}
-                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
               >
                 Discuss Export Availability
               </InternalLink>
@@ -379,7 +379,7 @@ export default function GlobalReachPage({ onPageChange }) {
         </div>
 
         {/* Map */}
-        <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] dark:border-surface-800/40 bg-page dark:bg-surface-900/40">
+        <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] bg-page">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8">
             <ExportMarketsMap />
           </div>
@@ -389,7 +389,7 @@ export default function GlobalReachPage({ onPageChange }) {
         <MarketMapDetailSection onPageChange={onPageChange} />
 
         {/* Section 3 — Regional offices */}
-        <div id="regional-branches" className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] dark:border-surface-800/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
+        <div id="regional-branches" className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] scroll-mt-[100px] xl:scroll-mt-[120px]">
           <motion.section
             variants={containerVariants}
             initial="hidden"
@@ -397,22 +397,22 @@ export default function GlobalReachPage({ onPageChange }) {
             viewport={{ once: true, margin: '-100px' }}
             className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8"
           >
-            <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading dark:text-white m-0 tracking-tight">Regional offices</h2>
+            <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">Regional offices</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {branches.map((branch) => (
                 <motion.div
                   key={branch.page}
                   variants={itemVariants}
-                  className="flex flex-col gap-4 p-6 bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)]"
+                  className="flex flex-col gap-4 p-6 bg-white border border-[#eee] rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)]"
                 >
                   <div className="flex flex-col gap-1.5">
-                    <h3 className="font-heading font-bold text-[18px] text-heading dark:text-white m-0">{branch.name}</h3>
-                    <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-[22px] m-0">{branch.tagline}</p>
+                    <h3 className="font-heading font-bold text-[18px] text-heading m-0">{branch.name}</h3>
+                    <p className="font-body text-[13.5px] text-surface-500 leading-[22px] m-0">{branch.tagline}</p>
                   </div>
-                  <p className="font-body text-[13px] text-surface-600 dark:text-surface-300 leading-[21px] m-0 italic">{branch.vision}</p>
+                  <p className="font-body text-[13px] text-surface-600 leading-[21px] m-0 italic">{branch.vision}</p>
                   <ul className="flex flex-col gap-1.5 list-none m-0 p-0">
                     {branch.activities.map((activity) => (
-                      <li key={activity} className="font-body text-[12.5px] text-surface-500 dark:text-surface-400 leading-[1.5] pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-brand-600">
+                      <li key={activity} className="font-body text-[12.5px] text-surface-500 leading-[1.5] pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-brand-600">
                         {activity}
                       </li>
                     ))}
@@ -420,7 +420,7 @@ export default function GlobalReachPage({ onPageChange }) {
                   <InternalLink
                     route={branch.page}
                     onPageChange={onPageChange}
-                    className="mt-auto self-start inline-flex items-center gap-2 font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
+                    className="mt-auto self-start inline-flex items-center gap-2 font-body font-semibold text-[13.5px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
                   >
                     {branch.ctaLabel}
                   </InternalLink>
@@ -432,10 +432,10 @@ export default function GlobalReachPage({ onPageChange }) {
               variants={itemVariants}
               whileHover={{ y: -4 }}
               onClick={() => onPageChange('events')}
-              className="self-start flex flex-col items-start gap-2 text-left p-6 bg-brand-50/60 dark:bg-brand-950/20 border border-brand-200/60 dark:border-brand-900/40 rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/40 transition-all duration-300 cursor-pointer focus:outline-none"
+              className="self-start flex flex-col items-start gap-2 text-left p-6 bg-brand-50/60 border border-brand-200/60 rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/40 transition-all duration-300 cursor-pointer focus:outline-none"
             >
-              <h3 className="font-heading font-bold text-[16px] text-heading dark:text-white m-0">Events & Expos</h3>
-              <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 leading-[21px] m-0">See where to meet us at global food ingredient expos.</p>
+              <h3 className="font-heading font-bold text-[16px] text-heading m-0">Events & Expos</h3>
+              <p className="font-body text-[13px] text-surface-500 leading-[21px] m-0">See where to meet us at global food ingredient expos.</p>
             </motion.button>
           </motion.section>
         </div>
@@ -462,14 +462,14 @@ export default function GlobalReachPage({ onPageChange }) {
             Sales" leads into, and the button routes to that real flow. */}
         <div className="w-full py-[60px] lg:py-[80px] text-center px-4">
           <div className="mx-auto max-w-[600px] flex flex-col items-center gap-6">
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading dark:text-white m-0 tracking-tight">
+            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading m-0 tracking-tight">
               Ready to bring SKM into your market?
             </h2>
             <div className="grid grid-cols-2 gap-3 w-full max-w-[420px]">
               {['Destination country', 'Product', 'Estimated volume', 'Required delivery period'].map((field) => (
                 <span
                   key={field}
-                  className="font-body text-[12.5px] font-semibold text-surface-500 dark:text-surface-400 bg-surface-50 dark:bg-surface-900/60 border border-surface-200/70 dark:border-surface-800 rounded-[10px] px-3 py-2.5"
+                  className="font-body text-[12.5px] font-semibold text-surface-500 bg-surface-50 border border-surface-200/70 rounded-[10px] px-3 py-2.5"
                 >
                   {field}
                 </span>

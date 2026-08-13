@@ -45,11 +45,11 @@ export default function PackagingLogistics({ packagingOptions, variantsData, onV
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4 max-w-2xl">
-        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+        <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
           <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
           Logistics
         </span>
-        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1]">
+        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
           Packaging &amp; Logistics
         </h2>
       </div>
@@ -59,7 +59,7 @@ export default function PackagingLogistics({ packagingOptions, variantsData, onV
         whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: DURATION.sectionEntrance, ease: EASE_PREMIUM }}
-        className="rounded-[32px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900/40 px-6 sm:px-12 lg:px-16 py-10 sm:py-14 flex flex-col gap-9 shadow-[0_20px_60px_rgba(36,30,24,0.06)]"
+        className="rounded-[32px] border border-surface-200/60 bg-white px-6 sm:px-12 lg:px-16 py-10 sm:py-14 flex flex-col gap-9 shadow-[0_20px_60px_rgba(36,30,24,0.06)]"
       >
         <motion.dl
           initial="hidden"
@@ -73,12 +73,12 @@ export default function PackagingLogistics({ packagingOptions, variantsData, onV
               key={label}
               variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 12 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: DURATION.cardHover, ease: EASE_PREMIUM }}
-              className="flex flex-col gap-1.5 border-t border-surface-200/70 dark:border-surface-800 pt-4 px-2 -mx-2 rounded-lg transition-colors duration-200 hover:bg-gold-500/[0.06] dark:hover:bg-gold-500/[0.05]"
+              className="flex flex-col gap-1.5 border-t border-surface-200/70 pt-4 px-2 -mx-2 rounded-lg transition-colors duration-200 hover:bg-gold-500/[0.06]"
             >
-              <dt className="font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400 dark:text-surface-500">
+              <dt className="font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400">
                 {label}
               </dt>
-              <dd className="font-heading font-bold text-[17px] text-heading dark:text-white leading-snug m-0">
+              <dd className="font-heading font-bold text-[17px] text-heading leading-snug m-0">
                 {value}
               </dd>
             </motion.div>
@@ -94,7 +94,7 @@ export default function PackagingLogistics({ packagingOptions, variantsData, onV
           </button>
           <button
             onClick={onDiscussDelivery}
-            className="font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:text-[#a80000] dark:hover:text-brand-300 underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
+            className="font-body font-semibold text-[13.5px] text-brand-600 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0"
           >
             Discuss Delivery Requirements
           </button>

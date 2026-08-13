@@ -12,10 +12,10 @@ export default function StepContactDetails({ formData, setFormData, errors }) {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-1.5">
-        <h2 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading dark:text-white m-0 tracking-tight">
+        <h2 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 tracking-tight">
           How do we reach you?
         </h2>
-        <p className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 m-0">
+        <p className="font-body text-[13.5px] text-surface-500 m-0">
           A member of our export sales team will respond within 24 hours.
         </p>
       </div>

@@ -121,7 +121,7 @@ export default function NavOverlay({ isOpen, onClose, activePage, onPageChange, 
             exit="exit"
             variants={reduceMotion ? { hidden: { opacity: 0 }, visible: { opacity: 1 }, exit: { opacity: 0 } } : cardVariants}
             transition={{ duration: reduceMotion ? 0.15 : 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-0 inset-x-0 z-[60] h-[90vh] sm:h-[80vh] lg:h-[70vh] bg-[#fbfaf8] dark:bg-surface-950 rounded-b-[28px] shadow-[0_24px_60px_rgba(0,0,0,0.25)] flex flex-col overflow-hidden"
+            className="fixed top-0 inset-x-0 z-[60] h-[90vh] sm:h-[80vh] lg:h-[70vh] bg-[#fbfaf8] rounded-b-[28px] shadow-[0_24px_60px_rgba(0,0,0,0.25)] flex flex-col overflow-hidden"
             style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
           >
             <OverlayBody
@@ -170,7 +170,7 @@ function OverlayBody({
     <>
       {/* Slim top bar — logo, search/close. Utility links + language now
           live in the footer strip below (see end of this component). */}
-      <div className="w-full flex items-center gap-4 px-6 sm:px-10 lg:px-14 py-4 border-b border-surface-200 dark:border-surface-800 flex-shrink-0">
+      <div className="w-full flex items-center gap-4 px-6 sm:px-10 lg:px-14 py-4 border-b border-surface-200 flex-shrink-0">
         <img src={SKMLogo} alt="SKM Egg Products" className="w-[120px] sm:w-[140px] h-auto object-contain flex-shrink-0" />
 
         <div className="flex items-center gap-2 ml-auto flex-shrink-0">
@@ -179,7 +179,7 @@ function OverlayBody({
             onClick={() => setIsSearchMode((prev) => !prev)}
             aria-pressed={isSearchMode}
             aria-label={isSearchMode ? 'Close search' : 'Search website'}
-            className="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-surface-200 dark:border-surface-700 text-surface-700 dark:text-surface-200 hover:border-brand-600 hover:text-brand-600 transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+            className="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-surface-200 text-surface-700 hover:border-brand-600 hover:text-brand-600 transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
           >
             <SearchIcon className="w-5 h-5" />
           </button>
@@ -188,7 +188,7 @@ function OverlayBody({
             type="button"
             onClick={onClose}
             aria-label="Close navigation"
-            className="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-surface-200 dark:border-surface-700 text-surface-700 dark:text-surface-200 hover:border-brand-600 hover:text-brand-600 transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+            className="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-surface-200 text-surface-700 hover:border-brand-600 hover:text-brand-600 transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
           >
             <CloseIcon className="w-5 h-5" />
           </button>
@@ -228,7 +228,7 @@ function OverlayBody({
           TopUtilityBar), now reunited here since both bars were removed
           in favour of this single drawer. */}
       {!isSearchMode && (
-        <div className="flex-shrink-0 w-full border-t border-surface-200 dark:border-surface-800 px-6 sm:px-10 lg:px-14 py-4 flex flex-col sm:flex-row sm:items-center gap-4">
+        <div className="flex-shrink-0 w-full border-t border-surface-200 px-6 sm:px-10 lg:px-14 py-4 flex flex-col sm:flex-row sm:items-center gap-4">
           <nav aria-label="Utility" className="flex flex-wrap items-center gap-x-4 gap-y-2">
             {utilityLinks.map((link, index) => (
               <Fragment key={link.label}>
@@ -236,17 +236,17 @@ function OverlayBody({
                   route={link.route}
                   onPageChange={onNavigate}
                   prefillData={link.careersIntent ? { enquiryType: 'job', intentId: crypto.randomUUID() } : undefined}
-                  className="font-body text-[13px] font-semibold text-surface-600 dark:text-surface-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150 whitespace-nowrap"
+                  className="font-body text-[13px] font-semibold text-surface-600 hover:text-brand-600 transition-colors duration-150 whitespace-nowrap"
                 >
                   {link.label}
                 </InternalLink>
                 {index < utilityLinks.length - 1 && (
-                  <span className="w-px h-3 bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
+                  <span className="w-px h-3 bg-surface-300" aria-hidden="true" />
                 )}
               </Fragment>
             ))}
-            <span className="w-px h-3 bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
-            <span className="font-body text-[13px] font-medium text-surface-500 dark:text-surface-400 whitespace-nowrap select-none">
+            <span className="w-px h-3 bg-surface-300" aria-hidden="true" />
+            <span className="font-body text-[13px] font-medium text-surface-500 whitespace-nowrap select-none">
               Language · EN
             </span>
           </nav>
@@ -255,15 +255,15 @@ function OverlayBody({
             <button
               type="button"
               onClick={onContactEmail}
-              className="inline-flex items-center gap-2 font-body text-[13px] font-semibold text-surface-600 dark:text-surface-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
+              className="inline-flex items-center gap-2 font-body text-[13px] font-semibold text-surface-600 hover:text-brand-600 transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
             >
               <MailIcon className="w-4 h-4" aria-hidden="true" />
               Email us
             </button>
-            <span className="w-px h-3 bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
+            <span className="w-px h-3 bg-surface-300" aria-hidden="true" />
             <a
               href={`tel:${PHONE_NUMBER}`}
-              className="inline-flex items-center gap-2 font-body text-[13px] font-semibold text-surface-600 dark:text-surface-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
+              className="inline-flex items-center gap-2 font-body text-[13px] font-semibold text-surface-600 hover:text-brand-600 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
             >
               <PhoneIcon className="w-4 h-4" aria-hidden="true" />
               Call us

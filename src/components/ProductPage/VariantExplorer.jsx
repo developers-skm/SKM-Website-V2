@@ -26,24 +26,24 @@ export default function VariantExplorer({ variantsData, variantsSectionSubtitle,
     <div className="flex flex-col gap-10">
       <div className="flex items-end justify-between gap-6 flex-wrap">
         <div className="flex flex-col gap-4 max-w-2xl">
-          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             Product Range
           </span>
-          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1]">
+          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
             Variant Specifications
           </h2>
-          <p className="font-body text-[17px] text-surface-600 dark:text-surface-400 leading-[1.7] m-0">
+          <p className="font-body text-[17px] text-surface-600 leading-[1.7] m-0">
             {variantsSectionSubtitle ?? `Search or compare variants to find the right fit for our ${productName} range.`}
           </p>
-          <span className="font-body text-[12.5px] font-medium text-surface-400 dark:text-surface-500">
+          <span className="font-body text-[12.5px] font-medium text-surface-400">
             {variantsData.length} variants available
           </span>
         </div>
         {onPageChange && (
           <button
             onClick={() => onPageChange('contact-us')}
-            className="font-body font-bold text-[13px] uppercase tracking-[0.05em] text-brand-600 dark:text-brand-400 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0 whitespace-nowrap"
+            className="font-body font-bold text-[13px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0 whitespace-nowrap"
           >
             Let SKM Recommend a Variant
           </button>

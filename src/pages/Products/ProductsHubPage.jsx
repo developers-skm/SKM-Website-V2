@@ -123,7 +123,7 @@ function FilterPill({ active, onClick, children }) {
       className={`inline-flex items-center gap-1.5 min-h-[38px] px-4 py-2 rounded-full font-body font-semibold text-[13.5px] transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-gold ${
         active
           ? 'bg-gold-500 text-heading border border-transparent shadow-[0_2px_10px_rgba(232,182,74,0.35)]'
-          : 'bg-white dark:bg-surface-900 border border-surface-200/70 dark:border-surface-800 text-surface-600 dark:text-surface-300 hover:border-gold-500/50 hover:text-heading dark:hover:text-white hover:-translate-y-px'
+          : 'bg-white border border-surface-200/70 text-surface-600 hover:border-gold-500/50 hover:text-heading hover:-translate-y-px'
       }`}
     >
       <AnimatePresence initial={false}>
@@ -204,21 +204,21 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
           {...fadeUp(reduceMotion, { duration: 0.85, distance: 38 })}
           className="flex flex-col gap-2.5"
         >
-          <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.14em] text-gold-600 dark:text-gold-400">
+          <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.14em] text-gold-600">
             Find Your Product
           </span>
-          <h2 className="font-heading font-bold text-[30px] sm:text-[36px] lg:text-[40px] text-heading dark:text-white leading-[1.12] tracking-[-0.01em] m-0">
+          <h2 className="font-heading font-bold text-[30px] sm:text-[36px] lg:text-[40px] text-heading leading-[1.12] tracking-[-0.01em] m-0">
             SKM Product Finder
           </h2>
         </motion.div>
 
         <motion.div
           {...fadeUp(reduceMotion, { duration: 0.8, distance: 28, delay: reduceMotion ? 0 : 0.14 })}
-          className="flex flex-col gap-6 sm:gap-7 p-5 sm:p-8 rounded-[16px] sm:rounded-[20px] border border-surface-200/60 dark:border-surface-800 bg-white dark:bg-surface-900 shadow-[0_1px_2px_rgba(20,16,12,0.04),0_16px_40px_-16px_rgba(20,16,12,0.10)] transition-shadow duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_1px_2px_rgba(20,16,12,0.05),0_22px_50px_-18px_rgba(20,16,12,0.14)]"
+          className="flex flex-col gap-6 sm:gap-7 p-5 sm:p-8 rounded-[16px] sm:rounded-[20px] border border-surface-200/60 bg-white shadow-[0_1px_2px_rgba(20,16,12,0.04),0_16px_40px_-16px_rgba(20,16,12,0.10)] transition-shadow duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_1px_2px_rgba(20,16,12,0.05),0_22px_50px_-18px_rgba(20,16,12,0.14)]"
         >
           <div className="flex flex-col gap-3">
-            <span className="font-body text-[11px] font-semibold uppercase tracking-[0.1em] text-surface-400 dark:text-surface-500">Format</span>
-            <div className="flex flex-wrap gap-2 sm:inline-flex sm:flex-wrap sm:gap-1 sm:p-1.5 sm:rounded-full sm:bg-white sm:dark:bg-surface-900 sm:border sm:border-surface-200/60 sm:dark:border-surface-800 w-full sm:w-fit">
+            <span className="font-body text-[11px] font-semibold uppercase tracking-[0.1em] text-surface-400">Format</span>
+            <div className="flex flex-wrap gap-2 sm:inline-flex sm:flex-wrap sm:gap-1 sm:p-1.5 sm:rounded-full sm:bg-white sm: sm:border sm:border-surface-200/60 sm: w-full sm:w-fit">
               {CATEGORY_OPTIONS.map((c) => {
                 const active = category === c;
                 return (
@@ -230,7 +230,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                     className={`relative min-h-[44px] sm:min-h-0 px-4 py-2 rounded-full font-body font-semibold text-[13.5px] transition-colors duration-[220ms] focus:outline-none focus-gold border sm:border-0 ${
                       active
                         ? 'bg-gold-500 border-transparent text-heading'
-                        : 'bg-white dark:bg-surface-900 border-surface-200/70 dark:border-surface-800 text-surface-600 dark:text-surface-300'
+                        : 'bg-white border-surface-200/70 text-surface-600'
                     }`}
                   >
                     {active && (
@@ -240,7 +240,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                         transition={reduceMotion ? { duration: 0.01 } : { duration: 0.32, ease: EASE_PREMIUM }}
                       />
                     )}
-                    <span className={`relative z-10 transition-colors duration-200 ${active ? 'text-heading' : 'text-surface-600 dark:text-surface-300'}`}>{c}</span>
+                    <span className={`relative z-10 transition-colors duration-200 ${active ? 'text-heading' : 'text-surface-600'}`}>{c}</span>
                   </button>
                 );
               })}
@@ -248,15 +248,15 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
           </div>
 
           <div className="flex flex-col gap-3">
-            <span className="font-body text-[11px] font-semibold uppercase tracking-[0.1em] text-surface-400 dark:text-surface-500">Packaging</span>
+            <span className="font-body text-[11px] font-semibold uppercase tracking-[0.1em] text-surface-400">Packaging</span>
             <div className="flex flex-wrap items-center gap-2">
               {packagingGroups.map((group) =>
                 group.grouped ? (
                   <div
                     key={group.key}
-                    className="flex flex-wrap items-center gap-1.5 rounded-xl sm:rounded-2xl border border-surface-200/50 dark:border-surface-800 bg-surface-50/70 dark:bg-surface-800/30 px-3 py-2 sm:pl-4 sm:pr-1.5 sm:py-1.5"
+                    className="flex flex-wrap items-center gap-1.5 rounded-xl sm:rounded-2xl border border-surface-200/50 bg-surface-50/70 px-3 py-2 sm:pl-4 sm:pr-1.5 sm:py-1.5"
                   >
-                    <span className="font-body font-semibold text-[12.5px] text-surface-500 dark:text-surface-400 mr-1 whitespace-nowrap">
+                    <span className="font-body font-semibold text-[12.5px] text-surface-500 mr-1 whitespace-nowrap">
                       {group.label}
                     </span>
                     {group.values.map((value) => {
@@ -270,7 +270,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                           className={`inline-flex items-center min-h-[36px] sm:min-h-[28px] px-2.5 py-1 rounded-lg font-body font-semibold text-[12px] transition-all duration-[220ms] focus:outline-none focus-gold ${
                             active
                               ? 'bg-gold-500 text-heading shadow-sm'
-                              : 'bg-white dark:bg-surface-900 text-surface-600 dark:text-surface-300 hover:bg-gold-500/10 dark:hover:bg-gold-500/10'
+                              : 'bg-white text-surface-600 hover:bg-gold-500/10'
                           }`}
                         >
                           {value === group.label ? value : `(${formatSizeLabel(value)})`}
@@ -296,7 +296,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: reduceMotion ? 0 : -4 }}
                 transition={{ duration: reduceMotion ? 0.01 : 0.2, ease: EASE_PREMIUM }}
-                className="self-start inline-flex items-center gap-1.5 font-body font-semibold text-[13px] text-surface-500 dark:text-surface-400 hover:text-heading dark:hover:text-white focus:outline-none focus-gold rounded-sm w-fit"
+                className="self-start inline-flex items-center gap-1.5 font-body font-semibold text-[13px] text-surface-500 hover:text-heading focus:outline-none focus-gold rounded-sm w-fit"
               >
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" aria-hidden="true">
                   <path d="M18 6L6 18M6 6l12 12" />
@@ -308,8 +308,8 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
         </motion.div>
 
         <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-surface-300 dark:bg-surface-700" aria-hidden="true" />
-          <p className="font-body text-[13px] text-surface-500 dark:text-surface-400 m-0 tracking-wide" aria-live="polite">
+          <span className="h-px w-8 bg-surface-300" aria-hidden="true" />
+          <p className="font-body text-[13px] text-surface-500 m-0 tracking-wide" aria-live="polite">
             {filtered.length} of {products.length} products
           </p>
         </div>
@@ -330,13 +330,13 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                 }}
                 whileHover={reduceMotion ? undefined : { y: -7, transition: { duration: 0.4, ease: EASE_PREMIUM } }}
                 whileTap={reduceMotion ? undefined : { y: -4, scale: 0.99 }}
-                className="group relative flex flex-col gap-3.5 p-5 sm:p-6 rounded-[14px] border border-surface-200/70 dark:border-surface-800 bg-white dark:bg-surface-900 transition-[border-color,box-shadow] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-gold-500/60 hover:shadow-[0_26px_50px_-18px_rgba(20,16,12,0.2)] focus-within:border-gold-500/60"
+                className="group relative flex flex-col gap-3.5 p-5 sm:p-6 rounded-[14px] border border-surface-200/70 bg-white transition-[border-color,box-shadow] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-gold-500/60 hover:shadow-[0_26px_50px_-18px_rgba(20,16,12,0.2)] focus-within:border-gold-500/60"
               >
                 <span
                   className="absolute left-0 top-6 bottom-6 w-[2px] rounded-full bg-gold-500 scale-y-0 origin-center transition-transform duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-y-100"
                   aria-hidden="true"
                 />
-                <div className="w-full aspect-[4/3] overflow-hidden rounded-[9px] bg-surface-50 dark:bg-surface-800/60">
+                <div className="w-full aspect-[4/3] overflow-hidden rounded-[9px] bg-surface-50">
                   <img
                     src={product.image}
                     alt={product.title}
@@ -344,13 +344,13 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                     className="w-full h-full object-cover transition-transform duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
                   />
                 </div>
-                <span className="font-heading font-bold text-[16.5px] text-heading dark:text-white tracking-[-0.005em]">{product.title}</span>
-                <span className="font-body text-[13.5px] text-surface-500 dark:text-surface-400 leading-[1.55]">{product.shortDescription}</span>
+                <span className="font-heading font-bold text-[16.5px] text-heading tracking-[-0.005em]">{product.title}</span>
+                <span className="font-body text-[13.5px] text-surface-500 leading-[1.55]">{product.shortDescription}</span>
                 <div className="flex items-center gap-4 mt-1 pt-1">
                   <InternalLink
                     route={product.page}
                     onPageChange={onPageChange}
-                    className="inline-flex items-center gap-1 font-body font-semibold text-[13.5px] text-heading dark:text-white hover:text-gold-600 dark:hover:text-gold-400 focus:outline-none focus-gold rounded-sm transition-colors duration-200"
+                    className="inline-flex items-center gap-1 font-body font-semibold text-[13.5px] text-heading hover:text-gold-600 focus:outline-none focus-gold rounded-sm transition-colors duration-200"
                   >
                     View Product Details
                     <span className="inline-block transition-transform duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[7px]" aria-hidden="true">→</span>
@@ -360,7 +360,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                     onClick={() => toggleCompare(product.id)}
                     aria-pressed={compareList.includes(product.id)}
                     className={`font-body font-semibold text-[13px] transition-colors duration-200 focus:outline-none focus-gold rounded-sm ${
-                      compareList.includes(product.id) ? 'text-gold-600 dark:text-gold-400 underline' : 'text-surface-400 dark:text-surface-500 hover:text-surface-600 dark:hover:text-surface-300 hover:underline'
+                      compareList.includes(product.id) ? 'text-gold-600 underline' : 'text-surface-400 hover:text-surface-600 hover:underline'
                     }`}
                   >
                     {compareList.includes(product.id) ? 'Added to Comparison' : 'Add to Comparison'}
@@ -399,19 +399,19 @@ function FamilyGroupBlock({ group, onPageChange }) {
       whileHover={reduceMotion ? undefined : { y: -8 }}
       whileTap={reduceMotion ? undefined : { y: -5, scale: 0.99 }}
       transition={{ duration: 0.42, ease: EASE_PREMIUM }}
-      className="group/card flex flex-col p-7 rounded-[16px] border border-surface-200/70 dark:border-surface-800 bg-[#fdfbf7] dark:bg-surface-900 shadow-[0_1px_2px_rgba(20,16,12,0.03)] transition-[border-color,box-shadow] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-gold-500/60 hover:shadow-[0_24px_48px_-20px_rgba(20,16,12,0.18)]"
+      className="group/card flex flex-col p-7 rounded-[16px] border border-surface-200/70 bg-[#fdfbf7] shadow-[0_1px_2px_rgba(20,16,12,0.03)] transition-[border-color,box-shadow] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-gold-500/60 hover:shadow-[0_24px_48px_-20px_rgba(20,16,12,0.18)]"
     >
-      <h3 className="font-heading font-bold text-[19px] sm:text-[20px] text-heading dark:text-white leading-[1.2] tracking-[-0.01em] m-0 transition-colors duration-300 group-hover/card:text-heading dark:group-hover/card:text-white">
+      <h3 className="font-heading font-bold text-[19px] sm:text-[20px] text-heading leading-[1.2] tracking-[-0.01em] m-0 transition-colors duration-300 group-hover/card:text-heading">
         {group.label}
       </h3>
-      <p className="font-body text-[13px] text-surface-400 dark:text-surface-500 mt-2 mb-5 tracking-[0.01em]">
+      <p className="font-body text-[13px] text-surface-400 mt-2 mb-5 tracking-[0.01em]">
         {groupProducts.length} product{groupProducts.length === 1 ? '' : 's'}
       </p>
 
       <InternalLink
         route={group.categoryRoute}
         onPageChange={onPageChange}
-        className="group/cta inline-flex items-center gap-1.5 font-body font-semibold text-[14px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 self-start focus:outline-none focus-gold rounded-sm mb-3"
+        className="group/cta inline-flex items-center gap-1.5 font-body font-semibold text-[14px] text-brand-600 hover:text-brand-700 self-start focus:outline-none focus-gold rounded-sm mb-3"
       >
         {group.ctaLabel}
         <span className="inline-block transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cta:translate-x-1" aria-hidden="true">→</span>
@@ -422,7 +422,7 @@ function FamilyGroupBlock({ group, onPageChange }) {
         aria-expanded={isExpanded}
         aria-controls={listId}
         onClick={() => setIsExpanded((prev) => !prev)}
-        className="group inline-flex items-center gap-2 font-body font-semibold text-[12.5px] uppercase tracking-[0.06em] text-surface-400 dark:text-surface-500 hover:text-brand-600 dark:hover:text-brand-400 bg-transparent border-none p-0 cursor-pointer self-start focus:outline-none focus-gold rounded-sm transition-colors duration-200"
+        className="group inline-flex items-center gap-2 font-body font-semibold text-[12.5px] uppercase tracking-[0.06em] text-surface-400 hover:text-brand-600 bg-transparent border-none p-0 cursor-pointer self-start focus:outline-none focus-gold rounded-sm transition-colors duration-200"
       >
         {isExpanded ? 'Hide products' : 'Show products'}
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className={`transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isExpanded ? 'rotate-180' : ''}`} aria-hidden>
@@ -441,11 +441,11 @@ function FamilyGroupBlock({ group, onPageChange }) {
             className="flex flex-col overflow-hidden list-none m-0 p-0 mt-4"
           >
             {groupProducts.map((product) => (
-              <li key={product.id} className="border-t border-surface-200/70 dark:border-surface-800 first:border-t-0">
+              <li key={product.id} className="border-t border-surface-200/70 first:border-t-0">
                 <InternalLink
                   route={product.page}
                   onPageChange={onPageChange}
-                  className="block py-2.5 font-body text-[14px] text-surface-700 dark:text-surface-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150 focus:outline-none focus-gold rounded-sm"
+                  className="block py-2.5 font-body text-[14px] text-surface-700 hover:text-brand-600 transition-colors duration-150 focus:outline-none focus-gold rounded-sm"
                 >
                   {product.title}
                 </InternalLink>
@@ -461,16 +461,16 @@ function FamilyGroupBlock({ group, onPageChange }) {
 function ProductFamiliesSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
   return (
-    <div id="product-families" className="w-full py-[68px] lg:py-[96px] bg-white dark:bg-surface-900/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="product-families" className="w-full py-[68px] lg:py-[96px] bg-white scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10 lg:gap-12">
         <motion.div
           {...fadeUp(reduceMotion, { duration: 0.9, distance: 40 })}
           className="flex flex-col gap-2.5"
         >
-          <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.14em] text-gold-600 dark:text-gold-400">
+          <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.14em] text-gold-600">
             Our Portfolio
           </span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
             Product families
           </h2>
         </motion.div>
@@ -500,13 +500,13 @@ function FunctionalRequirementSection({ onPageChange }) {
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-7">
         <motion.h2
           {...fadeUp(reduceMotion, { duration: 0.9, distance: 40 })}
-          className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+          className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0"
         >
           Browse by functional requirement
         </motion.h2>
         <motion.p
           {...fadeUp(reduceMotion, { duration: 0.8, distance: 24, delay: reduceMotion ? 0 : 0.13 })}
-          className="font-body text-[15px] lg:text-[16px] text-surface-500 dark:text-surface-400 leading-[1.6] max-w-2xl m-0"
+          className="font-body text-[15px] lg:text-[16px] text-surface-500 leading-[1.6] max-w-2xl m-0"
         >
           Function-based browsing (foaming, emulsification, gelling, colour development, and more) is coming soon. In the meantime, our team can match a product to your functional requirement directly.
         </motion.p>
@@ -519,7 +519,7 @@ function FunctionalRequirementSection({ onPageChange }) {
             disabled
             title="Coming soon"
             aria-disabled="true"
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-600 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 text-surface-400 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
           >
             View Foaming Solutions
           </button>
@@ -528,7 +528,7 @@ function FunctionalRequirementSection({ onPageChange }) {
             disabled
             title="Coming soon"
             aria-disabled="true"
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-600 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 text-surface-400 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
           >
             View Emulsification Solutions
           </button>
@@ -557,11 +557,11 @@ function ComparisonSection({ compareList, onPageChange }) {
   const [hasScrolled, setHasScrolled] = useState(false);
 
   return (
-    <div id="product-comparison" className="w-full py-[60px] lg:py-[85px] dark:border-surface-800/40 bg-white dark:bg-surface-900/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="product-comparison" className="w-full py-[60px] lg:py-[85px] bg-white scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
         <motion.h2
           {...fadeUp(reduceMotion, { duration: 0.85, distance: 36 })}
-          className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0"
+          className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0"
         >
           Product comparison
         </motion.h2>
@@ -574,7 +574,7 @@ function ComparisonSection({ compareList, onPageChange }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: reduceMotion ? 0.01 : DURATION.fast }}
-              className="font-body text-[15px] text-surface-500 dark:text-surface-400 m-0"
+              className="font-body text-[15px] text-surface-500 m-0"
             >
               Use "Add to Comparison" in the Product Finder above to compare products side by side.
             </motion.p>
@@ -597,10 +597,10 @@ function ComparisonSection({ compareList, onPageChange }) {
                   <table className="w-full border-collapse min-w-[560px]">
                     <thead>
                       <tr>
-                        <th className="sticky left-0 z-20 bg-white dark:bg-surface-900/40 text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">Product</th>
-                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Category</th>
-                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">Packaging Options</th>
-                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 dark:text-surface-500 border-b border-surface-200/70 dark:border-surface-800 py-3">Details</th>
+                        <th className="sticky left-0 z-20 bg-white text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">Product</th>
+                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3 pr-4">Category</th>
+                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3 pr-4">Packaging Options</th>
+                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3">Details</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -610,16 +610,16 @@ function ComparisonSection({ compareList, onPageChange }) {
                           initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.15 + Math.min(index, 6) * 0.07 }}
-                          className="group/row transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-gold-500/[0.08] dark:hover:bg-gold-500/[0.07]"
+                          className="group/row transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-gold-500/[0.08]"
                         >
-                          <td className="sticky left-0 z-10 bg-white dark:bg-surface-900/40 font-body font-semibold text-[14.5px] text-heading dark:text-white border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/row:bg-gold-500/[0.08] dark:group-hover/row:bg-gold-500/[0.07]">{product.title}</td>
-                          <td className="font-body text-[14px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.category}</td>
-                          <td className="font-body text-[14px] text-surface-600 dark:text-surface-300 border-b border-surface-200/70 dark:border-surface-800 py-3 pr-4">{product.packagingOptions.join(', ')}</td>
-                          <td className="border-b border-surface-200/70 dark:border-surface-800 py-3">
+                          <td className="sticky left-0 z-10 bg-white font-body font-semibold text-[14.5px] text-heading border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/row:bg-gold-500/[0.08]">{product.title}</td>
+                          <td className="font-body text-[14px] text-surface-600 border-b border-surface-200/70 py-3 pr-4">{product.category}</td>
+                          <td className="font-body text-[14px] text-surface-600 border-b border-surface-200/70 py-3 pr-4">{product.packagingOptions.join(', ')}</td>
+                          <td className="border-b border-surface-200/70 py-3">
                             <InternalLink
                               route={product.page}
                               onPageChange={onPageChange}
-                              className="group/link inline-flex items-center gap-1 font-body font-semibold text-[13.5px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 focus:outline-none focus-gold rounded-sm"
+                              className="group/link inline-flex items-center gap-1 font-body font-semibold text-[13.5px] text-brand-600 hover:text-brand-700 focus:outline-none focus-gold rounded-sm"
                             >
                               View Details
                               <span className="inline-block transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/link:translate-x-[5px]" aria-hidden="true">→</span>
@@ -639,7 +639,7 @@ function ComparisonSection({ compareList, onPageChange }) {
                       initial={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                      className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-white dark:from-surface-900/90 from-30% via-white/70 dark:via-surface-900/60 to-transparent flex items-center justify-end pr-3"
+                      className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-white from-30% via-white/70 to-transparent flex items-center justify-end pr-3"
                       aria-hidden="true"
                     >
                       <motion.svg
@@ -661,7 +661,7 @@ function ComparisonSection({ compareList, onPageChange }) {
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                    className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400 dark:text-surface-500"
+                    className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400"
                   >
                     Scroll right to view more details
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -685,7 +685,7 @@ function ComparisonSection({ compareList, onPageChange }) {
             aria-disabled={compared.length === 0}
             className={`inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full font-body font-semibold text-[15px] transition-all duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-gold ${
               compared.length === 0
-                ? 'border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-600 cursor-not-allowed opacity-60'
+                ? 'border border-surface-300 text-surface-400 cursor-not-allowed opacity-60'
                 : 'bg-brand-600 hover:bg-brand-700 text-white cursor-pointer hover:-translate-y-[3px] hover:shadow-[0_14px_28px_rgba(228,10,24,0.26)] active:translate-y-0 active:scale-[0.98] active:shadow-none'
             }`}
           >
@@ -696,14 +696,14 @@ function ComparisonSection({ compareList, onPageChange }) {
             disabled
             title="Coming soon"
             aria-disabled="true"
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 dark:border-surface-700 text-surface-400 dark:text-surface-600 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 text-surface-400 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
           >
             Download Comparison
           </button>
           <InternalLink
             route="get-quote"
             onPageChange={onPageChange}
-            className="group/link2 inline-flex items-center gap-2 min-h-[44px] px-2 font-body font-semibold text-[15px] text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 focus:outline-none focus-gold rounded-sm"
+            className="group/link2 inline-flex items-center gap-2 min-h-[44px] px-2 font-body font-semibold text-[15px] text-brand-600 hover:text-brand-700 focus:outline-none focus-gold rounded-sm"
           >
             Request Technical Recommendation
             <span className="inline-block transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/link2:translate-x-[5px]" aria-hidden="true">→</span>
@@ -719,7 +719,7 @@ function ComparisonSection({ compareList, onPageChange }) {
 function CustomSupportSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
   return (
-    <div id="custom-support" className="relative w-full py-[60px] lg:py-[85px] bg-white dark:bg-surface-900/40 scroll-mt-[100px] xl:scroll-mt-[120px] overflow-hidden">
+    <div id="custom-support" className="relative w-full py-[60px] lg:py-[85px] bg-white scroll-mt-[100px] xl:scroll-mt-[120px] overflow-hidden">
       {!reduceMotion && (
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <motion.div
@@ -740,10 +740,10 @@ function CustomSupportSection({ onPageChange }) {
         {...fadeUp(reduceMotion, { duration: 0.85, distance: 34 })}
         className="relative mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6"
       >
-        <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+        <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
           Custom product support
         </h2>
-        <p className="font-body text-[15px] lg:text-[16px] text-surface-500 dark:text-surface-400 max-w-2xl m-0">
+        <p className="font-body text-[15px] lg:text-[16px] text-surface-500 max-w-2xl m-0">
           Need a formulation or packaging configuration built around your exact recipe? Our Customized Mix and Customized Packages ranges are engineered to your specification.
         </p>
         <div className="flex flex-wrap items-center gap-4 mt-1">
@@ -757,7 +757,7 @@ function CustomSupportSection({ onPageChange }) {
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-body font-semibold text-[15px] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] active:translate-y-0 active:scale-[0.98] focus:outline-none focus-gold"
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-body font-semibold text-[15px] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] active:translate-y-0 active:scale-[0.98] focus:outline-none focus-gold"
           >
             Contact Technical Team
           </InternalLink>
@@ -776,15 +776,15 @@ function CustomSupportSection({ onPageChange }) {
 function TechnicalResourcesSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
   return (
-    <div id="technical-resources" className="w-full py-[60px] lg:py-[85px] bg-white dark:bg-surface-900/40 scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="technical-resources" className="w-full py-[60px] lg:py-[85px] bg-white scroll-mt-[100px] xl:scroll-mt-[120px]">
       <motion.div
         {...fadeUp(reduceMotion, { duration: 0.85, distance: 34 })}
         className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6"
       >
-        <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+        <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
           Technical resources
         </h2>
-        <p className="font-body text-[15px] lg:text-[16px] text-surface-500 dark:text-surface-400 max-w-2xl m-0">
+        <p className="font-body text-[15px] lg:text-[16px] text-surface-500 max-w-2xl m-0">
           Product flyers, the full product portfolio, and our company profile — ready to view or download.
         </p>
         <div className="flex flex-wrap items-center gap-4 mt-1">
@@ -798,7 +798,7 @@ function TechnicalResourcesSection({ onPageChange }) {
           <a
             href={ProductListPdf}
             download
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 dark:text-brand-400 hover:bg-brand-600/6 dark:hover:bg-brand-950/30 font-body font-semibold text-[15px] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] active:translate-y-0 active:scale-[0.98] focus:outline-none focus-gold"
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-body font-semibold text-[15px] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] active:translate-y-0 active:scale-[0.98] focus:outline-none focus-gold"
           >
             Download Product Portfolio
           </a>
@@ -832,7 +832,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full flex flex-col bg-page dark:bg-surface-950">
+      <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 — Products hero. A premium entrance distinct from Home's
             center-out egg mask: the visual rises into place as a single
@@ -844,7 +844,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             the wrapper below — same mechanism as Home's Hero. Copy keeps
             its own independent staggered entrance. */}
         <div ref={heroScrubRef} className="relative w-full h-[180vh]">
-        <div className="sticky top-0 pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] dark:border-surface-800/40 text-center px-4 overflow-hidden">
+        <div className="sticky top-0 pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] text-center px-4 overflow-hidden">
           <motion.div
             className="absolute inset-0 overflow-hidden"
             initial={reduceMotion ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}
@@ -968,23 +968,23 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
 
         {/* Section 2 — SKM Product Finder */}
         <ProductFinder onPageChange={onPageChange} compareList={compareList} setCompareList={setCompareList} />
-        <CurvedDivider bg="#fff" fill="#fff" className="dark:hidden" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
+        <CurvedDivider bg="#fff" fill="#fff" className="" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         {/* Section 3 — Product families */}
         <ProductFamiliesSection onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#fff" className="dark:hidden" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
+        <CurvedDivider bg="#fff" fill="#fff" className="" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         {/* Section 4 — Browse by functional requirement */}
         <FunctionalRequirementSection onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#fff" className="dark:hidden" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
+        <CurvedDivider bg="#fff" fill="#fff" className="" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         {/* Section 5 — Product comparison */}
         <ComparisonSection compareList={compareList} onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#fff" className="dark:hidden" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden dark:block" />
+        <CurvedDivider bg="#fff" fill="#fff" className="" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         {/* Section 6 — Custom product support */}
         <CustomSupportSection onPageChange={onPageChange} />

@@ -38,7 +38,7 @@ export default function OfficeAddresses() {
   ];
 
   return (
-    <div className="w-full bg-page dark:bg-surface-950 py-[90px] lg:py-[120px] border-b border-[#eee] dark:border-surface-900/60 overflow-hidden">
+    <div className="w-full bg-page py-[90px] lg:py-[120px] border-b border-[#eee] overflow-hidden">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -60,19 +60,19 @@ export default function OfficeAddresses() {
               <div className="flex-1 flex flex-col justify-between gap-6 text-left">
                 <div className="flex flex-col gap-5">
                   {/* Badge */}
-                  <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 bg-brand-600/6 dark:bg-brand-950/60 border border-brand-600/12 dark:border-brand-900/40 px-3 py-1 rounded-full self-start">
+                  <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-600 bg-brand-600/6 border border-brand-600/12 px-3 py-1 rounded-full self-start">
                     {loc.badge}
                   </span>
                   
                   {/* Title */}
-                  <h2 className="font-heading font-bold text-[26px] sm:text-[34px] lg:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0 uppercase">
+                  <h2 className="font-heading font-bold text-[26px] sm:text-[34px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0 uppercase">
                     {loc.title}
                   </h2>
                   
                   {/* Address List */}
-                  <div className="flex flex-col gap-4 font-body text-[15px] text-surface-600 dark:text-surface-450 leading-[26px]">
+                  <div className="flex flex-col gap-4 font-body text-[15px] text-surface-600 leading-[26px]">
                     <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-5 h-5 text-brand-600 dark:text-brand-400 mt-1">
+                      <div className="flex-shrink-0 w-5 h-5 text-brand-600 mt-1">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -82,20 +82,20 @@ export default function OfficeAddresses() {
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <div className="flex-shrink-0 w-5 h-5 text-brand-600 dark:text-brand-400">
+                      <div className="flex-shrink-0 w-5 h-5 text-brand-600">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                       </div>
                       <p className="m-0 select-text font-bold">
-                        {loc.contactLabel}: <a href={loc.phoneLink} className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-250">{loc.phone}</a>
+                        {loc.contactLabel}: <a href={loc.phoneLink} className="hover:text-brand-600 transition-colors duration-250">{loc.phone}</a>
                       </p>
                     </div>
                   </div>
                 </div>
 
                 {/* Local Photo Showcase */}
-                <div className="relative rounded-[10px] border border-[#eee] dark:border-surface-800/80 overflow-hidden aspect-[16/9] w-full shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] transition-shadow duration-300">
+                <div className="relative rounded-[10px] border border-[#eee] overflow-hidden aspect-[16/9] w-full shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] transition-shadow duration-300">
                   <img
                     src={loc.image}
                     alt={loc.title}
@@ -110,7 +110,7 @@ export default function OfficeAddresses() {
               </div>
 
               {/* Map Iframe Column */}
-              <div className="flex-1 relative rounded-[10px] border border-[#eee] dark:border-surface-900 bg-white/70 dark:bg-surface-900/40 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-300 overflow-hidden min-h-[300px] lg:min-h-[auto] flex flex-col">
+              <div className="flex-1 relative rounded-[10px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-300 overflow-hidden min-h-[300px] lg:min-h-[auto] flex flex-col">
                 <div className="relative rounded-[8px] overflow-hidden flex-grow w-full min-h-[300px] lg:min-h-[auto] h-full">
                   <iframe
                     src={loc.mapEmbedUrl}

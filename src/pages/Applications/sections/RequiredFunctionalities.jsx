@@ -31,14 +31,14 @@ export default function RequiredFunctionalities({ application }) {
   };
 
   return (
-    <div className="w-full bg-white dark:bg-surface-900/40 py-16 sm:py-20 lg:py-24">
+    <div className="w-full bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[900px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4">
-          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+          <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             Egg Functionality
           </span>
-          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white m-0 tracking-tight leading-[1.1]">
+          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
             Why These Functions Matter Here
           </h2>
         </motion.div>
@@ -55,12 +55,12 @@ export default function RequiredFunctionalities({ application }) {
               key={fn.id}
               variants={itemVariants}
               transition={{ duration: reduceMotion ? 0.01 : DURATION.functional, ease: EASE_PREMIUM }}
-              className="flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-6 py-5 border-t border-surface-200/70 dark:border-surface-800 last:border-b"
+              className="flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-6 py-5 border-t border-surface-200/70 last:border-b"
             >
-              <dt className="font-heading font-bold text-[15.5px] text-heading dark:text-white flex-shrink-0 sm:w-[220px]">
+              <dt className="font-heading font-bold text-[15.5px] text-heading flex-shrink-0 sm:w-[220px]">
                 {fn.label}
               </dt>
-              <dd className="font-body text-[14.5px] text-surface-600 dark:text-surface-300 leading-[1.65] m-0">
+              <dd className="font-body text-[14.5px] text-surface-600 leading-[1.65] m-0">
                 {fn.description}
               </dd>
             </motion.div>

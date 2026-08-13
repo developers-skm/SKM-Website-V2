@@ -35,7 +35,7 @@ export default function ProductPage({
   const productRecord = productId ? getProductById(productId) : null;
 
   return (
-    <div className="w-full flex flex-col bg-white dark:bg-surface-950 font-body text-left">
+    <div className="w-full flex flex-col bg-white font-body text-left">
       <StickyProductBar
         productName={productName}
         tdsUrl={tdsUrl}
@@ -52,7 +52,7 @@ export default function ProductPage({
 
       {/* Hero chapter — warm white, breadcrumb folded into the same visual
           block instead of its own full-width grey bar */}
-      <div className="w-full bg-white dark:bg-surface-900/40">
+      <div className="w-full bg-white">
         <ProductHero
           backgroundImage={hero.backgroundImage}
           backgroundAlt={hero.backgroundAlt}
@@ -72,7 +72,7 @@ export default function ProductPage({
       {/* At-a-glance specification panel — white chapter, sits directly
           beneath the hero per brief §2 ordering */}
       {productRecord && (
-        <section className="w-full bg-white dark:bg-surface-900/40 py-12 sm:py-16 lg:py-20">
+        <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
             <SpecPanel
               productForm={productRecord.category}
@@ -86,7 +86,7 @@ export default function ProductPage({
       )}
 
       {/* Variant specifications — light eggshell chapter */}
-      <section className="w-full bg-[#f8f4ee] dark:bg-surface-950 py-12 sm:py-16 lg:py-20">
+      <section className="w-full bg-[#f8f4ee] py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
           <VariantExplorer
             variantsData={variantsData}
@@ -100,7 +100,7 @@ export default function ProductPage({
       </section>
 
       {/* Functional performance — white chapter */}
-      <section className="w-full bg-white dark:bg-surface-900/40 py-12 sm:py-16 lg:py-20">
+      <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
           <FunctionalPerformance
             variantsData={variantsData}
@@ -112,14 +112,14 @@ export default function ProductPage({
       </section>
 
       {/* Applications — light eggshell chapter */}
-      <section className="w-full bg-[#f8f4ee] dark:bg-surface-950 py-12 sm:py-16 lg:py-20">
+      <section className="w-full bg-[#f8f4ee] py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
           <ApplicationGallery applicationsData={applicationsData} productName={productName} />
         </div>
       </section>
 
       {/* Recommended applications — white chapter */}
-      <section className="w-full bg-white dark:bg-surface-900/40 py-12 sm:py-16 lg:py-20">
+      <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
           <RecommendedApplications
             applicationsData={applicationsData}
@@ -132,7 +132,7 @@ export default function ProductPage({
 
       {/* Packaging and logistics — light eggshell chapter */}
       {productRecord && (
-        <section className="w-full bg-[#f8f4ee] dark:bg-surface-950 py-12 sm:py-16 lg:py-20">
+        <section className="w-full bg-[#f8f4ee] py-12 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
             <PackagingLogistics
               packagingOptions={productRecord.packagingOptions}
@@ -145,14 +145,14 @@ export default function ProductPage({
       )}
 
       {/* Traceability — warm cream chapter, the major trust section */}
-      <section className="w-full bg-[#f6f1e9] dark:bg-surface-950 py-12 sm:py-16 lg:py-20">
+      <section className="w-full bg-[#f6f1e9] py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
           <TraceWidget onPageChange={onPageChange} productName={productName} productCategory={productRecord?.category} />
         </div>
       </section>
 
       {/* Documents — white chapter */}
-      <section className="w-full bg-white dark:bg-surface-900/40 py-12 sm:py-16 lg:py-20">
+      <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
           <ProductDocuments
             tdsUrl={tdsUrl}
@@ -164,7 +164,7 @@ export default function ProductPage({
 
       {/* Related products — light eggshell chapter */}
       {relatedProducts.length > 0 && (
-        <section className="w-full bg-[#f8f4ee] dark:bg-surface-950 py-12 sm:py-16 lg:py-20">
+        <section className="w-full bg-[#f8f4ee] py-12 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
             <RelatedProducts products={relatedProducts} currentCategory={productRecord?.category} onPageChange={onPageChange} />
           </div>

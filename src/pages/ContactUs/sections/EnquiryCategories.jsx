@@ -90,7 +90,7 @@ export default function EnquiryCategories({ onOpenEnquiry, onPageChange }) {
   };
 
   return (
-    <div className="w-full bg-page dark:bg-surface-900/40 py-[90px] lg:py-[120px] overflow-hidden relative border-b border-[#eee] dark:border-surface-800/40">
+    <div className="w-full bg-page py-[90px] lg:py-[120px] overflow-hidden relative border-b border-[#eee]">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -101,10 +101,10 @@ export default function EnquiryCategories({ onOpenEnquiry, onPageChange }) {
         {/* Heading */}
         <div className="text-center flex flex-col items-center gap-4 select-none">
           <span className="section-label justify-center">How Can We Help?</span>
-          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading dark:text-white leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
             What brings you here today?
           </h2>
-          <p className="font-body text-[15px] text-surface-500 dark:text-surface-400 max-w-2xl leading-[26px] m-0">
+          <p className="font-body text-[15px] text-surface-500 max-w-2xl leading-[26px] m-0">
             Select the option that matches your intent — we'll only ask what's relevant to it.
           </p>
         </div>
@@ -118,34 +118,34 @@ export default function EnquiryCategories({ onOpenEnquiry, onPageChange }) {
               variants={itemVariants}
               whileHover={{ y: -4 }}
               onClick={() => handleSelectIntent(intent.id)}
-              className="relative overflow-hidden rounded-[10px] bg-white dark:bg-surface-900 border border-[#eee] dark:border-surface-800 p-6 sm:p-8 flex items-start gap-5 text-left transition-all duration-300 shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/30 cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+              className="relative overflow-hidden rounded-[10px] bg-white border border-[#eee] p-6 sm:p-8 flex items-start gap-5 text-left transition-all duration-300 shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/30 cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
             >
-              <div className="flex-shrink-0 w-12 h-12 rounded-[10px] bg-brand-600/6 dark:bg-brand-950/60 border border-brand-600/12 dark:border-brand-900/50 flex items-center justify-center text-brand-600 dark:text-brand-400 group-hover:scale-105 transition-transform duration-300">
+              <div className="flex-shrink-0 w-12 h-12 rounded-[10px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center text-brand-600 group-hover:scale-105 transition-transform duration-300">
                 <div className="w-6 h-6">{intent.icon}</div>
               </div>
               <div className="flex flex-col gap-1.5">
-                <h3 className="font-heading font-bold text-[19px] text-heading dark:text-white m-0">{intent.title}</h3>
-                <p className="text-sm sm:text-base text-surface-500 dark:text-surface-400 leading-relaxed m-0">{intent.desc}</p>
+                <h3 className="font-heading font-bold text-[19px] text-heading m-0">{intent.title}</h3>
+                <p className="text-sm sm:text-base text-surface-500 leading-relaxed m-0">{intent.desc}</p>
               </div>
             </motion.button>
           ))}
         </div>
 
         {/* Other enquiries — real, functional, secondary to the 4 primary intents */}
-        <motion.div variants={itemVariants} className="flex flex-col gap-5 pt-6 border-t border-[#eee] dark:border-surface-800">
-          <span className="font-body text-[12px] font-semibold uppercase tracking-widest text-surface-400 dark:text-surface-500">
+        <motion.div variants={itemVariants} className="flex flex-col gap-5 pt-6 border-t border-[#eee]">
+          <span className="font-body text-[12px] font-semibold uppercase tracking-widest text-surface-400">
             Other Enquiries
           </span>
           <div className="flex flex-wrap gap-4">
             {otherEnquiries.map((cat) => (
               <div key={cat.id} className="flex items-center gap-3 flex-wrap">
-                <span className="font-body text-[13px] font-semibold text-surface-600 dark:text-surface-300">{cat.title}:</span>
+                <span className="font-body text-[13px] font-semibold text-surface-600">{cat.title}:</span>
                 {cat.buttons.map((btn) => (
                   <button
                     key={btn.type}
                     type="button"
                     onClick={() => onOpenEnquiry(btn.type)}
-                    className="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer border shadow-xs bg-white dark:bg-surface-900 text-surface-800 dark:text-surface-200 border-surface-250 dark:border-surface-700 hover:border-brand-600 dark:hover:border-brand-500 hover:text-brand-650 dark:hover:text-brand-400"
+                    className="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer border shadow-xs bg-white text-surface-800 border-surface-250 hover:border-brand-600 hover:text-brand-650"
                   >
                     {btn.label}
                   </button>

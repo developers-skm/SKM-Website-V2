@@ -16,7 +16,7 @@ export default function MenuLink({ route, label, activePage, onNavigate, prefill
         className={`group relative inline-flex items-center min-h-[44px] py-2 font-body text-[16px] font-semibold transition-all duration-200 ease-out hover:translate-x-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm ${
           isActive
             ? 'text-brand-600'
-            : 'text-[#1a1d29] dark:text-surface-100 hover:text-brand-600 dark:hover:text-brand-400'
+            : 'text-[#1a1d29] hover:text-brand-600'
         }`}
         aria-current={isActive ? 'page' : undefined}
       >

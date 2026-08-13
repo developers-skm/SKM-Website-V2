@@ -7,10 +7,10 @@ import { Field, inputClass, selectClass } from '../../../components/common/FormF
 function SectionLabel({ children }) {
   return (
     <div className="flex items-center gap-3 pt-2">
-      <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-650 dark:text-brand-400">
+      <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-650">
         {children}
       </span>
-      <div className="flex-1 h-px bg-surface-200 dark:bg-surface-700/60" />
+      <div className="flex-1 h-px bg-surface-200" />
     </div>
   );
 }
@@ -418,20 +418,20 @@ function UploadZone({ file, onFileChange, error }) {
 
   if (file) {
     return (
-      <div className="mt-1 w-full border border-surface-300 dark:border-surface-700 rounded-lg p-4 bg-surface-50/50 dark:bg-surface-900/20 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-md bg-brand-50 dark:bg-brand-950/40 flex items-center justify-center text-brand-600 dark:text-brand-400 flex-shrink-0">
+      <div className="mt-1 w-full border border-surface-300 rounded-lg p-4 bg-surface-50/50 flex items-center gap-3">
+        <div className="w-8 h-8 rounded-md bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
         </div>
         <div className="flex flex-col min-w-0 flex-1">
-          <span className="font-body text-xs font-semibold text-surface-700 dark:text-surface-300 truncate">{file.name}</span>
-          <span className="font-body text-[11px] text-surface-400 dark:text-surface-600">{formatFileSize(file.size)}</span>
+          <span className="font-body text-xs font-semibold text-surface-700 truncate">{file.name}</span>
+          <span className="font-body text-[11px] text-surface-400">{formatFileSize(file.size)}</span>
         </div>
         <button
           type="button"
           onClick={clearFile}
-          className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-surface-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors cursor-pointer"
+          className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-surface-400 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
           aria-label="Remove file"
         >
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -453,10 +453,10 @@ function UploadZone({ file, onFileChange, error }) {
       onDrop={handleDrop}
       className={`mt-1 w-full border border-dashed rounded-lg p-4 flex items-center gap-3 cursor-pointer transition-all select-none group ${
         isDragOver
-          ? 'border-brand-500 bg-brand-50/30 dark:bg-brand-950/20'
+          ? 'border-brand-500 bg-brand-50/30'
           : error
-          ? 'border-red-400 bg-red-50/30 dark:bg-red-950/10'
-          : 'border-surface-300 dark:border-surface-700 bg-surface-50/50 dark:bg-surface-900/20 hover:border-brand-500 hover:bg-brand-50/30 dark:hover:bg-brand-950/20'
+          ? 'border-red-400 bg-red-50/30'
+          : 'border-surface-300 bg-surface-50/50 hover:border-brand-500 hover:bg-brand-50/30'
       }`}
     >
       <input
@@ -466,14 +466,14 @@ function UploadZone({ file, onFileChange, error }) {
         onChange={handleInputChange}
         className="hidden"
       />
-      <div className="w-8 h-8 rounded-md bg-surface-100 dark:bg-surface-800 flex items-center justify-center text-surface-400 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors flex-shrink-0">
+      <div className="w-8 h-8 rounded-md bg-surface-100 flex items-center justify-center text-surface-400 group-hover:text-brand-600 transition-colors flex-shrink-0">
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
         </svg>
       </div>
       <div className="flex flex-col">
-        <span className="font-body text-xs font-semibold text-surface-600 dark:text-surface-400 group-hover:text-brand-650 dark:group-hover:text-brand-400 transition-colors">Click to browse or drag & drop</span>
-        <span className="font-body text-[11px] text-surface-400 dark:text-surface-600">PDF, DOC up to 5MB</span>
+        <span className="font-body text-xs font-semibold text-surface-600 group-hover:text-brand-650 transition-colors">Click to browse or drag & drop</span>
+        <span className="font-body text-[11px] text-surface-400">PDF, DOC up to 5MB</span>
       </div>
     </div>
   );
@@ -688,14 +688,14 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
           <div className="h-1.5 w-full bg-brand-600 rounded-t-2xl flex-shrink-0" />
 
           {/* Paper body */}
-          <div className="bg-[#FDFAF5] dark:bg-[#1C1812] rounded-b-2xl overflow-hidden flex flex-col max-h-[calc(92vh-6px)]">
+          <div className="bg-[#FDFAF5] rounded-b-2xl overflow-hidden flex flex-col max-h-[calc(92vh-6px)]">
 
             {/* Letterhead header */}
-            <div className="flex-shrink-0 px-6 sm:px-8 pt-6 pb-5 border-b border-[#E8E2D8] dark:border-surface-700/60 bg-[#FAF7F0] dark:bg-[#201D14] relative select-none">
+            <div className="flex-shrink-0 px-6 sm:px-8 pt-6 pb-5 border-b border-[#E8E2D8] bg-[#FAF7F0] relative select-none">
               {/* Close button */}
               <button
                 onClick={onClose}
-                className="absolute top-5 right-5 w-7 h-7 rounded-full bg-surface-200/70 hover:bg-surface-300/80 dark:bg-surface-700/60 dark:hover:bg-surface-600/80 flex items-center justify-center text-surface-500 hover:text-surface-800 dark:text-surface-400 dark:hover:text-white transition-all duration-150 cursor-pointer active:scale-90"
+                className="absolute top-5 right-5 w-7 h-7 rounded-full bg-surface-200/70 hover:bg-surface-300/80 flex items-center justify-center text-surface-500 hover:text-surface-800 transition-all duration-150 cursor-pointer active:scale-90"
                 aria-label="Close modal"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -709,24 +709,24 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
                   {/* Department badge */}
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-600 flex-shrink-0" />
-                    <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-650 dark:text-brand-400">
+                    <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-650">
                       {config.badge}
                     </span>
                   </div>
                   {/* Form title */}
-                  <h3 className="font-heading text-[22px] sm:text-[26px] font-bold text-heading dark:text-white m-0 leading-tight tracking-tight">
+                  <h3 className="font-heading text-[22px] sm:text-[26px] font-bold text-heading m-0 leading-tight tracking-tight">
                     {config.title}
                   </h3>
-                  <p className="font-body text-[12px] text-surface-400 dark:text-surface-500 m-0 font-medium">
+                  <p className="font-body text-[12px] text-surface-400 m-0 font-medium">
                     SKM Egg Products — Enquiry Form
                   </p>
                 </div>
 
                 {/* Decorative document icon */}
-                <div className="flex-shrink-0 mt-0.5 w-10 h-12 rounded border border-[#E0D9CF] dark:border-surface-700/70 bg-white dark:bg-surface-800/40 flex flex-col items-center justify-center gap-1 opacity-60">
-                  <div className="w-5 h-0.5 bg-surface-300 dark:bg-surface-600 rounded-full" />
-                  <div className="w-5 h-0.5 bg-surface-300 dark:bg-surface-600 rounded-full" />
-                  <div className="w-3 h-0.5 bg-surface-300 dark:bg-surface-600 rounded-full" />
+                <div className="flex-shrink-0 mt-0.5 w-10 h-12 rounded border border-[#E0D9CF] bg-white flex flex-col items-center justify-center gap-1 opacity-60">
+                  <div className="w-5 h-0.5 bg-surface-300 rounded-full" />
+                  <div className="w-5 h-0.5 bg-surface-300 rounded-full" />
+                  <div className="w-3 h-0.5 bg-surface-300 rounded-full" />
                 </div>
               </div>
             </div>
@@ -738,7 +738,7 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
                   {renderForm()}
 
                   {submitError && (
-                    <div className="flex items-start gap-2.5 font-body text-xs text-red-600 dark:text-red-400 font-medium bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/40 rounded-lg px-4 py-3">
+                    <div className="flex items-start gap-2.5 font-body text-xs text-red-600 font-medium bg-red-50 border border-red-200 rounded-lg px-4 py-3">
                       <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                       </svg>
@@ -769,7 +769,7 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
                     </button>
                   </div>
 
-                  <p className="font-body text-[11px] text-surface-400 dark:text-surface-600 text-center m-0 leading-relaxed select-none">
+                  <p className="font-body text-[11px] text-surface-400 text-center m-0 leading-relaxed select-none">
                     By submitting, you agree that your information will be used to respond to your enquiry.
                   </p>
                 </form>
@@ -778,8 +778,8 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
                 <div className="flex flex-col items-center justify-center text-center py-10 gap-6 select-none font-sans">
                   {/* Stamp circle */}
                   <div className="relative">
-                    <div className="w-20 h-20 rounded-full border-[3px] border-dashed border-emerald-400 dark:border-emerald-600 flex items-center justify-center">
-                      <div className="w-14 h-14 rounded-full bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                    <div className="w-20 h-20 rounded-full border-[3px] border-dashed border-emerald-400 flex items-center justify-center">
+                      <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
                         <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
@@ -788,22 +788,22 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
                   </div>
 
                   <div className="flex flex-col gap-2 max-w-[260px]">
-                    <h3 className="font-heading text-xl font-bold text-surface-850 dark:text-white m-0 tracking-tight">Enquiry Received</h3>
-                    <p className="font-body text-sm text-surface-500 dark:text-surface-400 leading-relaxed m-0 font-medium">
+                    <h3 className="font-heading text-xl font-bold text-surface-850 m-0 tracking-tight">Enquiry Received</h3>
+                    <p className="font-body text-sm text-surface-500 leading-relaxed m-0 font-medium">
                       Thank you for reaching out. A representative will get back to you shortly.
                     </p>
                   </div>
 
                   {/* Decorative ruled lines */}
                   <div className="w-full max-w-[200px] flex flex-col gap-2 opacity-25">
-                    <div className="h-px bg-surface-400 dark:bg-surface-600" />
-                    <div className="h-px bg-surface-400 dark:bg-surface-600" />
-                    <div className="h-px bg-surface-400 dark:bg-surface-600 w-3/4 mx-auto" />
+                    <div className="h-px bg-surface-400" />
+                    <div className="h-px bg-surface-400" />
+                    <div className="h-px bg-surface-400 w-3/4 mx-auto" />
                   </div>
 
                   <button
                     onClick={onClose}
-                    className="px-7 py-2.5 rounded-xl bg-surface-900 hover:bg-surface-800 dark:bg-white dark:hover:bg-surface-100 text-white dark:text-surface-950 font-heading font-bold uppercase tracking-wider text-[11px] transition-all duration-150 cursor-pointer active:scale-95 select-none"
+                    className="px-7 py-2.5 rounded-xl bg-surface-900 hover:bg-surface-800 text-white font-heading font-bold uppercase tracking-wider text-[11px] transition-all duration-150 cursor-pointer active:scale-95 select-none"
                   >
                     Close
                   </button>
