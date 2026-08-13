@@ -15,7 +15,7 @@ export default function QualityCertificationProof({ onPageChange }) {
     <div className="w-full bg-white dark:bg-surface-950 pt-16 pb-14 lg:pt-[128px] lg:pb-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
-        <span className="section-label lg:hidden mb-4 block">Quality &amp; Certifications</span>
+        <span className="section-label !hidden lg:!flex">Quality &amp; Certifications</span>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-center mb-10 lg:mb-24">
           <motion.div
@@ -23,7 +23,7 @@ export default function QualityCertificationProof({ onPageChange }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-7 relative rounded-[8px] overflow-hidden aspect-[4/3] lg:aspect-[16/12]"
+            className="order-first lg:order-none lg:col-span-7 relative rounded-[8px] overflow-hidden aspect-[4/3] lg:aspect-[16/12]"
           >
             <SafeImage
               src={LabImage}
@@ -34,7 +34,7 @@ export default function QualityCertificationProof({ onPageChange }) {
           </motion.div>
 
           <motion.div {...fadeUp(reduceMotion, { delay: 0.3 })} className="lg:col-span-5 flex flex-col gap-3 lg:gap-6">
-            <span className="section-label hidden lg:block">Quality &amp; Certifications</span>
+            <span className="section-label !flex lg:!hidden">Quality &amp; Certifications</span>
             <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] text-heading dark:text-white leading-[1.1] lg:leading-[1.05] tracking-tight m-0">
               Precision, verified at every step.
             </h2>
