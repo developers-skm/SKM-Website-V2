@@ -4,6 +4,8 @@ import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
 import PageLoader from './components/PageLoader/PageLoader';
 import products from './data/products';
+import OfflinePage from './pages/Offline/OfflinePage';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 // Every route backed by the shared ProductPage shell (src/components/
 // ProductPage/ProductPage.jsx) — that component renders its own
@@ -79,7 +81,6 @@ const TraceabilityPage = lazy(() => import('./pages/Quality/TraceabilityPage'));
 const QualityManagementSystemPage = lazy(() => import('./pages/Quality/QualityManagementSystemPage'));
 const QualityFoodSafetyTraceabilityPage = lazy(() => import('./pages/Quality/QualityFoodSafetyTraceabilityPage'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
-const OfflinePage = lazy(() => import('./pages/Offline/OfflinePage'));
 
 function App() {
   const getPageFromPath = () => {
@@ -302,20 +303,22 @@ function App() {
 
   return (
     <Layout activePage={activePage} onPageChange={handlePageChange} suppressMobileActions={suppressMobileActions}>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activePage}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -15 }}
-          transition={{ duration: 0.25, ease: 'easeInOut' }}
-          className="w-full flex-grow flex flex-col"
-        >
-          <Suspense fallback={<PageLoader />}>
-            {renderPage()}
-          </Suspense>
-        </motion.div>
-      </AnimatePresence>
+      <ErrorBoundary>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activePage}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="w-full flex-grow flex flex-col"
+          >
+            <Suspense fallback={<PageLoader />}>
+              {renderPage()}
+            </Suspense>
+          </motion.div>
+        </AnimatePresence>
+      </ErrorBoundary>
     </Layout>
   );
 }

@@ -9,17 +9,14 @@ function copyOfflineAssets() {
   return {
     name: 'copy-offline-assets',
     buildStart() {
-      const srcPath = 'C:\\Users\\it-web1\\.gemini\\antigravity-ide\\brain\\9ad327b8-76af-4f02-9aa5-d9a1a27716d1\\offline_cracked_wifi_egg_1786601603423.png';
+      const srcAssets = path.resolve(__dirname, 'src/assets/images/offline-cracked-wifi-egg.png');
       const destPublic = path.resolve(__dirname, 'public/images/offline-cracked-wifi-egg.png');
-      const destAssets = path.resolve(__dirname, 'src/assets/images/offline-cracked-wifi-egg.png');
 
-      if (fs.existsSync(srcPath)) {
+      if (fs.existsSync(srcAssets) && !fs.existsSync(destPublic)) {
         try {
           fs.mkdirSync(path.dirname(destPublic), { recursive: true });
-          fs.mkdirSync(path.dirname(destAssets), { recursive: true });
-          fs.copyFileSync(srcPath, destPublic);
-          fs.copyFileSync(srcPath, destAssets);
-          console.log('[copy-offline-assets] Successfully copied offline hero image');
+          fs.copyFileSync(srcAssets, destPublic);
+          console.log('[copy-offline-assets] Synchronized offline hero image to public directory');
         } catch (e) {
           console.error('[copy-offline-assets] Error copying image:', e);
         }
