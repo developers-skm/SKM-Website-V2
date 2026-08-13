@@ -55,7 +55,7 @@ const DOCUMENT_GROUPS = [
   { id: 'product-guides', label: 'Product Guides', count: 0, hasRealDocs: false },
 ];
 
-function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack, globalSearchQuery }) {
+function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
   const reduceMotion = useReducedMotion();
   const [productFilter, setProductFilter] = useState(null);
   const [applicationFilter, setApplicationFilter] = useState(null);
@@ -88,8 +88,7 @@ function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack, g
         
         {/* Section Heading */}
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
-          <div className="flex items-center gap-2.5">
-            <span className="h-2 w-2 rounded-full bg-brand-600 animate-pulse" />
+          <div className="flex items-center">
             <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
               Verified Specifications
             </span>
@@ -208,7 +207,6 @@ function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack, g
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {visibleTds.map((p) => {
-                const inPack = documentPack.some((d) => d.id === p.id);
                 return (
                   <motion.div
                     key={p.id}
@@ -243,7 +241,7 @@ function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack, g
                       Official product technical specification, microbiological parameters, shelf life, and storage conditions for {p.title}.
                     </p>
 
-                    <div className="flex items-center justify-between gap-3 pt-4 border-t border-surface-200/60 dark:border-surface-800/60">
+                    <div className="flex items-center pt-4 border-t border-surface-200/60 dark:border-surface-800/60">
                       <a
                         href={p.tdsUrl}
                         target="_blank"
@@ -255,28 +253,6 @@ function TechnicalDocumentsSection({ onPageChange, documentPack, onTogglePack, g
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14" />
                         </svg>
                       </a>
-                      <button
-                        type="button"
-                        onClick={() => onTogglePack(p.id, p.title)}
-                        aria-pressed={inPack}
-                        className={`inline-flex items-center gap-1.5 font-body font-semibold text-[12px] px-3 py-2 rounded-xl border transition-all duration-200 cursor-pointer ${
-                          inPack
-                            ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-600 dark:text-emerald-400 font-bold'
-                            : 'bg-surface-100/80 dark:bg-surface-800/80 border-surface-200 dark:border-surface-700 text-surface-600 dark:text-surface-300 hover:border-brand-500/40 hover:text-heading dark:hover:text-white'
-                        }`}
-                      >
-                        {inPack ? (
-                          <>
-                            <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                            <span>Added</span>
-                          </>
-                        ) : (
-                          <>
-                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg>
-                            <span>Add to Pack</span>
-                          </>
-                        )}
-                      </button>
                     </div>
                   </motion.div>
                 );
@@ -342,8 +318,7 @@ function CertificationsSection() {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
-          <div className="flex items-center gap-2.5">
-            <span className="h-2 w-2 rounded-full bg-amber-500" />
+          <div className="flex items-center">
             <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
               International Accreditation
             </span>
@@ -485,8 +460,7 @@ function BrochuresApplicationGuidesSection() {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
-          <div className="flex items-center gap-2.5">
-            <span className="h-2 w-2 rounded-full bg-brand-600" />
+          <div className="flex items-center">
             <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
               Downloads & Publications
             </span>
@@ -648,8 +622,7 @@ function CsrSection({ onPageChange }) {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
-          <div className="flex items-center gap-2.5">
-            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+          <div className="flex items-center">
             <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
               Beyond The Factory Floor
             </span>
@@ -855,15 +828,6 @@ function FaqSection({ onPageChange, globalSearchQuery }) {
 export default function ResourcesPage({ onPageChange }) {
   const reduceMotion = useReducedMotion();
   const [searchQuery, setSearchQuery] = useState('');
-  const [documentPack, setDocumentPack] = useState([]);
-
-  const toggleDocumentPack = (id, title) => {
-    setDocumentPack((prev) =>
-      prev.some((d) => d.id === id) ? prev.filter((d) => d.id !== id) : [...prev, { id, title }]
-    );
-  };
-
-  const clearDocumentPack = () => setDocumentPack([]);
 
   return (
     <PageWrapper
@@ -880,7 +844,7 @@ export default function ResourcesPage({ onPageChange }) {
         
         {/* Dedicated Fixed Background Image Layer with Controlled Opacity */}
         <div 
-          className="fixed inset-0 bg-[url('/images/resources_bg.png')] bg-fixed bg-cover bg-center bg-no-repeat opacity-[0.07] dark:opacity-[0.14] pointer-events-none z-0" 
+          className="fixed inset-0 bg-[url('/images/resources_bg.png')] bg-fixed bg-cover bg-center bg-no-repeat opacity-[0.12] dark:opacity-[0.18] pointer-events-none z-0"
           aria-hidden="true" 
         />
 
@@ -903,7 +867,6 @@ export default function ResourcesPage({ onPageChange }) {
                 transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM }}
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/25 dark:bg-brand-500/20 dark:border-brand-500/40 text-brand-600 dark:text-brand-400 font-body font-bold text-[12px] uppercase tracking-widest shadow-sm"
               >
-                <span className="w-2 h-2 rounded-full bg-brand-600 animate-ping" />
                 <span>Technical Repository & Downloads Hub</span>
               </motion.div>
 
@@ -1018,8 +981,6 @@ export default function ResourcesPage({ onPageChange }) {
           {/* Section 2 & 3 — Technical Documents */}
           <TechnicalDocumentsSection
             onPageChange={onPageChange}
-            documentPack={documentPack}
-            onTogglePack={toggleDocumentPack}
             globalSearchQuery={searchQuery}
           />
 
@@ -1071,48 +1032,6 @@ export default function ResourcesPage({ onPageChange }) {
           </div>
 
         </div>
-
-        {/* Interactive Floating Document Pack Tray */}
-        <AnimatePresence>
-          {documentPack.length > 0 && (
-            <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ duration: 0.35, ease: EASE_PREMIUM }}
-              className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-[650px] p-4 rounded-2xl bg-surface-950/95 dark:bg-surface-900/95 border border-brand-500/40 text-white shadow-2xl backdrop-blur-2xl flex items-center justify-between gap-4"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold flex-shrink-0">
-                  {documentPack.length}
-                </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="font-heading font-bold text-[14px] truncate">Document Pack Selected</span>
-                  <span className="font-body text-[12px] text-surface-300 truncate">
-                    {documentPack.map((d) => d.title).join(', ')}
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 flex-shrink-0">
-                <button
-                  type="button"
-                  onClick={clearDocumentPack}
-                  className="px-3 py-2 text-[12px] font-semibold text-surface-400 hover:text-white transition-colors cursor-pointer"
-                >
-                  Clear
-                </button>
-                <InternalLink
-                  route="contact-us"
-                  onPageChange={onPageChange}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-body font-bold text-[12.5px] uppercase tracking-wider shadow-md cursor-pointer transition-all active:scale-95"
-                >
-                  Request Pack
-                </InternalLink>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
       </div>
     </PageWrapper>
