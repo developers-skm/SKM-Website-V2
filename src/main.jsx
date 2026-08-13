@@ -4,6 +4,9 @@ import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import App from './App.jsx'
 import SmoothScrollProvider from './components/common/SmoothScrollProvider.jsx'
+import { registerServiceWorker } from './utils/swRegister.js'
+
+registerServiceWorker();
 
 // index.html carries a static baseline title/description/canonical/OG/
 // Twitter/JSON-LD as a fallback for the sliver of clients that never run

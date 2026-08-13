@@ -79,6 +79,7 @@ const TraceabilityPage = lazy(() => import('./pages/Quality/TraceabilityPage'));
 const QualityManagementSystemPage = lazy(() => import('./pages/Quality/QualityManagementSystemPage'));
 const QualityFoodSafetyTraceabilityPage = lazy(() => import('./pages/Quality/QualityFoodSafetyTraceabilityPage'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
+const OfflinePage = lazy(() => import('./pages/Offline/OfflinePage'));
 
 function App() {
   const getPageFromPath = () => {
@@ -88,17 +89,28 @@ function App() {
 
   const [activePage, setActivePage] = useState(getPageFromPath);
   const [prefill, setPrefill] = useState(() => window.history.state?.prefill ?? null);
-  // Owned here (not Layout.jsx) because Layout only receives the already-
-  // constructed page element as `children` — it can't reach into ContactUs to
-  // add a prop. MobileStickyActions needs to know when the Contact enquiry
-  // modal is open so it doesn't float on top of it.
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isOnline, setIsOnline] = useState(() => (typeof navigator !== 'undefined' ? navigator.onLine : true));
+  const [lastOnlinePage, setLastOnlinePage] = useState(() => (getPageFromPath() !== 'offline' ? getPageFromPath() : 'home'));
 
-  // `prefillData` carries context across the router — e.g. which product or
-  // application a visitor came from, so the Get Quote flow can pre-fill Step 1
-  // instead of asking again. Reuses the pushState mechanism already in place.
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
   const handlePageChange = (page, prefillData = null) => {
     setActivePage(page);
+    if (page !== 'offline') {
+      setLastOnlinePage(page);
+    }
     setPrefill(prefillData);
     const path = page === 'home' ? '/' : `/${page}`;
     if (window.location.pathname !== path || prefillData) {
@@ -111,21 +123,26 @@ function App() {
     const handlePopState = (event) => {
       const page = event.state?.page || getPageFromPath();
       setActivePage(page);
+      if (page !== 'offline') {
+        setLastOnlinePage(page);
+      }
       setPrefill(event.state?.prefill ?? null);
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Derived, not synced via effect: a stale `true` left over from a previous
-  // Contact visit is naturally masked once activePage moves away from
-  // 'contact-us', so MobileStickyActions can never stay hidden after leaving
-  // the page — no separate reset effect needed.
   const suppressMobileActions =
     (isContactModalOpen && activePage === 'contact-us') || PRODUCT_DETAIL_ROUTES.has(activePage);
 
   const renderPage = () => {
+    if (!isOnline || activePage === 'offline') {
+      return <OfflinePage onPageChange={handlePageChange} targetPage={lastOnlinePage} />;
+    }
+
     switch (activePage) {
+      case 'offline':
+        return <OfflinePage onPageChange={handlePageChange} targetPage={lastOnlinePage} />;
       case 'home':
         return <Home onPageChange={handlePageChange} prefill={prefill} />;
       
