@@ -254,18 +254,18 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
                 pattern, just extended to the left edge too. */}
             <tr className="border-b border-surface-200/70 shadow-[0_1px_0_rgba(0,0,0,0.04)]">
               <th
-                className="w-12 px-4 py-4 bg-[#fbf7f1]"
+                className="w-12 px-4 py-4 bg-surface-100"
                 aria-label="Select for comparison"
                 style={{ position: 'sticky', top: 0, left: 0, zIndex: 20 }}
               />
               <th
-                className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 bg-[#fbf7f1] shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]"
+                className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 bg-surface-100 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]"
                 style={{ position: 'sticky', top: 0, left: 48, zIndex: 20 }}
               >
                 Code
               </th>
               <th
-                className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 bg-[#fbf7f1]"
+                className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 bg-surface-100"
                 style={{ position: 'sticky', top: 0, zIndex: 10 }}
               >
                 Name
@@ -273,14 +273,14 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
               {specColumns.map((key) => (
                 <th
                   key={key}
-                  className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 whitespace-nowrap bg-[#fbf7f1]"
+                  className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 whitespace-nowrap bg-surface-100"
                   style={{ position: 'sticky', top: 0, zIndex: 10 }}
                 >
                   {key}
                 </th>
               ))}
               <th
-                className="px-4 py-4 bg-[#fbf7f1] text-right"
+                className="px-4 py-4 bg-surface-100 text-right"
                 style={{ position: 'sticky', top: 0, zIndex: 10 }}
               >
                 {checked.length > 0 && (
@@ -309,11 +309,11 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
               // row's own hover/selected background must be carried
               // explicitly on the sticky cells too — the same requirement
               // as ApplicationProductMatrix's hoverRow handling.
-              const rowBg = isSelected ? 'bg-[#fdf2f2]' : 'bg-white group-hover/row:bg-surface-50';
+              const rowBg = isSelected ? 'bg-brand-50' : 'bg-white group-hover/row:bg-surface-50';
               return (
                 <tr
                   key={variant.code}
-                  className={`group/row border-b border-surface-200/50 last:border-b-0 transition-colors ${isSelected ? 'bg-[#fdf2f2]' : 'hover:bg-surface-50'}`}
+                  className={`group/row border-b border-surface-200/50 last:border-b-0 transition-colors ${isSelected ? 'bg-brand-50' : 'hover:bg-surface-50'}`}
                 >
                   <td
                     className={`px-4 py-4 transition-colors duration-150 ${rowBg}`}
