@@ -309,13 +309,11 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
               // row's own hover/selected background must be carried
               // explicitly on the sticky cells too — the same requirement
               // as ApplicationProductMatrix's hoverRow handling.
-              const rowBg = isSelected
-                ? 'bg-brand-600/[0.04]'
-                : 'bg-white group-hover/row:bg-surface-50';
+              const rowBg = isSelected ? 'bg-[#fdf2f2]' : 'bg-white group-hover/row:bg-surface-50';
               return (
                 <tr
                   key={variant.code}
-                  className={`group/row border-b border-surface-200/50 last:border-b-0 transition-colors ${isSelected ? 'bg-brand-600/[0.04]' : 'hover:bg-surface-50'}`}
+                  className={`group/row border-b border-surface-200/50 last:border-b-0 transition-colors ${isSelected ? 'bg-[#fdf2f2]' : 'hover:bg-surface-50'}`}
                 >
                   <td
                     className={`px-4 py-4 transition-colors duration-150 ${rowBg}`}

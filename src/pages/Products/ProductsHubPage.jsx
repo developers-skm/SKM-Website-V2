@@ -612,7 +612,7 @@ function ComparisonSection({ compareList, onPageChange }) {
                           transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.15 + Math.min(index, 6) * 0.07 }}
                           className="group/row transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-gold-500/[0.08]"
                         >
-                          <td className="sticky left-0 z-10 bg-white font-body font-semibold text-[14.5px] text-heading border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/row:bg-gold-500/[0.08]">{product.title}</td>
+                          <td className="sticky left-0 z-10 bg-white font-body font-semibold text-[14.5px] text-heading border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/row:bg-[#fdf6e8]">{product.title}</td>
                           <td className="font-body text-[14px] text-surface-600 border-b border-surface-200/70 py-3 pr-4">{product.category}</td>
                           <td className="font-body text-[14px] text-surface-600 border-b border-surface-200/70 py-3 pr-4">{product.packagingOptions.join(', ')}</td>
                           <td className="border-b border-surface-200/70 py-3">

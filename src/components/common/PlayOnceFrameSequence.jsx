@@ -1,13 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 
 // Mobile counterpart to ScrollFrameSequence — same pre-rendered frame
-// sequence, but played once automatically (not tied to scroll position).
-// Used where a tall scroll-scrub wrapper would leave dead scroll space on
-// short mobile viewports (see Hero.jsx).
+// sequence, played once, but only once the user actually scrolls (not
+// immediately on mount) so it doesn't autoplay like a video before any
+// scrolling has happened. The hero sits at the very top of the page and is
+// already fully visible on load, so visibility alone can't gate this — it
+// waits for a real scroll (window.scrollY > 0) instead. Used where a tall
+// scroll-scrub wrapper would leave dead scroll space on short mobile
+// viewports (see Hero.jsx).
 export default function PlayOnceFrameSequence({ basePath, frameCount, durationMs = 1800, reduceMotion }) {
   const canvasRef = useRef(null);
   const imagesRef = useRef([]);
   const [imagesReady, setImagesReady] = useState(false);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -67,14 +72,26 @@ export default function PlayOnceFrameSequence({ basePath, frameCount, durationMs
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * window.devicePixelRatio;
       canvas.height = rect.height * window.devicePixelRatio;
+      if (!inView) drawFrame(0);
     };
     resize();
     window.addEventListener('resize', resize);
     return () => window.removeEventListener('resize', resize);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imagesReady]);
 
   useEffect(() => {
-    if (!imagesReady) return undefined;
+    if (inView) return undefined;
+
+    const onScroll = () => {
+      if (window.scrollY > 8) setInView(true);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [inView]);
+
+  useEffect(() => {
+    if (!imagesReady || !inView) return undefined;
 
     if (reduceMotion) {
       drawFrame(frameCount - 1);
@@ -98,7 +115,13 @@ export default function PlayOnceFrameSequence({ basePath, frameCount, durationMs
     rafId = requestAnimationFrame(step);
     return () => cancelAnimationFrame(rafId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imagesReady, reduceMotion]);
+  }, [imagesReady, inView, reduceMotion]);
+
+  // Static first frame while waiting for the section to scroll into view.
+  useEffect(() => {
+    if (imagesReady && !inView) drawFrame(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imagesReady, inView]);
 
   return (
     <canvas

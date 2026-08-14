@@ -92,7 +92,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
                       className={`border-b border-surface-200/50 last:border-b-0 transition-colors duration-200 ${hoverRow === app.id ? 'bg-[#f3c969]/6' : ''}`}
                     >
                       <td
-                        className={`sticky left-0 z-10 px-5 py-4 font-heading font-semibold text-[14.5px] whitespace-nowrap transition-colors duration-200 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] ${hoverRow === app.id ? 'bg-[#f3c969]/6 text-brand-600' : 'bg-white text-heading'}`}
+                        className={`sticky left-0 z-10 px-5 py-4 font-heading font-semibold text-[14.5px] whitespace-nowrap transition-colors duration-200 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] ${hoverRow === app.id ? 'bg-[#fdf8ec] text-brand-600' : 'bg-white text-heading'}`}
                       >
                         {app.title}
                       </td>
