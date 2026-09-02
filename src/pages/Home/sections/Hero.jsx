@@ -140,9 +140,16 @@ export default function Hero({ onPageChange }) {
             <a
               href={ProductListPdf}
               download
-              className="inline-flex items-center gap-2 mt-1 font-body font-semibold text-[14px] lg:text-[15px] text-white hover:text-white/80 underline underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 rounded-sm w-fit"
+              className="flex sm:inline-flex items-center justify-center sm:justify-start gap-2 mt-1 sm:mt-2 font-body font-semibold text-[13px] lg:text-[14px] uppercase tracking-[0.03em] text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 rounded-sm w-full sm:w-fit"
             >
-              Download Product Portfolio
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3v12" />
+                <polyline points="7 10 12 15 17 10" />
+                <path d="M5 19h14" />
+              </svg>
+              <span className="underline underline-offset-4 decoration-white/40 hover:decoration-white/80">
+                Download Product Portfolio
+              </span>
             </a>
           </motion.div>
         </div>
