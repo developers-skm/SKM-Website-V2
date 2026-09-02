@@ -72,7 +72,7 @@ export default function ScrollToTopButton() {
           exit={{ opacity: 0, y: 15 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
           onClick={handleClick}
-          className="fixed bottom-[151px] md:bottom-[95px] right-[30px] z-50 flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white hover:bg-brand-600 transition-all duration-200 group cursor-pointer focus:outline-none shadow-[0_4px_16px_rgba(0,0,0,0.18)]"
+          className="fab-scroll-top fixed right-[30px] z-50 flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white hover:bg-brand-600 transition-all duration-200 group cursor-pointer focus:outline-none shadow-[0_4px_16px_rgba(0,0,0,0.18)]"
           style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.18), inset 0 0 0 2px rgba(228, 10, 24,0.25)' }}
           aria-label="Scroll to top"
         >

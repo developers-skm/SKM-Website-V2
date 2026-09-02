@@ -153,7 +153,7 @@ export default function Chatbot() {
   return (
     <>
       {/* ── Floating Action Button (FAB) ────────────────────────────────── */}
-      <div className="fixed bottom-[86px] md:bottom-[30px] right-[30px] z-50">
+      <div className="fab-chatbot fixed right-[30px] z-50">
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
           className="relative flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white hover:bg-brand-600 text-brand-600 hover:text-white cursor-pointer focus:outline-none transition-all duration-300 group"
@@ -216,7 +216,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85, y: 30 }}
             transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-            className="fixed bottom-[151px] md:bottom-[95px] left-[5%] right-[5%] sm:left-auto sm:right-[30px] z-50 w-auto sm:w-[400px] h-[520px] max-h-[65vh] sm:max-h-[75vh] flex flex-col rounded-2xl border border-[#eee] bg-white/95 backdrop-blur-md shadow-[0_12px_40px_rgba(0,0,0,0.15)] overflow-hidden font-sans text-sm"
+            className="fab-scroll-top fixed left-[5%] right-[5%] sm:left-auto sm:right-[30px] z-50 w-auto sm:w-[400px] h-[520px] max-h-[65vh] sm:max-h-[75vh] flex flex-col rounded-2xl border border-[#eee] bg-white/95 backdrop-blur-md shadow-[0_12px_40px_rgba(0,0,0,0.15)] overflow-hidden font-sans text-sm"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 bg-gradient-to-r from-brand-600 to-brand-700 text-white relative shadow-sm">

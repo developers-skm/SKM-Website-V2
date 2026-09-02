@@ -49,6 +49,43 @@
   --color-gold-600: #d19a2e;
 }
 
+/* Height of MobileStickyActions' own content box (py-2.5 padding + 44px
+   buttons), excluding the safe-area inset it adds as its own bottom
+   padding. Used to reserve matching space below it (Layout.jsx) and to
+   position the floating action buttons above it (ScrollToTopButton.jsx,
+   Chatbot.jsx) without duplicating the 64px magic number in four places. */
+:root {
+  --mobile-cta-height: 64px;
+  --mobile-cta-reserve: calc(var(--mobile-cta-height) + env(safe-area-inset-bottom, 0px) + 12px);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --mobile-cta-reserve: 0px;
+  }
+}
+
+/* Floating action buttons (ScrollToTopButton, Chatbot FAB) sit above the
+   mobile sticky CTA bar with a fixed 65px gap between the two stacked
+   buttons; desktop keeps its original hardcoded bottom offsets. */
+.fab-scroll-top {
+  bottom: calc(var(--mobile-cta-reserve) + 65px);
+}
+
+.fab-chatbot {
+  bottom: calc(var(--mobile-cta-reserve) + 22px);
+}
+
+@media (min-width: 768px) {
+  .fab-scroll-top {
+    bottom: 95px;
+  }
+
+  .fab-chatbot {
+    bottom: 30px;
+  }
+}
+
 /* ── Base typography ──────────────────────────────────────────────────────── */
 
 body {

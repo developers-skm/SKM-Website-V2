@@ -29,7 +29,10 @@ export default function Layout({ children, activePage, onPageChange, suppressMob
   return (
     <div className="relative flex flex-col min-h-screen w-full overflow-x-clip bg-page text-surface-800 transition-colors duration-300">
       <Navbar activePage={activePage} onPageChange={onPageChange} />
-      <main className={`flex-grow w-full flex flex-col box-border ${isOffline ? 'pb-0' : 'pb-[76px] md:pb-0'}`}>
+      <main
+        className="flex-grow w-full flex flex-col box-border"
+        style={isOffline ? undefined : { paddingBottom: 'var(--mobile-cta-reserve)' }}
+      >
         {children}
       </main>
       {!isOffline && (
