@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import certifications from '../../data/certifications';
+import whySkmBg from '../../assets/images/why-skm-bg.webp';
 import { containerVariants, itemVariants } from '../../utils/animationVariants';
 
 const qualityCards = [
@@ -28,10 +29,22 @@ export default function WhySKMPage({ onPageChange }) {
       }}
       onPageChange={onPageChange}
     >
-      <div className="w-full flex flex-col bg-page">
+      <div className="relative isolate w-full flex flex-col bg-page overflow-hidden">
+        {/* Full-page backdrop: the farm → plant → lab → product → export
+            image runs behind the whole page, washed with the page colour so
+            the page stays light (dark sections are footer-only) and text
+            keeps its contrast. */}
+        <img
+          src={whySkmBg}
+          alt=""
+          aria-hidden="true"
+          decoding="async"
+          className="pointer-events-none select-none absolute inset-0 -z-10 w-full h-full object-cover object-top"
+        />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-page/80 via-page/88 to-page/80" />
 
         {/* Hero */}
-        <div className="w-full pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[60px] lg:pb-[80px] border-b border-[#eee] text-center px-4">
+        <div className="w-full pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[60px] lg:pb-[80px] text-center px-4">
           <div className="mx-auto max-w-[720px] flex flex-col items-center gap-4">
             <span className="section-label justify-center">The Rational Case</span>
             <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
@@ -44,7 +57,7 @@ export default function WhySKMPage({ onPageChange }) {
         </div>
 
         {/* Certifications */}
-        <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee]">
+        <div className="w-full py-[50px] lg:py-[70px]">
           <motion.section
             variants={containerVariants}
             initial="hidden"
@@ -64,23 +77,34 @@ export default function WhySKMPage({ onPageChange }) {
                 Full Details →
               </button>
             </div>
-            <motion.div variants={containerVariants} className="flex flex-wrap items-center gap-3">
-              {certifications.map((cert) => (
-                <motion.div
-                  key={cert.name}
-                  variants={itemVariants}
-                  title={cert.name}
-                  className="flex items-center justify-center w-20 h-20 rounded-[10px] border border-[#eee] bg-surface-50 p-3"
-                >
-                  <img src={cert.logo} alt={cert.name} loading="lazy" className="w-full h-full object-contain" />
-                </motion.div>
-              ))}
+            {/* Right-to-left marquee: the set is rendered twice and the track
+                shifts -50%, so the loop is seamless. Each item carries its own
+                right padding (not flex gap) so both halves are exactly equal. */}
+            <motion.div
+              variants={itemVariants}
+              className="marquee-viewport overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]"
+            >
+              <div className="marquee-loop" style={{ animationDuration: '32s' }}>
+                {[...certifications, ...certifications].map((cert, i) => {
+                  const isClone = i >= certifications.length;
+                  return (
+                    <div key={`${cert.name}-${i}`} className="shrink-0 pr-4 sm:pr-6" aria-hidden={isClone || undefined}>
+                      <div
+                        title={cert.name}
+                        className="flex items-center justify-center w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-[14px] border border-[#eee] bg-surface-50 p-4 sm:p-5 transition-transform duration-300 hover:scale-105"
+                      >
+                        <img src={cert.logo} alt={isClone ? '' : cert.name} loading="lazy" className="w-full h-full object-contain" />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </motion.div>
           </motion.section>
         </div>
 
         {/* Quality & Food Safety */}
-        <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] bg-page">
+        <div className="w-full py-[50px] lg:py-[70px]">
           <motion.section
             variants={containerVariants}
             initial="hidden"
@@ -107,7 +131,7 @@ export default function WhySKMPage({ onPageChange }) {
         </div>
 
         {/* Infrastructure */}
-        <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee]">
+        <div className="w-full py-[50px] lg:py-[70px]">
           <motion.section
             variants={containerVariants}
             initial="hidden"
@@ -138,7 +162,7 @@ export default function WhySKMPage({ onPageChange }) {
         </div>
 
         {/* Traceability cross-link */}
-        <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] bg-page">
+        <div className="w-full py-[50px] lg:py-[70px]">
           <div className="mx-auto max-w-[900px] w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-5">
             <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading m-0 tracking-tight">
               Want the full farm-to-product story?

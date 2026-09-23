@@ -100,7 +100,7 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
                 without ever revealing the frame edge, since object-cover
                 already overflows the container. */}
             <div className="relative flex-[1.2] min-w-0 h-full rounded-[28px] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.18)]">
-              <AnimatePresence mode="sync" initial={false}>
+              <AnimatePresence mode="sync" initial={false}> 
                 <motion.img
                   key={steps[activeIndex].id}
                   src={steps[activeIndex].image}
