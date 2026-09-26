@@ -43,6 +43,10 @@ export default function StepReview({ formData }) {
         <ReviewRow label="Functional Requirement" value={formData.functionalRequirement} />
         <ReviewRow label="Product Type" value={formData.productType === 'standard' ? 'Standard' : formData.productType ? 'Custom' : ''} />
         <ReviewRow label="Estimated Volume" value={formData.quantity} />
+        <ReviewRow
+          label="Required Quantity"
+          value={formData.quantityValue ? `${formData.quantityValue} ${formData.quantityUnit === 'Other' ? formData.quantityUnitOther : formData.quantityUnit}`.trim() : ''}
+        />
         <ReviewRow label="Packaging" value={formData.packaging} />
         <ReviewRow label="Destination Country" value={formData.country} />
         <ReviewRow label="Required Delivery" value={formData.deliveryDate} />

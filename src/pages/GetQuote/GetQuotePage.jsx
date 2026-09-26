@@ -43,6 +43,10 @@ const INTENT_COPY = {
   },
 };
 
+const MESSAGE_MIN = 20;
+const MESSAGE_MAX = 2000;
+const PHONE_PATTERN = /^\+?[0-9]{7,15}$/;
+
 const initialFormData = {
   productId: '',
   applicationId: '',
@@ -50,6 +54,9 @@ const initialFormData = {
   functionalRequirement: '',
   productType: '',
   quantity: '',
+  quantityValue: '',
+  quantityUnit: '',
+  quantityUnitOther: '',
   packaging: '',
   country: '',
   deliveryDate: '',
@@ -60,6 +67,8 @@ const initialFormData = {
   email: '',
   phone: '',
   message: '',
+  consent: false,
+  website: '', // honeypot — must stay empty
 };
 
 // The guided quote/sample-request flow — the equivalent of Booking's booking
@@ -90,8 +99,22 @@ export default function GetQuotePage({ onPageChange, prefill }) {
     if (targetStep === 1 && !isSampleCart && !formData.productId) {
       e.productId = 'Select a product to continue.';
     }
-    if (targetStep === 2 && !formData.country) {
-      e.country = 'Select your destination country.';
+    if (targetStep === 2) {
+      if (!formData.country) {
+        e.country = 'Select your destination country.';
+      }
+      if (prefill?.enquiryIntent === 'price-quotation' && !String(formData.quantityValue).trim()) {
+        e.quantityValue = 'Required quantity is needed for a price quotation.';
+      }
+      if (formData.quantityValue && Number(formData.quantityValue) <= 0) {
+        e.quantityValue = 'Enter a positive quantity.';
+      }
+      if (formData.quantityValue && Number(formData.quantityValue) > 1000000000) {
+        e.quantityValue = 'Enter a realistic quantity.';
+      }
+      if (formData.quantityUnit === 'Other' && !formData.quantityUnitOther.trim()) {
+        e.quantityUnitOther = 'Specify the unit.';
+      }
     }
     if (targetStep === 3) {
       if (!formData.firstName.trim()) e.firstName = 'First name is required.';
@@ -99,10 +122,28 @@ export default function GetQuotePage({ onPageChange, prefill }) {
       if (!formData.company.trim()) e.company = 'Company name is required.';
       if (!formData.email.trim()) {
         e.email = 'Email is required.';
-      } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) || formData.email.length > 254) {
         e.email = 'Enter a valid email address.';
       }
-      if (!formData.phone.trim()) e.phone = 'Phone number is required.';
+      if (formData.phone.trim()) {
+        const normalizedPhone = formData.phone.replace(/[\s-]/g, '');
+        if (!PHONE_PATTERN.test(normalizedPhone)) {
+          e.phone = 'Enter a valid phone number.';
+        }
+      } else {
+        e.phone = 'Phone number is required.';
+      }
+      const trimmedMessage = formData.message.trim();
+      if (!trimmedMessage) {
+        e.message = 'Please tell us about your requirement.';
+      } else if (trimmedMessage.length < MESSAGE_MIN) {
+        e.message = `Message must be at least ${MESSAGE_MIN} characters.`;
+      } else if (formData.message.length > MESSAGE_MAX) {
+        e.message = `Message must be under ${MESSAGE_MAX} characters.`;
+      }
+      if (!formData.consent) {
+        e.consent = 'Please confirm consent to proceed.';
+      }
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -121,6 +162,12 @@ export default function GetQuotePage({ onPageChange, prefill }) {
 
   const handleSubmit = async () => {
     if (!validateStep(3)) return;
+    // Honeypot — a genuine visitor never fills this hidden field. Silently
+    // pretend success instead of telling a bot what tripped it.
+    if (formData.website) {
+      setIsSubmitted(true);
+      return;
+    }
     setIsSubmitting(true);
     setSubmitError('');
     try {
@@ -133,6 +180,8 @@ export default function GetQuotePage({ onPageChange, prefill }) {
         functional_requirement: formData.functionalRequirement || null,
         product_type: formData.productType || null,
         quantity: formData.quantity || null,
+        quantity_value: formData.quantityValue || null,
+        quantity_unit: formData.quantityUnit === 'Other' ? formData.quantityUnitOther : (formData.quantityUnit || null),
         packaging: formData.packaging || null,
         destination_country: formData.country || null,
         delivery_date: formData.deliveryDate || null,
@@ -140,14 +189,16 @@ export default function GetQuotePage({ onPageChange, prefill }) {
         last_name: formData.lastName,
         company: formData.company,
         job_role: formData.jobRole || null,
-        email: formData.email,
-        phone: formData.phone,
-        message: formData.message || null,
+        email: formData.email.trim().toLowerCase(),
+        phone: formData.phone.replace(/[\s-]/g, ''),
+        message: formData.message.trim(),
+        consent: formData.consent,
+        website: formData.website || '',
       });
       setIsSubmitted(true);
     } catch (err) {
       console.error('Quote submit error:', err);
-      setSubmitError('Something went wrong sending your request. Please try again.');
+      setSubmitError("We couldn't send your enquiry. Please check your connection and try again, or email us directly at info@skmegg.com.");
     } finally {
       setIsSubmitting(false);
     }
@@ -229,7 +280,7 @@ export default function GetQuotePage({ onPageChange, prefill }) {
                 transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
               >
                 {step === 1 && <StepRequirement formData={formData} setFormData={setFormData} enquiryIntent={prefill?.enquiryIntent} />}
-                {step === 2 && <StepCommercialDetails formData={formData} setFormData={setFormData} />}
+                {step === 2 && <StepCommercialDetails formData={formData} setFormData={setFormData} errors={errors} enquiryIntent={prefill?.enquiryIntent} />}
                 {step === 3 && <StepContactDetails formData={formData} setFormData={setFormData} errors={errors} />}
                 {step === 4 && <StepReview formData={formData} />}
 
