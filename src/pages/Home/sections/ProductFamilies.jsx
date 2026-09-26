@@ -28,7 +28,7 @@ const families = [
     // Verbatim benefits fields from WholeEggPowderPage.jsx / EggYolkPowderPage.jsx
     // variantsData — a representative selection, not a merged claim.
     benefits: [
-      'Long-term shelf stability, simple dosing and weight ratio control, and reliable structural crumb development.',
+      'Long-term shelf stability, simple dosing and weight-ratio control, and reliable structural crumb development.',
       'High fat content, rich creamy mouthfeel, natural golden-yellow coloration, and excellent emulsification properties.',
     ],
     // No storage/handling field exists anywhere in powder product data
@@ -40,7 +40,7 @@ const families = [
   },
   {
     id: 'liquids',
-    name: 'Liquid Egg Products',
+    name: ' Pasteurized Liquid Egg Products',
     // Verbatim: specifications.storage values confirmed present across all
     // 3 liquid product pages (Whole Egg / Egg Yolk / Egg Albumen Liquid).
     format: ['Chilled liquid', 'Frozen liquid'],

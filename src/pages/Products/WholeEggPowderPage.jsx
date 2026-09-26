@@ -24,7 +24,7 @@ export const variantsData = [
     name: 'Whole Egg Powder Standard',
     description: 'Standard pasteurized spray-dried whole hen egg powder with excellent solubility, balanced structural binding, and reliable coagulation properties.',
     applications: 'Everyday bakery items, cookies, general biscuits, waffle and pancake dry mixes, and bulk flour recipes.',
-    benefits: 'Long-term shelf stability, simple dosing and weight ratio control, and reliable structural crumb development.',
+    benefits: 'Long-term shelf stability, simple dosing and weight-ratio control, and reliable structural crumb development.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 40.0%', protein: 'Min 45.0%', ph: '7.5 - 9.0', color: 'Standard Natural Yellow' }
   },
   {

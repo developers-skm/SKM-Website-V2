@@ -41,8 +41,8 @@ const processChapters = [
     category: 'CHAPTER 01 • RAW INGREDIENT INTAKE',
     title: 'Fresh Egg Collection & Sanitization',
     narrative:
-      'Whole shell eggs are harvested daily from certified integrated layer farms and transported to the facility in climate-controlled vehicles. Shell eggs pass through continuous candling systems, optical visual inspections, and multi-stage sanitization washes before entering the production intake.',
-    highlights: ['100% Certified Layer Farm Origin', 'Automated Optical Candling Inspection', 'Multi-Stage Shell Surface Sanitization'],
+      'Shell eggs are procured daily from certified integrated layer farms and transported to the facility in climate-controlled vehicles. Shell eggs pass through continuous candling systems and optical visual inspections before entering the production intake.',
+    highlights: ['100% Certified Layer Farm Origin', 'Automated Optical Candling Inspection'],
     illustrationSide: 'left', // left: image, center: node, right: content
     image: manufacturingImages.intake,
     altText: 'Automated egg intake, candling inspection and sanitization line',
@@ -52,7 +52,7 @@ const processChapters = [
     category: 'CHAPTER 02 • MECHANICAL SEPARATION',
     title: 'Automated Breaking & Multi-Stage Filtration',
     narrative:
-      'High-speed rotary breaking machines automatically crack shell eggs and separate raw liquid egg from shell fragments. Liquid whole egg passes through duplex stainless steel mesh sifters and centrifugal filters to eliminate micro-shell particles and natural membrane threads.',
+      'High-speed breaking machines automatically crack shell eggs and separate raw liquid egg from shell fragments. Liquid whole egg passes through duplex stainless steel mesh sifters and centrifugal filters to eliminate micro-shell particles and natural membrane threads.',
     highlights: ['Automated Rotary Breaking Knife System', 'Duplex Stainless Steel Fine Mesh Filters', 'Continuous Mechanical Shell Separation'],
     illustrationSide: 'right', // left: content, center: node, right: image
     image: manufacturingImages.breaking,

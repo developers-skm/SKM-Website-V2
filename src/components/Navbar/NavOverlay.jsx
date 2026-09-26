@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, Fragment } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import SKMLogo from '../../assets/LOGO/Skm-Logo-1536x332.png';
 import InternalLink from '../common/InternalLink';
@@ -6,6 +7,7 @@ import MenuSection from './MenuSection';
 import SearchPanel from './SearchPanel';
 import { CloseIcon, SearchIcon, MailIcon, PhoneIcon } from './icons';
 import { overlayColumns, utilityLinks } from './navigationData';
+import useScrollLock from '../../hooks/useScrollLock';
 
 const PHONE_NUMBER = '04242268391';
 
@@ -50,11 +52,11 @@ export default function NavOverlay({ isOpen, onClose, activePage, onPageChange, 
     onClose();
   };
 
+  useScrollLock(isOpen);
+
   useEffect(() => {
     if (!isOpen) return undefined;
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
     closeButtonRef.current?.focus();
     const triggerEl = triggerElRef?.current;
 
@@ -85,7 +87,6 @@ export default function NavOverlay({ isOpen, onClose, activePage, onPageChange, 
     window.addEventListener('keydown', onKeyDown);
 
     return () => {
-      document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', onKeyDown);
       if (mainEl) {
         mainEl.removeAttribute('inert');
@@ -95,7 +96,7 @@ export default function NavOverlay({ isOpen, onClose, activePage, onPageChange, 
     };
   }, [isOpen, onClose, triggerElRef]);
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <>
@@ -140,7 +141,8 @@ export default function NavOverlay({ isOpen, onClose, activePage, onPageChange, 
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
 

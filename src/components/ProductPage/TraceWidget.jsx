@@ -20,7 +20,7 @@ export default function TraceWidget({ onPageChange, productName, productCategory
       {/* Interactive Loop Journey Showcase */}
       <TraceabilityLoopJourney
         title={productName ? `How ${productName} Is Made` : "How Whole Egg Powder Is Made"}
-        subtitle={`Complete 360° Farm-to-Fork Loop — From Biosecure Hatchery to Automated Packaging & Dispatch`}
+        subtitle={`Complete 360° Farm-to-Fork Loop — From biosecure farm to automated packaging & dispatch`}
         onPageChange={onPageChange}
       />
     </div>

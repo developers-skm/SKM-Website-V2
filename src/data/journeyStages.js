@@ -16,10 +16,10 @@ const journeyStages = [
   {
     step: '01',
     id: 'hatchery',
-    label: 'Hatchery',
+    label: 'Poultry farm',
     image: HatcheryImg,
     tagline: 'It starts behind a biosecurity shower.',
-    description: 'Every visit to our layer farms begins at a controlled entry point — vehicle and personnel showers, sanitation barriers, and perimeter management, per EU Directive 2008/798. Certified hatcheries with strict biosecurity protocols form the foundation of the traceability chain.',
+    description: 'Every visit to our layer farms begins at a controlled entry point, with vehicle and personnel sanitation, biosecurity barriers, and perimeter management forming the foundation of our traceability system.',
     stat: { value: '2008/798', label: 'EU biosecurity registration' },
   },
   {
@@ -37,7 +37,7 @@ const journeyStages = [
     label: 'Farm',
     image: FarmImg,
     tagline: `${LAYERS_HOUSED} layers, continuously monitored.`,
-    description: `Our ISO 22000 certified integrated farms house ${LAYERS_HOUSED} layers in environmentally controlled sheds with automated feeding, watering, and egg collection — registered under EU compartmentalization norms with continuous flock health monitoring.`,
+    description: `Our ISO 22000-certified integrated farms house ${LAYERS_HOUSED} layers in environmentally controlled sheds, supported by automated feeding, watering, and egg collection systems, and operate in accordance with Government of India compartmentalization requirements, with continuous flock health monitoring.`,
     stat: { value: EGGS_PER_YEAR_SHORT, label: 'Eggs produced annually on our own farms' },
   },
   {
@@ -46,7 +46,7 @@ const journeyStages = [
     label: 'Processing',
     image: ProcessingImg,
     tagline: 'Fresh eggs, processed the same day.',
-    description: 'Daily fresh egg intake moves through a HACCP-monitored, EU and USDA-compliant plant — breaking, pasteurization, and drying — with full Critical Control Point (CCP) documentation at every stage.',
+    description: 'Daily fresh egg intake moves through our EU and USDA compliant processing facility, covering breaking, pasteurization, and drying, with CCP documentation maintained at every stage.',
     stat: { value: EGGS_PROCESSED_PER_DAY_SHORT, label: 'Eggs processed per day' },
   },
   {
@@ -55,7 +55,7 @@ const journeyStages = [
     label: 'QA & Lab Testing',
     image: LabImg,
     tagline: 'Every batch, tested before it ships.',
-    description: 'Our NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006, runs physicochemical, microbiological, and residue testing — including GC-MS, HPLC, and LC-MS/MS screening for antibiotics and pesticides per EU Directive 96/23.',
+    description: 'Our NABL-accredited laboratory, operating in accordance with ISO/IEC 17025 since 2006, conducts physicochemical, microbiological, and residue analyses, including GC-ECD/FID, HPLC, and LC-MS/MS screening for antibiotics and pesticides, in accordance with applicable EU requirements.',
     stat: { value: 'Since 2006', label: 'NABL-accredited laboratory' },
   },
   {
@@ -64,7 +64,7 @@ const journeyStages = [
     label: 'Packaging & Dispatch',
     image: DispatchImg,
     tagline: 'Cold chain, sealed and documented, to your door.',
-    description: 'Positive pressure packing rooms and cold chain management protect product integrity through to final delivery — with lot codes, batch identification, and destination digitally recorded for complete supply chain transparency.',
+    description: 'Positive-pressure packing rooms and robust cold-chain management protect product integrity through final delivery. Lot codes, batch identification, and destination details are digitally recorded, ensuring complete supply chain transparency and traceability.',
     stat: { value: '30+', label: 'Countries reached through this chain' },
   },
 ];

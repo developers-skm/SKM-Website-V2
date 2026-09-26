@@ -9,7 +9,8 @@
     "prerender": "node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "copy-assets": "node scripts/copy-manufacturing-images.mjs"
+    "copy-assets": "node scripts/copy-manufacturing-images.mjs",
+    "postinstall": "npm install --prefix backend"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.1",

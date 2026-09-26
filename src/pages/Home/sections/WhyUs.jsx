@@ -16,7 +16,7 @@ import { fadeUp, EASE_PREMIUM } from '../../../utils/motionTokens';
 const proofs = [
   {
     number: String(journeyStages.length),
-    label: 'Documented supply-chain stages',
+    label: 'stage Documented supply chain process',
     title: 'End-to-End Traceability',
     description: 'Complete control over the supply chain — six documented stages from feed origin to finished product.',
     page: 'journey',
@@ -39,22 +39,23 @@ const proofs = [
     page: 'certifications',
   },
   {
-    number: '2',
+    symbol: '∞',
     label: 'Customised product solutions',
     title: 'Application & Customisation Support',
     description: 'Customized Mix · Customized Packages — formulated to the specifications a production line actually needs.',
     page: 'why_skm',
   },
   {
-    number: '3',
-    label: 'Regional operations',
+    number: '30',
+    suffix: '+',
+    label: 'Years of industry experience',
     title: 'Global Confidence Since 1997',
     description: 'Earning the confidence of global customers since 1997, with the capacity to process 2 million eggs per day.',
     page: 'why_skm',
   },
 ];
 
-function StatNumber({ value, featured }) {
+function StatNumber({ value, featured, suffix }) {
   const { ref, display } = useCountUp(value, { duration: featured ? 1.4 : 1.1 });
   return (
     <strong
@@ -65,7 +66,15 @@ function StatNumber({ value, featured }) {
           : 'text-[16vw] sm:text-[68px] lg:text-[84px]'
       }`}
     >
-      {display}
+      {display}{suffix}
+    </strong>
+  );
+}
+
+function SymbolNumber({ symbol }) {
+  return (
+    <strong className="block font-heading font-black text-brand-600 leading-[0.85] tracking-tight m-0 text-[26vw] sm:text-[110px] lg:text-[136px]">
+      {symbol}
     </strong>
   );
 }
@@ -98,8 +107,10 @@ function ProofRow({ proof, index, onPageChange, reduceMotion, isDimmed, onFocusR
       <div className="sm:col-span-4 flex flex-col gap-1.5">
         {proof.milestone ? (
           <MilestoneNumber prefix={proof.prefix} number={proof.number} />
+        ) : proof.symbol ? (
+          <SymbolNumber symbol={proof.symbol} />
         ) : (
-          <StatNumber value={proof.number} featured={proof.featured} />
+          <StatNumber value={proof.number} featured={proof.featured} suffix={proof.suffix} />
         )}
         <span className="font-body text-[12.5px] sm:text-[13.5px] font-semibold uppercase tracking-wide text-surface-400 mt-1">
           {proof.label}
@@ -158,10 +169,10 @@ export default function WhyUs({ onPageChange }) {
           <div className="lg:col-span-4">
             <motion.div {...fadeUp(reduceMotion)} className="lg:sticky lg:top-32 flex flex-col gap-4 max-w-sm">
               <span className="section-label">Why SKM</span>
-              <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading leading-[1.05] tracking-tight m-0">
+              <h2 className="font-heading font-bold text-[22px] sm:text-[26px] lg:text-[30px] text-heading leading-[1.2] tracking-tight m-0">
                 Why manufacturers choose SKM
               </h2>
-              <p className="font-body text-[15.5px] lg:text-[16.5px] text-surface-500 leading-[1.7] m-0">
+              <p className="font-body text-[26px] sm:text-[32px] lg:text-[38px] font-bold text-surface-700 leading-[1.15] tracking-tight m-0">
                 Uncompromising standards in every single egg.
               </p>
               <InternalLink

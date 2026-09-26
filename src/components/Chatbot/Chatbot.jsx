@@ -10,7 +10,7 @@ export default function Chatbot() {
     {
       id: 'welcome',
       sender: 'bot',
-      text: 'Hello! I am Eggo, your SKM Egg Products assistant. How can I help you today? Feel free to ask about our egg powders, liquids, quality standards, or global exports!',
+      text: 'Hello! I am EGGXA, your SKM Egg Products assistant. How can I help you today? Feel free to ask about our egg powders, liquids, quality standards, or global exports!',
       timestamp: new Date()
     }
   ]);
@@ -228,7 +228,7 @@ export default function Chatbot() {
                 </div>
                 <div>
                   <h4 className="font-heading font-bold text-sm tracking-tight m-0">SKM Egg Expert</h4>
-                  <p className="text-[11px] opacity-95 font-body m-0">Eggo • Virtual Assistant</p>
+                  <p className="text-[11px] opacity-95 font-body m-0">EGGXA • Virtual Assistant</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">

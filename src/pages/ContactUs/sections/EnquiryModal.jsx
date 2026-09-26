@@ -1,6 +1,8 @@
 ﻿import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Field, inputClass, selectClass } from '../../../components/common/FormField';
+import useScrollLock from '../../../hooks/useScrollLock';
 
 // ── Shared field components ──────────────────────────────────────────────────
 
@@ -520,7 +522,7 @@ const modalConfig = {
   general:       { title: 'General Enquiry',         badge: 'Corporate Desk',               icon: '✦' },
 };
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
   const [formData, setFormData] = useState(defaultFormData);
@@ -529,18 +531,15 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
+  useScrollLock(isOpen);
+
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      setFormData(defaultFormData);
-      setErrors({});
-      setIsSubmitting(false);
-      setIsSuccess(false);
-      setSubmitError('');
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => { document.body.style.overflow = 'unset'; };
+    if (!isOpen) return;
+    setFormData(defaultFormData);
+    setErrors({});
+    setIsSubmitting(false);
+    setIsSuccess(false);
+    setSubmitError('');
   }, [isOpen, enquiryType]);
 
   if (!isOpen) return null;
@@ -659,7 +658,7 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
     return <GenericForm formData={formData} errors={errors} onChange={handleChange} enquiryType={enquiryType} />;
   };
 
-  return (
+  return createPortal(
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
 
@@ -814,6 +813,7 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
           </div>
         </motion.div>
       </div>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

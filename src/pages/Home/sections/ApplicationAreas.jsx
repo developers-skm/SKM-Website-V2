@@ -101,7 +101,7 @@ export default function ApplicationAreas({ onPageChange }) {
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-12 lg:mb-16">
           <span className="section-label">Applications</span>
           <h2 className="font-heading font-bold text-[38px] sm:text-[52px] lg:text-[62px] text-heading leading-[1.02] tracking-tight m-0">
-            What we are applied for
+            Scope of Product Applications 
           </h2>
         </motion.div>
 

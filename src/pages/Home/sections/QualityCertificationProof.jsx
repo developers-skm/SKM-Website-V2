@@ -39,7 +39,7 @@ export default function QualityCertificationProof({ onPageChange }) {
               Precision, verified at every step.
             </h2>
             <p className="font-body text-[15px] lg:text-[18px] text-surface-600 leading-[1.65] lg:leading-[1.75] max-w-lg m-0">
-              Every batch is governed by a documented Food Safety &amp; Quality Policy — HACCP-based hazard control, verified residue testing, and internationally aligned management systems, from raw material intake to finished product release.
+              Every batch is governed by a documented Food Safety &amp; Quality Policy : HACCP-based hazard control, verified residue testing, and internationally aligned management systems, from raw material intake to finished product release.
             </p>
             <InternalLink
               route="quality_assurance"

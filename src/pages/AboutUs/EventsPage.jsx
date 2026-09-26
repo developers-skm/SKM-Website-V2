@@ -1,7 +1,9 @@
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useMemo, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
+import useScrollLock from '../../hooks/useScrollLock';
 
 // Past Exhibitions assets
 import fia23_1 from '../../assets/Events - EXPO/FI ASIA THAILAND ( September 20-22-2023/1.webp';
@@ -193,14 +195,7 @@ export default function EventsPage({ onPageChange }) {
   // Locks background scroll while any of the 3 modals is open — previously
   // the page could still scroll behind an open modal.
   const isAnyModalOpen = Boolean(activeMeetingEvent || activeArticle || activeInsight);
-  useEffect(() => {
-    if (!isAnyModalOpen) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [isAnyModalOpen]);
+  useScrollLock(isAnyModalOpen);
 
   // Smooth scroll handler
   const handleScrollTo = useCallback((id) => {
@@ -691,6 +686,8 @@ export default function EventsPage({ onPageChange }) {
           </div>
         </section>
 
+        {createPortal(
+          <>
         {/* MODAL 1 — Book a Meeting Form */}
         <AnimatePresence>
           {activeMeetingEvent && (
@@ -961,6 +958,9 @@ export default function EventsPage({ onPageChange }) {
             </motion.div>
           )}
         </AnimatePresence>
+          </>,
+          document.body
+        )}
 
       </div>
     </PageWrapper>

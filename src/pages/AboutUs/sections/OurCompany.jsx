@@ -9,7 +9,7 @@ const itemVariants = makeItemVariants({ y: 25 });
 const stats = [
   { value: "2 Million",  label: "Eggs processed per day",       sub: "Integrated Scale" },
   { value: "7,500 MT",   label: "Egg powder annually",           sub: "Global Supply Capacity" },
-  { value: "ISO 22000",  label: "Certified poultry & feed mill", sub: "European Union Compartmentalization" },
+  { value: "ISO 22000",  label: "Certified poultry & processing facility", sub: "European Union Compartmentalization" },
 ];
 
 export default function OurCompany() {

@@ -8,7 +8,7 @@ import { makeContainerVariants, makeItemVariants } from '../../../utils/animatio
 const traceabilitySteps = [
   {
     step: '01',
-    label: 'Hatchery',
+    label: 'Polutry farm',
     desc: 'Certified hatcheries with strict biosecurity protocols form the foundation of our traceability chain.',
   },
   {

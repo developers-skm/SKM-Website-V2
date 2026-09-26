@@ -34,7 +34,6 @@ export default function ExportMarketsMap() {
   const [isInView, setIsInView] = useState(false);
   const mapRef = useRef(null);
   const reduceMotion = useReducedMotion();
-  const hoveredMarket = EXPORT_MARKETS.find(m => m.id === hoveredId) ?? null;
 
   const handleMarkerEnter = (market, e) => {
     const rect = mapRef.current?.getBoundingClientRect();
@@ -151,18 +150,20 @@ export default function ExportMarketsMap() {
               }
             </Geographies>
 
-            {/* ── Route line — draws from India to the hovered market ── */}
-            {!reduceMotion && hoveredMarket && (
+            {/* ── Route lines — always drawn from India to every export market ── */}
+            {EXPORT_MARKETS.map(market => (
               <Line
+                key={`route-${market.id}`}
                 from={INDIA_COORDINATES}
-                to={hoveredMarket.coordinates}
+                to={market.coordinates}
                 stroke="#e8b64a"
-                strokeWidth={1.4}
+                strokeWidth={hoveredId === market.id ? 1.6 : 0.8}
+                strokeOpacity={hoveredId === null || hoveredId === market.id ? 0.8 : 0.35}
                 strokeLinecap="round"
                 strokeDasharray="1 4"
                 className="pointer-events-none"
               />
-            )}
+            ))}
 
             {/* ── Pin markers ──────────────────────────────────────── */}
             {EXPORT_MARKETS.map((market, i) => (

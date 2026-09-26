@@ -24,7 +24,7 @@ const blocks = [
     id: 'facility',
     eyebrow: 'Facility & Regulatory Compliance',
     title: 'Built to EU & USDA standards.',
-    body: 'Constructed and equipped in accordance with EU and USDA regulatory requirements, approved under the Indian Export of Egg Products Quality Control & Monitoring Rules (1997). Two dedicated production lines — yolk and albumen — operate within a fully automated, climate-controlled environment.',
+    body: 'Constructed and equipped in accordance with applicable EU and USDA requirements, the facility is approved under India’s Export of Egg Products Quality Control & Monitoring Rules (1997). It operates in a fully automated, climate-controlled environment with dedicated production lines for yolk and albumen.',
     image: CampusOverview,
   },
   {
@@ -38,14 +38,14 @@ const blocks = [
     id: 'zoning',
     eyebrow: 'Zoning & Hygiene Control',
     title: 'Contamination prevented by design.',
-    body: 'Strict zoning protocols — red, white, and neutral areas — prevent cross-contamination, with dedicated tools and consumables for each zone, mandatory sanitation procedures, and routine air quality monitoring.',
+    body: 'Strict zoning protocols, including color-coded identification of red, yellow, green, and blue areas, dedicated tools for each zone, mandatory sanitation procedures, and routine air-quality monitoring, help prevent cross-contamination.',
     image: CIP,
   },
   {
     id: 'utility',
-    eyebrow: 'Sustainable Energy — Biogas Initiative',
+    eyebrow: 'Sustainable circular economy – Biogas Initiative',
     title: 'A circular approach to plant utilities.',
-    body: 'Our integrated biogas facility handles 70 tonnes of poultry litter, supporting circular and environmentally responsible operations. Nutrient-rich liquid fertilizer generated as a by-product is supplied to farmers at no cost.',
+    body: 'Our integrated biogas facility processes 70 tonnes of poultry litter, producing biofuel to support our operations. Its nutrient-rich liquid by-product is supplied to farmers as a fertilizer.',
     image: UtilityOverview,
   },
 ];
@@ -85,7 +85,7 @@ const stats = [
   { value: '1996', label: 'Established' },
   { value: '2 Million', label: 'Eggs processed per day' },
   { value: '7,500 MT', label: 'Egg powder annually' },
-  { value: 'ISO 22000', label: 'Certified poultry & feed mill' },
+  { value: 'ISO 22000', label: 'Certified poultry & processing facility' },
 ];
 
 export default function CompanyIntro({ onPageChange }) {

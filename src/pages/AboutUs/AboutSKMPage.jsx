@@ -19,7 +19,7 @@ import FactoryImage from '../../assets/2. ABOUT US/Our Company/Factory image.web
 const OVERVIEW_STATS = [
   { value: '2 Million', label: 'Eggs processed per day' },
   { value: '7,500 MT', label: 'Egg powder annually' },
-  { value: 'ISO 22000', label: 'Certified poultry & feed mill' },
+  { value: 'ISO 22000', label: 'Certified poultry & processing facility' },
 ];
 
 function CompanyOverviewSection({ onPageChange }) {
