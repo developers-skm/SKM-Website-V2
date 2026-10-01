@@ -54,7 +54,7 @@ export default function SearchPanel({ onNavigate, inputRef }) {
               <li key={`${item.route}-${item.label}`}>
                 <button
                   type="button"
-                  onClick={() => handleSelect(item.route, item.careersIntent ? { enquiryType: 'job', intentId: crypto.randomUUID() } : undefined)}
+                  onClick={() => handleSelect(item.route)}
                   className="w-full text-left flex items-center min-h-[44px] px-3 py-2 rounded-lg font-body text-[16px] font-semibold text-surface-800 hover:bg-brand-600/8 hover:text-brand-600 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
                 >
                   {item.label}

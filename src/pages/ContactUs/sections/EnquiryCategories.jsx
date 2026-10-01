@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import InternalLink from '../../../components/common/InternalLink';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 // Section 1 — Enquiry-intent selector (brief §1). Exact 4 large choices;
@@ -58,14 +59,6 @@ const primaryIntents = [
 ];
 
 const otherEnquiries = [
-  {
-    id: 'careers',
-    title: 'Job / Internship',
-    buttons: [
-      { label: 'Job Enquiry', type: 'job' },
-      { label: 'Internship Enquiry', type: 'internship' },
-    ],
-  },
   {
     id: 'feedback',
     title: 'Feedback / Complaint',
@@ -153,6 +146,22 @@ export default function EnquiryCategories({ onOpenEnquiry, onPageChange }) {
               </div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Careers now lives on its own section of the site (/careers). */}
+        <motion.div
+          variants={itemVariants}
+          className="rounded-[10px] bg-white border border-[#eee] border-l-4 border-l-brand-600 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-5 justify-between"
+        >
+          <div className="flex flex-col gap-1.5">
+            <h3 className="font-heading font-bold text-[19px] text-heading m-0">Looking for Career Opportunities?</h3>
+            <p className="font-body text-[15px] text-surface-500 leading-relaxed m-0">
+              Explore current job openings and join the SKM team.
+            </p>
+          </div>
+          <InternalLink route="careers" onPageChange={onPageChange} className="btn-outline-red min-h-[46px] justify-center flex-shrink-0">
+            Visit Careers
+          </InternalLink>
         </motion.div>
       </motion.section>
     </div>

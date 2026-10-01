@@ -48,7 +48,6 @@ export default function MenuSection({ title, links, activePage, onNavigate, isMo
             label={link.label}
             activePage={activePage}
             onNavigate={onNavigate}
-            prefillData={link.careersIntent ? { enquiryType: 'job', intentId: crypto.randomUUID() } : undefined}
           />
         ))}
       </ul>

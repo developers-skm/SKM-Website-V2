@@ -3,6 +3,7 @@ const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const contactRouter = require('./routes/contact');
 const quoteRouter = require('./routes/quote');
+const careersRouter = require('./routes/careers');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -27,6 +28,7 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 app.use('/api/v1/contact', contactLimiter, contactRouter);
 app.use('/api/v1/quote', contactLimiter, quoteRouter);
+app.use('/api/v1/careers', contactLimiter, careersRouter);
 
 app.use(errorHandler);
 

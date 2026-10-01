@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SEO from '../../components/SEO/SEO';
 import ContactHero from './sections/ContactHero';
 import OfficeAddresses from './sections/OfficeAddresses';
@@ -6,21 +6,9 @@ import EnquiryCategories from './sections/EnquiryCategories';
 import RegionalRouting from './sections/RegionalRouting';
 import EnquiryModal from './sections/EnquiryModal';
 
-export default function ContactUs({ onPageChange, prefill, onModalVisibilityChange }) {
+export default function ContactUs({ onPageChange, onModalVisibilityChange }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [enquiryType, setEnquiryType] = useState('general');
-  // Tracks the last handled Careers intentId (a stable string, not an object
-  // reference) — a new intentId reliably reopens the modal even after a
-  // manual close, while re-renders with the same intentId never reopen it.
-  const handledIntentIdRef = useRef(null);
-
-  useEffect(() => {
-    if (prefill?.enquiryType === 'job' && prefill.intentId !== handledIntentIdRef.current) {
-      handledIntentIdRef.current = prefill.intentId;
-      setEnquiryType('job');
-      setIsModalOpen(true);
-    }
-  }, [prefill]);
 
   useEffect(() => {
     onModalVisibilityChange?.(isModalOpen);

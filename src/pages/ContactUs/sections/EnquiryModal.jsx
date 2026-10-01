@@ -703,30 +703,21 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
               </button>
 
               {/* Header content */}
-              <div className="flex items-start justify-between gap-4 pr-8">
-                <div className="flex flex-col gap-2">
-                  {/* Department badge */}
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-600 flex-shrink-0" />
-                    <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-650">
-                      {config.badge}
-                    </span>
-                  </div>
-                  {/* Form title */}
-                  <h3 className="font-heading text-[22px] sm:text-[26px] font-bold text-heading m-0 leading-tight tracking-tight">
-                    {config.title}
-                  </h3>
-                  <p className="font-body text-[12px] text-surface-400 m-0 font-medium">
-                    SKM Egg Products — Enquiry Form
-                  </p>
+              <div className="flex flex-col gap-2 pr-8">
+                {/* Department badge */}
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-600 flex-shrink-0" />
+                  <span className="font-body text-[11px] font-bold uppercase tracking-widest text-brand-650">
+                    {config.badge}
+                  </span>
                 </div>
-
-                {/* Decorative document icon */}
-                <div className="flex-shrink-0 mt-0.5 w-10 h-12 rounded border border-[#E0D9CF] bg-white flex flex-col items-center justify-center gap-1 opacity-60">
-                  <div className="w-5 h-0.5 bg-surface-300 rounded-full" />
-                  <div className="w-5 h-0.5 bg-surface-300 rounded-full" />
-                  <div className="w-3 h-0.5 bg-surface-300 rounded-full" />
-                </div>
+                {/* Form title */}
+                <h3 className="font-heading text-[22px] sm:text-[26px] font-bold text-heading m-0 leading-tight tracking-tight">
+                  {config.title}
+                </h3>
+                <p className="font-body text-[12px] text-surface-400 m-0 font-medium">
+                  SKM Egg Products — Enquiry Form
+                </p>
               </div>
             </div>
 

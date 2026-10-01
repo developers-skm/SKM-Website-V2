@@ -1,10 +1,10 @@
 import React from 'react';
 
-// Shared underline-input field styling — used by the Get Quote wizard and
+// Shared bordered-input field styling — used by the Get Quote wizard and
 // the Contact Us enquiry modal, previously duplicated verbatim between them.
 export function Field({ label, required, error, children }) {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1.5">
       <label className="font-body text-[11px] font-semibold uppercase tracking-wider text-surface-500">
         {label}{required && <span className="text-brand-600 ml-0.5">*</span>}
       </label>
@@ -22,11 +22,11 @@ export function Field({ label, required, error, children }) {
 }
 
 export const inputClass = (hasError) =>
-  `w-full px-0 py-2 bg-transparent border-0 border-b font-body text-surface-850 text-sm font-medium transition-all focus:outline-none focus:ring-0 ${
+  `w-full px-3.5 py-2.5 bg-white border rounded-lg font-body text-surface-850 text-sm font-medium transition-all focus:outline-none focus:ring-2 ${
     hasError
-      ? 'border-red-400 placeholder:text-red-300'
-      : 'border-surface-250 focus:border-brand-600 placeholder:text-surface-350'
+      ? 'border-red-300 placeholder:text-red-300 focus:border-red-400 focus:ring-red-100'
+      : 'border-surface-250 hover:border-surface-350 focus:border-brand-600 focus:ring-brand-600/10 placeholder:text-surface-350'
   }`;
 
 export const selectClass =
-  'w-full px-0 py-2 bg-transparent border-0 border-b border-surface-250 font-body text-surface-850 text-sm font-medium focus:outline-none focus:border-brand-600 transition-all cursor-pointer';
+  'w-full px-3.5 py-2.5 bg-white border border-surface-250 rounded-lg font-body text-surface-850 text-sm font-medium hover:border-surface-350 focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-600/10 transition-all cursor-pointer';

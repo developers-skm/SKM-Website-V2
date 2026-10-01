@@ -117,4 +117,56 @@ async function sendQuoteEmail(payload) {
   });
 }
 
-module.exports = { sendEnquiryEmail, sendQuoteEmail };
+const CAREER_FIELD_LABELS = {
+  application_type: 'Application Type',
+  job_id: 'Job ID',
+  job_title: 'Position',
+  job_department: 'Department',
+  job_location: 'Job Location',
+  first_name: 'First Name',
+  last_name: 'Last Name',
+  email: 'Email',
+  phone: 'Phone',
+  current_location: 'Current Location',
+  current_company: 'Current Company / Institute',
+  current_designation: 'Current Designation',
+  highest_qualification: 'Highest Qualification',
+  specialization: 'Specialization',
+  total_experience: 'Total Experience',
+  relevant_experience: 'Relevant Experience',
+  current_ctc: 'Current CTC',
+  expected_ctc: 'Expected CTC',
+  notice_period: 'Notice Period',
+  willing_to_relocate: 'Willing to Relocate',
+  referral_source: 'Heard About This Opportunity Via',
+  preferred_department: 'Preferred Department',
+  preferred_role: 'Preferred Role / Area of Interest',
+  linkedin_url: 'LinkedIn Profile',
+};
+
+async function sendCareerApplicationEmail(payload, attachment, reference) {
+  const isTalentPool = payload.application_type === 'talent_pool';
+  const heading = isTalentPool ? 'New Talent Pool Profile' : 'New Job Application';
+  const rows = [
+    ['Reference', reference],
+    ...Object.entries(CAREER_FIELD_LABELS).map(([key, label]) => [label, payload[key]]),
+  ]
+    .filter(([, value]) => value !== null && value !== undefined && value !== '')
+    .map(([label, value]) => `<tr><td style="padding:4px 12px 4px 0;color:#666;font-weight:600;white-space:nowrap;vertical-align:top;">${escapeHtml(label)}</td><td style="padding:4px 0;white-space:pre-wrap;">${escapeHtml(value)}</td></tr>`)
+    .join('');
+
+  const subject = isTalentPool
+    ? `[SKM Careers] ${reference} Talent Pool — ${payload.first_name} ${payload.last_name}`
+    : `[SKM Careers] ${reference} ${payload.job_title} — ${payload.first_name} ${payload.last_name}`;
+
+  await contactTransporter.sendMail({
+    from: process.env.MAIL_FROM,
+    to: process.env.MAIL_TO_CAREERS || process.env.MAIL_TO,
+    replyTo: payload.email,
+    subject,
+    html: `<h2 style="margin:0 0 12px;">${heading}</h2><table cellpadding="0" cellspacing="0" style="font-family:sans-serif;font-size:14px;">${rows}</table>`,
+    attachments: [{ filename: attachment.originalname, content: attachment.buffer }],
+  });
+}
+
+module.exports = { sendEnquiryEmail, sendQuoteEmail, sendCareerApplicationEmail };

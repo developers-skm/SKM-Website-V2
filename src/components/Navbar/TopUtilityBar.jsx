@@ -40,7 +40,6 @@ export default function TopUtilityBar({ onPageChange, logoButtonRef }) {
               <InternalLink
                 route={link.route}
                 onPageChange={onPageChange}
-                prefillData={link.careersIntent ? { enquiryType: 'job', intentId: crypto.randomUUID() } : undefined}
                 className="font-body text-[14px] font-semibold text-surface-600 hover:text-brand-600 transition-colors duration-150 whitespace-nowrap"
               >
                 {link.label}

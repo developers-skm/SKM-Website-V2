@@ -237,7 +237,6 @@ function OverlayBody({
                 <InternalLink
                   route={link.route}
                   onPageChange={onNavigate}
-                  prefillData={link.careersIntent ? { enquiryType: 'job', intentId: crypto.randomUUID() } : undefined}
                   className="font-body text-[13px] font-semibold text-surface-600 hover:text-brand-600 transition-colors duration-150 whitespace-nowrap"
                 >
                   {link.label}

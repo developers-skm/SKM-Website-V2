@@ -8,7 +8,7 @@ export const utilityLinks = [
   { label: 'Global Presence', route: 'global_reach' },
   { label: 'Sustainability', route: 'sustainability_and_community' },
   { label: 'Investors', route: 'investors' },
-  { label: 'Careers', route: 'contact-us', careersIntent: true },
+  { label: 'Careers', route: 'careers' },
   { label: 'Contact', route: 'contact-us' },
 ];
 
@@ -92,7 +92,7 @@ export const overlayColumns = [
   {
     title: 'Get in Touch',
     links: [
-      { label: 'Careers', route: 'contact-us', careersIntent: true },
+      { label: 'Careers', route: 'careers' },
       { label: 'Contact', route: 'contact-us' },
       { label: 'Request a Quote', route: 'get-quote' },
     ],

@@ -47,6 +47,7 @@ const MdArticlePage = lazy(() => import('./pages/CSR/MdArticlePage'));
 const Investors = lazy(() => import('./pages/Investors/Investors'));
 const BrochurePage = lazy(() => import('./pages/Brochure/BrochurePage'));
 const ContactUs = lazy(() => import('./pages/ContactUs/ContactUs'));
+const CareersRoute = lazy(() => import('./pages/Careers/CareersRoute'));
 
 const JourneyPage = lazy(() => import('./pages/Journey/JourneyPage'));
 const GetQuotePage = lazy(() => import('./pages/GetQuote/GetQuotePage'));
@@ -139,6 +140,11 @@ function App() {
   const renderPage = () => {
     if (!isOnline || activePage === 'offline') {
       return <OfflinePage onPageChange={handlePageChange} targetPage={lastOnlinePage} />;
+    }
+
+    // Careers has nested URLs (careers/jobs/:slug, careers/apply/:slug) — resolved by CareersRoute.
+    if (activePage === 'careers' || activePage.startsWith('careers/')) {
+      return <CareersRoute path={activePage} onPageChange={handlePageChange} prefill={prefill} />;
     }
 
     switch (activePage) {
