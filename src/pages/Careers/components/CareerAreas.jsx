@@ -13,20 +13,20 @@ export default function CareerAreas({ activeDepartment, onSelectDepartment }) {
   const countFor = (department) => open.filter((job) => job.department === department).length;
 
   return (
-    <Section tone="page" labelledBy="career-areas-title" className="border-y border-[#eee]">
-      <Container className="flex flex-col gap-10 lg:gap-12">
+    <Section tone="white" labelledBy="career-areas-title" className="border-b border-[#eae6e0]">
+      <Container className="flex flex-col gap-10 lg:gap-14">
         <SectionHeading
           id="career-areas-title"
           label="Departments"
           title="Explore Career Areas"
-          text="Choose a department to see the roles open in that area."
+          text="Discover opportunities across the teams that power SKM."
         />
         <motion.ul
           variants={container}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 m-0 p-0"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4.5 sm:gap-5 m-0 p-0"
         >
           {careerDepartments.map((department) => (
             <CareerAreaCard
@@ -42,3 +42,4 @@ export default function CareerAreas({ activeDepartment, onSelectDepartment }) {
     </Section>
   );
 }
+

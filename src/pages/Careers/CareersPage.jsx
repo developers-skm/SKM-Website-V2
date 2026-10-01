@@ -3,6 +3,7 @@ import SEO from '../../components/SEO/SEO';
 import CareersHero from './components/CareersHero';
 import WhyJoinSkm from './components/WhyJoinSkm';
 import CareerAreas from './components/CareerAreas';
+import EmployerBrandStrip from './components/EmployerBrandStrip';
 import SectionHeading from './components/SectionHeading';
 import JobBrowser from './components/JobBrowser';
 import { emptyFilters } from './components/filterState';
@@ -36,27 +37,30 @@ export default function CareersPage({ onPageChange }) {
   return (
     <div className="w-full flex flex-col">
       <SEO
-        title="Careers at SKM Egg Products | Job Opportunities"
+        title="Careers at SKM Egg Products | Build a Career That Makes an Impact"
         description="Explore career opportunities at SKM Egg Products across production, engineering, quality, laboratories, sales, logistics, IT and other business functions."
         canonical="https://www.skmegg.com/careers"
       />
       <CareersHero onViewPositions={scrollToOpenings} onPageChange={onPageChange} />
       <WhyJoinSkm />
       <CareerAreas activeDepartment={filters.department} onSelectDepartment={showDepartment} />
+      <EmployerBrandStrip />
 
       <Section
         id="openings"
         ref={openingsRef}
         tabIndex={-1}
+        tone="page"
         labelledBy="openings-title"
-        className="scroll-mt-20 focus:outline-none"
+        className="scroll-mt-20 focus:outline-none border-b border-[#eae6e0]"
       >
-        <Container className="flex flex-col gap-10">
+        <Container className="flex flex-col gap-10 lg:gap-14">
           <SectionHeading
             id="openings-title"
             label="Openings"
             title="Current Opportunities"
-            action={<TextLink route="careers/jobs" onPageChange={onPageChange}>View All Jobs</TextLink>}
+            text="Find your next opportunity within our growing international manufacturing business."
+            action={<TextLink route="careers/jobs" onPageChange={onPageChange} className="font-semibold">View All Jobs</TextLink>}
           />
           <JobBrowser filters={filters} onFiltersChange={setFilters} onPageChange={onPageChange} featuredLimit={4} />
         </Container>

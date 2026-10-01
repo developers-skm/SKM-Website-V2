@@ -17,16 +17,31 @@ export const careerDepartments = [
 ];
 
 export const whyJoinSkm = [
-  { icon: 'growth', title: 'Growth & Learning', text: 'Develop technical and professional skills as the business grows.' },
-  { icon: 'innovation', title: 'Innovation', text: 'Work with modern manufacturing, quality and technology-driven processes.' },
-  { icon: 'quality', title: 'Quality & Excellence', text: 'Be part of a food-safety-first culture that exports worldwide.' },
-  { icon: 'teamwork', title: 'Collaboration', text: 'Work across departments and business functions.' },
+  { icon: 'growth', title: 'Growth & Learning', text: 'Expand your technical and professional capabilities as part of a expanding global food manufacturing group.' },
+  { icon: 'innovation', title: 'Innovation', text: 'Work alongside modern processing equipment, automated systems, and advanced testing technology.' },
+  { icon: 'quality', title: 'Quality & Excellence', text: 'Be part of an uncompromised food-safety culture delivering high-grade egg products to global markets.' },
+  { icon: 'teamwork', title: 'Collaboration', text: 'Experience a supportive environment where cross-functional teams build lasting manufacturing impact together.' },
 ];
 
 export const earlyCareerPaths = [
-  { icon: 'graduate', title: 'Graduate Opportunities', text: 'For fresh graduates looking to start their professional career.' },
-  { icon: 'internship', title: 'Internships', text: 'Practical learning opportunities for students.' },
-  { icon: 'training', title: 'Industrial Training', text: 'Exposure to manufacturing and business operations.' },
+  {
+    number: '01',
+    icon: 'graduate',
+    title: 'Graduate Opportunities',
+    text: 'Structured career entry pathways for motivated graduates in engineering, science, food technology, and business management.',
+  },
+  {
+    number: '02',
+    icon: 'internship',
+    title: 'Internships',
+    text: 'Hands-on practical exposure inside our manufacturing plant, quality laboratories, and corporate departments for current students.',
+  },
+  {
+    number: '03',
+    icon: 'training',
+    title: 'Industrial Training',
+    text: 'Immersive industrial apprenticeships designed to bridge academic study with real-world plant operations and process engineering.',
+  },
 ];
 
 export const recruitmentSteps = [
@@ -39,18 +54,18 @@ export const recruitmentSteps = [
 ];
 
 export const careersFaqs = [
-  { q: 'How do I apply for a job at SKM?', a: 'Browse the current opportunities, open the role you are interested in and choose "Apply for This Position". Complete the application form and upload your resume.' },
-  { q: 'Can freshers apply?', a: 'Yes. Graduate, internship and industrial-training opportunities are listed under Start Your Career With SKM, and freshers can also submit their profile to our Talent Pool.' },
-  { q: 'Can I apply for more than one position?', a: 'Yes, you may apply for any position that matches your profile. Please submit a separate application for each role.' },
-  { q: 'What resume formats are accepted?', a: 'We accept PDF, DOC and DOCX files up to 5 MB.' },
-  { q: 'How will I know the status of my application?', a: 'You receive an application reference when you submit. Our recruitment team will contact shortlisted candidates by email or phone.' },
-  { q: 'Will SKM contact every applicant?', a: 'Our team reviews every application. Candidates whose profiles match a current requirement will be contacted; other profiles may be considered for future openings.' },
+  { q: 'How do I apply for a job at SKM?', a: 'Browse our current opportunities, select the role that matches your experience, and click "Apply for This Position". Complete the quick application form and upload your resume.' },
+  { q: 'Can freshers apply for roles at SKM?', a: 'Yes. We welcome fresh graduates across multiple entry pathways listed under Early Careers. You can also submit your profile to our Talent Community.' },
+  { q: 'Can I apply for more than one position?', a: 'Yes, you can apply for multiple roles that match your background. We recommend submitting a dedicated application for each position.' },
+  { q: 'What resume formats are accepted?', a: 'We accept PDF, DOC, and DOCX files up to 5 MB.' },
+  { q: 'How will I know the status of my application?', a: 'You will receive an instant reference code upon submission. Our talent acquisition team will review your application and contact shortlisted candidates directly.' },
+  { q: 'Will SKM keep my application on file if no suitable role is open?', a: 'Yes. If your profile is submitted to our Talent Community or a specific role, our recruiters keep qualified candidate profiles on file for upcoming vacancies.' },
 ];
 
 export const lifeAtSkmTiles = [
-  { label: 'Manufacturing', image: '/images/manufacturing/04-spray-drying.webp', alt: 'Spray drying equipment at SKM Egg Products' },
-  { label: 'Laboratory & Quality', image: '/images/manufacturing/05-quality-testing.webp', alt: 'Laboratory quality testing at SKM Egg Products' },
-  { label: 'Packaging & Operations', image: '/images/manufacturing/06-packaging.webp', alt: 'Packaging of SKM egg products' },
+  { label: 'Manufacturing & Processing', image: '/images/careers/life-production.webp', alt: 'SKM manufacturing and process monitoring operations' },
+  { label: 'Quality & Testing Laboratory', image: '/images/careers/life-lab.webp', alt: 'Quality control laboratory testing at SKM Egg Products' },
+  { label: 'Engineering & Maintenance', image: '/images/careers/life-engineering.webp', alt: 'Engineering inspection inside SKM processing plant' },
 ];
 
 // Icon per department tile (names resolve in careerIcons.jsx).
@@ -68,3 +83,4 @@ export const departmentIcons = {
   'Transport': 'truck',
   'Farm & Feed Operations': 'leaf',
 };
+
