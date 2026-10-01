@@ -1,41 +1,42 @@
 import { motion } from 'framer-motion';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 import { earlyCareerPaths } from '../../../data/careersContent';
+import { Container, Section } from './layout';
 import SectionHeading from './SectionHeading';
+import TextLink from './TextLink';
 import CareerIcon from './careerIcons';
 
 const container = makeContainerVariants(0.08);
-const item = makeItemVariants({ y: 24 });
+const item = makeItemVariants({ y: 16 });
 
+// Tinted band with three open columns (icon, title, copy, text link).
 export default function EarlyCareers({ onExplore }) {
   return (
-    <section aria-labelledby="early-careers-title" className="w-full bg-white py-[70px] lg:py-[100px]">
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
-        <SectionHeading id="early-careers-title" label="Freshers & Interns" title="Start Your Career With SKM" />
+    <Section tone="tint" labelledBy="early-careers-title">
+      <Container className="flex flex-col gap-10 lg:gap-12">
+        <SectionHeading
+          id="early-careers-title"
+          label="Students & Graduates"
+          title="Start Your Career With SKM"
+          text="Structured ways for students and recent graduates to learn inside a working food manufacturing business."
+        />
         <motion.ul
           variants={container}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 list-none m-0 p-0"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8 list-none m-0 p-0"
         >
           {earlyCareerPaths.map((path) => (
-            <motion.li key={path.title} variants={item} className="rounded-[10px] bg-page border border-[#eee] p-7 flex flex-col gap-4">
-              <span className="w-12 h-12 rounded-[10px] bg-white border border-[#eee] flex items-center justify-center text-brand-600">
-                <CareerIcon name={path.icon} className="w-6 h-6" />
-              </span>
-              <h3 className="font-heading font-bold text-[19px] text-heading m-0">{path.title}</h3>
-              <p className="font-body text-[15px] text-surface-500 leading-relaxed m-0">{path.text}</p>
+            <motion.li key={path.title} variants={item} className="flex flex-col gap-3 pt-6 border-t border-[#d8d4cc]">
+              <span className="text-brand-600"><CareerIcon name={path.icon} className="w-7 h-7" /></span>
+              <h3 className="font-heading font-bold text-[20px] text-heading m-0">{path.title}</h3>
+              <p className="font-body text-[15px] text-surface-600 leading-[1.65] m-0">{path.text}</p>
+              <TextLink onClick={onExplore} className="self-start">Learn More</TextLink>
             </motion.li>
           ))}
         </motion.ul>
-        <div className="flex justify-center">
-          <button type="button" onClick={onExplore} className="btn-primary-red min-h-[46px] justify-center">
-            Explore Opportunities
-            <CareerIcon name="arrow" className="w-3.5 h-3.5" />
-          </button>
-        </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

@@ -11,16 +11,16 @@ export const careerDepartments = [
   'Information Systems / IT',
   'Finance & Accounts',
   'HR & Administration',
-  'Procurement / Purchase',
+  'Procurement',
   'Transport',
   'Farm & Feed Operations',
 ];
 
 export const whyJoinSkm = [
-  { icon: 'growth', title: 'Growth & Learning', text: 'Opportunities to develop technical and professional skills.' },
+  { icon: 'growth', title: 'Growth & Learning', text: 'Develop technical and professional skills as the business grows.' },
   { icon: 'innovation', title: 'Innovation', text: 'Work with modern manufacturing, quality and technology-driven processes.' },
-  { icon: 'teamwork', title: 'Teamwork', text: 'Collaborate across departments and business functions.' },
-  { icon: 'impact', title: 'Meaningful Work', text: 'Contribute to a major food manufacturing and export organization.' },
+  { icon: 'quality', title: 'Quality & Excellence', text: 'Be part of a food-safety-first culture that exports worldwide.' },
+  { icon: 'teamwork', title: 'Collaboration', text: 'Work across departments and business functions.' },
 ];
 
 export const earlyCareerPaths = [
@@ -33,8 +33,7 @@ export const recruitmentSteps = [
   'Application',
   'Profile Review',
   'HR Discussion',
-  'Department / Technical Interview',
-  'Final Discussion',
+  'Interview',
   'Offer',
   'Joining',
 ];
@@ -49,8 +48,23 @@ export const careersFaqs = [
 ];
 
 export const lifeAtSkmTiles = [
-  { label: 'Manufacturing', image: '/images/manufacturing/03-pasteurization.webp', alt: 'Pasteurization stage in the SKM egg processing plant', large: true },
-  { label: 'Laboratory & Quality', image: '/images/manufacturing/05-quality-testing.webp', alt: 'Quality testing at SKM Egg Products' },
-  { label: 'Engineering', image: '/images/manufacturing/04-spray-drying.webp', alt: 'Spray drying equipment at SKM Egg Products' },
-  { label: 'Packaging & Logistics', image: '/images/manufacturing/06-packaging.webp', alt: 'Packaging of SKM egg products' },
+  { label: 'Manufacturing', image: '/images/manufacturing/04-spray-drying.webp', alt: 'Spray drying equipment at SKM Egg Products' },
+  { label: 'Laboratory & Quality', image: '/images/manufacturing/05-quality-testing.webp', alt: 'Laboratory quality testing at SKM Egg Products' },
+  { label: 'Packaging & Operations', image: '/images/manufacturing/06-packaging.webp', alt: 'Packaging of SKM egg products' },
 ];
+
+// Icon per department tile (names resolve in careerIcons.jsx).
+export const departmentIcons = {
+  'Production': 'factory',
+  'Engineering': 'wrench',
+  'Quality Assurance': 'shield',
+  'Laboratory': 'flask',
+  'Sales & Marketing': 'chart',
+  'Logistics': 'truck',
+  'Information Systems / IT': 'monitor',
+  'Finance & Accounts': 'calculator',
+  'HR & Administration': 'department',
+  'Procurement': 'cart',
+  'Transport': 'truck',
+  'Farm & Feed Operations': 'leaf',
+};

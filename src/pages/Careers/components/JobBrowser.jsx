@@ -1,9 +1,13 @@
 import { useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { makeContainerVariants } from '../../../utils/animationVariants';
 import { getFilterOptions, getOpenJobs } from '../../../data/jobs';
 import JobFilters from './JobFilters';
-import { emptyFilters } from './filterState';
+import { emptyFilters, hasActiveFilters } from './filterState';
 import JobCard from './JobCard';
 import InternalLink from '../../../components/common/InternalLink';
+
+const listVariants = makeContainerVariants(0.06);
 
 const matchesQuery = (job, query) => {
   const needle = query.trim().toLowerCase();
@@ -15,8 +19,10 @@ const matchesQuery = (job, query) => {
 };
 
 // Searchable / filterable list of current openings. Filter state is owned by
-// the parent so department tiles and early-career CTAs can drive it.
-export default function JobBrowser({ filters, onFiltersChange, onPageChange }) {
+// the parent so department tiles and early-career links can drive it.
+// `featuredLimit` caps the list while no filter is active (landing page);
+// as soon as the user searches or filters, every match is shown.
+export default function JobBrowser({ filters, onFiltersChange, onPageChange, featuredLimit }) {
   const options = useMemo(() => getFilterOptions(), []);
   const results = useMemo(
     () =>
@@ -31,24 +37,31 @@ export default function JobBrowser({ filters, onFiltersChange, onPageChange }) {
     [filters]
   );
 
+  const visible = featuredLimit && !hasActiveFilters(filters) ? results.slice(0, featuredLimit) : results;
+
   return (
     <div className="flex flex-col gap-8">
-      <div className="rounded-[10px] bg-white border border-[#eee] p-5 sm:p-6">
-        <JobFilters filters={filters} options={options} onChange={onFiltersChange} onReset={() => onFiltersChange(emptyFilters)} />
-      </div>
+      <JobFilters filters={filters} options={options} onChange={onFiltersChange} onReset={() => onFiltersChange(emptyFilters)} />
 
       <p className="font-body text-[14px] text-surface-500 m-0" role="status" aria-live="polite">
-        Showing {results.length} {results.length === 1 ? 'opportunity' : 'opportunities'}
+        {visible.length < results.length
+          ? `Showing ${visible.length} of ${results.length} opportunities`
+          : `${results.length} ${results.length === 1 ? 'opportunity' : 'opportunities'}`}
       </p>
 
-      {results.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {results.map((job) => (
+      {visible.length > 0 ? (
+        <motion.div
+          variants={listVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col gap-4"
+        >
+          {visible.map((job) => (
             <JobCard key={job.id} job={job} onPageChange={onPageChange} />
           ))}
-        </div>
+        </motion.div>
       ) : (
-        <div className="rounded-[10px] bg-white border border-dashed border-surface-300 p-10 text-center flex flex-col items-center gap-3">
+        <div className="rounded-xl bg-white border border-dashed border-surface-300 p-10 text-center flex flex-col items-center gap-3">
           <h3 className="font-heading font-bold text-[20px] text-heading m-0">No matching opportunities</h3>
           <p className="font-body text-[15px] text-surface-500 max-w-md m-0">
             Try adjusting your search or filters, or submit your profile to our Talent Pool for future openings.

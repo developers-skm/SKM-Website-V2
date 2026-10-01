@@ -8,7 +8,7 @@ import { inputClass, selectClass } from '../../../components/common/FormField';
 export function FieldShell({ id, label, required, error, hint, children }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="font-body text-[12px] font-semibold uppercase tracking-wider text-surface-600">
+      <label htmlFor={id} className="font-body text-[14px] font-semibold text-surface-700">
         {label}
         {required && (
           <>
@@ -71,11 +71,11 @@ export function SelectField({ id, label, required, error, hint, options, placeho
 export function FormSection({ title, children }) {
   return (
     <fieldset className="m-0 p-0 border-0 min-w-0">
-      <legend className="w-full flex items-center gap-3 mb-5 p-0">
+      <legend className="w-full flex items-center gap-3 mb-6 p-0">
         <span className="font-heading text-[13px] font-bold uppercase tracking-widest text-brand-650 whitespace-nowrap">{title}</span>
         <span className="flex-1 h-px bg-surface-200" aria-hidden="true" />
       </legend>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">{children}</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">{children}</div>
     </fieldset>
   );
 }

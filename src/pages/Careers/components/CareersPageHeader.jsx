@@ -1,13 +1,15 @@
 import InternalLink from '../../../components/common/InternalLink';
+import { Container } from './layout';
 
 // Compact header used by the inner Careers pages (jobs list, job detail,
-// apply). `crumbs` = [{ label, route? }] — the last crumb is the current page.
-export default function CareersPageHeader({ crumbs, eyebrow, title, onPageChange, children }) {
+// apply). `crumbs` = [{ label, route?, prefill? }] — the last crumb is the
+// current page. `size` should match the page body below it.
+export default function CareersPageHeader({ crumbs, eyebrow, title, onPageChange, size = 'narrow', children }) {
   return (
-    <header className="w-full bg-page border-b border-[#eee] pt-[110px] pb-10 sm:pt-[130px] sm:pb-12">
-      <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8 flex flex-col gap-5">
+    <header className="w-full bg-[#fbfaf8] border-b border-[#eee] pt-[104px] pb-10 sm:pt-[128px] sm:pb-12">
+      <Container size={size} className="flex flex-col gap-5">
         <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 list-none m-0 p-0 font-body text-[13px] text-surface-500">
+          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 list-none m-0 p-0 font-body text-[14px] text-surface-500">
             {crumbs.map((crumb, index) => {
               const isLast = index === crumbs.length - 1;
               return (
@@ -25,10 +27,10 @@ export default function CareersPageHeader({ crumbs, eyebrow, title, onPageChange
             })}
           </ol>
         </nav>
-        {eyebrow && <span className="section-label">{eyebrow}</span>}
-        <h1 className="font-heading font-bold text-[32px] sm:text-[44px] text-heading leading-[1.12] tracking-tight m-0">{title}</h1>
+        {eyebrow && <span className="section-label !mb-0">{eyebrow}</span>}
+        <h1 className="font-heading font-bold text-[34px] sm:text-[44px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0">{title}</h1>
         {children}
-      </div>
+      </Container>
     </header>
   );
 }

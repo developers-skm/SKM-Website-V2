@@ -1,58 +1,59 @@
 import { motion } from 'framer-motion';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 import InternalLink from '../../../components/common/InternalLink';
-import CampusImg from '../../../assets/6. CONTACT US/20240719_SKM_EGG PRODUCTS_197_SHA05676.webp';
+import { Container } from './layout';
 import CareerIcon from './careerIcons';
 
-export default function CareersHero({ onViewPositions, onPageChange }) {
-  const container = makeContainerVariants(0.12, { delayChildren: 0.05 });
-  const item = makeItemVariants({ y: 24, stiffness: 70 });
+const container = makeContainerVariants(0.1, { delayChildren: 0.05 });
+const item = makeItemVariants({ y: 20, stiffness: 80 });
 
+export default function CareersHero({ onViewPositions, onPageChange }) {
   return (
-    <section aria-labelledby="careers-hero-title" className="relative w-full bg-page overflow-hidden border-b border-[#eee]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_-10%,var(--color-brand-50)_0%,transparent_50%)] pointer-events-none" aria-hidden="true" />
-      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 pt-[110px] pb-[70px] sm:pt-[130px] sm:pb-[90px] grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <motion.div variants={container} initial="hidden" animate="visible" className="lg:col-span-7 flex flex-col items-start gap-6">
-          <motion.span variants={item} className="section-label">Careers at SKM</motion.span>
+    <section aria-labelledby="careers-hero-title" className="relative w-full bg-[#fbfaf8] overflow-hidden border-b border-[#eee]">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_90%_0%,var(--color-brand-50)_0%,transparent_55%)] pointer-events-none" aria-hidden="true" />
+      <Container className="relative pt-[104px] pb-12 sm:pt-[128px] sm:pb-16 lg:pt-[140px] lg:pb-20 grid grid-cols-1 lg:grid-cols-[55fr_45fr] gap-10 lg:gap-14 items-center">
+        <motion.div variants={container} initial="hidden" animate="visible" className="flex flex-col items-start gap-5 sm:gap-6">
+          <motion.span variants={item} className="section-label !mb-0">Careers at SKM</motion.span>
           <motion.h1
             variants={item}
             id="careers-hero-title"
-            className="font-heading font-bold text-[40px] sm:text-[52px] lg:text-[64px] text-heading leading-[1.08] tracking-tight m-0"
+            className="font-heading font-bold text-[38px] sm:text-[48px] lg:text-[60px] text-heading leading-[1.08] tracking-tight m-0 max-w-[16ch]"
           >
-            Build Your Future With SKM
+            Build a Career That Makes an Impact.
           </motion.h1>
-          <motion.div variants={item} className="w-16 h-[3px] bg-brand-600 rounded-full" />
-          <motion.p variants={item} className="font-body text-[16px] sm:text-[18px] text-surface-500 max-w-xl leading-[30px] m-0">
-            Join a team driven by quality, innovation and continuous growth. Explore opportunities across SKM Egg Products and build a career that makes an impact.
+          <motion.p variants={item} className="font-body text-[17px] sm:text-[18px] text-surface-500 max-w-[560px] leading-[1.7] m-0">
+            Join a team driven by quality, innovation and continuous growth. Explore opportunities across SKM Egg Products and build a career that creates meaningful impact.
           </motion.p>
-          <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2">
-            <button type="button" onClick={onViewPositions} className="btn-primary-red min-h-[46px] justify-center">
-              View Open Positions
+          <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto mt-2">
+            <button type="button" onClick={onViewPositions} className="btn-primary-red min-h-[48px] justify-center">
+              Explore Open Positions
               <CareerIcon name="arrow" className="w-3.5 h-3.5" />
             </button>
-            <InternalLink route="careers/apply" onPageChange={onPageChange} className="btn-outline-red min-h-[46px] justify-center">
+            <InternalLink route="careers/apply" onPageChange={onPageChange} className="btn-outline-red min-h-[48px] justify-center">
               Join Our Talent Pool
             </InternalLink>
           </motion.div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-          className="lg:col-span-5"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
+          className="relative"
         >
-          <div className="relative rounded-[10px] overflow-hidden border border-[#eee] shadow-[5px_3px_40px_rgba(0,72,88,0.10)] aspect-[4/3] lg:aspect-[4/5]">
+          <div className="rounded-2xl overflow-hidden border border-[#e8e4dd] aspect-[4/3] lg:aspect-[4/4.4]">
             <img
-              src={CampusImg}
-              alt="SKM Egg Products corporate administration block in Erode, Tamil Nadu"
+              src="/images/manufacturing/01-egg-intake.webp"
+              alt="Egg inspection and conveying line inside the SKM Egg Products processing plant"
               className="w-full h-full object-cover"
               fetchPriority="high"
             />
-            <div className="absolute bottom-0 left-0 h-1.5 w-24 bg-brand-600" aria-hidden="true" />
           </div>
+          <p className="absolute left-3 bottom-3 sm:left-5 sm:bottom-5 max-w-[240px] m-0 rounded-xl bg-white/95 border border-[#eee] px-4 py-3 font-body text-[13px] sm:text-[14px] font-semibold text-heading leading-snug border-l-[3px] border-l-brand-600">
+            Opportunities across multiple business functions
+          </p>
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

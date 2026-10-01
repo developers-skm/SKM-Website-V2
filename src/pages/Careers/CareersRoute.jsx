@@ -1,3 +1,4 @@
+import { MotionConfig } from 'framer-motion';
 import CareersPage from './CareersPage';
 import JobsPage from './JobsPage';
 import JobDetailPage from './JobDetailPage';
@@ -11,7 +12,7 @@ import NotFound from '../NotFound/NotFound';
 //   careers/jobs/:slug      → job details
 //   careers/apply           → Talent Pool (general application)
 //   careers/apply/:slug     → application for a vacancy
-export default function CareersRoute({ path, onPageChange, prefill }) {
+function resolve({ path, onPageChange, prefill }) {
   const [, section, slug] = path.replace(/\/+$/, '').split('/');
   // `key` resets form/filter state when moving between different jobs.
   const key = path;
@@ -21,4 +22,9 @@ export default function CareersRoute({ path, onPageChange, prefill }) {
   if (section === 'jobs') return <JobDetailPage key={key} slug={slug} onPageChange={onPageChange} />;
   if (section === 'apply') return <ApplyPage key={key} slug={slug} onPageChange={onPageChange} />;
   return <NotFound onPageChange={onPageChange} />;
+}
+
+// reducedMotion="user" makes every Careers framer-motion animation respect prefers-reduced-motion.
+export default function CareersRoute(props) {
+  return <MotionConfig reducedMotion="user">{resolve(props)}</MotionConfig>;
 }

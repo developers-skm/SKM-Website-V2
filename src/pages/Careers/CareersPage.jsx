@@ -6,6 +6,8 @@ import CareerAreas from './components/CareerAreas';
 import SectionHeading from './components/SectionHeading';
 import JobBrowser from './components/JobBrowser';
 import { emptyFilters } from './components/filterState';
+import { Container, Section } from './components/layout';
+import TextLink from './components/TextLink';
 import EarlyCareers from './components/EarlyCareers';
 import LifeAtSkm from './components/LifeAtSkm';
 import RecruitmentProcess from './components/RecruitmentProcess';
@@ -42,21 +44,26 @@ export default function CareersPage({ onPageChange }) {
       <WhyJoinSkm />
       <CareerAreas activeDepartment={filters.department} onSelectDepartment={showDepartment} />
 
-      <section
+      <Section
         id="openings"
         ref={openingsRef}
         tabIndex={-1}
-        aria-labelledby="openings-title"
-        className="w-full bg-white py-[70px] lg:py-[100px] scroll-mt-24 focus:outline-none"
+        labelledBy="openings-title"
+        className="scroll-mt-20 focus:outline-none"
       >
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
-          <SectionHeading id="openings-title" label="Openings" title="Current Opportunities" />
-          <JobBrowser filters={filters} onFiltersChange={setFilters} onPageChange={onPageChange} />
-        </div>
-      </section>
+        <Container className="flex flex-col gap-10">
+          <SectionHeading
+            id="openings-title"
+            label="Openings"
+            title="Current Opportunities"
+            action={<TextLink route="careers/jobs" onPageChange={onPageChange}>View All Jobs</TextLink>}
+          />
+          <JobBrowser filters={filters} onFiltersChange={setFilters} onPageChange={onPageChange} featuredLimit={4} />
+        </Container>
+      </Section>
 
-      <EarlyCareers onExplore={showEarlyCareers} />
       <LifeAtSkm />
+      <EarlyCareers onExplore={showEarlyCareers} />
       <RecruitmentProcess />
       <TalentPoolCTA onPageChange={onPageChange} />
       <CareersFAQ />

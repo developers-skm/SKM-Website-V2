@@ -1,11 +1,12 @@
 import InternalLink from '../common/InternalLink';
+import { isRouteActive } from './navigationData';
 
 // One navigation destination inside a MenuSection (desktop column list or
 // mobile accordion body). Active page gets the brand-red treatment via
 // activePage, matching the highlighted-state contract carried over from
 // the previous PrimaryNav/MobileNavigation implementation.
 export default function MenuLink({ route, label, activePage, onNavigate, prefillData }) {
-  const isActive = activePage === route;
+  const isActive = isRouteActive(activePage, route);
 
   return (
     <li>

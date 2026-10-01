@@ -2,6 +2,7 @@ import { useState } from 'react';
 import SEO from '../../components/SEO/SEO';
 import CareersPageHeader from './components/CareersPageHeader';
 import JobBrowser from './components/JobBrowser';
+import { Container } from './components/layout';
 import { emptyFilters } from './components/filterState';
 
 // /careers/jobs — the full openings list on its own page. An optional
@@ -21,10 +22,10 @@ export default function JobsPage({ onPageChange, prefill }) {
         crumbs={[{ label: 'Careers', route: 'careers' }, { label: 'Current Opportunities' }]}
         title="Current Opportunities"
       />
-      <section className="w-full bg-white py-[50px] lg:py-[70px]">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+      <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
+        <Container size="narrow">
           <JobBrowser filters={filters} onFiltersChange={setFilters} onPageChange={onPageChange} />
-        </div>
+        </Container>
       </section>
     </div>
   );

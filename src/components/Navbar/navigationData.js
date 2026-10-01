@@ -104,3 +104,8 @@ export const overlayColumns = [
 export const searchableNavItems = overlayColumns
   .flatMap((column) => column.links)
   .filter((link, index, all) => all.findIndex((l) => l.route === link.route && l.label === link.label) === index);
+
+// Careers is a section with nested URLs (careers/jobs/:slug, careers/apply/:slug),
+// so a link is active for the exact route or, for Careers, any of its sub-pages.
+export const isRouteActive = (activePage, route) =>
+  activePage === route || (route === 'careers' && activePage?.startsWith('careers/'));

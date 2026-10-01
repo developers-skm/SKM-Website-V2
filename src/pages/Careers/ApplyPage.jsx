@@ -2,6 +2,7 @@ import { useState } from 'react';
 import SEO from '../../components/SEO/SEO';
 import InternalLink from '../../components/common/InternalLink';
 import { getJobBySlug } from '../../data/jobs';
+import { Container } from './components/layout';
 import CareersPageHeader from './components/CareersPageHeader';
 import JobApplicationForm from './components/JobApplicationForm';
 import ApplicationSuccess from './components/ApplicationSuccess';
@@ -44,6 +45,7 @@ export default function ApplyPage({ slug, onPageChange }) {
         crumbs={job
           ? [{ label: 'Careers', route: 'careers' }, { label: job.title, route: `careers/jobs/${job.slug}` }, { label: 'Apply' }]
           : [{ label: 'Careers', route: 'careers' }, { label: 'Talent Pool' }]}
+        size="form"
         eyebrow={isTalentPool ? 'Talent Pool' : 'Job Application'}
         title={title}
       >
@@ -58,8 +60,8 @@ export default function ApplyPage({ slug, onPageChange }) {
         )}
       </CareersPageHeader>
 
-      <div className="w-full bg-white py-[50px] lg:py-[70px]">
-        <div className="mx-auto max-w-[860px] px-4 sm:px-6 lg:px-8">
+      <div className="w-full bg-white py-12 sm:py-16 lg:py-20">
+        <Container size="form">
           {submitted ? (
             <ApplicationSuccess reference={reference} isTalentPool={isTalentPool} onPageChange={onPageChange} />
           ) : (
@@ -71,7 +73,7 @@ export default function ApplyPage({ slug, onPageChange }) {
               }}
             />
           )}
-        </div>
+        </Container>
       </div>
     </div>
   );

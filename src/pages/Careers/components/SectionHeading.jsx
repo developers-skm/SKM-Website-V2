@@ -1,24 +1,29 @@
 import { motion } from 'framer-motion';
 import { makeItemVariants } from '../../../utils/animationVariants';
 
-const variants = makeItemVariants({ y: 20 });
+const variants = makeItemVariants({ y: 16 });
 
-// Shared eyebrow + heading + intro used by every Careers landing section.
-export default function SectionHeading({ label, title, text, align = 'center', id }) {
-  const alignment = align === 'center' ? 'items-center text-center' : 'items-start text-left';
+// One heading rhythm for every section: eyebrow → H2 → supporting sentence.
+// Left-aligned by default; pass align="center" for CTA-style sections.
+// `action` renders on the right of the heading row (desktop).
+export default function SectionHeading({ label, title, text, align = 'left', id, action }) {
+  const centered = align === 'center';
   return (
     <motion.div
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
-      className={`flex flex-col gap-3 ${alignment}`}
+      viewport={{ once: true, margin: '-60px' }}
+      className={`flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-8 ${centered ? 'items-center text-center sm:justify-center' : ''}`}
     >
-      <span className={`section-label ${align === 'center' ? 'justify-center' : ''}`}>{label}</span>
-      <h2 id={id} className="font-heading font-bold text-[30px] sm:text-[38px] text-heading leading-[1.15] tracking-tight m-0">
-        {title}
-      </h2>
-      {text && <p className="font-body text-[15px] sm:text-[16px] text-surface-500 max-w-2xl leading-[26px] m-0">{text}</p>}
+      <div className={`flex flex-col gap-3 ${centered ? 'items-center' : 'items-start'}`}>
+        <span className="section-label !mb-0">{label}</span>
+        <h2 id={id} className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.12] tracking-tight m-0 max-w-[22ch] sm:max-w-none">
+          {title}
+        </h2>
+        {text && <p className="font-body text-[16px] sm:text-[17px] text-surface-500 max-w-[600px] leading-[1.65] m-0">{text}</p>}
+      </div>
+      {action}
     </motion.div>
   );
 }
