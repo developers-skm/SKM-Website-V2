@@ -34,7 +34,7 @@ export default function VariantExplorer({ variantsData, variantsSectionSubtitle,
             Variant Specifications
           </h2>
           <p className="font-body text-[17px] text-surface-600 leading-[1.7] m-0">
-            {variantsSectionSubtitle ?? `Search or compare variants to find the right fit for our ${productName} range.`}
+            {variantsSectionSubtitle ?? `Search or compare our  ${productName}  variants to find the product that best meets your specific requirements.`}
           </p>
           <span className="font-body text-[12.5px] font-medium text-surface-400">
             {variantsData.length} variants available

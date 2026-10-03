@@ -9,7 +9,7 @@ import SaucesImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder - He
 export const variantsData = [
   {
     code: 'Y1111',
-    name: 'Egg Yolk Powder Heat Stable',
+    name: 'Egg Yolk Powder - Heat Stable',
     description: 'Pasteurized spray-dried hen egg yolk powder enzymatically modified with phospholipase to ensure excellent thermal stability and emulsifying properties under pasteurization temperatures.',
     applications: 'Mayonnaise, hot sauces, salad dressings, and liquid egg yolk formulations.',
     benefits: 'High emulsion stability under high heat pasteurization; prevents phase separation of oil and water in sauces.',
@@ -17,7 +17,7 @@ export const variantsData = [
   },
   {
     code: 'Y1115',
-    name: 'Egg Yolk Powder Heat Stable',
+    name: 'Egg Yolk Powder - Heat Stable',
     description: 'Heat-stable modified egg yolk powder designed for industrial hot emulsification sauce processes and high-shear operations.',
     applications: 'Sterilized culinary sauces, hollandaise, bearnaise, salad dressings, and retort-pouched gravies.',
     benefits: 'Resists high heat processing and high-temperature storage without degradation of texture or viscosity.',
@@ -25,7 +25,7 @@ export const variantsData = [
   },
   {
     code: 'Y1117',
-    name: 'Egg Yolk Powder Heat Stable',
+    name: 'Egg Yolk Powder - Heat Stable',
     description: 'Phospholipase-modified dried yolk powder offering deep golden color and enhanced viscosity under heat application.',
     applications: 'Premium high-end mayonnaise, hollandaise sauces, and heat-treated dessert custards.',
     benefits: 'Natural coloring and creamy thick texture; maintains active emulsion properties under pasteurizing temperatures.',
@@ -33,7 +33,7 @@ export const variantsData = [
   },
   {
     code: 'Y1125',
-    name: 'Egg Yolk Powder Heat Stable',
+    name: 'Egg Yolk Powder - Heat Stable',
     description: 'Emulsifying heat-stable egg yolk powder with co-dried anti-caking agent for bulk packaging and vending processes.',
     applications: 'Industrial dry mixes, instant sauce mixes, gravy blends, and automated soup dispensers.',
     benefits: 'Flows smoothly, runs cleanly without clumping in automated dosing hoppers, and maintains active emulsion under heat.',
@@ -41,7 +41,7 @@ export const variantsData = [
   },
   {
     code: 'Y1227',
-    name: 'Egg Yolk Powder Heat Stable',
+    name: 'Egg Yolk Powder - Heat Stable',
     description: 'High-performance modified egg yolk powder with exceptional water-binding and oil-emulsifying capacity.',
     applications: 'Reduced-fat mayonnaise, low-calorie salad dressings, and high-water-absorption bakery batters.',
     benefits: 'Helps maintain rich mouthfeel and viscosity even in low-fat emulsified products.',

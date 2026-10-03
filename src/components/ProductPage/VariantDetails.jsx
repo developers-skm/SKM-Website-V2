@@ -1,5 +1,4 @@
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import SpecificationGrid from './SpecificationGrid';
 import { EASE_PREMIUM } from '../../utils/motionTokens';
 
 // Premium technical-document panel — large white surface, ~32px radius,
@@ -29,18 +28,11 @@ export default function VariantDetails({ variant, displayCode, panelId, tabId })
         transition={transition}
         className="rounded-[32px] border border-surface-200/60 bg-white px-6 sm:px-12 lg:px-16 py-10 sm:py-14 lg:py-16 flex flex-col gap-9 shadow-[0_20px_60px_rgba(36,30,24,0.06)] focus:outline-none"
       >
-        {/* Top — code, name, description */}
+        {/* Top — name & description */}
         <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-3 flex-wrap">
-            <span className="inline-flex items-center gap-2 bg-brand-600 px-3.5 py-[7px] rounded-full">
-              <span className="font-mono text-[11px] font-bold tracking-[0.14em] uppercase text-white leading-none">
-                {displayCode(variant.code)}
-              </span>
-            </span>
-            <h3 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight leading-[1.15]">
-              {variant.name}
-            </h3>
-          </div>
+          <h3 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight leading-[1.15]">
+            {variant.name}
+          </h3>
           {variant.description && (
             <p className="font-body text-[16px] sm:text-[17px] text-surface-600 leading-[1.7] m-0 max-w-[68ch]">
               {variant.description}
@@ -71,16 +63,6 @@ export default function VariantDetails({ variant, displayCode, panelId, tabId })
             </div>
           )}
         </div>
-
-        {/* Bottom — specifications */}
-        {variant.specifications && (
-          <div className="flex flex-col gap-5 pt-7 border-t border-surface-200/70">
-            <span className="font-body text-[12.5px] font-bold uppercase tracking-widest text-surface-400">
-              Technical Specifications
-            </span>
-            <SpecificationGrid specifications={variant.specifications} />
-          </div>
-        )}
       </motion.div>
     </AnimatePresence>
   );

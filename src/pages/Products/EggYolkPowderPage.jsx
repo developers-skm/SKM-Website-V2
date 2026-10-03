@@ -10,7 +10,7 @@ import SpanishBreadImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powde
 export const variantsData = [
   {
     code: 'Y1101',
-    name: 'Egg Yolk Powder Standard',
+    name: 'Egg Yolk Powder',
     description: 'Standard pasteurized spray-dried hen egg yolk powder with excellent emulsifying, coloring, and texturizing properties. Adds rich taste and structure to bakery and cold emulsions.',
     applications: 'Mayonnaise, salad dressings, culinary sauces, custards, ice cream, sponge cakes, and sweet doughs.',
     benefits: 'High fat content, rich creamy mouthfeel, natural golden-yellow coloration, and excellent emulsification properties.',

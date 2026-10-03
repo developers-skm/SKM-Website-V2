@@ -49,7 +49,7 @@ const products = [
     title: 'Egg Yolk Powder',
     image: EggYolkPowderImg,
     category: PRODUCT_CATEGORIES.POWDERS,
-    shortDescription: 'Spray-dried pasteurized egg yolk with rich emulsifying power and natural golden colour for mayonnaise, dressings, and bakery.',
+    shortDescription: 'Pasteurized Spray-dried egg yolk powder with excellent emulsifying properties and natural color, ideal for mayonnaise, dressings, and bakery applications.',
     packagingOptions: ['20kg', '25kg', 'Bag-in-Box'],
     tdsUrl: EggYolkPowderTds,
   },
@@ -59,7 +59,7 @@ const products = [
     title: 'Egg Yolk Powder — Heat Stable',
     image: EggYolkPowderHeatStableImg,
     category: PRODUCT_CATEGORIES.POWDERS,
-    shortDescription: 'Modified egg yolk powder engineered to hold its emulsifying stability under hot-process mayonnaise and pasteurized sauces.',
+    shortDescription: 'Modified egg yolk powder formulated to maintain its emulsifying stability under hot-process mayonnaise and sauce applications',
     packagingOptions: ['20kg', '25kg', 'Bag-in-Box'],
   },
   {
@@ -78,7 +78,7 @@ const products = [
     title: 'Whole Egg Liquid',
     image: WholeEggLiquidImg,
     category: PRODUCT_CATEGORIES.LIQUIDS,
-    shortDescription: 'Pasteurized liquid blend of yolk and white for industrial bakeries and standardized ready-meal recipes. Chilled.',
+    shortDescription: 'Pasteurized liquid blend of egg yolk and egg white, formulated for industrial bakeries and standardized ready-meal recipes. Available in both chilled and frozen formats.',
     packagingOptions: ['1kg', '5kg', '20kg'],
   },
   {
@@ -87,7 +87,7 @@ const products = [
     title: 'Egg Yolk Liquid',
     image: EggYolkLiquidImg,
     category: PRODUCT_CATEGORIES.LIQUIDS,
-    shortDescription: 'Chilled pasteurized liquid egg yolk — plain and salted variants — for mayonnaise, dressings, and hot-filled sauces.',
+    shortDescription: 'Pasteurized liquid egg yolk available in plain and salted variants, formulated for mayonnaise, dressings, and hot-filled sauces. Available in chilled and frozen formats.',
     packagingOptions: ['1kg', '5kg', '20kg'],
   },
   {
@@ -96,7 +96,7 @@ const products = [
     title: 'Egg Albumen Liquid',
     image: EggAlbumenLiquidImg,
     category: PRODUCT_CATEGORIES.LIQUIDS,
-    shortDescription: 'Pasteurized liquid egg white for health foods, sports nutrition, beverages, and bakery — chilled or frozen.',
+    shortDescription: 'Pasteurized liquid egg white for health foods, sports nutrition, beverages, and bakery applications, available in chilled and frozen formats.',
     packagingOptions: ['1kg', '5kg', '20kg'],
   },
   {
@@ -105,7 +105,7 @@ const products = [
     title: 'Speciality Liquid Blends',
     image: SpecialityEggLiquidImg,
     category: PRODUCT_CATEGORIES.SPECIALITY,
-    shortDescription: 'Custom liquid egg blends with tailored salt, sugar, or other ingredient additions to match a specific recipe.',
+    shortDescription: 'Custom liquid egg blends with tailored salt, sugar, or other ingredient additions, formulated to meet specific recipe requirements and provide consumers with greater convenience and ease of use.',
     packagingOptions: ['250ML', '500ML', '1L'],
   },
   {
@@ -114,7 +114,7 @@ const products = [
     title: 'Egg White Cube',
     image: EggWhiteCubeImg,
     category: PRODUCT_CATEGORIES.SPECIALITY,
-    shortDescription: 'Fully cooked, diced egg white — zero cholesterol, high protein — for salads, meal prep, and ready-to-eat foods.',
+    shortDescription: 'Cooked, diced egg white with zero cholesterol and high protein content, suitable for a wide range of applications, including salads, patties, cooked dishes, and ready-to-eat foods.',
     packagingOptions: ['100g', '250g', '500g'],
   },
   {
@@ -123,7 +123,7 @@ const products = [
     title: 'Customized Mix',
     image: CustomizedMixImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,
-    shortDescription: 'Egg powder formulations blended with salt, sugar, or flour to match your exact recipe specification.',
+    shortDescription: 'Egg powder formulations blended with salt, sugar, and other ingredients to match your exact recipe specifications, customized at our end for seamless handling and convenient use at your facility.',
     packagingOptions: ['Custom'],
   },
   {
@@ -132,7 +132,7 @@ const products = [
     title: 'Customized Packages',
     image: CustomizedPackagesImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,
-    shortDescription: 'Industrial bags, tanker deliveries, cartons, or retail packaging configured to your requirements.',
+    shortDescription: 'Packaging options including corrugated bag-in-box, paper bag-in-bag, liquid pouches, and Tetra Pack formats, configured to meet your specific packaging and application requirements.',
     packagingOptions: ['Custom'],
   },
 ];

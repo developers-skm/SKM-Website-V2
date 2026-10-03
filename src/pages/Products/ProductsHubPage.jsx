@@ -508,7 +508,7 @@ function FunctionalRequirementSection({ onPageChange }) {
           {...fadeUp(reduceMotion, { duration: 0.8, distance: 24, delay: reduceMotion ? 0 : 0.13 })}
           className="font-body text-[15px] lg:text-[16px] text-surface-500 leading-[1.6] max-w-2xl m-0"
         >
-          Function-based browsing (foaming, emulsification, gelling, colour development, and more) is coming soon. In the meantime, our team can match a product to your functional requirement directly.
+        Function-based product selection is available across key applications, including whipping, emulsification, gelling, color development, and more. Our technical team can identify and recommend the right product to meet your specific functional requirements.
         </motion.p>
         <motion.div
           {...fadeUp(reduceMotion, { duration: 0.85, distance: 30, delay: reduceMotion ? 0 : 0.24 })}
@@ -576,7 +576,7 @@ function ComparisonSection({ compareList, onPageChange }) {
               transition={{ duration: reduceMotion ? 0.01 : DURATION.fast }}
               className="font-body text-[15px] text-surface-500 m-0"
             >
-              Use "Add to Comparison" in the Product Finder above to compare products side by side.
+            Compare our product variants side by side within each product category to evaluate their specifications and identify the option that best meets your specific requirements.
             </motion.p>
           ) : (
             <motion.div
@@ -744,7 +744,7 @@ function CustomSupportSection({ onPageChange }) {
           Custom product support
         </h2>
         <p className="font-body text-[15px] lg:text-[16px] text-surface-500 max-w-2xl m-0">
-          Need a formulation or packaging configuration built around your exact recipe? Our Customized Mix and Customized Packages ranges are engineered to your specification.
+      Our Customized Mix and Customized Package solutions are precisely tailored to your recipe, process, and specific requirements
         </p>
         <div className="flex flex-wrap items-center gap-4 mt-1">
           <InternalLink
@@ -785,7 +785,7 @@ function TechnicalResourcesSection({ onPageChange }) {
           Technical resources
         </h2>
         <p className="font-body text-[15px] lg:text-[16px] text-surface-500 max-w-2xl m-0">
-          Product flyers, the full product portfolio, and our company profile — ready to view or download.
+         Explore our product flyers, complete product portfolio, and company profile to discover more about our products and capabilities.
         </p>
         <div className="flex flex-wrap items-center gap-4 mt-1">
           <InternalLink
