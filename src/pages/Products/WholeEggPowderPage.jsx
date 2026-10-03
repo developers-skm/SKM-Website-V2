@@ -15,8 +15,8 @@ export const variantsData = [
     code: 'W1201',
     name: 'Whole Egg Powder',
     description: 'Pasteurized Dried Whole Hen Egg Powder with enhanced natural yellow coloration parameters, specifically produced to deliver a rich, appealing golden appearance in finished baked foods.',
-    applications: 'Premium yellow cakes, egg noodles, sweet pastries, custards, and gold-hued premium biscuits.',
-    benefits: 'Naturally enhances appearance., supports excellent crumb binding, and maintains rich dairy-egg taste.',
+    applications: 'Premium cakes, egg noodles, sweet pastries, custards, and biscuits.',
+    benefits: 'Naturally enhances appearance, supports excellent crumb binding, and delivers a rich aroma.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 40.0%', protein: 'Min 45.0%', ph: '7.0 - 8.5', color: 'Enhanced Yellow Index (Beta-carotene > 15 ppm)' }
   },
   {

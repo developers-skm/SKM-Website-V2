@@ -11,26 +11,25 @@ const EASE_PRECISE = [0.22, 1, 0.36, 1];
 // QA Checklist & Certifications
 // ─────────────────────────────────────────────
 const qaChecklist = [
-  'FSSC 22000 Certification',
-  'ISO 22000 Food Safety System',
-  'HACCP Critical Control Point Audit',
-  'Halal Quality Certified',
+  'BRC Certifications',
+  'ISO 22000 - Food Safety Management System',
+  'HACCP controlled',
+  'Halal Certified',
   'Kosher Compliance Verified',
   'Complete Parent Flock & Lot Traceability',
-  'Microbiology Testing (Salmonella & E. coli Negative)',
-  'Moisture Verification (< 4.0% Standard)',
-  'Protein Content Analysis (Min 45.0%)',
-  'Rare-Earth Metal Detection & Sifting',
+  'Microbiology Testing',
+  'Physicochemical verification',
+  'Ensuring residue compliances',
+  'Foreign Material Control Systems',
 ];
 
 const certifications = [
-  { name: 'FSSC 22000', label: 'Food Safety Certification' },
-  { name: 'ISO 22000', label: 'Safety Management' },
-  { name: 'HACCP', label: 'Hazard Analysis Critical Control' },
-  { name: 'Halal', label: 'Halal Quality Compliance' },
+  { name: 'BRCGS', label: 'Global Food Safety Initiative' },
+  { name: 'ISO 22000', label: 'Food Safety Management System' },
+  { name: 'HACCP', label: 'Controlled' },
+  { name: 'Halal', label: 'Halal Compliance' },
   { name: 'Kosher', label: 'Kosher Compliance' },
-  { name: 'BRCGS', label: 'Global Food Safety Standard' },
-];
+ ];
 
 // ─────────────────────────────────────────────
 // Process Chapters Data
@@ -39,10 +38,10 @@ const processChapters = [
   {
     step: '01',
     category: 'CHAPTER 01 • RAW INGREDIENT INTAKE',
-    title: 'Fresh Egg Collection & Sanitization',
+    title: 'Fresh Egg Collection & Transportation',
     narrative:
-      'Shell eggs are procured daily from certified integrated layer farms and transported to the facility in climate-controlled vehicles. Shell eggs pass through continuous candling systems and optical visual inspections before entering the production intake.',
-    highlights: ['100% Certified Layer Farm Origin', 'Automated Optical Candling Inspection'],
+    'Shell eggs are procured daily from certified integrated layer farms and transported to our facility in climate-controlled vehicles. Upon arrival, the shell eggs are graded before entering the production process.',
+    highlights: ['100% Certified Layer Farm Origin', 'climate-controlled vehicles.','Graded before production'],
     illustrationSide: 'left', // left: image, center: node, right: content
     image: manufacturingImages.intake,
     altText: 'Automated egg intake, candling inspection and sanitization line',
@@ -50,10 +49,9 @@ const processChapters = [
   {
     step: '02',
     category: 'CHAPTER 02 • MECHANICAL SEPARATION',
-    title: 'Automated Breaking & Multi-Stage Filtration',
-    narrative:
-      'High-speed breaking machines automatically crack shell eggs and separate raw liquid egg from shell fragments. Liquid whole egg passes through duplex stainless steel mesh sifters and centrifugal filters to eliminate micro-shell particles and natural membrane threads.',
-    highlights: ['Automated Rotary Breaking Knife System', 'Duplex Stainless Steel Fine Mesh Filters', 'Continuous Mechanical Shell Separation'],
+    title: 'Automated Breaking & Stage Filtration',
+    narrative:'High-speed egg-breaking machines automatically crack shell eggs and separate the raw liquid egg from shell fragments. The liquid whole egg then passes through duplex stainless-steel strainers to remove fine shell particles and natural membrane strands, ensuring a clean and consistent liquid egg stream.',
+    highlights: ['Automated Breaking Knife System', 'Duplex Stainless Steel Strainers', 'Continuous Mechanical Shell Separation'],
     illustrationSide: 'right', // left: content, center: node, right: image
     image: manufacturingImages.breaking,
     altText: 'High-speed rotary egg breaking machine and duplex stainless steel filtration system',
@@ -61,10 +59,9 @@ const processChapters = [
   {
     step: '03',
     category: 'CHAPTER 03 • THERMAL PROCESSING',
-    title: 'HTST Pasteurization & Homogenization',
-    narrative:
-      'Filtered liquid whole egg undergoes continuous High-Temperature Short-Time (HTST) pasteurization in plate heat exchangers. Precise thermal profiles eliminate pathogenic bacteria including Salmonella and Listeria while holding native protein functional matrices completely intact.',
-    highlights: ['Stainless Steel Plate Heat Exchanger', 'HTST Thermal Sterilization Profile', 'HACCP Critical Control Point (CCP) Monitored'],
+    title: 'Pasteurization & Homogenization',
+    narrative:'Filtered liquid whole egg undergoes continuous pasteurization through plate heat exchangers. Precisely controlled thermal profiles effectively reduce pathogenic microorganisms, including Salmonella and Listeria, while preserving the functional properties of native egg proteins.',
+    highlights: ['Stainless Steel Plate Heat Exchanger', 'USDA Thermal Sterilization Profile', 'HACCP - Critical Control Point Monitored'],
     illustrationSide: 'left',
     image: manufacturingImages.pasteurization,
     altText: 'Stainless steel HTST plate heat exchanger pasteurization processing unit',
@@ -72,12 +69,9 @@ const processChapters = [
   {
     step: '04',
     category: 'CHAPTER 04 • ATOMIZATION & DRYING',
-    title: 'Multi-Stage Tall-Form Spray Drying Tower',
-    narrative:
-      'Pasteurized liquid whole egg is atomized through high-pressure nozzles at the top of tall-form spray drying towers. Micro-droplets mix with sterile filtered hot air, evaporating water instantaneously into uniform, free-flowing Whole Egg Powder with under 4.0% moisture content.',
-    powderDetail:
-      'Gentle thermal evaporation retains native protein solubility, high emulsification capacity, and rich golden yolk color without heat scorching or caramelization off-flavors.',
-    highlights: ['High-Pressure Atomization Nozzles', 'Filtered Hot Air Evaporation Tower', '< 4.0% Final Moisture Retention'],
+    title: 'Spray Drying',
+    narrative:'Pasteurized liquid egg is atomized through high-pressure nozzles into spray dryers, where fine liquid droplets come into contact with filtered hot air, rapidly evaporating moisture to produce uniform, free-flowing egg powder with a moisture content below 5.0%.',
+    highlights: ['High-Pressure Atomization Nozzles', 'Filtered Hot Air Evaporation', '< 5.0% Final Moisture '],
     illustrationSide: 'right',
     image: manufacturingImages.sprayDrying,
     altText: 'Tall stainless steel multi-stage tall-form spray drying tower chamber and cyclone separators',
@@ -88,7 +82,7 @@ const processChapters = [
     title: 'NABL Analytical & Residue Testing',
     narrative:
       'Every production batch undergoes comprehensive analytical, chemical, and microbiological testing in an NABL-accredited (ISO/IEC 17025) laboratory before Certificate of Analysis (COA) issuance, verifying protein content, fat, solubility, and pathogen-free compliance.',
-    highlights: ['LC-MS/MS & GC-MS Residue Screening', 'Microbiological Salmonella & E. coli Assays', 'Protein (Min 45%) & Fat (Min 40%) Verification'],
+    highlights: ['LC-MS/MS & GC-ECD/FID Residue Screening', 'Pathogen & Bacterial testings ', 'Physiochemical Verification'],
     illustrationSide: 'left',
     image: manufacturingImages.qualityLab,
     altText: 'NABL food testing laboratory with analytical instruments and egg powder sample testing',
@@ -96,10 +90,9 @@ const processChapters = [
   {
     step: '06',
     category: 'CHAPTER 06 • HERMETIC SEALING',
-    title: 'HEPA Cleanroom Packaging & QR Traceability',
-    narrative:
-      'Finished powder is sifted through rare-earth magnet traps into positive-pressure HEPA Class 100,000 cleanrooms. It is weighed and heat-sealed in 25kg multi-ply poly-lined Kraft bags, stamped with unique QR lot codes for complete backward supply chain traceability.',
-    highlights: ['HEPA Class 100,000 Positive-Pressure Cleanroom', 'Rare-Earth Magnet Trap Sifting', 'Digital QR Barcode Lot Traceability'],
+    title: 'HEPA Cleanroom Packaging',
+    narrative:'Finished egg powder is sifted through a fine-mesh sifter and passed through high-intensity magnetic traps to control physical contaminants. The powder is packed in positive-pressure, HEPA-filtered cleanrooms, accurately weighed, and sealed in 20/25 kg HDPE bags. Each pack is assigned a unique barcode, enabling complete backward traceability throughout the supply chain.',
+    highlights: ['HEPA Positive-Pressure Cleanroom', 'High-Intensity Magnetic Traps', 'Barcode Lot Traceability'],
     illustrationSide: 'right',
     image: manufacturingImages.packaging,
     altText: 'Automated HEPA cleanroom bag filling and packaging conveyor for 25kg egg powder bags',
