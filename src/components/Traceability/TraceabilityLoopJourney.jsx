@@ -99,6 +99,20 @@ const processChapters = [
   },
 ];
 
+// Liquid line — same journey without the spray-drying chapter. Remaining
+// chapters are renumbered 01–05 and the image/content sides re-alternated.
+const liquidProcessChapters = processChapters
+  .filter((c) => c.step !== '04')
+  .map((c, i) => {
+    const step = String(i + 1).padStart(2, '0');
+    return {
+      ...c,
+      step,
+      category: c.category.replace(/CHAPTER \d+/, `CHAPTER ${step}`),
+      illustrationSide: i % 2 === 0 ? 'left' : 'right',
+    };
+  });
+
 // ─────────────────────────────────────────────
 // Process Image Component
 // ─────────────────────────────────────────────
@@ -287,7 +301,7 @@ function DesktopRow({ chapter, index, isActive, isCompleted, onVisible, reducedM
 // Mobile Stage Component (< lg Breakpoint)
 // Node + Title -> Image -> Content stacked
 // ─────────────────────────────────────────────
-function MobileStage({ chapter, index, isActive, isCompleted, onVisible, reducedMotion }) {
+function MobileStage({ chapter, index, total, isActive, isCompleted, onVisible, reducedMotion }) {
   const stageRef = useRef(null);
   const [entered, setEntered] = useState(false);
 
@@ -312,7 +326,7 @@ function MobileStage({ chapter, index, isActive, isCompleted, onVisible, reduced
       {/* Left Timeline Node & Line */}
       <div className="flex flex-col items-center flex-shrink-0 w-10 relative">
         <NodeCircle step={chapter.step} isActive={isActive} isCompleted={isCompleted} />
-        {index < processChapters.length - 1 && (
+        {index < total - 1 && (
           <div className="w-[1.5px] bg-[#E2E2E2] flex-1 my-2" />
         )}
       </div>
@@ -334,7 +348,7 @@ function MobileStage({ chapter, index, isActive, isCompleted, onVisible, reduced
 // ─────────────────────────────────────────────
 // QA Section
 // ─────────────────────────────────────────────
-function QASection({ reducedMotion }) {
+function QASection({ reducedMotion, bare = false }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
 
@@ -347,7 +361,7 @@ function QASection({ reducedMotion }) {
       initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, ease: EASE_PRECISE }}
-      className="flex flex-col gap-8 pt-16 border-t border-[#ECECEC] relative z-10"
+      className={`flex flex-col gap-8 relative z-10 ${bare ? '' : 'pt-16 border-t border-[#ECECEC]'}`}
     >
       <motion.div
         className="flex flex-col gap-3 max-w-2xl"
@@ -402,11 +416,66 @@ function QASection({ reducedMotion }) {
 }
 
 // ─────────────────────────────────────────────
+// Certifications Strip
+// ─────────────────────────────────────────────
+function CertificationsStrip({ reducedMotion, bare = false }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.55, ease: EASE_PRECISE }}
+      className={`flex flex-col gap-6 relative z-10 ${bare ? '' : 'pt-10 border-t border-[#ECECEC]'}`}
+    >
+      <span className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-[#AAAAAA]">
+        International Food Safety Certifications
+      </span>
+
+      <div className="flex flex-wrap items-start gap-x-10 gap-y-5">
+        {certifications.map((cert) => (
+          <div
+            key={cert.name}
+            title={cert.label}
+            className="flex flex-col gap-0.5 group cursor-default transition-opacity duration-200 opacity-70 hover:opacity-100"
+          >
+            <div className="relative inline-block">
+              <span className="font-heading font-semibold text-[18px] sm:text-[20px] text-[#555555] group-hover:text-[#111111] transition-colors duration-200">
+                {cert.name}
+              </span>
+              <span className="absolute left-0 -bottom-0.5 w-full h-[1px] bg-[#E40A18] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+            </div>
+            <span className="font-mono text-[10px] text-[#AAAAAA] tracking-wider uppercase">
+              {cert.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+// Standalone Quality Assurance + certifications chapter — rendered on each
+// product detail page (ProductPage.jsx), separate from the manufacturing
+// process timeline.
+export function ProductQualityAssurance() {
+  const reducedMotion = useReducedMotion() ?? false;
+  return (
+    <section className="w-full bg-[#FAFAF8] text-[#111111] py-12 sm:py-16 lg:py-20 border-y border-[#ECECEC] font-body">
+      <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12 flex flex-col gap-12">
+        <QASection reducedMotion={reducedMotion} bare />
+        <CertificationsStrip reducedMotion={reducedMotion} />
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────
 // Main Export — Center Vertical Timeline Layout
 // ─────────────────────────────────────────────
-export default function TraceabilityLoopJourney({ title, subtitle, onPageChange }) {
+export default function TraceabilityLoopJourney({ title, subtitle, onPageChange, showQuality = true, line = 'powder' }) {
   const reducedMotion = useReducedMotion() ?? false;
   const [activeStage, setActiveStage] = useState(0);
+  const chapters = line === 'liquid' ? liquidProcessChapters : processChapters;
 
   const headerRef = useRef(null);
   const [headerEntered, setHeaderEntered] = useState(false);
@@ -500,7 +569,7 @@ export default function TraceabilityLoopJourney({ title, subtitle, onPageChange 
 
             {/* 6 Stage Rows */}
             <div className="flex flex-col">
-              {processChapters.map((chapter, index) => (
+              {chapters.map((chapter, index) => (
                 <DesktopRow
                   key={chapter.step}
                   chapter={chapter}
@@ -516,11 +585,12 @@ export default function TraceabilityLoopJourney({ title, subtitle, onPageChange 
 
           {/* Mobile Layout (< lg breakpoint) */}
           <div className="lg:hidden flex flex-col gap-2">
-            {processChapters.map((chapter, index) => (
+            {chapters.map((chapter, index) => (
               <MobileStage
                 key={chapter.step}
                 chapter={chapter}
                 index={index}
+                total={chapters.length}
                 isActive={index === activeStage}
                 isCompleted={index < activeStage}
                 onVisible={handleVisible}
@@ -530,41 +600,15 @@ export default function TraceabilityLoopJourney({ title, subtitle, onPageChange 
           </div>
         </div>
 
-        {/* Quality Assurance */}
-        <QASection reducedMotion={reducedMotion} />
+        {showQuality && (
+          <>
+            {/* Quality Assurance */}
+            <QASection reducedMotion={reducedMotion} />
 
-        {/* Certifications Strip */}
-        <motion.div
-          initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: EASE_PRECISE }}
-          className="flex flex-col gap-6 pt-10 border-t border-[#ECECEC] relative z-10"
-        >
-          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-[#AAAAAA]">
-            International Food Safety Certifications
-          </span>
-
-          <div className="flex flex-wrap items-start gap-x-10 gap-y-5">
-            {certifications.map((cert) => (
-              <div
-                key={cert.name}
-                title={cert.label}
-                className="flex flex-col gap-0.5 group cursor-default transition-opacity duration-200 opacity-70 hover:opacity-100"
-              >
-                <div className="relative inline-block">
-                  <span className="font-heading font-semibold text-[18px] sm:text-[20px] text-[#555555] group-hover:text-[#111111] transition-colors duration-200">
-                    {cert.name}
-                  </span>
-                  <span className="absolute left-0 -bottom-0.5 w-full h-[1px] bg-[#E40A18] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
-                </div>
-                <span className="font-mono text-[10px] text-[#AAAAAA] tracking-wider uppercase">
-                  {cert.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+            {/* Certifications Strip */}
+            <CertificationsStrip reducedMotion={reducedMotion} />
+          </>
+        )}
 
       </div>
     </section>

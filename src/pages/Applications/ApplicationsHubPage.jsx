@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import ApplicationHero from './sections/ApplicationHero';
 import ApplicationCategories from './sections/ApplicationCategories';
@@ -11,7 +13,15 @@ import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 // ApplicationAreas section and by the individual ApplicationLandingPage
 // routes). Exists so Section 2's "View All Applications" button has a real
 // destination instead of nowhere to go.
-export default function ApplicationsHubPage({ onPageChange }) {
+export default function ApplicationsHubPage({ onPageChange, prefill }) {
+  // Products Hub's "View Application" button navigates here with
+  // prefill.scrollTarget set to the target section's id.
+  useEffect(() => {
+    if (prefill?.scrollTarget) {
+      scrollToSectionId(prefill.scrollTarget);
+    }
+  }, [prefill]);
+
   return (
     <PageWrapper
       seo={{

@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
 import ExportMarketsMap from '../../../components/GlobalMap/ExportMarketsMap';
-import exportMarkets from '../../../data/exportMarkets';
 import marketsByRegion from '../../../data/exportMarketRegions';
 import useCountUp from '../../../utils/useCountUp';
 import { fadeUp, EASE_PREMIUM } from '../../../utils/motionTokens';
@@ -90,7 +89,7 @@ export default function GlobalMarkets({ onPageChange }) {
               Our Markets
             </span>
             <span className="font-body text-[13px] text-surface-400">
-              {exportMarkets.length} export markets served worldwide
+              30+ export markets served worldwide
             </span>
           </div>
 

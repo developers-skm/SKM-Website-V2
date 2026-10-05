@@ -74,10 +74,9 @@ function buildFilterGroup(variantsData, patterns, getText) {
 
 export default function VariantTable({ variantsData, displayCode, packagingOptions, selectedCode, onSelectVariant, onCompare }) {
   const [query, setQuery] = useState('');
-  // Starts with the initially-selected variant already checked, so the
-  // "Selected" row and its checkbox agree from first render — not just
-  // after a later click (see handleSelectVariant below for the same sync
-  // on every subsequent selection).
+  // Starts empty when nothing is selected; if a variant is pre-selected it
+  // starts checked so the "Selected" row and its checkbox agree (see
+  // handleSelectVariant below for the same sync on every later selection).
   const [checked, setChecked] = useState(() => (selectedCode ? [selectedCode] : []));
   const [activeFilters, setActiveFilters] = useState([]);
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -119,32 +118,49 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
     setActiveFilters((prev) => (prev.includes(label) ? prev.filter((f) => f !== label) : [...prev, label]));
   };
 
+  // Filters combine like a multi-select list (OR): picking Flow and Sugared
+  // shows every variant matching either one, with the first-picked filter's
+  // variants listed first. Packaging describes the whole product rather than
+  // a single variant, so it never narrows the rows.
   const activeFilterCodeSets = useMemo(() => {
-    return activeFilters.map((label) => {
-      for (const group of filterGroups) {
-        const match = group.options.find((o) => o.label === label);
-        if (match) return match.codes;
-      }
-      return new Set();
-    });
+    const packagingLabels = new Set(
+      filterGroups.filter((g) => g.axis === 'Packaging').flatMap((g) => g.options.map((o) => o.label))
+    );
+    return activeFilters
+      .filter((label) => !packagingLabels.has(label))
+      .map((label) => {
+        for (const group of filterGroups) {
+          const match = group.options.find((o) => o.label === label);
+          if (match) return match.codes;
+        }
+        return new Set();
+      });
   }, [activeFilters, filterGroups]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return variantsData.filter((v) => {
-      if (q) {
-        const haystack = [v.code, v.name, v.description, v.applications, v.benefits]
-          .filter(Boolean)
-          .join(' ')
-          .toLowerCase();
-        if (!haystack.includes(q)) return false;
-      }
-      return activeFilterCodeSets.every((codes) => codes.has(v.code));
-    });
+    const matchesQuery = (v) => {
+      if (!q) return true;
+      const haystack = [v.code, v.name, v.description, v.applications, v.benefits]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+      return haystack.includes(q);
+    };
+    const searched = variantsData.filter(matchesQuery);
+    if (activeFilterCodeSets.length === 0) return searched;
+    // Rank each variant by the earliest-picked filter it matches; Array.sort
+    // is stable, so variants within one filter keep their original order.
+    const rank = (v) => activeFilterCodeSets.findIndex((codes) => codes.has(v.code));
+    return searched.filter((v) => rank(v) !== -1).sort((a, b) => rank(a) - rank(b));
   }, [variantsData, query, activeFilterCodeSets]);
 
   const toggleChecked = (code) => {
     setChecked((prev) => (prev.includes(code) ? prev.filter((c) => c !== code) : [...prev, code]));
+    // Unchecking the selected variant's box also deselects it, so the row
+    // never keeps saying "Selected" (and the detail panel never stays open)
+    // for a variant whose box is unchecked.
+    if (code === selectedCode && checked.includes(code)) onSelectVariant(null);
   };
 
   // Selecting a variant as the active one (shown in the detail panel below)
@@ -155,6 +171,12 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
   // a box, or checking a different row for comparison, still works
   // independently and does not change which variant is "Selected".
   const handleSelectVariant = (code) => {
+    // Clicking "Selected" again deselects it and clears its checkbox.
+    if (code === selectedCode) {
+      onSelectVariant(null);
+      setChecked((prev) => prev.filter((c) => c !== code));
+      return;
+    }
     onSelectVariant(code);
     setChecked((prev) => (prev.includes(code) ? prev : [...prev, code]));
   };
@@ -234,10 +256,11 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
           plumbing and background were added. */}
       <div className="relative">
         <div
+          data-lenis-prevent
           onScroll={(e) => {
             if (!hasScrolled && e.currentTarget.scrollLeft > 12) setHasScrolled(true);
           }}
-          className="rounded-[24px] border border-surface-200/60 overflow-y-auto overflow-x-auto"
+          className="rounded-[24px] border border-surface-200/60 overflow-y-auto overflow-x-auto overscroll-y-auto"
           style={{ maxHeight: '70vh' }}
         >
         <table className="w-full border-separate border-spacing-0 min-w-[720px]">
@@ -362,7 +385,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
             {filtered.length === 0 && (
               <tr>
                 <td colSpan={specColumns.length + 4} className="px-4 py-10 text-center font-body text-[14px] text-surface-400">
-                  No variants match "{query}".
+                  No variants found{query.trim() ? ' for your search' : ''}. Try a different search term.
                 </td>
               </tr>
             )}

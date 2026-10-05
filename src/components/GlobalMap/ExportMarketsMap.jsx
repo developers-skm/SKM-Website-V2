@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useId, useState, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import {
   ComposableMap,
   Geographies,
   Geography,
   Marker,
-  Line,
+  useMapContext,
 } from 'react-simple-maps';
 import exportMarkets from '../../data/exportMarkets';
 
@@ -25,11 +25,116 @@ const INDIA_ID = 356;
 // to whichever export market is currently hovered/focused).
 const INDIA_COORDINATES = [78, 21];
 
+// Arrows per route scale with its length (short 1, medium 2, long 3) at one
+// constant speed. Each arrow travels from India to the market, pauses
+// briefly, then leaves India again; arrows on one route are evenly spaced.
+const ARROW_LENGTH_STEPS_PX = [190, 340];
+const ARROW_SPEED_PX_PER_SEC = 34;
+const ARROW_PAUSE_SECONDS = 1.6;
+
+// Curved route from India to every export market, drawn as a faint guide
+// line plus animated direction chevrons. Each route is a gentle arc bowing
+// toward the north so the many routes fan out instead of overlapping on
+// the straight line between two points. Lives inside ComposableMap
+// because it needs the map's own projection to build the SVG paths.
+function RouteArrows({ focusId, animate }) {
+  const { projection } = useMapContext();
+  const idPrefix = useId();
+  const origin = projection(INDIA_COORDINATES);
+  return (
+    <g className="pointer-events-none">
+      {EXPORT_MARKETS.map((market, routeIndex) => {
+        const target = projection(market.coordinates);
+        if (!origin || !target) return null;
+        const dx = target[0] - origin[0];
+        const dy = target[1] - origin[1];
+        const chord = Math.hypot(dx, dy);
+        // Control point: chord midpoint pushed perpendicular to the chord,
+        // on whichever side is higher up the map.
+        let nx = -dy / chord;
+        let ny = dx / chord;
+        if (ny > 0) {
+          nx = -nx;
+          ny = -ny;
+        }
+        const lift = Math.min(chord * 0.32, 130);
+        const cx = (origin[0] + target[0]) / 2 + nx * lift;
+        const cy = (origin[1] + target[1]) / 2 + ny * lift;
+        const d = `M${origin[0]},${origin[1]} Q${cx},${cy} ${target[0]},${target[1]}`;
+        const length = chord * 1.08;
+        const arrowCount = 1 + ARROW_LENGTH_STEPS_PX.filter((step) => length > step).length;
+        const travel = length / ARROW_SPEED_PX_PER_SEC;
+        const cycle = travel + ARROW_PAUSE_SECONDS;
+        const moveEnd = (travel / cycle).toFixed(3);
+        const isHovered = focusId === market.id;
+        // With a country hovered or selected, only its route is drawn.
+        if (focusId !== null && !isHovered) return null;
+        const pathId = `${idPrefix}-route-${market.id}`;
+        return (
+          <g key={`route-${market.id}`}>
+            <path
+              id={pathId}
+              d={d}
+              fill="none"
+              stroke="#F5B700"
+              strokeWidth={isHovered ? 1.2 : 0.7}
+              strokeOpacity={isHovered ? 0.9 : 0.4}
+              strokeLinecap="round"
+            />
+            {animate &&
+              Array.from({ length: arrowCount }, (_, i) => {
+                const begin = `${-routeIndex * 0.61 - (i * cycle) / arrowCount}s`;
+                return (
+              <path
+                key={i}
+                d="M-3.5,-3.5 L1.5,0 L-3.5,3.5"
+                fill="none"
+                stroke="#FFD24D"
+                strokeWidth={isHovered ? 2.4 : 1.9}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity="0"
+              >
+                <animateMotion
+                  dur={`${cycle}s`}
+                  begin={begin}
+                  repeatCount="indefinite"
+                  rotate="auto"
+                  calcMode="linear"
+                  keyPoints="0;1;1"
+                  keyTimes={`0;${moveEnd};1`}
+                >
+                  <mpath href={`#${pathId}`} />
+                </animateMotion>
+                {/* Visible only while travelling: fades in leaving India and
+                    out on arrival, then stays hidden during the pause. */}
+                <animate
+                  attributeName="opacity"
+                  values="0;1;1;0;0"
+                  keyTimes={`0;${(moveEnd * 0.12).toFixed(3)};${(moveEnd * 0.85).toFixed(3)};${moveEnd};1`}
+                  dur={`${cycle}s`}
+                  begin={begin}
+                  repeatCount="indefinite"
+                />
+              </path>
+                );
+              })}
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
 // The interactive export-markets map + legend, extracted from the homepage's
 // GlobalMarkets section (Phase 1) so it can also anchor the "Global Reach"
 // hub page (Phase 2) — same map, two places, one implementation.
 export default function ExportMarketsMap() {
   const [hoveredId, setHoveredId] = useState(null);
+  // A clicked country stays focused (only its route shows) until clicked again.
+  const [selectedId, setSelectedId] = useState(null);
+  const focusId = hoveredId ?? selectedId;
+  const toggleSelected = (id) => setSelectedId((prev) => (prev === id ? null : id));
   const [tooltip, setTooltip] = useState(null);
   const [isInView, setIsInView] = useState(false);
   const mapRef = useRef(null);
@@ -68,18 +173,19 @@ export default function ExportMarketsMap() {
         <div className="order-2 lg:order-1 lg:w-[188px] xl:w-[208px] shrink-0 border-t lg:border-t-0 lg:border-r border-[#eee]">
           <div className="p-4 lg:p-5 h-full flex flex-col">
             <p className="text-[10px] font-heading font-bold uppercase tracking-[0.1em] text-surface-400 mb-3 shrink-0">
-              Export Markets · {EXPORT_MARKETS.length} Countries
+              Export Markets · 30+ Countries
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-0.5 lg:overflow-y-auto lg:flex-1 lg:min-h-0">
               {EXPORT_MARKETS.map(market => (
                 <div
                   key={market.id}
-                  className={`flex items-center gap-2 px-2 py-[7px] rounded-lg transition-all duration-150 cursor-default select-none ${hoveredId === market.id
+                  className={`flex items-center gap-2 px-2 py-[7px] rounded-lg transition-all duration-150 cursor-pointer select-none ${focusId === market.id
                     ? 'bg-red-50'
                     : 'hover:bg-surface-50'
                     }`}
                   onMouseEnter={() => setHoveredId(market.id)}
                   onMouseLeave={() => setHoveredId(null)}
+                  onClick={() => toggleSelected(market.id)}
                 >
                   <img
                     src={`https://flagcdn.com/20x15/${market.code}.png`}
@@ -118,13 +224,14 @@ export default function ExportMarketsMap() {
                   const geoId = Number(geo.id);
                   const isIndia = geoId === INDIA_ID;
                   const isMarket = HIGHLIGHTED_IDS.has(geoId);
-                  const isActive = hoveredId !== null && hoveredId === geoId;
+                  const isActive = focusId !== null && focusId === geoId;
                   return (
                     <Geography
                       key={geo.rsmKey}
                       geography={geo}
                       onMouseEnter={() => isMarket && setHoveredId(geoId)}
                       onMouseLeave={() => isMarket && setHoveredId(null)}
+                      onClick={() => isMarket && toggleSelected(geoId)}
                       style={{
                         default: {
                           fill: isIndia ? '#F5B700' : isActive ? '#a80000' : 'var(--color-brand-600)',
@@ -150,20 +257,8 @@ export default function ExportMarketsMap() {
               }
             </Geographies>
 
-            {/* ── Route lines — always drawn from India to every export market ── */}
-            {EXPORT_MARKETS.map(market => (
-              <Line
-                key={`route-${market.id}`}
-                from={INDIA_COORDINATES}
-                to={market.coordinates}
-                stroke="#e8b64a"
-                strokeWidth={hoveredId === market.id ? 1.6 : 0.8}
-                strokeOpacity={hoveredId === null || hoveredId === market.id ? 0.8 : 0.35}
-                strokeLinecap="round"
-                strokeDasharray="1 4"
-                className="pointer-events-none"
-              />
-            ))}
+            {/* ── Route arrows — India to every export market ── */}
+            <RouteArrows focusId={focusId} animate={!reduceMotion} />
 
             {/* ── Pin markers ──────────────────────────────────────── */}
             {EXPORT_MARKETS.map((market, i) => (
@@ -172,6 +267,7 @@ export default function ExportMarketsMap() {
                 coordinates={market.coordinates}
                 onMouseEnter={e => handleMarkerEnter(market, e)}
                 onMouseLeave={handleMarkerLeave}
+                onClick={() => toggleSelected(market.id)}
               >
                 <motion.g
                   initial={{ scale: 0, opacity: 0 }}
@@ -188,7 +284,7 @@ export default function ExportMarketsMap() {
                   {/* ① Grey teardrop body — tip at (0,0), bulb centred at (0,-13) r=9.5 */}
                   <path
                     d="M0,0 C-5.5,-2 -9.5,-8.5 -9.5,-13 A9.5,9.5,0,0,1,9.5,-13 C9.5,-8.5 5.5,-2 0,0Z"
-                    fill={hoveredId === market.id ? '#8898A8' : '#A8B8C8'}
+                    fill={focusId === market.id ? '#8898A8' : '#A8B8C8'}
                     stroke="#6B7A8A"
                     strokeWidth="0.5"
                   />

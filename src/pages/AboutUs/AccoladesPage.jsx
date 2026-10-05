@@ -3,70 +3,7 @@ import { motion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import { itemVariants } from '../../utils/animationVariants';
 
-import pic1 from '../../assets/ACCOLADES/Picture1.png';
-import pic2 from '../../assets/ACCOLADES/Picture2.png';
-import pic3 from '../../assets/ACCOLADES/Picture3.png';
-import pic4 from '../../assets/ACCOLADES/Picture4.png';
-import pic5 from '../../assets/ACCOLADES/Picture5.png';
-import pic6 from '../../assets/ACCOLADES/Picture6.png';
-import pic7 from '../../assets/ACCOLADES/Picture7.png';
-import pic8 from '../../assets/ACCOLADES/Picture8.png';
-
-const galleryItems = [
-  {
-    image: pic1,
-    name: 'The Power of i (India)',
-    description:
-      'SKM Egg recognised that Shree Shivkumar has single-handedly made SKM a Category Leader in key Export Markets.',
-  },
-  {
-    image: pic2,
-    name: 'The Power of i (India)',
-    description:
-      'SKM Egg recognised that Shree Shivkumar has single-handedly made SKM a Category Leader in key Export Markets.',
-  },
-  {
-    image: pic3,
-    name: 'Best 5S Practice Award 2016',
-    description: 'Best 5S Practice Award in 2016 provided by M/S ABK-AOTS.',
-  },
-  {
-    image: pic4,
-    name: 'Golden Trophy – APEDA 2011-2012',
-    description:
-      '"Golden Trophy" award provided by APEDA, Ministry of Commerce, Government of India for the year 2011-2012.',
-  },
-  {
-    image: pic5,
-    name: 'Golden Trophy – APEDA 2012-2013',
-    description:
-      '"Golden Trophy" award provided by APEDA, Ministry of Commerce, Government of India for the year 2012-2013.',
-  },
-  {
-    image: pic6,
-    name: 'Export Excellence Award – MEPZ 2013',
-    description: 'Export Excellence Award at MEPZ, Special Economic Zone – Chennai 2013.',
-  },
-  {
-    image: pic7,
-    name: 'Padma Shree Award',
-    description:
-      'Shri SKM Maeilanandhan receiving Padma Shree Award from Honourable President of India, Shri Pranab Mukherjee.',
-  },
-  {
-    image: pic8,
-    name: 'Padma Shree Award',
-    description:
-      'Shri SKM Maeilanandhan receiving Padma Shree Award from Honourable President of India, Shri Pranab Mukherjee.',
-  },
-];
-
-const otherAwards = [
-  'We have been awarded Manufacturing Excellence Silver Award in 2006 and Manufacturing Excellence Gold Award in 2007 & 2008 by Frost & Sullivan.',
-  'We have been awarded State Safety Award for the year 2007 by Government of Tamil Nadu.',
-  'We have been awarded Best Export Performance Awards in 100% EOU category by MEPZ (Madras Export Processing Zone) for the year 2005-06.',
-  'At SKM we are proud to be the leading exporter from India and in recognition of our performance the APEDA [Govt. of India] is awarding us the Silver Trophy since 2001 onwards. We have also been recognized by other Government bodies for our achievement in various fields.',
-];
+import { galleryItems, otherAwards } from '../../data/accolades';
 
 const headerVariants = {
   hidden: { opacity: 0 },

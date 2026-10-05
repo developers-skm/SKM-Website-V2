@@ -17,7 +17,7 @@ export default function FormulationChallenges({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full bg-[#f8f4ee] py-16 sm:py-20 lg:py-24">
+    <div id="formulation-challenges" className="w-full bg-[#f8f4ee] py-16 sm:py-20 lg:py-24 scroll-mt-[100px] xl:scroll-mt-[120px]">
       <motion.div
         className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10"
         initial="hidden"

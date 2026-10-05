@@ -76,6 +76,10 @@
   bottom: calc(var(--mobile-cta-reserve) + 22px);
 }
 
+.fab-cart {
+  bottom: calc(var(--mobile-cta-reserve) + 108px);
+}
+
 @media (min-width: 768px) {
   .fab-scroll-top {
     bottom: 95px;
@@ -83,6 +87,10 @@
 
   .fab-chatbot {
     bottom: 30px;
+  }
+
+  .fab-cart {
+    bottom: 160px;
   }
 }
 

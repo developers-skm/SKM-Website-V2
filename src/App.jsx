@@ -8,11 +8,8 @@ import OfflinePage from './pages/Offline/OfflinePage';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 // Every route backed by the shared ProductPage shell (src/components/
-// ProductPage/ProductPage.jsx) — that component renders its own
-// StickyProductBar (brief §10: name + Request Sample + Download TDS +
-// Request Quote), so the generic sitewide MobileStickyActions bottom bar
-// (Navbar/MobileStickyActions.jsx) is suppressed on these routes to avoid
-// stacking two differently-labelled bars on the same mobile edge.
+// ProductPage/ProductPage.jsx) — the generic sitewide MobileStickyActions
+// bottom bar (Navbar/MobileStickyActions.jsx) is suppressed on these routes.
 const PRODUCT_DETAIL_ROUTES = new Set(products.map((p) => p.page));
 
 // Lazy load subpages to reduce initial bundle size and eliminate unused JavaScript
@@ -54,6 +51,8 @@ const GetQuotePage = lazy(() => import('./pages/GetQuote/GetQuotePage'));
 const ApplicationLandingPage = lazy(() => import('./pages/Applications/ApplicationLandingPage'));
 const ApplicationsHubPage = lazy(() => import('./pages/Applications/ApplicationsHubPage'));
 const ProductsHubPage = lazy(() => import('./pages/Products/ProductsHubPage'));
+const PowderLinePage = lazy(() => import('./pages/Products/PowderLinePage'));
+const LiquidLinePage = lazy(() => import('./pages/Products/LiquidLinePage'));
 const EggPowdersCategoryPage = lazy(() => import('./pages/Products/EggPowdersCategoryPage'));
 const LiquidEggCategoryPage = lazy(() => import('./pages/Products/LiquidEggCategoryPage'));
 const CustomSpecialtyCategoryPage = lazy(() => import('./pages/Products/CustomSpecialtyCategoryPage'));
@@ -71,6 +70,7 @@ const CoreIdeologyPage = lazy(() => import('./pages/AboutUs/CoreIdeologyPage'));
 const BrandIdentityPage = lazy(() => import('./pages/AboutUs/BrandIdentityPage'));
 const CeoMessagePage = lazy(() => import('./pages/AboutUs/CeoMessagePage'));
 const AccoladesPage = lazy(() => import('./pages/AboutUs/AccoladesPage'));
+const GalleryPage = lazy(() => import('./pages/AboutUs/GalleryPage'));
 const CoffeeTableBooksPage = lazy(() => import('./pages/AboutUs/CoffeeTableBooksPage'));
 const EventsPage = lazy(() => import('./pages/AboutUs/EventsPage'));
 
@@ -175,6 +175,8 @@ function App() {
       case 'accolades':
       case 'about-accolades':
         return <AccoladesPage onPageChange={handlePageChange} />;
+      case 'gallery':
+        return <GalleryPage onPageChange={handlePageChange} />;
       case 'coffee_table_books':
       case 'about-coffee-table-books':
         return <CoffeeTableBooksPage onPageChange={handlePageChange} />;
@@ -184,6 +186,10 @@ function App() {
         
       case 'products':
         return <ProductsHubPage onPageChange={handlePageChange} prefill={prefill} />;
+      case 'powder_line':
+        return <PowderLinePage onPageChange={handlePageChange} />;
+      case 'liquid_line':
+        return <LiquidLinePage onPageChange={handlePageChange} />;
       case 'category_powders':
         return <EggPowdersCategoryPage onPageChange={handlePageChange} />;
       case 'category_liquids':
@@ -279,7 +285,7 @@ function App() {
         return <GetQuotePage onPageChange={handlePageChange} prefill={prefill} />;
 
       case 'applications':
-        return <ApplicationsHubPage onPageChange={handlePageChange} />;
+        return <ApplicationsHubPage onPageChange={handlePageChange} prefill={prefill} />;
 
       // Application landing pages (plan.md §5)
       case 'app_bakery':

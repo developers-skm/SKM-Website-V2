@@ -87,6 +87,7 @@ export const overlayColumns = [
     links: [
       { label: 'Sustainability', route: 'sustainability_and_community' },
       { label: 'Investors', route: 'investors' },
+      { label: 'Gallery', route: 'gallery' },
     ],
   },
   {

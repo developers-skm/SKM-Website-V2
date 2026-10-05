@@ -4,6 +4,11 @@ import Footer from '../Footer/Footer';
 import ScrollToTopButton from '../ScrollToTop/ScrollToTopButton';
 import Chatbot from '../Chatbot/Chatbot';
 import MobileStickyActions from '../Navbar/MobileStickyActions';
+import QuickActionsCart from '../QuickActions/QuickActionsCart';
+import { getProductIdByPage, getTdsUrl } from '../../data/products';
+import { getBrochureUrl } from '../../data/brochureUrl';
+
+const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 
 // ACTION_BP (md, 768px) — the mobile sticky-action breakpoint — is
 // intentionally independent of Navbar's NAV_BP (xl). A tablet in the
@@ -13,6 +18,11 @@ export default function Layout({ children, activePage, onPageChange, suppressMob
   const footerWrapperRef = useRef(null);
   const [footerVisible, setFooterVisible] = useState(false);
   const isOffline = activePage === 'offline';
+  // Product pages get that product's TDS; every other page offers the portfolio.
+  const cartProductId = getProductIdByPage(activePage);
+  const cartDownload = cartProductId
+    ? { url: getTdsUrl(cartProductId), label: 'Download TDS' }
+    : { url: ProductListPdf, label: 'Download Product Portfolio' };
 
   useEffect(() => {
     if (isOffline) return undefined;
@@ -40,6 +50,13 @@ export default function Layout({ children, activePage, onPageChange, suppressMob
           <div ref={footerWrapperRef}>
             <Footer onPageChange={onPageChange} />
           </div>
+          {activePage !== 'get-quote' && (
+            <QuickActionsCart
+              downloadUrl={cartDownload.url}
+              downloadLabel={cartDownload.label}
+              onRequestSample={() => onPageChange('get-quote', cartProductId ? { productId: cartProductId } : undefined)}
+            />
+          )}
           <ScrollToTopButton />
           <Chatbot />
           <MobileStickyActions

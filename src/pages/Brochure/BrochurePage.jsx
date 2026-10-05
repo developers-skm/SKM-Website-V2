@@ -17,25 +17,25 @@ const brochureMeta = {
     desc: 'Complete catalog of all SKM egg products — powders, liquids, customized mixes and specialty solutions available for global food producers.',
     featured: true,
   },
-  'SKM BAKERY MIX A5 FLYER (F&B).pdf': {
+  'SKM BAKERY MIX A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
     title: 'Bakery Mix',
     desc: "Technical flyer covering SKM's specialized bakery egg mix — composition, functional benefits, and applications in the F&B industry.",
     featured: false,
   },
-  'SKM EGG ALBUMEN POWDER    A5 FLYER (F&B).pdf': {
+  'SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
     title: 'Egg Albumen Powder',
     desc: 'Detailed specification sheet for SKM Egg Albumen Powder — ideal for confectionery, sports nutrition, and meat processing.',
     featured: false,
   },
-  'SKM EGG YOLK POWDER A5 FLYER (F&B).pdf': {
+  'SKM EGG YOLK POWDER A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
     title: 'Egg Yolk Powder',
     desc: 'Product flyer for SKM Egg Yolk Powder covering emulsification properties, composition, and key food industry applications.',
     featured: false,
   },
-  'SKM WHOLE EGG POWDER A5 FLYER (F&B).pdf': {
+  'SKM WHOLE EGG POWDER A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
     title: 'Whole Egg Powder',
     desc: 'Specification flyer for SKM Whole Egg Powder — versatile, shelf-stable solution for bakeries, sauces, and ready meal manufacturers.',

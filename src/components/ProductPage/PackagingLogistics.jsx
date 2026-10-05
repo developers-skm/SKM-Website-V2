@@ -36,7 +36,7 @@ export default function PackagingLogistics({ packagingOptions, variantsData, onV
     },
     exportMarkets.length > 0 && {
       label: 'Export Suitability',
-      value: `Exported to ${exportMarkets.length} countries worldwide`,
+      value: 'Exported to 30+ countries worldwide',
     },
   ].filter(Boolean);
 

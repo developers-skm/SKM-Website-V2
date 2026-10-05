@@ -124,7 +124,7 @@ const technicalInsights = [
     title: 'Unlocking Gel Strength: How Temperature Affects Egg Albumen Powders',
     excerpt: 'Dive deep into how high-gel vs. medium-gel albumen powder performs under different temperatures in meat processing and confectionery.',
     readTime: '5 min read',
-    flyerName: 'SKM EGG ALBUMEN POWDER    A5 FLYER (F&B).pdf',
+    flyerName: 'SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf',
     content: 'Egg albumen contains key proteins (ovalbumin, conalbumin, ovomucoid) that denature at specific temperatures to form a firm, three-dimensional gel network. In meat processing, high-gel albumen powder is critical for achieving optimal water-binding capacity and mechanical sliceability. We recommend a heating phase of at least 74°C for 20 minutes to complete the gelation process, preventing syneresis (water release) and ensuring a clean bite. For confectionery (marshmallows and nougats), whipping properties can be optimized by maintaining a pH of 6.5 to 7.0 and whipping at room temperature before adding hot sugar syrup.'
   },
   {
@@ -133,7 +133,7 @@ const technicalInsights = [
     title: 'Optimal Storage Protocols for Frozen vs. Chilled Liquid Eggs',
     excerpt: 'Best practices for thawing frozen yolk mixes and managing shelf-life for chilled liquid eggs to preserve foaming capacity.',
     readTime: '4 min read',
-    flyerName: 'SKM EGG YOLK POWDER A5 FLYER (F&B).pdf',
+    flyerName: 'SKM EGG YOLK POWDER A5 FLYER (F-B).pdf',
     content: 'Liquid egg ingredients are highly sensitive to thermal fluctuations. Chilled liquid eggs must be stored strictly between 0°C and 4°C and used within their specified shelf life to avoid protein breakdown. For frozen liquid eggs (stored at ≤ -18°C), the thawing process is critical. Rapid thawing at room temperature or using warm water causes local hot spots that denature proteins and destroy emulsification capabilities. Thawing must occur slowly under refrigeration (between 2°C and 6°C) over 24 to 48 hours, followed by gentle agitation before introducing the liquid into batch mixers.'
   },
   {
@@ -142,7 +142,7 @@ const technicalInsights = [
     title: 'Preventing Oil-Water Separation in Industrial Mayonnaise Emulsions',
     excerpt: 'Why heat-stable yolk powder is essential for retorted dressings and how to calibrate shear rates during production.',
     readTime: '6 min read',
-    flyerName: 'SKM BAKERY MIX A5 FLYER (F&B).pdf',
+    flyerName: 'SKM BAKERY MIX A5 FLYER (F-B).pdf',
     content: 'Mayonnaise is a high-oil emulsion stabilized by the lecithin-lipoprotein complexes in egg yolk. In retorted or pasteurized dressings, standard egg yolk fails because heat denatures the proteins, breaking the emulsion and causing oil separation. SKM\'s Heat-Stable Egg Yolk Powder is enzyme-modified to increase thermal tolerance, preventing emulsion breakdown even under high-temperature pasteurization. When preparing the emulsion, the oil addition rate must be carefully calibrated against high-shear mixing speeds to maintain drop size consistency between 2 and 5 microns.'
   },
   {
@@ -151,7 +151,7 @@ const technicalInsights = [
     title: 'From Feed to Fork: Mitigating Residues in B2B Exports',
     excerpt: 'A technical review of SKM\'s captive feed screening methods and GC-MS testing procedures that guarantee zero residue.',
     readTime: '5 min read',
-    flyerName: 'SKM WHOLE EGG POWDER A5 FLYER (F&B).pdf',
+    flyerName: 'SKM WHOLE EGG POWDER A5 FLYER (F-B).pdf',
     content: 'Guaranteeing zero pesticide, antibiotic, and heavy metal residues in bulk egg exports requires complete control over the hen\'s diet. At SKM, our in-house feed mill screens all incoming grains using advanced High-Performance Liquid Chromatography (HPLC) and Gas Chromatography-Mass Spectrometry (GC-MS). This ensures that no contaminated feed enters our layer farms. Furthermore, each finished egg batch is tested in our NABL-accredited laboratory (ISO/IEC 17025) before processing, providing absolute traceability back to the feed batch and layer house for each shipment.'
   },
   {
@@ -160,7 +160,7 @@ const technicalInsights = [
     title: 'Global Egg Ingredient Trends: The Shift Towards Functional Custom Mixes',
     excerpt: 'An analytical view on why bakeries are replacing shell eggs with customized mixes containing pre-dosed salt, sugar, and stabilizers.',
     readTime: '4 min read',
-    flyerName: 'SKM BAKERY MIX A5 FLYER (F&B).pdf',
+    flyerName: 'SKM BAKERY MIX A5 FLYER (F-B).pdf',
     content: 'Industrial bakeries globally are shifting away from shell egg cracking and plain egg powders toward pre-blended functional mixes. This shift is driven by three main factors: consistency, labor costs, and food safety. Custom mixes pre-blended with salt, sugar, or specialty texturizers allow bakeries to bypass ingredient scaling steps, eliminating human error on the factory floor. Additionally, these custom blends are pasteurized as a compound, ensuring a much lower microbiological profile compared to manual shell egg additions.'
   }
 ];

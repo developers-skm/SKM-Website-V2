@@ -21,9 +21,9 @@ import CustomizedPackagesImg from '../assets/3. PRODUCTS/Customized Packages/Pow
 // the full document list).
 import { getBrochureUrl } from './brochureUrl';
 
-const WholeEggPowderTds = getBrochureUrl('SKM WHOLE EGG POWDER A5 FLYER (F&B).pdf');
-const EggYolkPowderTds = getBrochureUrl('SKM EGG YOLK POWDER A5 FLYER (F&B).pdf');
-const EggAlbumenPowderTds = getBrochureUrl('SKM EGG ALBUMEN POWDER    A5 FLYER (F&B).pdf');
+const WholeEggPowderTds = getBrochureUrl('SKM WHOLE EGG POWDER A5 FLYER (F-B).pdf');
+const EggYolkPowderTds = getBrochureUrl('SKM EGG YOLK POWDER A5 FLYER (F-B).pdf');
+const EggAlbumenPowderTds = getBrochureUrl('SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf');
 
 export const PRODUCT_CATEGORIES = {
   POWDERS: 'Egg Powders',
@@ -40,7 +40,7 @@ const products = [
     image: WholeEggPowderImg,
     category: PRODUCT_CATEGORIES.POWDERS,
     shortDescription: 'Pasteurized spray-dried whole hen egg powder for bakery, confectionery, noodles, and mayonnaise — 13 variants.',
-    packagingOptions: ['20kg', '25kg', 'Bag-in-Box'],
+    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
     tdsUrl: WholeEggPowderTds,
   },
   {
@@ -50,7 +50,7 @@ const products = [
     image: EggYolkPowderImg,
     category: PRODUCT_CATEGORIES.POWDERS,
     shortDescription: 'Pasteurized spray-dried egg yolk powder with excellent emulsifying properties and natural color, ideal for mayonnaise, dressings, and bakery applications.',
-    packagingOptions: ['20kg', '25kg', 'Bag-in-Box'],
+    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
     tdsUrl: EggYolkPowderTds,
   },
   {
@@ -60,7 +60,7 @@ const products = [
     image: EggYolkPowderHeatStableImg,
     category: PRODUCT_CATEGORIES.POWDERS,
     shortDescription: 'Modified egg yolk powder formulated to maintain its emulsifying stability under hot-process mayonnaise and sauce applications.',
-    packagingOptions: ['20kg', '25kg', 'Bag-in-Box'],
+    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
   },
   {
     id: 'egg_albumen_powder',
@@ -69,7 +69,7 @@ const products = [
     image: EggAlbumenPowderImg,
     category: PRODUCT_CATEGORIES.POWDERS,
     shortDescription: 'Dried egg white powder with exceptional gelling and whipping performance for surimi, sausages, meringues, and confectionery.',
-    packagingOptions: ['20kg', '25kg', 'Bag-in-Box'],
+    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
     tdsUrl: EggAlbumenPowderTds,
   },
   {

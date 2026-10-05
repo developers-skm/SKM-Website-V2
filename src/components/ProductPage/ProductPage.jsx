@@ -1,13 +1,12 @@
 import SEO from '../SEO/SEO';
 import ProductHero from './ProductHero';
-import StickyProductBar from './StickyProductBar';
 import SpecPanel from './SpecPanel';
 import VariantExplorer from './VariantExplorer';
 import FunctionalPerformance from './FunctionalPerformance';
 import ApplicationGallery from './ApplicationGallery';
 import RecommendedApplications from './RecommendedApplications';
 import PackagingLogistics from './PackagingLogistics';
-import TraceWidget from './TraceWidget';
+import { ProductQualityAssurance } from '../Traceability/TraceabilityLoopJourney';
 import ProductDocuments from './ProductDocuments';
 import RelatedProducts from './RelatedProducts';
 import EnquiryCTABand from '../common/EnquiryCTABand';
@@ -36,12 +35,6 @@ export default function ProductPage({
 
   return (
     <div className="w-full flex flex-col bg-white font-body text-left">
-      <StickyProductBar
-        productName={productName}
-        tdsUrl={tdsUrl}
-        onRequestSample={() => onPageChange('get-quote', { productId })}
-        onRequestQuote={() => onPageChange('get-quote', { productId })}
-      />
       <SEO
         title={seo.title}
         description={seo.description}
@@ -144,12 +137,8 @@ export default function ProductPage({
         </section>
       )}
 
-      {/* Traceability — warm cream chapter, the major trust section */}
-      <section className="w-full bg-[#f6f1e9] py-12 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
-          <TraceWidget onPageChange={onPageChange} productName={productName} productCategory={productRecord?.category} />
-        </div>
-      </section>
+      {/* Quality Assurance + certifications — cream chapter */}
+      <ProductQualityAssurance />
 
       {/* Documents — white chapter */}
       <section className="w-full bg-white py-12 sm:py-16 lg:py-20">

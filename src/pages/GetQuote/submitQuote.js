@@ -6,9 +6,10 @@ export default async function submitQuote(payload) {
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify(payload),
   });
-  const data = await res.json();
+  // The server may return a non-JSON body (proxy error, crash page) — don't let that mask the status.
+  const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    throw new Error(data.message || 'Submission failed');
+    throw new Error(data.message || `Submission failed (${res.status})`);
   }
   return data;
 }

@@ -47,21 +47,17 @@ export default function Navbar({ activePage, onPageChange }) {
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 260, damping: 22, mass: 0.8 }}
-        className="absolute top-5 left-5 sm:top-8 sm:left-8 lg:top-8 lg:left-16 z-30"
+        className="absolute top-[22px] left-3 sm:top-[23px] sm:left-5 lg:top-8 lg:left-7 z-30"
       >
         <button
           onClick={handleLogoClick}
-          className={`flex-shrink-0 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-lg flex items-center transition-all duration-200 ${
-            activePage === 'offline'
-              ? 'p-1 hover:opacity-90'
-              : 'bg-white/95 border border-black/5 backdrop-blur-md px-3 py-2.5 sm:px-3.5 sm:py-3 shadow-[0_4px_16px_rgba(0,0,0,0.08)]'
-          }`}
+          className="flex-shrink-0 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-lg flex items-center p-1 transition-all duration-200 hover:opacity-90"
           aria-label="SKM Egg Products — Home"
         >
           <img
             src={SKMLogo}
             alt="SKM Egg Products"
-            className="w-[140px] sm:w-[160px] lg:w-[180px] h-auto object-contain transition-opacity duration-200 hover:opacity-85"
+            className="w-[170px] sm:w-[210px] lg:w-[250px] h-auto object-contain drop-shadow-[0_1px_8px_rgba(255,255,255,0.55)] transition-opacity duration-200 hover:opacity-85"
             loading="eager"
           />
         </button>

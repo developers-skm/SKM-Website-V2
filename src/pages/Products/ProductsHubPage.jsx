@@ -4,8 +4,9 @@ import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import ScrollFrameSequence from '../../components/common/ScrollFrameSequence';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
-import products, { PRODUCT_CATEGORIES, getProductById } from '../../data/products';
+import products, { PRODUCT_CATEGORIES } from '../../data/products';
 import { getBrochureUrl } from '../../data/brochureUrl';
+import ProductComparisonSection from './ProductComparisonSection';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 import { EASE_PREMIUM, DURATION, fadeUp, cardRise } from '../../utils/motionTokens';
 
@@ -27,7 +28,30 @@ const CATEGORY_OPTIONS = Object.values(PRODUCT_CATEGORIES);
 // packaging value across all products is shown (nothing to narrow by yet).
 function getPackagingOptionsForCategory(category) {
   const scoped = category ? products.filter((p) => p.category === category) : products;
-  return Array.from(new Set(scoped.flatMap((p) => p.packagingOptions))).sort();
+  return Array.from(new Set(scoped.flatMap((p) => p.packagingOptions))).sort(comparePackagingSize);
+}
+
+// Sorts size values smallest to largest (100g, 250g, 500g, 1kg, 5kg, 20kg...).
+// Weights (g/kg) come first, then volumes (ml/l); non-size labels such as
+// "Bag-in-Box" or "Custom" sort alphabetically ahead of the sizes.
+function sizeSortKey(value) {
+  const match = value.match(/^(\d+(?:\.\d+)?)(kg|g|ml|l)$/i);
+  if (!match) return null;
+  const amount = parseFloat(match[1]);
+  const unit = match[2].toLowerCase();
+  if (unit === 'kg') return { group: 0, base: amount * 1000 };
+  if (unit === 'g') return { group: 0, base: amount };
+  if (unit === 'l') return { group: 1, base: amount * 1000 };
+  return { group: 1, base: amount };
+}
+
+function comparePackagingSize(a, b) {
+  const ka = sizeSortKey(a);
+  const kb = sizeSortKey(b);
+  if (!ka && !kb) return a.localeCompare(b);
+  if (!ka) return -1;
+  if (!kb) return 1;
+  return ka.group - kb.group || ka.base - kb.base;
 }
 
 // Groups a category's flat packagingOptions (e.g. ["20kg", "25kg",
@@ -50,6 +74,25 @@ const CATEGORY_PACKAGING_LABEL = {
   [PRODUCT_CATEGORIES.POWDERS]: 'Bag-in-Box',
   [PRODUCT_CATEGORIES.LIQUIDS]: 'Bag (LDPE)',
 };
+
+// Egg Powders ship in two container types, each with its own weights, so
+// they're listed explicitly rather than derived from the flat option list.
+const CATEGORY_PACKAGING_GROUPS = {
+  [PRODUCT_CATEGORIES.POWDERS]: [
+    { key: 'Bag-in-Box', label: 'Bag-in-Box', values: ['20kg', '25kg'] },
+    { key: 'Bag-in-Bag', label: 'Bag-in-Bag', values: ['10kg', '20kg'] },
+  ],
+};
+
+// Packaging filter values prefixed with this select a single product rather
+// than a packagingOptions entry (used by the Customized Solutions pills).
+const PRODUCT_PILL_PREFIX = 'product:';
+
+function matchesPackaging(product, packaging) {
+  return packaging.startsWith(PRODUCT_PILL_PREFIX)
+    ? product.id === packaging.slice(PRODUCT_PILL_PREFIX.length)
+    : product.packagingOptions.includes(packaging);
+}
 
 const SIZE_PATTERN = /^\d+(\.\d+)?(kg|g|ml|l)$/i;
 
@@ -79,6 +122,26 @@ function groupPackagingOptions(options, category) {
       value: v,
       grouped: false,
     }));
+  }
+
+  if (category === PRODUCT_CATEGORIES.CUSTOMIZED) {
+    // Both customized products share the single "Custom" packaging value,
+    // so offer each product as its own pill and filter by product instead.
+    return [
+      {
+        key: 'Custom',
+        label: 'Custom',
+        values: products
+          .filter((p) => p.category === category)
+          .map((p) => ({ value: `${PRODUCT_PILL_PREFIX}${p.id}`, label: p.title })),
+        grouped: true,
+      },
+    ];
+  }
+
+  const explicitGroups = CATEGORY_PACKAGING_GROUPS[category];
+  if (explicitGroups) {
+    return explicitGroups.map((g) => ({ ...g, grouped: true }));
   }
 
   const realLabel = CATEGORY_PACKAGING_LABEL[category];
@@ -150,9 +213,12 @@ function FilterPill({ active, onClick, children }) {
 // only two real, structured axes present in products.js. "Application" and
 // "function" filters from the brief have no per-product data source and are
 // intentionally not included.
-function ProductFinder({ onPageChange, compareList, setCompareList }) {
+function ProductFinder({ onPageChange }) {
   const [category, setCategory] = useState(null);
   const [packaging, setPackaging] = useState(null);
+  // The same weight (e.g. 20 kg) can appear under two container types — track
+  // which group it was picked from so only that pill highlights.
+  const [packagingGroup, setPackagingGroup] = useState(null);
   const reduceMotion = useReducedMotion();
 
   const packagingOptions = useMemo(() => getPackagingOptionsForCategory(category), [category]);
@@ -161,7 +227,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
   const filtered = useMemo(() => {
     return products.filter((p) => {
       if (category && p.category !== category) return false;
-      if (packaging && !p.packagingOptions.includes(packaging)) return false;
+      if (packaging && !matchesPackaging(p, packaging)) return false;
       return true;
     });
   }, [category, packaging]);
@@ -182,12 +248,6 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
   const clearFilters = () => {
     setCategory(null);
     setPackaging(null);
-  };
-
-  const toggleCompare = (id) => {
-    setCompareList((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
   };
 
   return (
@@ -259,13 +319,22 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                     <span className="font-body font-semibold text-[12.5px] text-surface-500 mr-1 whitespace-nowrap">
                       {group.label}
                     </span>
-                    {group.values.map((value) => {
-                      const active = packaging === value;
+                    {group.values.map((item) => {
+                      // Values are plain strings, or { value, label } when the
+                      // filter value differs from the text shown.
+                      const value = typeof item === 'string' ? item : item.value;
+                      const text = typeof item === 'string' ? value : item.label;
+                      const groupMatches =
+                        packagingGroup === group.key || !packagingGroups.some((g) => g.key === packagingGroup);
+                      const active = packaging === value && groupMatches;
                       return (
                         <button
                           key={value}
                           type="button"
-                          onClick={() => setPackaging(active ? null : value)}
+                          onClick={() => {
+                            setPackaging(active ? null : value);
+                            setPackagingGroup(group.key);
+                          }}
                           aria-pressed={active}
                           className={`inline-flex items-center min-h-[36px] sm:min-h-[28px] px-2.5 py-1 rounded-lg font-body font-semibold text-[12px] transition-all duration-[220ms] focus:outline-none focus-gold ${
                             active
@@ -273,7 +342,7 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                               : 'bg-white text-surface-600 hover:bg-gold-500/10'
                           }`}
                         >
-                          {value === group.label ? value : `(${formatSizeLabel(value)})`}
+                          {text === group.label ? text : `(${formatSizeLabel(text)})`}
                         </button>
                       );
                     })}
@@ -306,13 +375,6 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
             )}
           </AnimatePresence>
         </motion.div>
-
-        <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-surface-300" aria-hidden="true" />
-          <p className="font-body text-[13px] text-surface-500 m-0 tracking-wide" aria-live="polite">
-            {filtered.length} of {products.length} products
-          </p>
-        </div>
 
         <motion.div layout={!reduceMotion} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
           <AnimatePresence initial={false} mode="popLayout">
@@ -355,16 +417,6 @@ function ProductFinder({ onPageChange, compareList, setCompareList }) {
                     View Product Details
                     <span className="inline-block transition-transform duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[7px]" aria-hidden="true">→</span>
                   </InternalLink>
-                  <button
-                    type="button"
-                    onClick={() => toggleCompare(product.id)}
-                    aria-pressed={compareList.includes(product.id)}
-                    className={`font-body font-semibold text-[13px] transition-colors duration-200 focus:outline-none focus-gold rounded-sm ${
-                      compareList.includes(product.id) ? 'text-gold-600 underline' : 'text-surface-400 hover:text-surface-600 hover:underline'
-                    }`}
-                  >
-                    {compareList.includes(product.id) ? 'Added to Comparison' : 'Add to Comparison'}
-                  </button>
                 </div>
               </motion.div>
             ))}
@@ -486,6 +538,78 @@ function ProductFamiliesSection({ onPageChange }) {
   );
 }
 
+// Manufacturing lines — one split card: Powder Line (left) and Liquid Line
+// (right) each open their own manufacturing process page.
+const manufacturingLines = [
+  {
+    id: 'powder',
+    route: 'powder_line',
+    label: 'Powder Line',
+    description: 'See how fresh eggs become spray-dried egg powders — from biosecure farms to hygienic packaging.',
+    cta: 'View Manufacturing Process',
+  },
+  {
+    id: 'liquid',
+    route: 'liquid_line',
+    label: 'Liquid Line',
+    description: 'See how fresh eggs become pasteurized liquid egg products — from biosecure farms to hygienic packaging.',
+    cta: 'View Manufacturing Process',
+  },
+];
+
+function ManufacturingLinesSection({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
+  return (
+    <div id="manufacturing-lines" className="w-full py-[64px] lg:py-[92px] bg-white scroll-mt-[100px] xl:scroll-mt-[120px]">
+      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-9 lg:gap-11">
+        <motion.div
+          {...fadeUp(reduceMotion, { duration: 0.9, distance: 40 })}
+          className="flex flex-col gap-2.5"
+        >
+          <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.14em] text-gold-600">
+            Manufacturing Process
+          </span>
+          <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
+            Explore our manufacturing lines
+          </h2>
+        </motion.div>
+
+        <motion.div
+          {...fadeUp(reduceMotion, { duration: 0.85, distance: 30, delay: reduceMotion ? 0 : 0.14 })}
+          className="grid grid-cols-1 md:grid-cols-2 rounded-[16px] sm:rounded-[20px] border border-surface-200/70 bg-[#fdfbf7] overflow-hidden shadow-[0_1px_2px_rgba(20,16,12,0.04),0_16px_40px_-16px_rgba(20,16,12,0.10)]"
+        >
+          {manufacturingLines.map((line) => (
+            <InternalLink
+              key={line.id}
+              route={line.route}
+              onPageChange={onPageChange}
+              className="group relative flex flex-col gap-3 p-7 sm:p-10 lg:p-12 border-b md:border-b-0 md:border-r last:border-0 border-surface-200/70 transition-colors duration-[320ms] hover:bg-gold-500/[0.07] focus:outline-none focus-gold"
+            >
+              <span className="flex items-center gap-3">
+                <h3 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading leading-[1.15] tracking-[-0.01em] m-0">
+                  {line.label}
+                </h3>
+                {line.comingSoon && (
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/40 font-body font-semibold text-[11px] uppercase tracking-[0.1em] text-heading">
+                    Coming Soon
+                  </span>
+                )}
+              </span>
+              <p className="font-body text-[14.5px] text-surface-500 leading-[1.6] max-w-md m-0">{line.description}</p>
+              {!line.comingSoon && (
+                <span className="inline-flex items-center gap-1.5 mt-2 font-body font-semibold text-[14px] text-brand-600 group-hover:text-brand-700">
+                  {line.cta}
+                  <span className="inline-block transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1" aria-hidden="true">→</span>
+                </span>
+              )}
+            </InternalLink>
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
 // Section 4 — Browse by functional requirement. No product in products.js
 // carries a structured "function" tag (foaming, emulsification, gelling,
 // etc.) — that taxonomy exists only as free-text `benefits` on individual
@@ -514,199 +638,20 @@ function FunctionalRequirementSection({ onPageChange }) {
           {...fadeUp(reduceMotion, { duration: 0.85, distance: 30, delay: reduceMotion ? 0 : 0.24 })}
           className="flex flex-wrap items-center gap-4 mt-1"
         >
-          <button
-            type="button"
-            disabled
-            title="Coming soon"
-            aria-disabled="true"
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 text-surface-400 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
+          <InternalLink
+            route="applications"
+            onPageChange={onPageChange}
+            prefillData={{ scrollTarget: 'formulation-challenges' }}
+            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 text-heading hover:border-gold-500/60 font-body font-semibold text-[15px] transition-colors duration-200 focus:outline-none focus-gold"
           >
-            View Foaming Solutions
-          </button>
-          <button
-            type="button"
-            disabled
-            title="Coming soon"
-            aria-disabled="true"
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 text-surface-400 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
-          >
-            View Emulsification Solutions
-          </button>
+            View Application
+          </InternalLink>
           <InternalLink
             route="contact-us"
             onPageChange={onPageChange}
             className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-all duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] hover:shadow-[0_14px_30px_rgba(228,10,24,0.28)] active:translate-y-0 active:scale-[0.98] active:shadow-none focus:outline-none focus-gold"
           >
             Discuss a Functional Challenge
-          </InternalLink>
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
-// Section 5 — Product comparison table. Only real, shared columns: Product,
-// Category, Packaging options. The brief's "product code," "shelf life,"
-// and "available documents" columns have no data source anywhere in the
-// repo and are omitted, not invented. "Download Comparison" has no real
-// export mechanism and stays a genuinely disabled button; "Request
-// Technical Recommendation" routes to the real get-quote flow.
-function ComparisonSection({ compareList, onPageChange }) {
-  const compared = compareList.map(getProductById).filter(Boolean);
-  const reduceMotion = useReducedMotion();
-  const [hasScrolled, setHasScrolled] = useState(false);
-
-  return (
-    <div id="product-comparison" className="w-full py-[60px] lg:py-[85px] bg-white scroll-mt-[100px] xl:scroll-mt-[120px]">
-      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
-        <motion.h2
-          {...fadeUp(reduceMotion, { duration: 0.85, distance: 36 })}
-          className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0"
-        >
-          Product comparison
-        </motion.h2>
-
-        <AnimatePresence mode="wait" initial={false}>
-          {compared.length === 0 ? (
-            <motion.p
-              key="empty"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: reduceMotion ? 0.01 : DURATION.fast }}
-              className="font-body text-[15px] text-surface-500 m-0"
-            >
-            Compare our product variants side by side within each product category to evaluate their specifications and identify the option that best meets your specific requirements.
-            </motion.p>
-          ) : (
-            <motion.div
-              key="table"
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 40, scale: reduceMotion ? 1 : 0.985 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.85, ease: EASE_PREMIUM }}
-              className="flex flex-col gap-2.5"
-            >
-              <div className="relative">
-                <div
-                  onScroll={(e) => {
-                    if (!hasScrolled && e.currentTarget.scrollLeft > 12) setHasScrolled(true);
-                  }}
-                  className="overflow-x-auto"
-                >
-                  <table className="w-full border-collapse min-w-[560px]">
-                    <thead>
-                      <tr>
-                        <th className="sticky left-0 z-20 bg-white text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">Product</th>
-                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3 pr-4">Category</th>
-                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3 pr-4">Packaging Options</th>
-                        <th className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3">Details</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {compared.map((product, index) => (
-                        <motion.tr
-                          key={product.id}
-                          initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.15 + Math.min(index, 6) * 0.07 }}
-                          className="group/row transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-gold-500/[0.08]"
-                        >
-                          <td className="sticky left-0 z-10 bg-white font-body font-semibold text-[14.5px] text-heading border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] transition-colors duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/row:bg-[#fdf6e8]">{product.title}</td>
-                          <td className="font-body text-[14px] text-surface-600 border-b border-surface-200/70 py-3 pr-4">{product.category}</td>
-                          <td className="font-body text-[14px] text-surface-600 border-b border-surface-200/70 py-3 pr-4">{product.packagingOptions.join(', ')}</td>
-                          <td className="border-b border-surface-200/70 py-3">
-                            <InternalLink
-                              route={product.page}
-                              onPageChange={onPageChange}
-                              className="group/link inline-flex items-center gap-1 font-body font-semibold text-[13.5px] text-brand-600 hover:text-brand-700 focus:outline-none focus-gold rounded-sm"
-                            >
-                              View Details
-                              <span className="inline-block transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/link:translate-x-[5px]" aria-hidden="true">→</span>
-                            </InternalLink>
-                          </td>
-                        </motion.tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Scroll-right hint — fades a gradient + bouncing arrow
-                    over the table's right edge until the user scrolls it. */}
-                <AnimatePresence>
-                  {!hasScrolled && (
-                    <motion.div
-                      initial={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                      className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-white from-30% via-white/70 to-transparent flex items-center justify-end pr-3"
-                      aria-hidden="true"
-                    >
-                      <motion.svg
-                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                        className="text-brand-600"
-                        animate={reduceMotion ? undefined : { x: [0, 4, 0] }}
-                        transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
-                      >
-                        <path d="M9 6l6 6-6 6" />
-                      </motion.svg>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <AnimatePresence>
-                {!hasScrolled && (
-                  <motion.span
-                    initial={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                    className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400"
-                  >
-                    Scroll right to view more details
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M9 6l6 6-6 6" />
-                    </svg>
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <motion.div
-          {...fadeUp(reduceMotion, { duration: 0.7, distance: 20, delay: reduceMotion ? 0 : 0.1 })}
-          className="flex flex-wrap items-center gap-4 mt-1"
-        >
-          <button
-            type="button"
-            disabled={compared.length === 0}
-            title={compared.length === 0 ? 'Add products to compare first' : undefined}
-            aria-disabled={compared.length === 0}
-            className={`inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full font-body font-semibold text-[15px] transition-all duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-gold ${
-              compared.length === 0
-                ? 'border border-surface-300 text-surface-400 cursor-not-allowed opacity-60'
-                : 'bg-brand-600 hover:bg-brand-700 text-white cursor-pointer hover:-translate-y-[3px] hover:shadow-[0_14px_28px_rgba(228,10,24,0.26)] active:translate-y-0 active:scale-[0.98] active:shadow-none'
-            }`}
-          >
-            Compare Selected Products
-          </button>
-          <button
-            type="button"
-            disabled
-            title="Coming soon"
-            aria-disabled="true"
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 text-surface-400 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
-          >
-            Download Comparison
-          </button>
-          <InternalLink
-            route="get-quote"
-            onPageChange={onPageChange}
-            className="group/link2 inline-flex items-center gap-2 min-h-[44px] px-2 font-body font-semibold text-[15px] text-brand-600 hover:text-brand-700 focus:outline-none focus-gold rounded-sm"
-          >
-            Request Technical Recommendation
-            <span className="inline-block transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/link2:translate-x-[5px]" aria-hidden="true">→</span>
           </InternalLink>
         </motion.div>
       </div>
@@ -810,7 +755,6 @@ function TechnicalResourcesSection({ onPageChange }) {
 
 export default function ProductsHubPage({ onPageChange, prefill }) {
   const reduceMotion = useReducedMotion();
-  const [compareList, setCompareList] = useState([]);
   const heroScrubRef = useRef(null);
 
   // Mirrors Home.jsx's mount-aware scroll effect — Home's ProductFamilies
@@ -967,12 +911,17 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
         </div>
 
         {/* Section 2 — SKM Product Finder */}
-        <ProductFinder onPageChange={onPageChange} compareList={compareList} setCompareList={setCompareList} />
+        <ProductFinder onPageChange={onPageChange} />
         <CurvedDivider bg="#fff" fill="#fff" className="" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         {/* Section 3 — Product families */}
         <ProductFamiliesSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#fff" fill="#fff" className="" />
+        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
+
+        {/* Manufacturing lines — Powder Line / Liquid Line */}
+        <ManufacturingLinesSection onPageChange={onPageChange} />
         <CurvedDivider bg="#fff" fill="#fff" className="" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
@@ -982,7 +931,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         {/* Section 5 — Product comparison */}
-        <ComparisonSection compareList={compareList} onPageChange={onPageChange} />
+        <ProductComparisonSection onPageChange={onPageChange} />
         <CurvedDivider bg="#fff" fill="#fff" className="" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 

@@ -13,9 +13,11 @@ import VariantDetails from './VariantDetails';
 // enquiry) rather than a fabricated recommendation engine — no such feature
 // exists in the app.
 export default function VariantExplorer({ variantsData, variantsSectionSubtitle, productName, displayCode, packagingOptions, onPageChange }) {
-  const [selectedCode, setSelectedCode] = useState(variantsData[0]?.code ?? null);
+  // No variant is pre-selected — the detail panel stays hidden until the
+  // buyer picks a row.
+  const [selectedCode, setSelectedCode] = useState(null);
   const [compareCodes, setCompareCodes] = useState(null);
-  const selectedVariant = variantsData.find((v) => v.code === selectedCode) ?? variantsData[0];
+  const selectedVariant = variantsData.find((v) => v.code === selectedCode) ?? null;
   const panelId = 'variant-detail-panel';
   const tabId = selectedVariant ? `variant-tab-${selectedVariant.code}` : undefined;
   const compareVariants = compareCodes
