@@ -42,6 +42,11 @@ export const eventTarget = (ev) => ev.link || `events/${ev.slug}`;
 export const isExternal = (link) => /^https?:\/\//i.test(link || '');
 
 // /gallery/name.webp → its generated width variant (see npm run gallery:images)
+// Active (current-stop) map pin: scale, and how far its head sits above the
+// location point (px, tip → head centre) — the photo popup is anchored to the head.
+export const ACTIVE_PIN_SCALE = 1.6;
+export const ACTIVE_PIN_LIFT = 13 * ACTIVE_PIN_SCALE;
+
 export const imageVariant = (src, width) =>
   src ? src.replace(/\.(webp|jpe?g|png)$/i, `-${width}.webp`) : '';
 

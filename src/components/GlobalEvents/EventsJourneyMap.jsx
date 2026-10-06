@@ -6,7 +6,7 @@ import { CompleteSummary, EventSummary, JourneyHeader, MobileEventCard } from '.
 import PinSlideshow from './PinSlideshow';
 import useJourney from './useJourney';
 import useMediaQuery from './useMediaQuery';
-import { INDIA, buildJourney, eventTarget, imageVariant, isExternal, placePopup } from './journeyUtils';
+import { ACTIVE_PIN_LIFT, INDIA, buildJourney, eventTarget, imageVariant, isExternal, placePopup } from './journeyUtils';
 import { globalEvents } from '../../data/globalEvents';
 import { EASE_PREMIUM } from '../../utils/motionTokens';
 
@@ -89,7 +89,8 @@ export default function EventsJourneyMap({ active, onClose, onPageChange }) {
   const k = 1 / Math.max(s, 0.3); // keeps pins / plane a constant size on screen
   const toPx = (pt) => ({ x: (size.w - MAP_W * s) / 2 + pt[0] * s, y: (size.h - MAP_H * s) / 2 + pt[1] * s });
 
-  const pin = desktop && geom && stop && arrived ? toPx(geom.pts[index]) : null;
+  const tip = desktop && geom && stop && arrived ? toPx(geom.pts[index]) : null;
+  const pin = tip && { x: tip.x, y: tip.y - ACTIVE_PIN_LIFT }; // the pin's head: popup anchors here
   const popup = pin ? placePopup({ pin, size: POPUP, container: size }) : null;
 
   const panelContent =
@@ -233,7 +234,7 @@ export default function EventsJourneyMap({ active, onClose, onPageChange }) {
                       key={`label-${index}`}
                       aria-hidden="true"
                       className="pointer-events-none absolute z-20 -translate-x-1/2 rounded-full bg-white px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-[0.14em] text-heading shadow-[0_4px_14px_rgba(0,0,0,0.15)]"
-                      style={{ left: pin.x, top: popup.side === 'bottom' ? pin.y - 40 : pin.y + 18 }}
+                      style={{ left: pin.x, top: popup.side === 'bottom' ? pin.y - 40 : tip.y + 8 }}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0, transition: { duration: 0.15 } }}

@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useMapContext } from 'react-simple-maps';
-import { INDIA, createFlightPath } from './journeyUtils';
+import { ACTIVE_PIN_SCALE, INDIA, createFlightPath } from './journeyUtils';
 
 const RED = 'var(--color-brand-600)';
 const GOLD = '#F5B700';
@@ -12,15 +12,22 @@ const PLANE_PATH =
 const STAR_PATH =
   'M0,-5.5 L1.35,-1.85 L5.23,-1.70 L2.18,0.71 L3.23,4.45 L0,2.2 L-3.23,4.45 L-2.18,0.71 L-5.23,-1.70 L-1.35,-1.85 Z';
 
+// Same pin as the main Global Reach map (ExportMarketsMap.jsx): tip at (0,0),
+// bulb centred at (0,-13).
+const PIN_BODY = 'M0,0 C-5.5,-2 -9.5,-8.5 -9.5,-13 A9.5,9.5,0,0,1,9.5,-13 C9.5,-8.5 5.5,-2 0,0Z';
+const PIN_HEAD = 13;
+
 function Pin({ loc, state, k, delay, reduce, onSelect, pulseKey }) {
   const label = `Stop ${loc.n}: ${loc.title}, ${loc.name}. ${
     state === 'active' ? 'Current destination. Open event.' : 'Show event.'
   }`;
+  const active = state === 'active';
+  const sc = active ? ACTIVE_PIN_SCALE : 1; // the current stop's pin is larger
   return (
-    <g transform={`translate(${loc.pt[0]} ${loc.pt[1]})`}>
+    <g transform={`translate(${loc.pt[0]} ${loc.pt[1]}) scale(${k})`}>
       <motion.g
-        initial={reduce ? false : { scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        initial={reduce ? false : { opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: reduce ? 0 : 0.25 + delay, type: 'spring', stiffness: 240, damping: 20 }}
         role="button"
         tabIndex={0}
@@ -35,35 +42,42 @@ function Pin({ loc, state, k, delay, reduce, onSelect, pulseKey }) {
         style={{ cursor: 'pointer', outline: 'none' }}
         className="focus-visible:[&>circle:first-child]:stroke-[#2b2b2b] focus-visible:[&>circle:first-child]:stroke-[1.5]"
       >
-        <circle r={15 * k} fill="transparent" stroke="transparent" />
+        <circle cy={-PIN_HEAD * sc} r={active ? 20 : 12} fill="transparent" stroke="transparent" />
 
-        {state === 'active' ? (
-          <>
-            {/* one soft pulse on arrival — not continuous */}
-            {!reduce && (
-              <motion.circle
-                key={pulseKey}
-                r={9 * k}
-                fill="none"
-                stroke={RED}
-                strokeWidth={1.5 * k}
-                initial={{ scale: 1, opacity: 0.6 }}
-                animate={{ scale: 2.6, opacity: 0 }}
-                transition={{ duration: 1.1, ease: 'easeOut' }}
-              />
-            )}
-            <circle r={13 * k} fill="none" stroke="#fff" strokeOpacity={0.55} strokeWidth={2 * k} />
-            <circle r={10.5 * k} fill="#fff" stroke={RED} strokeWidth={2 * k} />
-            <path d={STAR_PATH} transform={`scale(${1.15 * k})`} fill={RED} />
-          </>
-        ) : (
-          <circle
-            r={(state === 'visited' ? 4.8 : 4.2) * k}
-            fill={state === 'visited' ? GOLD : '#fff'}
-            stroke={state === 'visited' ? '#fff' : RED}
-            strokeWidth={1.4 * k}
+        {/* ground shadow + one soft ripple on arrival */}
+        <ellipse cy={2 * sc} rx={4.5 * sc} ry={1.5 * sc} fill="rgba(0,0,0,0.20)" />
+        {active && !reduce && (
+          <motion.ellipse
+            key={`ripple-${pulseKey}`}
+            fill="none"
+            stroke="#fff"
+            strokeWidth={1.5}
+            initial={{ rx: 3, ry: 1.2, opacity: 0.9 }}
+            animate={{ rx: 24, ry: 9, opacity: 0 }}
+            transition={{ duration: 1.1, ease: 'easeOut' }}
           />
         )}
+
+        {/* the pin drops onto the spot when the plane lands */}
+        <motion.g
+          key={active ? `drop-${pulseKey}` : state}
+          initial={active && !reduce ? { y: -26, opacity: 0.2 } : false}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: 'spring', stiffness: 260, damping: 14 }}
+        >
+          <g transform={`scale(${sc})`}>
+            <path d={PIN_BODY} fill={active ? '#8898A8' : '#A8B8C8'} stroke="#6B7A8A" strokeWidth="0.5" />
+            <circle cy={-PIN_HEAD} r="7" fill="#FFFFFF" />
+            <path
+              d={STAR_PATH}
+              transform={`translate(0,${-PIN_HEAD})`}
+              fill="none"
+              stroke={RED}
+              strokeWidth="1"
+              strokeLinejoin="round"
+            />
+          </g>
+        </motion.g>
       </motion.g>
     </g>
   );
