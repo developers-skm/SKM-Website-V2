@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import ExportMarketsMap from '../../components/GlobalMap/ExportMarketsMap';
+import GlobalEventsDock from '../../components/GlobalEvents/GlobalEventsDock';
 import InternalLink from '../../components/common/InternalLink';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 import { containerVariants, itemVariants } from '../../utils/animationVariants';
@@ -381,7 +382,9 @@ export default function GlobalReachPage({ onPageChange }) {
         {/* Map */}
         <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] bg-page">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8">
-            <ExportMarketsMap />
+            <GlobalEventsDock onPageChange={onPageChange}>
+              <ExportMarketsMap />
+            </GlobalEventsDock>
           </div>
         </div>
 
@@ -428,15 +431,6 @@ export default function GlobalReachPage({ onPageChange }) {
               ))}
             </div>
 
-            <motion.button
-              variants={itemVariants}
-              whileHover={{ y: -4 }}
-              onClick={() => onPageChange('events')}
-              className="self-start flex flex-col items-start gap-2 text-left p-6 bg-brand-50/60 border border-brand-200/60 rounded-[14px] shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/40 transition-all duration-300 cursor-pointer focus:outline-none"
-            >
-              <h3 className="font-heading font-bold text-[16px] text-heading m-0">Events & Expos</h3>
-              <p className="font-body text-[13px] text-surface-500 leading-[21px] m-0">See where to meet us at global food ingredient expos.</p>
-            </motion.button>
           </motion.section>
         </div>
 

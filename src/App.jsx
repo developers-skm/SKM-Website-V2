@@ -73,6 +73,7 @@ const AccoladesPage = lazy(() => import('./pages/AboutUs/AccoladesPage'));
 const GalleryPage = lazy(() => import('./pages/AboutUs/GalleryPage'));
 const CoffeeTableBooksPage = lazy(() => import('./pages/AboutUs/CoffeeTableBooksPage'));
 const EventsPage = lazy(() => import('./pages/AboutUs/EventsPage'));
+const EventDetailPage = lazy(() => import('./pages/Events/EventDetailPage'));
 
 // Quality Subpages
 const PolicyPage = lazy(() => import('./pages/Quality/PolicyPage'));
@@ -140,6 +141,11 @@ function App() {
   const renderPage = () => {
     if (!isOnline || activePage === 'offline') {
       return <OfflinePage onPageChange={handlePageChange} targetPage={lastOnlinePage} />;
+    }
+
+    // Event pages: events/<slug> (data in src/data/globalEvents.js)
+    if (activePage.startsWith('events/')) {
+      return <EventDetailPage slug={activePage.slice('events/'.length)} onPageChange={handlePageChange} />;
     }
 
     // Careers has nested URLs (careers/jobs/:slug, careers/apply/:slug) — resolved by CareersRoute.
