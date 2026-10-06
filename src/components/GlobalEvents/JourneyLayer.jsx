@@ -13,7 +13,7 @@ const STAR_PATH =
   'M0,-5.5 L1.35,-1.85 L5.23,-1.70 L2.18,0.71 L3.23,4.45 L0,2.2 L-3.23,4.45 L-2.18,0.71 L-5.23,-1.70 L-1.35,-1.85 Z';
 
 function Pin({ loc, state, k, delay, reduce, onSelect, pulseKey }) {
-  const label = `${loc.name}${loc.count > 1 ? ` — ${loc.count} events` : ''}. ${
+  const label = `Stop ${loc.n}: ${loc.title}, ${loc.name}. ${
     state === 'active' ? 'Current destination. Open event.' : 'Show event.'
   }`;
   return (
@@ -56,10 +56,13 @@ function Pin({ loc, state, k, delay, reduce, onSelect, pulseKey }) {
             <circle r={10.5 * k} fill="#fff" stroke={RED} strokeWidth={2 * k} />
             <path d={STAR_PATH} transform={`scale(${1.15 * k})`} fill={RED} />
           </>
-        ) : state === 'visited' ? (
-          <circle r={4.2 * k} fill={GOLD} stroke="#fff" strokeWidth={1.4 * k} />
         ) : (
-          <circle r={3 * k} fill="#fff" fillOpacity={0.7} />
+          <circle
+            r={(state === 'visited' ? 4.8 : 4.2) * k}
+            fill={state === 'visited' ? GOLD : '#fff'}
+            stroke={state === 'visited' ? '#fff' : RED}
+            strokeWidth={1.4 * k}
+          />
         )}
       </motion.g>
     </g>
@@ -75,28 +78,41 @@ export default function JourneyLayer({ stops, journey, k, reduce, onSelectLocati
   const planeRef = useRef(null);
   const { travel, leg, phase, visited, index } = journey;
 
-  const geometry = useMemo(
-    () => ({
-      origin: projection(INDIA.coordinates),
-      pts: stops.map((s) => projection(s.coordinates)),
-    }),
-    [projection, stops]
-  );
+  // Every event gets its own pin. Events in the same place (e.g. three in
+  // Vietnam) are fanned out around it so each one is a separate stop.
+  const geometry = useMemo(() => {
+    const base = stops.map((s) => projection(s.coordinates));
+    const groups = new Map();
+    stops.forEach((s, i) => groups.set(s.locKey, [...(groups.get(s.locKey) ?? []), i]));
+    const pts = base.map((pt) => [...pt]);
+    groups.forEach((ids) => {
+      if (ids.length < 2) return;
+      ids.forEach((stopIndex, j) => {
+        const a = (-90 + (j * 360) / ids.length) * (Math.PI / 180);
+        pts[stopIndex] = [base[stopIndex][0] + 8 * Math.cos(a), base[stopIndex][1] + 8 * Math.sin(a)];
+      });
+    });
+    return { origin: projection(INDIA.coordinates), pts };
+  }, [projection, stops]);
 
   useEffect(() => {
     onGeometry(geometry);
   }, [geometry, onGeometry]);
 
-  // One pin per distinct place (e.g. two Thailand events share a pin).
-  const locations = useMemo(() => {
-    const map = new Map();
-    stops.forEach((s, i) => {
-      const entry = map.get(s.locKey) ?? { key: s.locKey, name: s.country, pt: geometry.pts[i], stops: [] };
-      entry.stops.push(i);
-      map.set(s.locKey, entry);
-    });
-    return [...map.values()].map((l) => ({ ...l, count: l.stops.length }));
-  }, [stops, geometry]);
+  // One pin per event, in flight order.
+  const locations = useMemo(
+    () =>
+      stops.map((s, i) => ({
+        key: `stop-${i}`,
+        n: i + 1,
+        title: s.title,
+        name: s.country,
+        pt: geometry.pts[i],
+        stops: [i],
+        count: 1,
+      })),
+    [stops, geometry]
+  );
 
   const pointOf = (i) => (i < 0 ? geometry.origin : geometry.pts[i]);
   const legId = leg?.id;
@@ -131,8 +147,8 @@ export default function JourneyLayer({ stops, journey, k, reduce, onSelectLocati
   }, [activeD, legId, travel, k]);
 
   const arrived = phase === 'showing' || phase === 'done';
-  const activeLoc = index >= 0 && arrived ? stops[index].locKey : null;
-  const visitedKeys = new Set(visited.map((i) => stops[i].locKey));
+  const activeLoc = index >= 0 && arrived ? `stop-${index}` : null;
+  const visitedKeys = new Set(visited.map((i) => `stop-${i}`));
 
   return (
     <g>

@@ -82,7 +82,9 @@ const pastExhibitions = [
   { title: 'FI Asia Thailand 2025', tag: 'Food Ingredients Asia', location: 'QSNCC, Bangkok', country: 'Thailand', dateRange: 'Sep 17–19, 2025', year: '2025', desc: 'SKM displayed enzyme-modified heat-stable yolk powders for high-temp processing.', images: [fia25_1, fia25_2, fia25_3, fia25_4, fia25_5] },
   { title: 'Gulfood Manufacturing 2025', tag: 'Gulfood Manufacturing', location: 'Dubai WTC, Dubai', country: 'UAE', dateRange: 'Nov 3–5, 2025', year: '2025', desc: 'SKM established high-volume contracts for liquid pasteurized mixes with GCC partners.', images: [gfm25_1, gfm25_2, gfm25_3, gfm25_4, gfm25_5] },
   { title: 'Fi Vietnam 2026', tag: 'Food Ingredients Vietnam', location: 'SECC, Ho Chi Minh City', country: 'Vietnam', dateRange: 'May 13–15, 2026', year: '2026', desc: 'Presented premium bakery mixes to fast-growing culinary chains across Indochina.', images: [fivn26_1, fivn26_2, fivn26_3, fivn26_4, fivn26_5] },
-  { title: 'Seoul Food 2026', tag: 'Seoul Food & Hotel', location: 'KINTEX, South Korea', country: 'South Korea', dateRange: 'Jun 9–12, 2026', year: '2026', desc: 'Demonstrated complete traceability compliance for premium egg white cube products.', images: [seoul26_1, seoul26_2, seoul26_3, seoul26_4, seoul26_5] }
+  { title: 'Seoul Food 2026', tag: 'Seoul Food & Hotel', location: 'KINTEX, South Korea', country: 'South Korea', dateRange: 'Jun 9–12, 2026', year: '2026', desc: 'Demonstrated complete traceability compliance for premium egg white cube products.', images: [seoul26_1, seoul26_2, seoul26_3, seoul26_4, seoul26_5] },
+  { title: 'FLIP 2026 — Future Food, Livestock & Poultry Expo', tag: 'FLIP Expo', location: 'Mwalimu J.K. Nyerere Trade Fair Grounds, Dar es Salaam', country: 'Tanzania', dateRange: 'Sep 2–3, 2026', year: '2026', desc: 'The 3rd Future Food, Livestock & Poultry Expo (FLIP 2026) took place on September 2–3, 2026, at the Mwalimu J.K. Nyerere Trade Fair Grounds in Dar es Salaam, Tanzania.', images: Array.from({ length: 5 }, (_, i) => `/events/flip-tanzania-2026/${i + 1}.webp`) },
+  { title: 'Fi Asia Indonesia 2026', tag: 'Food Ingredients Asia', location: 'JIExpo, Jakarta', country: 'Indonesia', dateRange: 'Sep 16–18, 2026', year: '2026', desc: 'Fi Asia Indonesia 2026 took place from September 16 to 18, 2026, at the Jakarta International Expo (JIExpo) in Jakarta, Indonesia.', images: Array.from({ length: 5 }, (_, i) => `/events/fi-asia-indonesia-2026/${i + 1}.webp`) }
 ];
 
 // Section 4 — Company News Data
@@ -293,7 +295,7 @@ export default function EventsPage({ onPageChange }) {
         
         {/* Section 1 — Hero */}
         <div className="relative w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[120px] lg:pb-[120px] bg-gradient-to-b from-brand-600/5 via-transparent to-transparent border-b border-[#eee] text-center px-4">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,var(--color-brand-100/10)_0%,transparent_50%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,color-mix(in_srgb,var(--color-brand-100)_10%,transparent)_0%,transparent_50%)] pointer-events-none" />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

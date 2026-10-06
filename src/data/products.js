@@ -12,7 +12,7 @@ import EggAlbumenLiquidImg from '../assets/3. PRODUCTS/Egg Liquids/Egg Albumen L
 import SpecialityEggLiquidImg from '../assets/3. PRODUCTS/Speciality products/Egg Liquids/EGG LIQUIDS TETRA PACK_1000x667px.png';
 import EggWhiteCubeImg from '../assets/3. PRODUCTS/Speciality products/Egg White Cube/EGG WHITE CUBE_1000x667px.png';
 import CustomizedMixImg from '../assets/3. PRODUCTS/Customized Mixes/CUSTOMIZED MIX_1000x667px.png';
-import CustomizedPackagesImg from '../assets/3. PRODUCTS/Customized Packages/Powder Product primary container - HDPE Bag.jpeg';
+import CustomizedPackagesImg from '../assets/3. PRODUCTS/Customized Packages/Box Packaging.jpg';
 
 // Only these 3 products have a real dedicated flyer PDF in assets/Brouchers —
 // used as the "Download Technical Data Sheet" link on their product pages.

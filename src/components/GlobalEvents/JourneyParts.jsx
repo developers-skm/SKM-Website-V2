@@ -20,7 +20,7 @@ function PinIcon() {
   );
 }
 
-export function JourneyHeader({ onClose, compact = false, className = '' }) {
+export function JourneyHeader({ onClose, onShowAll, compact = false, className = '' }) {
   return (
     <div className={className}>
       <span className="section-label">Events &amp; Expos</span>
@@ -30,14 +30,26 @@ export function JourneyHeader({ onClose, compact = false, className = '' }) {
       <p className={`mt-2 mb-0 font-body text-[13.5px] leading-[22px] text-surface-500 ${compact ? 'max-w-[36ch]' : 'max-w-[34ch]'}`}>
         Follow our journey across international exhibitions and industry events.
       </p>
-      <button
-        type="button"
-        onClick={onClose}
-        className={`group mt-4 inline-flex min-h-[40px] items-center gap-2 rounded-full border border-[#e2e2e2] bg-white px-4 font-body text-[12.5px] font-semibold text-heading cursor-pointer transition-colors hover:border-brand-600 hover:text-brand-600 ${focusRing}`}
-      >
-        <span className="transition-transform duration-300 group-hover:-translate-x-1" aria-hidden="true">←</span>
-        Back to Global Reach
-      </button>
+      <div className="mt-4 flex flex-wrap items-center gap-2.5">
+        <button
+          type="button"
+          onClick={onClose}
+          className={`group inline-flex min-h-[40px] items-center gap-2 rounded-full border border-[#e2e2e2] bg-white px-4 font-body text-[12.5px] font-semibold text-heading cursor-pointer transition-colors hover:border-brand-600 hover:text-brand-600 ${focusRing}`}
+        >
+          <span className="transition-transform duration-300 group-hover:-translate-x-1" aria-hidden="true">←</span>
+          Back to Global Reach
+        </button>
+        {onShowAll && (
+          <button
+            type="button"
+            onClick={onShowAll}
+            className={`group inline-flex min-h-[40px] items-center gap-2 rounded-full border-0 bg-brand-600 px-4 font-body text-[12.5px] font-semibold text-white cursor-pointer transition-colors hover:bg-brand-700 ${focusRing}`}
+          >
+            Show all events
+            <span className="transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+          </button>
+        )}
+      </div>
     </div>
   );
 }
@@ -114,7 +126,7 @@ export function EventSummary({ stop, onOpen }) {
   );
 }
 
-export function CompleteSummary({ eventCount, countryCount, onReplay, onClose }) {
+export function CompleteSummary({ eventCount, countryCount, onReplay, onClose, onShowAll }) {
   return (
     <motion.div variants={group} initial="hidden" animate="visible" className="flex flex-col">
       <motion.span variants={item} className="font-body text-[11px] font-bold uppercase tracking-[0.2em] text-brand-600">
@@ -134,6 +146,11 @@ export function CompleteSummary({ eventCount, countryCount, onReplay, onClose })
         <button type="button" onClick={onClose} className={`min-h-[44px] rounded-full border border-[#e2e2e2] bg-white px-5 font-body text-[12.5px] font-semibold text-heading cursor-pointer transition-colors hover:border-brand-600 hover:text-brand-600 ${focusRing}`}>
           Back to Global Reach
         </button>
+        {onShowAll && (
+          <button type="button" onClick={onShowAll} className={`min-h-[44px] rounded-full border border-[#e2e2e2] bg-white px-5 font-body text-[12.5px] font-semibold text-heading cursor-pointer transition-colors hover:border-brand-600 hover:text-brand-600 ${focusRing}`}>
+            Show all events
+          </button>
+        )}
       </motion.div>
     </motion.div>
   );

@@ -69,10 +69,13 @@ export default function EventsJourneyMap({ active, onClose, onPageChange }) {
     [onPageChange]
   );
 
+  // "Show all events" → the /events page (unmounting cancels every timer).
+  const showAll = useCallback(() => onPageChange('events'), [onPageChange]);
+
   // Pin click: current destination → open its page; otherwise fly there.
   const selectLocation = useCallback(
     (loc) => {
-      if (stops[index] && stops[index].locKey === loc.key && (phase === 'showing' || phase === 'done')) {
+      if (stops[index] && loc.stops.includes(index) && (phase === 'showing' || phase === 'done')) {
         openEvent(stops[index]);
         return;
       }
@@ -91,7 +94,7 @@ export default function EventsJourneyMap({ active, onClose, onPageChange }) {
 
   const panelContent =
     phase === 'done' ? (
-      <CompleteSummary eventCount={stops.length} countryCount={countryCount} onReplay={journey.replay} onClose={onClose} />
+      <CompleteSummary eventCount={stops.length} countryCount={countryCount} onReplay={journey.replay} onClose={onClose} onShowAll={showAll} />
     ) : stop ? (
       <EventSummary stop={stop} onOpen={openEvent} />
     ) : null;
@@ -135,14 +138,14 @@ export default function EventsJourneyMap({ active, onClose, onPageChange }) {
         {/* Desktop: side column — header, full event details, controls */}
         {desktop && (
           <aside className="flex flex-col gap-6 border-r border-[#eee] bg-white p-7">
-            <JourneyHeader compact onClose={onClose} />
+            <JourneyHeader compact onClose={onClose} onShowAll={showAll} />
             {panel}
           </aside>
         )}
 
         <div className="flex min-w-0 flex-col">
           {/* Mobile / tablet header */}
-          <JourneyHeader onClose={onClose} className="px-5 pt-6 pb-5 sm:px-7 lg:hidden" />
+          <JourneyHeader onClose={onClose} onShowAll={showAll} className="px-5 pt-6 pb-5 sm:px-7 lg:hidden" />
 
           {/* ── Map ── */}
           <div ref={boxRef} className="relative aspect-[4/3] w-full bg-[#dde6ef] lg:aspect-auto lg:min-h-[680px] lg:flex-1">

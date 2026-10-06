@@ -65,6 +65,14 @@
       1200
     ]
   },
+  "/gallery/fi-asia-indonesia-2026.webp": {
+    "w": 1280,
+    "h": 960,
+    "v": [
+      640,
+      1200
+    ]
+  },
   "/gallery/fi-vietnam-2024.webp": {
     "w": 1280,
     "h": 960,
@@ -84,6 +92,14 @@
   "/gallery/fi-vietnam-2026.webp": {
     "w": 1280,
     "h": 960,
+    "v": [
+      640,
+      1200
+    ]
+  },
+  "/gallery/flip-tanzania-2026.webp": {
+    "w": 1600,
+    "h": 1200,
     "v": [
       640,
       1200
