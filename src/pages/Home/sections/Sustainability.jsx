@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
 import SafeImage from '../../../components/common/SafeImage';
 import { fadeUp } from '../../../utils/motionTokens';
@@ -6,6 +7,65 @@ import { fadeUp } from '../../../utils/motionTokens';
 import Biogas from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/Biogas.webp';
 import ETP from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/ETP.webp';
 import UtilityOverview from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/Utility Overview.webp';
+import Trust1 from '../../../assets/trust-images/trust-1.webp';
+import Trust2 from '../../../assets/trust-images/trust-2.webp';
+import Trust3 from '../../../assets/trust-images/trust-3.webp';
+import Trust4 from '../../../assets/trust-images/trust-4.webp';
+import Trust5 from '../../../assets/trust-images/trust-5.webp';
+
+const trustSlides = [Trust1, Trust2, Trust3, Trust4, Trust5];
+const SLIDE_INTERVAL_MS = 4500;
+
+// Crossfading slideshow for the Community Welfare story — autoplays, pauses
+// on hover/focus, and offers dot controls. Respects reduced motion (no
+// autoplay, instant swaps).
+function TrustSlideshow({ alt, reduceMotion }) {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (reduceMotion || paused) return undefined;
+    const id = setInterval(() => setActive((i) => (i + 1) % trustSlides.length), SLIDE_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [reduceMotion, paused, active]);
+
+  return (
+    <div
+      className="absolute inset-0 bg-surface-200 overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
+      <AnimatePresence initial={false}>
+        <motion.img
+          key={active}
+          src={trustSlides[active]}
+          alt={`${alt} (${active + 1} of ${trustSlides.length})`}
+          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, filter: 'blur(22px)', scale: 1.12 }}
+          animate={reduceMotion ? { opacity: 1 } : { opacity: 1, filter: 'blur(0px)', scale: 1 }}
+          exit={reduceMotion ? { opacity: 0 } : { opacity: 0, filter: 'blur(22px)', scale: 1.04 }}
+          transition={{ duration: reduceMotion ? 0.01 : 1.6, ease: [0.22, 1, 0.36, 1] }}
+          draggable={false}
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover', objectPosition: 'center' }}
+        />
+      </AnimatePresence>
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/35 to-transparent pointer-events-none" />
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        {trustSlides.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => setActive(i)}
+            aria-label={`Show image ${i + 1}`}
+            aria-current={i === active}
+            className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white ${i === active ? 'w-6 bg-white' : 'w-2 bg-white/60 hover:bg-white/90'}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 // Section 10 — Sustainability. New homepage section built from real content
 // on src/pages/CSR/SustainabilityPage.jsx (the "Pillars of Sustainability"
@@ -39,7 +99,8 @@ const stories = [
     title: 'Free healthcare, education, and food for an entire village.',
     body: 'We ensure our corporate social responsibility by providing free medical, educational, and food services to an entire village through the SKM Charitable Trust.',
     image: UtilityOverview,
-    imageAlt: 'SKM Egg Products utility infrastructure',
+    imageAlt: 'SKM Charitable Trust community welfare',
+    slideshow: true,
   },
 ];
 
@@ -56,7 +117,11 @@ function Story({ story, index, reduceMotion }) {
         transition={{ duration: reduceMotion ? 0.01 : 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`relative rounded-[8px] overflow-hidden aspect-[4/3] lg:col-span-6 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}
       >
-        <SafeImage src={story.image} alt={story.imageAlt} loading="lazy" className="w-full h-full object-cover" />
+        {story.slideshow ? (
+          <TrustSlideshow alt={story.imageAlt} reduceMotion={reduceMotion} />
+        ) : (
+          <SafeImage src={story.image} alt={story.imageAlt} loading="lazy" className="w-full h-full object-cover" />
+        )}
       </motion.div>
 
       <div className={`relative lg:col-span-6 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
