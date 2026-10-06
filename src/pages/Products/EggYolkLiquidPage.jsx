@@ -36,7 +36,7 @@ export const variantsData = [
     name: 'Chilled Egg Yolk Liquid - 11% Salt - High Colour',
     description: 'Salted chilled liquid yolk sourced from carotenoid-rich hen feed, offering deep golden color parameters.',
     applications: 'Golden yellow mayonnaise, premium rich dressings, brioches, and yellow pastries.',
-    benefits: 'Imparts rich natural gold color without artificial dye; stable emulsion under thermal and shear stresses.',
+    benefits: 'Provides a rich, natural golden colour without artificial dyes, while maintaining emulsion stability during thermal and shear processing.',
     specifications: { moisture: '44.0% - 47.0%', protein: 'Min 13.0%', ph: '5.8 - 6.8', storage: 'Chilled (0°C to 4°C)', character: 'Salted High Color (Beta-carotene > 35 ppm)' }
   },
   {
@@ -44,7 +44,7 @@ export const variantsData = [
     name: 'Chilled Egg Yolk Liquid - 11% Salt - Stabilized',
     description: 'Modified chilled liquid yolk, stabilized and co-treated with 11% salt to prevent heat-coagulation during hot filling.',
     applications: 'Thermally pasteurised sauces, hot-filled mayonnaise, bearnaise, and simmered dressings.',
-    benefits: 'Resists thermal breakdown; maintains smooth creaminess without oil splitting.',
+    benefits: 'Resists thermal breakdown and maintains a smooth, creamy texture without oil separation.',
     specifications: { moisture: '44.0% - 47.0%', protein: 'Min 13.0%', ph: '5.8 - 6.8', storage: 'Chilled (0°C to 4°C)', character: 'Heat-Stable Modified Base' }
   },
   {
@@ -92,7 +92,7 @@ export const variantsData = [
     name: 'Frozen Egg Yolk Liquid - 10% Salt - Dark Colour - Stabilized',
     description: 'Enzymatically modified frozen yolk liquid containing 10% salt, dark color properties, and enhanced thermal tolerance.',
     applications: 'Hot pasteurized premium mayonnaise, hot-filled dressings, and retorted savory food packages.',
-    benefits: 'Highly heat-stable emulsion, dark golden hue, and high water-binding strength.',
+    benefits: 'Provides excellent heat stability, a rich golden hue, and strong water-binding capacity.',
     specifications: { moisture: '44.5% - 47.5%', protein: 'Min 13.5%', ph: '5.8 - 6.8', storage: 'Frozen (≤ -18°C)', character: 'Heat-Stable modified base & 10% Salt' }
   },
   {
@@ -109,7 +109,7 @@ const applicationsData = [
   { name: 'Bakery', image: BakeryImg, description: 'Provides rich emulsification, golden color, and creamy mouthfeel across bakery applications.' },
   { name: 'Cosmetics', image: CosmeticsImg, description: 'Natural lecithin-rich yolk liquid used as an emulsifier and conditioning agent in cosmetic formulations.' },
   { name: 'Ice Cream', image: IceCreamImg, description: 'Delivers smooth, creamy body and stable fat emulsification in premium ice cream production.' },
-  { name: 'Mayonnaise', image: MayonnaiseImg, description: 'Creates stable, rich oil-in-water emulsions with consistent viscosity and golden color in mayonnaise.' }
+  { name: 'Mayonnaise', image: MayonnaiseImg, description: 'Creates stable, rich oil-in-water emulsions with consistent viscosity in mayonnaise.', recommendedVariantCodes: ['Y1002', 'Y1003'] }
 ];
 
 export default function EggYolkLiquidPage({ onPageChange }) {

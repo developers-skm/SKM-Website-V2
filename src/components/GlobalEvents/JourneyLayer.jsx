@@ -156,17 +156,27 @@ export default function JourneyLayer({ stops, journey, k, reduce, onSelectLocati
           <motion.circle
             r={6 * k}
             fill="none"
-            stroke={GOLD}
+            stroke="#2b2b2b"
             strokeWidth={1.5 * k}
-            initial={{ scale: 1, opacity: 0.8 }}
+            initial={{ scale: 1, opacity: 0.6 }}
             animate={{ scale: 3, opacity: 0 }}
             transition={{ duration: 1.4, delay: 0.3, ease: 'easeOut' }}
           />
         )}
-        <circle r={6 * k} fill="#fff" stroke="#2b2b2b" strokeWidth={1.6 * k} />
-        <circle r={2.4 * k} fill={GOLD} />
+        {/* Location pin — tip sits exactly on the origin coordinate */}
+        <ellipse rx={4.5 * k} ry={1.8 * k} fill="#000" opacity="0.25" />
+        <g transform={`scale(${k})`}>
+          <path
+            d="M0 0 C-5 -7 -9 -11 -9 -16 A9 9 0 1 1 9 -16 C9 -11 5 -7 0 0 Z"
+            fill="#2b2b2b"
+            stroke="#fff"
+            strokeWidth="1.4"
+            strokeLinejoin="round"
+          />
+          <circle cy="-16" r="3.4" fill="#fff" />
+        </g>
         <text
-          y={17 * k}
+          y={14 * k}
           textAnchor="middle"
           fontSize={9.5 * k}
           fontWeight="800"

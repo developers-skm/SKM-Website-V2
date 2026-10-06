@@ -27,6 +27,7 @@ export default function ProductPage({
   productName,
   productId,
   codeDisplay,
+  functionality,
 }) {
   const displayCode = codeDisplay ?? ((code) => code);
   const relatedProducts = productId ? getRelatedProducts(productId, 3) : [];
@@ -69,6 +70,7 @@ export default function ProductPage({
           <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
             <SpecPanel
               productForm={productRecord.category}
+              functionality={functionality}
               packagingOptions={productRecord.packagingOptions}
               variantsData={variantsData}
               tdsUrl={tdsUrl}

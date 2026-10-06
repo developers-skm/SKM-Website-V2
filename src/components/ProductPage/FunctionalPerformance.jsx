@@ -60,11 +60,24 @@ export default function FunctionalPerformance({ variantsData, productName, onDis
   // variant whose benefits mention both "sliceability" and "gel strength")
   // would show the exact same quote twice, reading as a copy-paste bug.
   const usedCodes = new Set();
+  // A variant can supply `performanceOverrides` ({ [traitKey]: { text, code } })
+  // to replace the wording of specific cards and pin the SKU shown beneath.
+  const overrides = variantsData.find((v) => v.performanceOverrides)?.performanceOverrides ?? {};
   const traitsWithEvidence = TRAITS
     .map((trait) => {
       const evidence = findEvidence(variantsData, trait.keywords, usedCodes);
       if (evidence) usedCodes.add(evidence.variantCode);
-      return evidence && { ...trait, ...evidence };
+      if (!evidence) return null;
+      const merged = { ...trait, ...evidence };
+      const override = overrides[trait.key];
+      if (!override) return merged;
+      const sku = variantsData.find((v) => v.code === override.code);
+      return {
+        ...merged,
+        quote: override.text,
+        variantCode: sku?.code ?? null,
+        variantName: sku?.name,
+      };
     })
     .filter(Boolean);
 
@@ -106,9 +119,11 @@ export default function FunctionalPerformance({ variantsData, productName, onDis
             <p className="font-body text-[14.5px] text-surface-600 leading-[1.7] m-0">
               {trait.quote}
             </p>
-            <span className="font-mono text-[11px] font-bold text-brand-600 uppercase tracking-wider mt-1">
-              {trait.variantCode} — {trait.variantName}
-            </span>
+            {trait.variantCode && (
+              <span className="font-mono text-[11px] font-bold text-brand-600 uppercase tracking-wider mt-1">
+                {trait.variantCode} — {trait.variantName}
+              </span>
+            )}
           </motion.div>
         ))}
       </motion.div>

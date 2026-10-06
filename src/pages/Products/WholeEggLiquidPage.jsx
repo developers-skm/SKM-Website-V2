@@ -83,11 +83,12 @@ export default function WholeEggLiquidPage({ onPageChange }) {
         categoryLabel: 'Egg Liquids Range',
         titleLine1: 'Whole Egg',
         titleLine2: 'Liquid',
-        description: 'Sugared whole egg liquid is best suited for bakery applications where the texture and cake height are important. Pasteurized and held under strict temperature controls.'
+        description: 'Whole egg liquid is ideally suited for bakery applications where texture, structure, and cake height are important. It is pasteurized and maintained under strict temperature controls to preserve quality and functionality.'
       }}
       variantsData={variantsData}
       applicationsData={applicationsData}
       productName="Whole Egg Liquid"
+      functionality="Natural 100% Whole Egg Proportion and Optimized Viscosity Baking Grade."
       productId="whole_egg_liquid"
       codeDisplay={stripSuffix}
     />

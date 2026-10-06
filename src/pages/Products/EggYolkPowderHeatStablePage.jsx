@@ -12,6 +12,20 @@ export const variantsData = [
     name: 'Egg Yolk Powder - Heat Stable',
     description: 'Pasteurized spray-dried hen egg yolk powder enzymatically modified with phospholipase to ensure excellent thermal stability and emulsifying properties under pasteurization temperatures.',
     applications: 'Mayonnaise, hot sauces, salad dressings, and liquid egg yolk formulations.',
+    heroBenefits: [
+      'Provides natural colour and a creamy, thick texture while maintaining emulsion stability.',
+      'Provides high emulsion stability during high-temperature pasteurization, preventing oil–water phase separation in sauces.',
+    ],
+    performanceOverrides: {
+      emulsification: {
+        code: 'Y1111',
+        text: 'Provides high emulsion stability during high-temperature pasteurization, preventing oil–water phase separation in sauces.',
+      },
+      colour: {
+        code: 'Y1117',
+        text: 'Provides natural colour and a creamy, thick texture while maintaining emulsion stability.',
+      },
+    },
     benefits: 'High emulsion stability under high heat pasteurization; prevents phase separation of oil and water in sauces.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 54.0%', protein: 'Min 29.0%', ph: '6.0 - 7.0', character: 'Modified Heat-Stable Emulsifier' }
   },

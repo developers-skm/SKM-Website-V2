@@ -42,7 +42,15 @@ function findGuide(appName) {
 // "Cakes") genuinely appears across several real variants' applications
 // fields, so showing only one was silently dropping real, equally valid
 // recommendations.
-function findRecommendedVariants(appName, variantsData) {
+//
+// An application entry can pin its list explicitly with
+// `recommendedVariantCodes` (shown in that order), overriding the match.
+function findRecommendedVariants(appName, variantsData, pinnedCodes) {
+  if (pinnedCodes) {
+    return pinnedCodes
+      .map((code) => variantsData.find((v) => v.code === code))
+      .filter(Boolean);
+  }
   const lower = appName.toLowerCase();
   return variantsData.filter((v) => v.applications?.toLowerCase().includes(lower));
 }
@@ -52,7 +60,7 @@ export default function RecommendedApplications({ applicationsData, variantsData
   const cards = applicationsData.map((app) => ({
     ...app,
     guide: findGuide(app.name),
-    recommendedVariants: findRecommendedVariants(app.name, variantsData),
+    recommendedVariants: findRecommendedVariants(app.name, variantsData, app.recommendedVariantCodes),
   }));
 
   return (

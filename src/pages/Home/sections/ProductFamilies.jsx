@@ -45,7 +45,7 @@ const families = [
     // 3 liquid product pages (Whole Egg / Egg Yolk / Egg Albumen Liquid).
     format: ['Chilled liquid', 'Frozen liquid'],
     benefits: [
-      'Full nutrient density, easy dosing and handling, eliminates eggshell-breaking hazards in industrial kitchens.',
+      'Provides excellent heat-induced gelling and structural strength.',
       'Delivers high cake volume, improves crumb softness, and significantly delays starch staling.',
     ],
     // Verbatim application names, recurring across the liquid family's

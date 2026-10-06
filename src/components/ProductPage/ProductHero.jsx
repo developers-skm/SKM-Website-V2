@@ -23,11 +23,16 @@
 // claim rather than real product-page content.
 function deriveBenefitTags(variantsData) {
   if (!variantsData?.length) return [];
+  // A variant can supply the full, ordered tag list via `heroBenefits`.
+  const curated = variantsData.find((v) => Array.isArray(v.heroBenefits));
+  if (curated) return curated.heroBenefits.slice(0, 3);
   const seen = new Set();
   const tags = [];
   for (const variant of variantsData) {
-    if (!variant.benefits) continue;
-    const tag = variant.benefits.split(',')[0].trim().replace(/\.$/, '');
+    if (!variant.benefits && !variant.heroBenefit) continue;
+    // `heroBenefit` lets a variant supply its full tag text when the leading
+    // clause of `benefits` would be cut off mid-sentence by the comma split.
+    const tag = (variant.heroBenefit ?? variant.benefits.split(',')[0]).trim().replace(/\.$/, '');
     if (tag && !seen.has(tag)) {
       seen.add(tag);
       tags.push(tag);
@@ -115,24 +120,6 @@ export default function ProductHero({
             </span>
           </motion.div>
 
-          {benefitTags.length > 0 && (
-            <motion.div variants={itemVariants} transition={itemTransition} className="flex flex-col gap-2">
-              <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-white/60">
-                Main functional benefits
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {benefitTags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/25 font-body text-[12.5px] font-semibold text-white"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          )}
-
           {applicationTags.length > 0 && (
             <motion.div variants={itemVariants} transition={itemTransition} className="flex flex-col gap-2">
               <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-white/60">
@@ -143,6 +130,24 @@ export default function ProductHero({
                   <span
                     key={tag}
                     className="inline-flex items-center px-3 py-1.5 rounded-full bg-brand-600/25 backdrop-blur-sm border border-brand-400/40 font-body text-[12.5px] font-semibold text-white"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {benefitTags.length > 0 && (
+            <motion.div variants={itemVariants} transition={itemTransition} className="flex flex-col gap-2">
+              <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-white/60">
+                Main functional benefits
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {benefitTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/25 font-body text-[12.5px] font-semibold text-white"
                   >
                     {tag}
                   </span>

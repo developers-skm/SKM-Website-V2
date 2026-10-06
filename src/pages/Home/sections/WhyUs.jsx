@@ -167,12 +167,12 @@ export default function WhyUs({ onPageChange }) {
 
           {/* Left — compact sticky intro, ~4/12 */}
           <div className="lg:col-span-4">
-            <motion.div {...fadeUp(reduceMotion)} className="lg:sticky lg:top-32 flex flex-col gap-4 max-w-sm">
+            <motion.div {...fadeUp(reduceMotion)} className="lg:sticky lg:top-32 flex flex-col gap-4 max-w-md">
               <span className="section-label">Why SKM</span>
-              <h2 className="font-heading font-bold text-[22px] sm:text-[26px] lg:text-[30px] text-heading leading-[1.2] tracking-tight m-0">
+              <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[44px] text-heading leading-[1.12] tracking-tight m-0">
                 Why manufacturers choose SKM
               </h2>
-              <p className="font-body text-[26px] sm:text-[32px] lg:text-[38px] font-bold text-surface-700 leading-[1.15] tracking-tight m-0">
+              <p className="font-body text-[16px] lg:text-[18px] font-normal text-surface-600 leading-[1.6] m-0">
                 Uncompromising standards in every single egg.
               </p>
               <InternalLink
