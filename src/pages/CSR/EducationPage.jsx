@@ -76,7 +76,7 @@ export default function EducationPage({ onPageChange }) {
             className="border-l-4 border-brand-600 pl-8 py-6 bg-[rgba(228, 10, 24,0.02)] rounded-r-[10px]"
           >
             <p className="font-body text-[15px] text-surface-600 leading-[26px] m-0">
-              All educational expenses required for <strong className="text-surface-850">239 children</strong> residing in Dalit colonies of <strong className="text-surface-850">Gandhi Nagar</strong> and <strong className="text-surface-850">Rajiv Nagar</strong> are being taken care of by the Trust. On the basis of <strong className="text-brand-600">"Education for All"</strong>, children above the age of 3 are being educated through the Sevai Maiyam Trust. Totally <strong className="text-surface-850">210 children</strong> are being benefited — boys account for 92, girls 118, and students studying in colleges are 200 in number (boys — 5 and girls — 15).
+              All educational expenses required for <strong className="text-surface-850">239 children</strong> residing in Dalit colonies of <strong className="text-surface-850">Gandhi Nagar</strong> and <strong className="text-surface-850">Rajiv Nagar</strong> are being taken care of by the Trust. On the basis of <strong className="text-brand-600">"Education for All"</strong>, children above the age of 3 are being educated through the Sevai Maiyam Trust. Totally <strong className="text-surface-850">210 children</strong> are being benefited - boys account for 92, girls 118, and students studying in colleges are 200 in number (boys - 5 and girls - 15).
             </p>
           </motion.div>
 

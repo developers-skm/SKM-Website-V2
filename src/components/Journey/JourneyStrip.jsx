@@ -137,7 +137,7 @@ function FullJourney({ onPageChange }) {
               onClick={() => onPageChange?.('get-quote')}
               className="inline-flex items-center gap-2.5 bg-transparent hover:bg-brand-600/6 text-surface-900 border border-surface-250 font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-7 py-[15px] rounded-[200px] transition-all duration-300 cursor-pointer"
             >
-              Request A Quote
+              Request A Quotation
             </button>
           </div>
         </div>

@@ -175,7 +175,7 @@ export default function ExportMarketsMap() {
             <p className="text-[10px] font-heading font-bold uppercase tracking-[0.1em] text-surface-400 mb-3 shrink-0">
               Export Markets · 30+ Countries
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-0.5 lg:overflow-y-auto lg:flex-1 lg:min-h-0">
+            <div data-lenis-prevent className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-0.5 lg:overflow-y-auto lg:overscroll-contain lg:flex-1 lg:min-h-0">
               {EXPORT_MARKETS.map(market => (
                 <div
                   key={market.id}

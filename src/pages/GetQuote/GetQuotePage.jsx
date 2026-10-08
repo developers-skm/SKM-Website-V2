@@ -207,7 +207,7 @@ export default function GetQuotePage({ onPageChange, prefill }) {
   return (
     <PageWrapper
       seo={{
-        title: 'Request A Quote | SKM Egg Products',
+        title: 'Request A Quotation | SKM Egg Products',
         description: 'Request a sample or quote for SKM egg powders and liquid egg products — tell us your application, quantity, and destination and our export sales team will respond within 24 hours.',
         keywords: 'egg powder quote, egg products sample request, egg powder RFQ, bulk egg powder pricing, egg products export enquiry',
         canonical: 'https://www.skmegg.com/get-quote',

@@ -6,6 +6,13 @@ import EnquiryModal from '../ContactUs/sections/EnquiryModal';
 import certifications from '../../data/certifications';
 import homeJourneyStages from '../../data/homeJourneyStages';
 import HomeJourney from '../Home/sections/HomeJourney';
+import certBRC from '../../assets/4. QUALITY/Certificates/BRC FOOD_524x600px.png';
+import certEIC from '../../assets/4. QUALITY/Certificates/EIC_524x600px.png';
+import certERC from '../../assets/4. QUALITY/Certificates/ERC_524x600px.png';
+import certFSSAI from '../../assets/4. QUALITY/Certificates/FSSAI_524x600px.png';
+import certHALAL from '../../assets/4. QUALITY/Certificates/HALAL_524x600px.png';
+import certKOSHER from '../../assets/4. QUALITY/Certificates/KOSHER_524x600px.png';
+import certNABL from '../../assets/4. QUALITY/Certificates/NABL 17025_524x600px.png';
 import traceabilityHeroImage from '../../assets/4. QUALITY/Traceability/Traceability Home Section.png';
 
 // Quality, Food Safety and Traceability — combined hub page. This is a new
@@ -289,7 +296,19 @@ const CERT_CATEGORIES = {
   'ISO/IEC 17025': 'Laboratory',
   NABL: 'Laboratory',
 };
-const CERT_FILTER_AXES = ['Food safety', 'Religious certification', 'Laboratory'];
+// Real certificate document per certification (ISO/IEC 17025 and NABL share
+// the single NABL 17025 accreditation certificate).
+const CERT_DOCUMENTS = {
+  FSSAI: certFSSAI,
+  'Export Inspection Council': certEIC,
+  'BRC Food Certified': certBRC,
+  'Eat Right Campus': certERC,
+  'Halal Certified': certHALAL,
+  'KLBD Kosher': certKOSHER,
+  'ISO/IEC 17025': certNABL,
+  NABL: certNABL,
+};
+const CERT_FILTER_AXES =['Food safety', 'Religious certification', 'Laboratory'];
 
 function CertificationsApprovalsSection({ onPageChange }) {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -356,7 +375,7 @@ function CertificationsApprovalsSection({ onPageChange }) {
               </span>
               <div className="flex items-center justify-center gap-4 pt-1 border-t border-surface-200/60">
                 <a
-                  href={cert.logo}
+                  href={CERT_DOCUMENTS[cert.name] || cert.logo}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body font-semibold text-[12px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm mt-2"
@@ -364,7 +383,7 @@ function CertificationsApprovalsSection({ onPageChange }) {
                   View Certificate
                 </a>
                 <a
-                  href={cert.logo}
+                  href={CERT_DOCUMENTS[cert.name] || cert.logo}
                   download
                   className="font-body font-semibold text-[12px] text-surface-500 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm mt-2"
                 >

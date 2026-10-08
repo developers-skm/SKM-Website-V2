@@ -80,7 +80,7 @@ const stories = [
   {
     number: '01',
     eyebrow: 'Carbon Footprint',
-    title: 'Lowest possible carbon footprint.',
+    title: 'Low possible carbon footprint.',
     body: 'Kept at the lowest possible level thanks to the strategic location of the plant, efficient recycling of waste, and energy-efficient processes throughout our operations.',
     image: ETP,
     imageAlt: 'Effluent treatment plant at SKM Egg Products',

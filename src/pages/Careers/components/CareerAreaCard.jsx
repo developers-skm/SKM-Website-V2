@@ -33,9 +33,11 @@ export default function CareerAreaCard({ department, openCount, active, onSelect
           <span className="font-heading font-bold text-[17px] sm:text-[18px] text-heading leading-snug tracking-tight group-hover:text-brand-650 transition-colors">
             {department}
           </span>
-          <span className="font-body text-[13px] text-surface-500 font-medium">
-            {openCount > 0 ? `${openCount} open ${openCount === 1 ? 'role' : 'roles'}` : 'Talent Community'}
-          </span>
+          {openCount > 0 && (
+            <span className="font-body text-[13px] text-surface-500 font-medium">
+              {`${openCount} open ${openCount === 1 ? 'role' : 'roles'}`}
+            </span>
+          )}
         </div>
       </button>
     </motion.li>

@@ -39,7 +39,7 @@ import certifications from '../../data/certifications';
 // (products.js) and, where supplied, real storage temperature language
 // already established for that category.
 //
-// Section 6 — Closing CTA — Request a Sample / Request a Quote both route
+// Section 6 — Closing CTA — Request a Sample / Request a Quotation both route
 // to the real get-quote flow (no separate sample-request mechanism exists,
 // so "Request a Sample" reuses the same real conversion path rather than a
 // fake dedicated form).
@@ -475,7 +475,7 @@ export default function CategoryPage({
                 onPageChange={onPageChange}
                 className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
               >
-                Request a Quote
+                Request a Quotation
               </InternalLink>
             </div>
           </div>

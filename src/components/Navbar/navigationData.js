@@ -95,7 +95,7 @@ export const overlayColumns = [
     links: [
       { label: 'Careers', route: 'careers' },
       { label: 'Contact', route: 'contact-us' },
-      { label: 'Request a Quote', route: 'get-quote' },
+      { label: 'Request a Quotation', route: 'get-quote' },
     ],
   },
 ];

@@ -132,7 +132,7 @@ export default function Hero({ onPageChange }) {
                 onClick={() => onPageChange('get-quote')}
                 className="inline-flex items-center justify-center gap-2 min-h-[46px] px-6 rounded-[10px] border border-white/40 bg-white/10 backdrop-blur-sm text-white font-heading font-bold text-[13px] uppercase tracking-[0.03em] hover:bg-white hover:text-heading hover:border-white transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
               >
-                Request a Quote
+                Request a Quotation
               </button>
             </div>
 

@@ -57,31 +57,15 @@ export default function GlobalEventsDock({ children, onPageChange }) {
       >
         <div className="relative">
           {children}
-
-          {/* Desktop: tab attached to the right edge of the map */}
-          <div className="pointer-events-none absolute inset-0 z-30 hidden overflow-hidden rounded-[20px] lg:block">
-            <motion.button
-              ref={openerRef}
-              type="button"
-              onClick={open}
-              aria-label="Open Events and Expos — SKM Events Around the World"
-              className={`group pointer-events-auto absolute right-0 top-[58%] flex h-[54px] w-[176px] items-center justify-between rounded-l-[14px] border border-r-0 border-[#e8e8e8] border-l-[3px] border-l-brand-600 bg-white pl-4 pr-4 font-heading text-[11.5px] font-bold uppercase tracking-[0.14em] text-heading shadow-[-8px_4px_28px_rgba(0,72,88,0.14)] cursor-pointer transition-colors duration-300 hover:bg-surface-50 ${focusRing}`}
-              whileHover={reduce ? undefined : { x: -7 }}
-              transition={{ duration: 0.3, ease: EASE_PREMIUM }}
-            >
-              Events &amp; Expos
-              <span className="text-brand-600 transition-transform duration-300 group-hover:translate-x-1">
-                <Arrow />
-              </span>
-            </motion.button>
-          </div>
         </div>
 
-        {/* Mobile / tablet: entry card under the map */}
+        {/* Entry card under the map (all sizes) — below the map so it never covers a country */}
         <button
+          ref={openerRef}
           type="button"
           onClick={open}
-          className={`group mt-5 flex min-h-[72px] w-full items-center justify-between gap-4 rounded-[16px] border border-[#eee] border-l-[3px] border-l-brand-600 bg-white px-5 py-4 text-left shadow-[5px_3px_40px_rgba(0,72,88,0.08)] cursor-pointer lg:hidden ${focusRing}`}
+          aria-label="Open Events and Expos — SKM Events Around the World"
+          className={`group mt-5 flex min-h-[72px] w-full items-center justify-between gap-4 rounded-[16px] border border-[#eee] border-l-[3px] border-l-brand-600 bg-white px-5 py-4 text-left shadow-[5px_3px_40px_rgba(0,72,88,0.08)] cursor-pointer ${focusRing}`}
         >
           <span>
             <span className="block font-heading text-[12px] font-bold uppercase tracking-[0.14em] text-heading">Events &amp; Expos</span>
