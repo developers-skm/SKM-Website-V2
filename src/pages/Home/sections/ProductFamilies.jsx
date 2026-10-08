@@ -4,6 +4,7 @@ import InternalLink from '../../../components/common/InternalLink';
 import SafeImage from '../../../components/common/SafeImage';
 import products, { PRODUCT_CATEGORIES, getProductById } from '../../../data/products';
 import CategoryMotif from './CategoryMotif';
+import TableEggImage from '../../../assets/1. HOME PAGE/TableEggImage.png';
 
 // Section 3 — Product Families. Four family cards in a 2x2 grid. Every
 // format/benefit/application/storage value below is an exact verbatim
@@ -76,14 +77,13 @@ const families = [
   },
   {
     // No table/shell egg product exists in the catalogue yet — the copy
-    // below is honest that it's not launched. Image is a representative
-    // stock photo served from Unsplash's CDN (not a local asset), used
-    // only as a visual placeholder — no product data implied.
+    // below is honest that it's not launched. Image is a local placeholder
+    // asset — no product data implied.
     id: 'table-eggs',
     name: 'Table Eggs',
     comingSoon: true,
-    comingSoonImage: 'https://images.unsplash.com/photo-1586802990181-a5771596eaea?auto=format&fit=crop&w=1600&q=85',
-    comingSoonImageAlt: 'Brown egg on a white paper towel',
+    comingSoonImage: TableEggImage,
+    comingSoonImageAlt: 'Brown table eggs in an egg tray',
   },
 ];
 
