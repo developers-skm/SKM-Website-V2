@@ -102,7 +102,7 @@ const infoBlocks = [
     ),
   },
   {
-    title: 'Sustainable circular economy – Biogas Initiative',
+    title: 'Sustainable circular economy',
     body: 'Our integrated biogas facility supports circular and environmentally responsible operations. The plant has a 70-tonne poultry litter handling capacity. In addition, nutrient-rich liquid fertilizer generated as a by-product is supplied to farmers at no cost, reinforcing our commitment to sustainable agriculture.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

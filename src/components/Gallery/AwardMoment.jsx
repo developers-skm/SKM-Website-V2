@@ -41,14 +41,14 @@ export default function AwardMoment({ moment, flip, onOpen }) {
 
       <div className="grid lg:grid-cols-12 items-center">
         {/* Photograph — never upscaled past its natural width */}
-        <div className={`lg:col-span-7 p-5 sm:p-8 lg:p-12 ${flip ? 'lg:order-2' : ''}`}>
+        <div className={`lg:col-span-6 p-5 sm:p-8 lg:p-10 ${flip ? 'lg:order-2' : ''}`}>
           <motion.button
             type="button"
             variants={clip}
             onClick={(e) => onOpen(moment, e.currentTarget)}
             aria-label={`View moment: ${moment.title}`}
             className="group relative mx-auto block w-full overflow-hidden rounded-[14px] border-0 bg-surface-100 p-0 cursor-pointer focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-brand-600"
-            style={{ aspectRatio: img.ratio, maxWidth: img.width ? Math.max(img.width, 560) : undefined }}
+            style={{ aspectRatio: img.ratio, maxWidth: img.width ? Math.min(Math.max(img.width, 400), 480) : undefined }}
           >
             <img
               src={img.src}
@@ -69,7 +69,7 @@ export default function AwardMoment({ moment, flip, onOpen }) {
         </div>
 
         {/* Text */}
-        <motion.div variants={rise} className="lg:col-span-5 px-6 pb-8 sm:px-10 sm:pb-12 lg:px-12 lg:py-12">
+        <motion.div variants={rise} className="lg:col-span-6 px-6 pb-8 sm:px-10 sm:pb-12 lg:px-12 lg:py-12">
           <div className="text-gold-600"><MedalIcon /></div>
           <span className="mt-4 block font-body text-[12px] font-bold uppercase tracking-[0.2em] text-gold-600">
             {TYPE_LABEL.award}

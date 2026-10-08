@@ -7,6 +7,7 @@ import MenuSection from './MenuSection';
 import SearchPanel from './SearchPanel';
 import { CloseIcon, SearchIcon, MailIcon, PhoneIcon } from './icons';
 import { overlayColumns, utilityLinks } from './navigationData';
+import LanguageSwitcher from './LanguageSwitcher';
 import useScrollLock from '../../hooks/useScrollLock';
 
 const PHONE_NUMBER = '04242268391';
@@ -247,9 +248,7 @@ function OverlayBody({
               </Fragment>
             ))}
             <span className="w-px h-3 bg-surface-300" aria-hidden="true" />
-            <span className="font-body text-[13px] font-medium text-surface-500 whitespace-nowrap select-none">
-              Language · EN
-            </span>
+            <LanguageSwitcher placement="up" textClassName="text-[13px]" />
           </nav>
 
           <div className="flex items-center gap-3 sm:ml-auto flex-shrink-0">

@@ -15,21 +15,21 @@ import { LAYERS_HOUSED, EGGS_PER_YEAR_SHORT, EGGS_PROCESSED_PER_DAY_SHORT } from
 const journeyStages = [
   {
     step: '01',
-    id: 'hatchery',
-    label: 'Poultry farm',
-    image: HatcheryImg,
-    tagline: 'It starts behind a biosecurity shower.',
-    description: 'Every visit to our layer farms begins at a controlled entry point, with vehicle and personnel sanitation, biosecurity barriers, and perimeter management forming the foundation of our traceability system.',
-    stat: { value: '2008/798', label: 'EU biosecurity registration' },
-  },
-  {
-    step: '02',
     id: 'feed-mill',
     label: 'Feed Mill',
     image: FeedMillImg,
     tagline: 'What the hens eat is tested before they eat it.',
     description: 'Our in-house feed mill screens every ingredient for mycotoxins, pesticide residues, and antibiotic contamination before it is formulated into balanced, residue-free feed — from chick to grower to layer.',
     stat: { value: '100%', label: 'Ingredients lot-tested before use' },
+  },
+  {
+    step: '02',
+    id: 'hatchery',
+    label: 'Poultry farm',
+    image: HatcheryImg,
+    tagline: 'It starts behind a biosecurity shower.',
+    description: 'Every visit to our layer farms begins at a controlled entry point, with vehicle and personnel sanitation, biosecurity barriers, and perimeter management forming the foundation of our traceability system.',
+    stat: { value: '2008/798', label: 'EU biosecurity registration' },
   },
   {
     step: '03',
@@ -65,7 +65,7 @@ const journeyStages = [
     image: DispatchImg,
     tagline: 'Cold chain, sealed and documented, to your door.',
     description: 'Positive-pressure packing rooms and robust cold-chain management protect product integrity through final delivery. Lot codes, batch identification, and destination details are digitally recorded, ensuring complete supply chain transparency and traceability.',
-    stat: { value: '30+', label: 'Countries reached through this chain' },
+    stat: { value: '30+', label: 'Countries served ' },
   },
 ];
 

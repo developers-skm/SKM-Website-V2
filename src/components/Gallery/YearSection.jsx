@@ -3,7 +3,6 @@ import MomentCard from './MomentCard';
 import AwardMoment from './AwardMoment';
 
 const EASE = [0.22, 1, 0.36, 1];
-const PATTERN = ['feature', 'side', 'quiet'];
 
 // One year: a large year anchor, then that year's moments in order. Layout is
 // derived from position and type — nothing here is per-item.
@@ -17,6 +16,15 @@ export default function YearSection({ group, onOpen }) {
     const n = seen[kind];
     seen[kind] += 1;
     return { m, n };
+  });
+
+  // Consecutive plain moments are grouped into one run; awards stay full-width.
+  const blocks = [];
+  placed.forEach(({ m, n }) => {
+    const last = blocks[blocks.length - 1];
+    if (m.award) blocks.push({ award: true, m, n });
+    else if (last && !last.award) last.items.push(m);
+    else blocks.push({ items: [m] });
   });
 
   return (
@@ -38,11 +46,19 @@ export default function YearSection({ group, onOpen }) {
       </motion.header>
 
       <div className="flex flex-col gap-14 lg:gap-24">
-        {placed.map(({ m, n }) =>
-          m.award ? (
-            <AwardMoment key={m.id} moment={m} flip={n % 2 === 1} onOpen={onOpen} />
+        {blocks.map((b) =>
+          b.award ? (
+            <AwardMoment key={b.m.id} moment={b.m} flip={b.n % 2 === 1} onOpen={onOpen} />
           ) : (
-            <MomentCard key={m.id} moment={m} variant={PATTERN[n % PATTERN.length]} onOpen={onOpen} />
+            // Plain moments flow in two columns so the next one fills the side
+            // space; the right column is dropped for a staggered rhythm.
+            <div key={b.items[0].id} className="grid items-start gap-x-10 gap-y-14 lg:grid-cols-2 xl:gap-x-14">
+              {b.items.map((m, i) => (
+                <div key={m.id} className={i % 2 === 1 ? 'lg:mt-24' : ''}>
+                  <MomentCard moment={m} variant="half" onOpen={onOpen} />
+                </div>
+              ))}
+            </div>
           )
         )}
       </div>

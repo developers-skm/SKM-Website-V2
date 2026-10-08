@@ -41,7 +41,7 @@ const processChapters = [
     title: 'Fresh Egg Collection & Transportation',
     narrative:
     'Shell eggs are procured daily from certified integrated layer farms and transported to our facility in climate-controlled vehicles. Upon arrival, the shell eggs are graded before entering the production process.',
-    highlights: ['100% Certified Layer Farm Origin', 'climate-controlled vehicles.','Graded before production'],
+    highlights: ['100% Traceable Origin', 'climate-controlled vehicles.','Graded before production'],
     illustrationSide: 'left', // left: image, center: node, right: content
     image: manufacturingImages.intake,
     altText: 'Automated egg intake, candling inspection and sanitization line',
@@ -82,7 +82,7 @@ const processChapters = [
     title: 'NABL Analytical & Residue Testing',
     narrative:
       'Every production batch undergoes comprehensive analytical, chemical, and microbiological testing in an NABL-accredited (ISO/IEC 17025) laboratory before Certificate of Analysis (COA) issuance, verifying protein content, fat, solubility, and pathogen-free compliance.',
-    highlights: ['LC-MS/MS & GC-ECD/FID Residue Screening', 'Pathogen & Bacterial testings ', 'Physiochemical Verification'],
+    highlights: ['LC-MS/MS & GC-ECD/FID Residue Screening', 'Pathogen & Bacterial testing ', 'Physiochemical Verification'],
     illustrationSide: 'left',
     image: manufacturingImages.qualityLab,
     altText: 'NABL food testing laboratory with analytical instruments and egg powder sample testing',

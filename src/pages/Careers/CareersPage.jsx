@@ -12,7 +12,6 @@ import TextLink from './components/TextLink';
 import EarlyCareers from './components/EarlyCareers';
 import LifeAtSkm from './components/LifeAtSkm';
 import RecruitmentProcess from './components/RecruitmentProcess';
-import TalentPoolCTA from './components/TalentPoolCTA';
 import CareersFAQ from './components/CareersFAQ';
 
 export default function CareersPage({ onPageChange }) {
@@ -69,7 +68,6 @@ export default function CareersPage({ onPageChange }) {
       <LifeAtSkm />
       <EarlyCareers onExplore={showEarlyCareers} />
       <RecruitmentProcess />
-      <TalentPoolCTA onPageChange={onPageChange} />
       <CareersFAQ />
     </div>
   );

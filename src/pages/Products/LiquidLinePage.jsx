@@ -28,7 +28,7 @@ export default function LiquidLinePage({ onPageChange }) {
         </div>
         <TraceabilityLoopJourney
           title="How Liquid Egg Is Made"
-          subtitle="360° Farm-to-Fork Traceability — From Biosecure Farms to Hygienic Packaging & Global Dispatch"
+          subtitle="360° Farm-to-Food Traceability — From Biosecure Farms to Hygienic Packaging & Global Dispatch"
           onPageChange={onPageChange}
           showQuality={false}
           line="liquid"

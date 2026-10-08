@@ -36,7 +36,7 @@ export default function QualityCertificationProof({ onPageChange }) {
           <motion.div {...fadeUp(reduceMotion, { delay: 0.3 })} className="order-3 lg:order-none lg:col-span-5 flex flex-col gap-3 lg:gap-6">
             <span className="section-label !hidden lg:!flex">Quality &amp; Certifications</span>
             <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] text-heading leading-[1.1] lg:leading-[1.05] tracking-tight m-0">
-              Precision, verified at every step.
+              Quality, verified at every step.
             </h2>
             <p className="font-body text-[15px] lg:text-[18px] text-surface-600 leading-[1.65] lg:leading-[1.75] max-w-lg m-0">
               Every batch is governed by a documented Food Safety &amp; Quality Policy : HACCP-based hazard control, verified residue testing, and internationally aligned management systems, from raw material intake to finished product release.

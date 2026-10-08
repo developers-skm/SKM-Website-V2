@@ -5,7 +5,6 @@ import { getFilterOptions, getOpenJobs } from '../../../data/jobs';
 import JobFilters from './JobFilters';
 import { emptyFilters, hasActiveFilters } from './filterState';
 import JobCard from './JobCard';
-import InternalLink from '../../../components/common/InternalLink';
 
 const listVariants = makeContainerVariants(0.06);
 
@@ -64,11 +63,8 @@ export default function JobBrowser({ filters, onFiltersChange, onPageChange, fea
         <div className="rounded-xl bg-white border border-dashed border-surface-300 p-10 text-center flex flex-col items-center gap-3">
           <h3 className="font-heading font-bold text-[20px] text-heading m-0">No matching opportunities</h3>
           <p className="font-body text-[15px] text-surface-500 max-w-md m-0">
-            Try adjusting your search or filters, or submit your profile to our Talent Pool for future openings.
+            Try adjusting your search or filters.
           </p>
-          <InternalLink route="careers/apply" onPageChange={onPageChange} className="btn-outline-red mt-2">
-            Join Our Talent Pool
-          </InternalLink>
         </div>
       )}
     </div>

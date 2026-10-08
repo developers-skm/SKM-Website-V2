@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import InternalLink from '../../../components/common/InternalLink';
 import CareerIcon from './careerIcons';
 
-export default function ApplicationSuccess({ reference, isTalentPool, onPageChange }) {
+export default function ApplicationSuccess({ reference, onPageChange }) {
   const headingRef = useRef(null);
 
   useEffect(() => {
@@ -16,10 +16,10 @@ export default function ApplicationSuccess({ reference, isTalentPool, onPageChan
         <CareerIcon name="check" className="w-8 h-8" />
       </span>
       <h2 ref={headingRef} tabIndex={-1} className="font-heading font-bold text-[30px] text-heading m-0 focus:outline-none">
-        {isTalentPool ? 'Profile Submitted Successfully' : 'Application Submitted Successfully'}
+        Application Submitted Successfully
       </h2>
       <p className="font-body text-[16px] text-surface-500 leading-[28px] m-0">
-        Thank you for {isTalentPool ? 'sharing your profile with' : 'applying to'} SKM Egg Products. Our recruitment team will review your profile.
+        Thank you for applying to SKM Egg Products. Our recruitment team will review your profile.
       </p>
       {reference && (
         <div className="rounded-[10px] bg-page border border-[#eee] px-8 py-4 flex flex-col gap-1">

@@ -19,10 +19,12 @@ const settle = {
 
 // Editorial placement on desktop (12-col row). Mobile is always a single column.
 const PLACEMENT = {
-  feature: { box: 'lg:col-start-1 lg:col-span-9', sizes: '(min-width: 1320px) 800px, (min-width: 1024px) 70vw, 100vw' },
-  side: { box: 'lg:col-start-6 lg:col-span-7', sizes: '(min-width: 1320px) 640px, (min-width: 1024px) 55vw, 100vw' },
-  quiet: { box: 'lg:col-start-2 lg:col-span-6', sizes: '(min-width: 1320px) 540px, (min-width: 1024px) 48vw, 100vw' },
-  portrait: { box: 'lg:col-start-4 lg:col-span-5', sizes: '(min-width: 1024px) 40vw, 100vw' },
+  feature: { box: 'lg:col-start-1 lg:col-span-6', sizes: '(min-width: 1320px) 540px, (min-width: 1024px) 48vw, 100vw' },
+  side: { box: 'lg:col-start-7 lg:col-span-5', sizes: '(min-width: 1320px) 450px, (min-width: 1024px) 40vw, 100vw' },
+  quiet: { box: 'lg:col-start-2 lg:col-span-5', sizes: '(min-width: 1320px) 450px, (min-width: 1024px) 40vw, 100vw' },
+  portrait: { box: 'lg:col-start-5 lg:col-span-4', sizes: '(min-width: 1024px) 32vw, 100vw' },
+  // Fills one half of a two-column run (see YearSection) — no empty side space.
+  half: { box: '', sizes: '(min-width: 1320px) 620px, (min-width: 1024px) 46vw, 100vw' },
 };
 
 const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
@@ -40,7 +42,7 @@ export function DateMarker({ moment, className = '' }) {
 export default function MomentCard({ moment, variant, onOpen }) {
   const reduce = useReducedMotion();
   const img = imageProps(moment.image, 1200);
-  const place = PLACEMENT[img.ratio < 1 ? 'portrait' : variant];
+  const place = PLACEMENT[variant === 'half' ? 'half' : img.ratio < 1 ? 'portrait' : variant];
 
   return (
     <motion.article
@@ -60,7 +62,7 @@ export default function MomentCard({ moment, variant, onOpen }) {
           variants={clip}
           onClick={(e) => onOpen(moment, e.currentTarget)}
           aria-label={`View moment: ${moment.title}`}
-          className="group relative block w-full overflow-hidden rounded-[18px] sm:rounded-[22px] border-0 bg-surface-200 p-0 cursor-pointer shadow-[0_2px_24px_rgba(0,0,0,0.07)] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-brand-600"
+          className="group relative block w-full max-h-[440px] overflow-hidden rounded-[18px] sm:rounded-[22px] border-0 bg-surface-200 p-0 cursor-pointer shadow-[0_2px_24px_rgba(0,0,0,0.07)] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-brand-600"
           style={{ aspectRatio: clamp(img.ratio, 0.8, 1.8) }}
         >
           <motion.img

@@ -39,10 +39,9 @@ export default function JobDetailPage({ slug, onPageChange }) {
       <div className="w-full flex flex-col">
         <SEO title="Job Not Found | Careers at SKM Egg Products" noindex />
         <CareersPageHeader onPageChange={onPageChange} crumbs={[{ label: 'Careers', route: 'careers' }, { label: 'Job not found' }]} title="This position is no longer available">
-          <p className="font-body text-[17px] text-surface-500 m-0 max-w-xl">The role may have been filled or closed. Browse our current opportunities or join the Talent Pool.</p>
+          <p className="font-body text-[17px] text-surface-500 m-0 max-w-xl">The role may have been filled or closed. Browse our current opportunities.</p>
           <div className="flex flex-wrap gap-3 mt-2">
             <InternalLink route="careers/jobs" onPageChange={onPageChange} className="btn-primary-red">Browse All Jobs</InternalLink>
-            <InternalLink route="careers/apply" onPageChange={onPageChange} className="btn-outline-red">Join Our Talent Pool</InternalLink>
           </div>
         </CareersPageHeader>
       </div>

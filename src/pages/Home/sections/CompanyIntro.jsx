@@ -31,7 +31,7 @@ const blocks = [
     id: 'process',
     eyebrow: 'Process Excellence',
     title: '2 million eggs, processed daily.',
-    body: 'Only microbiologically tested eggs are processed, producing approximately 7,500 tonnes annually. Operations follow cGMP, SSOP, Codex Alimentarius principles, and HACCP guidelines — every activity monitored through the integrated traceability system.',
+    body: 'Only microbiologically tested eggs are processed, producing approximately 7,500 tonnes annually. Operations follow cGMP, SSOP, Codex Alimentarius principles, and HACCP guidelines with every activity monitored through the integrated traceability system.',
     image: Pasteurization,
   },
   {
@@ -43,10 +43,12 @@ const blocks = [
   },
   {
     id: 'utility',
-    eyebrow: 'Sustainable circular economy – Biogas Initiative',
-    title: 'A circular approach to plant utilities.',
+    eyebrow: 'Sustainable circular economy',
+    title: 'A circular approach.',
     body: 'Our integrated biogas facility processes 70 tonnes of poultry litter, producing biofuel to support our operations. Its nutrient-rich liquid by-product is supplied to farmers as a fertilizer.',
     image: UtilityOverview,
+    // Headline achievement — rendered as a highlighted callout.
+    highlight: { value: '70 tonnes', label: 'of poultry litter processed into biofuel' },
   },
 ];
 
@@ -69,6 +71,17 @@ function ContentBlock({ block, index, onEnter, reduceMotion }) {
         <h3 className="font-heading font-bold text-[26px] sm:text-[30px] lg:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
           {block.title}
         </h3>
+        {block.highlight && (
+          <div className="relative mt-1 flex max-w-lg items-center gap-5 overflow-hidden rounded-[14px] border border-gold-500/40 bg-gold-500/10 px-5 py-5 sm:px-7 sm:py-6">
+            <span className="absolute inset-y-0 left-0 w-[4px] bg-gold-500" aria-hidden="true" />
+            <span className="font-heading font-bold text-[40px] sm:text-[52px] leading-none tracking-tight text-brand-600 tabular-nums whitespace-nowrap">
+              {block.highlight.value}
+            </span>
+            <span className="font-body text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.12em] leading-snug text-heading">
+              {block.highlight.label}
+            </span>
+          </div>
+        )}
         <p className="font-body text-[15.5px] lg:text-[16.5px] text-surface-500 leading-[1.8] max-w-lg m-0">
           {block.body}
         </p>

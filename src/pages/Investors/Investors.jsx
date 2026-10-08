@@ -951,7 +951,7 @@ export default function Investors({ onPageChange }) {
 
         {/* Desktop: sticky sidebar */}
         <aside className="hidden lg:flex flex-col w-72 xl:w-80 flex-shrink-0">
-          <div className="sticky top-24 flex flex-col gap-0.5 max-h-[calc(100vh-120px)] overflow-y-auto pr-2 custom-scrollbar">
+          <div className="sticky top-24 flex flex-col gap-0.5 pr-2">
             <p className="font-body text-[10px] font-bold uppercase tracking-widest text-surface-400 px-3 pb-3 mb-1 border-b border-[#eee]">
               Most Used
             </p>
@@ -1011,27 +1011,30 @@ export default function Investors({ onPageChange }) {
                       className="w-full px-3 py-2 rounded-[7px] border border-[#eee] bg-white font-body text-[12px] text-surface-700 placeholder:text-surface-350 focus:outline-none focus:border-brand-600/50"
                     />
                   </div>
-                  {filteredArchiveItems.map((item) => {
-                    const isActive = activeItem === item.value;
-                    return (
-                      <button
-                        key={item.value}
-                        onClick={() => handleSelect(item.value)}
-                        className={`w-full text-left px-4 py-2.5 rounded-[8px] font-body text-[12px] font-medium leading-snug transition-all duration-200 cursor-pointer focus:outline-none relative ${
-                          isActive
-                            ? 'text-brand-600 bg-brand-600/5 border border-brand-600/12'
-                            : 'text-surface-600 hover:bg-surface-50 hover:text-brand-600 border border-transparent'
-                        }`}
-                      >
-                        {item.label}
-                      </button>
-                    );
-                  })}
-                  {filteredArchiveItems.length === 0 && (
-                    <p className="font-body text-[11.5px] text-surface-400 px-4 py-2">
-                      No categories match "{archiveSearch}".
-                    </p>
-                  )}
+                  {/* Only this list scrolls; Lenis is told to leave the wheel alone here. */}
+                  <div data-lenis-prevent className="flex max-h-[min(360px,calc(100vh-420px))] min-h-[140px] flex-col gap-0.5 overflow-y-auto overscroll-contain pr-1 custom-scrollbar">
+                    {filteredArchiveItems.map((item) => {
+                      const isActive = activeItem === item.value;
+                      return (
+                        <button
+                          key={item.value}
+                          onClick={() => handleSelect(item.value)}
+                          className={`w-full text-left px-4 py-2.5 rounded-[8px] font-body text-[12px] font-medium leading-snug transition-all duration-200 cursor-pointer focus:outline-none relative ${
+                            isActive
+                              ? 'text-brand-600 bg-brand-600/5 border border-brand-600/12'
+                              : 'text-surface-600 hover:bg-surface-50 hover:text-brand-600 border border-transparent'
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      );
+                    })}
+                    {filteredArchiveItems.length === 0 && (
+                      <p className="font-body text-[11.5px] text-surface-400 px-4 py-2">
+                        No categories match "{archiveSearch}".
+                      </p>
+                    )}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>

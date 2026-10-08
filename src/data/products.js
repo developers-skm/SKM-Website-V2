@@ -39,7 +39,7 @@ const products = [
     title: 'Whole Egg Powder',
     image: WholeEggPowderImg,
     category: PRODUCT_CATEGORIES.POWDERS,
-    shortDescription: 'Pasteurized spray-dried whole hen egg powder for bakery, confectionery, noodles, and mayonnaise — 13 variants.',
+    shortDescription: 'Pasteurized spray-dried whole hen egg powder for bakery, confectionery, noodles, and mayonnaise  13 variants.',
     packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
     tdsUrl: WholeEggPowderTds,
   },
@@ -129,7 +129,7 @@ const products = [
   {
     id: 'customized_packages',
     page: 'customized_packages',
-    title: 'Customized Packages',
+    title: 'Customized Packaging',
     image: CustomizedPackagesImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,
     shortDescription: 'Packaging options including corrugated bag-in-box, paper bag-in-bag, liquid pouches, and Tetra Pack formats, configured to meet your specific packaging and application requirements.',

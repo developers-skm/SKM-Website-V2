@@ -588,3 +588,11 @@ p {
   background-color: transparent;
   transition: all 600ms linear;
 }
+
+/* ── Google Website Translator: hide its default banner/widget chrome; the
+   site uses its own language switcher (components/Navbar/LanguageSwitcher). ── */
+.goog-te-banner-frame,
+.skiptranslate > iframe,
+#goog-gt-tt,
+.goog-te-balloon-frame { display: none !important; }
+body { top: 0 !important; }

@@ -18,21 +18,6 @@ import { LAYERS_HOUSED, EGGS_PER_YEAR, EGGS_PROCESSED_PER_DAY } from './producti
 
 const homeJourneyStages = [
   {
-    id: 'feed-sourcing',
-    label: 'Feed sourcing',
-    // Source: src/pages/Infra/sections/FeedMill.jsx ("Ingredient Safety &
-    // Screening" info block).
-    image: FeedMillLabImg,
-    whatHappens: 'Every raw material entering the feed mill undergoes rigorous testing for mycotoxins, pesticide residues, and antibiotic contaminants.',
-    whatIsControlled: 'Strict lot-wise storage prevents cross-contamination and ensures full traceability from ingredient intake to finished feed.',
-    // No separate "records/quality checks" sentence exists for this stage
-    // beyond the control statement above — omitted rather than duplicated
-    // or invented.
-    recordsAndChecks: null,
-    route: null,
-    ctaLabel: null,
-  },
-  {
     id: 'feed-mill',
     label: 'Feed mill',
     // Source: src/pages/Infra/sections/FeedMill.jsx ("Integrated Feed Mill"
@@ -55,6 +40,21 @@ const homeJourneyStages = [
     recordsAndChecks: 'An attached laboratory routinely analyses water, tissues, and egg samples to ensure ongoing safety and quality monitoring.',
     route: 'poultry_farm',
     ctaLabel: 'View Farm Controls',
+  },
+  {
+    id: 'feed-sourcing',
+    label: 'Feed sourcing',
+    // Source: src/pages/Infra/sections/FeedMill.jsx ("Ingredient Safety &
+    // Screening" info block).
+    image: FeedMillLabImg,
+    whatHappens: 'Every raw material entering the feed mill undergoes rigorous testing for mycotoxins, pesticide residues, and antibiotic contaminants.',
+    whatIsControlled: 'Strict lot-wise storage prevents cross-contamination and ensures full traceability from ingredient intake to finished feed.',
+    // No separate "records/quality checks" sentence exists for this stage
+    // beyond the control statement above — omitted rather than duplicated
+    // or invented.
+    recordsAndChecks: null,
+    route: null,
+    ctaLabel: null,
   },
   {
     id: 'egg-collection',

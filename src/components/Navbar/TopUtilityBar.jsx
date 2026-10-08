@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import { motion } from 'framer-motion';
 import SKMLogo from '../../assets/LOGO/Skm-Logo-1536x332.png';
 import InternalLink from '../common/InternalLink';
+import LanguageSwitcher from './LanguageSwitcher';
 import { utilityLinks } from './navigationData';
 
 // Persistent slim top bar, visible on every page (not just inside the
@@ -50,9 +51,7 @@ export default function TopUtilityBar({ onPageChange, logoButtonRef }) {
             </Fragment>
           ))}
           <span className="w-px h-3 bg-surface-300" aria-hidden="true" />
-          <span className="font-body text-[14px] font-medium text-surface-500 whitespace-nowrap select-none">
-            Language · EN
-          </span>
+          <LanguageSwitcher textClassName="text-[14px]" />
         </nav>
       </div>
     </motion.div>

@@ -20,8 +20,8 @@ function syncPlayback(s) {
 }
 
 /**
- * Drives the events journey: India → stop 0 → stop 1 → … (each leg continues
- * from the previous stop). One animation is live at a time and every control
+ * Drives the events journey: India → stop 0, India → stop 1, … (every flight
+ * departs from India and never returns). One animation is live at a time and every control
  * (next / previous / pin click / replay) cancels it first, so timers can never
  * stack. Position is exposed as motion values (travel, timer) so the
  * map can animate without re-rendering every frame.
@@ -59,7 +59,7 @@ export default function useJourney({ count, active, reduce }) {
       stopAll();
       s.leg += 1;
       const id = s.leg;
-      const from = s.last;
+      const from = -1; // every flight departs from India (no hops between countries, no return leg)
       s.target = target;
 
       setState({ index: target, phase: 'flying', leg: { id, from, to: target } });

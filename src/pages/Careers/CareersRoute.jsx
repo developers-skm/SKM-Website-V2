@@ -10,7 +10,6 @@ import NotFound from '../NotFound/NotFound';
 //   careers                 → landing
 //   careers/jobs            → full openings list
 //   careers/jobs/:slug      → job details
-//   careers/apply           → Talent Pool (general application)
 //   careers/apply/:slug     → application for a vacancy
 function resolve({ path, onPageChange, prefill }) {
   const [, section, slug] = path.replace(/\/+$/, '').split('/');
@@ -20,7 +19,7 @@ function resolve({ path, onPageChange, prefill }) {
   if (!section) return <CareersPage key={key} onPageChange={onPageChange} />;
   if (section === 'jobs' && !slug) return <JobsPage key={key} onPageChange={onPageChange} prefill={prefill} />;
   if (section === 'jobs') return <JobDetailPage key={key} slug={slug} onPageChange={onPageChange} />;
-  if (section === 'apply') return <ApplyPage key={key} slug={slug} onPageChange={onPageChange} />;
+  if (section === 'apply' && slug) return <ApplyPage key={key} slug={slug} onPageChange={onPageChange} />;
   return <NotFound onPageChange={onPageChange} />;
 }
 

@@ -1,13 +1,12 @@
 import { motion } from 'framer-motion';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
-import InternalLink from '../../../components/common/InternalLink';
 import { Container } from './layout';
 import CareerIcon from './careerIcons';
 
 const container = makeContainerVariants(0.1, { delayChildren: 0.05 });
 const item = makeItemVariants({ y: 20, stiffness: 80 });
 
-export default function CareersHero({ onViewPositions, onPageChange }) {
+export default function CareersHero({ onViewPositions }) {
   return (
     <section aria-labelledby="careers-hero-title" className="relative w-full bg-[#fbfaf8] overflow-hidden border-b border-[#eae6e0]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_85%_10%,var(--color-brand-50)_0%,transparent_50%)] pointer-events-none" aria-hidden="true" />
@@ -37,9 +36,6 @@ export default function CareersHero({ onViewPositions, onPageChange }) {
               Explore Open Positions
               <CareerIcon name="arrow" className="w-3.5 h-3.5" />
             </button>
-            <InternalLink route="careers/apply" onPageChange={onPageChange} className="btn-outline-red min-h-[50px] px-7 justify-center text-[15px]">
-              Join Our Talent Pool
-            </InternalLink>
           </motion.div>
         </motion.div>
 
