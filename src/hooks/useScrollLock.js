@@ -20,6 +20,9 @@ export default function useScrollLock(isLocked) {
     style.left = '0';
     style.right = '0';
     style.overflow = 'hidden';
+    // Lenis keeps hijacking wheel/touch input (and fights the restored scroll
+    // offset) while the body is pinned, so pause it for the lock's lifetime.
+    window.__lenis?.stop();
 
     return () => {
       style.position = previousPosition;
@@ -28,6 +31,8 @@ export default function useScrollLock(isLocked) {
       style.right = previousRight;
       style.overflow = previousOverflow;
       window.scrollTo(0, scrollY);
+      window.__lenis?.start();
+      window.__lenis?.scrollTo(scrollY, { immediate: true, force: true });
     };
   }, [isLocked]);
 }

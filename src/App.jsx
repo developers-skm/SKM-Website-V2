@@ -84,6 +84,14 @@ const QualityManagementSystemPage = lazy(() => import('./pages/Quality/QualityMa
 const QualityFoodSafetyTraceabilityPage = lazy(() => import('./pages/Quality/QualityFoodSafetyTraceabilityPage'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
+// Instant (not smooth) reset: a smooth window.scrollTo fights Lenis's own
+// easing and the changing page height during the route transition, which
+// left the new page stranded part-way down.
+const scrollToTopInstant = () => {
+  if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true, force: true });
+  else window.scrollTo(0, 0);
+};
+
 function App() {
   const getPageFromPath = () => {
     const path = window.location.pathname.replace(/^\//, '');
@@ -119,7 +127,7 @@ function App() {
     if (window.location.pathname !== path || prefillData) {
       window.history.pushState({ page, prefill: prefillData }, '', path);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToTopInstant();
   };
 
   useEffect(() => {
@@ -322,7 +330,7 @@ function App() {
   return (
     <Layout activePage={activePage} onPageChange={handlePageChange} suppressMobileActions={suppressMobileActions}>
       <ErrorBoundary>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" onExitComplete={scrollToTopInstant}>
           <motion.div
             key={activePage}
             initial={{ opacity: 0, y: 15 }}
