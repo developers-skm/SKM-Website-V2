@@ -19,10 +19,11 @@ export default function SmoothScrollProvider({ children }) {
 
     const lenis = new Lenis({
       duration: 0.9,
-      easing: (t) => 1 - Math.pow(1 - t, 3),
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 0.85,
+      wheelMultiplier: 1,
       touchMultiplier: 1,
+      autoResize: true,
     });
 
     window.__lenis = lenis;
@@ -34,7 +35,18 @@ export default function SmoothScrollProvider({ children }) {
     }
     rafId = requestAnimationFrame(raf);
 
+    // Lenis caches the document's scroll limit. Re-measure whenever the content
+    // or route resizes without using layout-thrashing interval timers.
+    const resize = () => lenis.resize();
+    const resizeObserver = new ResizeObserver(resize);
+    if (document.body) resizeObserver.observe(document.body);
+    const root = document.getElementById('root');
+    if (root) resizeObserver.observe(root);
+    window.addEventListener('load', resize);
+
     return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('load', resize);
       cancelAnimationFrame(rafId);
       lenis.destroy();
       if (window.__lenis === lenis) window.__lenis = null;

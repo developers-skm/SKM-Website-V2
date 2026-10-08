@@ -9,7 +9,12 @@ function prefersReducedMotion() {
 
 function scrollToSectionId(id) {
   const el = document.getElementById(id);
-  el?.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+  if (!el) return;
+  if (window.__lenis) {
+    window.__lenis.scrollTo(el);
+  } else {
+    el.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+  }
 }
 
 function scrollToProductDiscovery() {

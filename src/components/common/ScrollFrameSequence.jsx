@@ -40,8 +40,6 @@ export default function ScrollFrameSequence({ containerRef, basePath, frameCount
     if (!canvas || !img || !img.complete || img.naturalWidth === 0) return;
 
     const ctx = canvas.getContext('2d');
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
     const { width, height } = canvas;
     const canvasRatio = width / height;
     const imgRatio = img.naturalWidth / img.naturalHeight;
@@ -71,6 +69,11 @@ export default function ScrollFrameSequence({ containerRef, basePath, frameCount
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * window.devicePixelRatio;
       canvas.height = rect.height * window.devicePixelRatio;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+      }
       if (imagesReady) drawFrame(Math.round(scrollYProgress.get() * (frameCount - 1)));
     };
 
