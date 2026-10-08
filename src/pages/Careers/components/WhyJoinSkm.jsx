@@ -8,7 +8,7 @@ import CareerIcon from './careerIcons';
 const container = makeContainerVariants(0.07);
 const item = makeItemVariants({ y: 16 });
 
-// Minimal blocks separated by thin vertical dividers — calm and executive.
+// Minimal blocks separated by thin vertical dividers - calm and executive.
 export default function WhyJoinSkm() {
   return (
     <Section tone="white" labelledBy="why-join-title" className="border-b border-[#eae6e0]">

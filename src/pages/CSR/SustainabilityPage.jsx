@@ -22,7 +22,7 @@ const pillars = [
       </svg>
     ),
     title: 'Wind Energy Generation',
-    body: 'Our contribution to a clean environment is the installation of a wind mill that generates electricity of 3.5 million units per year — powering our operations with renewable energy.',
+    body: 'Our contribution to a clean environment is the installation of a wind mill that generates electricity of 3.5 million units per year - powering our operations with renewable energy.',
   },
   {
     label: 'Social Responsibility',
@@ -51,7 +51,7 @@ export default function SustainabilityPage({ onPageChange }) {
     <div className="w-full flex flex-col">
       <SEO
         title="Sustainability | CSR | SKM Egg Products"
-        description="SKM Egg Products' commitment to sustainability — from wind energy generation and waste recycling to community welfare and environmental compliance."
+        description="SKM Egg Products' commitment to sustainability - from wind energy generation and waste recycling to community welfare and environmental compliance."
         keywords="SKM sustainability, CSR, environmental policy, wind mill, carbon footprint, clean energy, SKM charitable trust"
       />
       <div className="w-full bg-page pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
@@ -66,7 +66,7 @@ export default function SustainabilityPage({ onPageChange }) {
           {/* ── Section Header ── */}
           <div className="text-center flex flex-col items-center gap-4">
             <motion.span variants={itemVariants} className="section-label justify-center">
-              CSR — Sustainability
+              CSR - Sustainability
             </motion.span>
             <motion.h2
               variants={itemVariants}
@@ -124,7 +124,7 @@ export default function SustainabilityPage({ onPageChange }) {
                 3.5 Million Units{' '}
                 <span className="text-surface-500 font-normal text-[18px]">of electricity per year</span>
               </p>
-              <p className="text-sm text-surface-500 m-0">Generated through our on-site wind mill installation — a cornerstone of our clean energy commitment.</p>
+              <p className="text-sm text-surface-500 m-0">Generated through our on-site wind mill installation - a cornerstone of our clean energy commitment.</p>
             </div>
           </motion.div>
 
@@ -158,7 +158,7 @@ export default function SustainabilityPage({ onPageChange }) {
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1)_0%,transparent_60%)] pointer-events-none" />
             <p className="font-heading font-bold relative text-[17px] sm:text-[19px] text-white tracking-tight m-0 uppercase">
-              Protecting the planet today — preserving it for tomorrow.
+              Protecting the planet today - preserving it for tomorrow.
             </p>
           </motion.div>
 

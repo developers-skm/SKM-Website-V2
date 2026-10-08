@@ -30,7 +30,7 @@ export default function BrandPhilosophy() {
             Philosophy & Spirit
           </motion.h2>
 
-          {/* Tagline block — preview blockquote border-l pattern */}
+          {/* Tagline block - preview blockquote border-l pattern */}
           <motion.div
             variants={itemVariants}
             className="border-l-4 border-brand-600 pl-6 py-4 bg-brand-600/3 rounded-r-[10px]"

@@ -8,7 +8,7 @@ import MomentsLightbox from '../../components/Gallery/MomentsLightbox';
 import { buildTimeline, availableFilters } from '../../components/Gallery/momentsUtils';
 import { moments } from '../../data/galleryMoments';
 
-// All content lives in src/data/galleryMoments.js — this page only renders it.
+// All content lives in src/data/galleryMoments.js - this page only renders it.
 export default function GalleryPage({ onPageChange }) {
   const [filter, setFilter] = useState('all');
   const [openIndex, setOpenIndex] = useState(null);
@@ -31,7 +31,7 @@ export default function GalleryPage({ onPageChange }) {
       seo={{
         title: 'Gallery | Moments That Define Our Journey | SKM Egg Products',
         description:
-          'Milestones, celebrations, recognitions and memorable moments from the SKM Egg Products journey — events, honours and awards in chronological order.',
+          'Milestones, celebrations, recognitions and memorable moments from the SKM Egg Products journey - events, honours and awards in chronological order.',
         keywords:
           'SKM Egg Products gallery, SKM awards, APEDA golden trophy, Padma Shree, Fi Asia, Gulfood Manufacturing, SKM events',
         canonical: 'https://www.skmegg.com/gallery',

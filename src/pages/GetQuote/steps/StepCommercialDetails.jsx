@@ -2,26 +2,26 @@ import { Field, selectClass, inputClass } from '../../../components/common/FormF
 import { getProductById } from '../../../data/products';
 import exportMarkets from '../../../data/exportMarkets';
 
-// Step 2 — Commercial details (brief §2, Step 2): Estimated volume,
+// Step 2 - Commercial details (brief §2, Step 2): Estimated volume,
 // Packaging, Destination country, Required period or delivery date.
 //
 // Volume ranges and packaging options are real (packagingOptions per
 // product from data/products.js). Destination country reuses the real
 // 28-market export list (data/exportMarkets.js), same source as the
 // homepage GlobalMarkets map. "Required period or delivery date" is a
-// plain real date input — no fabricated lead-time estimate is shown,
+// plain real date input - no fabricated lead-time estimate is shown,
 // since no real lead-time data exists anywhere in the repo; the field
 // only captures what the visitor tells us.
 //
 // Exact Required Quantity + Unit is a separate pair of fields alongside
-// the approximate range above — required only for a price-quotation (RFQ)
+// the approximate range above - required only for a price-quotation (RFQ)
 // enquiry, per the export-enquiry brief.
 const QUANTITY_RANGES = [
   'Sample / Trial Quantity (< 25kg)',
   '1 Container (< 5 MT)',
   '1–5 Containers (5–25 MT)',
   '5+ Containers (25 MT+)',
-  'Not sure yet — advise me',
+  'Not sure yet - advise me',
 ];
 
 const QUANTITY_UNITS = ['kg', 'MT', 'Other'];
@@ -52,7 +52,7 @@ export default function StepCommercialDetails({ formData, setFormData, errors, e
           Commercial details
         </h2>
         <p className="font-body text-[13.5px] text-surface-500 m-0">
-          Approximate figures are fine — our team will confirm exact quantities and dates with you.
+          Approximate figures are fine - our team will confirm exact quantities and dates with you.
         </p>
       </div>
 

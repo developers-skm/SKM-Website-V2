@@ -1,20 +1,20 @@
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
-// Section 3 — searchable, filterable comparison table (brief §3).
+// Section 3 - searchable, filterable comparison table (brief §3).
 //
 // Filters are derived, not hand-authored per product: each filter tests a
 // variant's own real text (name/character/storage) against a verified
 // pattern, so a filter only ever appears when at least one real variant in
 // this product's own variantsData genuinely matches it. No filter option is
 // ever shown that has zero real matches, and no variant is ever tagged with
-// a trait its own text doesn't contain — the same "audit before build"
+// a trait its own text doesn't contain - the same "audit before build"
 // discipline used for the category pages' functionality tags.
 //
 // Six axes requested: Function, Processing treatment, Salt or sugar level,
 // Colour, Packaging, Chilled or frozen.
 // - "Chilled or frozen" reads the real `specifications.storage` field
-//   directly (present on liquid products only — powders have no storage
+//   directly (present on liquid products only - powders have no storage
 //   field, so this filter naturally produces zero options there).
 // - "Salt or sugar level" and "Colour" match real substrings that
 //   consistently appear in variant `name`/`character` text across the
@@ -22,7 +22,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 //   verified present, not inferred.
 // - "Function" and "Processing treatment" match real recurring
 //   character/name phrases (Emulsifying, Gelling, Whipping, Binding /
-//   Heat-Stable, Free Flow, Hydrolysed, De-Sugared) — same verification.
+//   Heat-Stable, Free Flow, Hydrolysed, De-Sugared) - same verification.
 // - "Packaging" reads the real per-product `packagingOptions` (products.js)
 //   since packaging isn't a per-variant field; identical for every row of
 //   a given product, included because the brief asks for it as an axis.
@@ -164,7 +164,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
   };
 
   // Selecting a variant as the active one (shown in the detail panel below)
-  // also adds it to the comparison checkboxes if not already checked — so
+  // also adds it to the comparison checkboxes if not already checked - so
   // the "Selected" row and its checkbox never visibly disagree the way they
   // did before (a variant could show "Selected" with an unchecked box, or
   // vice versa, since the two were entirely independent state). Unchecking
@@ -200,7 +200,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
         </div>
       </div>
 
-      {/* Filters — only axes with at least one real matching variant render */}
+      {/* Filters - only axes with at least one real matching variant render */}
       {filterGroups.length > 0 && (
         <div className="flex flex-col gap-3">
           {filterGroups.map((group) => (
@@ -248,10 +248,10 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
           <thead> resolves against this div and pins at literal top:0 —
           not an offset guess against the site navbar.
           Rounded card: the border-radius + border live on this same
-          scroll div (overflow-y:auto still lets sticky work — only
+          scroll div (overflow-y:auto still lets sticky work - only
           overflow:hidden on an ANCESTOR breaks sticky, overflow:auto on the
           sticky element's own direct scroll container is required and fine).
-          Column widths/alignment: unchanged from the original table — same
+          Column widths/alignment: unchanged from the original table - same
           <th>/<td> classes, same text-left / w-12 rules, only the sticky
           plumbing and background were added. */}
       <div className="relative">
@@ -265,14 +265,14 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
         >
         <table className="w-full border-separate border-spacing-0 min-w-[720px]">
           <thead>
-            {/* Sticky is applied per-<th>, not on <tr>/<thead> — <tr> is not
+            {/* Sticky is applied per-<th>, not on <tr>/<thead> - <tr> is not
                 a reliable position:sticky context across browsers (Safari
                 in particular). Each <th> gets its own position:sticky;
                 top:0; z-index:10 plus a solid background so scrolling rows
                 never show through the gaps between cells. The checkbox +
                 Code columns are additionally pinned horizontally
                 (left:0/left:48px) so the row identifier stays visible while
-                scrolling right through the spec columns on mobile — same
+                scrolling right through the spec columns on mobile - same
                 dual-axis sticky corner as VariantTable's own vertical
                 pattern, just extended to the left edge too. */}
             <tr className="border-b border-surface-200/70 shadow-[0_1px_0_rgba(0,0,0,0.04)]">
@@ -322,7 +322,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
               const isSelected = variant.code === selectedCode;
               const isChecked = checked.includes(variant.code);
               // A row can be checked for comparison without being the
-              // active "Selected" variant (multi-row compare) — this badge
+              // active "Selected" variant (multi-row compare) - this badge
               // makes that state readable on its own instead of leaving a
               // checked box next to a "Select This Variant" label that
               // looks like a bug (checkbox says one thing, button says
@@ -330,7 +330,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
               const showInComparisonBadge = isChecked && !isSelected;
               // Sticky cells paint over whatever sits behind them, so the
               // row's own hover/selected background must be carried
-              // explicitly on the sticky cells too — the same requirement
+              // explicitly on the sticky cells too - the same requirement
               // as ApplicationProductMatrix's hoverRow handling.
               const rowBg = isSelected ? 'bg-brand-50' : 'bg-white group-hover/row:bg-surface-50';
               return (
@@ -393,7 +393,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
         </table>
         </div>
 
-        {/* Scroll-right hint — fades a gradient + bouncing arrow over the
+        {/* Scroll-right hint - fades a gradient + bouncing arrow over the
             table's right edge until the user scrolls it. */}
         <AnimatePresence>
           {!hasScrolled && (

@@ -9,13 +9,13 @@ import Pasteurization from '../../../assets/5. INFRASTRUCTURE/Egg Products/Proce
 import CIP from '../../../assets/5. INFRASTRUCTURE/Egg Products/Process areas/CIP.webp';
 import UtilityOverview from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/Utility Overview.webp';
 
-// Section 8 — Infrastructure / Manufacturing. Large sticky visual (CSS
+// Section 8 - Infrastructure / Manufacturing. Large sticky visual (CSS
 // position:sticky, NOT scroll-jacked/pinned like Traceability's section —
 // deliberately a different mechanic so two identical sticky sequences don't
 // run back to back) beside scrolling content blocks. Content drawn verbatim
 // from src/pages/Infra/sections/EggProcessingPlant.jsx `infoBlocks` (real
-// facility copy — facility compliance, process excellence, zoning/hygiene,
-// biogas sustainability) — same content already approved and live on the
+// facility copy - facility compliance, process excellence, zoning/hygiene,
+// biogas sustainability) - same content already approved and live on the
 // Egg Processing Plant page, restructured for this composition, not
 // invented. Each block activates on scroll via IntersectionObserver-driven
 // whileInView, swapping the sticky image via crossfade.
@@ -47,7 +47,7 @@ const blocks = [
     title: 'A circular approach.',
     body: 'Our integrated biogas facility processes 70 tonnes of poultry litter, producing biofuel to support our operations. Its nutrient-rich liquid by-product is supplied to farmers as a fertilizer.',
     image: UtilityOverview,
-    // Headline achievement — rendered as a highlighted callout.
+    // Headline achievement - rendered as a highlighted callout.
     highlight: { value: '70 tonnes', label: 'of poultry litter processed into biofuel' },
   },
 ];
@@ -55,7 +55,7 @@ const blocks = [
 function ContentBlock({ block, index, onEnter, reduceMotion }) {
   return (
     <div className="relative py-14 lg:py-20 border-t border-surface-200/70 first:border-t-0 first:pt-0">
-      {/* Invisible tripwire — tracks which block is active for the sticky
+      {/* Invisible tripwire - tracks which block is active for the sticky
           image, decoupled from the entrance fade below so scrolling back up
           doesn't replay the content reveal every time. */}
       <motion.span
@@ -132,7 +132,7 @@ export default function CompanyIntro({ onPageChange }) {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
 
-          {/* Sticky visual — desktop only, plain CSS sticky (not scroll-jacked) */}
+          {/* Sticky visual - desktop only, plain CSS sticky (not scroll-jacked) */}
           <div className="hidden lg:block lg:col-span-6 lg:sticky lg:top-28 lg:self-start">
             <div className="relative rounded-[8px] overflow-hidden aspect-[4/5]">
               <AnimatePresence mode="sync" initial={false}>

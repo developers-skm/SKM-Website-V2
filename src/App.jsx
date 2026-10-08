@@ -8,7 +8,7 @@ import OfflinePage from './pages/Offline/OfflinePage';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 // Every route backed by the shared ProductPage shell (src/components/
-// ProductPage/ProductPage.jsx) — the generic sitewide MobileStickyActions
+// ProductPage/ProductPage.jsx) - the generic sitewide MobileStickyActions
 // bottom bar (Navbar/MobileStickyActions.jsx) is suppressed on these routes.
 const PRODUCT_DETAIL_ROUTES = new Set(products.map((p) => p.page));
 
@@ -156,7 +156,7 @@ function App() {
       return <EventDetailPage slug={activePage.slice('events/'.length)} onPageChange={handlePageChange} />;
     }
 
-    // Careers has nested URLs (careers/jobs/:slug, careers/apply/:slug) — resolved by CareersRoute.
+    // Careers has nested URLs (careers/jobs/:slug, careers/apply/:slug) - resolved by CareersRoute.
     if (activePage === 'careers' || activePage.startsWith('careers/')) {
       return <CareersRoute path={activePage} onPageChange={handlePageChange} prefill={prefill} />;
     }

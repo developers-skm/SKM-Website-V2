@@ -3,7 +3,7 @@ import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 
-// Section 2 — Environmental responsibility. Energy, water, and waste are
+// Section 2 - Environmental responsibility. Energy, water, and waste are
 // all real, verbatim/derived facts already documented elsewhere: energy
 // (on-site wind mill generating 3.5 million units/year, SustainabilityPage.jsx),
 // water (real Water Treatment Plant, EggProcessingPlant.jsx utility
@@ -20,7 +20,7 @@ const ENVIRONMENTAL_INITIATIVES = [
   {
     id: 'energy',
     label: 'Energy',
-    fact: 'An on-site wind mill generates 3.5 million units of electricity per year — powering operations with renewable energy.',
+    fact: 'An on-site wind mill generates 3.5 million units of electricity per year - powering operations with renewable energy.',
   },
   {
     id: 'water',
@@ -80,23 +80,23 @@ function EnvironmentalResponsibilitySection({ onPageChange }) {
   );
 }
 
-// Sustainability and Community — new consolidated hub. Merges the 5
+// Sustainability and Community - new consolidated hub. Merges the 5
 // existing CSR pages (Sustainability, Community Development, Trust
 // Outreach, Education, MD Article) into one page, per the brief. All 5
 // individual pages stay live at their existing URLs for SEO and detailed
 // reports (same precedent as every other consolidation this session —
 // branch pages, About SKM's 8 source pages, etc.).
 //
-// Section 1 — Sustainability hero. "View Sustainability Priorities"
+// Section 1 - Sustainability hero. "View Sustainability Priorities"
 // scrolls to the real priorities section (built from
 // SustainabilityPage.jsx's own real pillars: Carbon Footprint, Clean
 // Energy, Community Welfare). "Download Sustainability Information" has
-// no real PDF anywhere in the repo (confirmed by search — only a
+// no real PDF anywhere in the repo (confirmed by search - only a
 // Sustainability *page*, no downloadable document), so it's a genuinely
 // disabled button rather than a fake download.
-// Section 3 — Responsible feed, farming and animal welfare. Real facts
+// Section 3 - Responsible feed, farming and animal welfare. Real facts
 // already documented on the Feed Mill and Poultry Farm pages (Infra
-// section) — every raw material tested for mycotoxins/pesticides/
+// section) - every raw material tested for mycotoxins/pesticides/
 // antibiotics before formulation, ISO 22000 certified farms, biosecurity
 // entry showers, and the real animal-welfare fact from PoultryFarm.jsx
 // (balanced nutritionally optimized feed, daily sanitation protocols,
@@ -116,7 +116,7 @@ const FARMING_PRACTICES = [
   {
     id: 'animal-welfare',
     label: 'Animal welfare',
-    fact: 'Balanced, nutritionally optimized feed, daily sanitation protocols, potable water management, and safe disposal systems — including an on-site incinerator — maintain high standards of animal welfare.',
+    fact: 'Balanced, nutritionally optimized feed, daily sanitation protocols, potable water management, and safe disposal systems - including an on-site incinerator - maintain high standards of animal welfare.',
   },
 ];
 
@@ -161,9 +161,9 @@ function ResponsibleFarmingSection({ onPageChange }) {
   );
 }
 
-// Section 4 — Community development. Combines the 4 requested categories
+// Section 4 - Community development. Combines the 4 requested categories
 // using real facts already documented across CommunityDevelopmentPage.jsx,
-// TrustOutreachPage.jsx, and EducationPage.jsx — all under the real SKM
+// TrustOutreachPage.jsx, and EducationPage.jsx - all under the real SKM
 // Health and Mind Welfare Charity Trust (Sevai Maiyam). "Explore Community
 // Programmes" routes to the real Community Development page, the primary
 // source for this program.
@@ -171,7 +171,7 @@ const COMMUNITY_PROGRAMMES = [
   {
     id: 'welfare',
     label: 'Welfare',
-    fact: '228 families adopted across Gandhi Nagar and Rajiv Nagar — 786 residents, including 239 children and 62 elderly — under the SKM Health and Mind Welfare Charity Trust (Sevai Maiyam).',
+    fact: '228 families adopted across Gandhi Nagar and Rajiv Nagar - 786 residents, including 239 children and 62 elderly - under the SKM Health and Mind Welfare Charity Trust (Sevai Maiyam).',
   },
   {
     id: 'health',
@@ -181,7 +181,7 @@ const COMMUNITY_PROGRAMMES = [
   {
     id: 'education',
     label: 'Education',
-    fact: '239 children enrolled in coaching, 200 college students supported, and 13 graduates placed this year — with morning and evening coaching sessions led by 20 specialized teachers.',
+    fact: '239 children enrolled in coaching, 200 college students supported, and 13 graduates placed this year - with morning and evening coaching sessions led by 20 specialized teachers.',
   },
   {
     id: 'outreach',
@@ -231,12 +231,12 @@ function CommunityDevelopmentSection({ onPageChange }) {
   );
 }
 
-// Section 5 — Performance indicators. All figures are real and already
+// Section 5 - Performance indicators. All figures are real and already
 // used elsewhere on this page/site (wind energy, biogas capacity,
 // community reach, education outcomes). None of these figures carry a
 // published reporting period (fiscal year, audit date, etc.) anywhere in
-// the repo — they're documented as current, standing facts, not annually-
-// reported metrics — so no invented reporting period is attached; each
+// the repo - they're documented as current, standing facts, not annually-
+// reported metrics - so no invented reporting period is attached; each
 // figure is labeled with only the real qualifier that exists (e.g. "per
 // year" for the wind energy figure, "this year" for graduate placements,
 // verbatim from EducationPage.jsx). "View Detailed Performance" routes to
@@ -293,7 +293,7 @@ function PerformanceIndicatorsSection({ onPageChange }) {
   );
 }
 
-// Section 6 — Governance and commitments. Real environmental commitments
+// Section 6 - Governance and commitments. Real environmental commitments
 // (verbatim from SustainabilityPage.jsx's own environmental objectives)
 // plus the real Food Safety & Quality Policy commitments already
 // established across this session (HACCP, ISO 22000, BRCGS). "View
@@ -359,7 +359,7 @@ export default function SustainabilityCommunityPage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'Sustainability and Community | SKM Egg Products',
-        description: "SKM Egg Products' commitment to sustainability and community welfare — clean energy, environmental policy, and the SKM Health and Mind Welfare Charity Trust (Sevai Maiyam).",
+        description: "SKM Egg Products' commitment to sustainability and community welfare - clean energy, environmental policy, and the SKM Health and Mind Welfare Charity Trust (Sevai Maiyam).",
         keywords: 'SKM sustainability, SKM CSR, Sevai Maiyam, community development, wind energy, environmental policy, corporate social responsibility',
         canonical: 'https://www.skmegg.com/sustainability_and_community',
       }}
@@ -367,7 +367,7 @@ export default function SustainabilityCommunityPage({ onPageChange }) {
     >
       <div className="w-full flex flex-col bg-page">
 
-        {/* Section 1 — Sustainability hero */}
+        {/* Section 1 - Sustainability hero */}
         <div className="w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
@@ -405,19 +405,19 @@ export default function SustainabilityCommunityPage({ onPageChange }) {
           </motion.div>
         </div>
 
-        {/* Section 2 — Environmental responsibility */}
+        {/* Section 2 - Environmental responsibility */}
         <EnvironmentalResponsibilitySection onPageChange={onPageChange} />
 
-        {/* Section 3 — Responsible feed, farming and animal welfare */}
+        {/* Section 3 - Responsible feed, farming and animal welfare */}
         <ResponsibleFarmingSection onPageChange={onPageChange} />
 
-        {/* Section 4 — Community development */}
+        {/* Section 4 - Community development */}
         <CommunityDevelopmentSection onPageChange={onPageChange} />
 
-        {/* Section 5 — Performance indicators */}
+        {/* Section 5 - Performance indicators */}
         <PerformanceIndicatorsSection onPageChange={onPageChange} />
 
-        {/* Section 6 — Governance and commitments */}
+        {/* Section 6 - Governance and commitments */}
         <GovernanceCommitmentsSection onPageChange={onPageChange} />
 
       </div>

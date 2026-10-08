@@ -4,7 +4,7 @@ import { MenuIcon, SearchIcon, MailIcon, PhoneIcon } from './icons';
 
 const PHONE_NUMBER = '04242268391';
 
-// Floating vertical rail, desktop only (md and up — mobile gets a compact
+// Floating vertical rail, desktop only (md and up - mobile gets a compact
 // single trigger, see MobileMenuTrigger). Fixed to the right edge, vertically
 // centered so it clears the bottom-right Chatbot/ScrollToTop stack (both
 // anchored to bottom-right, see Chatbot.jsx / ScrollToTopButton.jsx).

@@ -2,14 +2,14 @@ import { motion, useReducedMotion } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
 import { fadeUp, EASE_PREMIUM } from '../../../utils/motionTokens';
 
-// Final CTA. Editorial conclusion — oversized left-aligned headline (not
+// Final CTA. Editorial conclusion - oversized left-aligned headline (not
 // centered/boxed), generous whitespace, one clear primary action and one
 // secondary. Both destinations are real: `get-quote` is the only guided
 // enquiry flow in the app (Step 1 is literally "Which product are you
 // interested in?"); `contact-us` is the real direct-contact route. The
 // previous 3-card selector was decorative (all 3 cards led to the same
 // get-quote route) and read as the "tiny centered CTA card" pattern the
-// brief explicitly asks to avoid — replaced with a single strong CTA pair.
+// brief explicitly asks to avoid - replaced with a single strong CTA pair.
 function LineReveal({ children, delay = 0, reduceMotion }) {
   return (
     <span className="block overflow-hidden">
@@ -53,7 +53,7 @@ export default function FinalEnquiry({ onPageChange }) {
             {...fadeUp(reduceMotion, { delay: 0.3 })}
             className="lg:col-span-6 font-body text-[17px] lg:text-[19px] text-surface-600 leading-[1.7] m-0"
           >
-            Request a sample or quote — tell us your application, quantity, and destination in a few guided steps.
+            Request a sample or quote - tell us your application, quantity, and destination in a few guided steps.
           </motion.p>
         </div>
 

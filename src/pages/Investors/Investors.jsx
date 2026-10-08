@@ -46,7 +46,7 @@ const sectionFolders = {
 // Board Meeting Notice 15, Annual Reports 10, Scrutinizer Reports 11,
 // Quarterly Results 7) plus the two evergreen contact/governance-policy
 // entries (Investor Contact, Code of Conduct) that visitors look for most.
-// Everything else is real but lower-traffic — kept in the full archive,
+// Everything else is real but lower-traffic - kept in the full archive,
 // reachable via search/filter rather than shown by default (brief's
 // explicit "do not initially display all 25 document categories" rule).
 const menuItems = [
@@ -874,7 +874,7 @@ export default function Investors({ onPageChange }) {
     <div className="w-full flex flex-col min-h-screen bg-page">
       <SEO
         title="Investors | SKM Egg Products"
-        description="Investor relations for SKM Egg Products — disclosures, annual reports, board information, corporate governance, shareholding patterns, and more."
+        description="Investor relations for SKM Egg Products - disclosures, annual reports, board information, corporate governance, shareholding patterns, and more."
         keywords="SKM investors, annual report, LODR disclosures, corporate governance, shareholding pattern, board committee"
       />
       <InvestorHero onSelect={handleSelect} onDownloadAnnualReport={handleDownloadAnnualReport} />

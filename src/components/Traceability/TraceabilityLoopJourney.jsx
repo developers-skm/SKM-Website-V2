@@ -99,7 +99,7 @@ const processChapters = [
   },
 ];
 
-// Liquid line — same journey without the spray-drying chapter. Remaining
+// Liquid line - same journey without the spray-drying chapter. Remaining
 // chapters are renumbered 01–05 and the image/content sides re-alternated.
 const liquidProcessChapters = processChapters
   .filter((c) => c.step !== '04')
@@ -276,7 +276,7 @@ function DesktopRow({ chapter, index, isActive, isCompleted, onVisible, reducedM
         )}
       </motion.div>
 
-      {/* Center Column — Timeline Node */}
+      {/* Center Column - Timeline Node */}
       <div className="flex flex-col items-center justify-center relative h-full">
         <NodeCircle step={chapter.step} isActive={isActive} isCompleted={isCompleted} />
       </div>
@@ -454,7 +454,7 @@ function CertificationsStrip({ reducedMotion, bare = false }) {
   );
 }
 
-// Standalone Quality Assurance + certifications chapter — rendered on each
+// Standalone Quality Assurance + certifications chapter - rendered on each
 // product detail page (ProductPage.jsx), separate from the manufacturing
 // process timeline.
 export function ProductQualityAssurance() {
@@ -470,7 +470,7 @@ export function ProductQualityAssurance() {
 }
 
 // ─────────────────────────────────────────────
-// Main Export — Center Vertical Timeline Layout
+// Main Export - Center Vertical Timeline Layout
 // ─────────────────────────────────────────────
 export default function TraceabilityLoopJourney({ title, subtitle, onPageChange, showQuality = true, line = 'powder' }) {
   const reducedMotion = useReducedMotion() ?? false;
@@ -552,7 +552,7 @@ export default function TraceabilityLoopJourney({ title, subtitle, onPageChange,
           </motion.p>
         </div>
 
-        {/* Manufacturing Journey — Center Vertical Timeline Layout */}
+        {/* Manufacturing Journey - Center Vertical Timeline Layout */}
         <div ref={journeyContainerRef} className="relative z-10">
           {/* Desktop 3-Column Layout (lg breakpoint) */}
           <div className="hidden lg:block relative">

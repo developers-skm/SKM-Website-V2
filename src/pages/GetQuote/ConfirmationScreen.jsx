@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 import JourneyStrip from '../../components/Journey/JourneyStrip';
 import products, { getProductById } from '../../data/products';
 
-// Section 5 — Confirmation screen (brief §5): Enquiry reference number,
+// Section 5 - Confirmation screen (brief §5): Enquiry reference number,
 // Requirement summary, Expected next step, Relevant product or resource
 // links. Buttons: Download Enquiry Summary, Continue Browsing Products.
 //
 // Enquiry reference number: no backend exists yet (submitQuote.js is a
-// frontend-only stub — see its own comment), so there is no real
+// frontend-only stub - see its own comment), so there is no real
 // server-issued reference number to display. A client-side reference is
-// generated here from the real submission timestamp — honestly labelled
+// generated here from the real submission timestamp - honestly labelled
 // as a reference for this session, not represented as a database ID.
 //
 // Requirement summary: reuses the same real formData fields already shown
@@ -34,7 +34,7 @@ function buildReferenceNumber() {
 
 function buildSummaryText({ formData, sampleProducts, singleProduct, referenceNumber }) {
   const lines = [
-    `SKM Egg Products — Enquiry Summary`,
+    `SKM Egg Products - Enquiry Summary`,
     `Reference: ${referenceNumber}`,
     '',
   ];
@@ -159,7 +159,7 @@ export default function ConfirmationScreen({ formData, onPageChange }) {
         </div>
       </div>
 
-      {/* Something to explore while they wait — not a dead end */}
+      {/* Something to explore while they wait - not a dead end */}
       <JourneyStrip variant="compact" onPageChange={onPageChange} />
     </div>
   );

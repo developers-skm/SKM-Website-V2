@@ -2,14 +2,14 @@ import { Field, inputClass } from '../../../components/common/FormField';
 
 const MESSAGE_MAX = 2000;
 
-// Step 3 — Contact details (brief §2, Step 3): Name, Company, Job role,
+// Step 3 - Contact details (brief §2, Step 3): Name, Company, Job role,
 // Business email, Phone, Message. Adds "Job role" as a new real field on
 // top of the previous StepContact.jsx fields (kept for the older flow).
 //
 // Also carries the export-enquiry brief's remaining required fields that
 // belong at "how do we reach you": Message (now required, 20–2000 chars,
 // with a live counter) and Privacy Consent. `website` is an invisible
-// honeypot — a real bot trap, not a decorative field — kept out of the
+// honeypot - a real bot trap, not a decorative field - kept out of the
 // visual layout and off the tab order.
 export default function StepContactDetails({ formData, setFormData, errors }) {
   const handleChange = (e) => {
@@ -34,7 +34,7 @@ export default function StepContactDetails({ formData, setFormData, errors }) {
         </p>
       </div>
 
-      {/* Honeypot — invisible to sighted and screen-reader users, never focusable */}
+      {/* Honeypot - invisible to sighted and screen-reader users, never focusable */}
       <div className="fixed left-[-9999px] top-[-9999px] w-px h-px overflow-hidden" aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input

@@ -9,7 +9,7 @@ import EggLiquidMainImg from '../../assets/3. PRODUCTS/Speciality products/Egg L
 const features = [
   {
     title: 'Consumer Friendly',
-    description: 'Designed for ease of use — simply pour and use with no cracking, separating, or measuring required.',
+    description: 'Designed for ease of use - simply pour and use with no cracking, separating, or measuring required.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -18,7 +18,7 @@ const features = [
   },
   {
     title: 'Household Use',
-    description: 'Ideal for everyday home cooking — baking, omelettes, scrambled eggs, and more without waste.',
+    description: 'Ideal for everyday home cooking - baking, omelettes, scrambled eggs, and more without waste.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -27,7 +27,7 @@ const features = [
   },
   {
     title: 'RTC Applications',
-    description: 'Perfect for Ready-to-Cook food formats — enabling faster and more consistent meal preparation.',
+    description: 'Perfect for Ready-to-Cook food formats - enabling faster and more consistent meal preparation.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -50,7 +50,7 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
     <div className="w-full flex flex-col bg-page font-body text-left">
       <SEO
         title="Specialty Egg Liquids | Tetra Pack Pasteurized Egg Products"
-        description="SKM's specialty egg liquids in convenient tetra pack format for household, RTC & institutional use. Pasteurized for safety. Ready-to-use liquid eggs — convenient, hygienic, and shelf-stable."
+        description="SKM's specialty egg liquids in convenient tetra pack format for household, RTC & institutional use. Pasteurized for safety. Ready-to-use liquid eggs - convenient, hygienic, and shelf-stable."
         keywords="specialty egg liquid, tetra pack egg liquid, ready to cook egg liquid, RTC egg products, household liquid egg, pasteurized egg tetra pack, egg liquid tetra pack India, ready to use egg, specialty egg products, liquid egg household, convenient egg product, shelf stable egg liquid"
         canonical="https://www.skmegg.com/speciality_egg_liquids"
         jsonLd={{

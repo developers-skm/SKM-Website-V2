@@ -16,7 +16,7 @@ export default function Home({ onPageChange, prefill }) {
   // "Find Your Product"/"Find Product" and the Hero's "Find the Right Egg
   // Product" both navigate here with prefill.scrollTarget set to the target
   // section's id; this mount-aware effect performs the scroll once Home's
-  // own DOM has committed — no timeouts.
+  // own DOM has committed - no timeouts.
   useEffect(() => {
     if (prefill?.scrollTarget) {
       scrollToSectionId(prefill.scrollTarget);
@@ -49,10 +49,10 @@ export default function Home({ onPageChange, prefill }) {
       {/* 2. Product families */}
       <ProductFamilies onPageChange={onPageChange} />
 
-      {/* 3. Application Finder — "What are you making?" */}
+      {/* 3. Application Finder - "What are you making?" */}
       <ApplicationAreas onPageChange={onPageChange} />
 
-      {/* 4. Why SKM — key numbers, the rational case */}
+      {/* 4. Why SKM - key numbers, the rational case */}
       <WhyUs onPageChange={onPageChange} />
 
       {/* 5. Quality and certification proof */}
@@ -61,7 +61,7 @@ export default function Home({ onPageChange, prefill }) {
       {/* 6. Farm-to-product traceability journey */}
       <HomeJourney onPageChange={onPageChange} />
 
-      {/* 7. Infrastructure — Asia's largest integrated processing facility */}
+      {/* 7. Infrastructure - Asia's largest integrated processing facility */}
       <CompanyIntro onPageChange={onPageChange} />
 
       {/* 8. Global reach and supply support */}

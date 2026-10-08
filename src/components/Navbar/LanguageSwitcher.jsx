@@ -140,7 +140,7 @@ export default function LanguageSwitcher({ placement = 'down', textClassName = '
       setCurrent(code);
       return;
     }
-    // Widget not ready yet — set the cookie it reads on load, then reload.
+    // Widget not ready yet - set the cookie it reads on load, then reload.
     setTranslateCookie(code);
     window.location.reload();
   };

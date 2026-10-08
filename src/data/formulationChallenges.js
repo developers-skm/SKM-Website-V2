@@ -1,7 +1,7 @@
 // Section 3 of the Applications Hub ("Browse by formulation challenge").
 // Each challenge's `matchedProductIds` was built from a real, evidence-based
 // audit of every product page's actual variant text (name/description/
-// benefits/specifications) — not an assumed or invented mapping. A product
+// benefits/specifications) - not an assumed or invented mapping. A product
 // is only listed under a challenge if its own copy genuinely supports it,
 // e.g. "Increase Whipping Volume" only lists products whose variants
 // explicitly reference foam/whip/aeration language.
@@ -11,7 +11,7 @@
 // "Improve Product Consistency" and "Reduce Handling & Storage Complexity"
 // turned out, on audit, to be true of nearly every product to varying
 // degrees (viscosity/consistency claims and chilled/frozen or free-flow
-// handling appear almost everywhere) — too broad to function as a genuine
+// handling appear almost everywhere) - too broad to function as a genuine
 // differentiator, so they're kept but scoped to the clearest evidence only.
 const formulationChallenges = [
   {

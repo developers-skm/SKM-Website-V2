@@ -4,7 +4,7 @@ const HOVER_OPEN_DELAY = 150;
 const HOVER_CLOSE_DELAY = 180;
 
 // Shared open/close/outside-focus/Escape/hover-intent logic for desktop nav
-// disclosures (NavDropdown, ProductsMegaMenu). No focus trap — Tab flows
+// disclosures (NavDropdown, ProductsMegaMenu). No focus trap - Tab flows
 // naturally through the panel and onward into the page, per the "these are
 // navigation disclosures, not ARIA menus" contract.
 export default function useDisclosure() {
@@ -32,7 +32,7 @@ export default function useDisclosure() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [isOpen, closeAndReturnFocus]);
 
-  // Close when focus moves outside both the trigger and the panel — covers
+  // Close when focus moves outside both the trigger and the panel - covers
   // mouse-click-elsewhere and keyboard-tabbing past the last link.
   const handleFocusOut = useCallback((event) => {
     const next = event.relatedTarget;
@@ -42,7 +42,7 @@ export default function useDisclosure() {
     setIsOpen(false);
   }, []);
 
-  // Optional hover-intent open/close — never the only way in (click/keyboard
+  // Optional hover-intent open/close - never the only way in (click/keyboard
   // always work via the trigger button itself).
   const handleMouseEnter = useCallback(() => {
     clearTimeout(hoverTimerRef.current);

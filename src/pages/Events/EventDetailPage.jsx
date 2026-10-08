@@ -6,7 +6,7 @@ import { describeDate, imageVariant, locationText } from '../../components/Globa
 const link =
   'inline-flex min-h-[40px] items-center gap-2 font-body text-[13px] font-semibold text-brand-600 no-underline hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm';
 
-// /events/<slug> — one event, built from src/data/globalEvents.js.
+// /events/<slug> - one event, built from src/data/globalEvents.js.
 export default function EventDetailPage({ slug, onPageChange }) {
   const ev = globalEvents.find((e) => e.slug === slug);
 
@@ -30,7 +30,7 @@ export default function EventDetailPage({ slug, onPageChange }) {
     <PageWrapper
       seo={{
         title: `${ev.title} | SKM Egg Products`,
-        description: ev.caption || `${ev.title} — SKM Egg Products at an international food ingredients event.`,
+        description: ev.caption || `${ev.title} - SKM Egg Products at an international food ingredients event.`,
         keywords: `SKM Egg Products, ${ev.title}, ${ev.country} food exhibition`,
         canonical: `https://www.skmegg.com/events/${ev.slug}`,
       }}
@@ -68,7 +68,7 @@ export default function EventDetailPage({ slug, onPageChange }) {
                 <img
                   key={src}
                   src={src}
-                  alt={`${ev.title} — photo ${i + 1}`}
+                  alt={`${ev.title} - photo ${i + 1}`}
                   loading="lazy"
                   className="aspect-[4/3] w-full rounded-[14px] object-cover"
                 />

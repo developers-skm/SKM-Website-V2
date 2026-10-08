@@ -28,7 +28,7 @@ export default function CeoMessage() {
           </p>
         </div>
 
-        {/* Quote card — preview testimonial border-l pattern */}
+        {/* Quote card - preview testimonial border-l pattern */}
         <motion.div
           variants={itemVariants}
           className="relative max-w-4xl w-full bg-white border border-[#eee] rounded-[10px] p-8 sm:p-12 md:p-16 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-300 flex flex-col items-center gap-8 group"
@@ -37,7 +37,7 @@ export default function CeoMessage() {
           <div className="absolute top-6 left-8 text-surface-100 text-8xl md:text-9xl font-serif font-black select-none pointer-events-none leading-none -translate-y-2 opacity-50">"</div>
           <div className="absolute bottom-12 right-8 text-surface-100 text-8xl md:text-9xl font-serif font-black select-none pointer-events-none leading-none translate-y-6 opacity-50">"</div>
 
-          {/* Quote — preview blockquote with left red border */}
+          {/* Quote - preview blockquote with left red border */}
           <div className="relative z-10 w-full border-l-4 border-brand-600 pl-8 py-4 bg-[rgba(228, 10, 24,0.02)] rounded-r-[10px]">
             <p className="font-body text-[17px] sm:text-[19px] font-medium leading-[30px] text-surface-700 m-0 italic">
               "SKM EGG Products is a finest example of how a strong value system and drive for excellence can keep you ahead in a competitive environment. Thinking out of the shell was a mantra we adopted consciously not just to give ourselves the edge but also to keep pushing ourselves to innovate. Today, we are one of the Asia's biggest egg processing plant, the future looks both exciting and promising to us."

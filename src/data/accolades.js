@@ -1,4 +1,4 @@
-// Shared accolades data — consumed by AccoladesPage (metro gallery + list)
+// Shared accolades data - consumed by AccoladesPage (metro gallery + list)
 // and GalleryPage (achievement timeline). Copy is verbatim from the original
 // AccoladesPage; `year` / `period` were added only where the copy states one.
 
@@ -81,7 +81,7 @@ export const timelineEvents = [
     year: '2001',
     title: 'APEDA Silver Trophy',
     description:
-      'Leading exporter from India — APEDA [Govt. of India] has awarded SKM the Silver Trophy since 2001 onwards.',
+      'Leading exporter from India - APEDA [Govt. of India] has awarded SKM the Silver Trophy since 2001 onwards.',
   },
   {
     year: '2005-06',

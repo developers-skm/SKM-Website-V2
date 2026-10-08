@@ -65,7 +65,7 @@ export default function MdArticlePage({ onPageChange }) {
     <div className="w-full flex flex-col">
       <SEO
         title="MD Article | CSR | SKM Egg Products"
-        description="Olirum Erode Foundation (OEF) — established to develop Erode into a preferred place of living through environmental, water, and community welfare initiatives, co-founded by SKM's Managing Director."
+        description="Olirum Erode Foundation (OEF) - established to develop Erode into a preferred place of living through environmental, water, and community welfare initiatives, co-founded by SKM's Managing Director."
         keywords="OEF, Olirum Erode Foundation, SKM MD, CSR, Erode development, community welfare, SKM Shree Shivkumar"
       />
       <div className="w-full bg-page pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
@@ -83,7 +83,7 @@ export default function MdArticlePage({ onPageChange }) {
               variants={itemVariants}
               className="section-label justify-center"
             >
-              CSR — MD Article
+              CSR - MD Article
             </motion.span>
             <motion.h2
               variants={itemVariants}
@@ -103,16 +103,16 @@ export default function MdArticlePage({ onPageChange }) {
           {/* ── Foundation Overview ── */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6">
             <p className="font-body text-[15px] text-surface-600 leading-[26px] m-0">
-              <strong className="text-surface-850">Olirum Erode Foundation (OEF)</strong> has been established with the objective of developing Erode into a preferred place of living by creating and maintaining a hygienic and green environment, and also by developing and conserving water bodies available in the city. A <strong className="text-brand-600">30-member team</strong> — all successful entrepreneurs in Erode — joined together to establish this foundation.
+              <strong className="text-surface-850">Olirum Erode Foundation (OEF)</strong> has been established with the objective of developing Erode into a preferred place of living by creating and maintaining a hygienic and green environment, and also by developing and conserving water bodies available in the city. A <strong className="text-brand-600">30-member team</strong> - all successful entrepreneurs in Erode - joined together to establish this foundation.
             </p>
 
             {/* Images row 1 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="OEF — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="OEF - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="OEF — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="OEF - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
             </div>
           </motion.div>
@@ -131,10 +131,10 @@ export default function MdArticlePage({ onPageChange }) {
             {/* Images row 2 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="OEF event — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="OEF event - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="OEF founders — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="OEF founders - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
             </div>
           </motion.div>
@@ -152,7 +152,7 @@ export default function MdArticlePage({ onPageChange }) {
             <div className="flex flex-col gap-2">
               <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-600">Launch Event</span>
               <h3 className="font-heading font-bold text-[15px] text-heading m-0 tracking-tight">
-                Grand Inauguration — 04 June 2015
+                Grand Inauguration - 04 June 2015
               </h3>
               <p className="text-sm text-surface-600 leading-relaxed m-0">
                 The establishment of OEF was made public in a grand manner at <strong className="text-surface-700">Vellalar College Ground</strong> on <strong className="text-brand-600">04.06.2015</strong>. Mr. <strong className="text-surface-700">S. Suriya</strong>, the famous Tamil cinema actor and founder of <strong className="text-surface-700">Agaram Foundation, Chennai</strong>, participated as Chief Guest.

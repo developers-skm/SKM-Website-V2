@@ -1,5 +1,5 @@
 // Renders a variant's `specifications` object as a semantic technical table
-// — same key/value content as before, presented as a strong-rhythm grid
+// - same key/value content as before, presented as a strong-rhythm grid
 // where the value reads larger than the label (label is the caption, value
 // is the fact) instead of five equal-weight compressed cards.
 export default function SpecificationGrid({ specifications }) {

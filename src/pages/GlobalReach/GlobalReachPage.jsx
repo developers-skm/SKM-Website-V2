@@ -10,8 +10,8 @@ import exportMarkets from '../../data/exportMarkets';
 import certifications from '../../data/certifications';
 import applications from '../../data/applications';
 
-// Section 3 — Regional offices. Combines the 3 real branches (Japan,
-// Europe, Russia) into cards on this one page — each still keeps its own
+// Section 3 - Regional offices. Combines the 3 real branches (Japan,
+// Europe, Russia) into cards on this one page - each still keeps its own
 // real, separate URL (skm_japan / skm_europe / skm_russia) for SEO, but
 // neither is a top-level nav menu item (confirmed: not present in
 // navigationData.js/PrimaryNav.jsx/MobileNavigation.jsx). `vision` and
@@ -44,12 +44,12 @@ const branches = [
   },
 ];
 
-// Section 2 — Interactive market map. Only the 3 real regional branches
+// Section 2 - Interactive market map. Only the 3 real regional branches
 // (Japan, Europe, Russia) have genuine office/contact-team data anywhere
 // in the repo (src/pages/Branches/*.jsx). "Europe" covers the real EU
 // member markets in exportMarkets.js. All other 25 export markets are
 // served directly from India HQ with no dedicated regional office/contact
-// person documented — for those, "Regional office" and "Contact person or
+// person documented - for those, "Regional office" and "Contact person or
 // team" honestly state that (not a fabricated office/contact), while
 // "Products available" and "Relevant certification" stay real for every
 // market since the same real catalogue and 8 real certifications apply
@@ -61,9 +61,9 @@ const branches = [
 const EU_MARKET_NAMES = new Set(['Netherlands', 'Germany', 'Sweden', 'Belgium', 'Denmark', 'UK', 'Italy']);
 
 function regionForMarket(marketName) {
-  if (marketName === 'Japan') return { branchPage: 'skm_japan', branchName: 'SKM Japan', office: 'SKM Japan — dedicated regional branch.' };
-  if (marketName === 'Russia') return { branchPage: 'skm_russia', branchName: 'SKM Russia', office: 'SKM Russia — dedicated regional branch.' };
-  if (EU_MARKET_NAMES.has(marketName)) return { branchPage: 'skm_europe', branchName: 'SKM Europe', office: 'SKM Europe — dedicated EU regional branch.' };
+  if (marketName === 'Japan') return { branchPage: 'skm_japan', branchName: 'SKM Japan', office: 'SKM Japan - dedicated regional branch.' };
+  if (marketName === 'Russia') return { branchPage: 'skm_russia', branchName: 'SKM Russia', office: 'SKM Russia - dedicated regional branch.' };
+  if (EU_MARKET_NAMES.has(marketName)) return { branchPage: 'skm_europe', branchName: 'SKM Europe', office: 'SKM Europe - dedicated EU regional branch.' };
   return null;
 }
 
@@ -109,7 +109,7 @@ function MarketMapDetailSection({ onPageChange }) {
         >
           <div className="flex flex-col gap-1.5">
             <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Products available</span>
-            <span className="font-body text-[14px] text-surface-700 leading-[1.6]">Full catalogue — egg powders, liquid egg products, and customised/specialty solutions.</span>
+            <span className="font-body text-[14px] text-surface-700 leading-[1.6]">Full catalogue - egg powders, liquid egg products, and customised/specialty solutions.</span>
           </div>
           <div className="flex flex-col gap-1.5">
             <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Relevant certification</span>
@@ -118,7 +118,7 @@ function MarketMapDetailSection({ onPageChange }) {
           <div className="flex flex-col gap-1.5">
             <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Regional office</span>
             <span className="font-body text-[14px] text-surface-700 leading-[1.6]">
-              {region ? region.office : 'Served directly from India HQ — no dedicated regional office for this market.'}
+              {region ? region.office : 'Served directly from India HQ - no dedicated regional office for this market.'}
             </span>
           </div>
           <div className="flex flex-col gap-1.5">
@@ -158,9 +158,9 @@ function MarketMapDetailSection({ onPageChange }) {
 // Section 4 (Export and regulatory support): Market approvals, Certification
 // support, and Product-document availability each have a real, distinct
 // fact. "Export documentation" has no distinct documented process anywhere
-// in the repo — it states the same real, general regulatory-approval fact
+// in the repo - it states the same real, general regulatory-approval fact
 // rather than inventing a specific documentation checklist. "Request
-// Market Documentation" routes to the real Contact Us page — no self-serve
+// Market Documentation" routes to the real Contact Us page - no self-serve
 // document library exists.
 const EXPORT_REGULATORY_TOPICS = [
   {
@@ -225,7 +225,7 @@ function ExportRegulatorySupportSection({ onPageChange }) {
 
 // Section 5 (Packaging and transportation): the 4 requested logistics
 // categories map to real, verified facts already established in this app
-// — powder (bag-in-box / paper bag), chilled and frozen (real product
+// - powder (bag-in-box / paper bag), chilled and frozen (real product
 // storage specifications: 0°C to 4°C / ≤ -18°C), and bulk (Pallecon IBC).
 // "View Packaging Options" routes to the real Customized Packages page;
 // "Discuss Shipping Requirements" routes to the real Contact Us page.
@@ -233,7 +233,7 @@ const PACKAGING_TRANSPORT = [
   { id: 'powder', label: 'Powder', fact: 'Bag-in-box (HDPE inner bag + corrugated carton) or bag-in-bag (multi-wall paper bag), 10 Kg to 25 Kg.' },
   { id: 'chilled', label: 'Chilled', fact: 'Chilled liquid egg products stored and transported at 0°C to 4°C.' },
   { id: 'frozen', label: 'Frozen', fact: 'Frozen liquid egg products stored and transported at ≤ -18°C, with extended shelf stability for long-distance export.' },
-  { id: 'bulk', label: 'Bulk', fact: 'Pallecon with inner LDPE liner — a 1000 Kg bulk IBC container, stackable and fork-lift pallet compatible.' },
+  { id: 'bulk', label: 'Bulk', fact: 'Pallecon with inner LDPE liner - a 1000 Kg bulk IBC container, stackable and fork-lift pallet compatible.' },
 ];
 
 function PackagingTransportSection({ onPageChange }) {
@@ -348,7 +348,7 @@ export default function GlobalReachPage({ onPageChange }) {
     >
       <div className="w-full flex flex-col bg-page">
 
-        {/* Section 1 — Global hero */}
+        {/* Section 1 - Global hero */}
         <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[80px] lg:pb-[80px] border-b border-[#eee] text-center px-4">
           <div className="mx-auto max-w-[720px] flex flex-col items-center gap-5">
             <span className="section-label justify-center">Export Markets & Branches</span>
@@ -388,10 +388,10 @@ export default function GlobalReachPage({ onPageChange }) {
           </div>
         </div>
 
-        {/* Section 2 — Interactive market map detail panel */}
+        {/* Section 2 - Interactive market map detail panel */}
         <MarketMapDetailSection onPageChange={onPageChange} />
 
-        {/* Section 3 — Regional offices */}
+        {/* Section 3 - Regional offices */}
         <div id="regional-branches" className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] scroll-mt-[100px] xl:scroll-mt-[120px]">
           <motion.section
             variants={containerVariants}
@@ -434,22 +434,22 @@ export default function GlobalReachPage({ onPageChange }) {
           </motion.section>
         </div>
 
-        {/* Section 4 — Export and regulatory support */}
+        {/* Section 4 - Export and regulatory support */}
         <ExportRegulatorySupportSection onPageChange={onPageChange} />
 
-        {/* Section 5 — Packaging and transportation */}
+        {/* Section 5 - Packaging and transportation */}
         <PackagingTransportSection onPageChange={onPageChange} />
 
-        {/* Section 6 — Customer proof */}
+        {/* Section 6 - Customer proof */}
         <CustomerProofSection onPageChange={onPageChange} />
 
-        {/* Section 7 — Closing CTA. The brief asks for a compact project
+        {/* Section 7 - Closing CTA. The brief asks for a compact project
             form with 4 fields (Destination country, Product, Estimated
             volume, Required delivery period). No standalone reusable
             compact-form component exists in the app; the real intake flow
             is the multi-step get-quote flow, which genuinely collects 3 of
             the 4 fields as real, dedicated steps (StepDestination,
-            StepProduct, StepQuantity) — "Required delivery period" isn't
+            StepProduct, StepQuantity) - "Required delivery period" isn't
             collected anywhere in the real flow, so it's not claimed here.
             Rather than build new, unverified form/validation logic, the
             4 fields are shown as a real preview of what "Contact Regional

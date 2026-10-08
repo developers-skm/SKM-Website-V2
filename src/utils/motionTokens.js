@@ -1,4 +1,4 @@
-// Centralized motion tokens — durations (seconds, for Framer Motion) and the
+// Centralized motion tokens - durations (seconds, for Framer Motion) and the
 // shared premium easing curve. Keeps timing consistent across the site
 // instead of ad-hoc numbers scattered per component.
 
@@ -17,7 +17,7 @@ export const DURATION = {
 
 export const STAGGER = 0.07;
 
-// Gold accent — used sparingly as a highlight color layered on top of the
+// Gold accent - used sparingly as a highlight color layered on top of the
 // existing red brand system (buttons/CTAs stay red; gold marks progress,
 // active states, and small egg-yolk-inspired highlights only).
 export const GOLD = {
@@ -26,7 +26,7 @@ export const GOLD = {
   600: '#d19a2e',
 };
 
-// Albumen/cream accent — for albumen-family products, used the same
+// Albumen/cream accent - for albumen-family products, used the same
 // sparing way gold is: small highlights, not backgrounds.
 export const CREAM = {
   400: '#f6f1e6',
@@ -43,7 +43,7 @@ export function fadeUp(reduceMotion, { distance = 20, duration = DURATION.sectio
   };
 }
 
-// Card-grid entrance — heading-then-cards composition. Distance/scale scale
+// Card-grid entrance - heading-then-cards composition. Distance/scale scale
 // down on mobile automatically via the `mobile` flag callers pass based on
 // their own breakpoint state, or callers can just use the desktop values
 // (they still read fine at small sizes, just slightly more pronounced).
@@ -60,7 +60,7 @@ export function cardRise(reduceMotion, { index = 0, distance = 34, stagger = 0.0
   };
 }
 
-// Masked image reveal — clip-path wipes open (bottom-to-top by default)
+// Masked image reveal - clip-path wipes open (bottom-to-top by default)
 // while the image itself scales down from a slight zoom to rest. Pass
 // `from` to change wipe direction ('bottom' | 'left' | 'right' | 'top').
 const CLIP_CLOSED = {

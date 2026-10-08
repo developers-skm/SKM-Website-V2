@@ -72,7 +72,7 @@ const contentSections = [
   },
   {
     title: 'Physicochemical & Functional Testing',
-    description: 'Modern laboratory equipment verifies freshness and key parameters. Dedicated functional testing systems evaluate emulsification, foam stability, gel strength, viscosity, baking performance, and product flow characteristics — ensuring reliable industrial application.',
+    description: 'Modern laboratory equipment verifies freshness and key parameters. Dedicated functional testing systems evaluate emulsification, foam stability, gel strength, viscosity, baking performance, and product flow characteristics - ensuring reliable industrial application.',
     chips: physicochemicalParams,
     chipLabel: 'Parameters',
     icon: (
@@ -159,7 +159,7 @@ export default function Laboratory() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-surface-950/60 via-transparent to-transparent pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-            <p className="text-xs font-bold text-white/80 uppercase tracking-widest m-0">SKM Laboratory — Residue Analysis Lab</p>
+            <p className="text-xs font-bold text-white/80 uppercase tracking-widest m-0">SKM Laboratory - Residue Analysis Lab</p>
           </div>
         </motion.div>
       </motion.section>

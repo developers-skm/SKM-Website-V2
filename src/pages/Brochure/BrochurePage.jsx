@@ -8,25 +8,25 @@ const brochureMeta = {
   'Company Profile - SKM Egg Products Export India Limited.pdf': {
     category: 'Corporate',
     title: 'Company Profile',
-    desc: 'A comprehensive overview of SKM Egg Products Export India Limited — our history, scale, capabilities, and global reach since 1997.',
+    desc: 'A comprehensive overview of SKM Egg Products Export India Limited - our history, scale, capabilities, and global reach since 1997.',
     featured: true,
   },
   'Product List - SKM Egg Products Export India Limited.pdf': {
     category: 'Corporate',
     title: 'Full Product List',
-    desc: 'Complete catalog of all SKM egg products — powders, liquids, customized mixes and specialty solutions available for global food producers.',
+    desc: 'Complete catalog of all SKM egg products - powders, liquids, customized mixes and specialty solutions available for global food producers.',
     featured: true,
   },
   'SKM BAKERY MIX A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
     title: 'Bakery Mix',
-    desc: "Technical flyer covering SKM's specialized bakery egg mix — composition, functional benefits, and applications in the F&B industry.",
+    desc: "Technical flyer covering SKM's specialized bakery egg mix - composition, functional benefits, and applications in the F&B industry.",
     featured: false,
   },
   'SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
     title: 'Egg Albumen Powder',
-    desc: 'Detailed specification sheet for SKM Egg Albumen Powder — ideal for confectionery, sports nutrition, and meat processing.',
+    desc: 'Detailed specification sheet for SKM Egg Albumen Powder - ideal for confectionery, sports nutrition, and meat processing.',
     featured: false,
   },
   'SKM EGG YOLK POWDER A5 FLYER (F-B).pdf': {
@@ -38,7 +38,7 @@ const brochureMeta = {
   'SKM WHOLE EGG POWDER A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
     title: 'Whole Egg Powder',
-    desc: 'Specification flyer for SKM Whole Egg Powder — versatile, shelf-stable solution for bakeries, sauces, and ready meal manufacturers.',
+    desc: 'Specification flyer for SKM Whole Egg Powder - versatile, shelf-stable solution for bakeries, sauces, and ready meal manufacturers.',
     featured: false,
   },
 };
@@ -138,7 +138,7 @@ export default function BrochurePage({ onPageChange }) {
     <div className="w-full flex flex-col">
       <SEO
         title="Brochures & Downloads | SKM Egg Products"
-        description="Download SKM Egg Products brochures — company profile, full product list, and individual product flyers for egg powder and liquid solutions."
+        description="Download SKM Egg Products brochures - company profile, full product list, and individual product flyers for egg powder and liquid solutions."
         keywords="SKM brochure, egg products PDF, company profile download, product flyer, egg powder catalog"
       />
       <div className="w-full bg-page pt-[110px] pb-[90px] sm:pt-[130px] lg:pt-[120px] lg:pb-[120px] overflow-hidden">

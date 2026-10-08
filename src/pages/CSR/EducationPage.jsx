@@ -53,7 +53,7 @@ export default function EducationPage({ onPageChange }) {
           {/* ── Section Header ── */}
           <div className="text-center flex flex-col items-center gap-4">
             <motion.span variants={itemVariants} className="section-label justify-center">
-              CSR — Education
+              CSR - Education
             </motion.span>
             <motion.h2
               variants={itemVariants}
@@ -105,15 +105,15 @@ export default function EducationPage({ onPageChange }) {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="p-5 bg-white border border-[#eee] rounded-[10px] flex flex-col gap-3">
-                <h4 className="font-heading font-bold text-[12px] text-heading uppercase tracking-wider m-0">ABL — Seyal Vazhi Kattral</h4>
+                <h4 className="font-heading font-bold text-[12px] text-heading uppercase tracking-wider m-0">ABL - Seyal Vazhi Kattral</h4>
                 <p className="text-sm text-surface-600 leading-relaxed m-0">
-                  For children studying from <strong className="text-surface-700">1st to 4th standard</strong>, the Activities Based Learning (ABL) system — locally known as <em>Seyal Vazhi Kattral</em> — is followed at the school, with teachers specially trained in this method.
+                  For children studying from <strong className="text-surface-700">1st to 4th standard</strong>, the Activities Based Learning (ABL) system - locally known as <em>Seyal Vazhi Kattral</em> - is followed at the school, with teachers specially trained in this method.
                 </p>
               </div>
               <div className="p-5 bg-white border border-[#eee] rounded-[10px] flex flex-col gap-3">
                 <h4 className="font-heading font-bold text-[12px] text-heading uppercase tracking-wider m-0">Graduate Achievements</h4>
                 <p className="text-sm text-surface-600 leading-relaxed m-0">
-                  This year, <strong className="text-brand-600">13 students</strong> educated through Sevai Maiyam have completed their graduation and are placed in good jobs — a testament to the transformative power of the programme.
+                  This year, <strong className="text-brand-600">13 students</strong> educated through Sevai Maiyam have completed their graduation and are placed in good jobs - a testament to the transformative power of the programme.
                 </p>
               </div>
             </div>
@@ -130,10 +130,10 @@ export default function EducationPage({ onPageChange }) {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="Cultural education — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="Cultural education - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="PDC classes — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="PDC classes - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
             </div>
           </motion.div>
@@ -161,10 +161,10 @@ export default function EducationPage({ onPageChange }) {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="Coaching centre — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="Coaching centre - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="Students at coaching centre — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="Students at coaching centre - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
             </div>
           </motion.div>
@@ -242,7 +242,7 @@ export default function EducationPage({ onPageChange }) {
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1)_0%,transparent_60%)] pointer-events-none" />
             <p className="font-heading font-bold relative text-[17px] sm:text-[19px] text-white tracking-tight m-0 uppercase">
-              Education for All — Building a brighter future for every child.
+              Education for All - Building a brighter future for every child.
             </p>
           </motion.div>
 

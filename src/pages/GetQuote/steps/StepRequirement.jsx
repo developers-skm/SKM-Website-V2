@@ -4,14 +4,14 @@ import { getApplicationById } from '../../../data/applications';
 import { Field, selectClass } from '../../../components/common/FormField';
 import { containerVariants, itemVariants } from '../../../utils/animationVariants';
 
-// Step 1 — Requirement (brief §2, Step 1): Product or application,
+// Step 1 - Requirement (brief §2, Step 1): Product or application,
 // Functional requirement, Standard or custom product.
 //
 // "Functional requirement" options are the real, verified traits already
 // established across this session (heat stability, whipping performance,
-// gel strength, emulsion stability, colour, protein target — same list
+// gel strength, emulsion stability, colour, protein target - same list
 // used on the Innovation and Custom Solutions page's "Challenges SKM can
-// support" section) — not per-product filterable data, just a real
+// support" section) - not per-product filterable data, just a real
 // free-text-equivalent classification the visitor selects to tell sales
 // what they need, carried through as-is to the enquiry.
 //
@@ -21,7 +21,7 @@ import { containerVariants, itemVariants } from '../../../utils/animationVariant
 //
 // Section 3 (Sample request route): when `enquiryIntent` is
 // 'sample-or-documents', this step switches to a real multi-select "sample
-// cart" — buyers select one or more products and submit them together —
+// cart" - buyers select one or more products and submit them together —
 // same real multi-select interaction pattern already used for "Add to
 // Comparison" on /products and the category pages, applied here to
 // `formData.sampleProductIds` instead of a single `productId`. Every other
@@ -68,9 +68,9 @@ export default function StepRequirement({ formData, setFormData, enquiryIntent }
         </h2>
         <p className="font-body text-[13.5px] text-surface-500 m-0">
           {isSampleCart
-            ? 'Select one or more products — we\'ll send samples and technical documents for everything you pick.'
+            ? 'Select one or more products - we\'ll send samples and technical documents for everything you pick.'
             : application
-              ? `Recommended for ${application.title.toLowerCase()} — or pick a different product below.`
+              ? `Recommended for ${application.title.toLowerCase()} - or pick a different product below.`
               : 'Select a product to continue. You can refine quantity and delivery next.'}
         </p>
       </div>

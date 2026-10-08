@@ -1,7 +1,7 @@
 import products, { getProductById } from '../../../data/products';
 
-// Step 4 — Review and submit (brief §2, Step 4). Shows exactly what was
-// entered in Steps 1–3 — real form state, nothing invented — so the
+// Step 4 - Review and submit (brief §2, Step 4). Shows exactly what was
+// entered in Steps 1–3 - real form state, nothing invented - so the
 // visitor can verify before the real "Submit Enquiry" action.
 function ReviewRow({ label, value }) {
   if (!value) return null;
@@ -30,7 +30,7 @@ export default function StepReview({ formData }) {
           Review your enquiry
         </h2>
         <p className="font-body text-[13.5px] text-surface-500 m-0">
-          Check the details below, then submit — you can go back to change anything first.
+          Check the details below, then submit - you can go back to change anything first.
         </p>
       </div>
 

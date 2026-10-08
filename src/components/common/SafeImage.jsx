@@ -2,13 +2,13 @@ import { useState, useRef, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 // Wraps a plain <img> with resilience against the intermittent "image just
-// doesn't load" failures reported on the homepage — a slow/dropped network
+// doesn't load" failures reported on the homepage - a slow/dropped network
 // request or a transient CDN hiccup, not a missing file. On error, retries
 // the same src once (cache-busted) before falling back to a quiet neutral
 // placeholder instead of the browser's broken-image icon, so a section
 // never shows a broken visual. `as` lets callers render framer-motion's
 // `motion.img` here for entrance/crossfade animations while keeping the
-// same retry/fallback behavior — pass `motion.img` as `as`.
+// same retry/fallback behavior - pass `motion.img` as `as`.
 const SafeImage = forwardRef(function SafeImage(
   { src, alt, as: Component = 'img', className = '', onError, ...rest },
   ref

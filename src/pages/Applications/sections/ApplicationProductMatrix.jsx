@@ -4,9 +4,9 @@ import applications from '../../../data/applications';
 import { getProductById } from '../../../data/products';
 import { EASE_PREMIUM, DURATION, fadeUp } from '../../../utils/motionTokens';
 
-// Section 4 — application-to-product matrix (brief §4). Built entirely from
+// Section 4 - application-to-product matrix (brief §4). Built entirely from
 // the same real `matchedProductIds` already used by the 4 real application
-// guide pages (data/applications.js) — rows are the genuine applications,
+// guide pages (data/applications.js) - rows are the genuine applications,
 // columns are the union of their real matched products, checkmarks show
 // real matches only. No 8x8 grid is fabricated to match the brief's larger
 // aspiration; the matrix is exactly as big as the real data supports.
@@ -120,7 +120,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
               </table>
             </div>
 
-            {/* Scroll-right hint — fades a gradient + bouncing arrow over
+            {/* Scroll-right hint - fades a gradient + bouncing arrow over
                 the table's right edge until the user scrolls it. */}
             <AnimatePresence>
               {!hasScrolled && (

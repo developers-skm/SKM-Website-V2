@@ -16,7 +16,7 @@ import Trust5 from '../../../assets/trust-images/trust-5.webp';
 const trustSlides = [Trust1, Trust2, Trust3, Trust4, Trust5];
 const SLIDE_INTERVAL_MS = 4500;
 
-// Crossfading slideshow for the Community Welfare story — autoplays, pauses
+// Crossfading slideshow for the Community Welfare story - autoplays, pauses
 // on hover/focus, and offers dot controls. Respects reduced motion (no
 // autoplay, instant swaps).
 function TrustSlideshow({ alt, reduceMotion }) {
@@ -67,12 +67,12 @@ function TrustSlideshow({ alt, reduceMotion }) {
   );
 }
 
-// Section 10 — Sustainability. New homepage section built from real content
+// Section 10 - Sustainability. New homepage section built from real content
 // on src/pages/CSR/SustainabilityPage.jsx (the "Pillars of Sustainability"
-// — Carbon Footprint, Wind Energy Generation, Community Welfare — plus the
-// 3.5M units/year wind energy figure) — that page has no photography of its
+// - Carbon Footprint, Wind Energy Generation, Community Welfare - plus the
+// 3.5M units/year wind energy figure) - that page has no photography of its
 // own, so real plant utility/environmental imagery (biogas facility,
-// effluent treatment, utility overview — the site's actual sustainability-
+// effluent treatment, utility overview - the site's actual sustainability-
 // adjacent infrastructure, also used on the Egg Processing Plant page) is
 // used here rather than generic stock. Oversized 01/02/03 editorial anchors,
 // asymmetric per-story layout, no green-tech card grid.
@@ -89,7 +89,7 @@ const stories = [
     number: '02',
     eyebrow: 'Clean Energy',
     title: '3.5 million units of wind energy, every year.',
-    body: 'Our contribution to a clean environment is the installation of a wind mill that generates electricity of 3.5 million units per year — powering our operations with renewable energy.',
+    body: 'Our contribution to a clean environment is the installation of a wind mill that generates electricity of 3.5 million units per year - powering our operations with renewable energy.',
     image: Biogas,
     imageAlt: 'Biogas facility at SKM Egg Products',
   },

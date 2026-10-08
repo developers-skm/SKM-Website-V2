@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 // One square cell of the desktop floating rail. Label reveals as an
-// expanding tooltip to the left on hover/focus — kept in the DOM at all
+// expanding tooltip to the left on hover/focus - kept in the DOM at all
 // times (opacity/width transition only) so it never triggers layout shift
 // in the rail's own column, and so keyboard focus users get the same label
 // treatment as mouse users without relying on the native title attribute.

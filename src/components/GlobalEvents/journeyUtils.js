@@ -1,6 +1,6 @@
 import exportMarkets from '../../data/exportMarkets';
 
-// SKM's home base — the same point the main Global Reach map routes from.
+// SKM's home base - the same point the main Global Reach map routes from.
 export const INDIA = { id: 356, name: 'India', coordinates: [78, 21] };
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -11,7 +11,7 @@ const parseDate = (iso) => {
   return new Date(y, m - 1, d);
 };
 
-// Pieces for display: days "17 — 19", month "SEP", year "2025", short "17–19 SEP 2025".
+// Pieces for display: days "17 - 19", month "SEP", year "2025", short "17–19 SEP 2025".
 export function describeDate(ev) {
   const start = parseDate(ev.startDate);
   if (!start) return null;
@@ -24,8 +24,8 @@ export function describeDate(ev) {
   const single = start.getTime() === end.getTime();
   const sameMonth = start.getMonth() === end.getMonth();
   return {
-    days: single ? d1 : `${d1} — ${d2}`,
-    month: single || sameMonth ? m1 : `${m1} — ${m2}`,
+    days: single ? d1 : `${d1} - ${d2}`,
+    month: single || sameMonth ? m1 : `${m1} - ${m2}`,
     year,
     short: single
       ? `${d1} ${m1} ${year}`
@@ -43,7 +43,7 @@ export const isExternal = (link) => /^https?:\/\//i.test(link || '');
 
 // /gallery/name.webp → its generated width variant (see npm run gallery:images)
 // Active (current-stop) map pin: scale, and how far its head sits above the
-// location point (px, tip → head centre) — the photo popup is anchored to the head.
+// location point (px, tip → head centre) - the photo popup is anchored to the head.
 export const ACTIVE_PIN_SCALE = 1.6;
 export const ACTIVE_PIN_LIFT = 13 * ACTIVE_PIN_SCALE;
 

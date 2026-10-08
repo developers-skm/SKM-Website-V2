@@ -5,17 +5,17 @@ import SafeImage from '../../../components/common/SafeImage';
 import journeyStages from '../../../data/journeyStages';
 import { fadeUp } from '../../../utils/motionTokens';
 
-// Section 7 — Traceability. Home-scoped sticky scroll-driven storytelling,
+// Section 7 - Traceability. Home-scoped sticky scroll-driven storytelling,
 // following the same interaction pattern as components/Journey/
 // JourneyScrollSection.jsx (pinned image + copy panel, scroll-scrubbed
-// crossfade) WITHOUT modifying that shared component — JourneyScrollSection
+// crossfade) WITHOUT modifying that shared component - JourneyScrollSection
 // is used by JourneyStrip.jsx elsewhere and per standing project rule,
 // shared components get a phase-scoped variant instead of a direct edit.
 // Per-stage scroll budget is intentionally tighter here (58vh/stage vs the
 // shared component's 100vh/stage) to avoid an excessive page length for 6
 // stages stacked on top of 5 other homepage sections. Desktop (lg+) gets
 // the sticky/pinned experience; mobile and prefers-reduced-motion both get
-// the same plain stacked vertical timeline — no pinning, no scroll-jacking.
+// the same plain stacked vertical timeline - no pinning, no scroll-jacking.
 const EASE = [0.22, 1, 0.36, 1];
 const VH_PER_STAGE = 58;
 

@@ -55,10 +55,10 @@ export default function PinSlideshow({ stop, paused, reduce, onOpen }) {
           exit="exit"
           transition={{ duration: reduce ? 0.2 : 0.7, ease: EASE_PREMIUM }}
           onClick={() => onOpen(stop)}
-          aria-label={`Open ${stop.title} — photo ${i + 1} of ${n}`}
+          aria-label={`Open ${stop.title} - photo ${i + 1} of ${n}`}
           className="absolute inset-0 cursor-pointer border-0 bg-transparent p-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
         >
-          <img src={slides[i]} alt={`${stop.title} — photo ${i + 1}`} className="h-full w-full object-cover" draggable="false" />
+          <img src={slides[i]} alt={`${stop.title} - photo ${i + 1}`} className="h-full w-full object-cover" draggable="false" />
         </motion.button>
       </AnimatePresence>
 

@@ -101,7 +101,7 @@ export default function FoodSafetyPolicy() {
           </motion.div>
         </div>
 
-        {/* Row 2: QMS Content — full width below */}
+        {/* Row 2: QMS Content - full width below */}
         <motion.div
           variants={itemVariants}
           className="border-l-4 border-brand-600 pl-8 py-6 bg-[rgba(228, 10, 24,0.02)] rounded-r-[10px] flex flex-col gap-4"

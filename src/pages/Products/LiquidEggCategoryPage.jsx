@@ -3,7 +3,7 @@ import CategoryPage from './CategoryPage';
 // Facts below are verbatim/derived from already-audited real product data
 // (src/data/products.js, ProductFamilies.jsx, and each liquid product
 // page's own variantsData `code`/`character` fields and applicationsData
-// `name` values — confirmed present across Whole Egg / Egg Yolk / Egg
+// `name` values - confirmed present across Whole Egg / Egg Yolk / Egg
 // Albumen Liquid pages).
 const productMeta = {
   whole_egg_liquid: {
@@ -23,7 +23,7 @@ const productMeta = {
   },
 };
 
-// Functionality tags — each mapped only to the real product ids confirmed
+// Functionality tags - each mapped only to the real product ids confirmed
 // (by grep against each product page's own variantsData) to carry that
 // trait.
 const functionalityTags = [
@@ -39,13 +39,13 @@ export default function LiquidEggCategoryPage({ onPageChange }) {
     <CategoryPage
       seo={{
         title: 'Liquid Egg Products | SKM Egg Products Category Guide',
-        description: 'Chilled and frozen pasteurized liquid whole egg, egg yolk, and egg albumen — format, benefits, and typical uses for food manufacturers.',
+        description: 'Chilled and frozen pasteurized liquid whole egg, egg yolk, and egg albumen - format, benefits, and typical uses for food manufacturers.',
         keywords: 'liquid egg category, whole egg liquid, egg yolk liquid, egg albumen liquid, pasteurized liquid egg',
         canonical: 'https://www.skmegg.com/category_liquids',
       }}
       categoryLabel="Product Category"
       title="Liquid Egg Products"
-      format="Pasteurized liquid egg — chilled or frozen — supplied as whole egg, egg yolk, or egg albumen blends, ready to dose directly into recipes."
+      format="Pasteurized liquid egg - chilled or frozen - supplied as whole egg, egg yolk, or egg albumen blends, ready to dose directly into recipes."
       advantages={[
         'Full nutrient density, easy dosing and handling, eliminates eggshell-breaking hazards in industrial kitchens.',
         'Delivers high cake volume, improves crumb softness, and significantly delays starch staling.',

@@ -72,7 +72,7 @@ export default function CoreIdeologyPage({ onPageChange }) {
             </motion.p>
           </div>
 
-          {/* Core mantra — border-l-4 preview blockquote pattern */}
+          {/* Core mantra - border-l-4 preview blockquote pattern */}
           <motion.div
             variants={itemVariants}
             className="border-l-4 border-brand-600 pl-8 py-6 bg-brand-600/3 rounded-r-[10px] max-w-4xl mx-auto w-full text-center relative overflow-hidden group"

@@ -4,9 +4,9 @@ import { EASE_PREMIUM, DURATION, STAGGER, fadeUp } from '../../../utils/motionTo
 
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
-// Section 7 — related resources (brief §7). Of the 5 brief resource types
+// Section 7 - related resources (brief §7). Of the 5 brief resource types
 // (Technical guide, Product flyer, Video, FAQ, Case example), only Product
-// Flyer has real files anywhere in the codebase — the same TDS PDFs used
+// Flyer has real files anywhere in the codebase - the same TDS PDFs used
 // throughout the product/application work, and only for the 3 products
 // that have one. No videos, FAQs, or case studies exist anywhere in this
 // codebase, so those types are omitted entirely rather than shown as

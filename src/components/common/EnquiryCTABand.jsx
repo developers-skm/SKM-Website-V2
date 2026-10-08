@@ -1,4 +1,4 @@
-// Shared closing CTA band — soft red-tinted surface with an eyebrow, heading,
+// Shared closing CTA band - soft red-tinted surface with an eyebrow, heading,
 // and one or more actions. Used by product detail pages and application
 // landing pages, which previously duplicated this section byte-for-byte.
 export default function EnquiryCTABand({ eyebrow, heading, actions }) {

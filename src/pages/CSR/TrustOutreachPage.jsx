@@ -104,7 +104,7 @@ export default function TrustOutreachPage({ onPageChange }) {
               variants={itemVariants}
               className="section-label justify-center"
             >
-              CSR — Sevai Maiyam
+              CSR - Sevai Maiyam
             </motion.span>
             <motion.h2
               variants={itemVariants}
@@ -136,10 +136,10 @@ export default function TrustOutreachPage({ onPageChange }) {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="Sanitation — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="Sanitation - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="Saloon at Gandhi Nagar — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="Saloon at Gandhi Nagar - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
             </div>
           </motion.div>
@@ -184,10 +184,10 @@ export default function TrustOutreachPage({ onPageChange }) {
             {/* Medical images */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="Medical services — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="Medical services - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="Eye camp — image coming soon" aspectClass="aspect-[4/3]" />
+                <ImagePlaceholder label="Eye camp - image coming soon" aspectClass="aspect-[4/3]" />
               </div>
             </div>
           </motion.div>
@@ -220,7 +220,7 @@ export default function TrustOutreachPage({ onPageChange }) {
           <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <ServiceCard icon={icons.marriage} title="Marriage Aid">
               <p className="m-0">
-                During the marriage of residents of Gandhi Nagar and Rajiv Nagar colonies, the couple is gifted a <strong className="text-surface-700">silk saree, silk dhoti and a towel</strong>, along with a <strong className="text-surface-700">Mangalsutra ornament (¼ sovereign)</strong> — amounting to a total value of <strong className="text-brand-600">₹3,000/-</strong>.
+                During the marriage of residents of Gandhi Nagar and Rajiv Nagar colonies, the couple is gifted a <strong className="text-surface-700">silk saree, silk dhoti and a towel</strong>, along with a <strong className="text-surface-700">Mangalsutra ornament (¼ sovereign)</strong> - amounting to a total value of <strong className="text-brand-600">₹3,000/-</strong>.
               </p>
             </ServiceCard>
             <ServiceCard icon={icons.rituals} title="Last Rituals">
@@ -246,7 +246,7 @@ export default function TrustOutreachPage({ onPageChange }) {
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1)_0%,transparent_60%)] pointer-events-none" />
             <p className="font-heading font-bold relative text-[17px] sm:text-[19px] text-white tracking-tight m-0 uppercase">
-              Every service, every life — completely free of cost.
+              Every service, every life - completely free of cost.
             </p>
           </motion.div>
 

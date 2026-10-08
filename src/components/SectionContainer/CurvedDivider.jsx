@@ -1,11 +1,11 @@
 /**
- * Curved section boundary — replaces a flat 1px border between two stacked
+ * Curved section boundary - replaces a flat 1px border between two stacked
  * sections so the page reads as chapters rather than a stack of rectangles.
  * A single same-tone wave (matching the section below) reads as too subtle
  * a gradient at low height, so this draws the curve as a filled shape that
  * sits ON the preceding section's background (`bg`) using the following
  * section's color (`fill`) plus a thin brand-tinted edge line along the
- * curve itself — enough definition to read as a deliberate shape without
+ * curve itself - enough definition to read as a deliberate shape without
  * introducing a loud color band.
  */
 export default function CurvedDivider({ flip = false, bg = '#fff', fill = '#ececec', className = '' }) {

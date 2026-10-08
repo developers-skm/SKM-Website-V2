@@ -23,7 +23,7 @@ const applicationsData = [
   }
 ];
 
-// Real banner above the shared ProductPage shell — not a new prop on
+// Real banner above the shared ProductPage shell - not a new prop on
 // ProductPage.jsx itself (which would affect all 10 product pages), just
 // local content on this one page. This SKU (Y1119) is one real example of
 // a broader capability: SKM develops custom egg functionality for a
@@ -76,7 +76,7 @@ export default function CustomizedMixPage({ onPageChange }) {
         categoryLabel: 'Customized Mixes Range',
         titleLine1: 'Customized',
         titleLine2: 'Mix',
-        description: 'Bakery & Mayonnaise Mix — Custom blends tailored for specific food applications. Our specialized egg powder formulations are engineered to deliver precision performance in heat-intensive processing environments.'
+        description: 'Bakery & Mayonnaise Mix - Custom blends tailored for specific food applications. Our specialized egg powder formulations are engineered to deliver precision performance in heat-intensive processing environments.'
       }}
         variantsData={variantsData}
         applicationsData={applicationsData}

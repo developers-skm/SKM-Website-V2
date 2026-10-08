@@ -4,16 +4,16 @@ import VariantTable from './VariantTable';
 import VariantCompareModal from './VariantCompareModal';
 import VariantDetails from './VariantDetails';
 
-// Variant explorer — searchable comparison table (brief §3) with a selected
+// Variant explorer - searchable comparison table (brief §3) with a selected
 // detail panel beneath it. Replaces the previous chip-selector layout: the
 // table gives buyers a scannable overview across all SKUs at once, while
 // selecting a row still opens the full spec document below, same as before.
 //
 // "Let SKM Recommend a Variant" routes to the real Contact Us page (general
-// enquiry) rather than a fabricated recommendation engine — no such feature
+// enquiry) rather than a fabricated recommendation engine - no such feature
 // exists in the app.
 export default function VariantExplorer({ variantsData, variantsSectionSubtitle, productName, displayCode, packagingOptions, onPageChange }) {
-  // No variant is pre-selected — the detail panel stays hidden until the
+  // No variant is pre-selected - the detail panel stays hidden until the
   // buyer picks a row.
   const [selectedCode, setSelectedCode] = useState(null);
   const [compareCodes, setCompareCodes] = useState(null);

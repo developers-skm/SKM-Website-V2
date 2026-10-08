@@ -76,7 +76,7 @@ export default function ScrollToTopButton() {
           style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.18), inset 0 0 0 2px rgba(228, 10, 24,0.25)' }}
           aria-label="Scroll to top"
         >
-          {/* Circular progress SVG — stroke: brand-600 */}
+          {/* Circular progress SVG - stroke: brand-600 */}
           <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none">
             <circle
               strokeWidth="3"
@@ -100,7 +100,7 @@ export default function ScrollToTopButton() {
             />
           </svg>
 
-          {/* Arrow — preview's upward path, white on hover */}
+          {/* Arrow - preview's upward path, white on hover */}
           <svg
             className="w-5 h-5 text-brand-600 group-hover:text-white transition-colors duration-200 relative z-10"
             fill="currentColor"

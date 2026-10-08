@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 // Floating cart button shown sitewide (rendered by Layout.jsx), stacked above
 // the ScrollToTop / Chatbot buttons (see .fab-cart in index.css). Clicking it
 // opens a small popup above the button with two actions: Request Sample
-// (opens the Get Quote flow) and a download link — the product's TDS on
+// (opens the Get Quote flow) and a download link - the product's TDS on
 // product pages, the Product Portfolio PDF everywhere else.
 export default function QuickActionsCart({ downloadUrl, downloadLabel = 'Download TDS', onRequestSample }) {
   const [open, setOpen] = useState(false);

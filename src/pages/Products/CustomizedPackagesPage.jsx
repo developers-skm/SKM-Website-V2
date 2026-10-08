@@ -4,19 +4,19 @@ import SEO from '../../components/SEO/SEO';
 import { containerVariants } from '../../utils/animationVariants';
 import { EASE_PREMIUM, DURATION, STAGGER, GOLD } from '../../utils/motionTokens';
 
-// Import Assets — Powder Bag in Box
+// Import Assets - Powder Bag in Box
 import HdpeBagImg from '../../assets/3. PRODUCTS/Customized Packages/Powder Product primary container - HDPE Bag.jpeg';
 import CartonBoxImg from '../../assets/3. PRODUCTS/Customized Packages/Powder Product secondary container - Carton Box.jpeg';
 
-// Import Assets — Paper Bag
+// Import Assets - Paper Bag
 import PaperBagJpegImg from '../../assets/3. PRODUCTS/Customized Packages/Paper Bag.jpeg';
 import PaperBagJpgImg from '../../assets/3. PRODUCTS/Customized Packages/Paper Bag.jpg';
 
-// Import Assets — Liquid LDPE Bag
+// Import Assets - Liquid LDPE Bag
 import FrozenLdpeImg from '../../assets/3. PRODUCTS/Customized Packages/Frozen product primary Pack - LDPE Bag.jpeg';
 import LiquidLdpeImg from '../../assets/3. PRODUCTS/Customized Packages/Liquid Product primary pack - LDPE.jpeg';
 
-// Import Assets — Pallecon
+// Import Assets - Pallecon
 import SaltedPrimaryImg from '../../assets/3. PRODUCTS/Customized Packages/Salted Product Primary pack - LDPE - Copy.jpeg';
 import SaltedSecondaryImg from '../../assets/3. PRODUCTS/Customized Packages/Salted Product Secondary pack - Pallecon - Copy.jpeg';
 
@@ -31,8 +31,8 @@ const packagingData = [
       'Primary containment uses a high-density polyethylene (HDPE) inner bag for moisture protection, enclosed within a robust corrugated carton box for safe stacking and transport.',
     skus: ['25 Kg', '20 Kg', '10 Kg'],
     images: [
-      { src: HdpeBagImg, label: 'Primary Container — HDPE Bag' },
-      { src: CartonBoxImg, label: 'Secondary Container — Carton Box' },
+      { src: HdpeBagImg, label: 'Primary Container - HDPE Bag' },
+      { src: CartonBoxImg, label: 'Secondary Container - Carton Box' },
     ],
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -49,8 +49,8 @@ const packagingData = [
       'Eco-friendly multi-wall paper bag packaging for powder egg products. Designed for ease of handling, suitable for bakery and food-grade industrial dosing environments.',
     skus: ['20 Kg', '10 Kg'],
     images: [
-      { src: PaperBagJpegImg, label: 'Paper Bag — Exterior View' },
-      { src: PaperBagJpgImg, label: 'Paper Bag — Detail View' },
+      { src: PaperBagJpegImg, label: 'Paper Bag - Exterior View' },
+      { src: PaperBagJpgImg, label: 'Paper Bag - Detail View' },
     ],
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -67,8 +67,8 @@ const packagingData = [
       'Food-grade LDPE flexible inner bag packaging optimized for chilled and frozen liquid egg products. Provides complete barrier against contamination and ensures easy dispensing.',
     skus: ['20 Kg', '10 Kg', '5 Kg'],
     images: [
-      { src: FrozenLdpeImg, label: 'Frozen Product — LDPE Bag' },
-      { src: LiquidLdpeImg, label: 'Liquid Product — LDPE Primary Pack' },
+      { src: FrozenLdpeImg, label: 'Frozen Product - LDPE Bag' },
+      { src: LiquidLdpeImg, label: 'Liquid Product - LDPE Primary Pack' },
     ],
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -85,8 +85,8 @@ const packagingData = [
       'Large-volume intermediate bulk container (IBC / Pallecon) with an inner LDPE liner, ideal for bulk liquid egg shipments. Stackable and compatible with standard fork-lift pallet systems.',
     skus: ['1000 Kg'],
     images: [
-      { src: SaltedPrimaryImg, label: 'Primary Pack — LDPE Inner Bag' },
-      { src: SaltedSecondaryImg, label: 'Secondary Pack — Pallecon IBC' },
+      { src: SaltedPrimaryImg, label: 'Primary Pack - LDPE Inner Bag' },
+      { src: SaltedSecondaryImg, label: 'Secondary Pack - Pallecon IBC' },
     ],
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -113,14 +113,14 @@ export default function CustomizedPackagesPage({ onPageChange }) {
       {/* SEO */}
       <SEO
         title="Egg Product Packaging | Bulk Egg Powder & Liquid Packaging Options"
-        description="SKM offers industrial egg product packaging — bag-in-box, 25kg paper bags, LDPE bags, Pallecon IBCs. Flexible bulk packaging for egg powder and liquid egg products. Exporter from India."
+        description="SKM offers industrial egg product packaging - bag-in-box, 25kg paper bags, LDPE bags, Pallecon IBCs. Flexible bulk packaging for egg powder and liquid egg products. Exporter from India."
         keywords="egg powder packaging, bag-in-box egg powder, 25kg egg powder bag, liquid egg packaging, Pallecon egg, IBC egg liquid, egg product bulk packaging, LDPE egg bag, egg powder paper bag, bulk egg packaging options, egg product container, egg liquid bulk packaging"
         canonical="https://www.skmegg.com/customized_packages"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Product",
           "name": "Customized Egg Product Packages",
-          "description": "Industrial packaging options for egg powder and liquid egg products — bag-in-box, paper bags, LDPE bags, and Pallecon IBC containers.",
+          "description": "Industrial packaging options for egg powder and liquid egg products - bag-in-box, paper bags, LDPE bags, and Pallecon IBC containers.",
           "brand": { "@type": "Brand", "name": "SKM Egg Products" },
           "manufacturer": { "@type": "Organization", "name": "SKM Egg Products", "url": "https://www.skmegg.com" },
           "category": "Egg Products",
@@ -173,7 +173,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
               transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
               className="text-base sm:text-lg text-surface-500 leading-relaxed max-w-2xl m-0 font-medium"
             >
-              Customized packages of the products tailored for hassle-free use as per the industrial requirements. From small retail SKUs to bulk IBC pallet containers — every format is engineered for food-grade safety and logistics efficiency.
+              Customized packages of the products tailored for hassle-free use as per the industrial requirements. From small retail SKUs to bulk IBC pallet containers - every format is engineered for food-grade safety and logistics efficiency.
             </motion.p>
           </div>
         </motion.div>

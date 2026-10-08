@@ -1,5 +1,5 @@
 // Continent classification of the real 28 export markets in
-// exportMarkets.js — pure grouping of existing data for display purposes
+// exportMarkets.js - pure grouping of existing data for display purposes
 // (the homepage regional index), not new destinations.
 import exportMarkets from './exportMarkets';
 

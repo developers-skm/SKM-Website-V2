@@ -12,7 +12,7 @@ registerServiceWorker();
 // Twitter/JSON-LD as a fallback for the sliver of clients that never run
 // JavaScript at all. Every page in this app renders its own <SEO> (see
 // src/components/SEO/SEO.jsx) via react-helmet-async, which only manages
-// tags it renders itself — it has no way to know the static baseline tags
+// tags it renders itself - it has no way to know the static baseline tags
 // already in the document should be removed, so every route (including the
 // homepage) would otherwise end up with two conflicting <title>/
 // <link rel="canonical"> tags once React mounts. Google's own guidance is

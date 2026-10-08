@@ -2,21 +2,21 @@ import { motion } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
 import { containerVariants, itemVariants } from '../../../utils/animationVariants';
 
-// Section 4 — Contact details and regional routing (brief §4): Corporate
+// Section 4 - Contact details and regional routing (brief §4): Corporate
 // office / Factory / Regional offices / Sales enquiries / Quality or
 // documentation enquiries / Investor contact.
 //
 // Corporate office + Factory are already shown in full detail (address,
 // phone, map) by OfficeAddresses.jsx directly above this section on the
-// same page — this section links to them by scroll rather than repeating
+// same page - this section links to them by scroll rather than repeating
 // the same real data a second time.
 //
-// Sales enquiries: exportsales@skmegg.com — real, verbatim from the site's
+// Sales enquiries: exportsales@skmegg.com - real, verbatim from the site's
 // own JSON-LD ContactPoint (index.html / SEO.jsx), contactType "sales".
 //
 // Quality or documentation enquiries: routes to the real, existing
 // /quality_food_safety_traceability page (confirmed in App.jsx's route
-// switch) — the genuine home for certifications, food safety policy, and
+// switch) - the genuine home for certifications, food safety policy, and
 // traceability documentation on this site.
 //
 // Regional offices: the 3 real branches (Japan, Europe, Russia), same data
@@ -50,7 +50,7 @@ export default function RegionalRouting({ onPageChange }) {
             Reach the right team
           </h2>
           <p className="font-body text-[14px] text-surface-500 max-w-xl mx-auto m-0">
-            Corporate office and factory details are above — here's who to contact for sales, quality documentation, regional support, or investor matters.
+            Corporate office and factory details are above - here's who to contact for sales, quality documentation, regional support, or investor matters.
           </p>
         </motion.div>
 

@@ -8,7 +8,7 @@ import ApplicationProductMatrix from './sections/ApplicationProductMatrix';
 import TechnicalSupport from './sections/TechnicalSupport';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
-// Applications overview / hub — lists every real application category
+// Applications overview / hub - lists every real application category
 // (the same 4 records in src/data/applications.js used by Home's
 // ApplicationAreas section and by the individual ApplicationLandingPage
 // routes). Exists so Section 2's "View All Applications" button has a real
@@ -26,7 +26,7 @@ export default function ApplicationsHubPage({ onPageChange, prefill }) {
     <PageWrapper
       seo={{
         title: 'Applications Hub | Egg Products by Food Manufacturing Industry',
-        description: 'Explore SKM egg powder and liquid egg solutions by application — bakery, mayonnaise, noodles & pasta, and meat & fish manufacturing.',
+        description: 'Explore SKM egg powder and liquid egg solutions by application - bakery, mayonnaise, noodles & pasta, and meat & fish manufacturing.',
         keywords: 'egg products by application, bakery egg powder, mayonnaise egg yolk, noodles egg powder, meat processing egg albumen',
         canonical: 'https://www.skmegg.com/applications',
       }}

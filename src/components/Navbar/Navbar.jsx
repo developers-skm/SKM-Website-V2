@@ -5,13 +5,13 @@ import MobileMenuTrigger from './MobileMenuTrigger';
 import NavOverlay from './NavOverlay';
 
 // Logo and menu button are deliberately NOT one fixed unit. The logo is
-// site branding that belongs to the top of the page — it's `absolute`
+// site branding that belongs to the top of the page - it's `absolute`
 // inside Layout's relative root (Layout.jsx), positioned near the top and
 // left in normal document flow otherwise, so it scrolls away with the page
 // like any other content and never floats over later sections. The menu
 // button is the actual navigation control users need throughout a scroll,
 // so it alone is `fixed` to the viewport. Component API preserved exactly
-// — <Navbar activePage onPageChange /> — so App.jsx/Layout.jsx need no
+// - <Navbar activePage onPageChange /> - so App.jsx/Layout.jsx need no
 // prop changes (Layout.jsx does need `relative` on its root div, see there).
 export default function Navbar({ activePage, onPageChange }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,7 +40,7 @@ export default function Navbar({ activePage, onPageChange }) {
 
   return (
     <>
-      {/* Scrolls away with the page — absolute within Layout's relative
+      {/* Scrolls away with the page - absolute within Layout's relative
           root, not fixed. Matches Hero.jsx's own left padding exactly so
           the logo and hero copy share one left edge. */}
       <motion.div
@@ -52,7 +52,7 @@ export default function Navbar({ activePage, onPageChange }) {
         <button
           onClick={handleLogoClick}
           className="flex-shrink-0 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-lg flex items-center p-1 transition-all duration-200 hover:opacity-90"
-          aria-label="SKM Egg Products — Home"
+          aria-label="SKM Egg Products - Home"
         >
           <img
             src={SKMLogo}
@@ -63,7 +63,7 @@ export default function Navbar({ activePage, onPageChange }) {
         </button>
       </motion.div>
 
-      {/* Fixed to the viewport — hidden on offline page */}
+      {/* Fixed to the viewport - hidden on offline page */}
       {activePage !== 'offline' && (
         <motion.div
           initial={{ y: -24, opacity: 0 }}

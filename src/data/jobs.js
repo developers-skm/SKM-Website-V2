@@ -1,7 +1,7 @@
 // Temporary, data-driven job openings. There is no jobs API/database yet, so
 // the Careers pages read from this list. Replace/extend entries (or swap the
 // helpers below for an API call) when real vacancies are available.
-// NOTE: the entries are placeholder sample roles — confirm with HR before launch.
+// NOTE: the entries are placeholder sample roles - confirm with HR before launch.
 
 export const jobs = [
   {

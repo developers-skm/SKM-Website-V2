@@ -180,7 +180,7 @@ export default function JourneyLayer({ stops, journey, k, reduce, onSelectLocati
         />
       )}
 
-      {/* India — origin */}
+      {/* India - origin */}
       <g transform={`translate(${geometry.origin[0]} ${geometry.origin[1]})`} className="pointer-events-none">
         {!reduce && (
           <motion.circle
@@ -193,7 +193,7 @@ export default function JourneyLayer({ stops, journey, k, reduce, onSelectLocati
             transition={{ duration: 1.4, delay: 0.3, ease: 'easeOut' }}
           />
         )}
-        {/* Location pin — tip sits exactly on the origin coordinate */}
+        {/* Location pin - tip sits exactly on the origin coordinate */}
         <ellipse rx={4.5 * k} ry={1.8 * k} fill="#000" opacity="0.25" />
         <g transform={`scale(${k})`}>
           <path

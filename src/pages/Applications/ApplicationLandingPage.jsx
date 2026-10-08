@@ -12,7 +12,7 @@ import RelatedResources from './sections/RelatedResources';
 import EnquiryCTABand from '../../components/common/EnquiryCTABand';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
-// Generic template driven by src/data/applications.js — one component instead
+// Generic template driven by src/data/applications.js - one component instead
 // of 4 near-duplicate files. Problem-first copy, matched products, single CTA
 // into Get Quote. No certifications or journey content here (plan.md §9 —
 // that's not the anxiety at this stage).
@@ -36,7 +36,7 @@ export default function ApplicationLandingPage({ applicationId, onPageChange }) 
     <PageWrapper
       seo={{
         title: `Egg Products For ${application.title} | SKM Egg Products`,
-        description: `${application.problem} SKM's egg powders and liquid egg products for ${application.title.toLowerCase()} manufacturing — pasteurized, BRCGS, Halal & Kosher certified.`,
+        description: `${application.problem} SKM's egg powders and liquid egg products for ${application.title.toLowerCase()} manufacturing - pasteurized, BRCGS, Halal & Kosher certified.`,
         keywords: `egg products for ${application.title.toLowerCase()}, ${application.tags.join(', ').toLowerCase()}, egg powder application`,
         canonical: `https://www.skmegg.com/${application.page}`,
       }}

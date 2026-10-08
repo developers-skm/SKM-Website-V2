@@ -1,4 +1,4 @@
-// The 28 export markets SKM ships to — single source of truth shared by the
+// The 28 export markets SKM ships to - single source of truth shared by the
 // homepage GlobalMarkets map and the Get Quote flow's destination-country step.
 
 const exportMarkets = [

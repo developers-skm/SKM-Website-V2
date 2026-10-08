@@ -5,7 +5,7 @@ import JobBrowser from './components/JobBrowser';
 import { Container } from './components/layout';
 import { emptyFilters } from './components/filterState';
 
-// /careers/jobs — the full openings list on its own page. An optional
+// /careers/jobs - the full openings list on its own page. An optional
 // `department` prefill (from onPageChange('careers/jobs', { department })) seeds the filter.
 export default function JobsPage({ onPageChange, prefill }) {
   const [filters, setFilters] = useState({ ...emptyFilters, department: prefill?.department ?? '' });

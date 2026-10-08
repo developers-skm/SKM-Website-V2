@@ -2,7 +2,7 @@ import InternalLink from '../../../components/common/InternalLink';
 import { Container } from './layout';
 
 // Compact header used by the inner Careers pages (jobs list, job detail,
-// apply). `crumbs` = [{ label, route?, prefill? }] — the last crumb is the
+// apply). `crumbs` = [{ label, route?, prefill? }] - the last crumb is the
 // current page. `size` should match the page body below it.
 export default function CareersPageHeader({ crumbs, eyebrow, title, onPageChange, size = 'narrow', children }) {
   return (

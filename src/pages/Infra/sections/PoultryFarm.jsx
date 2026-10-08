@@ -136,7 +136,7 @@ export default function PoultryFarm() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-surface-950/60 via-transparent to-transparent pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-            <p className="text-xs font-bold text-white/80 uppercase tracking-widest m-0">SKM Poultry Farms — Environmentally Controlled Shed</p>
+            <p className="text-xs font-bold text-white/80 uppercase tracking-widest m-0">SKM Poultry Farms - Environmentally Controlled Shed</p>
           </div>
         </motion.div>
       </motion.section>
@@ -156,7 +156,7 @@ export default function PoultryFarm() {
               Farm Facilities
             </h2>
             <p className="font-body text-[15px] text-surface-500 max-w-2xl m-0 leading-[26px]">
-              A look inside our integrated poultry farm — from environmentally controlled sheds to egg collection, biosecurity entry points, and feed management.
+              A look inside our integrated poultry farm - from environmentally controlled sheds to egg collection, biosecurity entry points, and feed management.
             </p>
           </motion.div>
 

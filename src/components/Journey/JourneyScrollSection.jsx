@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useMotionValueEvent, useTransform, AnimatePresence } from 'framer-motion';
 
-// JourneyScrollSection — premium vertical scroll-driven storytelling,
+// JourneyScrollSection - premium vertical scroll-driven storytelling,
 // inspired by the interaction style of coffee-tech.com (pinned visual,
 // scroll-scrubbed milestone transitions). No branding, copy, imagery, or
-// code was taken from that site — only the category of interaction. Built
+// code was taken from that site - only the category of interaction. Built
 // with Framer Motion (already a project dependency; no GSAP present, no
 // new dependency added).
 //
@@ -14,12 +14,12 @@ import { motion, useReducedMotion, useScroll, useMotionValueEvent, useTransform,
 //   copy  = sticky heading/description/stat panel
 // Both panels are position:sticky at the same offset, so they read as one
 // sticky content area while the underlying scroll-linked crossfade
-// advances. No separate timeline/step-marker rail — kept intentionally
+// advances. No separate timeline/step-marker rail - kept intentionally
 // minimal per direct design feedback that a left-side dot timeline read as
 // clutter rather than premium/editorial.
 //
 // Mobile (< lg): single column, image above copy per step, no sticky
-// panels, no parallax — plain stacked reveal-on-scroll per step instead
+// panels, no parallax - plain stacked reveal-on-scroll per step instead
 // (see MobileJourneyList below).
 //
 // Reduced motion: skips the scroll-scrubbed crossfade/scale/parallax
@@ -28,11 +28,11 @@ import { motion, useReducedMotion, useScroll, useMotionValueEvent, useTransform,
 // continuous scroll-linked motion.
 //
 // Navbar is a floating logo + menu button (no fixed full-width bar), so
-// the sticky panel here pins at `top-0`/full viewport height — nothing
+// the sticky panel here pins at `top-0`/full viewport height - nothing
 // fixed above it to clear.
 
 // Staggered reveal for the copy panel's children (eyebrow, heading,
-// description, stat) — each animates in individually rather than the
+// description, stat) - each animates in individually rather than the
 // whole block fading as one unit.
 const copyContainerVariants = {
   hidden: {},
@@ -57,7 +57,7 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
   });
 
   // Maps continuous scroll progress (0..1) across the whole pinned section
-  // to a discrete active step index — this is what "reverses naturally"
+  // to a discrete active step index - this is what "reverses naturally"
   // scrolling back up, since it's derived from scrollYProgress on every
   // frame rather than a one-shot IntersectionObserver trigger.
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
@@ -70,7 +70,7 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
   });
 
   // Local progress (0..1) within just the current step's own scroll
-  // segment — resets at every step boundary rather than climbing across
+  // segment - resets at every step boundary rather than climbing across
   // the whole section. Drives the subtle image parallax (translateY) and
   // the thin edge progress indicator; both stay tied to live scroll
   // position, not a one-shot trigger, so they scrub smoothly forward and
@@ -87,7 +87,7 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
 
   return (
     <>
-      {/* Desktop / large-viewport pinned experience — hidden below lg so
+      {/* Desktop / large-viewport pinned experience - hidden below lg so
           mobile never receives a forced sticky layout or scroll-jacked
           height (per spec: "do not force a large sticky layout on small
           screens"). */}
@@ -95,7 +95,7 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-page">
           <div className="mx-auto max-w-[1680px] w-full h-full px-8 xl:px-14 flex items-stretch gap-12 xl:gap-20 py-16 xl:py-20">
 
-            {/* Image — sticky large panel, the dominant element. Slight
+            {/* Image - sticky large panel, the dominant element. Slight
                 parallax (translateY tied to stepProgress) adds depth
                 without ever revealing the frame edge, since object-cover
                 already overflows the container. */}
@@ -122,7 +122,7 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
                 {steps[activeIndex].step ?? activeIndex + 1}
               </span>
 
-              {/* Thin vertical progress indicator — how much of the
+              {/* Thin vertical progress indicator - how much of the
                   current step has scrolled, resets each step. */}
               <div className="absolute top-6 right-6 bottom-6 w-[3px] rounded-full bg-white/25 z-10" aria-hidden="true">
                 <motion.div
@@ -132,7 +132,7 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
               </div>
             </div>
 
-            {/* Right — sticky title, description, stat. Children stagger
+            {/* Right - sticky title, description, stat. Children stagger
                 in individually (eyebrow, then heading, then description,
                 then stat) rather than fading as one block, for a layered
                 editorial feel. */}
@@ -172,7 +172,7 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
         </div>
       </div>
 
-      {/* Mobile / tablet — plain single-column stacked layout */}
+      {/* Mobile / tablet - plain single-column stacked layout */}
       <div className="lg:hidden">
         <MobileJourneyList steps={steps} />
       </div>
@@ -180,7 +180,7 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
   );
 }
 
-// Shared mobile layout — image above content, reveal-on-scroll (not
+// Shared mobile layout - image above content, reveal-on-scroll (not
 // scroll-scrubbed), no sticky panels, no parallax. Also used verbatim for
 // the reduced-motion desktop fallback per spec (heavy/continuous
 // scroll-linked motion is skipped for prefers-reduced-motion users).

@@ -3,15 +3,15 @@ import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { getVariantsForProduct } from '../../../data/productVariants';
 import { EASE_PREMIUM, DURATION } from '../../../utils/motionTokens';
 
-// Section 5 — product comparison (brief §5). Only renders once the visitor
-// has added products via Section 4's "Add to Comparison" — no fabricated
+// Section 5 - product comparison (brief §5). Only renders once the visitor
+// has added products via Section 4's "Add to Comparison" - no fabricated
 // default comparison. Uses the same real matched-variant-per-application
 // lookup as Section 4 so the compared row is the same specific variant
 // already recommended above, not an arbitrary first SKU.
 //
 // "Download Comparison" uses the browser's native print dialog (a real
 // capability, scoped to just this table via a print stylesheet) rather
-// than a fabricated PDF-export backend — no such service exists anywhere
+// than a fabricated PDF-export backend - no such service exists anywhere
 // in the codebase. "Ask SKM to Recommend" routes to the real Contact Us
 // page, same pattern as the Applications Hub's own "Let SKM Recommend a
 // Variant" link.
@@ -79,7 +79,7 @@ export default function ProductComparison({ application, comparisonIds, matchedP
                     {rows.entries.map(({ product, variant }) => (
                       <th key={product.id} className="text-left px-5 py-4 align-bottom">
                         <span className="block font-heading font-bold text-[15px] text-heading print:text-black leading-tight">{product.title}</span>
-                        {variant && <span className="block font-mono text-[11px] font-bold text-brand-600 print:text-black mt-1">{variant.code} — {variant.name}</span>}
+                        {variant && <span className="block font-mono text-[11px] font-bold text-brand-600 print:text-black mt-1">{variant.code} - {variant.name}</span>}
                       </th>
                     ))}
                   </tr>
@@ -107,7 +107,7 @@ export default function ProductComparison({ application, comparisonIds, matchedP
               </table>
             </div>
 
-            {/* Scroll-right hint — fades a gradient + bouncing arrow over
+            {/* Scroll-right hint - fades a gradient + bouncing arrow over
                 the table's right edge until the user scrolls it. */}
             <AnimatePresence>
               {!hasScrolled && (

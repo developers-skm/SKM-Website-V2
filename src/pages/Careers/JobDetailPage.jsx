@@ -52,7 +52,7 @@ export default function JobDetailPage({ slug, onPageChange }) {
     <div className="w-full flex flex-col">
       <SEO
         title={`${job.title} | Careers at SKM Egg Products`}
-        description={`${job.title} — ${job.department}, ${job.location}. ${job.summary}`}
+        description={`${job.title} - ${job.department}, ${job.location}. ${job.summary}`}
         canonical={`https://www.skmegg.com/careers/jobs/${job.slug}`}
       />
       <CareersPageHeader

@@ -6,7 +6,7 @@ import whySkmBg from '../../assets/images/why-skm-bg.webp';
 import { containerVariants, itemVariants } from '../../utils/animationVariants';
 
 const qualityCards = [
-  { title: 'Food Safety Policy', description: 'Built on HACCP, ISO 22000, and BRCGS global standards — preventing contamination at every stage.', page: 'policy' },
+  { title: 'Food Safety Policy', description: 'Built on HACCP, ISO 22000, and BRCGS global standards - preventing contamination at every stage.', page: 'policy' },
   { title: 'Quality Assurance', description: 'NABL-accredited lab testing every batch for protein, residues, and microbiological safety.', page: 'quality_assurance' },
   { title: 'Quality Management System', description: 'ISO 22000, BRCGS, HACCP, 5S and TQM frameworks covering raw material to dispatch.', page: 'quality_management_system' },
 ];
@@ -51,7 +51,7 @@ export default function WhySKMPage({ onPageChange }) {
               Why SKM
             </h1>
             <p className="font-body text-[15px] sm:text-[16px] text-surface-500 leading-[28px] m-0">
-              Everything a procurement team needs to verify before trusting an overseas supplier — certifications, lab capability, and the infrastructure behind every batch.
+              Everything a procurement team needs to verify before trusting an overseas supplier - certifications, lab capability, and the infrastructure behind every batch.
             </p>
           </div>
         </div>

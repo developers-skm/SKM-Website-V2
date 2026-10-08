@@ -6,8 +6,8 @@ import LanguageSwitcher from './LanguageSwitcher';
 import { utilityLinks } from './navigationData';
 
 // Persistent slim top bar, visible on every page (not just inside the
-// NavOverlay card) — logo left, utility links + Language right on lg and up
-// with hairline separators. No search/menu buttons here — the floating
+// NavOverlay card) - logo left, utility links + Language right on lg and up
+// with hairline separators. No search/menu buttons here - the floating
 // rail (RailNav) is the desktop menu/search entry point. Desktop only:
 // mobile keeps the logo + MobileMenuTrigger row instead (see Navbar.jsx).
 export default function TopUtilityBar({ onPageChange, logoButtonRef }) {
@@ -25,7 +25,7 @@ export default function TopUtilityBar({ onPageChange, logoButtonRef }) {
           ref={logoButtonRef}
           onClick={handleLogoClick}
           className="flex-shrink-0 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
-          aria-label="SKM Egg Products — Home"
+          aria-label="SKM Egg Products - Home"
         >
           <img
             src={SKMLogo}

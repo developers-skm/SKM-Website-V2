@@ -4,13 +4,13 @@ import { ComposableMap, Geographies, Geography, Marker, Line } from 'react-simpl
 import exportMarkets from '../../../data/exportMarkets';
 import { EASE_PREMIUM } from '../../../utils/motionTokens';
 
-// Home-scoped export map — a quieter, editorial re-presentation of the same
+// Home-scoped export map - a quieter, editorial re-presentation of the same
 // real `exportMarkets` data and `react-simple-maps` implementation as the
 // shared components/GlobalMap/ExportMarketsMap.jsx (also used by the Global
 // Reach hub page). Built as a separate component rather than editing the
 // shared one, per this project's standing rule: shared components get a
 // phase/section-scoped variant instead of a direct edit. No dashboard
-// legend sidebar, no card framing — the map sits directly in the page, with
+// legend sidebar, no card framing - the map sits directly in the page, with
 // destinations organized into a plain regional index beneath it instead.
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 const HIGHLIGHTED_IDS = new Set(exportMarkets.map((m) => m.id));
@@ -96,7 +96,7 @@ export default function HomeExportMap() {
           }
         </Geographies>
 
-        {/* Route line — draws once from India to each market on entry, then
+        {/* Route line - draws once from India to each market on entry, then
             settles; hovering a destination temporarily strengthens its line. */}
         {!reduceMotion &&
           exportMarkets.map((market, i) => (
@@ -119,7 +119,7 @@ export default function HomeExportMap() {
           ))
         }
 
-        {/* Destination markers — small, quiet, appear once with stagger, no pulse */}
+        {/* Destination markers - small, quiet, appear once with stagger, no pulse */}
         {exportMarkets.map((market, i) => (
           <Marker key={market.id} coordinates={market.coordinates} onMouseEnter={(e) => handleMarkerEnter(market, e)} onMouseLeave={handleMarkerLeave}>
             <motion.circle
@@ -136,7 +136,7 @@ export default function HomeExportMap() {
           </Marker>
         ))}
 
-        {/* India origin marker — deliberately the strongest single element on
+        {/* India origin marker - deliberately the strongest single element on
             the map: larger radius, an outer ring, and a single settle-once
             pulse (never repeating) so it reads as the clear point of origin
             rather than just another highlighted destination. */}

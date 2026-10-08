@@ -6,19 +6,19 @@ import journeyStages from '../../../data/journeyStages';
 import useCountUp from '../../../utils/useCountUp';
 import { fadeUp, EASE_PREMIUM } from '../../../utils/motionTokens';
 
-// Section 5 — Why SKM / Key Numbers. Editorial credibility statement, not a
+// Section 5 - Why SKM / Key Numbers. Editorial credibility statement, not a
 // stat list: 4/8 desktop grid (compact sticky intro left, large metric rows
 // right), first metric given more visual weight, "Since 2006" treated as a
 // typographic milestone (never counted 0→2006), thin scroll-drawn dividers
 // between rows, and a subtle opacity dim on inactive rows tied to which row
 // is nearest the viewport center. Same 5 real proof reasons/numbers/labels/
-// routes as before — presentation only, no content invented.
+// routes as before - presentation only, no content invented.
 const proofs = [
   {
     number: String(journeyStages.length),
     label: 'stage Documented supply chain process',
     title: 'End-to-End Traceability',
-    description: 'Complete control over the supply chain — six documented stages from feed origin to finished product.',
+    description: 'Complete control over the supply chain - six documented stages from feed origin to finished product.',
     page: 'journey',
     featured: true,
   },
@@ -35,14 +35,14 @@ const proofs = [
     number: String(certifications.length),
     label: 'Certification & accreditation records',
     title: 'Recognised Worldwide',
-    description: 'FSSAI, BRCGS, ISO 22000, NABL, Halal, and Kosher — accreditation across regulatory, laboratory, and food-safety domains.',
+    description: 'FSSAI, BRCGS, ISO 22000, NABL, Halal, and Kosher - accreditation across regulatory, laboratory, and food-safety domains.',
     page: 'certifications',
   },
   {
     symbol: '∞',
     label: 'Customised product solutions',
     title: 'Application & Customisation Support',
-    description: 'Customized Mix · Customized Packages — formulated to the specifications a production line actually needs.',
+    description: 'Customized Mix · Customized Packages - formulated to the specifications a production line actually needs.',
     page: 'why_skm',
   },
   {
@@ -71,7 +71,30 @@ function StatNumber({ value, featured, suffix }) {
   );
 }
 
+// Font glyphs for ∞ are lopsided (left loop larger than right), so the
+// infinity is drawn as a mirror-symmetric SVG lemniscate instead.
+function InfinitySymbol() {
+  return (
+    <strong className="block m-0 text-brand-600 h-[26vw] sm:h-[110px] lg:h-[136px] flex items-center">
+      <svg
+        viewBox="0 0 130 64"
+        role="img"
+        aria-label="Infinity"
+        className="h-[52%] w-auto"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="13"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M65 32 C50 8 8 8 8 32 C8 56 50 56 65 32 C80 8 122 8 122 32 C122 56 80 56 65 32 Z" />
+      </svg>
+    </strong>
+  );
+}
+
 function SymbolNumber({ symbol }) {
+  if (symbol === '∞') return <InfinitySymbol />;
   return (
     <strong className="block font-heading font-black text-brand-600 leading-[0.85] tracking-tight m-0 text-[26vw] sm:text-[110px] lg:text-[136px]">
       {symbol}
@@ -137,7 +160,7 @@ function ProofRow({ proof, index, onPageChange, reduceMotion, isDimmed, onFocusR
         </InternalLink>
       </div>
 
-      {/* Divider — draws left to right on entry */}
+      {/* Divider - draws left to right on entry */}
       <motion.div
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
@@ -165,7 +188,7 @@ export default function WhyUs({ onPageChange }) {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
 
-          {/* Left — compact sticky intro, ~4/12 */}
+          {/* Left - compact sticky intro, ~4/12 */}
           <div className="lg:col-span-4">
             <motion.div {...fadeUp(reduceMotion)} className="lg:sticky lg:top-32 flex flex-col gap-4 max-w-md">
               <span className="section-label">Why SKM</span>
@@ -189,7 +212,7 @@ export default function WhyUs({ onPageChange }) {
             </motion.div>
           </div>
 
-          {/* Right — large editorial metric rows, ~8/12 */}
+          {/* Right - large editorial metric rows, ~8/12 */}
           <div className="lg:col-span-8">
             <motion.div
               initial={{ scaleX: 0 }}

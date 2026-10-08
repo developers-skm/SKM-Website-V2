@@ -4,14 +4,14 @@ import { EASE_PREMIUM, DURATION, STAGGER, fadeUp } from '../../../utils/motionTo
 
 const itemVariants = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } };
 
-// Section 3 — required egg functionalities (brief §3). Draws from the same
+// Section 3 - required egg functionalities (brief §3). Draws from the same
 // real dataset used in Section 2, gated by the application's own curated
 // `relevantChallengeIds` (data/applications.js) rather than a raw
-// shared-product overlap — the overlap-only version showed surimi/binding
+// shared-product overlap - the overlap-only version showed surimi/binding
 // functions on the bakery page because bakery's matched products are also
 // (separately) matched to gelling for their unrelated meat-processing use.
 // There's no separate "functionality" dataset in the codebase distinct
-// from formulationChallenges — deliberately presented as a tight
+// from formulationChallenges - deliberately presented as a tight
 // explanatory list rather than repeating Section 2's full challenge cards,
 // so it reads as a compact "why this matters" summary instead of a
 // duplicate section.

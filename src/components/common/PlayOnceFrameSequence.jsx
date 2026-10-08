@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-// Mobile counterpart to ScrollFrameSequence — same pre-rendered frame
+// Mobile counterpart to ScrollFrameSequence - same pre-rendered frame
 // sequence, played once, but only once the user actually scrolls (not
 // immediately on mount) so it doesn't autoplay like a video before any
 // scrolling has happened. The hero sits at the very top of the page and is
-// already fully visible on load, so visibility alone can't gate this — it
+// already fully visible on load, so visibility alone can't gate this - it
 // waits for a real scroll (window.scrollY > 0) instead. Used where a tall
 // scroll-scrub wrapper would leave dead scroll space on short mobile
 // viewports (see Hero.jsx).

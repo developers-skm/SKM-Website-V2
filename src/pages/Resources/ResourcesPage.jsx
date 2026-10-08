@@ -101,7 +101,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
           </p>
         </motion.div>
 
-        {/* Section 2 — Resource Filters */}
+        {/* Section 2 - Resource Filters */}
         <motion.div {...sectionSupportReveal(reduceMotion)} className="flex flex-col gap-5 p-6 rounded-2xl bg-white/70 backdrop-blur-xl border border-surface-200/80 shadow-lg shadow-black/5">
           <div className="flex flex-wrap items-center gap-3">
             <span className="font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 mr-2 flex items-center gap-1.5">
@@ -195,7 +195,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
           )}
         </motion.div>
 
-        {/* Section 3 — Technical Documents List */}
+        {/* Section 3 - Technical Documents List */}
         <AnimatePresence mode="wait">
           {activeGroup?.hasRealDocs ? (
             <motion.div
@@ -310,7 +310,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
   );
 }
 
-// Section 4 — Certifications
+// Section 4 - Certifications
 function CertificationsSection() {
   const reduceMotion = useReducedMotion();
   return (
@@ -403,12 +403,12 @@ function CertificationsSection() {
   );
 }
 
-// Section 5 — Brochures & Application Guides
+// Section 5 - Brochures & Application Guides
 const brochureMeta = {
   'Company Profile - SKM Egg Products Export India Limited.pdf': {
     category: 'Corporate',
     title: 'Company Profile',
-    desc: 'Comprehensive overview of SKM Egg Products Export India Limited — history, processing scale, plant capabilities, and global footprint.',
+    desc: 'Comprehensive overview of SKM Egg Products Export India Limited - history, processing scale, plant capabilities, and global footprint.',
     featured: true,
   },
   'Product List - SKM Egg Products Export India Limited.pdf': {
@@ -426,7 +426,7 @@ const brochureMeta = {
   'SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
     title: 'Egg Albumen Powder Flyer',
-    desc: 'Specification guide for high-gel and high-whip Egg Albumen Powder — ideal for confectionery, meat binders, and sports nutrition.',
+    desc: 'Specification guide for high-gel and high-whip Egg Albumen Powder - ideal for confectionery, meat binders, and sports nutrition.',
     featured: false,
   },
   'SKM EGG YOLK POWDER A5 FLYER (F-B).pdf': {
@@ -438,7 +438,7 @@ const brochureMeta = {
   'SKM WHOLE EGG POWDER A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
     title: 'Whole Egg Powder Flyer',
-    desc: 'Technical flyer for Whole Egg Powder — shelf-stable, pasteurized whole egg replacement for bakeries and commercial food manufacturing.',
+    desc: 'Technical flyer for Whole Egg Powder - shelf-stable, pasteurized whole egg replacement for bakeries and commercial food manufacturing.',
     featured: false,
   },
 };
@@ -545,11 +545,11 @@ function BrochuresApplicationGuidesSection() {
   );
 }
 
-// Section 6 — CSR Cards
+// Section 6 - CSR Cards
 const csrCards = [
   {
     title: 'Community Development',
-    description: 'The SKM Health and Mind Welfare Charity Trust — Sevai Maiyam — supporting adopted families with housing, sanitation, and welfare.',
+    description: 'The SKM Health and Mind Welfare Charity Trust - Sevai Maiyam - supporting adopted families with housing, sanitation, and welfare.',
     page: 'community_development',
     iconType: 'community',
   },
@@ -573,7 +573,7 @@ const csrCards = [
   },
   {
     title: 'MD Vision & Article',
-    description: "The Olirum Erode Foundation — Managing Director's personal initiative across five key community focus areas.",
+    description: "The Olirum Erode Foundation - Managing Director's personal initiative across five key community focus areas.",
     page: 'md_article',
     iconType: 'md_article',
   },
@@ -672,7 +672,7 @@ function CsrSection({ onPageChange }) {
   );
 }
 
-// Section 7 — FAQ
+// Section 7 - FAQ
 const FAQ_CATEGORIES = [
   {
     category: 'Product selection',
@@ -682,12 +682,12 @@ const FAQ_CATEGORIES = [
   {
     category: 'Samples',
     question: 'Can I request a product sample?',
-    answer: 'There is no published self-serve sample catalogue — contact our team directly with your product and application to discuss a sample.',
+    answer: 'There is no published self-serve sample catalogue - contact our team directly with your product and application to discuss a sample.',
   },
   {
     category: 'MOQ and commercial enquiry',
     question: 'What is your minimum order quantity?',
-    answer: 'Minimum order quantity varies by product and packaging format — contact our team directly for a commercial quote specific to your requirement.',
+    answer: 'Minimum order quantity varies by product and packaging format - contact our team directly for a commercial quote specific to your requirement.',
   },
   {
     category: 'Packaging',
@@ -707,7 +707,7 @@ const FAQ_CATEGORIES = [
   {
     category: 'Quality and certification',
     question: 'What certifications does SKM hold?',
-    answer: `${certifications.map((c) => c.name).join(', ')} — with an NABL-accredited (ISO/IEC 17025) laboratory operational since 2006.`,
+    answer: `${certifications.map((c) => c.name).join(', ')} - with an NABL-accredited (ISO/IEC 17025) laboratory operational since 2006.`,
   },
 ];
 
@@ -856,7 +856,7 @@ export default function ResourcesPage({ onPageChange }) {
         {/* Foreground Content Wrapper */}
         <div className="relative z-10 w-full flex flex-col">
 
-          {/* Section 1 — Resource Hero & Search */}
+          {/* Section 1 - Resource Hero & Search */}
           <div className="w-full pt-[110px] pb-20 sm:pt-[130px] lg:pt-28 lg:pb-28 border-b border-surface-200/60 px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-[1000px] flex flex-col items-center text-center gap-8">
               
@@ -978,25 +978,25 @@ export default function ResourcesPage({ onPageChange }) {
             </div>
           </div>
 
-          {/* Section 2 & 3 — Technical Documents */}
+          {/* Section 2 & 3 - Technical Documents */}
           <TechnicalDocumentsSection
             onPageChange={onPageChange}
             globalSearchQuery={searchQuery}
           />
 
-          {/* Section 4 — Certifications */}
+          {/* Section 4 - Certifications */}
           <CertificationsSection />
 
-          {/* Section 5 — Brochures & Guides */}
+          {/* Section 5 - Brochures & Guides */}
           <BrochuresApplicationGuidesSection />
 
-          {/* Section 6 — CSR */}
+          {/* Section 6 - CSR */}
           <CsrSection onPageChange={onPageChange} />
 
-          {/* Section 7 — FAQ */}
+          {/* Section 7 - FAQ */}
           <FaqSection onPageChange={onPageChange} globalSearchQuery={searchQuery} />
 
-          {/* Section 8 — Bottom Contact CTA */}
+          {/* Section 8 - Bottom Contact CTA */}
           <div className="w-full py-20 lg:py-28 text-center px-4">
             <motion.div
               {...sectionHeadingReveal(reduceMotion)}

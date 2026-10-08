@@ -4,25 +4,25 @@ import { EASE_PREMIUM, DURATION, STAGGER, fadeUp } from '../../../utils/motionTo
 
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
-// Section 6 — processing and usage guidance (brief §6). Only 2 of the 5
+// Section 6 - processing and usage guidance (brief §6). Only 2 of the 5
 // brief items have real supporting data anywhere in the codebase:
 // Storage (variant `specifications.storage`, already used across the
 // product page work) and Processing Tolerance (heat-stability/thermal
 // language genuinely present in some variants' `benefits`/`character`
 // text, e.g. "resists thermal breakdown", "Heat-Emulsifying Stability").
 // Reconstitution ratios, addition points, and mixing instructions don't
-// exist anywhere in the codebase — inventing them would mean fabricating
+// exist anywhere in the codebase - inventing them would mean fabricating
 // real technical process specs for a real client's products, so they're
 // omitted entirely rather than guessed at.
 //
 // Tolerance evidence is scanned only from each product's own application-
 // relevant variant (same `findRecommendedVariant` match used in Sections
-// 4/5), not every variant of every matched product — scanning all variants
+// 4/5), not every variant of every matched product - scanning all variants
 // produced a real bug where a meat/surimi-processing quote (from an
 // Egg Albumen Powder gel-strength SKU) appeared on the Bakery page, since
 // that product is also matched to Bakery for unrelated reasons (whipping,
 // colour). Deliberately narrow keyword list: "pasteuriz(ed)" was tried and
-// dropped — it's a universal boilerplate descriptor on nearly every
+// dropped - it's a universal boilerplate descriptor on nearly every
 // variant's base description, not a genuine processing-tolerance claim.
 const TOLERANCE_KEYWORDS = ['heat-stable', 'heat stable', 'thermal', 'retort', 'hot-fill', 'hot fill', 'high-shear', 'high shear'];
 

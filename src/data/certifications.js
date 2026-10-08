@@ -1,4 +1,4 @@
-// Shared certification logo set — used by TrustBar (homepage) and the
+// Shared certification logo set - used by TrustBar (homepage) and the
 // product page's certifications strip. Footer.jsx keeps its own copy
 // (untouched this phase) since it was already established before this pass.
 

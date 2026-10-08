@@ -16,7 +16,7 @@ const EXPORT_MARKETS = exportMarkets;
 
 const HIGHLIGHTED_IDS = new Set(EXPORT_MARKETS.map(m => m.id));
 
-// ISO 3166-1 numeric code for India (world-atlas geo id) — the country of
+// ISO 3166-1 numeric code for India (world-atlas geo id) - the country of
 // origin, called out in gold rather than the export-market red so it reads
 // as "home base" on the map, not just another destination.
 const INDIA_ID = 356;
@@ -128,7 +128,7 @@ function RouteArrows({ focusId, animate }) {
 
 // The interactive export-markets map + legend, extracted from the homepage's
 // GlobalMarkets section (Phase 1) so it can also anchor the "Global Reach"
-// hub page (Phase 2) — same map, two places, one implementation.
+// hub page (Phase 2) - same map, two places, one implementation.
 export default function ExportMarketsMap() {
   const [hoveredId, setHoveredId] = useState(null);
   // A clicked country stays focused (only its route shows) until clicked again.
@@ -257,7 +257,7 @@ export default function ExportMarketsMap() {
               }
             </Geographies>
 
-            {/* ── Route arrows — India to every export market ── */}
+            {/* ── Route arrows - India to every export market ── */}
             <RouteArrows focusId={focusId} animate={!reduceMotion} />
 
             {/* ── Pin markers ──────────────────────────────────────── */}
@@ -281,7 +281,7 @@ export default function ExportMarketsMap() {
                   {/* Drop shadow beneath the tip */}
                   <ellipse cx="0" cy="2" rx="4.5" ry="1.5" fill="rgba(0,0,0,0.20)" />
 
-                  {/* ① Grey teardrop body — tip at (0,0), bulb centred at (0,-13) r=9.5 */}
+                  {/* ① Grey teardrop body - tip at (0,0), bulb centred at (0,-13) r=9.5 */}
                   <path
                     d="M0,0 C-5.5,-2 -9.5,-8.5 -9.5,-13 A9.5,9.5,0,0,1,9.5,-13 C9.5,-8.5 5.5,-2 0,0Z"
                     fill={focusId === market.id ? '#8898A8' : '#A8B8C8'}
@@ -289,11 +289,11 @@ export default function ExportMarketsMap() {
                     strokeWidth="0.5"
                   />
 
-                  {/* ② White inner circle — gives the "badge" look from the reference image */}
+                  {/* ② White inner circle - gives the "badge" look from the reference image */}
                   <circle cx="0" cy="-13" r="7" fill="#FFFFFF" />
 
                   {/* ③ Red star outline centred in the white circle
-                       Outer R=5.5, inner r=2.2 — fits snugly in r=7 white circle
+                       Outer R=5.5, inner r=2.2 - fits snugly in r=7 white circle
                        Polar-computed 5-point star at origin, shifted to bulb centre via translate(0,-13)
                        outer pts: (0,-5.5)(5.23,-1.70)(3.23,4.45)(-3.23,4.45)(-5.23,-1.70)
                        inner pts: (1.35,-1.85)(2.18,0.71)(0,2.2)(-2.18,0.71)(-1.35,-1.85) */}

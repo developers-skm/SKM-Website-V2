@@ -6,12 +6,12 @@ import { getProductById } from '../../../data/products';
 import { fadeUp, EASE_PREMIUM } from '../../../utils/motionTokens';
 import SafeImage from '../../../components/common/SafeImage';
 
-// Applications — premium editorial food spread. One dominant image
+// Applications - premium editorial food spread. One dominant image
 // (~60% width on desktop) crossfades to match whichever application row is
 // active; the remaining applications render as a numbered editorial index
 // (thin rules, numbering, typography) rather than a card grid. Same 4 real
 // `applications` records, routes and matched-product counts as the
-// original carousel version — presentation only, no content changes.
+// original carousel version - presentation only, no content changes.
 //
 // Autoplay: the featured image was previously static unless a user
 // actively hovered a row (so on load/mobile/no-hover it just sat on the
@@ -77,10 +77,10 @@ export default function ApplicationAreas({ onPageChange }) {
     setActiveId(id);
   }, []);
 
-  // Autoplay — advances to the next application every 3.5s, looping
+  // Autoplay - advances to the next application every 3.5s, looping
   // continuously (including 4th → 1st, not stopping there). Pauses only
   // while the user is actively hovering/focusing a row, then resumes the
-  // loop once they move away — it never overrides what's on screen mid-hover,
+  // loop once they move away - it never overrides what's on screen mid-hover,
   // but a one-time hover doesn't kill the loop forever either.
   useEffect(() => {
     if (reduceMotion || isPaused) return undefined;
@@ -107,7 +107,7 @@ export default function ApplicationAreas({ onPageChange }) {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
-          {/* Dominant image — ~60% desktop, crossfades on active application. */}
+          {/* Dominant image - ~60% desktop, crossfades on active application. */}
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -154,7 +154,7 @@ export default function ApplicationAreas({ onPageChange }) {
             </div>
           </motion.div>
 
-          {/* Editorial index — numbered rows, thin rules, no cards */}
+          {/* Editorial index - numbered rows, thin rules, no cards */}
           <div
             className="lg:col-span-5 flex flex-col"
             onMouseEnter={() => setIsPaused(true)}

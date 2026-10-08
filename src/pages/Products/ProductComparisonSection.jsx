@@ -6,13 +6,13 @@ import { getVariantsForProduct } from '../../data/productVariants';
 import { EASE_PREMIUM, fadeUp } from '../../utils/motionTokens';
 
 // Customized Mix / Customized Packages are made to order, so there is
-// nothing to compare side by side — every other product is selectable.
+// nothing to compare side by side - every other product is selectable.
 const EXCLUDED_IDS = new Set(['customized_mix', 'customized_packages']);
 const COMPARABLE_PRODUCTS = products.filter((p) => !EXCLUDED_IDS.has(p.id));
 const CATEGORY_ORDER = [PRODUCT_CATEGORIES.POWDERS, PRODUCT_CATEGORIES.LIQUIDS, PRODUCT_CATEGORIES.SPECIALITY];
 
 // Liquid variant codes carry a storage suffix (e.g. "W1301_Chilled") that
-// the product pages strip for display — same rule here.
+// the product pages strip for display - same rule here.
 const displayCode = (code) => code.replace('_Chilled', '').replace('_Frozen', '');
 
 const TH = 'text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3 pr-4 whitespace-nowrap';
@@ -314,7 +314,7 @@ function ComparisonTable({ product, onPageChange, reduceMotion }) {
   );
 }
 
-// Section 5 — Product comparison. A product dropdown (9 comparable
+// Section 5 - Product comparison. A product dropdown (9 comparable
 // products) drives the table below: pick a product and its variants are
 // shown side by side with their real specifications. Speciality products
 // have no variant data, so they show their overview row instead.

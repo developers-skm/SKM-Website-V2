@@ -75,7 +75,7 @@ export function buildTimeline(moments, filterId = 'all') {
   });
   if (undated.length) groups.push({ id: UNDATED_ID, label: 'Honours', undated: true, items: undated });
 
-  // Flat chronological order — drives the viewer's previous / next.
+  // Flat chronological order - drives the viewer's previous / next.
   const flat = groups.flatMap((g) => g.items);
   return { groups, flat };
 }

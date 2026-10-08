@@ -1,14 +1,14 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
 
-// Section 4 — functional performance (brief §4). No numeric performance-test
+// Section 4 - functional performance (brief §4). No numeric performance-test
 // data (whip volume scores, gel-strength charts, etc.) exists as structured
-// data anywhere in the codebase — only free text embedded in specific
+// data anywhere in the codebase - only free text embedded in specific
 // variants' `character`/`benefits`/`description` fields (e.g. "Gel Strength:
 // 1000-1100 g/cm²" on one Egg Albumen Powder SKU). Rather than fabricate a
 // chart or score, each trait below is evidenced with the real variant quote
 // it's drawn from, and traits with no real textual evidence for a given
-// product are omitted rather than invented — see feedback-skm-design-rules
+// product are omitted rather than invented - see feedback-skm-design-rules
 // memory (content is frozen; no placeholder claims).
 const TRAITS = [
   { key: 'whipping', label: 'Whipping', keywords: ['whip', 'foam', 'aerat', 'volume increase', 'meringue'] },
@@ -21,7 +21,7 @@ const TRAITS = [
 ];
 
 // Scores each variant's evidence rather than taking the first substring hit
-// — a keyword landing in the short, purpose-built `name`/`character` fields
+// - a keyword landing in the short, purpose-built `name`/`character` fields
 // (e.g. "High Whip", "Gel Strength") is much stronger proof of that trait
 // than the same word appearing incidentally inside a longer description
 // sentence (e.g. "protein" turning up in an unrelated gel-strength variant's
@@ -55,7 +55,7 @@ function findEvidence(variantsData, keywords, usedCodes) {
 
 export default function FunctionalPerformance({ variantsData, productName, onDiscussPerformance, tdsUrl }) {
   const reduceMotion = useReducedMotion();
-  // Each variant can only be used as evidence once — otherwise two traits
+  // Each variant can only be used as evidence once - otherwise two traits
   // that both happen to score highest on the same SKU (e.g. a high-gel
   // variant whose benefits mention both "sliceability" and "gel strength")
   // would show the exact same quote twice, reading as a copy-paste bug.
@@ -121,7 +121,7 @@ export default function FunctionalPerformance({ variantsData, productName, onDis
             </p>
             {trait.variantCode && (
               <span className="font-mono text-[11px] font-bold text-brand-600 uppercase tracking-wider mt-1">
-                {trait.variantCode} — {trait.variantName}
+                {trait.variantCode} - {trait.variantName}
               </span>
             )}
           </motion.div>

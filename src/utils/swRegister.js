@@ -2,7 +2,7 @@ export function registerServiceWorker() {
   if (!('serviceWorker' in navigator) || import.meta.env.MODE === 'test') return;
 
   // The worker serves .js/.css cache-first, which keeps dev (vite) on stale
-  // modules — e.g. old src/data/*.js. Never run it in dev; drop any leftover.
+  // modules - e.g. old src/data/*.js. Never run it in dev; drop any leftover.
   if (import.meta.env.DEV) {
     navigator.serviceWorker.getRegistrations().then((regs) => {
       if (!regs.length) return;

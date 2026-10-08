@@ -1,5 +1,5 @@
 // Single source of truth for navigation labels, routes, and grouping.
-// Data only — no DOM access, no scrolling, no navigation side effects.
+// Data only - no DOM access, no scrolling, no navigation side effects.
 // Consumed by RailNav, NavOverlay, MenuSection and SearchPanel so labels/
 // routes are never duplicated across components.
 
@@ -49,7 +49,7 @@ export const productsMegaMenu = {
   ],
 };
 
-// No dropdown groups remain — Resources was the last one, and it's now a
+// No dropdown groups remain - Resources was the last one, and it's now a
 // single link (see NavOverlay.jsx) since the real /resources page already
 // contains everything the dropdown pointed to (Brochures & Downloads and
 // Certifications are both merged into it as real sections). Kept as an
@@ -100,7 +100,7 @@ export const overlayColumns = [
   },
 ];
 
-// Flat list for the SearchPanel's client-side filter — every distinct
+// Flat list for the SearchPanel's client-side filter - every distinct
 // destination in the overlay, deduplicated by route+label combination.
 export const searchableNavItems = overlayColumns
   .flatMap((column) => column.links)

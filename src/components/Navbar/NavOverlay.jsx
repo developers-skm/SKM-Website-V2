@@ -15,7 +15,7 @@ const PHONE_NUMBER = '04242268391';
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-// Card slides down from the top and fades in/out — not a full-page
+// Card slides down from the top and fades in/out - not a full-page
 // clip-path reveal, since the card now only covers ~70% of the viewport
 // height (mobile goes taller, see className breakpoints below) and the
 // original page must stay visible underneath through the backdrop.
@@ -149,7 +149,7 @@ export default function NavOverlay({ isOpen, onClose, activePage, onPageChange, 
 
 // Keyed by openKey in the parent so each open of the overlay gets a fresh
 // isSearchMode initial value straight from the prop (no prop→state effect
-// sync, which cascades renders) — a remount naturally re-runs useState's
+// sync, which cascades renders) - a remount naturally re-runs useState's
 // initializer.
 function OverlayBody({
   initialSearchMode,
@@ -171,7 +171,7 @@ function OverlayBody({
 
   return (
     <>
-      {/* Slim top bar — logo, search/close. Utility links + language now
+      {/* Slim top bar - logo, search/close. Utility links + language now
           live in the footer strip below (see end of this component). */}
       <div className="w-full flex items-center gap-4 px-6 sm:px-10 lg:px-14 py-4 border-b border-surface-200 flex-shrink-0">
         <img src={SKMLogo} alt="SKM Egg Products" className="w-[120px] sm:w-[140px] h-auto object-contain flex-shrink-0" />
@@ -226,7 +226,7 @@ function OverlayBody({
         </AnimatePresence>
       </div>
 
-      {/* Footer strip — phone/email quick actions (formerly the vertical
+      {/* Footer strip - phone/email quick actions (formerly the vertical
           RailNav) plus the utility links + language label (formerly the
           TopUtilityBar), now reunited here since both bars were removed
           in favour of this single drawer. */}

@@ -2,11 +2,11 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import useProductDiscoveryNavigation from './useProductDiscoveryNavigation';
 import { getProductIdByPage } from '../../data/products';
 
-// The sole mobile sticky action bar sitewide — replaces the old per-page
+// The sole mobile sticky action bar sitewide - replaces the old per-page
 // StickyQuoteCTA. Two 44px+ buttons: Find Product / Request Quote. Hidden on
 // get-quote (its own destination), while the Contact enquiry modal is open,
 // and when the footer intersects the viewport (all via `suppressed`, owned
-// by Layout.jsx / App.jsx — this component makes no route-suppression
+// by Layout.jsx / App.jsx - this component makes no route-suppression
 // decisions of its own beyond the get-quote check).
 export default function MobileStickyActions({ activePage, onPageChange, suppressed }) {
   const reduceMotion = useReducedMotion();

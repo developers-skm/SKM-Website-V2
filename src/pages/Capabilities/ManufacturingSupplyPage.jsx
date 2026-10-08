@@ -4,14 +4,14 @@ import InternalLink from '../../components/common/InternalLink';
 import { fadeUp } from '../../utils/motionTokens';
 import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply/supply.png';
 
-// Manufacturing and Supply — new page, Section 1 (Capabilities hero) only,
+// Manufacturing and Supply - new page, Section 1 (Capabilities hero) only,
 // per this task's scope. Replaces the "Capabilities" dropdown in the navbar
 // (previously: Capabilities Overview, Egg Processing Plant, Poultry Farm,
 // Feed Mill, Laboratory, Our Journey) with a single link to this page.
 //
 // All 4 capacity statistics are real and already published elsewhere in
 // the app (WhySKMPage.jsx infraCards, GlobalReachPage.jsx hero
-// description) — reused verbatim here, not recalculated or invented:
+// description) - reused verbatim here, not recalculated or invented:
 // - 2M eggs processed per day (Egg Processing Plant, EU & USDA-compliant)
 // - 2.4M layers housed across ISO 22000 certified integrated farms
 // - 100% of feed ingredients screened for mycotoxins/pesticides/antibiotics
@@ -19,13 +19,13 @@ import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply
 //
 // "Integrated operating model" describes the same real hatchery → feed
 // mill → farm → processing → lab → dispatch chain already documented in
-// journeyStages.js / the farm-to-product traceability sections — restated
+// journeyStages.js / the farm-to-product traceability sections - restated
 // here as a one-line summary, not new content.
 //
 // Buttons: "Explore Our Facilities" routes to the real Capabilities
 // Overview page (src/pages/WhySKM/WhySKMPage.jsx, route `why_skm`), which
 // links out to each individual facility (Egg Processing Plant, Poultry
-// Farm, Feed Mill, Laboratory) — the same real destinations the removed
+// Farm, Feed Mill, Laboratory) - the same real destinations the removed
 // dropdown pointed to, just reached one click further in via a real hub
 // rather than duplicated as a second facilities index. "Discuss Supply
 // Requirements" routes to the real Contact Us page.
@@ -40,18 +40,18 @@ import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply
 // (fully automated, climate-controlled, CIP system), hygiene zoning
 // (red/white/neutral zone protocol). "View Processing Technology" and
 // "Request Facility Information" both route to the real Egg Processing
-// Plant page — no separate technology-only or facility-info-only page
+// Plant page - no separate technology-only or facility-info-only page
 // exists, so both point to the one real source that covers each.
 const PROCESSING_CAPABILITIES = [
   {
     id: 'processing-stages',
     label: 'Processing stages',
-    fact: 'Only microbiologically tested eggs are processed — egg breaking, pre-pasteurization, pasteurization, drying/filling, and cold storage — with a capacity of 2 million eggs per day.',
+    fact: 'Only microbiologically tested eggs are processed - egg breaking, pre-pasteurization, pasteurization, drying/filling, and cold storage - with a capacity of 2 million eggs per day.',
   },
   {
     id: 'separation-lines',
     label: 'Separation lines',
-    fact: 'Two dedicated production lines — yolk and albumen — operate within a fully automated, climate-controlled environment.',
+    fact: 'Two dedicated production lines - yolk and albumen - operate within a fully automated, climate-controlled environment.',
   },
   {
     id: 'pasteurisation',
@@ -154,13 +154,13 @@ function EggProcessingPlantSection({ onPageChange }) {
 }
 
 // Section 3 (Integrated poultry farms): 4 of 5 requested facts are real,
-// verbatim/derived from src/pages/Infra/sections/PoultryFarm.jsx — farm
+// verbatim/derived from src/pages/Infra/sections/PoultryFarm.jsx - farm
 // network (2.4M layers, ISO 22000 certified integrated farms, 164M eggs
 // annually), biosecurity (personnel/vehicle entry showers, zoned layouts,
 // perimeter controls), welfare (balanced feed, sanitation protocols,
 // on-site incinerator), egg collection controls (egg collecting conveyor
 // and collection area, real gallery images). "Veterinary management" has
-// no distinct documented procedure anywhere in the repo — the closest real
+// no distinct documented procedure anywhere in the repo - the closest real
 // fact is the attached laboratory's flock-health monitoring (water,
 // tissue, and egg sample analysis), so that card states that same real
 // fact rather than inventing a separate veterinary program. "Explore
@@ -184,7 +184,7 @@ const POULTRY_CAPABILITIES = [
   {
     id: 'welfare',
     label: 'Welfare',
-    fact: 'Balanced, nutritionally optimized feed, daily sanitation protocols, potable water management, and safe disposal systems — including an on-site incinerator — maintain high standards of animal welfare.',
+    fact: 'Balanced, nutritionally optimized feed, daily sanitation protocols, potable water management, and safe disposal systems - including an on-site incinerator - maintain high standards of animal welfare.',
   },
   {
     id: 'egg-collection-controls',
@@ -248,7 +248,7 @@ function PoultryFarmsSection({ onPageChange }) {
 
 // Section 4 (Feed mill and raw-material control): connects feed screening
 // directly to final-product consistency and residue management, using
-// real facts from src/pages/Infra/sections/FeedMill.jsx — every raw
+// real facts from src/pages/Infra/sections/FeedMill.jsx - every raw
 // material is tested for mycotoxins, pesticide residues, and antibiotic
 // contaminants before use; lot-wise storage prevents cross-contamination
 // and ensures full traceability from ingredient intake to finished feed;
@@ -283,7 +283,7 @@ function FeedMillSection({ onPageChange }) {
           className={`max-w-3xl p-7 rounded-[20px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}
         >
           <p className="font-body text-[15px] sm:text-[16px] text-surface-700 leading-[1.7] m-0">
-            Every raw material entering the feed mill undergoes rigorous testing for mycotoxins, pesticide residues, and antibiotic contaminants before formulation. Strict lot-wise storage prevents cross-contamination and ensures full traceability from ingredient intake to finished feed — only verified, residue-free inputs reach the flock, which is the direct foundation for consistent, residue-free final egg products.
+            Every raw material entering the feed mill undergoes rigorous testing for mycotoxins, pesticide residues, and antibiotic contaminants before formulation. Strict lot-wise storage prevents cross-contamination and ensures full traceability from ingredient intake to finished feed - only verified, residue-free inputs reach the flock, which is the direct foundation for consistent, residue-free final egg products.
           </p>
         </motion.div>
 
@@ -303,7 +303,7 @@ function FeedMillSection({ onPageChange }) {
 // Section 5 (Laboratory and release controls): connects the NABL-
 // accredited laboratory directly to manufacturing decisions using real
 // facts from src/pages/Infra/sections/Laboratory.jsx and
-// QualityManagementSystem.jsx — routine testing and environmental
+// QualityManagementSystem.jsx - routine testing and environmental
 // monitoring confirm products are free from pathogens and microbial
 // contamination prior to dispatch (i.e. before release), and the
 // laboratory's residue/physicochemical/microbiological testing feeds
@@ -338,7 +338,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
           className={`max-w-3xl p-7 rounded-[20px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}
         >
           <p className="font-body text-[15px] sm:text-[16px] text-surface-700 leading-[1.7] m-0">
-            Our NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006, runs physicochemical, microbiological, and residue testing on every batch — including GC-MS, HPLC, and LC-MS/MS screening. A controlled microbiology laboratory confirms products are free from pathogens and microbial contamination before dispatch, directly feeding the HACCP-driven release decision for every batch that leaves the plant.
+            Our NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006, runs physicochemical, microbiological, and residue testing on every batch - including GC-MS, HPLC, and LC-MS/MS screening. A controlled microbiology laboratory confirms products are free from pathogens and microbial contamination before dispatch, directly feeding the HACCP-driven release decision for every batch that leaves the plant.
           </p>
         </motion.div>
 
@@ -357,23 +357,23 @@ function LaboratoryReleaseSection({ onPageChange }) {
 
 // Section 6 (Packaging capabilities): the 4 real packaging formats
 // documented in src/pages/Products/CustomizedPackagesPage.jsx
-// `packagingData` — Bag in Box (Powder), Bag in Bag / Paper Bag (Powder),
+// `packagingData` - Bag in Box (Powder), Bag in Bag / Paper Bag (Powder),
 // Bag (LDPE) (Liquid), Pallecon with Inner LDPE (bulk IBC, Liquid). No
 // real per-destination suitability data exists anywhere in the repo (no
 // documented mapping of packaging format to export market or
-// application), so that dimension is omitted rather than invented — only
+// application), so that dimension is omitted rather than invented - only
 // the real format/type/SKU facts are shown. "Compare Packaging Options"
 // and "Discuss Custom Packaging" both route to the real Customized
 // Packages page, which is the one real destination covering all 4
 // formats; a dedicated comparison tool doesn't exist separately.
 //
-// 5th card — Tetra Pack & Cubes: covers Speciality Products' 2 real
+// 5th card - Tetra Pack & Cubes: covers Speciality Products' 2 real
 // consumer-format products, distinct from the 4 industrial formats above.
 // "Tetra Pack" is verbatim from SpecialityEggLiquidPage.jsx (SEO
 // description "tetra pack format" + its own asset filename "EGG LIQUIDS
 // TETRA PACK"); "Cube" is the real Egg White Cube format
 // (EggWhiteCubePage.jsx). SKUs are the real packagingOptions values from
-// products.js (speciality_egg_liquids, egg_white_cube) — 250ML/500ML/1L
+// products.js (speciality_egg_liquids, egg_white_cube) - 250ML/500ML/1L
 // and 100g/250g/500g, not invented.
 const PACKAGING_FORMATS = [
   { id: 'bag-in-box', type: 'Powder', title: 'Bag in Box', subtitle: 'Corrugated Box', skus: ['25 Kg', '20 Kg', '10 Kg'] },
@@ -465,12 +465,12 @@ function PackagingCapabilitiesSection({ onPageChange }) {
 // the plant; real warehousing language from all 3 branch pages; dedicated
 // Japan/Europe/Russia branches). Export documentation, Supply planning,
 // and Customer communication have no distinct documented procedure
-// anywhere in the repo — each states the same real, general fact (30+
+// anywhere in the repo - each states the same real, general fact (30+
 // countries served via dedicated regional branches coordinating import,
 // warehousing, and compliance) rather than inventing a specific
 // documentation or planning process that isn't real. "Discuss Export
 // Supply" and "Contact Logistics Team" both route to the real Contact Us
-// page — no separate logistics-specific contact channel exists.
+// page - no separate logistics-specific contact channel exists.
 const LOGISTICS_TOPICS = [
   {
     id: 'export-documentation',
@@ -485,7 +485,7 @@ const LOGISTICS_TOPICS = [
   {
     id: 'warehousing',
     label: 'Warehousing',
-    fact: 'Regional branches cover import, warehousing, and distribution — SKM Japan, SKM Europe, and SKM Russia each maintain warehousing and sales operations in their respective markets.',
+    fact: 'Regional branches cover import, warehousing, and distribution - SKM Japan, SKM Europe, and SKM Russia each maintain warehousing and sales operations in their respective markets.',
   },
   {
     id: 'regional-support',
@@ -568,7 +568,7 @@ function LogisticsSection({ onPageChange }) {
 }
 
 // Section 8 (Final CTA): "Submit Your Annual Requirement" routes to the
-// real get-quote flow — no separate annual-volume submission form exists,
+// real get-quote flow - no separate annual-volume submission form exists,
 // so it reuses the same real conversion path already established
 // elsewhere for equivalent asks (e.g. Home's FinalEnquiry section).
 // "Request Company Profile" downloads the real Company Profile PDF
@@ -619,7 +619,7 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'Manufacturing and Supply | SKM Egg Products',
-        description: 'Production scale, supply consistency, packaging, and logistics behind SKM Egg Products — 2 million eggs processed daily, 2.4 million layers, exporting to 30+ countries.',
+        description: 'Production scale, supply consistency, packaging, and logistics behind SKM Egg Products - 2 million eggs processed daily, 2.4 million layers, exporting to 30+ countries.',
         keywords: 'egg powder manufacturing capacity, egg processing plant scale, egg product supply chain, bulk egg powder supplier, egg product export capacity',
         canonical: 'https://www.skmegg.com/manufacturing_and_supply',
       }}
@@ -627,7 +627,7 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
     >
       <div className="w-full flex flex-col bg-page">
 
-        {/* Section 1 — Capabilities hero */}
+        {/* Section 1 - Capabilities hero */}
         <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] overflow-hidden">
           <div
             className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18]"
@@ -677,7 +677,7 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
 
             <motion.div {...fadeProps(0.2)} className="mt-9 lg:mt-11 max-w-3xl">
               <p className="font-body text-[15px] text-surface-600 leading-[1.7] m-0">
-                An integrated operating model — hatchery, feed mill, poultry farm, processing plant, and laboratory — under one supply chain, with dedicated regional branches coordinating import, warehousing, and compliance close to your market.
+                An integrated operating model - hatchery, feed mill, poultry farm, processing plant, and laboratory - under one supply chain, with dedicated regional branches coordinating import, warehousing, and compliance close to your market.
               </p>
             </motion.div>
 
@@ -701,25 +701,25 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
           </div>
         </div>
 
-        {/* Section 2 — Feed mill and raw-material control */}
+        {/* Section 2 - Feed mill and raw-material control */}
         <FeedMillSection onPageChange={onPageChange} />
 
-        {/* Section 3 — Integrated poultry farms */}
+        {/* Section 3 - Integrated poultry farms */}
         <PoultryFarmsSection onPageChange={onPageChange} />
 
-        {/* Section 4 — Egg processing plant */}
+        {/* Section 4 - Egg processing plant */}
         <EggProcessingPlantSection onPageChange={onPageChange} />
 
-        {/* Section 5 — Laboratory and release controls */}
+        {/* Section 5 - Laboratory and release controls */}
         <LaboratoryReleaseSection onPageChange={onPageChange} />
 
-        {/* Section 6 — Packaging capabilities */}
+        {/* Section 6 - Packaging capabilities */}
         <PackagingCapabilitiesSection onPageChange={onPageChange} />
 
-        {/* Section 7 — Logistics and supply continuity */}
+        {/* Section 7 - Logistics and supply continuity */}
         <LogisticsSection onPageChange={onPageChange} />
 
-        {/* Section 8 — Final CTA */}
+        {/* Section 8 - Final CTA */}
         <FinalCTASection onPageChange={onPageChange} />
 
       </div>

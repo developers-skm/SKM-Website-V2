@@ -12,7 +12,7 @@ import { EASE_PREMIUM, DURATION, fadeUp, cardRise } from '../../utils/motionToke
 
 const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 
-// Products Hub — real, data-backed sections only. Fields with no genuine
+// Products Hub - real, data-backed sections only. Fields with no genuine
 // per-product data anywhere in the repo (function/application tags, product
 // codes, shelf-life values, technical data sheets, application/packaging
 // guides) are omitted rather than invented, per this session's standing
@@ -20,10 +20,10 @@ const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export In
 
 const CATEGORY_OPTIONS = Object.values(PRODUCT_CATEGORIES);
 
-// Packaging options — real, taken directly from products.js, and scoped to
+// Packaging options - real, taken directly from products.js, and scoped to
 // whichever Format is currently selected: Egg Powders only ever shows its
 // own real packaging set (20kg, 25kg, Bag-in-Box), Liquid Eggs shows its
-// own (1kg, 5kg, 20kg), etc. — never a flat, mixed list of every product's
+// own (1kg, 5kg, 20kg), etc. - never a flat, mixed list of every product's
 // packaging regardless of format. When no format is selected, every real
 // packaging value across all products is shown (nothing to narrow by yet).
 function getPackagingOptionsForCategory(category) {
@@ -56,16 +56,16 @@ function comparePackagingSize(a, b) {
 
 // Groups a category's flat packagingOptions (e.g. ["20kg", "25kg",
 // "Bag-in-Box"]) into a single display tag per real container-type label,
-// with each weight value nested as its own filterable sub-pill — e.g. one
+// with each weight value nested as its own filterable sub-pill - e.g. one
 // "Bag-in-Box (20 kg) (25 kg)" tag instead of 3 separate flat pills. Values
 // with no weight-style siblings (e.g. "Custom") render as a standalone tag.
 //
 // products.js itself only stores weights for Egg Powders (Bag-in-Box) and
-// Liquid Eggs (Bag (LDPE)) — the real container-type names live in each
+// Liquid Eggs (Bag (LDPE)) - the real container-type names live in each
 // category's dedicated packaging page (CategoryPage.jsx / packagingData in
 // CustomizedPackagesPage.jsx), not as a field on the product record. This
 // map surfaces those same real, verified type names rather than fabricating
-// one — e.g. Liquid Eggs is genuinely "Bag (LDPE)" per CustomizedPackagesPage
+// one - e.g. Liquid Eggs is genuinely "Bag (LDPE)" per CustomizedPackagesPage
 // packagingData, never "Bag-in-Box" (that name is real only for powders).
 // Speciality Products has no single documented container-type shared across
 // its 2 products (Speciality Liquid Blends, Egg White Cube), so it's
@@ -97,7 +97,7 @@ function matchesPackaging(product, packaging) {
 const SIZE_PATTERN = /^\d+(\.\d+)?(kg|g|ml|l)$/i;
 
 // Formats any real per-product/category packagingOptions value (kg, g, mL,
-// L) into its display form — e.g. "20kg" -> "20 kg", "250ML" -> "250 ML".
+// L) into its display form - e.g. "20kg" -> "20 kg", "250ML" -> "250 ML".
 function formatSizeLabel(value) {
   const match = value.match(/^(\d+(?:\.\d+)?)(kg|g|ml|l)$/i);
   if (!match) return value;
@@ -111,7 +111,7 @@ function groupPackagingOptions(options, category) {
   const labels = options.filter((o) => !SIZE_PATTERN.test(o));
 
   if (!category) {
-    // No format selected — weights and labels here are pooled across every
+    // No format selected - weights and labels here are pooled across every
     // category's products, so there's no single real container-type they
     // can be coherently grouped under (grouping them would silently pair
     // weights from one product's category with an unrelated label from
@@ -153,11 +153,11 @@ function groupPackagingOptions(options, category) {
   }
 
   if (labels.length === 0) {
-    // No category-level label — group each of this category's products
+    // No category-level label - group each of this category's products
     // under its own real title instead (e.g. Speciality Products has 2
     // dissimilar products, Speciality Liquid Blends in ML/L and Egg White
     // Cube in g, so a single flat/shared group would mix incompatible
-    // units — group per real product instead).
+    // units - group per real product instead).
     const scoped = products.filter((p) => p.category === category);
     return scoped
       .filter((p) => p.packagingOptions.some((o) => SIZE_PATTERN.test(o)))
@@ -208,15 +208,15 @@ function FilterPill({ active, onClick, children }) {
   );
 }
 
-// Section 2 — SKM Product Finder. Live client-side filtering, no page
-// reload. Filters: product format (category) and packaging option — the
+// Section 2 - SKM Product Finder. Live client-side filtering, no page
+// reload. Filters: product format (category) and packaging option - the
 // only two real, structured axes present in products.js. "Application" and
 // "function" filters from the brief have no per-product data source and are
 // intentionally not included.
 function ProductFinder({ onPageChange }) {
   const [category, setCategory] = useState(null);
   const [packaging, setPackaging] = useState(null);
-  // The same weight (e.g. 20 kg) can appear under two container types — track
+  // The same weight (e.g. 20 kg) can appear under two container types - track
   // which group it was picked from so only that pill highlights.
   const [packagingGroup, setPackagingGroup] = useState(null);
   const reduceMotion = useReducedMotion();
@@ -233,7 +233,7 @@ function ProductFinder({ onPageChange }) {
   }, [category, packaging]);
 
   // Selecting a different Format re-scopes the Packaging pills to that
-  // format's own real options — if the currently-selected packaging value
+  // format's own real options - if the currently-selected packaging value
   // doesn't exist for the newly selected format, clear it rather than leave
   // a stale filter silently applied (e.g. "Bag-in-Box" selected, then
   // switching from Egg Powders to Speciality Products, which has no
@@ -427,10 +427,10 @@ function ProductFinder({ onPageChange }) {
   );
 }
 
-// Section 3 — Product families. Real disclosure-per-category pattern
+// Section 3 - Product families. Real disclosure-per-category pattern
 // (matching ProductFamilies.jsx on Home), covering all products via their
 // real categories. "Egg White Cube" and "Speciality Liquid Blends" both
-// live under PRODUCT_CATEGORIES.SPECIALITY — the brief's separate "Egg
+// live under PRODUCT_CATEGORIES.SPECIALITY - the brief's separate "Egg
 // White Cube" and "Packaging solutions" categories are represented via the
 // same real SPECIALITY/CUSTOMIZED groupings rather than invented new ones.
 const familyGroups = [
@@ -538,21 +538,21 @@ function ProductFamiliesSection({ onPageChange }) {
   );
 }
 
-// Manufacturing lines — one split card: Powder Line (left) and Liquid Line
+// Manufacturing lines - one split card: Powder Line (left) and Liquid Line
 // (right) each open their own manufacturing process page.
 const manufacturingLines = [
   {
     id: 'powder',
     route: 'powder_line',
     label: 'Powder Line',
-    description: 'See how fresh eggs become spray-dried egg powders — from biosecure farms to hygienic packaging.',
+    description: 'See how fresh eggs become spray-dried egg powders - from biosecure farms to hygienic packaging.',
     cta: 'View Manufacturing Process',
   },
   {
     id: 'liquid',
     route: 'liquid_line',
     label: 'Liquid Line',
-    description: 'See how fresh eggs become pasteurized liquid egg products — from biosecure farms to hygienic packaging.',
+    description: 'See how fresh eggs become pasteurized liquid egg products - from biosecure farms to hygienic packaging.',
     cta: 'View Manufacturing Process',
   },
 ];
@@ -610,9 +610,9 @@ function ManufacturingLinesSection({ onPageChange }) {
   );
 }
 
-// Section 4 — Browse by functional requirement. No product in products.js
+// Section 4 - Browse by functional requirement. No product in products.js
 // carries a structured "function" tag (foaming, emulsification, gelling,
-// etc.) — that taxonomy exists only as free-text `benefits` on individual
+// etc.) - that taxonomy exists only as free-text `benefits` on individual
 // product-detail pages, not as filterable per-product data here. Per the
 // audit-before-build rule, this section is not fabricated with invented
 // function-to-product mappings; it's presented as a genuinely upcoming
@@ -659,7 +659,7 @@ function FunctionalRequirementSection({ onPageChange }) {
   );
 }
 
-// Section 6 — Custom product support. Real routes: customized_mix,
+// Section 6 - Custom product support. Real routes: customized_mix,
 // customized_packages both exist in products.js/App.jsx; contact-us is real.
 function CustomSupportSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
@@ -712,7 +712,7 @@ function CustomSupportSection({ onPageChange }) {
   );
 }
 
-// Section 7 — Technical resources. Real destinations: the /resources page
+// Section 7 - Technical resources. Real destinations: the /resources page
 // (product flyers + company profile via /brochure) and the real Product
 // List PDF. Data sheets / application guides / packaging guide have no
 // real files in the repo (only per-product flyers + one company profile +
@@ -757,7 +757,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
   const reduceMotion = useReducedMotion();
   const heroScrubRef = useRef(null);
 
-  // Mirrors Home.jsx's mount-aware scroll effect — Home's ProductFamilies
+  // Mirrors Home.jsx's mount-aware scroll effect - Home's ProductFamilies
   // "Explore..." buttons navigate here with prefill.scrollTarget set to the
   // matching section id.
   useEffect(() => {
@@ -778,14 +778,14 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
     >
       <div className="w-full flex flex-col bg-page">
 
-        {/* Section 1 — Products hero. A premium entrance distinct from Home's
+        {/* Section 1 - Products hero. A premium entrance distinct from Home's
             center-out egg mask: the visual rises into place as a single
             unbroken image (a slow vertical reveal + gentle upward drift,
             like a blind lifting), while a thin gold line trails just above
             the image's leading edge and fades once the reveal settles.
             The background itself is a scroll-scrubbed frame sequence (egg
             transforming into egg powder) pinned for the scroll length of
-            the wrapper below — same mechanism as Home's Hero. Copy keeps
+            the wrapper below - same mechanism as Home's Hero. Copy keeps
             its own independent staggered entrance. */}
         <div ref={heroScrubRef} className="relative w-full h-[180vh]">
         <div className="sticky top-0 pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] text-center px-4 overflow-hidden">
@@ -800,7 +800,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
 
           <div className="absolute inset-0 bg-black/15" aria-hidden="true" />
 
-          {/* Thin gold line — trails the reveal's leading edge, then fades
+          {/* Thin gold line - trails the reveal's leading edge, then fades
               once the image has fully settled */}
           {!reduceMotion && (
             <motion.div
@@ -815,7 +815,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             />
           )}
 
-          {/* Soft yolk-gold glow — settles upper-right once the reveal
+          {/* Soft yolk-gold glow - settles upper-right once the reveal
               completes, echoing the site's warm accent without competing
               with the photo */}
           {!reduceMotion && (
@@ -910,35 +910,35 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
         </div>
         </div>
 
-        {/* Section 2 — SKM Product Finder */}
+        {/* Section 2 - SKM Product Finder */}
         <ProductFinder onPageChange={onPageChange} />
         <CurvedDivider bg="#fff" fill="#fff" className="" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
-        {/* Section 3 — Product families */}
+        {/* Section 3 - Product families */}
         <ProductFamiliesSection onPageChange={onPageChange} />
         <CurvedDivider bg="#fff" fill="#fff" className="" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
-        {/* Manufacturing lines — Powder Line / Liquid Line */}
+        {/* Manufacturing lines - Powder Line / Liquid Line */}
         <ManufacturingLinesSection onPageChange={onPageChange} />
         <CurvedDivider bg="#fff" fill="#fff" className="" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
-        {/* Section 4 — Browse by functional requirement */}
+        {/* Section 4 - Browse by functional requirement */}
         <FunctionalRequirementSection onPageChange={onPageChange} />
         <CurvedDivider bg="#fff" fill="#fff" className="" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
-        {/* Section 5 — Product comparison */}
+        {/* Section 5 - Product comparison */}
         <ProductComparisonSection onPageChange={onPageChange} />
         <CurvedDivider bg="#fff" fill="#fff" className="" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
-        {/* Section 6 — Custom product support */}
+        {/* Section 6 - Custom product support */}
         <CustomSupportSection onPageChange={onPageChange} />
 
-        {/* Section 7 — Technical resources */}
+        {/* Section 7 - Technical resources */}
         <TechnicalResourcesSection onPageChange={onPageChange} />
 
       </div>

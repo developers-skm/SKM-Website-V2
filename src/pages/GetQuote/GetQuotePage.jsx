@@ -8,7 +8,7 @@ import StepReview from './steps/StepReview';
 import ConfirmationScreen from './ConfirmationScreen';
 import submitQuote from './submitQuote';
 
-// Section 2 — Guided form (brief §2). 4 steps, progressive disclosure —
+// Section 2 - Guided form (brief §2). 4 steps, progressive disclosure —
 // only the current step's fields are shown, matching the brief's explicit
 // "do not display every field at once" instruction.
 const STEPS = [
@@ -18,7 +18,7 @@ const STEPS = [
   { id: 4, label: 'Review' },
 ];
 
-// Real, honest per-intent copy — `enquiryIntent` arrives via prefillData
+// Real, honest per-intent copy - `enquiryIntent` arrives via prefillData
 // from EnquiryCategories.jsx's 4 primary intent cards. This only changes
 // the page heading/description; the same real fields/steps are used for
 // every intent (no fabricated separate flow per intent), since a genuine
@@ -27,19 +27,19 @@ const STEPS = [
 const INTENT_COPY = {
   'product-recommendation': {
     heading: 'Get a product recommendation',
-    description: "Tell us your application and requirement — we'll recommend the right SKM product.",
+    description: "Tell us your application and requirement - we'll recommend the right SKM product.",
   },
   'sample-or-documents': {
     heading: 'Request a sample or technical documents',
-    description: 'Tell us which product and document type you need — our team will send it over.',
+    description: 'Tell us which product and document type you need - our team will send it over.',
   },
   'price-quotation': {
     heading: 'Request a price quotation',
-    description: 'Tell us your product, volume, and destination — our export sales team will quote within 24 hours.',
+    description: 'Tell us your product, volume, and destination - our export sales team will quote within 24 hours.',
   },
   general: {
     heading: 'Send us your enquiry',
-    description: "Tell us what you need — we'll route it to the right person.",
+    description: "Tell us what you need - we'll route it to the right person.",
   },
 };
 
@@ -68,13 +68,13 @@ const initialFormData = {
   phone: '',
   message: '',
   consent: false,
-  website: '', // honeypot — must stay empty
+  website: '', // honeypot - must stay empty
 };
 
-// The guided quote/sample-request flow — the equivalent of Booking's booking
+// The guided quote/sample-request flow - the equivalent of Booking's booking
 // funnel and the primary conversion target of the whole site (plan.md §1/§7).
 // `prefill` (routed in via App.jsx's handlePageChange) carries context from
-// wherever the visitor came from, so Step 1 doesn't ask again — including
+// wherever the visitor came from, so Step 1 doesn't ask again - including
 // `enquiryIntent` from the Section 1 intent selector on /contact-us.
 export default function GetQuotePage({ onPageChange, prefill }) {
   const [step, setStep] = useState(1);
@@ -169,7 +169,7 @@ export default function GetQuotePage({ onPageChange, prefill }) {
 
   const handleSubmit = async () => {
     if (!validateStep(3)) return;
-    // Honeypot — a genuine visitor never fills this hidden field. Silently
+    // Honeypot - a genuine visitor never fills this hidden field. Silently
     // pretend success instead of telling a bot what tripped it.
     if (formData.website) {
       setIsSubmitted(true);
@@ -221,7 +221,7 @@ export default function GetQuotePage({ onPageChange, prefill }) {
     <PageWrapper
       seo={{
         title: 'Request A Quotation | SKM Egg Products',
-        description: 'Request a sample or quote for SKM egg powders and liquid egg products — tell us your application, quantity, and destination and our export sales team will respond within 24 hours.',
+        description: 'Request a sample or quote for SKM egg powders and liquid egg products - tell us your application, quantity, and destination and our export sales team will respond within 24 hours.',
         keywords: 'egg powder quote, egg products sample request, egg powder RFQ, bulk egg powder pricing, egg products export enquiry',
         canonical: 'https://www.skmegg.com/get-quote',
       }}

@@ -66,7 +66,7 @@ export default function EggYolkPowderPage({ onPageChange }) {
     <ProductPage
       seo={{
         title: 'Egg Yolk Powder | Dried Egg Yolk Manufacturer & Bulk Supplier',
-        description: "SKM's premium spray-dried hen egg yolk powder for bakery, mayonnaise & food applications. 5 product variants — high color, standard, low-fat. Pasteurized, BRCGS & Halal certified. Bulk exporter from India.",
+        description: "SKM's premium spray-dried hen egg yolk powder for bakery, mayonnaise & food applications. 5 product variants - high color, standard, low-fat. Pasteurized, BRCGS & Halal certified. Bulk exporter from India.",
         keywords: 'egg yolk powder, dried egg yolk, spray dried yolk, egg yolk powder manufacturer, egg yolk powder supplier India, egg yolk powder bulk, buy egg yolk powder, egg yolk powder mayonnaise, egg yolk powder bakery, pasteurized egg yolk powder, high color egg yolk, egg yolk powder exporter, egg yolk powder food industry',
         canonical: 'https://www.skmegg.com/egg_yolk_powder',
         jsonLd: {

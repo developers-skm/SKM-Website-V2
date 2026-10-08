@@ -1,11 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { EASE_PREMIUM, DURATION, STAGGER } from '../../../utils/motionTokens';
 
-// Section 5 — technical support (brief §5). Both buttons route to the two
+// Section 5 - technical support (brief §5). Both buttons route to the two
 // real conversion flows already used throughout the site: "Discuss Your
 // Formulation" to the real Contact Us page, "Request Trial Sample" to the
 // real Get Quote flow (its own Step 1 already asks which product and
-// application — the same flow every other "Request Sample" CTA in the app
+// application - the same flow every other "Request Sample" CTA in the app
 // uses). The 3 stage labels describe the real, already-existing path a
 // visitor can take on this site (browse/select on this page → request a
 // sample or quote → reach commercial supply via that same enquiry) rather
@@ -19,12 +19,12 @@ const stages = [
   {
     step: '02',
     label: 'Samples & Trials',
-    description: 'Request a sample through our guided quote flow — tell us your product, application, and destination, and our export sales team follows up directly.',
+    description: 'Request a sample through our guided quote flow - tell us your product, application, and destination, and our export sales team follows up directly.',
   },
   {
     step: '03',
     label: 'Commercial Supply',
-    description: 'Once a formulation is validated, the same enquiry moves into a commercial quote — packaging, quantity, and destination confirmed with our team.',
+    description: 'Once a formulation is validated, the same enquiry moves into a commercial quote - packaging, quantity, and destination confirmed with our team.',
   },
 ];
 
@@ -50,7 +50,7 @@ export default function TechnicalSupport({ onDiscussFormulation, onRequestTrial 
             From Product Selection To Commercial Supply
           </h2>
           <p className="font-body text-[17px] text-surface-600 leading-[1.7] m-0">
-            Support doesn't stop at picking a product — our team stays involved through sampling, trials, and into full commercial supply.
+            Support doesn't stop at picking a product - our team stays involved through sampling, trials, and into full commercial supply.
           </p>
         </motion.div>
 

@@ -75,7 +75,7 @@ export default function EggYolkPowderHeatStablePage({ onPageChange }) {
     <ProductPage
       seo={{
         title: 'Heat Stable Egg Yolk Powder | Mayonnaise Emulsifier Supplier',
-        description: "SKM's heat-stable egg yolk powder retains emulsification at high temperatures — ideal for mayonnaise, dressings & processed foods. Pasteurized, BRCGS & Halal certified. Bulk manufacturer & exporter from India.",
+        description: "SKM's heat-stable egg yolk powder retains emulsification at high temperatures - ideal for mayonnaise, dressings & processed foods. Pasteurized, BRCGS & Halal certified. Bulk manufacturer & exporter from India.",
         keywords: 'heat stable egg yolk powder, heat resistant egg yolk powder, egg yolk powder mayonnaise, egg yolk emulsifier powder, heat stable egg powder, egg yolk powder for dressings, mayonnaise egg powder supplier, heat stable yolk manufacturer, egg yolk powder bulk exporter, pasteurized egg yolk powder heat stable',
         canonical: 'https://www.skmegg.com/egg_yolk_powder_heat_stable',
         jsonLd: {

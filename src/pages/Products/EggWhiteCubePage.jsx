@@ -15,7 +15,7 @@ const galleryImages = [
 const features = [
   {
     title: 'Very Low in Calories',
-    description: 'A naturally light protein source with minimal caloric content — ideal for calorie-conscious diets and weight management plans.',
+    description: 'A naturally light protein source with minimal caloric content - ideal for calorie-conscious diets and weight management plans.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -24,7 +24,7 @@ const features = [
   },
   {
     title: 'Zero Cholesterol',
-    description: 'Contains no cholesterol — making it a heart-friendly protein choice suitable for people with cardiovascular health concerns.',
+    description: 'Contains no cholesterol - making it a heart-friendly protein choice suitable for people with cardiovascular health concerns.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -33,7 +33,7 @@ const features = [
   },
   {
     title: 'High in Protein',
-    description: 'A concentrated source of high-quality egg white protein — supporting muscle development, recovery, and daily nutritional needs.',
+    description: 'A concentrated source of high-quality egg white protein - supporting muscle development, recovery, and daily nutritional needs.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -42,7 +42,7 @@ const features = [
   },
   {
     title: 'Essential Amino Acids',
-    description: 'Provides all essential amino acids that the human body cannot produce on its own — a complete protein for overall health.',
+    description: 'Provides all essential amino acids that the human body cannot produce on its own - a complete protein for overall health.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -56,7 +56,7 @@ export default function EggWhiteCubePage({ onPageChange }) {
     <div className="w-full flex flex-col bg-page font-body text-left">
       <SEO
         title="Egg White Cube | High Protein Zero Cholesterol Egg Product"
-        description="SKM Egg White Cubes — high protein, zero cholesterol, low calorie specialty egg product. Essential amino acids for fitness & nutrition. A convenient ready-to-eat egg white format."
+        description="SKM Egg White Cubes - high protein, zero cholesterol, low calorie specialty egg product. Essential amino acids for fitness & nutrition. A convenient ready-to-eat egg white format."
         keywords="egg white cube, egg white protein cube, high protein egg product, zero cholesterol egg, egg white fitness, protein cube egg, low calorie egg product, egg white nutrition, specialty egg product India, egg white cube buy, egg white health food, egg white protein snack"
         canonical="https://www.skmegg.com/egg_white_cube"
         jsonLd={{

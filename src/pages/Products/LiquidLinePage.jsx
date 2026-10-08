@@ -2,14 +2,14 @@ import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import TraceabilityLoopJourney from '../../components/Traceability/TraceabilityLoopJourney';
 
-// Liquid Line — same journey as the Powder Line, minus the spray-drying
+// Liquid Line - same journey as the Powder Line, minus the spray-drying
 // chapter (liquid egg is not dried), so five chapters instead of six.
 export default function LiquidLinePage({ onPageChange }) {
   return (
     <PageWrapper
       seo={{
         title: 'Liquid Line | How SKM Liquid Egg Is Made',
-        description: 'From biosecure farms to hygienic packaging — see how SKM liquid egg products are made through a HACCP-monitored breaking and pasteurization line.',
+        description: 'From biosecure farms to hygienic packaging - see how SKM liquid egg products are made through a HACCP-monitored breaking and pasteurization line.',
         keywords: 'liquid egg manufacturing process, pasteurized liquid egg, SKM liquid line, egg processing plant',
         canonical: 'https://www.skmegg.com/liquid_line',
       }}
@@ -28,7 +28,7 @@ export default function LiquidLinePage({ onPageChange }) {
         </div>
         <TraceabilityLoopJourney
           title="How Liquid Egg Is Made"
-          subtitle="360° Farm-to-Food Traceability — From Biosecure Farms to Hygienic Packaging & Global Dispatch"
+          subtitle="360° Farm-to-Food Traceability - From Biosecure Farms to Hygienic Packaging & Global Dispatch"
           onPageChange={onPageChange}
           showQuality={false}
           line="liquid"

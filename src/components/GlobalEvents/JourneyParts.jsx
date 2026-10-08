@@ -136,7 +136,7 @@ export function CompleteSummary({ eventCount, countryCount, onReplay, onClose, o
         {eventCount} events across {countryCount} {countryCount === 1 ? 'country' : 'countries'}
       </motion.h3>
       <motion.p variants={item} className="mt-2 mb-0 font-body text-[13.5px] leading-[22px] text-surface-500">
-        From India to the world — thank you for following along.
+        From India to the world - thank you for following along.
       </motion.p>
       <motion.div variants={item} className="mt-5 flex flex-wrap items-center gap-3">
         <button type="button" onClick={onReplay} className={`group inline-flex min-h-[44px] items-center gap-2 rounded-full bg-brand-600 px-6 font-heading text-[12px] font-bold uppercase tracking-[0.06em] text-white cursor-pointer border-0 transition-colors hover:bg-brand-700 ${focusRing}`}>

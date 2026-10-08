@@ -1,4 +1,4 @@
-// Inline SVG icon set for the navigation rail and overlay — no icon library
+// Inline SVG icon set for the navigation rail and overlay - no icon library
 // dependency. Every icon is decorative (aria-hidden), labelling is done by
 // the parent button's aria-label / visible text.
 

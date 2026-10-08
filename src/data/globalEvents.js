@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  EVENTS & EXPOS — the single source of truth for "SKM Events Around the
+//  EVENTS & EXPOS - the single source of truth for "SKM Events Around the
 //  World" (the journey map on /global_reach) and the /events/<slug> pages.
 //  Pins, flight routes, the details panel, Previous / Next, the progress
 //  count and the event page are all generated from this list.

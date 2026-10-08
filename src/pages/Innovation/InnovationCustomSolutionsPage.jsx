@@ -3,9 +3,9 @@ import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { getProductById } from '../../data/products';
 
-// Innovation and Custom Solutions — new page, Section 1 (Challenge-first
+// Innovation and Custom Solutions - new page, Section 1 (Challenge-first
 // hero) only, per this task's scope. No page for this existed anywhere in
-// the app before this change (confirmed by search) — this is a genuinely
+// the app before this change (confirmed by search) - this is a genuinely
 // new route, not a replacement of the existing "Customized Mix" product
 // page (route `customized_mix`), which stays as-is and covers the one real
 // custom SKU (Y1119, heat-stable egg yolk mix). This page is the broader
@@ -13,11 +13,11 @@ import { getProductById } from '../../data/products';
 // and processing challenges, not just one additional product listing.
 //
 // Heading is exact, verbatim per the brief. Buttons: "Start a Development
-// Project" routes to the real get-quote flow — no separate development-
+// Project" routes to the real get-quote flow - no separate development-
 // project intake form exists, so it reuses the same real conversion path
 // already established for equivalent asks elsewhere (e.g. Home's
 // FinalEnquiry, Manufacturing and Supply's "Submit Your Annual
-// Requirement"). "Talk to R&D" routes to the real Contact Us page — no
+// Requirement"). "Talk to R&D" routes to the real Contact Us page - no
 // dedicated R&D team page or contact channel exists in the app, so it
 // reaches the one real, general contact destination rather than a
 // fabricated department-specific one.
@@ -26,8 +26,8 @@ import { getProductById } from '../../data/products';
 // earlier this session (Heat-Stable, High-Whip, High-Gel, Emulsifying,
 // Colour, Protein-Boosted variants, and real `packagingOptions` data).
 // "Regional specification" has no real per-region formulation data
-// anywhere in the repo — no documented mapping of formulation to export
-// market — so that card states the real, general fact instead (dedicated
+// anywhere in the repo - no documented mapping of formulation to export
+// market - so that card states the real, general fact instead (dedicated
 // regional branches coordinating compliance close to each market) rather
 // than inventing region-specific formulation capability. "Discuss This
 // Challenge" routes to the real Contact Us page.
@@ -35,7 +35,7 @@ const CHALLENGES = [
   {
     id: 'product-functionality',
     label: 'Product functionality',
-    fact: 'Custom-blended formulations engineered for a specific functional outcome — e.g. the heat-stable egg yolk mix (Y1119) developed for hot-filled mayonnaise and bakery applications.',
+    fact: 'Custom-blended formulations engineered for a specific functional outcome - e.g. the heat-stable egg yolk mix (Y1119) developed for hot-filled mayonnaise and bakery applications.',
   },
   {
     id: 'heat-stability',
@@ -135,7 +135,7 @@ function ChallengesSection({ onPageChange }) {
 // Section 3 (Co-development process): the 8 stage names are exact,
 // approved content supplied by the brief itself (a standard B2B
 // ingredient-development workflow, not a product/technical claim requiring
-// separate factual sourcing) — no invented sub-detail is added beyond the
+// separate factual sourcing) - no invented sub-detail is added beyond the
 // stage names and their plain sequential meaning. "Start with Your
 // Requirement" routes to the real get-quote flow, the same real intake
 // path already used for equivalent asks.
@@ -209,7 +209,7 @@ function CoDevelopmentProcessSection({ onPageChange }) {
 // physicochemical/functional testing (emulsification, foam stability, gel
 // strength, viscosity, baking performance), and microbiological testing.
 // "Team expertise" has no real named-team, headcount, or credential data
-// anywhere in the repo — the closest real fact is Laboratory.jsx's own
+// anywhere in the repo - the closest real fact is Laboratory.jsx's own
 // gallery caption ("A dedicated Quality Assurance team oversees systematic
 // monitoring, validation, and documentation across all production
 // stages"), reused verbatim rather than inventing team size or
@@ -222,7 +222,7 @@ const RD_CAPABILITIES = [
   },
   {
     title: 'Functional Testing',
-    description: 'Dedicated functional testing systems evaluate emulsification, foam stability, gel strength, viscosity, baking performance, and product flow characteristics — the same parameters used to validate custom formulations.',
+    description: 'Dedicated functional testing systems evaluate emulsification, foam stability, gel strength, viscosity, baking performance, and product flow characteristics - the same parameters used to validate custom formulations.',
   },
   {
     title: 'Microbiological Testing',
@@ -298,10 +298,10 @@ function RDCapabilitySection({ onPageChange }) {
 }
 
 // Section 5 (Existing specialty solutions): the 5 requested categories map
-// directly to 5 real products already in data/products.js — Heat-stable
+// directly to 5 real products already in data/products.js - Heat-stable
 // yolk products (egg_yolk_powder_heat_stable), Custom powder mix
 // (customized_mix), Specialty liquids (speciality_egg_liquids), Consumer-
-// oriented specialty products (egg_white_cube — the one retail/ready-to-
+// oriented specialty products (egg_white_cube - the one retail/ready-to-
 // eat format), Custom packaging (customized_packages). Real image,
 // title, and shortDescription reused from products.js, not new copy.
 // "View Specialty Products" routes to the real Customised and Specialty
@@ -388,9 +388,9 @@ function ExistingSpecialtySolutionsSection({ onPageChange }) {
 
 // Section 6 (Final CTA): the brief asks for "a compact project form" on
 // this page. No standalone, reusable compact-form component exists in the
-// app — the real intake mechanisms are the full multi-step GetQuotePage
+// app - the real intake mechanisms are the full multi-step GetQuotePage
 // and a modal tightly wired to ContactUs.jsx's own state/submission logic
-// — so rather than build new, unverified submission/validation logic in
+// - so rather than build new, unverified submission/validation logic in
 // this pass, both buttons route to the real existing intake flows.
 // "Submit Your Formulation Challenge" routes to the real get-quote flow;
 // "Arrange a Technical Call" routes to the real Contact Us page.
@@ -437,7 +437,7 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'Innovation and Custom Solutions | SKM Egg Products',
-        description: 'SKM develops custom egg functionality for your product — formulation and processing challenges solved through tailored egg powder and liquid egg solutions.',
+        description: 'SKM develops custom egg functionality for your product - formulation and processing challenges solved through tailored egg powder and liquid egg solutions.',
         keywords: 'custom egg powder formulation, egg ingredient development, custom egg blend manufacturer, egg functionality solutions, OEM egg powder development',
         canonical: 'https://www.skmegg.com/innovation_and_custom_solutions',
       }}
@@ -445,7 +445,7 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
     >
       <div className="w-full flex flex-col bg-page">
 
-        {/* Section 1 — Challenge-first hero */}
+        {/* Section 1 - Challenge-first hero */}
         <div className="w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[110px] lg:pb-[110px] border-b border-[#eee] text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
@@ -478,19 +478,19 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
           </motion.div>
         </div>
 
-        {/* Section 2 — Challenges SKM can support */}
+        {/* Section 2 - Challenges SKM can support */}
         <ChallengesSection onPageChange={onPageChange} />
 
-        {/* Section 3 — Co-development process */}
+        {/* Section 3 - Co-development process */}
         <CoDevelopmentProcessSection onPageChange={onPageChange} />
 
-        {/* Section 4 — R&D and application capability */}
+        {/* Section 4 - R&D and application capability */}
         <RDCapabilitySection onPageChange={onPageChange} />
 
-        {/* Section 5 — Existing specialty solutions */}
+        {/* Section 5 - Existing specialty solutions */}
         <ExistingSpecialtySolutionsSection onPageChange={onPageChange} />
 
-        {/* Section 6 — Final CTA */}
+        {/* Section 6 - Final CTA */}
         <FinalCTASection onPageChange={onPageChange} />
 
       </div>

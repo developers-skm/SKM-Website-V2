@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  SKM GALLERY — MOMENTS & MILESTONES
+//  SKM GALLERY - MOMENTS & MILESTONES
 //
 //  This file is the ONLY place you edit to change the Gallery page.
 //  Order in this list does not matter: the page sorts by `date` (newest first),

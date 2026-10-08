@@ -2,16 +2,16 @@ import { motion } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
-// Section 1 — Enquiry-intent selector (brief §1). Exact 4 large choices;
+// Section 1 - Enquiry-intent selector (brief §1). Exact 4 large choices;
 // each card itself is the selection button (no separate button element).
 // All 4 route into the real, enhanced get-quote flow with a distinct
-// `enquiryIntent` carried via prefillData — the same real prefill
-// mechanism already used sitewide (App.jsx's handlePageChange) — so
+// `enquiryIntent` carried via prefillData - the same real prefill
+// mechanism already used sitewide (App.jsx's handlePageChange) - so
 // GetQuotePage.jsx's Step 1 can adapt its copy/fields per intent without
 // this being four separate duplicated flows.
 //
 // Job/Internship/Feedback/Vendor/Service enquiries are real and still
-// fully functional — they've moved to the smaller "Other enquiries" row
+// fully functional - they've moved to the smaller "Other enquiries" row
 // below the 4 primary cards (still open the same real EnquiryModal.jsx
 // forms), since they're not one of this page's 4 primary intents per the
 // brief.
@@ -98,11 +98,11 @@ export default function EnquiryCategories({ onOpenEnquiry, onPageChange }) {
             What brings you here today?
           </h2>
           <p className="font-body text-[15px] text-surface-500 max-w-2xl leading-[26px] m-0">
-            Select the option that matches your intent — we'll only ask what's relevant to it.
+            Select the option that matches your intent - we'll only ask what's relevant to it.
           </p>
         </div>
 
-        {/* Section 1 — 4 primary intent cards, each card is the button */}
+        {/* Section 1 - 4 primary intent cards, each card is the button */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {primaryIntents.map((intent) => (
             <motion.button
@@ -124,7 +124,7 @@ export default function EnquiryCategories({ onOpenEnquiry, onPageChange }) {
           ))}
         </div>
 
-        {/* Other enquiries — real, functional, secondary to the 4 primary intents */}
+        {/* Other enquiries - real, functional, secondary to the 4 primary intents */}
         <motion.div variants={itemVariants} className="flex flex-col gap-5 pt-6 border-t border-[#eee]">
           <span className="font-body text-[12px] font-semibold uppercase tracking-widest text-surface-400">
             Other Enquiries

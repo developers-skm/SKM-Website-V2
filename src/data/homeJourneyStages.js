@@ -1,9 +1,9 @@
-// Section 5 (Home) — Farm-to-product journey. 8 stages, a data shape that
+// Section 5 (Home) - Farm-to-product journey. 8 stages, a data shape that
 // does not exist anywhere else in the repo (the shared journeyStages.js has
 // 6 differently-named stages, reused by HomeJourney's prior version, the
-// full Journey page, and TraceWidget — this file's own stage shape is not
+// full Journey page, and TraceWidget - this file's own stage shape is not
 // derived from it). The two files do share a few underlying production
-// numbers (layers housed, eggs/year, eggs/day) — those are pulled from
+// numbers (layers housed, eggs/year, eggs/day) - those are pulled from
 // ./productionFacts.js so they can't drift apart; everything else below is
 // an exact sentence quoted directly from the named source file/component,
 // not paraphrased or invented. Source is cited per stage for audit purposes.
@@ -50,7 +50,7 @@ const homeJourneyStages = [
     whatHappens: 'Every raw material entering the feed mill undergoes rigorous testing for mycotoxins, pesticide residues, and antibiotic contaminants.',
     whatIsControlled: 'Strict lot-wise storage prevents cross-contamination and ensures full traceability from ingredient intake to finished feed.',
     // No separate "records/quality checks" sentence exists for this stage
-    // beyond the control statement above — omitted rather than duplicated
+    // beyond the control statement above - omitted rather than duplicated
     // or invented.
     recordsAndChecks: null,
     route: null,
@@ -63,10 +63,10 @@ const homeJourneyStages = [
     // description + image assets "Egg Collecting Conveyor" / "Egg Collection
     // Area"). No separate "what is controlled"/"records" sentence exists
     // specifically for the collection step beyond the general farm
-    // description — those two fields are omitted rather than invented for
+    // description - those two fields are omitted rather than invented for
     // this stage.
     image: EggCollectionImg,
-    whatHappens: 'A look inside our integrated poultry farm — from environmentally controlled sheds to egg collection, biosecurity entry points, and feed management.',
+    whatHappens: 'A look inside our integrated poultry farm - from environmentally controlled sheds to egg collection, biosecurity entry points, and feed management.',
     whatIsControlled: null,
     recordsAndChecks: null,
     route: 'poultry_farm',
@@ -92,7 +92,7 @@ const homeJourneyStages = [
     // Instruments & Technology" and "Microbiological Laboratory" content
     // sections).
     image: LabImg,
-    whatHappens: 'Advanced analytical platforms support comprehensive safety and residue monitoring — precise screening of feed ingredients, additives, water, tissues, eggs, and finished products for antibiotics, pesticides, and contaminants in line with EU and Japanese regulations (including EU 96/23).',
+    whatHappens: 'Advanced analytical platforms support comprehensive safety and residue monitoring - precise screening of feed ingredients, additives, water, tissues, eggs, and finished products for antibiotics, pesticides, and contaminants in line with EU and Japanese regulations (including EU 96/23).',
     whatIsControlled: 'A controlled microbiology laboratory ensures products are free from pathogens and microbial contamination prior to dispatch.',
     recordsAndChecks: 'Routine testing and environmental monitoring are conducted using biosafety-controlled infrastructure.',
     route: 'laboratory',

@@ -15,31 +15,31 @@ import certKOSHER from '../../assets/4. QUALITY/Certificates/KOSHER_524x600px.pn
 import certNABL from '../../assets/4. QUALITY/Certificates/NABL 17025_524x600px.png';
 import traceabilityHeroImage from '../../assets/4. QUALITY/Traceability/Traceability Home Section.png';
 
-// Quality, Food Safety and Traceability — combined hub page. This is a new
+// Quality, Food Safety and Traceability - combined hub page. This is a new
 // page alongside the 5 existing standalone Quality pages (Policy,
-// Certifications, Quality Assurance, Traceability, QMS) — it doesn't
+// Certifications, Quality Assurance, Traceability, QMS) - it doesn't
 // replace or duplicate their full content, just brings the buyer-facing
 // trust summary onto one page with real links out to each detail page.
 //
 // Section 1 (Trust hero): all 4 facts are real, sourced from already-
-// approved content — quality promise (verbatim FoodSafetyPolicy.jsx
+// approved content - quality promise (verbatim FoodSafetyPolicy.jsx
 // commitment), main certifications (data/certifications.js), laboratory
 // accreditation (verbatim NABL/ISO-IEC-17025-since-2006 fact), traceability
 // coverage (verbatim Traceability.jsx summary). "Download Certification
-// Pack" is a genuinely disabled button — no real pack PDF exists, same
+// Pack" is a genuinely disabled button - no real pack PDF exists, same
 // precedent as Home's QualityCertificationProof. "Contact Quality Team"
 // opens the real EnquiryModal (same shared component used on /contact-us)
-// in place on this page — background stays this page, not a navigation to
-// Contact Us — using a new "quality" enquiry type that falls through to
+// in place on this page - background stays this page, not a navigation to
+// Contact Us - using a new "quality" enquiry type that falls through to
 // the modal's existing GenericForm (Name, Email, Phone, Message: real,
 // apt fields, nothing invented).
 //
 // Section 2 (Integrated farm-to-product traceability): reuses
-// data/homeJourneyStages.js — the exact same 8-stage visual journey
+// data/homeJourneyStages.js - the exact same 8-stage visual journey
 // component built for Home's "Farm-to-product journey" section (same
 // connected-node selector UI, same real per-stage facts). Each stage's
 // "View Controls" button renders only when that stage carries a real
-// `route` (7 of 8 stages do — only `feed-sourcing` has no dedicated page,
+// `route` (7 of 8 stages do - only `feed-sourcing` has no dedicated page,
 // since its content is folded into the Feed Mill page rather than being a
 // standalone route); no fake destination is ever linked. "Explore Complete
 // Traceability" routes to the existing Traceability page.
@@ -60,7 +60,7 @@ function TraceabilityJourneySection({ onPageChange }) {
 // FoodSafetyPolicy.jsx). Egg receipt, Breaking and separation, Drying or
 // liquid processing, and Final release have no distinct real documentation
 // beyond the general "HACCP-monitored plant with full CCP documentation at
-// every stage" fact already true of the whole processing chain — so those
+// every stage" fact already true of the whole processing chain - so those
 // 4 cards state that same real, general fact rather than inventing a
 // receipt-specific or drying-specific control that isn't documented
 // anywhere. "View Quality-Control Process" routes to the real Quality
@@ -89,7 +89,7 @@ const QUALITY_GATES = [
   {
     id: 'pasteurisation',
     label: 'Pasteurisation',
-    fact: 'Daily fresh egg intake moves through a HACCP-monitored, EU and USDA-compliant plant — breaking, pasteurization, and drying — with full CCP documentation at every stage.',
+    fact: 'Daily fresh egg intake moves through a HACCP-monitored, EU and USDA-compliant plant - breaking, pasteurization, and drying - with full CCP documentation at every stage.',
   },
   {
     id: 'drying-liquid-processing',
@@ -173,19 +173,19 @@ function QualityGatesSection({ onPageChange }) {
 // Poultry Disease Diagnostics). Descriptions and chip lists are reused
 // verbatim from that same source, condensed into one organised grid rather
 // than duplicated as new copy. "Download Laboratory Accreditation" is a
-// genuinely disabled button — only a NABL logo image exists in the repo
+// genuinely disabled button - only a NABL logo image exists in the repo
 // (src/assets/4. QUALITY/Certificates/NABL 17025_524x600px.png), not a
 // downloadable accreditation certificate document. "Explore Laboratory
 // Capabilities" routes to the real Laboratory page.
 const LAB_CAPABILITIES = [
   {
     title: 'Residue Testing',
-    description: 'Advanced analytical platforms support comprehensive safety and residue monitoring — precise screening of feed ingredients, additives, water, tissues, eggs, and finished products for antibiotics, pesticides, and contaminants in line with EU and Japanese regulations (including EU 96/23).',
+    description: 'Advanced analytical platforms support comprehensive safety and residue monitoring - precise screening of feed ingredients, additives, water, tissues, eggs, and finished products for antibiotics, pesticides, and contaminants in line with EU and Japanese regulations (including EU 96/23).',
     chips: ['GC-MS', 'GC-ECD / FID', 'HPLC', 'LC-MS/MS', 'AAS', 'ELISA Systems'],
   },
   {
     title: 'Physicochemical Testing',
-    description: 'Modern laboratory equipment verifies freshness and key parameters — evaluating emulsification, foam stability, gel strength, viscosity, baking performance, and product flow characteristics.',
+    description: 'Modern laboratory equipment verifies freshness and key parameters - evaluating emulsification, foam stability, gel strength, viscosity, baking performance, and product flow characteristics.',
     chips: ['Protein, fat, moisture, ash', 'pH, total solids, solubility', 'Organic acids and biochemical markers'],
   },
   {
@@ -276,7 +276,7 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
 }
 
 // Section 5 (Certifications and approvals): filters use only the 3 axes
-// that have a genuine, verifiable category per real certificate — Food
+// that have a genuine, verifiable category per real certificate - Food
 // safety (FSSAI, Export Inspection Council, BRC Food Certified, Eat Right
 // Campus), Religious certification (Halal, Kosher), Laboratory (ISO/IEC
 // 17025, NABL). "Export market" and "Plant or product scope" are omitted:
@@ -285,7 +285,7 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
 // "View Certificate" opens the real certificate logo image (the only asset
 // that exists per certificate); "Download" downloads that same image.
 // "Request Market-Specific Documentation" routes to the real Contact Us
-// page — no per-market document set exists to serve directly.
+// page - no per-market document set exists to serve directly.
 const CERT_CATEGORIES = {
   FSSAI: 'Food safety',
   'Export Inspection Council': 'Food safety',
@@ -412,9 +412,9 @@ function CertificationsApprovalsSection({ onPageChange }) {
 // QualityManagementSystem.jsx's HACCP callout and FoodSafetyPolicy.jsx's
 // customer-specification commitment). Release procedures, Internal audits,
 // Supplier approval, and Corrective actions have no distinct real
-// procedure documented anywhere in the repo — each of those 4 cards states
+// procedure documented anywhere in the repo - each of those 4 cards states
 // the same real, general QMS-framework fact (structured management
-// review, preventive action, process-driven approach — verbatim from
+// review, preventive action, process-driven approach - verbatim from
 // QualityManagementSystem.jsx's pillar descriptions) rather than inventing
 // a specific procedure that isn't documented. "Read Our Quality Policy"
 // routes to the real Policy page; "Request Quality Documentation" routes
@@ -423,7 +423,7 @@ const QMS_TOPICS = [
   {
     id: 'haccp',
     label: 'HACCP',
-    fact: 'The food safety system follows HACCP principles to assure product safety from farm to fork — hatchery, feed mill, farm, processing, handling, and delivery are all closely monitored, controlled, and documented.',
+    fact: 'The food safety system follows HACCP principles to assure product safety from farm to fork - hatchery, feed mill, farm, processing, handling, and delivery are all closely monitored, controlled, and documented.',
   },
   {
     id: 'release-procedures',
@@ -433,7 +433,7 @@ const QMS_TOPICS = [
   {
     id: 'internal-audits',
     label: 'Internal audits',
-    fact: 'Governed by the same structured management review process — periodic reviews of quality performance data, customer feedback, and audit findings.',
+    fact: 'Governed by the same structured management review process - periodic reviews of quality performance data, customer feedback, and audit findings.',
   },
   {
     id: 'supplier-approval',
@@ -520,10 +520,10 @@ function QualityManagementSystemSection({ onPageChange }) {
 // Traceability.jsx's "integrated traceability system links lot codes,
 // batch identification, and farm origin back to feed ingredients").
 // Document retrieval, Product recall readiness, and Customer support have
-// no distinct documented procedure anywhere in the repo — each states the
+// no distinct documented procedure anywhere in the repo - each states the
 // same real, general traceability-system fact rather than inventing a
 // specific recall or retrieval process that isn't documented. Both buttons
-// route to the real Contact Us page — no dedicated traceability-question
+// route to the real Contact Us page - no dedicated traceability-question
 // form or quality-assurance-specific contact channel exists separately.
 const INCIDENT_RESPONSE_TOPICS = [
   {
@@ -631,7 +631,7 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'Quality, Food Safety & Traceability | SKM Egg Products',
-        description: 'How SKM Egg Products consistently delivers a safe, compliant, and traceable ingredient — quality policy, certifications, laboratory accreditation, and full farm-to-dispatch traceability.',
+        description: 'How SKM Egg Products consistently delivers a safe, compliant, and traceable ingredient - quality policy, certifications, laboratory accreditation, and full farm-to-dispatch traceability.',
         keywords: 'egg product quality assurance, food safety policy, egg product certifications, NABL accredited laboratory, egg traceability, HACCP egg processing',
         canonical: 'https://www.skmegg.com/quality_food_safety_traceability',
       }}
@@ -639,7 +639,7 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
     >
       <div className="w-full flex flex-col bg-page">
 
-        {/* Section 1 — Trust hero */}
+        {/* Section 1 - Trust hero */}
         <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] overflow-hidden">
           <div
             className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18]"
@@ -701,7 +701,7 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
                   Laboratory accreditation
                 </span>
                 <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
-                  NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006 — physicochemical, microbiological, and residue testing on every batch.
+                  NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006 - physicochemical, microbiological, and residue testing on every batch.
                 </span>
               </motion.div>
 
@@ -716,7 +716,7 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
                   Traceability coverage
                 </span>
                 <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
-                  Complete supply chain visibility — every egg, every batch, every step documented and traceable from biosecure hatchery to final dispatch.
+                  Complete supply chain visibility - every egg, every batch, every step documented and traceable from biosecure hatchery to final dispatch.
                 </span>
               </motion.div>
             </div>
@@ -743,22 +743,22 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
           </div>
         </div>
 
-        {/* Section 2 — Integrated farm-to-product traceability */}
+        {/* Section 2 - Integrated farm-to-product traceability */}
         <TraceabilityJourneySection onPageChange={onPageChange} />
 
-        {/* Section 3 — Quality gates by production stage */}
+        {/* Section 3 - Quality gates by production stage */}
         <QualityGatesSection onPageChange={onPageChange} />
 
-        {/* Section 4 — Laboratory capabilities */}
+        {/* Section 4 - Laboratory capabilities */}
         <LaboratoryCapabilitiesSection onPageChange={onPageChange} />
 
-        {/* Section 5 — Certifications and approvals */}
+        {/* Section 5 - Certifications and approvals */}
         <CertificationsApprovalsSection onPageChange={onPageChange} />
 
-        {/* Section 6 — Quality management system */}
+        {/* Section 6 - Quality management system */}
         <QualityManagementSystemSection onPageChange={onPageChange} />
 
-        {/* Section 7 — Traceability and incident response */}
+        {/* Section 7 - Traceability and incident response */}
         <IncidentResponseSection onPageChange={onPageChange} />
 
       </div>

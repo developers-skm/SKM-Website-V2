@@ -6,9 +6,9 @@ import { EASE_PREMIUM, DURATION, STAGGER } from '../../../utils/motionTokens';
 
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
-// Section 3 — browse by formulation challenge (brief §3). Each challenge's
+// Section 3 - browse by formulation challenge (brief §3). Each challenge's
 // product matches come from a real evidence audit of every product page's
-// own variant text (see data/formulationChallenges.js) — not an assumed
+// own variant text (see data/formulationChallenges.js) - not an assumed
 // mapping. "Find Products for This Challenge" expands the card to reveal
 // the real matched products with links to their own pages, since a
 // challenge maps to several products rather than one single destination.

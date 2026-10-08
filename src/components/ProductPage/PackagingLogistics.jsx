@@ -2,9 +2,9 @@ import { motion, useReducedMotion } from 'framer-motion';
 import exportMarkets from '../../data/exportMarkets';
 import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
 
-// Section 6 — packaging and logistics (brief §6). "Pallet information" is
+// Section 6 - packaging and logistics (brief §6). "Pallet information" is
 // omitted: no per-product pallet spec (units/pallet, dimensions) exists
-// anywhere in the codebase — only a general company-wide mention that IBC
+// anywhere in the codebase - only a general company-wide mention that IBC
 // containers are "compatible with standard fork-lift pallet systems" on the
 // Customized Packages page, which isn't a per-product fact worth restating
 // here. "Export suitability" reuses the real, company-wide export market

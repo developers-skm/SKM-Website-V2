@@ -24,7 +24,7 @@ export default function EmployerBrandStrip() {
           </h2>
 
           <p className="font-body text-[17px] sm:text-[19px] text-surface-600 leading-[1.65] max-w-[680px] m-0">
-            At SKM, people across manufacturing, quality, science, engineering and business functions work together toward one standard — excellence.
+            At SKM, people across manufacturing, quality, science, engineering and business functions work together toward one standard - excellence.
           </p>
         </motion.div>
       </Container>

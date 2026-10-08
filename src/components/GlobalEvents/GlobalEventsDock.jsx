@@ -59,12 +59,12 @@ export default function GlobalEventsDock({ children, onPageChange }) {
           {children}
         </div>
 
-        {/* Entry card under the map (all sizes) — below the map so it never covers a country */}
+        {/* Entry card under the map (all sizes) - below the map so it never covers a country */}
         <button
           ref={openerRef}
           type="button"
           onClick={open}
-          aria-label="Open Events and Expos — SKM Events Around the World"
+          aria-label="Open Events and Expos - SKM Events Around the World"
           className={`group mt-5 flex min-h-[72px] w-full items-center justify-between gap-4 rounded-[16px] border border-[#eee] border-l-[3px] border-l-brand-600 bg-white px-5 py-4 text-left shadow-[5px_3px_40px_rgba(0,72,88,0.08)] cursor-pointer ${focusRing}`}
         >
           <span>

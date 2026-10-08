@@ -2,7 +2,7 @@ import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import TraceabilityLoopJourney from '../../components/Traceability/TraceabilityLoopJourney';
 
-// Powder Line — the manufacturing process that previously sat at the bottom
+// Powder Line - the manufacturing process that previously sat at the bottom
 // of every egg-powder product page, now a single dedicated page reached from
 // the Products hub.
 export default function PowderLinePage({ onPageChange }) {
@@ -10,7 +10,7 @@ export default function PowderLinePage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'Powder Line | How SKM Egg Powder Is Made',
-        description: 'From biosecure farms to hygienic packaging — see how SKM egg powders are made through a HACCP-monitored breaking, pasteurization and spray-drying line.',
+        description: 'From biosecure farms to hygienic packaging - see how SKM egg powders are made through a HACCP-monitored breaking, pasteurization and spray-drying line.',
         keywords: 'egg powder manufacturing process, spray dried egg powder, SKM powder line, egg powder plant',
         canonical: 'https://www.skmegg.com/powder_line',
       }}
@@ -29,7 +29,7 @@ export default function PowderLinePage({ onPageChange }) {
         </div>
         <TraceabilityLoopJourney
           title="How Egg Powder Is Made"
-          subtitle="Feed-to-Food Traceability — From Biosecure Farms to Hygienic Packaging & Global Dispatch"
+          subtitle="Feed-to-Food Traceability - From Biosecure Farms to Hygienic Packaging & Global Dispatch"
           onPageChange={onPageChange}
           showQuality={false}
         />

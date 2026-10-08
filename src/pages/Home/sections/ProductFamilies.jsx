@@ -6,19 +6,19 @@ import products, { PRODUCT_CATEGORIES, getProductById } from '../../../data/prod
 import CategoryMotif from './CategoryMotif';
 import TableEggImage from '../../../assets/1. HOME PAGE/TableEggImage.png';
 
-// Section 3 — Product Families. Four family cards in a 2x2 grid. Every
+// Section 3 - Product Families. Four family cards in a 2x2 grid. Every
 // format/benefit/application/storage value below is an exact verbatim
 // string copied from approved product-page data (variantsData `benefits`,
 // `specifications.storage`, applicationsData `name`, or `shortDescription`)
-// — never a newly authored summary. Fields with no genuine family-wide
+// - never a newly authored summary. Fields with no genuine family-wide
 // approved value are omitted, not fabricated (see the per-family notes
-// below). Grid cards only surface format + the first benefit line — full
+// below). Grid cards only surface format + the first benefit line - full
 // detail (applications, storage) still lives on each family's category
 // page, reached via the card CTA.
 //
 // Each family CTA navigates directly to its real category transition page
 // (src/pages/Products/EggPowdersCategoryPage.jsx, LiquidEggCategoryPage.jsx,
-// CustomSpecialtyCategoryPage.jsx) — a more precise destination than the
+// CustomSpecialtyCategoryPage.jsx) - a more precise destination than the
 // /products hub's in-page anchor.
 const families = [
   {
@@ -27,14 +27,14 @@ const families = [
     // Verbatim: whole_egg_powder's shortDescription in products.js.
     format: ['Powder', 'Spray-dried'],
     // Verbatim benefits fields from WholeEggPowderPage.jsx / EggYolkPowderPage.jsx
-    // variantsData — a representative selection, not a merged claim.
+    // variantsData - a representative selection, not a merged claim.
     benefits: [
       'Long-term shelf stability, simple dosing and weight-ratio control, and reliable structural crumb development.',
       'High fat content, rich creamy mouthfeel, natural golden-yellow coloration, and excellent emulsification properties.',
     ],
     // No storage/handling field exists anywhere in powder product data
     // (powders are specified by moisture/dryness, not temperature/storage)
-    // — omitted per the missing-data rule, not invented.
+    // - omitted per the missing-data rule, not invented.
     productIds: products.filter((p) => p.category === PRODUCT_CATEGORIES.POWDERS).map((p) => p.id),
     ctaLabel: 'Explore Egg Powders',
     categoryRoute: 'category_powders',
@@ -67,7 +67,7 @@ const families = [
     // No benefits/applications/storage field is genuinely shared across
     // this family (only 1 of its 4 products has any applicationsData; none
     // have a storage field; benefits are single-product, not family-wide)
-    // — all three omitted per the missing-data rule, not merged into a
+    // - all three omitted per the missing-data rule, not merged into a
     // fabricated family summary.
     productIds: products
       .filter((p) => p.category === PRODUCT_CATEGORIES.CUSTOMIZED || p.category === PRODUCT_CATEGORIES.SPECIALITY)
@@ -76,9 +76,9 @@ const families = [
     categoryRoute: 'category_custom',
   },
   {
-    // No table/shell egg product exists in the catalogue yet — the copy
+    // No table/shell egg product exists in the catalogue yet - the copy
     // below is honest that it's not launched. Image is a local placeholder
-    // asset — no product data implied.
+    // asset - no product data implied.
     id: 'table-eggs',
     name: 'Table Eggs',
     comingSoon: true,
@@ -87,7 +87,7 @@ const families = [
   },
 ];
 
-// Pointer-tracked 3D tilt for the entire family card — adapted from the
+// Pointer-tracked 3D tilt for the entire family card - adapted from the
 // TiltedCard pattern (see src/components/ui/TiltedCard). The whole card
 // (image + text + CTA) rotates together as one rigid plane, so the effect
 // reads as "the card itself" tilting toward the cursor rather than just its
@@ -137,7 +137,7 @@ function TiltCard({ children, reduceMotion, className = '' }) {
   );
 }
 
-// Vertical family card — tilt image on top, condensed content below (name,
+// Vertical family card - tilt image on top, condensed content below (name,
 // product format, and the family's first listed benefit line only; full
 // detail lives on the category page behind the CTA).
 function FamilyCard({ family, onPageChange }) {

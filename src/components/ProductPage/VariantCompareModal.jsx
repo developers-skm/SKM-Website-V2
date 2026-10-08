@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { EASE_PREMIUM, DURATION } from '../../utils/motionTokens';
 
-// "Compare Selected Variants" (brief §3 table action) — a focused overlay
+// "Compare Selected Variants" (brief §3 table action) - a focused overlay
 // rather than a new page/route, since comparison is a transient reading
 // task tied to the table state above it.
 export default function VariantCompareModal({ variants, displayCode, onClose }) {
@@ -86,7 +86,7 @@ export default function VariantCompareModal({ variants, displayCode, onClose }) 
               </table>
             </div>
 
-            {/* Scroll-right hint — fades a gradient + bouncing arrow over
+            {/* Scroll-right hint - fades a gradient + bouncing arrow over
                 the table's right edge until the user scrolls it. */}
             <AnimatePresence>
               {!hasScrolled && (

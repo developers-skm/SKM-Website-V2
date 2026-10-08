@@ -61,7 +61,7 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
               variants={itemVariants}
               className="section-label justify-center"
             >
-              CSR — Community Development
+              CSR - Community Development
             </motion.span>
             <motion.h2
               variants={itemVariants}
@@ -87,7 +87,7 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
                 SKM.Maeilanandhan, a social activist, ventured to practice his mentor's preaching at Swaminathapuram village where he was born and brought up. This led to the formation of a Trust named <strong className="text-surface-850">SKM Health and Mind Welfare Charity Trust</strong> in the year <strong className="text-brand-600">1988</strong>, and later through this trust he started a Service Centre named <strong className="text-surface-850">Sevai Maiyam</strong> on <strong className="text-brand-600">September 15th, 1999</strong>.
               </p>
               <p className="font-body text-[15px] text-surface-600 leading-[26px] m-0">
-                Swami Vivekanandha had emphasized that people who wish to serve must volunteer and go to villages to provide food, clothes, education and medication to the ignorant, poverty-stricken and unprivileged people — stressing that they are not backward but unprivileged.
+                Swami Vivekanandha had emphasized that people who wish to serve must volunteer and go to villages to provide food, clothes, education and medication to the ignorant, poverty-stricken and unprivileged people - stressing that they are not backward but unprivileged.
               </p>
               <p className="font-body text-[15px] text-surface-600 leading-[26px] m-0">
                 As an ardent devotee of Swami Vivekanandha, Thiru SKM.Maeilanandhan wanted to execute these values at his birthplace, Saminathapuram village, and translated that vision into action through the Trust and Sevai Maiyam.
@@ -97,7 +97,7 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
             {/* Right: Chairman image placeholder */}
             <motion.div variants={itemVariants} className="flex-1 w-full max-w-sm lg:max-w-xs xl:max-w-sm mx-auto lg:mx-0 flex-shrink-0">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="Chairman — image coming soon" aspectClass="aspect-[3/4]" />
+                <ImagePlaceholder label="Chairman - image coming soon" aspectClass="aspect-[3/4]" />
               </div>
             </motion.div>
           </div>
@@ -105,7 +105,7 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
           {/* ── Row 2: Section image ── */}
           <motion.div variants={itemVariants} className="flex flex-col gap-8">
             <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-              <ImagePlaceholder label="Sevai Maiyam — image coming soon" aspectClass="aspect-[16/7]" />
+              <ImagePlaceholder label="Sevai Maiyam - image coming soon" aspectClass="aspect-[16/7]" />
             </div>
 
             {/* Text below the image */}
@@ -116,7 +116,7 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
                   The Sevai Maiyam functions under the SKM Health and Mind Welfare Charity Trust at Saminathapuram in <strong className="text-surface-700">Modakkurichi Village, Erode District</strong>.
                 </p>
                 <p className="text-sm text-surface-600 leading-relaxed m-0">
-                  Unprivileged and backward class children living in two Dalit colonies — <strong className="text-surface-700">Gandhi Nagar</strong> and <strong className="text-surface-700">Rajiv Nagar</strong> — are adopted and all basic necessities are provided to uplift their lives.
+                  Unprivileged and backward class children living in two Dalit colonies - <strong className="text-surface-700">Gandhi Nagar</strong> and <strong className="text-surface-700">Rajiv Nagar</strong> - are adopted and all basic necessities are provided to uplift their lives.
                 </p>
               </div>
               <div className="p-5 bg-white border border-[#eee] rounded-[10px] flex flex-col gap-3">
@@ -145,7 +145,7 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
             </div>
             <div className="p-5 bg-surface-50 border border-surface-100 rounded-2xl">
               <p className="text-sm text-surface-600 leading-relaxed m-0">
-                Among the 228 families, the total number of people residing are <strong className="text-surface-850">786</strong> — of whom <strong className="text-surface-850">254 are males</strong>, <strong className="text-surface-850">231 females</strong>, <strong className="text-surface-850">239 children</strong>, and <strong className="text-surface-850">62 elderly</strong>.
+                Among the 228 families, the total number of people residing are <strong className="text-surface-850">786</strong> - of whom <strong className="text-surface-850">254 are males</strong>, <strong className="text-surface-850">231 females</strong>, <strong className="text-surface-850">239 children</strong>, and <strong className="text-surface-850">62 elderly</strong>.
               </p>
             </div>
           </motion.div>
@@ -174,7 +174,7 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
           <motion.div variants={itemVariants} className="flex flex-col gap-6">
             <div className="flex flex-col gap-1">
               <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Maternal &amp; Child Health</span>
-              <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading tracking-tight m-0">Healthy Child — Nation's Pride</h3>
+              <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading tracking-tight m-0">Healthy Child - Nation's Pride</h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {healthPoints.map((point, i) => (

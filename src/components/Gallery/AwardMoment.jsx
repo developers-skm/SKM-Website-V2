@@ -40,7 +40,7 @@ export default function AwardMoment({ moment, flip, onOpen }) {
       <span className="absolute inset-x-0 top-0 h-[3px] bg-gold-500" aria-hidden="true" />
 
       <div className="grid lg:grid-cols-12 items-center">
-        {/* Photograph — never upscaled past its natural width */}
+        {/* Photograph - never upscaled past its natural width */}
         <div className={`lg:col-span-6 p-5 sm:p-8 lg:p-10 ${flip ? 'lg:order-2' : ''}`}>
           <motion.button
             type="button"

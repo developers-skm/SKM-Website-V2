@@ -10,7 +10,7 @@ import { getBrochureUrl } from '../../data/brochureUrl';
 
 const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 
-// ACTION_BP (md, 768px) — the mobile sticky-action breakpoint — is
+// ACTION_BP (md, 768px) - the mobile sticky-action breakpoint - is
 // intentionally independent of Navbar's NAV_BP (xl). A tablet in the
 // mobile-nav-drawer state doesn't automatically need a thumb-reachable
 // bottom action bar; that's a narrower, phone-shaped affordance.

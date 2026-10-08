@@ -9,10 +9,10 @@ const containerVariants = {
 };
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
-// Section 2 — application categories (brief §2). The brief lists 8
+// Section 2 - application categories (brief §2). The brief lists 8
 // categories; only 4 (Bakery & Confectionery, Mayonnaise & Salad Dressing,
 // Meat & Fish, Noodles & Pasta) have real photography, copy, and product
-// matches anywhere in the codebase — the other 4 (Ice Cream & Dairy,
+// matches anywhere in the codebase - the other 4 (Ice Cream & Dairy,
 // Protein & Nutrition, Convenience Foods, Custom Application) have none.
 // This is the same situation already handled on the homepage
 // (Home/sections/ApplicationAreas.jsx), which established the rule: render

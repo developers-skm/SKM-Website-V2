@@ -33,7 +33,7 @@ export default function ResumeUploader({ id = 'resume', file, error, onChange, o
   };
 
   return (
-    <FieldShell id={id} label="Resume" required error={error} hint="PDF, DOC or DOCX — up to 5MB">
+    <FieldShell id={id} label="Resume" required error={error} hint="PDF, DOC or DOCX - up to 5MB">
       <input
         ref={inputRef}
         id={id}

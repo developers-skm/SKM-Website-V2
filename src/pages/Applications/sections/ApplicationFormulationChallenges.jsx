@@ -5,9 +5,9 @@ import { EASE_PREMIUM, DURATION, STAGGER } from '../../../utils/motionTokens';
 
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
-// Section 2 — common formulation challenges, scoped to this application
+// Section 2 - common formulation challenges, scoped to this application
 // (brief §2). Relevance is gated by the application's own curated
-// `relevantChallengeIds` (data/applications.js) — NOT simply "shares a
+// `relevantChallengeIds` (data/applications.js) - NOT simply "shares a
 // matched product with this challenge". A pure product-overlap check was
 // tried first and produced a real bug: Bakery's matched products are also
 // matched to "Strengthen Gel Or Binding" for their unrelated use in
@@ -19,7 +19,7 @@ const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 
 // cost-efficiency claim exists anywhere in the codebase to support it.
 //
 // "See SKM Solution" routes to a matched product's own page that's also
-// listed under this challenge — still a real shared-product link, just no
+// listed under this challenge - still a real shared-product link, just no
 // longer the sole relevance gate.
 export default function ApplicationFormulationChallenges({ application, onPageChange }) {
   const reduceMotion = useReducedMotion();

@@ -9,7 +9,7 @@ import { EASE_PREMIUM, DURATION, fadeUp } from '../../utils/motionTokens';
 const CompanyProfilePdf = getBrochureUrl('Company Profile - SKM Egg Products Export India Limited.pdf');
 import FactoryImage from '../../assets/2. ABOUT US/Our Company/Factory image.webp';
 
-// Section 2 — Company overview. Real content verbatim/derived from
+// Section 2 - Company overview. Real content verbatim/derived from
 // src/pages/AboutUs/sections/OurCompany.jsx (also used on the standalone
 // Our Company page): founded 1996, Asia's largest integrated egg
 // processing facility, 2M eggs/day, 7,500 MT egg powder annually, ISO
@@ -89,7 +89,7 @@ function CompanyOverviewSection({ onPageChange }) {
               Established in 1996, SKM Egg Products began its journey with a clear commitment to excellence in egg processing. Today, we operate as one of Asia's largest integrated egg processing facilities, combining advanced production technology with internationally aligned quality systems.
             </p>
             <p className="font-body text-[15px] text-surface-600 leading-[1.7] m-0">
-              Supported by fully integrated back-end farms, our operations process up to 2 million eggs per day, producing approximately 7,500 metric tonnes of egg powder annually — serving food manufacturers across bakery, mayonnaise, meat & fish, and noodles & pasta industries.
+              Supported by fully integrated back-end farms, our operations process up to 2 million eggs per day, producing approximately 7,500 metric tonnes of egg powder annually - serving food manufacturers across bakery, mayonnaise, meat & fish, and noodles & pasta industries.
             </p>
           </motion.div>
         </div>
@@ -119,21 +119,21 @@ function CompanyOverviewSection({ onPageChange }) {
   );
 }
 
-// About SKM — new consolidated page. Replaces the 8-item "About SKM" nav
+// About SKM - new consolidated page. Replaces the 8-item "About SKM" nav
 // dropdown (Our Company, Vision & Mission, Core Ideology, Brand Identity,
 // CEO's Message, Accolades, Events, Coffee Table Books) with a single page
 // telling the whole company story in one place, per the brief: buyers
 // shouldn't have to visit 7+ separate pages to understand the company. All
 // 8 individual pages stay live at their existing URLs for SEO/direct
 // linking (same precedent as the SKM Japan/Europe/Russia branch
-// consolidation) — just no longer reachable via the main nav dropdown.
+// consolidation) - just no longer reachable via the main nav dropdown.
 //
-// Section 1 — Company hero. "Download Company Profile" downloads the real
+// Section 1 - Company hero. "Download Company Profile" downloads the real
 // Company Profile PDF (src/assets/Brouchers/Company Profile - SKM Egg
 // Products Export India Limited.pdf, the same file used on the Resources
 // page). "Explore Our Products" routes to the real Products hub.
 
-// Section 3 — Company journey. Pinned scroll-driven timeline from 1996 to 2016.
+// Section 3 - Company journey. Pinned scroll-driven timeline from 1996 to 2016.
 // As the user scrolls down, the timeline advances year by year (1996 -> 2001 ->
 // 2005-06 -> 2006 -> 2007 -> 2007-08 -> 2011-13 -> 2013 -> 2016) with smooth animations,
 // real-time red progress line filling, and clickable year tabs for direct jump.
@@ -168,11 +168,11 @@ function CompanyJourneySection({ onPageChange }) {
   );
 }
 
-// Desktop / large-viewport — pinned scroll-driven timeline (320vh scroll
+// Desktop / large-viewport - pinned scroll-driven timeline (320vh scroll
 // track, sticky panel, scroll-scrubbed year progression). Hidden below lg
 // so mobile never receives a forced sticky layout or scroll-jacked height
 // (same pattern as JourneyScrollSection/HomeJourney/TraceabilityLoopJourney
-// — pinned sticky sections don't translate to short/narrow touch
+// - pinned sticky sections don't translate to short/narrow touch
 // viewports).
 function DesktopJourneyTimeline({ onPageChange }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -336,10 +336,10 @@ function DesktopJourneyTimeline({ onPageChange }) {
   );
 }
 
-// Mobile / tablet (< lg) and reduced-motion fallback — plain stacked
+// Mobile / tablet (< lg) and reduced-motion fallback - plain stacked
 // milestone list, reveal-on-scroll (whileInView) per card instead of a
 // pinned/scroll-scrubbed timeline. No sticky container, no 320vh scroll
-// track — those don't translate to short, narrow touch viewports.
+// track - those don't translate to short, narrow touch viewports.
 function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
   return (
     <section className="relative w-full border-b border-[#eee] bg-page py-[52px]">
@@ -382,7 +382,7 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
                   {m.tag}
                 </span>
                 <h3 className="font-heading font-bold text-[19px] text-heading leading-[1.25] m-0">
-                  {m.year} — {m.label}
+                  {m.year} - {m.label}
                 </h3>
                 <p className="font-body text-[14px] text-surface-500 leading-[1.6] m-0">
                   {m.desc}
@@ -396,12 +396,12 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
   );
 }
 
-// Section 4 — Leadership message. The CEO message is included directly on
+// Section 4 - Leadership message. The CEO message is included directly on
 // this page rather than as a separate main-nav item, per the brief. Quote
 // and sign-off are verbatim from src/pages/AboutUs/sections/CeoMessage.jsx
 // (also used on the standalone CEO's Message page). "Read Full Leadership
 // Message" is included (real destination, the standalone page) rather than
-// omitted, since the full real quote is already shown here in full — the
+// omitted, since the full real quote is already shown here in full - the
 // button is a real cross-link, not a workaround for truncated content.
 function LeadershipMessageSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
@@ -454,12 +454,12 @@ function LeadershipMessageSection({ onPageChange }) {
   );
 }
 
-// Section 5 — Vision, mission and values. Presented as concise principles
+// Section 5 - Vision, mission and values. Presented as concise principles
 // (short lines/tags), not the long separate cards used on the standalone
 // Vision & Mission / Core Ideology pages. Vision quote, mission items, and
 // core values are all real and verbatim from
 // src/pages/AboutUs/sections/VisionMission.jsx and CoreIdeologyPage.jsx.
-// No button, per the brief — a full corporate profile PDF is available,
+// No button, per the brief - a full corporate profile PDF is available,
 // but its download button already exists in Section 1, so it isn't
 // duplicated here.
 const MISSION_ITEMS = ['Innovate and excel in what we do.', 'Maximize value for stakeholders.', 'Sustain integrity and honesty.', 'Contribute to social needs.'];
@@ -541,7 +541,7 @@ function VisionMissionValuesSection() {
   );
 }
 
-// Section 6 — Integrated business model. Connects feed, farm, plant,
+// Section 6 - Integrated business model. Connects feed, farm, plant,
 // laboratory, and export operations using real facts already established
 // this session (Feed Mill / Poultry Farm / Egg Processing Plant /
 // Laboratory pages, and GlobalReachPage's real export/branch facts). "See
@@ -611,13 +611,13 @@ function IntegratedBusinessModelSection({ onPageChange }) {
   );
 }
 
-// Section 7 — Awards and recognitions. Selected major awards (Padma Shree,
+// Section 7 - Awards and recognitions. Selected major awards (Padma Shree,
 // APEDA Golden Trophy, Export Excellence) show initially; the rest of the
 // real award list (verbatim from AccoladesPage.jsx `otherAwards`) sits
 // behind a real progressive-disclosure toggle, same pattern used elsewhere
 // this session. "View All Awards" routes to the real Accolades page. Also
-// cross-links "Coffee Table Books" here (its real content — "a premium
-// visual archive showcasing our history" — fits this section), since that
+// cross-links "Coffee Table Books" here (its real content - "a premium
+// visual archive showcasing our history" - fits this section), since that
 // page is no longer reachable from the main nav dropdown.
 const MAJOR_AWARDS = [
   { name: 'Padma Shree Award', desc: 'Shri SKM Maeilanandhan received the Padma Shree Award from the Honourable President of India, Shri Pranab Mukherjee.' },
@@ -717,7 +717,7 @@ function AwardsRecognitionSection({ onPageChange }) {
   );
 }
 
-// Section 8 — Locations and global operations (closing section). "View
+// Section 8 - Locations and global operations (closing section). "View
 // Global Presence" routes to the real Global Reach page (export markets +
 // regional offices). "Contact SKM" routes to the real Contact Us page.
 function LocationsSection({ onPageChange }) {
@@ -762,7 +762,7 @@ export default function AboutSKMPage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'About SKM | Company Overview, History & Leadership',
-        description: "SKM Egg Products — Asia's largest integrated egg processing facility since 1996. Company overview, history, leadership message, values, and global operations in one place.",
+        description: "SKM Egg Products - Asia's largest integrated egg processing facility since 1996. Company overview, history, leadership message, values, and global operations in one place.",
         keywords: 'SKM Egg Products company, about SKM, egg powder manufacturer history, SKM CEO, SKM vision mission, SKM Egg Products India',
         canonical: 'https://www.skmegg.com/about_skm',
         jsonLd: {
@@ -784,15 +784,15 @@ export default function AboutSKMPage({ onPageChange }) {
     >
       <div className="w-full flex flex-col bg-page">
 
-        {/* Section 1 — Company hero. Background is a scroll-scrubbed frame
+        {/* Section 1 - Company hero. Background is a scroll-scrubbed frame
             sequence (200 UHD frames of the facility, public/about-skm-sequence),
-            pinned via a sticky viewport inside a tall wrapper — same
+            pinned via a sticky viewport inside a tall wrapper - same
             scroll-scrub pattern as the Home hero (Home/sections/Hero.jsx). */}
         <section ref={heroScrubRef} className="relative w-full h-[220vh]">
           <div className="sticky top-0 h-[560px] sm:h-[620px] lg:h-[680px] w-full overflow-hidden border-b border-[#eee]">
             <ScrollFrameSequence containerRef={heroScrubRef} basePath="/about-skm-sequence" frameCount={200} />
 
-            {/* Left-weighted scrim — copy sits fully clear on the left,
+            {/* Left-weighted scrim - copy sits fully clear on the left,
                 right/center stays open so the globe footage still reads */}
             <div
               className="absolute inset-0 pointer-events-none"
@@ -829,7 +829,7 @@ export default function AboutSKMPage({ onPageChange }) {
                   transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: EASE_PREMIUM }}
                   className="font-body text-[16px] sm:text-[17px] text-white/85 leading-[1.7] m-0"
                 >
-                  Vision, mission, leadership, and values — everything a buyer needs to understand SKM, in one place.
+                  Vision, mission, leadership, and values - everything a buyer needs to understand SKM, in one place.
                 </motion.p>
 
                 <motion.div
@@ -858,25 +858,25 @@ export default function AboutSKMPage({ onPageChange }) {
           </div>
         </section>
 
-        {/* Section 2 — Company overview */}
+        {/* Section 2 - Company overview */}
         <CompanyOverviewSection onPageChange={onPageChange} />
 
-        {/* Section 3 — Company journey */}
+        {/* Section 3 - Company journey */}
         <CompanyJourneySection onPageChange={onPageChange} />
 
-        {/* Section 4 — Leadership message */}
+        {/* Section 4 - Leadership message */}
         <LeadershipMessageSection onPageChange={onPageChange} />
 
-        {/* Section 5 — Vision, mission and values */}
+        {/* Section 5 - Vision, mission and values */}
         <VisionMissionValuesSection />
 
-        {/* Section 6 — Integrated business model */}
+        {/* Section 6 - Integrated business model */}
         <IntegratedBusinessModelSection onPageChange={onPageChange} />
 
-        {/* Section 7 — Awards and recognitions */}
+        {/* Section 7 - Awards and recognitions */}
         <AwardsRecognitionSection onPageChange={onPageChange} />
 
-        {/* Section 8 — Locations and global operations */}
+        {/* Section 8 - Locations and global operations */}
         <LocationsSection onPageChange={onPageChange} />
 
       </div>

@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 
-// Editorial featured + supporting layout — the first application image
+// Editorial featured + supporting layout - the first application image
 // becomes a large 2-row feature tile (spans 6 of 12 columns, full height of
 // the first two supporting rows), the rest fill smaller supporting cells.
 // Replaces the previous equal-weight grid, which read as a generic stock

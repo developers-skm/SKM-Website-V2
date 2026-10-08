@@ -4,16 +4,16 @@ import { EASE_PREMIUM, DURATION, STAGGER, fadeUp } from '../../../utils/motionTo
 
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
-// Section 4 — recommended products (brief §4). Each card's fields are all
+// Section 4 - recommended products (brief §4). Each card's fields are all
 // real: "Product and variant" comes from a genuine match between this
 // application's name/tags and that variant's own `applications` text
 // (same lookup strategy as the product page's own RecommendedApplications
 // component, now made possible by exporting `variantsData` from each
-// product page — see data/productVariants.js). "Reason recommended" reuses
+// product page - see data/productVariants.js). "Reason recommended" reuses
 // this application's own `intro` copy (no new marketing text). "Functional
 // benefit" is the matched variant's own `benefits` field. "Format" is the
 // product's real `packagingOptions`. "Related documentation" links the
-// real TDS PDF where one exists (data/products.js `tdsUrl`) — omitted
+// real TDS PDF where one exists (data/products.js `tdsUrl`) - omitted
 // otherwise, never a fabricated document link.
 function findRecommendedVariant(application, variantsData) {
   const needles = [application.title, ...application.tags].map((s) => s.toLowerCase());
@@ -67,7 +67,7 @@ export default function RecommendedProducts({ application, matchedProducts, onPa
                     </h3>
                     {variant && (
                       <span className="font-mono text-[11.5px] font-bold text-brand-600">
-                        {variant.code} — {variant.name}
+                        {variant.code} - {variant.name}
                       </span>
                     )}
                   </div>

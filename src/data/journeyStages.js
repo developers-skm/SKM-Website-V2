@@ -1,6 +1,6 @@
 // Single source of truth for the farm-to-product story (plan.md §3). Used by
 // both the compact homepage strip and the full "Our Journey" scrollytelling
-// page, and by the per-product TraceWidget — so the 6 stages never drift
+// page, and by the per-product TraceWidget - so the 6 stages never drift
 // apart across the site. Facts sourced from the traceability content already
 // authored in src/pages/Quality/sections/Traceability.jsx.
 
@@ -19,7 +19,7 @@ const journeyStages = [
     label: 'Feed Mill',
     image: FeedMillImg,
     tagline: 'What the hens eat is tested before they eat it.',
-    description: 'Our in-house feed mill screens every ingredient for mycotoxins, pesticide residues, and antibiotic contamination before it is formulated into balanced, residue-free feed — from chick to grower to layer.',
+    description: 'Our in-house feed mill screens every ingredient for mycotoxins, pesticide residues, and antibiotic contamination before it is formulated into balanced, residue-free feed - from chick to grower to layer.',
     stat: { value: '100%', label: 'Ingredients lot-tested before use' },
   },
   {

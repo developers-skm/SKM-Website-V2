@@ -5,7 +5,7 @@ import { getProductById } from '../../../data/products';
 
 // Image-led application card. Top ~60-65% is the image with a dark
 // gradient scrim carrying the title and the short technical-need sentence
-// (app.problem, verbatim) in white text — bottom section stays a plain
+// (app.problem, verbatim) in white text - bottom section stays a plain
 // white block for the matching-product count, recommended product types,
 // and CTA, so that detail stays readable against a solid background
 // rather than crowding onto the photo.

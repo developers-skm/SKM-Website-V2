@@ -2,22 +2,22 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { PRODUCT_CATEGORIES } from '../../data/products';
 import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
 
-// Refined editorial cross-sell cards — controlled image ratio, no heavy
+// Refined editorial cross-sell cards - controlled image ratio, no heavy
 // overlay (label lives in a white lower area instead of over the photo),
 // subtle border, restrained hover. Reads as a premium ingredient catalogue
 // entry rather than an image-dominant poster tile.
 //
 // Section 9 (brief §9) asks each card to explain "why it may be
-// appropriate" — reuses the product's own real `shortDescription` (already
+// appropriate" - reuses the product's own real `shortDescription` (already
 // approved catalogue copy from data/products.js) rather than writing new
 // per-pairing justification text. The "Compare with X" button routes to
 // that product's own page rather than a fabricated side-by-side compare
-// view — no product-vs-product comparison feature exists anywhere in the
+// view - no product-vs-product comparison feature exists anywhere in the
 // app (Section 3's compare modal only compares SKUs within one product).
 //
 // "View Related Products" routes to the real category page
 // (src/pages/Products/*CategoryPage.jsx) matching the current product's
-// own category — a genuine destination showing the full set, not just the
+// own category - a genuine destination showing the full set, not just the
 // 3-card sample here.
 const CATEGORY_ROUTES = {
   [PRODUCT_CATEGORIES.POWDERS]: 'category_powders',

@@ -104,7 +104,7 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
             {/* Integrated PNG Hero Image - Breathing freely without heavy card frame */}
             <img
               src={imageSrc}
-              alt="SKM Offline — Connection cracked concept"
+              alt="SKM Offline - Connection cracked concept"
               onError={handleImageError}
               className="relative z-10 w-full h-full object-contain filter drop-shadow-[0_16px_32px_rgba(0,0,0,0.06)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
               loading="eager"

@@ -16,11 +16,11 @@ function scrollToProductDiscovery() {
   scrollToSectionId(PRODUCT_DISCOVERY_SECTION_ID);
 }
 
-// "Find Your Product" / "Find Product" — the one real destination for
+// "Find Your Product" / "Find Product" - the one real destination for
 // product discovery: the Home page's "Our Product Offerings" section.
 // If already on Home, scrolls directly. Otherwise navigates home and lets
 // Home's own mount-aware effect (driven by prefill.scrollTarget) perform the
-// scroll once its DOM has committed — no timeouts.
+// scroll once its DOM has committed - no timeouts.
 export default function useProductDiscoveryNavigation(onPageChange, activePage) {
   return useCallback(() => {
     if (activePage === 'home') {

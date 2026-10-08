@@ -1,4 +1,4 @@
-// Single source of truth for the product catalogue — used by the homepage
+// Single source of truth for the product catalogue - used by the homepage
 // product grid, product-page cross-sell, application landing pages, and the
 // Get Quote flow's product picker. Route `page` keys match the `case`s in App.jsx.
 
@@ -56,7 +56,7 @@ const products = [
   {
     id: 'egg_yolk_powder_heat_stable',
     page: 'egg_yolk_powder_heat_stable',
-    title: 'Egg Yolk Powder — Heat Stable',
+    title: 'Egg Yolk Powder - Heat Stable',
     image: EggYolkPowderHeatStableImg,
     category: PRODUCT_CATEGORIES.POWDERS,
     shortDescription: 'Modified egg yolk powder formulated to maintain its emulsifying stability under hot-process mayonnaise and sauce applications.',

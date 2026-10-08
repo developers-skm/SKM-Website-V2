@@ -513,8 +513,8 @@ const defaultFormData = {
 };
 
 const modalConfig = {
-  job:           { title: 'Job Application',         badge: 'Human Resources — Careers',   icon: '✦' },
-  internship:    { title: 'Internship Request',      badge: 'Human Resources — Training',  icon: '✦' },
+  job:           { title: 'Job Application',         badge: 'Human Resources - Careers',   icon: '✦' },
+  internship:    { title: 'Internship Request',      badge: 'Human Resources - Training',  icon: '✦' },
   feedback:      { title: 'Feedback & Complaints',   badge: 'Customer Relations',           icon: '✦' },
   vendor:        { title: 'Vendor Partner',          badge: 'Procurement Department',       icon: '✦' },
   service:       { title: 'Service Provider',        badge: 'Operations / Logistics',       icon: '✦' },
@@ -716,7 +716,7 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
                   {config.title}
                 </h3>
                 <p className="font-body text-[12px] text-surface-400 m-0 font-medium">
-                  SKM Egg Products — Enquiry Form
+                  SKM Egg Products - Enquiry Form
                 </p>
               </div>
             </div>
@@ -764,7 +764,7 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
                   </p>
                 </form>
               ) : (
-                /* Success — stamped letter feel */
+                /* Success - stamped letter feel */
                 <div className="flex flex-col items-center justify-center text-center py-10 gap-6 select-none font-sans">
                   {/* Stamp circle */}
                   <div className="relative">

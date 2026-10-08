@@ -17,7 +17,7 @@ const MAP_H = 600;
 
 const POPUP = { w: 272, h: 218 };
 
-// "SKM Events Around the World" — the journey view. Everything on screen is
+// "SKM Events Around the World" - the journey view. Everything on screen is
 // derived from `globalEvents` (src/data/globalEvents.js).
 export default function EventsJourneyMap({ active, onClose, onPageChange }) {
   const reduce = useReducedMotion();
@@ -136,7 +136,7 @@ export default function EventsJourneyMap({ active, onClose, onPageChange }) {
       </p>
 
       <div className="lg:grid lg:grid-cols-[380px_minmax(0,1fr)]">
-        {/* Desktop: side column — header, full event details, controls */}
+        {/* Desktop: side column - header, full event details, controls */}
         {desktop && (
           <aside className="flex flex-col gap-6 border-r border-[#eee] bg-white p-7">
             <JourneyHeader compact onClose={onClose} onShowAll={showAll} />

@@ -1,23 +1,23 @@
-// Full-bleed editorial hero — the product photo fills the entire section as
+// Full-bleed editorial hero - the product photo fills the entire section as
 // a background image with a minimum-opacity dark scrim over it (just enough
 // for white text to stay legible), rather than sitting beside the content in
 // its own boxed panel. All copy renders directly on top of the photo.
 //
 // Three CTAs above the fold per the product-detail-page brief: primary
 // "Request a Sample", secondary "Download Technical Data Sheet" (only
-// rendered when a real per-product PDF exists — see data/products.js —
+// rendered when a real per-product PDF exists - see data/products.js —
 // never a fabricated document link), and a text-only "Request Pricing".
 // Both sample and pricing route to the same real get-quote flow with
-// productId prefilled — there is no separate pricing-intent destination in
+// productId prefilled - there is no separate pricing-intent destination in
 // the app (same precedent as Home's FinalEnquiry section).
 //
 // "Main functional benefits" and "Main application tags" are derived
 // directly from the real variantsData/applicationsData already passed into
-// every product page — not new data. Benefits are deduplicated `benefits`
+// every product page - not new data. Benefits are deduplicated `benefits`
 // strings truncated to their leading clause (before the first comma) so
 // they read as short tags rather than full sentences; capped at 3.
 // Applications are the real applicationsData `name` values, capped at 4.
-// The previous "ISO 9001 Certified" badge was removed — no such
+// The previous "ISO 9001 Certified" badge was removed - no such
 // certification exists in data/certifications.js (real ones are FSSAI,
 // BRC, ISO/IEC 17025, NABL, Halal, Kosher, etc.), so it was a fabricated
 // claim rather than real product-page content.

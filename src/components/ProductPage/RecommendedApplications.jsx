@@ -2,14 +2,14 @@ import { motion, useReducedMotion } from 'framer-motion';
 import applications from '../../data/applications';
 import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
 
-// Section 5 — recommended applications (brief §5). Distinct from the visual
+// Section 5 - recommended applications (brief §5). Distinct from the visual
 // ApplicationGallery above it: these cards carry real per-application facts
 // rather than photography.
 //
 // "Why it fits" and "functional result" both come straight from the
 // product's own `applicationsData` entry (no new copy). "Recommended
 // variant" is derived by finding which of this product's real variants
-// lists that application by name in its own `applications` field — never
+// lists that application by name in its own `applications` field - never
 // an invented pairing. "Related application guide" only links out when the
 // application is one of the 4 real guide pages in data/applications.js
 // (matched by name, case-insensitive substring both ways since e.g. gallery
@@ -38,7 +38,7 @@ function findGuide(appName) {
 }
 
 // Returns every real variant whose own `applications` text names this
-// application — not just the first match. A single application (e.g.
+// application - not just the first match. A single application (e.g.
 // "Cakes") genuinely appears across several real variants' applications
 // fields, so showing only one was silently dropping real, equally valid
 // recommendations.
@@ -111,7 +111,7 @@ export default function RecommendedApplications({ applicationsData, variantsData
                 <div className="flex flex-col gap-1">
                   {card.recommendedVariants.map((variant) => (
                     <span key={variant.code} className="font-mono text-[12px] font-bold text-brand-600">
-                      {displayCode(variant.code)} — {variant.name}
+                      {displayCode(variant.code)} - {variant.name}
                     </span>
                   ))}
                 </div>

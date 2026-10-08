@@ -5,17 +5,17 @@ import marketsByRegion from '../../../data/exportMarketRegions';
 import useCountUp from '../../../utils/useCountUp';
 import { fadeUp, EASE_PREMIUM } from '../../../utils/motionTokens';
 
-// Section 9 — Global Presence. Editorial redesign: replaces the dashboard-
+// Section 9 - Global Presence. Editorial redesign: replaces the dashboard-
 // style map card + sidebar legend with an oversized "30+" typographic
 // statement (left, ~4/12) beside a large map that sits directly in the
 // page with no card framing (right, ~8/12, pulled left via negative margin
 // so the two blocks read as one composition instead of two disconnected
 // components), then a plain 4-column regional index underneath (comma-
-// separated country names per region — Asia / Middle East / Europe /
+// separated country names per region - Asia / Middle East / Europe /
 // Africa / Americas / Oceania, real continents of the real 28
 // `exportMarkets`, not invented). Map implementation itself lives in the
 // Home-scoped HomeExportMap.jsx (same react-simple-maps + real data as the
-// shared ExportMarketsMap.jsx, not modified — see that file's own header
+// shared ExportMarketsMap.jsx, not modified - see that file's own header
 // for why it's a separate component instead of an edit to the shared one).
 const branches = [
   { name: 'SKM Japan', tagline: 'Bridging Indian egg ingredient expertise with the Japanese market.', page: 'skm_japan' },
@@ -39,7 +39,7 @@ export default function GlobalMarkets({ onPageChange }) {
     <div className="w-full bg-white py-[110px] lg:py-[140px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
-        {/* Split — typography left (~36%), large map right (~64%) */}
+        {/* Split - typography left (~36%), large map right (~64%) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center mb-14 lg:mb-16">
 
           <motion.div {...fadeUp(reduceMotion)} className="lg:col-span-4 flex flex-col gap-5 lg:relative lg:z-10">
@@ -81,7 +81,7 @@ export default function GlobalMarkets({ onPageChange }) {
           </div>
         </div>
 
-        {/* Regional index — max 4 columns, real continents of the real
+        {/* Regional index - max 4 columns, real continents of the real
             export markets, thin rules, no legend sidebar, no country pills */}
         <motion.div {...fadeUp(reduceMotion, { delay: 0.1 })} className="border-t border-surface-200/70 pt-10 lg:pt-12">
           <div className="flex flex-wrap items-baseline justify-between gap-4 mb-9">
@@ -114,7 +114,7 @@ export default function GlobalMarkets({ onPageChange }) {
           </div>
         </motion.div>
 
-        {/* Regional branch highlights — real taglines, real routes */}
+        {/* Regional branch highlights - real taglines, real routes */}
         <motion.div {...fadeUp(reduceMotion, { delay: 0.15 })} className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 lg:mt-14 pt-10 lg:pt-12 border-t border-surface-200/70">
           {branches.map((branch) => (
             <InternalLink

@@ -6,11 +6,11 @@ import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
 const companyProfilePdf = getBrochureUrl('Company Profile - SKM Egg Products Export India Limited.pdf');
 const productListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 
-// Section 8 — documents (brief §8). Only real PDFs are listed: the
+// Section 8 - documents (brief §8). Only real PDFs are listed: the
 // product's own flyer/TDS where one exists (data/products.js `tdsUrl`,
 // real for only 3 of 11 products) plus the two real company-wide documents
 // already published on BrochurePage.jsx (Company Profile, Full Product
-// List) — genuinely relevant to every product since they're the company's
+// List) - genuinely relevant to every product since they're the company's
 // only general-purpose product documents. Safety data sheets, allergen
 // declarations, dedicated application guides, and packaging specification
 // PDFs don't exist anywhere in the codebase, so those document types are
@@ -19,7 +19,7 @@ export default function ProductDocuments({ tdsUrl, productName, onRequestPack })
   const reduceMotion = useReducedMotion();
   const [confirmedUrl, setConfirmedUrl] = useState(null);
   const documents = [
-    tdsUrl && { label: `${productName} — Technical Data Sheet`, url: tdsUrl },
+    tdsUrl && { label: `${productName} - Technical Data Sheet`, url: tdsUrl },
     { label: 'Company Profile', url: companyProfilePdf },
     { label: 'Full Product List', url: productListPdf },
   ].filter(Boolean);

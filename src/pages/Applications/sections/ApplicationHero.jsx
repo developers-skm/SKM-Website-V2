@@ -9,7 +9,7 @@ const itemVariants = {
 
 // Below Tailwind's `sm` breakpoint, mobile GPUs struggle to composite a
 // clip-path mask + a simultaneous 8s image-scale transform + two
-// mix-blend-soft-light layers all at once on a large remote image — that
+// mix-blend-soft-light layers all at once on a large remote image - that
 // combination is what read as "hanging/lagging" on phones. Desktop keeps
 // the full signature entrance; mobile gets a plain, cheap fade/scale
 // instead (still animated, just without the compositing-heavy layers).
@@ -38,7 +38,7 @@ export default function ApplicationHero({ onPageChange }) {
 
   return (
     <section className="relative w-full h-[640px] sm:h-[720px] lg:h-[820px] overflow-hidden flex items-center">
-      {/* Signature entrance — curved mask sweeps open from center matching Home Hero. Desktop only: skipped on mobile, see useIsMobileViewport above. */}
+      {/* Signature entrance - curved mask sweeps open from center matching Home Hero. Desktop only: skipped on mobile, see useIsMobileViewport above. */}
       <motion.div
         className="absolute inset-0"
         initial={skipHeavyMotion ? false : { clipPath: 'inset(0% 42% 0% 42% round 50%)' }}
@@ -59,13 +59,13 @@ export default function ApplicationHero({ onPageChange }) {
         />
       </motion.div>
 
-      {/* Subtle yolk-gold light gradient — upper-right, echoes Home Hero. mix-blend-soft-light disables GPU fast-path compositing, so it's desktop-only. */}
+      {/* Subtle yolk-gold light gradient - upper-right, echoes Home Hero. mix-blend-soft-light disables GPU fast-path compositing, so it's desktop-only. */}
       <div
         className="hidden sm:block absolute inset-0 pointer-events-none mix-blend-soft-light"
         style={{ background: 'radial-gradient(60% 55% at 82% 18%, rgba(232,182,74,0.5) 0%, rgba(232,182,74,0) 70%)' }}
       />
 
-      {/* Once-only warm light sweep — soft diagonal gradient band drifts slowly. Desktop only, same compositing-cost reason as above. */}
+      {/* Once-only warm light sweep - soft diagonal gradient band drifts slowly. Desktop only, same compositing-cost reason as above. */}
       {!skipHeavyMotion && (
         <motion.div
           className="absolute inset-0 pointer-events-none mix-blend-soft-light"
@@ -79,7 +79,7 @@ export default function ApplicationHero({ onPageChange }) {
         />
       )}
 
-      {/* Scrim — left-weighted so copy stays legible while right side of photo stays clear */}
+      {/* Scrim - left-weighted so copy stays legible while right side of photo stays clear */}
       <div
         className="absolute inset-0"
         style={{ background: 'linear-gradient(90deg, rgba(20,16,10,0.78) 0%, rgba(20,16,10,0.58) 42%, rgba(20,16,10,0.18) 70%, rgba(20,16,10,0.05) 100%)' }}

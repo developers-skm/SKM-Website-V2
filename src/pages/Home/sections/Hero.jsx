@@ -7,9 +7,9 @@ import { EASE_PREMIUM } from '../../../utils/motionTokens';
 const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 import useApplicationSelectorNavigation from '../../../components/Navbar/useApplicationSelectorNavigation';
 
-// Full-bleed hero — the food-application photo fills the entire section,
+// Full-bleed hero - the food-application photo fills the entire section,
 // copy sits on top of it with a left-weighted gradient scrim for
-// legibility (not a full-hero dark overlay — the right side of the photo
+// legibility (not a full-hero dark overlay - the right side of the photo
 // stays clear). Every piece of copy below is either the exact
 // user-approved heading or an exact verbatim fragment reused from existing
 // approved repository content (see the source note on each block).
@@ -24,7 +24,7 @@ export default function Hero({ onPageChange }) {
       className="relative w-full h-[150vh]"
     >
       <div className="sticky top-0 h-[640px] sm:h-[720px] lg:h-[820px] w-full overflow-hidden">
-        {/* Signature entrance — a soft curved (egg-inspired) mask sweeps open
+        {/* Signature entrance - a soft curved (egg-inspired) mask sweeps open
             from center to reveal the hero visual, instead of a plain fade.
             Heading/CTA (below) animate on their own, independent timeline so
             they're never gated behind this. Max ~1.4s, runs once. */}
@@ -34,7 +34,7 @@ export default function Hero({ onPageChange }) {
           animate={reduceMotion ? undefined : { clipPath: 'inset(0% 0% 0% 0% round 0%)' }}
           transition={{ duration: reduceMotion ? 0.01 : 1.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Egg-cracking frame sequence — scrubbed by scroll position
+          {/* Egg-cracking frame sequence - scrubbed by scroll position
               through the tall wrapper section above at every viewport
               width (same mechanism as product page section 1): frame 1
               (whole egg) at the top of the hero, frame 200 (cracked,
@@ -42,14 +42,14 @@ export default function Hero({ onPageChange }) {
           <ScrollFrameSequence containerRef={scrubContainerRef} basePath="/hero-sequence" frameCount={200} />
         </motion.div>
 
-        {/* Subtle yolk-gold light gradient — low-opacity, upper-right, echoes
+        {/* Subtle yolk-gold light gradient - low-opacity, upper-right, echoes
             the golden yolk in the visual without competing with the scrim */}
         <div
           className="absolute inset-0 pointer-events-none mix-blend-soft-light"
           style={{ background: 'radial-gradient(60% 55% at 82% 18%, rgba(232,182,74,0.5) 0%, rgba(232,182,74,0) 70%)' }}
         />
 
-        {/* Once-only warm light sweep — a soft diagonal gradient band drifts
+        {/* Once-only warm light sweep - a soft diagonal gradient band drifts
             slowly across the visual after the mask reveal settles, echoing the
             yolk's warmth in motion. Plain gradient only, no shapes/icons, so
             it never reads as a decorative symbol sitting on the photo. */}
@@ -66,7 +66,7 @@ export default function Hero({ onPageChange }) {
           />
         )}
 
-        {/* Scrim — left-weighted so the copy stays legible while the right
+        {/* Scrim - left-weighted so the copy stays legible while the right
             side of the visual stays clear */}
         <div
           className="absolute inset-0"
@@ -77,12 +77,12 @@ export default function Hero({ onPageChange }) {
           style={{ background: 'linear-gradient(180deg, rgba(20,16,10,0.5) 0%, rgba(20,16,10,0.75) 100%)' }}
         />
 
-        {/* Hero content container — left padding matches the logo's own
+        {/* Hero content container - left padding matches the logo's own
             left offset (Navbar.jsx: left-5 sm:left-8 lg:left-16) so the
             logo, headline, and everything below share one left edge. Top
             padding is this section's own responsibility (Layout's <main>
             reserves none, so the hero's background/image still starts at
-            y=0) — clears the logo+menu row (~60-70px tall) plus breathing
+            y=0) - clears the logo+menu row (~60-70px tall) plus breathing
             room before the heading. */}
         <div className="relative z-10 w-full h-full mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-16 pt-[100px] sm:pt-[145px] lg:pt-[160px] flex items-start sm:items-center">
           <motion.div
@@ -91,21 +91,21 @@ export default function Hero({ onPageChange }) {
             transition={{ duration: reduceMotion ? 0.01 : 0.8, ease: [0.25, 1, 0.5, 1] }}
             className="flex flex-col gap-3 sm:gap-5 max-w-[620px]"
           >
-            {/* Exact approved heading — user-specified, verbatim */}
+            {/* Exact approved heading - user-specified, verbatim */}
             <h1 className="font-heading font-bold text-[clamp(32px,8vw,62px)] leading-[1.15] sm:leading-[1.1] text-white tracking-tight m-0">
               Reliable Egg Ingredients for Food Manufacturers Worldwide.
             </h1>
 
-            {/* Supporting message — verbatim, src/pages/Brochure/BrochurePage.jsx:21 */}
+            {/* Supporting message - verbatim, src/pages/Brochure/BrochurePage.jsx:21 */}
             <p className="font-body text-[15px] sm:text-[16px] lg:text-[18px] text-white/90 leading-[1.5] sm:leading-[1.6] m-0">
-              Complete catalog of all SKM egg products — powders, liquids, customized mixes and specialty solutions available for global food producers.
+              Complete catalog of all SKM egg products - powders, liquids, customized mixes and specialty solutions available for global food producers.
             </p>
 
             <p className="font-body text-[14px] sm:text-[15px] lg:text-[16px] font-semibold text-white/95 m-0">
               30+ Countries Served
             </p>
 
-            {/* Trust statement — two verbatim existing fragments, not merged
+            {/* Trust statement - two verbatim existing fragments, not merged
                 into a new sentence. "Asia's largest integrated egg processing
                 facility since 1996." and "BRCGS, Halal & Kosher certified."
                 both already appear together in src/components/SEO/SEO.jsx's
@@ -136,7 +136,7 @@ export default function Hero({ onPageChange }) {
               </button>
             </div>
 
-            {/* Download Product Portfolio — real existing PDF asset */}
+            {/* Download Product Portfolio - real existing PDF asset */}
             <a
               href={ProductListPdf}
               download

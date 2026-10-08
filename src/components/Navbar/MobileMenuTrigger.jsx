@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { MenuIcon } from './icons';
 
-// Sole menu entry point sitewide, at every breakpoint — sits top-right,
+// Sole menu entry point sitewide, at every breakpoint - sits top-right,
 // paired with the floating logo (Navbar.jsx). Circular, SKM red, sized
 // within the 48–56px range this design calls for.
 const MobileMenuTrigger = forwardRef(function MobileMenuTrigger({ isOpen, onClick }, ref) {

@@ -56,14 +56,14 @@ import seoul26_5 from '../../assets/Events - EXPO/Seoul Food 2026 (June 9-12)/5.
 // Brochure files served as static PDFs from public/documents/brochures/.
 import { getBrochureUrl } from '../../data/brochureUrl';
 
-// Section 3 — Upcoming Exhibitions Data. SKM has genuinely exhibited at
+// Section 3 - Upcoming Exhibitions Data. SKM has genuinely exhibited at
 // each of these recurring international food-ingredient fairs before (see
-// Participated Events above), so the fair name and country are real — but
+// Participated Events above), so the fair name and country are real - but
 // the next edition's exact dates, venue, and booth/stand number are not
 // yet announced/assigned. Rather than reuse a past edition's photos next
-// to an unconfirmed date (misleading — implies that edition is upcoming),
+// to an unconfirmed date (misleading - implies that edition is upcoming),
 // each card shows an honest "Coming Soon" placeholder instead of an image.
-// No startDateRaw/endDateRaw here — the "Add to Calendar" action requires
+// No startDateRaw/endDateRaw here - the "Add to Calendar" action requires
 // a real confirmed date and is disabled until one exists.
 const upcomingExhibitions = [
   { id: 'fia26', title: 'Food Ingredients Asia (Fi Asia)', country: 'Thailand', date: 'Dates to be confirmed' },
@@ -83,11 +83,11 @@ const pastExhibitions = [
   { title: 'Gulfood Manufacturing 2025', tag: 'Gulfood Manufacturing', location: 'Dubai WTC, Dubai', country: 'UAE', dateRange: 'Nov 3–5, 2025', year: '2025', desc: 'SKM established high-volume contracts for liquid pasteurized mixes with GCC partners.', images: [gfm25_1, gfm25_2, gfm25_3, gfm25_4, gfm25_5] },
   { title: 'Fi Vietnam 2026', tag: 'Food Ingredients Vietnam', location: 'SECC, Ho Chi Minh City', country: 'Vietnam', dateRange: 'May 13–15, 2026', year: '2026', desc: 'Presented premium bakery mixes to fast-growing culinary chains across Indochina.', images: [fivn26_1, fivn26_2, fivn26_3, fivn26_4, fivn26_5] },
   { title: 'Seoul Food 2026', tag: 'Seoul Food & Hotel', location: 'KINTEX, South Korea', country: 'South Korea', dateRange: 'Jun 9–12, 2026', year: '2026', desc: 'Demonstrated complete traceability compliance for premium egg white cube products.', images: [seoul26_1, seoul26_2, seoul26_3, seoul26_4, seoul26_5] },
-  { title: 'FLIP 2026 — Future Food, Livestock & Poultry Expo', tag: 'FLIP Expo', location: 'Mwalimu J.K. Nyerere Trade Fair Grounds, Dar es Salaam', country: 'Tanzania', dateRange: 'Sep 2–3, 2026', year: '2026', desc: 'The 3rd Future Food, Livestock & Poultry Expo (FLIP 2026) took place on September 2–3, 2026, at the Mwalimu J.K. Nyerere Trade Fair Grounds in Dar es Salaam, Tanzania.', images: Array.from({ length: 5 }, (_, i) => `/events/flip-tanzania-2026/${i + 1}.webp`) },
+  { title: 'FLIP 2026 - Future Food, Livestock & Poultry Expo', tag: 'FLIP Expo', location: 'Mwalimu J.K. Nyerere Trade Fair Grounds, Dar es Salaam', country: 'Tanzania', dateRange: 'Sep 2–3, 2026', year: '2026', desc: 'The 3rd Future Food, Livestock & Poultry Expo (FLIP 2026) took place on September 2–3, 2026, at the Mwalimu J.K. Nyerere Trade Fair Grounds in Dar es Salaam, Tanzania.', images: Array.from({ length: 5 }, (_, i) => `/events/flip-tanzania-2026/${i + 1}.webp`) },
   { title: 'Fi Asia Indonesia 2026', tag: 'Food Ingredients Asia', location: 'JIExpo, Jakarta', country: 'Indonesia', dateRange: 'Sep 16–18, 2026', year: '2026', desc: 'Fi Asia Indonesia 2026 took place from September 16 to 18, 2026, at the Jakarta International Expo (JIExpo) in Jakarta, Indonesia.', images: Array.from({ length: 5 }, (_, i) => `/events/fi-asia-indonesia-2026/${i + 1}.webp`) }
 ];
 
-// Section 4 — Company News Data
+// Section 4 - Company News Data
 const companyNews = [
   {
     id: 'news1',
@@ -118,7 +118,7 @@ const companyNews = [
   }
 ];
 
-// Section 5 — Technical Insights Data
+// Section 5 - Technical Insights Data
 const technicalInsights = [
   {
     id: 'insight1',
@@ -194,7 +194,7 @@ export default function EventsPage({ onPageChange }) {
   const [subscribeError, setSubscribeError] = useState('');
   const [subscribeSuccess, setSubscribeSuccess] = useState(false);
 
-  // Locks background scroll while any of the 3 modals is open — previously
+  // Locks background scroll while any of the 3 modals is open - previously
   // the page could still scroll behind an open modal.
   const isAnyModalOpen = Boolean(activeMeetingEvent || activeArticle || activeInsight);
   useScrollLock(isAnyModalOpen);
@@ -293,7 +293,7 @@ export default function EventsPage({ onPageChange }) {
     >
       <div className="w-full bg-page overflow-hidden text-surface-800">
         
-        {/* Section 1 — Hero */}
+        {/* Section 1 - Hero */}
         <div className="relative w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[120px] lg:pb-[120px] bg-gradient-to-b from-brand-600/5 via-transparent to-transparent border-b border-[#eee] text-center px-4">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,color-mix(in_srgb,var(--color-brand-100)_10%,transparent)_0%,transparent_50%)] pointer-events-none" />
           <motion.div
@@ -330,7 +330,7 @@ export default function EventsPage({ onPageChange }) {
           </motion.div>
         </div>
 
-        {/* Section 2 — Upcoming Exhibitions */}
+        {/* Section 2 - Upcoming Exhibitions */}
         <section id="upcoming-exhibitions" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
             <div className="flex flex-col gap-2 max-w-3xl">
@@ -369,7 +369,7 @@ export default function EventsPage({ onPageChange }) {
                         {expo.title}
                       </h3>
                       <p className="font-body text-[13px] text-surface-500 leading-snug">
-                        SKM has exhibited at this fair before and plans to attend again — full schedule details will be published once confirmed.
+                        SKM has exhibited at this fair before and plans to attend again - full schedule details will be published once confirmed.
                       </p>
                     </div>
 
@@ -418,7 +418,7 @@ export default function EventsPage({ onPageChange }) {
           </div>
         </section>
 
-        {/* Section 3 — Participated Events */}
+        {/* Section 3 - Participated Events */}
         <section id="participated-events" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
             <div className="flex flex-col gap-2 max-w-3xl">
@@ -476,7 +476,7 @@ export default function EventsPage({ onPageChange }) {
           </div>
         </section>
 
-        {/* Section 4 — Company News */}
+        {/* Section 4 - Company News */}
         <section id="company-news" className="w-full py-[60px] lg:py-[90px] bg-surface-50/50 border-b border-[#eee]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
             <div className="flex flex-col gap-2 max-w-3xl">
@@ -532,7 +532,7 @@ export default function EventsPage({ onPageChange }) {
           </div>
         </section>
 
-        {/* Section 5 — Technical Insights */}
+        {/* Section 5 - Technical Insights */}
         <section id="technical-insights" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
             <div className="flex flex-col gap-2 max-w-3xl">
@@ -629,7 +629,7 @@ export default function EventsPage({ onPageChange }) {
           </div>
         </section>
 
-        {/* Section 6 — Subscribe */}
+        {/* Section 6 - Subscribe */}
         <section id="subscribe" className="w-full py-[80px] lg:py-[100px] bg-gradient-to-t from-brand-600/5 via-transparent to-transparent text-center px-4">
           <div className="mx-auto max-w-[650px] bg-white border border-[#eee] rounded-[24px] p-8 sm:p-10 shadow-lg flex flex-col items-center gap-6 relative">
             <div className="w-12 h-12 rounded-full bg-brand-600/10 flex items-center justify-center text-brand-600">
@@ -690,7 +690,7 @@ export default function EventsPage({ onPageChange }) {
 
         {createPortal(
           <>
-        {/* MODAL 1 — Book a Meeting Form */}
+        {/* MODAL 1 - Book a Meeting Form */}
         <AnimatePresence>
           {activeMeetingEvent && (
             <motion.div
@@ -819,7 +819,7 @@ export default function EventsPage({ onPageChange }) {
           )}
         </AnimatePresence>
 
-        {/* MODAL 2 — Company News Article Reader */}
+        {/* MODAL 2 - Company News Article Reader */}
         <AnimatePresence>
           {activeArticle && (
             <motion.div
@@ -883,7 +883,7 @@ export default function EventsPage({ onPageChange }) {
           )}
         </AnimatePresence>
 
-        {/* MODAL 3 — Technical Insight Reader */}
+        {/* MODAL 3 - Technical Insight Reader */}
         <AnimatePresence>
           {activeInsight && (
             <motion.div

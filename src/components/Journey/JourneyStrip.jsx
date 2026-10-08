@@ -5,8 +5,8 @@ import JourneyScrollSection from './JourneyScrollSection';
 
 /**
  * Farm-to-product story (plan.md §3).
- * variant="compact" — homepage teaser strip, one photo + line per stage.
- * variant="full"    — scrollytelling long-form used on the "Our Journey" page.
+ * variant="compact" - homepage teaser strip, one photo + line per stage.
+ * variant="full"    - scrollytelling long-form used on the "Our Journey" page.
  */
 export default function JourneyStrip({ variant = 'compact', onPageChange }) {
   if (variant === 'full') {
@@ -32,7 +32,7 @@ function CompactJourney({ onPageChange }) {
               Our Journey
             </h2>
             <p className="font-body text-[15px] text-surface-500 leading-[26px] m-0">
-              Six documented stages carry every egg from a biosecure hatchery to your factory floor — see the process behind every batch.
+              Six documented stages carry every egg from a biosecure hatchery to your factory floor - see the process behind every batch.
             </p>
           </div>
           <button
@@ -104,7 +104,7 @@ function FullJourney({ onPageChange }) {
           variants={itemVariants}
           className="font-body text-[16px] sm:text-[18px] text-surface-500 leading-[30px] m-0 max-w-2xl"
         >
-          Most buyers can't visit an egg processing plant across the world before they trust it. So we're showing you the whole chain instead — six documented stages, from a biosecure hatchery to the cold chain that carries your order to your door.
+          Most buyers can't visit an egg processing plant across the world before they trust it. So we're showing you the whole chain instead - six documented stages, from a biosecure hatchery to the cold chain that carries your order to your door.
         </motion.p>
       </motion.div>
 

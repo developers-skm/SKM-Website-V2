@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Shared bordered-input field styling — used by the Get Quote wizard and
+// Shared bordered-input field styling - used by the Get Quote wizard and
 // the Contact Us enquiry modal, previously duplicated verbatim between them.
 export function Field({ label, required, error, children }) {
   return (

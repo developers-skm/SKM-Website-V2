@@ -57,7 +57,7 @@ export default function VisionMission() {
                 </div>
               </div>
 
-              {/* Quote — preview testimonial border-l-4 pattern */}
+              {/* Quote - preview testimonial border-l-4 pattern */}
               <blockquote className="m-0 border-l-4 border-brand-600 pl-6 py-2 bg-[rgba(228, 10, 24,0.02)] rounded-r-[10px] text-left flex flex-col gap-3">
                 <span className="font-body text-[12px] font-semibold text-surface-400 uppercase tracking-widest leading-none">
                   Building a Healthy Society

@@ -11,7 +11,7 @@ const headerVariants = {
 };
 
 /*
-  Metro grid layout — images in natural order, CSS auto-placement fills rows:
+  Metro grid layout - images in natural order, CSS auto-placement fills rows:
 
   Col:  1       2       3       4
   R1: [   Pic1 (span-2)  ] [Pic2] [Pic3]
@@ -48,10 +48,10 @@ function GalleryCard({ item, index, className = '' }) {
         Both transition at 500ms ease-out.
       */}
 
-      {/* Layer 1 — dark scrim: visible at rest, collapses upward on hover */}
+      {/* Layer 1 - dark scrim: visible at rest, collapses upward on hover */}
       <div className="absolute inset-0 bg-black/20 origin-top transition-all duration-500 group-hover:scale-y-0 group-hover:opacity-0" />
 
-      {/* Layer 2 — gradient + content: hidden at rest, rises from bottom on hover */}
+      {/* Layer 2 - gradient + content: hidden at rest, rises from bottom on hover */}
       <div
         className="absolute inset-0 flex flex-col justify-end px-6 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10 origin-bottom scale-y-0 opacity-0 transition-all duration-500 group-hover:scale-y-100 group-hover:opacity-100"
         style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0) 24.28%, rgba(0,0,0,0.82) 91.5%)' }}
@@ -124,9 +124,9 @@ export default function AccoladesPage({ onPageChange }) {
                   className="absolute inset-0 w-full h-full object-cover select-none"
                   loading="lazy"
                 />
-                {/* Scrim — collapses upward on hover */}
+                {/* Scrim - collapses upward on hover */}
                 <div className="absolute inset-0 bg-black/20 origin-top transition-all duration-500 group-hover:scale-y-0 group-hover:opacity-0" />
-                {/* Content — rises from bottom on hover */}
+                {/* Content - rises from bottom on hover */}
                 <div
                   className="absolute inset-0 flex flex-col justify-end p-3 sm:p-4 origin-bottom scale-y-0 opacity-0 transition-all duration-500 group-hover:scale-y-100 group-hover:opacity-100"
                   style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0) 24.28%, rgba(0,0,0,0.82) 91.5%)' }}
@@ -139,7 +139,7 @@ export default function AccoladesPage({ onPageChange }) {
             ))}
           </div>
 
-          {/* Desktop: 4-col metro CSS grid — auto-placement, images in natural order */}
+          {/* Desktop: 4-col metro CSS grid - auto-placement, images in natural order */}
           <div
             className="hidden lg:grid grid-cols-4 rounded-[20px] overflow-hidden w-full"
             style={{

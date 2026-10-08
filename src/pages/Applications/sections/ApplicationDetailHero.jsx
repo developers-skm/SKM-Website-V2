@@ -15,7 +15,7 @@ export default function ApplicationDetailHero({ application, productFamilies, on
 
   return (
     <section className="relative w-full h-[640px] sm:h-[720px] lg:h-[820px] overflow-hidden flex items-center">
-      {/* Signature entrance — curved mask sweeps open from center matching Home Hero */}
+      {/* Signature entrance - curved mask sweeps open from center matching Home Hero */}
       <motion.div
         className="absolute inset-0"
         initial={reduceMotion ? false : { clipPath: 'inset(0% 42% 0% 42% round 50%)' }}
@@ -34,13 +34,13 @@ export default function ApplicationDetailHero({ application, productFamilies, on
         />
       </motion.div>
 
-      {/* Subtle yolk-gold light gradient — upper-right, echoes Home Hero */}
+      {/* Subtle yolk-gold light gradient - upper-right, echoes Home Hero */}
       <div
         className="absolute inset-0 pointer-events-none mix-blend-soft-light"
         style={{ background: 'radial-gradient(60% 55% at 82% 18%, rgba(232,182,74,0.5) 0%, rgba(232,182,74,0) 70%)' }}
       />
 
-      {/* Once-only warm light sweep — soft diagonal gradient band drifts slowly */}
+      {/* Once-only warm light sweep - soft diagonal gradient band drifts slowly */}
       {!reduceMotion && (
         <motion.div
           className="absolute inset-0 pointer-events-none mix-blend-soft-light"
@@ -54,7 +54,7 @@ export default function ApplicationDetailHero({ application, productFamilies, on
         />
       )}
 
-      {/* Scrim — left-weighted so copy stays legible while right side of photo stays clear */}
+      {/* Scrim - left-weighted so copy stays legible while right side of photo stays clear */}
       <div
         className="absolute inset-0"
         style={{ background: 'linear-gradient(90deg, rgba(20,16,10,0.82) 0%, rgba(20,16,10,0.65) 42%, rgba(20,16,10,0.18) 70%, rgba(20,16,10,0.05) 100%)' }}
@@ -78,7 +78,7 @@ export default function ApplicationDetailHero({ application, productFamilies, on
             className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-white/90 self-start"
           >
             <span className="w-5 h-px bg-white/70" aria-hidden="true" />
-            Application Solutions — {application.title}
+            Application Solutions - {application.title}
           </motion.span>
 
           {/* Heading matching Home Hero */}

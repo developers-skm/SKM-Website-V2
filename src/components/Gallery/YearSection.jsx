@@ -5,7 +5,7 @@ import AwardMoment from './AwardMoment';
 const EASE = [0.22, 1, 0.36, 1];
 
 // One year: a large year anchor, then that year's moments in order. Layout is
-// derived from position and type — nothing here is per-item.
+// derived from position and type - nothing here is per-item.
 export default function YearSection({ group, onOpen }) {
   const reduce = useReducedMotion();
   // Position within its own kind: awards alternate sides, other moments cycle

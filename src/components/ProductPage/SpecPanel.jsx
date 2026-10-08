@@ -2,12 +2,12 @@ import { motion, useReducedMotion } from 'framer-motion';
 import certifications from '../../data/certifications';
 import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
 
-// Section 2 — at-a-glance specification panel (brief §2). Every field here
+// Section 2 - at-a-glance specification panel (brief §2). Every field here
 // is derived from real per-product data already in the codebase (variant
 // `specifications`, products.js `packagingOptions`, the shared certification
 // set) or passed in explicitly by the page. Fields with no real source
 // (shelf life, minimum order quantity) are omitted entirely rather than
-// filled with placeholder values — see feedback-skm-design-rules memory.
+// filled with placeholder values - see feedback-skm-design-rules memory.
 //
 // `storage` and `protein` are derived from variantsData so each product
 // page doesn't need to hand-restate what's already true in its own variant
@@ -22,7 +22,7 @@ function collectDistinct(variantsData, key) {
   return Array.from(values);
 }
 
-// Primary functionality — derived from each variant's own `character` spec
+// Primary functionality - derived from each variant's own `character` spec
 // field (e.g. "Standard Emulsifying & Color Agent", "Gel Strength: > 1300
 // g/cm²"), same source already used for the hero's benefit tags. Falls back
 // to `functionality` prop only if the page explicitly passes one; otherwise
