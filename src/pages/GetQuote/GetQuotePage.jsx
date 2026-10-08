@@ -117,9 +117,16 @@ export default function GetQuotePage({ onPageChange, prefill }) {
       }
     }
     if (targetStep === 3) {
-      if (!formData.firstName.trim()) e.firstName = 'First name is required.';
-      if (!formData.lastName.trim()) e.lastName = 'Last name is required.';
-      if (!formData.company.trim()) e.company = 'Company name is required.';
+      // Lengths mirror the server's validators (backend/src/routes/quote.js).
+      const first = formData.firstName.trim();
+      const last = formData.lastName.trim();
+      const company = formData.company.trim();
+      if (!first) e.firstName = 'First name is required.';
+      else if (first.length < 2 || first.length > 80) e.firstName = 'First name must be 2–80 characters.';
+      if (!last) e.lastName = 'Last name is required.';
+      else if (last.length < 2 || last.length > 80) e.lastName = 'Last name must be 2–80 characters.';
+      if (!company) e.company = 'Company name is required.';
+      else if (company.length < 2 || company.length > 120) e.company = 'Company name must be 2–120 characters.';
       if (!formData.email.trim()) {
         e.email = 'Email is required.';
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) || formData.email.length > 254) {
@@ -198,6 +205,12 @@ export default function GetQuotePage({ onPageChange, prefill }) {
       setIsSubmitted(true);
     } catch (err) {
       console.error('Quote submit error:', err);
+      // Show the server's own message for validation (400) and rate-limit (429)
+      // rejections so the visitor knows what to fix; keep the generic one otherwise.
+      if (err.status === 400 || err.status === 429) {
+        setSubmitError(err.message);
+        return;
+      }
       setSubmitError("We couldn't send your enquiry. Please check your connection and try again, or email us directly at info@skmegg.com.");
     } finally {
       setIsSubmitting(false);
