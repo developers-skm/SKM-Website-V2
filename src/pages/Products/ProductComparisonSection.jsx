@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import InternalLink from '../../components/common/InternalLink';
 import products, { PRODUCT_CATEGORIES } from '../../data/products';
 import { getVariantsForProduct } from '../../data/productVariants';
 import { EASE_PREMIUM, fadeUp } from '../../utils/motionTokens';
+import VariantCompareModal from '../../components/ProductPage/VariantCompareModal';
 
 // Customized Mix / Customized Packages are made to order, so there is
 // nothing to compare side by side - every other product is selectable.
@@ -198,6 +200,13 @@ function ComparisonTable({ product, onPageChange, reduceMotion }) {
     return Array.from(keys);
   }, [variants]);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [checked, setChecked] = useState([]);
+  const [compareOpen, setCompareOpen] = useState(false);
+
+  const toggleChecked = (code) => {
+    setChecked((prev) => (prev.includes(code) ? prev.filter((c) => c !== code) : [...prev, code]));
+  };
+  const compared = variants.filter((v) => checked.includes(v.code));
 
   const detailsLink = (
     <InternalLink
@@ -226,6 +235,43 @@ function ComparisonTable({ product, onPageChange, reduceMotion }) {
         </span>
       </div>
 
+      {variants.length > 0 && (
+        <div className="flex flex-wrap items-center gap-3 min-h-[40px]">
+          <span className="font-body text-[13px] text-surface-500">
+            {checked.length === 0 ? 'Tick variants to compare them in detail.' : `${checked.length} selected`}
+          </span>
+          {checked.length > 0 && (
+            <>
+              <button
+                type="button"
+                onClick={() => setCompareOpen(true)}
+                disabled={checked.length < 2}
+                className="inline-flex items-center min-h-[40px] bg-brand-600 hover:bg-[#a80000] disabled:opacity-50 disabled:cursor-not-allowed text-white font-heading font-bold text-[12px] uppercase tracking-[0.05em] px-5 py-2 rounded-full transition-colors duration-300 cursor-pointer whitespace-nowrap"
+              >
+                Compare Selected ({checked.length})
+              </button>
+              <button
+                type="button"
+                onClick={() => setChecked([])}
+                className="font-body font-semibold text-[13px] text-brand-600 hover:underline bg-transparent border-none cursor-pointer"
+              >
+                Clear
+              </button>
+              {checked.length < 2 && <span className="font-body text-[12px] text-surface-400">Select at least 2 variants</span>}
+            </>
+          )}
+        </div>
+      )}
+
+      {createPortal(
+        <AnimatePresence>
+          {compareOpen && compared.length > 1 && (
+            <VariantCompareModal variants={compared} displayCode={displayCode} onClose={() => setCompareOpen(false)} />
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+
       <div className="relative">
         <div
           data-lenis-prevent
@@ -238,7 +284,12 @@ function ComparisonTable({ product, onPageChange, reduceMotion }) {
             <table className="w-full border-collapse min-w-[640px]">
               <thead>
                 <tr>
-                  <th className={`sticky left-0 z-20 bg-white ${TH} shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]`}>Code</th>
+                  <th className={`sticky left-0 z-20 bg-white ${TH} shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]`}>
+                    <span className="inline-flex items-center gap-3">
+                      <span className="w-4 h-4" aria-hidden="true" />
+                      Code
+                    </span>
+                  </th>
                   <th className={TH}>Name</th>
                   {specColumns.map((key) => (
                     <th key={key} className={TH}>{key}</th>
@@ -254,10 +305,27 @@ function ComparisonTable({ product, onPageChange, reduceMotion }) {
                     transition={{ duration: reduceMotion ? 0.01 : 0.45, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : Math.min(index, 8) * 0.05 }}
                     className="group/row transition-colors duration-[260ms] hover:bg-gold-500/[0.08]"
                   >
-                    <td className={`sticky left-0 z-10 bg-white font-mono font-bold text-[12.5px] text-brand-600 whitespace-nowrap border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] group-hover/row:bg-[#fdf6e8]`}>
-                      {displayCode(variant.code)}
+                    <td className={`sticky left-0 z-10 font-mono font-bold text-[12.5px] text-brand-600 whitespace-nowrap border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] group-hover/row:bg-[#fdf6e8] ${checked.includes(variant.code) ? 'bg-[#fdf6e8]' : 'bg-white'}`}>
+                      <label className="inline-flex items-center gap-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={checked.includes(variant.code)}
+                          onChange={() => toggleChecked(variant.code)}
+                          aria-label={`Select ${variant.name} for comparison`}
+                          className="w-4 h-4 accent-brand-600 cursor-pointer"
+                        />
+                        {displayCode(variant.code)}
+                      </label>
                     </td>
-                    <td className={`${TD} font-heading font-semibold text-[14.5px] text-heading min-w-[200px]`}>{variant.name}</td>
+                    <td className={`${TD} min-w-[200px]`}>
+                      <InternalLink
+                        route={product.page}
+                        onPageChange={onPageChange}
+                        className="font-heading font-semibold text-[14.5px] text-heading hover:text-brand-600 hover:underline focus:outline-none focus-gold rounded-sm"
+                      >
+                        {variant.name}
+                      </InternalLink>
+                    </td>
                     {specColumns.map((key) => (
                       <td key={key} className={`${TD} whitespace-nowrap`}>{variant.specifications?.[key] ?? '—'}</td>
                     ))}
