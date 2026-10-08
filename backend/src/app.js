@@ -8,10 +8,21 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
+// Behind Vercel/any reverse proxy every request arrives from the proxy's IP.
+// Without this the rate limiters share ONE counter across all visitors, so
+// after 5 quote submissions (site-wide) per 10 min everyone gets blocked.
+app.set('trust proxy', 1);
+
 const allowedOrigins = (process.env.CORS_ORIGINS || '').split(',').map((o) => o.trim()).filter(Boolean);
 
 app.use(cors({
-  origin: allowedOrigins.length ? allowedOrigins : true,
+  // Listed origins, plus any localhost/127.0.0.1 port outside production
+  // (Vite moves to 5175, 5176… when 5173 is busy, which used to fail CORS).
+  origin: (origin, cb) => {
+    if (!origin || !allowedOrigins.length || allowedOrigins.includes(origin)) return cb(null, true);
+    const isLocal = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+    return cb(null, isLocal && process.env.NODE_ENV !== 'production');
+  },
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

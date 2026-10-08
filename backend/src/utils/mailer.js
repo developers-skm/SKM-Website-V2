@@ -3,6 +3,9 @@ const nodemailer = require('nodemailer');
 // Contact/enquiry form mailbox (job, internship, feedback, vendor, service, general).
 const contactTransporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
+  connectionTimeout: 8000,
+  greetingTimeout: 8000,
+  socketTimeout: 8000,
   port: Number(process.env.SMTP_PORT) || 587,
   secure: process.env.SMTP_SECURE === 'true',
   auth: {
@@ -17,6 +20,9 @@ const contactTransporter = nodemailer.createTransport({
 const quoteTransporter = process.env.SMTP_HOST2
   ? nodemailer.createTransport({
       host: process.env.SMTP_HOST2,
+      connectionTimeout: 8000,
+      greetingTimeout: 8000,
+      socketTimeout: 8000,
       port: Number(process.env.SMTP_PORT2) || 587,
       secure: process.env.SMTP_SECURE2 === 'true',
       auth: {
