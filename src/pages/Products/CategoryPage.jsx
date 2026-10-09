@@ -8,12 +8,12 @@ import certifications from '../../data/certifications';
 // Shared layout for the 3 Product Category transition pages (Egg Powders,
 // Liquid Egg Products, Customised and Specialty Products).
 //
-// Section 1 - Category hero - covers exactly the 4 required points (format,
+// Section 1 — Category hero — covers exactly the 4 required points (format,
 // main operational advantages, who commonly uses it, storage/supply
 // considerations), each rendered only when the calling page supplies real
 // data for it; no field is invented to fill a gap.
 //
-// Section 2 - Product cards - one card per real product in this category
+// Section 2 — Product cards — one card per real product in this category
 // (products.js), not per SKU variant (variant-level code/name/benefit data
 // lives inside each product's own page file, keyed by productId, and isn't
 // shared category-wide). "Main functionality" and "Main applications" are
@@ -22,24 +22,24 @@ import certifications from '../../data/certifications';
 // the real min–max SKU code span read from that same per-product data.
 // "Certifications or relevant claims" shows the real company-wide
 // certifications (BRCGS, Halal, Kosher, etc.) since these are facility-
-// level, not per-SKU - true for every product, not invented per card.
+// level, not per-SKU — true for every product, not invented per card.
 //
-// Section 3 - Choose by functionality - real functionality tags, each
+// Section 3 — Choose by functionality — real functionality tags, each
 // mapped to the real product ids that genuinely carry that trait (verified
 // against each product's own variantsData `character`/`name` fields).
 //
-// Section 4 - Application matrix - rows are real products, columns are the
+// Section 4 — Application matrix — rows are real products, columns are the
 // real applications recorded in this category's cards. Cells only ever
 // show "Suitable" (that application genuinely appears in the product's own
-// applicationsData) or stay blank - no invented "Recommended" vs. "Custom
+// applicationsData) or stay blank — no invented "Recommended" vs. "Custom
 // formulation" tiering, since no data in the repo supports ranking severity
 // between products for a given application.
 //
-// Section 5 - Packaging, storage and delivery - real packagingOptions
+// Section 5 — Packaging, storage and delivery — real packagingOptions
 // (products.js) and, where supplied, real storage temperature language
 // already established for that category.
 //
-// Section 6 - Closing CTA - Request a Sample / Request a Quotation both route
+// Section 6 — Closing CTA — Request a Sample / Request a Quote both route
 // to the real get-quote flow (no separate sample-request mechanism exists,
 // so "Request a Sample" reuses the same real conversion path rather than a
 // fake dedicated form).
@@ -94,7 +94,7 @@ export default function CategoryPage({
     >
       <div className="w-full flex flex-col bg-page">
 
-        {/* Section 1 - Category hero */}
+        {/* Section 1 — Category hero */}
         <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[85px] lg:pb-[85px] border-b border-[#eee]">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
             <motion.div {...fadeProps()} className="max-w-3xl mb-9 lg:mb-11">
@@ -177,7 +177,7 @@ export default function CategoryPage({
           </div>
         </div>
 
-        {/* Section 2 - Product cards */}
+        {/* Section 2 — Product cards */}
         <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
             <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
@@ -246,7 +246,7 @@ export default function CategoryPage({
           </div>
         </div>
 
-        {/* Section 3 - Choose by functionality */}
+        {/* Section 3 — Choose by functionality */}
         {functionalityTags?.length > 0 && (
           <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
             <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
@@ -280,13 +280,13 @@ export default function CategoryPage({
                 </button>
               )}
               <p className="font-body text-[14px] text-surface-500 m-0" aria-live="polite">
-                Showing {visibleProducts.length} of {categoryProducts.length} products - see Section 2 above.
+                Showing {visibleProducts.length} of {categoryProducts.length} products — see Section 2 above.
               </p>
             </div>
           </div>
         )}
 
-        {/* Section 4 - Application matrix */}
+        {/* Section 4 — Application matrix */}
         {allApplications.length > 0 && (
           <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
             <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
@@ -336,7 +336,7 @@ export default function CategoryPage({
                     </table>
                   </div>
 
-                  {/* Scroll-right hint - fades a gradient + bouncing arrow
+                  {/* Scroll-right hint — fades a gradient + bouncing arrow
                       over the table's right edge until the user scrolls it. */}
                   <AnimatePresence>
                     {!hasScrolledMatrix && (
@@ -399,7 +399,7 @@ export default function CategoryPage({
           </div>
         )}
 
-        {/* Section 5 - Packaging, storage and delivery */}
+        {/* Section 5 — Packaging, storage and delivery */}
         <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
             <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
@@ -456,7 +456,7 @@ export default function CategoryPage({
           </div>
         </div>
 
-        {/* Section 6 - Closing CTA */}
+        {/* Section 6 — Closing CTA */}
         <div className="w-full py-[60px] lg:py-[85px] text-center px-4">
           <div className="mx-auto max-w-[600px] flex flex-col items-center gap-5">
             <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
