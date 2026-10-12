@@ -29,7 +29,7 @@ const iconProps = {
 const strengths = [
   {
     title: 'Integrated Poultry Farming',
-    body: 'Coordinated farm practices support bird health and consistent shell egg quality.',
+    body: 'Our integrated poultry farming practices prioritize bird health, hygiene, and efficient farm management to ensure consistent production of high-quality shell eggs.',
     icon: (
       <svg {...iconProps}>
         <path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-5h4v5" />
@@ -38,7 +38,7 @@ const strengths = [
   },
   {
     title: 'Balanced Poultry Nutrition',
-    body: 'Maize- and grain-based feed, supplemented with vitamins and minerals, supports healthy layers.',
+    body: 'Our layer hens receive a balanced maize- and grain-based diet, included with essential vitamins and minerals to support their health and consistent egg production.',
     icon: (
       <svg {...iconProps}>
         <path d="M12 21V8M12 8c0-2.5-2-4-4.5-4 0 2.5 2 4 4.5 4zm0 5c0-2.5-2-4-4.5-4 0 2.5 2 4 4.5 4zm0 5c0-2.5-2-4-4.5-4 0 2.5 2 4 4.5 4zM12 8c0-2.5 2-4 4.5-4 0 2.5-2 4-4.5 4zm0 5c0-2.5 2-4 4.5-4 0 2.5-2 4-4.5 4zm0 5c0-2.5 2-4 4.5-4 0 2.5-2 4-4.5 4z" />
