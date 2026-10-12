@@ -3,8 +3,40 @@ import { motion, AnimatePresence } from 'framer-motion';
 import brandLogo from '../../assets/LOGO/logo3.png';
 import { sendChatMessage } from '../../api/chatApi';
 
+// Turn a URL like .../products/egg-albumen-powder into "Egg Albumen Powder"
+const labelFromUrl = (url) => {
+  try {
+    const segments = new URL(url).pathname.split('/').filter(Boolean);
+    if (segments.length === 0) return 'Home';
+    if (segments.length === 1 && segments[0] === 'products') return 'All Products';
+    return segments[segments.length - 1]
+      .split('-')
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
+  } catch {
+    return url;
+  }
+};
 
-export default function Chatbot() {
+// Knowledge-base URLs (skmegg.vercel.app/<section>/<slug>) -> real app routes
+// (e.g. /products/egg-albumen-powder -> egg_albumen_powder).
+const ROUTE_OVERRIDES = {
+  'quality/food-safety-policy': 'policy',
+  'branches': 'global_reach',
+};
+
+const pageFromUrl = (url) => {
+  try {
+    const path = new URL(url).pathname.replace(/^\/|\/$/g, '');
+    if (!path) return 'home';
+    if (ROUTE_OVERRIDES[path]) return ROUTE_OVERRIDES[path];
+    return path.split('/').pop().replace(/-/g, '_');
+  } catch {
+    return null;
+  }
+};
+
+export default function Chatbot({ onPageChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -273,7 +305,10 @@ export default function Chatbot() {
             </div>
 
             {/* Messages Box */}
-            <div className="flex-grow overflow-y-auto px-4 py-4 space-y-4 custom-scrollbar bg-surface-50/40">
+            <div
+              data-lenis-prevent
+              className="flex-grow min-h-0 overflow-y-auto overscroll-contain px-4 py-4 space-y-4 custom-scrollbar bg-surface-50/40"
+            >
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -291,21 +326,24 @@ export default function Chatbot() {
                         {renderMessageText(msg.text)}
                         {msg.sources && msg.sources.length > 0 && (
                           <div className="mt-2.5 pt-2 border-t border-surface-100">
-                            <p className="text-[11px] font-semibold text-surface-400 uppercase tracking-wide mb-1">Sources</p>
-                            <ul className="space-y-1">
-                              {msg.sources.map((src, i) => (
-                                <li key={i}>
-                                  <a
-                                    href={src}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-[11px] text-brand-600 underline underline-offset-2 hover:text-brand-700 break-all transition-colors"
-                                  >
-                                    {src}
-                                  </a>
-                                </li>
+                            <p className="text-[11px] font-semibold text-surface-400 uppercase tracking-wide mb-1">Explore Products</p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {[...new Set(msg.sources)].map((src) => (
+                                <a
+                                  key={src}
+                                  href={`/${pageFromUrl(src) ?? ''}`}
+                                  onClick={(e) => {
+                                    const page = pageFromUrl(src);
+                                    if (!page || !onPageChange) return;
+                                    e.preventDefault();
+                                    onPageChange(page);
+                                  }}
+                                  className="inline-flex items-center px-2.5 py-1 rounded-full border border-brand-600/30 bg-brand-50 text-[11px] font-medium text-brand-600 hover:bg-brand-600 hover:text-white no-underline transition-colors"
+                                >
+                                  {labelFromUrl(src)}
+                                </a>
                               ))}
-                            </ul>
+                            </div>
                           </div>
                         )}
                       </>

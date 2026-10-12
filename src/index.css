@@ -77,7 +77,20 @@
 }
 
 .fab-cart {
+  /* Sits directly above the chatbot until the scroll-to-top button appears
+     (html[data-scrolltop='visible']), then glides up to make room for it. */
+  bottom: calc(var(--mobile-cta-reserve) + 65px);
+  transition: bottom 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[data-scrolltop='visible'] .fab-cart {
   bottom: calc(var(--mobile-cta-reserve) + 108px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab-cart {
+    transition: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -90,6 +103,10 @@
   }
 
   .fab-cart {
+    bottom: 95px;
+  }
+
+  html[data-scrolltop='visible'] .fab-cart {
     bottom: 160px;
   }
 }

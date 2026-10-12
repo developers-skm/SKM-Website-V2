@@ -58,7 +58,7 @@ export default function Layout({ children, activePage, onPageChange, suppressMob
             />
           )}
           <ScrollToTopButton />
-          <Chatbot />
+          <Chatbot onPageChange={onPageChange} />
           <MobileStickyActions
             activePage={activePage}
             onPageChange={onPageChange}

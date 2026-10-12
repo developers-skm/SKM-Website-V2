@@ -53,6 +53,16 @@ export default function ScrollToTopButton() {
     };
   }, []);
 
+  // Tell the cart FAB (see .fab-cart in index.css) whether to leave room for
+  // this button, so it sits next to the chatbot while the arrow is hidden.
+  const shown = isScrollable && isVisible;
+  useEffect(() => {
+    const root = document.documentElement;
+    if (shown) root.setAttribute('data-scrolltop', 'visible');
+    else root.removeAttribute('data-scrolltop');
+    return () => root.removeAttribute('data-scrolltop');
+  }, [shown]);
+
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
