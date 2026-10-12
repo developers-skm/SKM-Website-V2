@@ -76,14 +76,15 @@ const families = [
     categoryRoute: 'category_custom',
   },
   {
-    // No table/shell egg product exists in the catalogue yet - the copy
-    // below is honest that it's not launched. Image is a local placeholder
-    // asset - no product data implied.
+    // Shell eggs aren't in the products.js catalogue, so this card carries
+    // its own image and description instead of deriving them from product data.
     id: 'table-eggs',
     name: 'Table Eggs',
-    comingSoon: true,
-    comingSoonImage: TableEggImage,
-    comingSoonImageAlt: 'Brown table eggs in an egg tray',
+    image: TableEggImage,
+    imageAlt: 'Brown table eggs in an egg tray',
+    description: "Farm-fresh shell eggs from SKM's integrated poultry operations, supported by balanced nutrition, strict biosecurity and routine quality monitoring.",
+    ctaLabel: 'Explore Table Eggs',
+    categoryRoute: 'table_eggs',
   },
 ];
 
@@ -143,40 +144,11 @@ function TiltCard({ children, reduceMotion, className = '' }) {
 function FamilyCard({ family, onPageChange }) {
   const reduceMotion = useReducedMotion();
 
-  if (family.comingSoon) {
-    return (
-      <TiltCard reduceMotion={reduceMotion}>
-        <article className="group flex flex-col h-full rounded-[24px] overflow-hidden isolate bg-white border border-surface-200/70 shadow-[0_16px_44px_rgba(36,30,24,0.12)]">
-          <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4 / 3' }}>
-            {family.comingSoonImage && (
-              <SafeImage
-                src={family.comingSoonImage}
-                srcSet={`${family.comingSoonImage.replace('w=1600', 'w=800')} 800w, ${family.comingSoonImage} 1600w`}
-                sizes="(min-width: 768px) 45vw, 100vw"
-                alt={family.comingSoonImageAlt || ''}
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            )}
-          </div>
-
-          <div className="flex flex-col flex-1 px-6 py-6 sm:px-7 sm:py-7">
-            <h3 className="font-heading font-bold text-[20px] lg:text-[22px] text-heading leading-[1.2] m-0 mb-3">
-              {family.name}
-            </h3>
-            <p className="font-body text-[14px] lg:text-[15px] text-surface-500 leading-[1.55] m-0">
-              Table eggs are on our roadmap. Get in touch to discuss your requirement ahead of launch.
-            </p>
-          </div>
-        </article>
-      </TiltCard>
-    );
-  }
-
-  const familyProducts = family.productIds.map(getProductById).filter(Boolean);
-  const heroImage = familyProducts[0]?.image;
+  const familyProducts = (family.productIds ?? []).map(getProductById).filter(Boolean);
+  const heroImage = family.image ?? familyProducts[0]?.image;
+  const heroAlt = family.imageAlt ?? familyProducts[0]?.title ?? family.name;
   const motifKind = family.id === 'powders' ? 'powders' : family.id === 'liquids' ? 'liquids' : family.id === 'custom' ? 'custom' : null;
-  const firstBenefit = family.benefits?.[0];
+  const firstBenefit = family.description ?? family.benefits?.[0];
 
   return (
     <TiltCard reduceMotion={reduceMotion}>
@@ -185,7 +157,7 @@ function FamilyCard({ family, onPageChange }) {
           <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4 / 3' }}>
             <SafeImage
               src={heroImage}
-              alt={familyProducts[0].title}
+              alt={heroAlt}
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover"
             />

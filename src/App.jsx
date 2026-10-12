@@ -56,6 +56,7 @@ const LiquidLinePage = lazy(() => import('./pages/Products/LiquidLinePage'));
 const EggPowdersCategoryPage = lazy(() => import('./pages/Products/EggPowdersCategoryPage'));
 const LiquidEggCategoryPage = lazy(() => import('./pages/Products/LiquidEggCategoryPage'));
 const CustomSpecialtyCategoryPage = lazy(() => import('./pages/Products/CustomSpecialtyCategoryPage'));
+const TableEggsPage = lazy(() => import('./pages/Products/TableEggsPage'));
 const WhySKMPage = lazy(() => import('./pages/WhySKM/WhySKMPage'));
 const ManufacturingSupplyPage = lazy(() => import('./pages/Capabilities/ManufacturingSupplyPage'));
 const InnovationCustomSolutionsPage = lazy(() => import('./pages/Innovation/InnovationCustomSolutionsPage'));
@@ -210,6 +211,8 @@ function App() {
         return <LiquidEggCategoryPage onPageChange={handlePageChange} />;
       case 'category_custom':
         return <CustomSpecialtyCategoryPage onPageChange={handlePageChange} />;
+      case 'table_eggs':
+        return <TableEggsPage onPageChange={handlePageChange} />;
       case 'whole_egg_powder':
         return <WholeEggPowderPage onPageChange={handlePageChange} />;
       case 'egg_albumen_powder':

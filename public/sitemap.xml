@@ -29,6 +29,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.skmegg.com/table_eggs</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.skmegg.com/category_custom</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
