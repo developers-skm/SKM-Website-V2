@@ -38,7 +38,7 @@ const strengths = [
   },
   {
     title: 'Balanced Poultry Nutrition',
-    body: 'Our layer hens receive a balanced maize- and grain-based diet, included with essential vitamins and minerals to support their health and consistent egg production.',
+    body: 'Specially formulated poultry feed with high-quality ingredients and essential nutritional supplements provides balanced nutrition to support optimal hen health and the consistent production of premium-quality eggs.',
     icon: (
       <svg {...iconProps}>
         <path d="M12 21V8M12 8c0-2.5-2-4-4.5-4 0 2.5 2 4 4.5 4zm0 5c0-2.5-2-4-4.5-4 0 2.5 2 4 4.5 4zm0 5c0-2.5-2-4-4.5-4 0 2.5 2 4 4.5 4zM12 8c0-2.5 2-4 4.5-4 0 2.5-2 4-4.5 4zm0 5c0-2.5 2-4 4.5-4 0 2.5-2 4-4.5 4zm0 5c0-2.5 2-4 4.5-4 0 2.5-2 4-4.5 4z" />
@@ -47,7 +47,7 @@ const strengths = [
   },
   {
     title: 'Biosecurity & Hygiene',
-    body: 'Farm sanitation and preventive biosecurity measures help maintain hygienic production environments.',
+    body: 'Stringent entry screening and biosecurity controls for both personnel and vehicle movements help maintain a hygienic and secure poultry farm environment, minimizing contamination risks and safeguarding flock health.',
     icon: (
       <svg {...iconProps}>
         <path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3zM9 12l2 2 4-4" />
@@ -56,7 +56,7 @@ const strengths = [
   },
   {
     title: 'Routine Quality Monitoring',
-    body: 'Regular testing of water, tissues and shell egg samples supports quality monitoring.',
+    body: 'Systematic monitoring and stringent quality controls for water, feed, farm environments, and eggs are in place to ensure the consistent production of high-quality eggs.',
     icon: (
       <svg {...iconProps}>
         <path d="M9 3h6M10 3v6l-5 9.2A2 2 0 006.8 21h10.4a2 2 0 001.8-2.8L14 9V3M8 15h8" />
@@ -147,10 +147,10 @@ export default function TableEggsPage({ onPageChange }) {
               </nav>
               <span className={eyebrow}>Table Eggs</span>
               <h1 className="font-heading font-bold text-[38px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1]! tracking-tight m-0">
-                Farm-Fresh Eggs, Backed by Responsible Farming
+                From farm fresh eggs
               </h1>
               <p className={`${bodyClass} text-[17px] max-w-[52ch]`}>
-                Produced through SKM&apos;s integrated poultry operations, our shell eggs reflect careful feed management, farm hygiene and ongoing quality monitoring.
+                Produced at SKM&apos;s integrated poultry farms, our premium shell eggs reflect our commitment to responsible poultry farming through scientifically managed nutrition, stringent farm hygiene, robust biosecurity measures, and continuous quality monitoring, ensuring consistent freshness, safety, and superior egg quality.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-2 w-full sm:w-auto">
                 <InternalLink route="get-quote" onPageChange={onPageChange} className={primaryBtn}>
@@ -164,7 +164,7 @@ export default function TableEggsPage({ onPageChange }) {
             <motion.div {...fade(0.1)}>
               <ImageFrame
                 src={EggCollectionArea}
-                alt="SKM poultry farm team handling freshly collected shell eggs at the egg collection area"
+                alt="Produced at SKM’s integrated poultry farms, our premium shell eggs reflect our commitment to responsible poultry farming through scientifically managed nutrition, stringent farm hygiene, robust biosecurity measures, and continuous quality monitoring, ensuring consistent freshness, safety, and superior egg quality."
                 ratio="5 / 4"
                 position="45% 50%"
                 priority
@@ -190,7 +190,7 @@ export default function TableEggsPage({ onPageChange }) {
               <span className={eyebrow}>Integrated Poultry Operations</span>
               <h2 className={h2Class}>Quality Begins Long Before Collection</h2>
               <p className={bodyClass}>
-                Our integrated approach combines balanced poultry feed, carefully managed farm environments and systematic monitoring. Each aspect of poultry management contributes to bird health and consistent shell egg quality.
+              Every feed ingredient undergoes rigorous quality and residue testing before being approved for use in poultry feed formulations. Our integrated poultry management approach combines scientifically balanced nutrition, carefully controlled farm environments, stringent biosecurity measures, and systematic health and quality monitoring. Every stage of poultry management is designed to promote bird health and welfare while ensuring the consistent production of safe, high-quality shell eggs.
               </p>
             </motion.div>
           </div>
@@ -233,7 +233,7 @@ export default function TableEggsPage({ onPageChange }) {
             <motion.div {...fade()} className="flex flex-col gap-6">
               <div className="flex flex-col gap-5 max-w-[560px]">
                 <span className={eyebrow}>Our Quality Commitment</span>
-                <h2 className={h2Class}>Carefully Monitored, Every Step of the Way</h2>
+                <h2 className={h2Class}>Carefully Monitored at Every Step</h2>
                 <p className={bodyClass}>
                   Farm-level quality practices include routine monitoring of water, bird health and shell egg samples. Supported by established sanitation and biosecurity procedures, these checks help maintain a systematic approach to egg quality.
                 </p>
@@ -311,7 +311,7 @@ export default function TableEggsPage({ onPageChange }) {
               className="rounded-[24px] bg-[#fdf1f0] border border-brand-600/10 px-6 py-10 sm:px-12 sm:py-12 lg:px-16 lg:py-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8"
             >
               <div className="flex flex-col gap-3 max-w-[560px]">
-                <h2 className={h2Class}>Let&apos;s Talk Table Eggs</h2>
+                <h2 className={h2Class}>Let&apos;s discuss about table Eggs</h2>
                 <p className={bodyClass}>
                   Connect with the SKM team to discuss table egg availability and your business requirements.
                 </p>

@@ -82,7 +82,7 @@ const families = [
     name: 'Table Eggs',
     image: TableEggImage,
     imageAlt: 'Brown table eggs in an egg tray',
-    description: "Farm-fresh shell eggs from SKM's integrated poultry operations, supported by balanced nutrition, strict biosecurity and routine quality monitoring.",
+    description: "Premium-quality eggs are carefully collected, precisely graded, and individually printed with the company seal and Date of Packing (DOP) to ensure product authenticity, quality, and traceability. Each egg pack features a unique QR code that enables end-to-end traceability, providing comprehensive information on packing locations, farms, feed ingredients, and associated quality control records and documentation.",
     ctaLabel: 'Explore Table Eggs',
     categoryRoute: 'table_eggs',
   },

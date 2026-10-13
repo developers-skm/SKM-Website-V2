@@ -19,6 +19,12 @@ function getFilesFromFolders(folderNames) {
     .sort((a, b) => b.name.localeCompare(a.name));
 }
 
+// AGM recordings, shown in this order (oldest AGM first).
+const agmVideos = [
+  { title: '30th AGM Meeting', src: 'https://www.youtube.com/embed/uyskddiZzd0?si=MlGOF08DIXqAOLFZ' },
+  { title: '31st AGM Meeting', src: 'https://www.youtube.com/embed/j8r4XTxhqKg?si=urhBZsvEt8TwQQgj' },
+];
+
 const sectionFolders = {
   agm_meeting: ['31st AGM Proceedings','AGM Notice'],
   moa_aoa: ['MOA AND AOA'],
@@ -775,19 +781,22 @@ function SectionContent({ value, label }) {
     >
       <SectionHeader label={label} />
 
-      {videos.length > 0 && (
-        <div className="rounded-[12px] overflow-hidden border border-[#eee] bg-black aspect-video w-full">
-          <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/j8r4XTxhqKg?si=urhBZsvEt8TwQQgj"
-            title="31st AGM Meeting"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
+      {videos.length > 0 && agmVideos.map(({ title, src }) => (
+        <div key={src} className="flex flex-col gap-3">
+          <h3 className="font-heading font-semibold text-[18px] text-heading m-0">{title}</h3>
+          <div className="rounded-[12px] overflow-hidden border border-[#eee] bg-black aspect-video w-full">
+            <iframe
+              className="w-full h-full"
+              src={src}
+              title={title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
         </div>
-      )}
+      ))}
 
       {docs.length > 0 && (
         <div className="flex flex-col gap-2">
