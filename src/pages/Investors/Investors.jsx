@@ -20,7 +20,7 @@ function getFilesFromFolders(folderNames) {
 }
 
 const sectionFolders = {
-  agm_meeting: ['30th AGM Proceedings', 'AGM Notice'],
+  agm_meeting: ['31st AGM Proceedings','AGM Notice'],
   moa_aoa: ['MOA AND AOA'],
   annual_report: ['Annual Reports'],
   quarterly_results: ['Quarterly Results'],
@@ -58,7 +58,7 @@ const menuItems = [
   { label: 'Code of Conduct', value: 'code_of_conduct', recommended: true },
   { label: 'Investor Contact', value: 'investor_contact', recommended: true },
   { label: 'Disclosures Under Regulation 46 Of The LODR', value: 'disclosures_lodr' },
-  { label: '30th AGM Meeting', value: 'agm_meeting' },
+  { label: '31st AGM Meeting', value: 'agm_meeting' },
   { label: 'Investor Con. Call', value: 'investor_con_call' },
   { label: 'MOA and AOA', value: 'moa_aoa' },
   { label: 'Financial Report', value: 'financial_report' },
@@ -775,13 +775,19 @@ function SectionContent({ value, label }) {
     >
       <SectionHeader label={label} />
 
-      {videos.map((video, i) => (
-        <div key={i} className="rounded-[12px] overflow-hidden border border-[#eee] bg-black">
-          <video controls className="w-full max-h-[480px] object-contain" src={video.url}>
-            Your browser does not support the video tag.
-          </video>
+      {videos.length > 0 && (
+        <div className="rounded-[12px] overflow-hidden border border-[#eee] bg-black aspect-video w-full">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/j8r4XTxhqKg?si=urhBZsvEt8TwQQgj"
+            title="31st AGM Meeting"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
         </div>
-      ))}
+      )}
 
       {docs.length > 0 && (
         <div className="flex flex-col gap-2">
