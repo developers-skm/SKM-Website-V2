@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
-const EASE = [0.22, 1, 0.36, 1];
 
 // Full-width white bar docked to the top of the viewport once the hero has
 // scrolled away. Years come from the data (never empty); the type filter is
 // secondary and only lists types that exist. A thin red line tracks progress
 // through the timeline.
-export default function YearNav({ groups, filters, filter, onFilter, trackRef }) {
+export default function YearNav({ groups, filters, filter, onFilter }) {
   const reduce = useReducedMotion();
   const [active, setActive] = useState(groups[0]?.id);
   const [stuck, setStuck] = useState(false);
@@ -16,8 +15,6 @@ export default function YearNav({ groups, filters, filter, onFilter, trackRef })
   const pillRefs = useRef({});
 
   // Progress through the timeline (springy so it feels smooth, not jittery).
-  const { scrollYProgress } = useScroll({ target: trackRef, offset: ['start 85%', 'end 30%'] });
-  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.4 });
 
   // Know when the bar is actually docked, to add the shadow.
   useEffect(() => {
@@ -143,14 +140,6 @@ export default function YearNav({ groups, filters, filter, onFilter, trackRef })
           )}
         </div>
 
-        {/* Timeline progress */}
-        <motion.span
-          aria-hidden="true"
-          className="absolute inset-x-0 bottom-[-1px] h-[3px] origin-left bg-brand-600"
-          style={{ scaleX: reduce ? scrollYProgress : progress }}
-          initial={false}
-          transition={{ duration: 0.4, ease: EASE }}
-        />
       </div>
 
       {/* Filters on small screens: a compact second row (hidden on md+) */}

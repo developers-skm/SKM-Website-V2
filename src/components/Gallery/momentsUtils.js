@@ -1,6 +1,7 @@
 import meta from '../../data/galleryImageMeta.json';
 
 export const UNDATED_ID = 'honours';
+export const ARCHIVE_ID = 'archive';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -73,7 +74,11 @@ export function buildTimeline(moments, filterId = 'all') {
     if (last && last.id === item.year) last.items.push(item);
     else groups.push({ id: item.year, label: item.year, items: [item] });
   });
-  if (undated.length) groups.push({ id: UNDATED_ID, label: 'Honours', undated: true, items: undated });
+  // Undated awards sit under "Honours"; any other undated photos under "Archive".
+  const undatedAwards = undated.filter((m) => m.award);
+  const undatedOther = undated.filter((m) => !m.award);
+  if (undatedAwards.length) groups.push({ id: UNDATED_ID, label: 'Honours', undated: true, items: undatedAwards });
+  if (undatedOther.length) groups.push({ id: ARCHIVE_ID, label: 'Archive', undated: true, items: undatedOther });
 
   // Flat chronological order - drives the viewer's previous / next.
   const flat = groups.flatMap((g) => g.items);

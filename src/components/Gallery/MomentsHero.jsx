@@ -1,32 +1,39 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { imageProps } from './momentsUtils';
+import { EASE } from './motionKit';
+import { MaskText } from './MotionParts';
 
-const EASE = [0.22, 1, 0.36, 1];
-
-function Panel({ moment, className, delay, priority, reduce }) {
+function Panel({ moment, className, delay, priority, reduce, drift = 8 }) {
   const img = imageProps(moment.image, 1200);
   return (
+    // Outer layer: slow idle float after the intro. Inner layer: the curtain reveal.
     <motion.div
-      className={`absolute overflow-hidden rounded-[18px] sm:rounded-[22px] bg-surface-200 ring-[5px] sm:ring-[7px] ring-page ${className}`}
-      initial={reduce ? false : { clipPath: 'inset(0 0 100% 0)' }}
-      animate={{ clipPath: 'inset(0 0 0% 0)' }}
-      transition={{ duration: 1.1, delay, ease: EASE }}
+      className={`absolute ${className}`}
+      animate={reduce ? undefined : { y: [0, -drift, 0] }}
+      transition={{ duration: 6 + delay * 3, delay: delay + 1.4, repeat: Infinity, ease: 'easeInOut' }}
     >
-      <motion.img
-        src={img.src}
-        srcSet={img.srcSet}
-        sizes="(min-width: 1024px) 560px, 80vw"
-        alt={moment.alt}
-        width={img.width}
-        height={img.height}
-        loading={priority ? 'eager' : 'lazy'}
-        fetchPriority={priority ? 'high' : 'auto'}
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-cover"
-        initial={{ scale: reduce ? 1 : 1.03 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.8, delay, ease: EASE }}
-      />
+      <motion.div
+        className="absolute inset-0 overflow-hidden rounded-[18px] sm:rounded-[22px] bg-surface-200 ring-[5px] sm:ring-[7px] ring-page shadow-[0_18px_50px_rgba(0,40,50,0.14)]"
+        initial={reduce ? false : { clipPath: 'inset(100% 0 0 0)', rotate: 3 }}
+        animate={{ clipPath: 'inset(0% 0 0 0)', rotate: 0 }}
+        transition={{ duration: 1.2, delay, ease: EASE }}
+      >
+        <motion.img
+          src={img.src}
+          srcSet={img.srcSet}
+          sizes="(min-width: 1024px) 560px, 80vw"
+          alt={moment.alt}
+          width={img.width}
+          height={img.height}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+          initial={{ scale: reduce ? 1 : 1.25 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, delay, ease: EASE }}
+        />
+      </motion.div>
     </motion.div>
   );
 }
@@ -54,9 +61,11 @@ export default function MomentsHero({ photos }) {
           <motion.h1
             id="gallery-title"
             className="m-0 font-heading font-bold leading-[1.02] tracking-[-0.03em] text-heading text-[clamp(2.5rem,5.2vw,4.75rem)]"
-            {...reveal(reduce, 0.15)}
+            initial={reduce ? false : 'hidden'}
+            animate="visible"
+            variants={{ hidden: {}, visible: { transition: { delayChildren: 0.15 } } }}
           >
-            Moments That Define Our Journey
+            <MaskText text="Moments That Define Our Journey" stagger={0.09} duration={1} />
           </motion.h1>
           <motion.p
             className="mt-5 mb-0 max-w-[460px] font-body text-[16px] leading-[28px] text-surface-500"
@@ -75,9 +84,9 @@ export default function MomentsHero({ photos }) {
         </div>
 
         <div className="relative h-[300px] w-full sm:h-[400px] lg:h-[min(430px,52vh)]">
-          {a && <Panel moment={a} priority reduce={reduce} delay={0.2} className="right-0 top-0 h-[80%] w-[82%]" />}
-          {b && <Panel moment={b} reduce={reduce} delay={0.5} className="bottom-0 left-0 h-[46%] w-[46%]" />}
-          {c && <Panel moment={c} reduce={reduce} delay={0.75} className="right-[6%] bottom-0 hidden h-[34%] w-[30%] sm:block" />}
+          {a && <Panel moment={a} priority reduce={reduce} delay={0.2} className="right-0 top-0 h-[80%] w-[82%]" drift={6} />}
+          {b && <Panel moment={b} reduce={reduce} delay={0.5} className="bottom-0 left-0 h-[46%] w-[46%]" drift={12} />}
+          {c && <Panel moment={c} reduce={reduce} delay={0.75} className="right-[6%] bottom-0 hidden h-[34%] w-[30%] sm:block" drift={9} />}
         </div>
       </div>
     </section>

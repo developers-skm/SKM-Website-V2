@@ -2,6 +2,15 @@
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
 import { makeContainerVariants, makeItemVariants } from '../../utils/animationVariants';
+import ImageSlider from '../../components/ImageSlider/ImageSlider';
+import ChairmanImage from '../../assets/trust-images/chairman.jpg';
+import SevaiMaiyam2 from '../../assets/trust-images/sevai-maiyam-2.webp';
+import Samynathapuram from '../../assets/trust-images/samynathapuram.webp';
+
+const sevaiMaiyamSlides = [
+  { src: SevaiMaiyam2, label: 'Sevai Maiyam - Service Centre' },
+  { src: Samynathapuram, label: 'Samynathapuram' },
+];
 
 const familyStats = [
   { value: '228', label: 'Families Adopted', sub: 'Gandhi Nagar 174 · Rajiv Nagar 54' },
@@ -23,17 +32,6 @@ const healthPoints = [
   'Post-delivery consultations by doctors covering child rearing and disease prevention.',
   'Family planning counselling and arrangements offered after the 2nd or 3rd delivery.',
 ];
-
-function ImagePlaceholder({ label, aspectClass = 'aspect-[4/3]' }) {
-  return (
-    <div className={`relative w-full ${aspectClass} rounded-2xl bg-surface-100 border-2 border-dashed border-surface-200 flex flex-col items-center justify-center gap-3 overflow-hidden`}>
-      <svg className="w-10 h-10 text-surface-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-      <p className="text-[10px] font-semibold uppercase tracking-widest text-surface-400 m-0 text-center px-4">{label}</p>
-    </div>
-  );
-}
 
 export default function CommunityDevelopmentPage({ onPageChange }) {
   const containerVariants = makeContainerVariants(0.12);
@@ -97,7 +95,13 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
             {/* Right: Chairman image placeholder */}
             <motion.div variants={itemVariants} className="flex-1 w-full max-w-sm lg:max-w-xs xl:max-w-sm mx-auto lg:mx-0 flex-shrink-0">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="Chairman - image coming soon" aspectClass="aspect-[3/4]" />
+                <img
+                  src={ChairmanImage}
+                  alt="SKM. Maeilanandhan, Chairman of SKM Health and Mind Welfare Charity Trust"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full aspect-[3/4] rounded-2xl object-cover object-right"
+                />
               </div>
             </motion.div>
           </div>
@@ -105,7 +109,7 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
           {/* ── Row 2: Section image ── */}
           <motion.div variants={itemVariants} className="flex flex-col gap-8">
             <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-              <ImagePlaceholder label="Sevai Maiyam - image coming soon" aspectClass="aspect-[16/7]" />
+              <ImageSlider images={sevaiMaiyamSlides} aspectRatio="16/7" slidesPerView={1} autoPlay={5000} />
             </div>
 
             {/* Text below the image */}

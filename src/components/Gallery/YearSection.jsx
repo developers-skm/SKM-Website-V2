@@ -1,13 +1,17 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import MomentCard from './MomentCard';
 import AwardMoment from './AwardMoment';
-
-const EASE = [0.22, 1, 0.36, 1];
+import { EASE } from './motionKit';
+import { MaskText } from './MotionParts';
 
 // One year: a large year anchor, then that year's moments in order. Layout is
 // derived from position and type - nothing here is per-item.
 export default function YearSection({ group, onOpen }) {
   const reduce = useReducedMotion();
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  const driftX = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [-36, 36]);
   // Position within its own kind: awards alternate sides, other moments cycle
   // through the editorial pattern.
   const seen = { award: 0, plain: 0 };
@@ -28,21 +32,27 @@ export default function YearSection({ group, onOpen }) {
   });
 
   return (
-    <section id={`year-${group.id}`} aria-label={group.label} className="scroll-mt-[88px] py-12 lg:py-20">
+    <section ref={sectionRef} id={`year-${group.id}`} aria-label={group.label} className="scroll-mt-[88px] py-12 lg:py-20">
       <motion.header
         className="mb-10 lg:mb-16 flex items-end gap-5 lg:gap-8"
-        initial={reduce ? false : { opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={reduce ? false : 'hidden'}
+        whileInView="visible"
         viewport={{ once: true, margin: '0px 0px -15% 0px' }}
-        transition={{ duration: 0.8, ease: EASE }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
       >
-        <h2 className="m-0 font-heading font-bold leading-[0.85] tracking-[-0.04em] text-heading text-[clamp(4rem,11vw,9rem)]">
-          {group.label}
-        </h2>
-        <span aria-hidden="true" className="mb-[0.6em] h-[2px] flex-1 bg-gradient-to-r from-gold-500 to-transparent" />
-        <span className="mb-3 shrink-0 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-surface-500">
+        <motion.h2 style={{ x: driftX }} aria-label={group.label} className="m-0 font-heading font-bold leading-[0.85] tracking-[-0.04em] text-heading text-[clamp(4rem,11vw,9rem)]">
+          <MaskText text={group.label} by="char" stagger={0.09} duration={1} />
+        </motion.h2>
+        <motion.span
+          aria-hidden="true"
+          variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { duration: 1.3, ease: EASE } } }}
+          className="mb-[0.6em] h-[2px] flex-1 origin-left bg-gradient-to-r from-gold-500 to-transparent"
+        />
+        <motion.span
+          variants={{ hidden: { opacity: 0, x: 16 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: EASE } } }}
+          className="mb-3 shrink-0 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-surface-500">
           {group.items.length} {group.items.length === 1 ? 'moment' : 'moments'}
-        </span>
+        </motion.span>
       </motion.header>
 
       <div className="flex flex-col gap-14 lg:gap-24">

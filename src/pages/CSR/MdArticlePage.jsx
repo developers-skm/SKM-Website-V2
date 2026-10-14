@@ -2,17 +2,10 @@
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
 import { makeContainerVariants, makeItemVariants } from '../../utils/animationVariants';
-
-function ImagePlaceholder({ label, aspectClass = 'aspect-[4/3]' }) {
-  return (
-    <div className={`relative w-full ${aspectClass} rounded-2xl bg-surface-100 border-2 border-dashed border-surface-200 flex flex-col items-center justify-center gap-3 overflow-hidden`}>
-      <svg className="w-10 h-10 text-surface-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-      <p className="text-[10px] font-semibold uppercase tracking-widest text-surface-400 m-0 text-center px-4">{label}</p>
-    </div>
-  );
-}
+import PlaygroundImg from '../../assets/trust-images/oef-playground.webp';
+import SportsCourtImg from '../../assets/trust-images/oef-sports-court.webp';
+import CommunityEveningImg from '../../assets/trust-images/oef-community-evening.webp';
+import CommunityActivityImg from '../../assets/trust-images/oef-community-activity.webp';
 
 const focusAreas = [
   {
@@ -109,10 +102,10 @@ export default function MdArticlePage({ onPageChange }) {
             {/* Images row 1 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="OEF - image coming soon" aspectClass="aspect-[4/3]" />
+                <img src={PlaygroundImg} alt="Children playing at the community playground" loading="lazy" decoding="async" className="w-full aspect-[4/3] rounded-2xl object-cover" />
               </div>
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="OEF - image coming soon" aspectClass="aspect-[4/3]" />
+                <img src={SportsCourtImg} alt="Girls playing volleyball on the community sports court" loading="lazy" decoding="async" className="w-full aspect-[4/3] rounded-2xl object-cover" />
               </div>
             </div>
           </motion.div>
@@ -131,10 +124,10 @@ export default function MdArticlePage({ onPageChange }) {
             {/* Images row 2 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="OEF event - image coming soon" aspectClass="aspect-[4/3]" />
+                <img src={CommunityEveningImg} alt="Children gathered at an evening community programme" loading="lazy" decoding="async" className="w-full aspect-[4/3] rounded-2xl object-cover" />
               </div>
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <ImagePlaceholder label="OEF founders - image coming soon" aspectClass="aspect-[4/3]" />
+                <img src={CommunityActivityImg} alt="Community members taking part in a group activity" loading="lazy" decoding="async" className="w-full aspect-[4/3] rounded-2xl object-cover" />
               </div>
             </div>
           </motion.div>

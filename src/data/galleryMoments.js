@@ -34,98 +34,63 @@
 //  TYPES:  event · award · milestone · celebration · visit · moment
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Photo series: one moment per photograph. Numbered ids follow the folder order
+// (public/gallery/<slug>-01.webp, -02, …). `each[i]` overrides fields for photo i.
+const series = (slug, count, { each = [], ...base }) =>
+  Array.from({ length: count }, (_, i) => {
+    const n = String(i + 1).padStart(2, '0');
+    return { id: `${slug}-${n}`, image: `/gallery/${slug}-${n}.webp`, ...base, ...each[i] };
+  });
+
 export const moments = [
-  // ── Events ────────────────────────────────────────────────────────────────
-  {
-    id: 'seoul-food-2026',
-    image: '/gallery/seoul-food-2026.webp',
-    date: '2026-06-09',
-    dateLabel: '9–12 Jun 2026',
-    title: 'Seoul Food 2026',
-    caption: 'Demonstrated complete traceability compliance for premium egg white cube products.',
-    type: 'event',
-    hero: true,
-  },
-  {
-    id: 'fi-vietnam-2026',
-    image: '/gallery/fi-vietnam-2026.webp',
-    date: '2026-05-13',
-    dateLabel: '13–15 May 2026',
-    title: 'Fi Vietnam 2026',
-    caption: 'Presented premium bakery mixes to fast-growing culinary chains across Indochina.',
-    type: 'event',
-  },
-  {
-    id: 'fi-vietnam-2026-team',
-    image: '/gallery/fi-vietnam-2026-team.webp',
-    date: '2026-05-14',
-    title: 'The SKM Team in Vietnam',
-    caption: 'SKM team and visitors at the stand.',
-    type: 'moment',
-  },
-  {
-    id: 'gulfood-2025',
-    image: '/gallery/gulfood-2025.webp',
-    date: '2025-11-03',
-    dateLabel: '3–5 Nov 2025',
-    title: 'Gulfood Manufacturing 2025',
-    caption: 'Established high-volume contracts for liquid pasteurized mixes with GCC partners.',
-    type: 'event',
-  },
-  {
-    id: 'fi-asia-2025',
-    image: '/gallery/fi-asia-2025.webp',
-    date: '2025-09-17',
-    dateLabel: '17–19 Sep 2025',
-    title: 'Fi Asia Thailand 2025',
-    caption: 'Displayed enzyme-modified heat-stable yolk powders for high-temperature processing.',
-    type: 'event',
-    hero: true,
-  },
-  {
-    id: 'fi-asia-2025-team',
-    image: '/gallery/fi-asia-2025-team.webp',
-    date: '2025-09-18',
-    title: 'Meeting Our Partners',
-    caption: 'SKM team members with visitors in Bangkok.',
-    type: 'moment',
-  },
-  {
-    id: 'fi-vietnam-2024',
-    image: '/gallery/fi-vietnam-2024.webp',
-    date: '2024-10-09',
-    dateLabel: '9–11 Oct 2024',
-    title: 'Fi Vietnam 2024',
-    caption: 'Reinforced supply agreements with key Southeast Asian noodle and sauce processors.',
-    type: 'event',
-  },
-  {
-    id: 'fi-africa-2024',
-    image: '/gallery/fi-africa-2024.webp',
-    date: '2024-05-26',
-    dateLabel: '26–28 May 2024',
-    title: 'Fi Africa 2024',
-    caption: 'Introduced customized yolk and whole egg mixes to the African baking sector.',
-    type: 'event',
-  },
-  {
-    id: 'gulfood-2023',
-    image: '/gallery/gulfood-2023.webp',
-    date: '2023-11-07',
-    dateLabel: '7–9 Nov 2023',
-    title: 'Gulfood Manufacturing 2023',
-    caption: 'Expanded partnerships with major Middle Eastern dairy and mayonnaise brands.',
-    type: 'event',
-  },
-  {
-    id: 'fi-asia-2023',
-    image: '/gallery/fi-asia-2023.webp',
-    date: '2023-09-20',
-    dateLabel: '20–22 Sep 2023',
-    title: 'Fi Asia Thailand 2023',
-    caption: 'Showcased the full line of egg powder solutions to Asian bakery and noodle makers.',
-    type: 'event',
-  },
+  // ── Events & celebrations ─────────────────────────────────────────────────
+  ...series('family-fest-2022', 9, {
+    date: '2022-04-12', dateLabel: '12 Apr 2022', title: 'Family Fest 2022',
+    caption: 'The SKM family coming together to celebrate.', type: 'celebration',
+    each: [{ date: '2022-04-10', dateLabel: '10 Apr 2022' }, { hero: true }],
+  }),
+  ...series('lmi-training-2021', 5, {
+    date: '2021-02-12', dateLabel: '12 Feb 2021', title: 'Leadership Management International (LMI) Training',
+    caption: 'Leadership development training for the SKM team.', type: 'event',
+    each: [{ hero: true }],
+  }),
+  ...series('agm-2019', 3, {
+    date: '2019', title: 'Shareholders Meeting 2019',
+    caption: 'Annual general meeting with SKM shareholders.', type: 'event',
+  }),
+  ...series('family-fest-2019', 4, {
+    date: '2019-05-03', dateLabel: '3 May 2019', title: 'Family Fest 2019',
+    caption: 'The SKM family coming together to celebrate.', type: 'celebration',
+  }),
+  ...series('independence-day-2016', 2, {
+    date: '2016-08-15', dateLabel: '15 Aug 2016', title: 'Independence Day 2016',
+    caption: 'Independence Day celebration at SKM.', type: 'celebration',
+  }),
+  ...series('agm-2014', 4, {
+    date: '2014-09-10', dateLabel: '10 Sep 2014', title: 'Shareholders Meeting 2014',
+    caption: 'Annual general meeting with SKM shareholders.', type: 'event',
+  }),
+  ...series('family-fest-2014', 4, {
+    date: '2014-01-12', dateLabel: '12 Jan 2014', title: 'Family Fest 2014',
+    caption: 'The SKM family coming together to celebrate.', type: 'celebration',
+  }),
+  ...series('agm-2013', 3, {
+    date: '2013-09-30', dateLabel: '30 Sep 2013', title: 'Shareholders Meeting 2013',
+    caption: 'Annual general meeting with SKM shareholders.', type: 'event',
+  }),
+  ...series('agm-2012', 1, {
+    date: '2012-09-29', dateLabel: '29 Sep 2012', title: 'Shareholders Meeting 2012',
+    caption: 'Annual general meeting with SKM shareholders.', type: 'event',
+  }),
+  ...series('agm-2011', 1, {
+    date: '2011-09-30', dateLabel: '30 Sep 2011', title: 'Shareholders Meeting 2011',
+    caption: 'Annual general meeting with SKM shareholders.', type: 'event',
+  }),
+
+  // No date on record → shown last, under "Archive"
+  ...series('sathabishegam', 3, {
+    title: 'Sathabishegam', caption: 'A sacred ceremony celebrated with the SKM family.', type: 'celebration',
+  }),
 
   // ── Honours & awards (only the year is known for these) ──────────────────
   {

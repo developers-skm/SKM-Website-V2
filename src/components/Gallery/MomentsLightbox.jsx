@@ -1,10 +1,15 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import useScrollLock from '../../hooks/useScrollLock';
 import { imageProps, TYPE_LABEL } from './momentsUtils';
 
 const EASE = [0.22, 1, 0.36, 1];
+const slide = {
+  enter: (d) => ({ opacity: 0, x: d * 90, scale: 0.97, filter: 'blur(10px)' }),
+  center: { opacity: 1, x: 0, scale: 1, filter: 'blur(0px)' },
+  exit: (d) => ({ opacity: 0, x: d * -90, scale: 0.98, filter: 'blur(8px)' }),
+};
 const pad = (n) => String(n).padStart(2, '0');
 
 const btn =
@@ -28,9 +33,17 @@ export default function MomentsLightbox({ items, index, onIndex, onClose }) {
   const moment = items[index];
   const img = imageProps(moment.image, 1920);
 
+  const [dir, setDir] = useState(1);
+
   useScrollLock(true);
 
-  const go = useCallback((d) => onIndex((index + d + total) % total), [index, total, onIndex]);
+  const go = useCallback(
+    (d) => {
+      setDir(d);
+      onIndex((index + d + total) % total);
+    },
+    [index, total, onIndex]
+  );
 
   // Focus handling: remember the opener, focus Close, restore on unmount.
   useEffect(() => {
@@ -77,12 +90,20 @@ export default function MomentsLightbox({ items, index, onIndex, onClose }) {
       role="dialog"
       aria-modal="true"
       aria-label={`Moment viewer: ${moment.title}`}
-      className="fixed inset-0 z-[200] flex flex-col bg-[#0d0d0d]/95 text-white"
+      className="fixed inset-0 z-[200] flex flex-col bg-[#0d0d0d]/90 text-white backdrop-blur-xl"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: reduce ? 0 : 0.3 }}
     >
+      <span aria-hidden="true" className="absolute inset-x-0 top-0 h-[2px] bg-white/10">
+        <motion.span
+          className="block h-full origin-left bg-gold-400"
+          animate={{ scaleX: (index + 1) / total }}
+          transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
+        />
+      </span>
+
       <div className="flex items-center justify-between px-4 pt-4 sm:px-8 sm:pt-6">
         <span className="font-body text-[12px] font-semibold uppercase tracking-[0.2em] tabular-nums text-white/70" aria-live="polite">
           {pad(index + 1)} <span className="text-white/35">/</span> {pad(total)}
@@ -102,7 +123,7 @@ export default function MomentsLightbox({ items, index, onIndex, onClose }) {
           <Chevron dir="left" />
         </button>
 
-        <AnimatePresence mode="wait" initial={false}>
+        <AnimatePresence mode="wait" initial={false} custom={dir}>
           <motion.img
             key={moment.id}
             src={img.src}
@@ -112,10 +133,12 @@ export default function MomentsLightbox({ items, index, onIndex, onClose }) {
             width={img.width}
             height={img.height}
             className="max-h-full max-w-full select-none rounded-[10px] object-contain shadow-[0_20px_80px_rgba(0,0,0,0.5)]"
-            initial={reduce ? false : { opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={reduce ? undefined : { opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.35, ease: EASE }}
+            custom={dir}
+            variants={reduce ? undefined : slide}
+            initial={reduce ? false : 'enter'}
+            animate={reduce ? undefined : 'center'}
+            exit={reduce ? undefined : 'exit'}
+            transition={{ duration: 0.45, ease: EASE }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.3}
@@ -132,13 +155,19 @@ export default function MomentsLightbox({ items, index, onIndex, onClose }) {
       </div>
 
       <div className="flex items-end justify-between gap-4 px-4 pb-5 sm:px-8 sm:pb-8">
-        <div className="min-w-0">
+        <motion.div
+          key={moment.id}
+          className="min-w-0"
+          initial={reduce ? false : { opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15, ease: EASE }}
+        >
           <span className="font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-400">
             {[moment.label, TYPE_LABEL[moment.type]].filter(Boolean).join('  ·  ')}
           </span>
           <h2 className="mt-1 mb-0 font-heading text-[18px] font-bold leading-tight sm:text-[26px]">{moment.title}</h2>
           {moment.caption && <p className="mt-1 mb-0 max-w-[70ch] font-body text-[13px] text-white/65 sm:text-[14px]">{moment.caption}</p>}
-        </div>
+        </motion.div>
         <div className="flex shrink-0 gap-2 sm:hidden">
           <button type="button" onClick={() => go(-1)} aria-label="Previous moment" className={btn}><Chevron dir="left" /></button>
           <button type="button" onClick={() => go(1)} aria-label="Next moment" className={btn}><Chevron dir="right" /></button>

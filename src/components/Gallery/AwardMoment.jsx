@@ -1,16 +1,24 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { imageProps, TYPE_LABEL } from './momentsUtils';
-
-const EASE = [0.22, 1, 0.36, 1];
+import { EASE, shutterImg, useParallax } from './motionKit';
+import { MaskText, ShutterBar } from './MotionParts';
 
 const container = { hidden: {}, visible: { transition: { staggerChildren: 0.14 } } };
 const rise = {
   hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
 };
-const clip = {
-  hidden: { clipPath: 'inset(0 0 100% 0)' },
-  visible: { clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.95, ease: EASE } },
+const medal = {
+  hidden: { opacity: 0, scale: 0.3, rotate: -50 },
+  visible: { opacity: 1, scale: 1, rotate: 0, transition: { type: 'spring', stiffness: 220, damping: 13, delay: 0.5 } },
+};
+const topBar = {
+  hidden: { scaleX: 0 },
+  visible: { scaleX: 1, transition: { duration: 1.2, ease: EASE } },
+};
+const shimmer = {
+  hidden: { x: '-130%' },
+  visible: { x: '230%', transition: { duration: 1.4, delay: 1.1, ease: [0.4, 0, 0.2, 1] } },
 };
 
 function MedalIcon() {
@@ -28,6 +36,7 @@ function MedalIcon() {
 export default function AwardMoment({ moment, flip, onOpen }) {
   const reduce = useReducedMotion();
   const img = imageProps(moment.image, 1200);
+  const { ref: frameRef, y: parY } = useParallax(reduce, 4);
 
   return (
     <motion.article
@@ -37,20 +46,23 @@ export default function AwardMoment({ moment, flip, onOpen }) {
       viewport={{ once: true, margin: '0px 0px -12% 0px' }}
       className="relative overflow-hidden rounded-[24px] border border-gold-500/40 bg-white shadow-[0_10px_50px_rgba(0,72,88,0.08)]"
     >
-      <span className="absolute inset-x-0 top-0 h-[3px] bg-gold-500" aria-hidden="true" />
+      <motion.span variants={topBar} className="absolute inset-x-0 top-0 h-[3px] origin-left bg-gold-500" aria-hidden="true" />
 
       <div className="grid lg:grid-cols-12 items-center">
         {/* Photograph - never upscaled past its natural width */}
         <div className={`lg:col-span-6 p-5 sm:p-8 lg:p-10 ${flip ? 'lg:order-2' : ''}`}>
           <motion.button
             type="button"
-            variants={clip}
+            ref={frameRef}
             onClick={(e) => onOpen(moment, e.currentTarget)}
             aria-label={`View moment: ${moment.title}`}
             className="group relative mx-auto block w-full overflow-hidden rounded-[14px] border-0 bg-surface-100 p-0 cursor-pointer focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-brand-600"
             style={{ aspectRatio: img.ratio, maxWidth: img.width ? Math.min(Math.max(img.width, 400), 480) : undefined }}
           >
-            <img
+            <ShutterBar />
+            <motion.img
+              variants={shutterImg}
+              style={{ y: parY }}
               src={img.src}
               srcSet={img.srcSet}
               sizes="(min-width: 1024px) 600px, 100vw"
@@ -59,7 +71,12 @@ export default function AwardMoment({ moment, flip, onOpen }) {
               height={img.height}
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] lg:group-hover:scale-[1.03]"
+              className="absolute inset-x-0 -top-[5%] h-[110%] w-full max-w-none object-cover"
+            />
+            <motion.span
+              aria-hidden="true"
+              variants={shimmer}
+              className="pointer-events-none absolute inset-y-0 left-0 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/45 to-transparent"
             />
             <span className="pointer-events-none absolute inset-0 hidden bg-gradient-to-t from-black/45 via-transparent to-transparent opacity-0 transition-opacity duration-500 lg:block lg:group-hover:opacity-100" />
             <span className="pointer-events-none absolute bottom-4 left-5 hidden translate-y-2 font-body text-[11px] font-bold uppercase tracking-[0.18em] text-white opacity-0 transition-all duration-500 lg:block lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
@@ -70,12 +87,12 @@ export default function AwardMoment({ moment, flip, onOpen }) {
 
         {/* Text */}
         <motion.div variants={rise} className="lg:col-span-6 px-6 pb-8 sm:px-10 sm:pb-12 lg:px-12 lg:py-12">
-          <div className="text-gold-600"><MedalIcon /></div>
+          <motion.div variants={medal} className="inline-block text-gold-600"><MedalIcon /></motion.div>
           <span className="mt-4 block font-body text-[12px] font-bold uppercase tracking-[0.2em] text-gold-600">
             {TYPE_LABEL.award}
           </span>
-          <h3 className="mt-3 mb-0 font-heading font-bold leading-[1.1] tracking-tight text-heading text-[clamp(1.75rem,3vw,2.75rem)]">
-            {moment.title}
+          <h3 aria-label={moment.title} className="mt-3 mb-0 font-heading font-bold leading-[1.1] tracking-tight text-heading text-[clamp(1.75rem,3vw,2.75rem)]">
+            <MaskText text={moment.title} />
           </h3>
           {moment.caption && (
             <p className="mt-4 mb-0 max-w-[40ch] font-body text-[15px] leading-[26px] text-surface-500">

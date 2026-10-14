@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import MomentsHero from '../../components/Gallery/MomentsHero';
@@ -12,7 +12,6 @@ import { moments } from '../../data/galleryMoments';
 export default function GalleryPage({ onPageChange }) {
   const [filter, setFilter] = useState('all');
   const [openIndex, setOpenIndex] = useState(null);
-  const trackRef = useRef(null);
 
   const filters = useMemo(() => availableFilters(moments), []);
   const { groups, flat } = useMemo(() => buildTimeline(moments, filter), [filter]);
@@ -42,9 +41,9 @@ export default function GalleryPage({ onPageChange }) {
         <MomentsHero photos={heroPhotos} />
 
         {/* Year navigator: docks to the top of the screen (+ secondary type filter) */}
-        <YearNav groups={groups} filters={filters} filter={filter} onFilter={setFilter} trackRef={trackRef} />
+        <YearNav groups={groups} filters={filters} filter={filter} onFilter={setFilter} />
 
-        <main ref={trackRef} className="mx-auto w-full max-w-[1320px] px-4 pb-20 sm:px-6 lg:px-8 lg:pb-32">
+        <main className="mx-auto w-full max-w-[1320px] px-4 pb-20 sm:px-6 lg:px-8 lg:pb-32">
           {groups.map((g) => (
             <YearSection key={`${filter}-${g.id}`} group={g} onOpen={open} />
           ))}
