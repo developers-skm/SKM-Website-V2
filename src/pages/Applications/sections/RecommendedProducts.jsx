@@ -25,7 +25,7 @@ function findRecommendedVariant(application, variantsData) {
   );
 }
 
-export default function RecommendedProducts({ application, matchedProducts, onPageChange, onAddToComparison, comparisonIds }) {
+export default function RecommendedProducts({ application, matchedProducts, onPageChange }) {
   const reduceMotion = useReducedMotion();
   return (
     <div id="recommended-products" className="w-full py-16 sm:py-20 lg:py-24 scroll-mt-[100px]">
@@ -35,6 +35,14 @@ export default function RecommendedProducts({ application, matchedProducts, onPa
           <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.1] tracking-tight m-0">
             Recommended Products For {application.title}
           </h2>
+          <div className="flex flex-col gap-1 max-w-[860px]">
+            <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400">
+              Why Recommended
+            </span>
+            <p className="font-body text-[15px] text-surface-600 leading-[1.7] m-0">
+              {application.intro}
+            </p>
+          </div>
         </motion.div>
 
         <motion.div
@@ -47,7 +55,7 @@ export default function RecommendedProducts({ application, matchedProducts, onPa
           {matchedProducts.map((product) => {
             const variantsData = getVariantsForProduct(product.id);
             const variant = findRecommendedVariant(application, variantsData);
-            const isComparing = comparisonIds.includes(product.id);
+            const benefit = application.recommendedBenefits?.[product.id] ?? variant?.benefits;
 
             return (
               <motion.div
@@ -65,29 +73,15 @@ export default function RecommendedProducts({ application, matchedProducts, onPa
                     <h3 className="font-heading font-bold text-[18px] text-heading m-0 leading-tight">
                       {product.title}
                     </h3>
-                    {variant && (
-                      <span className="font-mono text-[11.5px] font-bold text-brand-600">
-                        {variant.code} - {variant.name}
-                      </span>
-                    )}
                   </div>
 
-                  <div className="flex flex-col gap-1">
-                    <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400">
-                      Why Recommended
-                    </span>
-                    <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
-                      {application.intro}
-                    </p>
-                  </div>
-
-                  {variant?.benefits && (
+                  {benefit && (
                     <div className="flex flex-col gap-1">
                       <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400">
                         Functional Benefit
                       </span>
-                      <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
-                        {variant.benefits}
+                      <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0 whitespace-pre-line">
+                        {benefit}
                       </p>
                     </div>
                   )}
@@ -103,17 +97,6 @@ export default function RecommendedProducts({ application, matchedProducts, onPa
                     </div>
                   )}
 
-                  {product.tdsUrl && (
-                    <a
-                      href={product.tdsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-body font-semibold text-[13px] text-brand-600 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40"
-                    >
-                      Related Documentation (Technical Data Sheet)
-                    </a>
-                  )}
-
                   <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-3 mt-1 border-t border-surface-200/60">
                     <button
                       onClick={() => onPageChange(product.page)}
@@ -127,17 +110,6 @@ export default function RecommendedProducts({ application, matchedProducts, onPa
                     >
                       Request Sample
                     </button>
-                    <motion.button
-                      onClick={() => onAddToComparison(product.id)}
-                      aria-pressed={isComparing}
-                      animate={{ scale: isComparing && !reduceMotion ? [1, 1.08, 1] : 1 }}
-                      transition={{ duration: 0.3, ease: EASE_PREMIUM }}
-                      className={`inline-flex items-center gap-1.5 min-h-[40px] font-body font-bold text-[12px] uppercase tracking-[0.05em] cursor-pointer bg-transparent border-none px-1 transition-colors duration-200 ${
-                        isComparing ? 'text-brand-600' : 'text-surface-400 hover:text-brand-600'
-                      }`}
-                    >
-                      {isComparing ? '✓ Added' : 'Add to Comparison'}
-                    </motion.button>
                   </div>
                 </div>
               </motion.div>

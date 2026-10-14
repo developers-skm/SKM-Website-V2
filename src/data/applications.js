@@ -49,6 +49,11 @@ const applications = [
     problem: 'Firmer texture and better moisture retention in surimi or sausages.',
     intro: 'High-gel egg albumen and whole egg powders coagulate into a firm, water-retaining protein matrix - improving sliceability and texture in surimi, sausages, and restructured meats.',
     matchedProductIds: ['egg_albumen_powder', 'whole_egg_powder', 'egg_albumen_liquid'],
+    recommendedBenefits: {
+      egg_albumen_powder: 'Improves product texture, minimizes moisture loss (purge) during cooking, and enhances chewiness and bite firmness.',
+      whole_egg_powder: 'Forms a firm, water-retaining protein gel matrix upon heating, enhancing sliceability and moisture retention in the finished product.',
+      egg_albumen_liquid: 'Maintains the coagulation strength of fresh eggs, ensures smooth pumpability during processing, and delivers a clean, natural flavour profile.',
+    },
     relevantChallengeIds: ['gelling', 'protein', 'consistency', 'handling', 'shelf_life'],
   },
   {
@@ -60,6 +65,11 @@ const applications = [
     problem: 'For stronger gel & firm bite in your noodles & pasta.',
     intro: 'Whole egg and egg albumen powders strengthen gluten structure, improve cooking integrity, and deliver the firm bite noodle and pasta manufacturers formulate for.',
     matchedProductIds: ['whole_egg_powder', 'egg_albumen_powder', 'egg_yolk_powder'],
+    recommendedBenefits: {
+      whole_egg_powder: 'Forms a firm, water-retaining protein gel matrix upon heating, enhancing sliceability and moisture retention in the finished product.',
+      egg_albumen_powder: 'Improves product texture, minimizes moisture loss (purge) during cooking, and enhances chewiness and bite firmness.',
+      egg_yolk_powder: 'Emulsification and Stability: Helps prevent oil–water separation under shear conditions, while co-dried salt enhances egg yolk protein solubility and supports emulsion stability in paste applications.\n\nColour Enhancement: Provides a naturally rich, golden appearance without artificial colours, enhancing the premium visual appeal of the finished product.\n\nProtein Enrichment: Contributes high-quality egg proteins to the formulation, enhancing its nutritional value while supporting the desired texture and functional properties of the finished product.',
+    },
     relevantChallengeIds: ['gelling', 'protein', 'consistency', 'handling', 'shelf_life'],
   },
 ];

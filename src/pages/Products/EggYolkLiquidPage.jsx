@@ -20,7 +20,7 @@ export const variantsData = [
     name: 'Chilled Egg Yolk Liquid - 11% Salt',
     description: 'Chilled liquid hen egg yolk pasteurised with 11% co-dispersed salt for advanced protection against heat denaturation and long-term shelf stability.',
     applications: 'Mayonnaise, hot sauces, dressings, and savory spreads.',
-    benefits: 'Salt stabilizes emulsification properties during processing and high-shear operations.',
+    benefits: 'Salt helps maintain emulsion stability during processing, particularly under high-shear conditions.',
     specifications: { moisture: '44.0% - 47.0%', protein: 'Min 13.0%', ph: '5.8 - 6.8', storage: 'Chilled (0°C to 4°C)', character: 'Salt Content: 11.0% (±0.5%)' }
   },
   {

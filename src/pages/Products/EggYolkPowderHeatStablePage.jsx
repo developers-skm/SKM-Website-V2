@@ -26,7 +26,7 @@ export const variantsData = [
         text: 'Provides natural colour and a creamy, thick texture while maintaining emulsion stability.',
       },
     },
-    benefits: 'High emulsion stability under high heat pasteurization; prevents phase separation of oil and water in sauces.',
+    benefits: 'Maintains high emulsion stability during high-temperature pasteurization, preventing oil–water phase separation in sauces.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 54.0%', protein: 'Min 29.0%', ph: '6.0 - 7.0', character: 'Modified Heat-Stable Emulsifier' }
   },
   {

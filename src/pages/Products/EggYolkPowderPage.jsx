@@ -14,7 +14,7 @@ export const variantsData = [
     description: 'Standard pasteurized spray-dried hen egg yolk powder with excellent emulsifying, coloring, and texturizing properties. Adds rich taste and structure to bakery and cold emulsions.',
     applications: 'Mayonnaise, salad dressings, culinary sauces, custards, ice cream, sponge cakes, and sweet doughs.',
     heroBenefit: 'Prevents oil–water separation under shear, while co-dried salt enhances yolk protein solubility and stability for paste applications.',
-    benefits: 'Prevents oil–water separation under shear, while co-dried salt enhances yolk protein solubility and stability for paste applications., Colour - Provides a naturally rich golden appearance without artificial colours, enhancing the premium visual appeal of the finished product., Protein Enrichment - Prevents oil–water separation under shear while co-dried salt enhances yolk protein solubility and stability for paste applications.',
+    benefits: 'Emulsification and Stability: Helps prevent oil–water separation under shear conditions, while co-dried salt enhances egg yolk protein solubility and supports emulsion stability in paste applications.\n\nColour Enhancement: Provides a naturally rich, golden appearance without artificial colours, enhancing the premium visual appeal of the finished product.\n\nProtein Enrichment: Contributes high-quality egg proteins to the formulation, enhancing its nutritional value while supporting the desired texture and functional properties of the finished product.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 56.0%', protein: 'Min 30.0%', ph: '6.0 - 7.0', character: 'Standard Emulsifying & Color Agent' }
   },
   {

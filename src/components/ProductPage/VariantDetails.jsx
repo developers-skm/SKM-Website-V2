@@ -57,7 +57,7 @@ export default function VariantDetails({ variant, displayCode, panelId, tabId })
               <span className="font-body text-[12.5px] font-bold uppercase tracking-widest text-brand-600">
                 Key Benefits
               </span>
-              <p className="font-body text-[16px] text-surface-600 leading-[1.7] m-0">
+              <p className="font-body text-[16px] text-surface-600 leading-[1.7] m-0 whitespace-pre-line">
                 {variant.benefits}
               </p>
             </div>
