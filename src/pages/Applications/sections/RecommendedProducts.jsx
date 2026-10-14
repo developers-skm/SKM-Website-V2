@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { getVariantsForProduct } from '../../../data/productVariants';
 import { EASE_PREMIUM, DURATION, STAGGER, fadeUp } from '../../../utils/motionTokens';
@@ -25,6 +26,33 @@ function findRecommendedVariant(application, variantsData) {
   );
 }
 
+// Multi-paragraph benefits show only the first paragraph until "View more"
+// is clicked; single-paragraph benefits render as-is with no toggle.
+function ExpandableBenefit({ text }) {
+  const [expanded, setExpanded] = useState(false);
+  const [first, ...rest] = text.split(/\n\s*\n/);
+  const hasMore = rest.length > 0;
+
+  return (
+    <div className="flex flex-col gap-2">
+      <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">{first}</p>
+      {hasMore && expanded && rest.map((para) => (
+        <p key={para} className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">{para}</p>
+      ))}
+      {hasMore && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          className="self-start font-body font-semibold text-[13px] text-brand-600 hover:text-[#a80000] underline underline-offset-4 decoration-brand-600/40 cursor-pointer bg-transparent border-none p-0"
+        >
+          {expanded ? 'View less' : 'View more'}
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function RecommendedProducts({ application, matchedProducts, onPageChange }) {
   const reduceMotion = useReducedMotion();
   return (
@@ -46,7 +74,7 @@ export default function RecommendedProducts({ application, matchedProducts, onPa
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start gap-6"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
@@ -80,9 +108,7 @@ export default function RecommendedProducts({ application, matchedProducts, onPa
                       <span className="font-body text-[11px] font-bold uppercase tracking-wider text-surface-400">
                         Functional Benefit
                       </span>
-                      <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0 whitespace-pre-line">
-                        {benefit}
-                      </p>
+                      <ExpandableBenefit text={benefit} />
                     </div>
                   )}
 
