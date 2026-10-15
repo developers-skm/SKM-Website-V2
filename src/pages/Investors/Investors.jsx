@@ -25,6 +25,11 @@ const agmVideos = [
   { title: '31st AGM Meeting', src: 'https://www.youtube.com/embed/j8r4XTxhqKg?si=urhBZsvEt8TwQQgj' },
 ];
 
+const investorConCallVideos = [
+  { title: 'Investor Con. Call', src: 'https://www.youtube.com/embed/MEgxK79gULA?si=CUse_PHCWn0j0JbJ' },
+  { title: 'Investor Con. Call', src: 'https://www.youtube.com/embed/1h8kwY5WRZ4?si=CFCQE4llnG8xZERz' },
+];
+
 const sectionFolders = {
   agm_meeting: ['31st AGM Proceedings','AGM Notice'],
   moa_aoa: ['MOA AND AOA'],
@@ -753,7 +758,68 @@ function ComingSoonContent({ label }) {
   );
 }
 
+function InvestorVideo({ title, src }) {
+  return (
+    <div className="flex flex-col gap-3">
+      <h3 className="font-heading font-semibold text-[18px] text-heading m-0">{title}</h3>
+      <div className="rounded-[12px] overflow-hidden border border-[#eee] bg-black aspect-video w-full">
+        <iframe
+          className="w-full h-full"
+          src={src}
+          title={title}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      </div>
+    </div>
+  );
+}
+
+function InvestorConCallContent({ label }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -12 }}
+      transition={{ duration: 0.22, ease: 'easeOut' }}
+      className="flex flex-col gap-6"
+    >
+      <SectionHeader label={label} />
+      <InvestorVideo {...investorConCallVideos[0]} />
+
+      <div className="flex flex-col gap-3">
+        <h3 className="font-heading font-semibold text-[18px] text-heading m-0">Investor Con.Call - 29-07-2026 - Audio</h3>
+        <div className="rounded-[12px] border border-brand-600/30 bg-brand-600/5 p-4 flex flex-col sm:flex-row sm:items-center gap-4">
+          <audio
+            className="w-full sm:flex-1 min-w-0 accent-brand-600"
+            controls
+            preload="none"
+            src="/documents/investors/Investor%20Con%20Call/investor-con-call-29-07-2026.mp3"
+          />
+          <a
+            href="/documents/investors/Investor%20Con%20Call/investor-con-call-29-07-2026.mp3"
+            download="Investor-Con-Call-29-07-2026.mp3"
+            className="inline-flex items-center justify-center gap-2 flex-shrink-0 rounded-[10px] bg-brand-600 hover:bg-brand-700 text-white font-body text-[13px] font-semibold px-5 py-2.5 no-underline transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+            </svg>
+            Download Audio
+          </a>
+        </div>
+      </div>
+
+      <InvestorVideo {...investorConCallVideos[1]} />
+    </motion.div>
+  );
+}
+
 function SectionContent({ value, label }) {
+  if (value === 'investor_con_call') {
+    return <InvestorConCallContent label={label} />;
+  }
   if (value === 'board_committee') {
     return <BoardCommitteeContent label={label} />;
   }
