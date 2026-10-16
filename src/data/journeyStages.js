@@ -9,6 +9,7 @@ import FarmImg from '../assets/5. INFRASTRUCTURE/Poultry farm/EC shed overview.w
 import ProcessingImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Pasteurization.webp';
 import LabImg from '../assets/5. INFRASTRUCTURE/Laboratory/GC and HPLC.webp';
 import DispatchImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Cold room.webp';
+import EggExportImg from '../assets/5. INFRASTRUCTURE/Poultry farm/Egg collection area.webp';
 import { LAYERS_HOUSED, EGGS_PER_YEAR_SHORT, EGGS_PROCESSED_PER_DAY_SHORT } from './productionFacts';
 
 const journeyStages = [
@@ -51,11 +52,20 @@ const journeyStages = [
   {
     step: '05',
     id: 'packaging-dispatch',
-    label: 'Egg Export',
+    label: 'Packaging & Dispatch',
     image: DispatchImg,
     tagline: 'Cold chain, sealed and documented, to your door.',
-    description: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DOP) to ensure quality and traceability. These eggs are then carefully collected, packed, and distributed to global markets through a temperature-controlled cold chain logistics system, ensuring freshness and quality throughout the supply chain.',
+    description: 'Positive-pressure packing rooms and robust cold-chain management protect product integrity through final delivery. Lot codes, batch identification, and destination details are digitally recorded, ensuring complete supply chain transparency and traceability.',
     stat: { value: '30+', label: 'Countries served ' },
+  },
+  {
+    step: '06',
+    id: 'egg-export',
+    label: 'Egg Export',
+    image: EggExportImg,
+    tagline: 'Graded, marked and shipped fresh.',
+    description: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DOP) to ensure quality and traceability. These eggs are then carefully collected, packed, and distributed to global markets through a temperature-controlled cold chain logistics system, ensuring freshness and quality throughout the supply chain.',
+    stat: { value: 'DOP', label: 'Printed on every egg' },
   },
 ];
 
