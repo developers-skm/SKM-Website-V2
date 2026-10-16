@@ -19,7 +19,7 @@ const stages = [
   {
     step: '02',
     label: 'Samples & Trials',
-    description: 'Request a sample through our guided quote flow - tell us your product, application, and destination, and our export sales team follows up directly.',
+    description: 'Request a sample through our guided quote flow - tell us your product, application, and destination, and our sales team follows up directly.',
   },
   {
     step: '03',

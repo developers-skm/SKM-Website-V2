@@ -26,8 +26,16 @@ const applications = [
     tags: ['Cakes', 'Pastries', 'Biscuits'],
     problem: 'Whole Egg for volume, structure and golden colour in your cakes and pastries. Egg Albumen for whipping and foaming applications in macarons and meringues.',
     intro: 'From everyday biscuits to premium artisanal brioche, our egg powders deliver the crumb binding, foaming, and natural golden colour that bakery formulations depend on.',
-    matchedProductIds: ['whole_egg_powder', 'egg_yolk_powder', 'egg_albumen_powder'],
-    relevantChallengeIds: ['emulsification', 'whipping', 'colour', 'protein', 'consistency', 'handling', 'shelf_life'],
+    matchedProductIds: ['whole_egg_powder', 'whole_egg_liquid', 'egg_albumen_powder'],
+    hideFormulationChallenges: true,
+    // Explicit "Egg Functionality" list for this page - Protein and Consistency
+    // are no longer in the shared formulationChallenges list (Applications hub).
+    functionalities: [
+      { id: 'whipping', label: 'Increase Whipping Volume', description: 'Foam overrun, aeration, and bubble stability for meringues, sponges, and aerated confectionery.' },
+      { id: 'protein', label: 'Increase Protein', description: 'High biological-value protein enrichment, including hydrolysed and high-protein variants.' },
+      { id: 'consistency', label: 'Improve Product Consistency', description: 'Uniform viscosity and dispersion for reliable batch-to-batch performance.' },
+    ],
+    relevantChallengeIds: ['emulsification', 'whipping', 'colour', 'binding', 'texture'],
   },
   {
     id: 'mayonnaise',
@@ -38,7 +46,9 @@ const applications = [
     problem: 'For stable emulsion that holds up through hot-fill processing.',
     intro: 'Our egg yolk powders and liquids provide the emulsifying backbone mayonnaise and dressing manufacturers rely on - including heat-stable variants for hot-processed sauces.',
     matchedProductIds: ['egg_yolk_powder', 'egg_yolk_powder_heat_stable', 'egg_yolk_liquid'],
-    relevantChallengeIds: ['emulsification', 'colour', 'consistency', 'handling', 'shelf_life'],
+    hideFormulationChallenges: true,
+    hideProcessingGuidance: true,
+    relevantChallengeIds: ['emulsification', 'colour'],
   },
   {
     id: 'meat_fish',
@@ -54,7 +64,13 @@ const applications = [
       whole_egg_powder: 'Forms a firm, water-retaining protein gel matrix upon heating, enhancing sliceability and moisture retention in the finished product.',
       egg_albumen_liquid: 'Maintains the coagulation strength of fresh eggs, ensures smooth pumpability during processing, and delivers a clean, natural flavour profile.',
     },
-    relevantChallengeIds: ['gelling', 'protein', 'consistency', 'handling', 'shelf_life'],
+    hideFormulationChallenges: true,
+    hideProcessingGuidance: true,
+    functionalities: [
+      { id: 'gelling', label: 'Gel Strength & Firmness', description: 'Firm, water-retaining protein gel matrices for surimi, sausages, and restructured meat or seafood.' },
+      { id: 'consistency', label: 'Improve Product Consistency', description: 'Consistent gel and solubility for reliable batch-to-batch performance.' },
+    ],
+    relevantChallengeIds: ['gelling', 'binding', 'texture'],
   },
   {
     id: 'noodles_pasta',
@@ -64,13 +80,17 @@ const applications = [
     tags: ['Elasticity', 'Texture'],
     problem: 'For stronger gel & firm bite in your noodles & pasta.',
     intro: 'Whole egg and egg albumen powders strengthen gluten structure, improve cooking integrity, and deliver the firm bite noodle and pasta manufacturers formulate for.',
-    matchedProductIds: ['whole_egg_powder', 'egg_albumen_powder', 'egg_yolk_powder'],
+    matchedProductIds: ['whole_egg_powder', 'egg_albumen_powder', 'egg_albumen_liquid'],
+    hideFormulationChallenges: true,
+    functionalities: [
+      { id: 'gelling', label: 'Gel Strength & Firmness', description: 'Firm, water-retaining protein gel matrices for surimi, sausages, and restructured meat or seafood.' },
+      { id: 'whipping', label: 'Increase Whipping Volume', description: 'Foam overrun, aeration, and bubble stability for meringues, sponges, and aerated confectionery.' },
+    ],
     recommendedBenefits: {
       whole_egg_powder: 'Forms a firm, water-retaining protein gel matrix upon heating, enhancing sliceability and moisture retention in the finished product.',
       egg_albumen_powder: 'Improves product texture, minimizes moisture loss (purge) during cooking, and enhances chewiness and bite firmness.',
-      egg_yolk_powder: 'Emulsification and Stability: Helps prevent oil–water separation under shear conditions, while co-dried salt enhances egg yolk protein solubility and supports emulsion stability in paste applications.\n\nColour Enhancement: Provides a naturally rich, golden appearance without artificial colours, enhancing the premium visual appeal of the finished product.\n\nProtein Enrichment: Contributes high-quality egg proteins to the formulation, enhancing its nutritional value while supporting the desired texture and functional properties of the finished product.',
     },
-    relevantChallengeIds: ['gelling', 'protein', 'consistency', 'handling', 'shelf_life'],
+    relevantChallengeIds: ['gelling', 'binding', 'texture'],
   },
 ];
 

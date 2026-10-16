@@ -23,6 +23,7 @@ const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 
 // longer the sole relevance gate.
 export default function ApplicationFormulationChallenges({ application, onPageChange }) {
   const reduceMotion = useReducedMotion();
+  if (application.hideFormulationChallenges) return null;
   const relevantChallenges = formulationChallenges
     .map((challenge) => {
       if (!application.relevantChallengeIds?.includes(challenge.id)) return false;

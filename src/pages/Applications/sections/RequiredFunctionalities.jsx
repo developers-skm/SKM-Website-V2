@@ -20,7 +20,7 @@ const itemVariants = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 
 // products), the concrete destination for "solutions."
 export default function RequiredFunctionalities({ application }) {
   const reduceMotion = useReducedMotion();
-  const relevantFunctions = formulationChallenges.filter((challenge) =>
+  const relevantFunctions = application.functionalities ?? formulationChallenges.filter((challenge) =>
     application.relevantChallengeIds?.includes(challenge.id)
   );
 

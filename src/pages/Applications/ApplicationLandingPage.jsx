@@ -66,12 +66,14 @@ export default function ApplicationLandingPage({ applicationId, onPageChange }) 
           onPageChange={onPageChange}
         />
 
-        <ProcessingGuidance
-          application={application}
-          matchedProducts={matchedProducts}
-          onDownloadGuide={() => onPageChange('brochure')}
-          onContactSupport={() => onPageChange('contact-us')}
-        />
+        {!application.hideProcessingGuidance && (
+          <ProcessingGuidance
+            application={application}
+            matchedProducts={matchedProducts}
+            onDownloadGuide={() => onPageChange('brochure')}
+            onContactSupport={() => onPageChange('contact-us')}
+          />
+        )}
 
         <RelatedResources matchedProducts={matchedProducts} onPageChange={onPageChange} />
         <CurvedDivider bg="#f8f4ee" fill="#fdf1f0" className="" />
