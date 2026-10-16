@@ -114,7 +114,7 @@ export default function FoodSafetyPolicy() {
           </p>
           <p className="text-sm sm:text-base text-surface-600 leading-relaxed m-0 font-body">
             Our food safety framework is based on{' '}
-            <strong className="text-brand-600">HACCP principles</strong>, ensuring controlled and documented monitoring from hatchery and feed mill through farming, processing, handling, and final delivery.
+            <strong className="text-brand-600">HACCP principles</strong>, ensuring controlled and documented monitoring from feed mill through farming, processing, handling, and final delivery.
           </p>
         </motion.div>
       </motion.section>

@@ -49,7 +49,7 @@ const filterExitVariants = {
 const TDS_PRODUCTS = products.filter((p) => p.tdsUrl);
 
 const DOCUMENT_GROUPS = [
-  { id: 'technical-data-sheets', label: 'Technical Data Sheets (TDS)', count: TDS_PRODUCTS.length, hasRealDocs: true },
+  { id: 'technical-data-sheets', label: 'Product Details', count: TDS_PRODUCTS.length, hasRealDocs: true },
   { id: 'safety-documents', label: 'Safety Documents (MSDS)', count: 0, hasRealDocs: false },
   { id: 'packaging-specifications', label: 'Packaging Specs', count: 0, hasRealDocs: false },
   { id: 'product-guides', label: 'Product Guides', count: 0, hasRealDocs: false },
@@ -94,10 +94,10 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
             </span>
           </div>
           <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
-            Technical Documents & Data Sheets
+            Product Details
           </h2>
           <p className="font-body text-[14.5px] text-surface-600 max-w-2xl m-0 leading-relaxed">
-            Download laboratory-verified Technical Data Sheets (TDS) and quality specifications for SKM's egg powder and liquid formulations.
+            Download laboratory-verified product details for SKM's egg powder and liquid formulations.
           </p>
         </motion.div>
 
@@ -225,7 +225,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                         </div>
                         <div className="flex flex-col min-w-0">
                           <span className="font-body text-[10px] font-extrabold uppercase tracking-widest text-brand-600">
-                            Technical Data Sheet
+                            Product Details
                           </span>
                           <h3 className="font-heading font-bold text-[17px] text-heading truncate m-0 group-hover:text-brand-600 transition-colors duration-200">
                             {p.title}
@@ -238,7 +238,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                     </div>
 
                     <p className="font-body text-[13px] text-surface-500 line-clamp-2 m-0 leading-relaxed">
-                      Official product technical specification, microbiological parameters, shelf life, and storage conditions for {p.title}.
+                      Official product details, microbiological parameters, shelf life, and storage conditions for {p.title}.
                     </p>
 
                     <div className="flex items-center pt-4 border-t border-surface-200/60">
@@ -248,7 +248,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 font-body font-bold text-[12px] uppercase tracking-wider text-white bg-brand-600 hover:bg-brand-700 px-4 py-2.5 rounded-xl shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30 transition-all duration-200 active:scale-[0.97]"
                       >
-                        <span>Download TDS</span>
+                        <span>Download</span>
                         <svg className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14" />
                         </svg>
@@ -357,24 +357,6 @@ function CertificationsSection() {
               <span className="font-heading font-bold text-[14.5px] text-heading text-center leading-snug">
                 {cert.name}
               </span>
-              <div className="flex items-center justify-center gap-4 pt-2 border-t border-surface-100 w-full">
-                <a
-                  href={cert.logo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-body font-bold text-[12px] text-brand-600 hover:underline inline-flex items-center gap-1"
-                >
-                  <span>View Logo</span>
-                </a>
-                <span className="text-surface-300">•</span>
-                <a
-                  href={cert.logo}
-                  download
-                  className="font-body font-semibold text-[12px] text-surface-500 hover:text-heading hover:underline"
-                >
-                  Download
-                </a>
-              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -386,7 +368,7 @@ function CertificationsSection() {
             </div>
             <div>
               <h4 className="font-heading font-bold text-[15px] text-heading m-0">Need standard-specific audit reports?</h4>
-              <p className="font-body text-[13px] text-surface-600 m-0">NABL ISO/IEC 17025 lab reports and auditor verification packs are available on commercial request.</p>
+              <p className="font-body text-[13px] text-surface-600 m-0">NABL ISO/IEC 17025 lab reports and Global audit verification packs are available on commercial request.</p>
             </div>
           </div>
           <button
@@ -419,26 +401,26 @@ const brochureMeta = {
   },
   'SKM BAKERY MIX A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
-    title: 'Bakery Mix Technical Flyer',
+    title: 'Bakery Mix Product Details',
     desc: 'Technical overview covering SKM specialized bakery egg mixes, functional whipping performance, and dosage recommendations.',
     featured: false,
   },
   'SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
-    title: 'Egg Albumen Powder Flyer',
+    title: 'Egg Albumen Powder Product Details',
     desc: 'Specification guide for high-gel and high-whip Egg Albumen Powder - ideal for confectionery, meat binders, and sports nutrition.',
     featured: false,
   },
   'SKM EGG YOLK POWDER A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
-    title: 'Egg Yolk Powder Flyer',
+    title: 'Egg Yolk Powder Product Details',
     desc: 'Product flyer detailing emulsification capacity, fat content, heat stability, and applications in mayonnaise and sauces.',
     featured: false,
   },
   'SKM WHOLE EGG POWDER A5 FLYER (F-B).pdf': {
     category: 'Product Flyer',
-    title: 'Whole Egg Powder Flyer',
-    desc: 'Technical flyer for Whole Egg Powder - shelf-stable, pasteurized whole egg replacement for bakeries and commercial food manufacturing.',
+    title: 'Whole Egg Powder Product Details',
+    desc: 'Product details for Whole Egg Powder - shelf-stable, pasteurized whole egg replacement for bakeries and commercial food manufacturing.',
     featured: false,
   },
 };
@@ -466,10 +448,10 @@ function BrochuresApplicationGuidesSection() {
             </span>
           </div>
           <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
-            Corporate Brochures & Technical Flyers
+            Corporate Brochures & Product details
           </h2>
           <p className="font-body text-[14.5px] text-surface-600 max-w-2xl m-0 leading-relaxed">
-            Access our official downloadable PDF literature, company overview documentation, and product line technical flyers.
+            Access our official downloadable PDF literature, company overview documentation, and product details.
           </p>
         </motion.div>
 
@@ -937,7 +919,7 @@ export default function ResourcesPage({ onPageChange }) {
               >
                 <span className="font-body text-[12px] font-bold uppercase tracking-wider text-surface-400 mr-1">Quick Jump:</span>
                 {[
-                  { label: 'Technical Data Sheets', target: 'technical-documents' },
+                  { label: 'Product Details', target: 'technical-documents' },
                   { label: 'Certifications', target: 'certifications' },
                   { label: 'Brochures', target: 'brochures' },
                   { label: 'CSR', target: 'csr' },
@@ -962,9 +944,9 @@ export default function ResourcesPage({ onPageChange }) {
                 className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-8 border-t border-surface-200/60"
               >
                 {[
-                  { label: 'Technical Data Sheets', val: '3 Real TDS', sub: 'Laboratory Verified' },
+                  { label: 'Product Details', val: '3 Product Details', sub: 'Laboratory Verified' },
                   { label: 'Quality Accreditation', val: '8 Global Standards', sub: 'BRCGS, ISO, Halal' },
-                  { label: 'Publications', val: '6 Product Flyers', sub: 'PDF Literature' },
+                  { label: 'Publications', val: '6 Product Details', sub: 'PDF Literature' },
                   { label: 'Testing Standard', val: 'ISO/IEC 17025', sub: 'NABL Accredited' },
                 ].map((stat, idx) => (
                   <div key={idx} className="flex flex-col items-center p-4 rounded-xl bg-white/60 border border-surface-200/60 backdrop-blur-md">

@@ -1,10 +1,8 @@
 import SEO from '../SEO/SEO';
 import ProductHero from './ProductHero';
-import SpecPanel from './SpecPanel';
 import VariantExplorer from './VariantExplorer';
 import FunctionalPerformance from './FunctionalPerformance';
 import ApplicationGallery from './ApplicationGallery';
-import RecommendedApplications from './RecommendedApplications';
 import PackagingLogistics from './PackagingLogistics';
 import { ProductQualityAssurance } from '../Traceability/TraceabilityLoopJourney';
 import ProductDocuments from './ProductDocuments';
@@ -27,7 +25,11 @@ export default function ProductPage({
   productName,
   productId,
   codeDisplay,
-  functionality,
+  variantNamesTable,
+  variantStaticFilters,
+  packTypesText,
+  extraDocuments,
+  visibleTraits,
 }) {
   const displayCode = codeDisplay ?? ((code) => code);
   const relatedProducts = productId ? getRelatedProducts(productId, 3) : [];
@@ -57,34 +59,20 @@ export default function ProductPage({
           primaryBadge={hero.primaryBadge}
           variantsData={variantsData}
           applicationsData={applicationsData}
+          applicationTags={hero.applicationTags}
           tdsUrl={tdsUrl}
           onRequestQuote={() => onPageChange('get-quote', { productId })}
           onRequestPricing={() => onPageChange('get-quote', { productId })}
         />
       </div>
 
-      {/* At-a-glance specification panel - white chapter, sits directly
-          beneath the hero per brief §2 ordering */}
-      {productRecord && (
-        <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
-          <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
-            <SpecPanel
-              productForm={productRecord.category}
-              functionality={functionality}
-              packagingOptions={productRecord.packagingOptions}
-              variantsData={variantsData}
-              tdsUrl={tdsUrl}
-              onAskTechnicalQuestion={() => onPageChange('contact-us')}
-            />
-          </div>
-        </section>
-      )}
-
       {/* Variant specifications - light eggshell chapter */}
       <section className="w-full bg-[#f8f4ee] py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
           <VariantExplorer
             variantsData={variantsData}
+            variantNamesTable={variantNamesTable}
+            variantStaticFilters={variantStaticFilters}
             variantsSectionSubtitle={variantsSectionSubtitle}
             productName={productName}
             displayCode={displayCode}
@@ -100,6 +88,7 @@ export default function ProductPage({
           <FunctionalPerformance
             variantsData={variantsData}
             productName={productName}
+            visibleTraits={visibleTraits}
             tdsUrl={tdsUrl}
             onDiscussPerformance={() => onPageChange('contact-us')}
           />
@@ -113,24 +102,13 @@ export default function ProductPage({
         </div>
       </section>
 
-      {/* Recommended applications - white chapter */}
-      <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
-          <RecommendedApplications
-            applicationsData={applicationsData}
-            variantsData={variantsData}
-            displayCode={displayCode}
-            onPageChange={onPageChange}
-          />
-        </div>
-      </section>
-
-      {/* Packaging and logistics - light eggshell chapter */}
+      {/* Packaging and dispatch - white chapter */}
       {productRecord && (
-        <section className="w-full bg-[#f8f4ee] py-12 sm:py-16 lg:py-20">
+        <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
             <PackagingLogistics
               packagingOptions={productRecord.packagingOptions}
+              packTypesText={packTypesText}
               variantsData={variantsData}
               onViewPackaging={() => onPageChange('customized_packages')}
               onDiscussDelivery={() => onPageChange('contact-us')}
@@ -148,6 +126,7 @@ export default function ProductPage({
           <ProductDocuments
             tdsUrl={tdsUrl}
             productName={productName}
+            extraDocuments={extraDocuments}
             onRequestPack={() => onPageChange('contact-us')}
           />
         </div>

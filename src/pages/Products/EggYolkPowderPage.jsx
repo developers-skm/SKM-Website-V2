@@ -13,7 +13,13 @@ export const variantsData = [
     name: 'Egg Yolk Powder',
     description: 'Standard pasteurized spray-dried hen egg yolk powder with excellent emulsifying, coloring, and texturizing properties. Adds rich taste and structure to bakery and cold emulsions.',
     applications: 'Mayonnaise, salad dressings, culinary sauces, custards, ice cream, sponge cakes, and sweet doughs.',
-    heroBenefit: 'Prevents oil–water separation under shear, while co-dried salt enhances yolk protein solubility and stability for paste applications.',
+    heroBenefits: ['Prevents oil–water separation', 'Provides a naturally rich golden appearance'],
+    performanceOverrides: {
+      emulsification: {
+        code: 'Y1101',
+        text: 'Emulsification and Stability: Helps prevent oil–water separation under shear conditions, while co-dried salt enhances egg yolk protein solubility and supports emulsion stability in pasta applications.',
+      },
+    },
     benefits: 'Emulsification and Stability: Helps prevent oil–water separation under shear conditions, while co-dried salt enhances egg yolk protein solubility and supports emulsion stability in paste applications.\n\nColour Enhancement: Provides a naturally rich, golden appearance without artificial colours, enhancing the premium visual appeal of the finished product.\n\nProtein Enrichment: Contributes high-quality egg proteins to the formulation, enhancing its nutritional value while supporting the desired texture and functional properties of the finished product.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 56.0%', protein: 'Min 30.0%', ph: '6.0 - 7.0', character: 'Standard Emulsifying & Color Agent' }
   },
@@ -53,6 +59,13 @@ export const variantsData = [
   }
 ];
 
+const variantNamesTable = [
+  'Egg Yolk Powder - Standard',
+  'Egg Yolk Powder - Heat Stable',
+  'Egg Yolk Powder - High Colour',
+  'Egg Yolk Powder - Free flow',
+];
+
 const applicationsData = [
   { name: 'Croissant', image: CroissantImg, description: 'Delivers rich golden color, buttery lamination support, and deep egg flavor in premium croissants.' },
   { name: 'Ice Cream', image: IceCreamImg, description: 'Emulsifies fat and water phases to produce smooth, creamy, and stable ice cream textures.' },
@@ -89,6 +102,8 @@ export default function EggYolkPowderPage({ onPageChange }) {
         description: 'Pasteurized Dried Hen Egg Yolk Powder for bakery, food & mayonnaise applications. Rich in lipids to ensure superior emulsifying properties.'
       }}
       variantsData={variantsData}
+      variantNamesTable={variantNamesTable}
+      visibleTraits={['emulsification']}
       applicationsData={applicationsData}
       productName="Egg Yolk Powder"
       productId="egg_yolk_powder"

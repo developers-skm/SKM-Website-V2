@@ -287,7 +287,6 @@ function ComparisonTable({ product, onPageChange, reduceMotion }) {
                   <th className={`sticky left-0 z-20 bg-white ${TH} shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]`}>
                     <span className="inline-flex items-center gap-3">
                       <span className="w-4 h-4" aria-hidden="true" />
-                      Code
                     </span>
                   </th>
                   <th className={TH}>Name</th>
@@ -314,7 +313,6 @@ function ComparisonTable({ product, onPageChange, reduceMotion }) {
                           aria-label={`Select ${variant.name} for comparison`}
                           className="w-4 h-4 accent-brand-600 cursor-pointer"
                         />
-                        {displayCode(variant.code)}
                       </label>
                     </td>
                     <td className={`${TD} min-w-[200px]`}>

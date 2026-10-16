@@ -5,7 +5,7 @@ import { EASE_PREMIUM, DURATION } from '../../utils/motionTokens';
 // "Compare Selected Variants" (brief §3 table action) - a focused overlay
 // rather than a new page/route, since comparison is a transient reading
 // task tied to the table state above it.
-export default function VariantCompareModal({ variants, displayCode, onClose }) {
+export default function VariantCompareModal({ variants, onClose }) {
   const reduceMotion = useReducedMotion();
   const [hasScrolled, setHasScrolled] = useState(false);
   const specColumns = useMemo(() => {
@@ -63,7 +63,6 @@ export default function VariantCompareModal({ variants, displayCode, onClose }) 
                     <th className="sticky left-0 z-20 bg-white text-left px-3 py-3 font-body text-[11px] font-bold uppercase tracking-wider text-surface-400 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]" />
                     {variants.map((v) => (
                       <th key={v.code} className="text-left px-3 py-3 align-bottom">
-                        <span className="block font-mono text-[11.5px] font-bold text-brand-600 mb-1">{displayCode(v.code)}</span>
                         <span className="block font-heading font-bold text-[15px] text-heading leading-tight">{v.name}</span>
                       </th>
                     ))}

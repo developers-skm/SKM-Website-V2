@@ -18,7 +18,6 @@ import { fadeUp, EASE_PREMIUM } from '../../../utils/motionTokens';
 // shared ExportMarketsMap.jsx, not modified - see that file's own header
 // for why it's a separate component instead of an edit to the shared one).
 const branches = [
-  { name: 'SKM Japan', tagline: 'Bridging Indian egg ingredient expertise with the Japanese market.', page: 'skm_japan' },
   { name: 'SKM Europe', tagline: 'Connecting Indian egg-based ingredients with the European food industry.', page: 'skm_europe' },
   { name: 'SKM Russia', tagline: 'Establishing a trusted supply chain for Indian egg ingredients across Russia.', page: 'skm_russia' },
 ];
@@ -104,7 +103,7 @@ export default function GlobalMarkets({ onPageChange }) {
                 className="flex flex-col gap-3"
               >
                 <h4 className="font-heading font-bold text-[13px] uppercase tracking-wide text-brand-600 m-0">
-                  {group.region}
+                  {group.region === 'Americas' ? 'Colombia' : group.region}
                 </h4>
                 <p className="font-body text-[15px] lg:text-[16px] text-surface-600 leading-[1.75] m-0">
                   {group.markets.map((m) => m.name).join(', ')}
@@ -115,7 +114,7 @@ export default function GlobalMarkets({ onPageChange }) {
         </motion.div>
 
         {/* Regional branch highlights - real taglines, real routes */}
-        <motion.div {...fadeUp(reduceMotion, { delay: 0.15 })} className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 lg:mt-14 pt-10 lg:pt-12 border-t border-surface-200/70">
+        <motion.div {...fadeUp(reduceMotion, { delay: 0.15 })} className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12 lg:mt-14 pt-10 lg:pt-12 border-t border-surface-200/70">
           {branches.map((branch) => (
             <InternalLink
               key={branch.page}

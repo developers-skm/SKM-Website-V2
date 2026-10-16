@@ -117,6 +117,23 @@ export const variantsData = [
   }
 ];
 
+const variantNamesTable = [
+  'Whole Egg Powder - Standard',
+  'Whole Egg Powder - Sugared',
+  'Whole Egg Powder - DeSugared',
+  'Whole Egg Powder - Enriched',
+  'Whole Egg Powder - High Colour',
+];
+
+// Display-only labels shown beside the variant table (not clickable).
+const variantStaticFilters = [
+  { axis: 'Function', options: ['Free flow', 'Emulsification', 'Gelling'] },
+  { axis: 'Processing treatment', options: ['De-Sugared', 'Enriched'] },
+  { axis: 'Salt or sugar level', options: ['Sugared'] },
+  { axis: 'Colour', options: ['High Colour'] },
+  { axis: 'Packaging', options: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'] },
+];
+
 const applicationsData = [
   { name: 'Bakery Mix', image: BakeryMixImg, description: 'Provides consistent volume, structure, and crumb binding in standardized industrial premixes.' },
   { name: 'Biscuits', image: BiscuitsImg, description: 'Enhances crispy textures, dough handling, and naturally imparts a golden, oven-baked surface color.' },
@@ -153,9 +170,12 @@ export default function WholeEggPowderPage({ onPageChange }) {
         categoryLabel: 'Egg Powders Range',
         titleLine1: 'Whole Egg',
         titleLine2: 'Powder',
-        description: 'Pasteurized Dried Whole Hen Egg Powder optimized for commercial bakery, confectionery, noodles, mayonnaise, and general food formulations. Prepared to offer the highest functional stability and rigorous safety standards for large-scale industrial manufacturing.'
+        description: 'Pasteurized Dried Whole Hen Egg Powder optimized for commercial bakery, noodles, mayonnaise, and general food formulations. Prepared to offer the highest functional stability and rigorous safety standards for large-scale industrial manufacturing.'
       }}
       variantsData={variantsData}
+      variantNamesTable={variantNamesTable}
+      variantStaticFilters={variantStaticFilters}
+      visibleTraits={['binding', 'texture']}
       applicationsData={applicationsData}
       productName="Whole Egg Powder"
       productId="whole_egg_powder"

@@ -102,7 +102,7 @@ export default function Hero({ onPageChange }) {
             </p>
 
             <p className="font-body text-[14px] sm:text-[15px] lg:text-[16px] font-semibold text-white/95 m-0">
-              30+ Countries Served
+              30+ Countries Served · ISO 22000
             </p>
 
             {/* Trust statement - two verbatim existing fragments, not merged

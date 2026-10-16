@@ -53,7 +53,7 @@ function findEvidence(variantsData, keywords, usedCodes) {
   return best;
 }
 
-export default function FunctionalPerformance({ variantsData, productName, onDiscussPerformance, tdsUrl }) {
+export default function FunctionalPerformance({ variantsData, productName, visibleTraits, onDiscussPerformance, tdsUrl }) {
   const reduceMotion = useReducedMotion();
   // Each variant can only be used as evidence once - otherwise two traits
   // that both happen to score highest on the same SKU (e.g. a high-gel
@@ -64,16 +64,19 @@ export default function FunctionalPerformance({ variantsData, productName, onDis
   // to replace the wording of specific cards and pin the SKU shown beneath.
   const overrides = variantsData.find((v) => v.performanceOverrides)?.performanceOverrides ?? {};
   const traitsWithEvidence = TRAITS
+    .filter((trait) => !visibleTraits || visibleTraits.includes(trait.key))
     .map((trait) => {
-      const evidence = findEvidence(variantsData, trait.keywords, usedCodes);
+      const override = overrides[trait.key];
+      // A pinned override can supply a card even when no variant text matches.
+      const evidence = findEvidence(variantsData, trait.keywords, usedCodes) ?? (override ? { quote: override.text } : null);
       if (evidence) usedCodes.add(evidence.variantCode);
       if (!evidence) return null;
       const merged = { ...trait, ...evidence };
-      const override = overrides[trait.key];
       if (!override) return merged;
       const sku = variantsData.find((v) => v.code === override.code);
       return {
         ...merged,
+        label: override.label ?? merged.label,
         quote: override.text,
         variantCode: sku?.code ?? null,
         variantName: sku?.name,
@@ -119,11 +122,6 @@ export default function FunctionalPerformance({ variantsData, productName, onDis
             <p className="font-body text-[14.5px] text-surface-600 leading-[1.7] m-0">
               {trait.quote}
             </p>
-            {trait.variantCode && (
-              <span className="font-mono text-[11px] font-bold text-brand-600 uppercase tracking-wider mt-1">
-                {trait.variantCode} - {trait.variantName}
-              </span>
-            )}
           </motion.div>
         ))}
       </motion.div>

@@ -56,6 +56,19 @@ const applicationsData = [
   { name: 'Egg Pastry', image: EggPastryImg, description: 'Adds structure, binding, and a golden finish to glazed and filled egg pastry products.' }
 ];
 
+const variantNamesTable = [
+  'Whole Egg Liquid (Chilled / Frozen)',
+  'Whole Egg Liquid - Sugared (Chilled / Frozen)',
+  'Whole Egg Liquid - Enriched (Chilled / Frozen)',
+];
+
+// Display-only labels shown beside the variant table (not clickable).
+const variantStaticFilters = [
+  { axis: 'Various Ingredients', options: ['Salted', 'Sugared', 'Enriched'] },
+  { axis: 'Chilled or frozen', options: ['Chilled', 'Frozen'] },
+  { axis: 'Packaging', options: ['1kg', '5kg', '10kg', '20kg'] },
+];
+
 const stripSuffix = (code) => code.replace('_Chilled', '').replace('_Frozen', '');
 
 export default function WholeEggLiquidPage({ onPageChange }) {
@@ -83,9 +96,14 @@ export default function WholeEggLiquidPage({ onPageChange }) {
         categoryLabel: 'Egg Liquids Range',
         titleLine1: 'Whole Egg',
         titleLine2: 'Liquid',
-        description: 'Whole egg liquid is ideally suited for bakery applications where texture, structure, and cake height are important. It is pasteurized and maintained under strict temperature controls to preserve quality and functionality.'
+        description: 'Whole egg liquid is ideally suited for bakery applications where texture, structure, and cake height are important. It is pasteurized and maintained under strict temperature controls to preserve quality and functionality.',
+        applicationTags: ['Bakery products - Cakes, cup cakes and Egg pastry', 'Omelette and scrambled eggs']
       }}
       variantsData={variantsData}
+      variantNamesTable={variantNamesTable}
+      variantStaticFilters={variantStaticFilters}
+      visibleTraits={['binding', 'texture']}
+      packTypesText="1kg, 5kg, 10kg & 20kg"
       applicationsData={applicationsData}
       productName="Whole Egg Liquid"
       functionality="Natural 100% Whole Egg Proportion and Optimized Viscosity Baking Grade."

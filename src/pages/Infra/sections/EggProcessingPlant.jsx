@@ -76,7 +76,7 @@ const utilityImages = [
 const infoBlocks = [
   {
     title: 'Facility & Regulatory Compliance',
-    body: 'The SKM egg processing facility is constructed and equipped in accordance with EU and USDA regulatory requirements. The plant is approved under the Indian Export of Egg Products Quality Control & Monitoring Rules (1997), based on EU/USDA guidelines (Approval No: 05/2/EP/97). Two dedicated production lines—yolk and albumen—operate within a fully automated, climate-controlled environment. Sterile zones are maintained under positive pressure, supported by an automated CIP system for validated cleaning of tanks and pipelines. Utilities are housed separately to prevent contamination risks, and effluent is treated in line with environmental standards to support sustainable operations.',
+    body: 'The SKM egg processing facility is constructed and equipped in accordance with European Union (EU) regulatory requirements. The plant is approved under the Indian Export of Egg Products Quality Control & Monitoring Rules (1997), based on European Union (EU) guidelines (Approval No: 05/2/EP/97). Two dedicated production lines—yolk and albumen—operate within a climate-controlled environment supported by an automated CIP system for validated cleaning of tanks and pipelines. Utilities are housed separately to prevent contamination risks, and effluent is treated in line with environmental standards to support sustainable operations.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -85,7 +85,7 @@ const infoBlocks = [
   },
   {
     title: 'Process Excellence',
-    body: 'Only microbiologically tested eggs are processed, with a capacity of 2 million eggs per day, producing approximately 7,500 tonnes annually. Customized formulations, including co-dried and dry-blend solutions, are developed in collaboration with customers. Operations follow cGMP, SSOP, Codex Alimentarius principles, and HACCP guidelines. All activities are monitored through the integrated traceability system, ensuring food safety and full traceability.',
+    body: 'Only QA cleared eggs are processed, with a capacity of 2 million eggs per day, producing approximately 7,500 tonnes annually. Customized formulations, including co-dried and dry-blend solutions, are developed in collaboration with customers. Operations follow cGMP, SSOP, Codex Alimentarius principles, and HACCP guidelines. All activities are monitored through the integrated traceability system, ensuring food safety and full traceability.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -94,7 +94,7 @@ const infoBlocks = [
   },
   {
     title: 'Zoning & Hygiene Control',
-    body: 'Strict zoning protocols (red, white, and neutral areas) prevent cross-contamination, with dedicated tools and consumables for each zone. Personnel hygiene is tightly controlled through mandatory sanitation procedures, protective clothing, environmental swabbing, and routine air quality monitoring.',
+    body: 'Strict zoning protocols, high risk and high care area separation, including color-coded identification, dedicated tools for each zone, mandatory sanitation procedures, and routine air-quality monitoring, help prevent cross-contamination.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -103,7 +103,7 @@ const infoBlocks = [
   },
   {
     title: 'Sustainable circular economy',
-    body: 'Our integrated biogas facility supports circular and environmentally responsible operations. The plant has a 70-tonne poultry litter handling capacity. In addition, nutrient-rich liquid fertilizer generated as a by-product is supplied to farmers at no cost, reinforcing our commitment to sustainable agriculture.',
+    body: 'Our integrated biogas facility supports circular and environmentally responsible operations. The plant has a 70-tonne poultry litter handling capacity. In addition, nutrient-rich liquid fertilizer is generated as a by-product and supplied to farmers.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -115,7 +115,7 @@ const infoBlocks = [
 const statsData = [
   { value: '2M+', label: 'Eggs Processed / Day' },
   { value: '7,500T', label: 'Annual Production' },
-  { value: 'EU & USDA', label: 'Regulatory Approval' },
+  { value: 'EU', label: 'Regulatory Approval' },
   { value: '70T', label: 'Biogas Litter Capacity' },
 ];
 
@@ -139,7 +139,7 @@ export default function EggProcessingPlant() {
             Plant
           </h1>
           <p className="font-body text-[16px] leading-[30px] text-surface-500 max-w-2xl m-0">
-            A fully automated, EU & USDA-compliant egg processing facility with a capacity of 2 million eggs per day, producing premium egg products under stringent food safety standards.
+            European Union (EU) Directive compliance egg processing facility with a capacity of 2 million eggs per day, producing premium egg products under stringent food safety standards.
           </p>
         </div>
       </div>
@@ -176,6 +176,7 @@ export default function EggProcessingPlant() {
             alt="Campus Overview"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             loading="lazy"
+            decoding="async"
           />
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
@@ -207,7 +208,7 @@ export default function EggProcessingPlant() {
               Process Area
             </h2>
             <p className="font-body text-[15px] text-surface-500 max-w-2xl m-0 leading-[26px]">
-              Two dedicated production lines for yolk and albumen operate in a fully automated, climate-controlled sterile environment.
+              Two dedicated production lines for yolk and albumen operate in a climate-controlled hygienic environment. A dedicated line for liquid products processing and distinguished blending facility for customized mixes preparations.
             </p>
           </motion.div>
 

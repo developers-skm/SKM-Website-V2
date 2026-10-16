@@ -89,12 +89,12 @@ const QUALITY_GATES = [
   {
     id: 'pasteurisation',
     label: 'Pasteurisation',
-    fact: 'Daily fresh egg intake moves through a HACCP-monitored, EU and USDA-compliant plant - breaking, pasteurization, and drying - with full CCP documentation at every stage.',
+    fact: 'Fresh eggs received daily undergo controlled breaking, pasteurization, and drying processes, supported by comprehensive HACCP-based monitoring and documentation at every stage to ensure product safety, quality, and traceability.',
   },
   {
     id: 'drying-liquid-processing',
     label: 'Drying or liquid processing',
-    fact: 'Covered by the same HACCP-monitored plant with full Critical Control Point (CCP) documentation at every stage.',
+    fact: 'Controlled access for personnel and material movement, combined with a positive-pressure ventilation system, helps maintain a clean, hygienic, and controlled environment for liquid egg processing and powder drying operations.',
   },
   {
     id: 'packaging',
@@ -104,7 +104,7 @@ const QUALITY_GATES = [
   {
     id: 'final-release',
     label: 'Final release',
-    fact: 'Covered by the same HACCP-monitored plant with full Critical Control Point (CCP) documentation at every stage.',
+    fact: 'Every production batch undergoes stringent quality testing and verification of Critical Control Point (CCP) compliance before being approved for dispatch, ensuring product safety, quality, and regulatory compliance.',
   },
 ];
 
@@ -190,7 +190,7 @@ const LAB_CAPABILITIES = [
   },
   {
     title: 'Microbiological Testing',
-    description: 'A controlled microbiology laboratory ensures products are free from pathogens and microbial contamination prior to dispatch, with routine testing and environmental monitoring in biosafety-controlled infrastructure.',
+    description: 'Microbiology laboratory ensures products are free from pathogens and microbial contamination prior to dispatch, with routine testing and environmental monitoring in biosafety-controlled infrastructure.',
     chips: ['Salmonella', 'E. coli', 'Enterobacteriaceae', 'Total Plate Count', 'Staphylococcus aureus', 'Bacillus cereus', 'Yeast & Mold'],
   },
   {
@@ -275,27 +275,6 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
   );
 }
 
-// Section 5 (Certifications and approvals): filters use only the 3 axes
-// that have a genuine, verifiable category per real certificate - Food
-// safety (FSSAI, Export Inspection Council, BRC Food Certified, Eat Right
-// Campus), Religious certification (Halal, Kosher), Laboratory (ISO/IEC
-// 17025, NABL). "Export market" and "Plant or product scope" are omitted:
-// all 8 certificates in data/certifications.js are facility-wide, with no
-// per-certificate market or product-scope data anywhere in the repo.
-// "View Certificate" opens the real certificate logo image (the only asset
-// that exists per certificate); "Download" downloads that same image.
-// "Request Market-Specific Documentation" routes to the real Contact Us
-// page - no per-market document set exists to serve directly.
-const CERT_CATEGORIES = {
-  FSSAI: 'Food safety',
-  'Export Inspection Council': 'Food safety',
-  'BRC Food Certified': 'Food safety',
-  'Eat Right Campus': 'Food safety',
-  'Halal Certified': 'Religious certification',
-  'KLBD Kosher': 'Religious certification',
-  'ISO/IEC 17025': 'Laboratory',
-  NABL: 'Laboratory',
-};
 // Real certificate document per certification (ISO/IEC 17025 and NABL share
 // the single NABL 17025 accreditation certificate).
 const CERT_DOCUMENTS = {
@@ -308,15 +287,8 @@ const CERT_DOCUMENTS = {
   'ISO/IEC 17025': certNABL,
   NABL: certNABL,
 };
-const CERT_FILTER_AXES =['Food safety', 'Religious certification', 'Laboratory'];
-
 function CertificationsApprovalsSection({ onPageChange }) {
-  const [activeCategory, setActiveCategory] = useState(null);
   const reduceMotion = useReducedMotion();
-
-  const visibleCerts = activeCategory
-    ? certifications.filter((c) => CERT_CATEGORIES[c.name] === activeCategory)
-    : certifications;
 
   return (
     <div id="certifications-approvals" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
@@ -335,36 +307,8 @@ function CertificationsApprovalsSection({ onPageChange }) {
           </h2>
         </motion.div>
 
-        <div className="flex flex-wrap items-center gap-2.5">
-          <span className="font-body text-[12.5px] font-semibold uppercase tracking-wide text-surface-400 mr-1">Filter</span>
-          {CERT_FILTER_AXES.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
-              aria-pressed={activeCategory === cat}
-              className={`inline-flex items-center min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-full border font-body font-semibold text-[13.5px] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
-                activeCategory === cat
-                  ? 'bg-brand-600 border-brand-600 text-white shadow-[0_4px_14px_rgba(228,10,24,0.3)]'
-                  : 'bg-white border-surface-300 text-surface-600 hover:border-brand-600/50 hover:-translate-y-0.5'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-          {activeCategory && (
-            <button
-              type="button"
-              onClick={() => setActiveCategory(null)}
-              className="font-body font-semibold text-[13px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
-            >
-              Clear Filter
-            </button>
-          )}
-        </div>
-
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-          {visibleCerts.map((cert) => (
+          {certifications.map((cert) => (
             <div
               key={cert.name}
               className="group flex flex-col gap-3 p-5 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7] shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 hover:-translate-y-1 transition-all duration-300"
@@ -534,21 +478,11 @@ const INCIDENT_RESPONSE_TOPICS = [
   {
     id: 'source-traceability',
     label: 'Source traceability',
-    fact: 'Batch identification links back to farm origin and feed ingredients, giving complete supply chain visibility from biosecure hatchery to final dispatch.',
-  },
-  {
-    id: 'document-retrieval',
-    label: 'Document retrieval',
-    fact: 'Covered by the same integrated traceability system that links lot codes, batch identification, and farm origin across every stage.',
+    fact: 'Batch identification links back to farm origin and feed ingredients, giving complete supply chain visibility from feed mill to final product dispatch.',
   },
   {
     id: 'recall-readiness',
     label: 'Product recall readiness',
-    fact: 'Covered by the same integrated traceability system that links lot codes, batch identification, and farm origin across every stage.',
-  },
-  {
-    id: 'customer-support',
-    label: 'Customer support',
     fact: 'Covered by the same integrated traceability system that links lot codes, batch identification, and farm origin across every stage.',
   },
 ];
@@ -686,7 +620,7 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
                   Main certifications
                 </span>
                 <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
-                  {certifications.map((c) => c.name).join(', ')}
+                  FSSAI, Export Inspection Council, BRC Food Certified, ISO 22000, ISO/IEC 17025, Halal (JUHF &amp; BPJPH) Certified and KLBD Kosher.
                 </span>
               </motion.div>
 
@@ -716,7 +650,7 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
                   Traceability coverage
                 </span>
                 <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
-                  Complete supply chain visibility - every egg, every batch, every step documented and traceable from biosecure hatchery to final dispatch.
+                  Complete supply chain visibility - every egg, every batch, every step documented and traceable from feed ingredients to final product dispatch.
                 </span>
               </motion.div>
             </div>

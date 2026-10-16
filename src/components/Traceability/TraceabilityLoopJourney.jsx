@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion, useInView } from 'framer-motion';
 import manufacturingImages from '../../data/manufacturingImages';
+import liquidFillingImage from '../../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Liquid filling.webp';
 
 // ─────────────────────────────────────────────
 // Easing Tokens
@@ -99,14 +100,46 @@ const processChapters = [
   },
 ];
 
+// Quality verification moves to the end of the journey
+// (after packaging), chapters renumbered 01-06 with image/content sides
+// re-alternated, plus page-specific wording.
+const POWDER_LINE_ORDER = ['01', '02', '03', '04', '06', '05'];
+const powderLineChapters = POWDER_LINE_ORDER
+  .map((oldStep) => processChapters.find((c) => c.step === oldStep))
+  .map((c, i) => {
+    const step = String(i + 1).padStart(2, '0');
+    const isQuality = c.title === 'NABL Analytical & Residue Testing';
+    return {
+      ...c,
+      step,
+      category: c.category.replace(/CHAPTER \d+/, `CHAPTER ${step}`),
+      illustrationSide: i % 2 === 0 ? 'left' : 'right',
+      highlights: c.highlights.map((h) => (h === '100% Traceable Origin' ? '100% Traceable' : h)),
+      narrative: isQuality
+        ? 'Every production batch undergoes comprehensive analytical, chemical, and microbiological testing in an NABL-accredited (ISO/IEC 17025) laboratory before Certificate of Analysis (COA) issuance.'
+        : c.narrative,
+    };
+  });
+
+// The liquid line's packaging chapter is aseptic pouch filling, not powder
+// bagging - it carries its own copy and photo.
+const liquidPackagingOverride = {
+  narrative:
+    'Pasteurized liquid egg products are transferred from aseptic storage tanks to an aseptic filling machine, where they are packed into LDPE pouches under controlled hygienic conditions. The filling area undergoes thorough cleaning, while the filling line is subjected to an integrated Clean-in-Place (CIP) and sterilization process to ensure hygienic conditions and readiness for subsequent production batches. An automated sanitization system sanitizes the filling nozzle and its surrounding area before each pouch-filling cycle, further enhancing hygiene and minimizing contamination risks.',
+  highlights: ['Aseptic filling', 'CIP & Sterilization', 'Equipment auto sanitization before filling'],
+  image: liquidFillingImage,
+  altText: 'Aseptic liquid egg pouch filling machine in the filling area',
+};
+
 // Liquid line - same journey without the spray-drying chapter. Remaining
 // chapters are renumbered 01–05 and the image/content sides re-alternated.
-const liquidProcessChapters = processChapters
+const liquidProcessChapters = powderLineChapters
   .filter((c) => c.step !== '04')
   .map((c, i) => {
     const step = String(i + 1).padStart(2, '0');
     return {
       ...c,
+      ...(c.title === 'HEPA Cleanroom Packaging' ? liquidPackagingOverride : {}),
       step,
       category: c.category.replace(/CHAPTER \d+/, `CHAPTER ${step}`),
       illustrationSide: i % 2 === 0 ? 'left' : 'right',
@@ -475,7 +508,7 @@ export function ProductQualityAssurance() {
 export default function TraceabilityLoopJourney({ title, subtitle, onPageChange, showQuality = true, line = 'powder' }) {
   const reducedMotion = useReducedMotion() ?? false;
   const [activeStage, setActiveStage] = useState(0);
-  const chapters = line === 'liquid' ? liquidProcessChapters : processChapters;
+  const chapters = line === 'liquid' ? liquidProcessChapters : powderLineChapters;
 
   const headerRef = useRef(null);
   const [headerEntered, setHeaderEntered] = useState(false);

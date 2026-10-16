@@ -72,7 +72,7 @@ function buildFilterGroup(variantsData, patterns, getText) {
   return Array.from(optionMatches.entries()).map(([label, codes]) => ({ label, codes }));
 }
 
-export default function VariantTable({ variantsData, displayCode, packagingOptions, selectedCode, onSelectVariant, onCompare }) {
+export default function VariantTable({ variantsData, packagingOptions, selectedCode, onSelectVariant, onCompare }) {
   const [query, setQuery] = useState('');
   // Starts empty when nothing is selected; if a variant is pre-selected it
   // starts checked so the "Selected" row and its checkbox agree (see
@@ -193,7 +193,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search variants by code, name, or application…"
+            placeholder="Search variants by name or application…"
             aria-label="Search variants"
             className="w-full min-h-[44px] pl-11 pr-4 py-3 rounded-full border border-surface-200 bg-white font-body text-[14px] text-heading placeholder:text-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
@@ -285,12 +285,6 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
                 className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 bg-surface-100 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]"
                 style={{ position: 'sticky', top: 0, left: 48, zIndex: 20 }}
               >
-                Code
-              </th>
-              <th
-                className="text-left px-4 py-4 font-body text-[11.5px] font-bold uppercase tracking-wider text-surface-500 bg-surface-100"
-                style={{ position: 'sticky', top: 0, zIndex: 10 }}
-              >
                 Name
               </th>
               {specColumns.map((key) => (
@@ -351,12 +345,9 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
                     />
                   </td>
                   <td
-                    className={`px-4 py-4 font-mono text-[12.5px] font-bold text-brand-600 whitespace-nowrap shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] transition-colors duration-150 ${rowBg}`}
+                    className={`px-4 py-4 font-heading font-semibold text-[14.5px] text-heading shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)] transition-colors duration-150 ${rowBg}`}
                     style={{ position: 'sticky', left: 48, zIndex: 10 }}
                   >
-                    {displayCode(variant.code)}
-                  </td>
-                  <td className="px-4 py-4 font-heading font-semibold text-[14.5px] text-heading">
                     {variant.name}
                   </td>
                   {specColumns.map((key) => (
@@ -384,7 +375,7 @@ export default function VariantTable({ variantsData, displayCode, packagingOptio
             })}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={specColumns.length + 4} className="px-4 py-10 text-center font-body text-[14px] text-surface-400">
+                <td colSpan={specColumns.length + 3} className="px-4 py-10 text-center font-body text-[14px] text-surface-400">
                   No variants found{query.trim() ? ' for your search' : ''}. Try a different search term.
                 </td>
               </tr>

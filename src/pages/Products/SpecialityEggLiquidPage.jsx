@@ -72,7 +72,7 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
         categoryLabel="Speciality Products"
         titleLine1="Easy Egg"
         titleLine2="Liquids"
-        description="Easy Egg Liquids are produced in a way that each consumer can use the product in a more convenient way as per their needs. User-friendly way for household as well as RTC applications."
+        description="Easy Egg Liquids are produced in a way that each consumer can use the product in a more convenient way as per their needs. User-friendly way for household as well as Ready to Eat (RTC) applications."
       />
 
       {/* Key Features Grid */}
@@ -89,10 +89,10 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
               Product Highlights
             </span>
             <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading uppercase tracking-wider m-0">
-              Why Easy Egg Liquids?
+              Why Egg Liquids
             </h2>
             <p className="text-sm text-surface-400 font-medium max-w-2xl m-0">
-              Convenience-first egg liquid products designed to simplify egg usage at home and in the food service industry.
+              Convenience easy egg liquid products designed to simplify egg usage at home and in the food service industry.
             </p>
           </div>
 
@@ -134,8 +134,8 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
               { label: 'Format', value: 'Tetra Pack', sub: 'Consumer-ready packaging' },
-              { label: 'Usage', value: 'Household & RTC', sub: 'Versatile applications' },
-              { label: 'Safety', value: 'Pasteurized', sub: 'Salmonella Negative / 25g' },
+              { label: 'Usage', value: 'Household & Ready to Cook (RTC)', sub: 'Versatile applications' },
+              { label: 'Safety', value: 'Pasteurized', sub: 'Salmonella absent' },
             ].map((stat) => (
               <motion.div
                 key={stat.label}

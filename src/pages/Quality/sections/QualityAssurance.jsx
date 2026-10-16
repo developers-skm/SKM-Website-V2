@@ -19,10 +19,9 @@ const qaImages = [
 ];
 
 const qaStats = [
-  { value: 'Since 2006', label: 'NABL Accredited Lab', icon: '🏆' },
   { value: 'ISO/IEC 17025', label: 'Laboratory Accreditation', icon: '📋' },
   { value: 'EU & Japan', label: 'Regulatory Compliance', icon: '🌏' },
-  { value: 'GC-MS · LC-MS · HPLC · AAS', label: 'Analytical Platforms', icon: '🔬' },
+  { value: 'GC-ECD/FID · LC-MS/MS · HPLC', label: 'Analytical Platforms', icon: '🔬' },
 ];
 
 const qaBlocks = [
@@ -125,7 +124,7 @@ export default function QualityAssurance() {
         {/* Stats Bar */}
         <motion.div
           variants={itemVariants}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4"
         >
           {qaStats.map((stat, i) => (
             <div

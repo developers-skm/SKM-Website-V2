@@ -83,7 +83,7 @@ const contentSections = [
   },
   {
     title: 'Microbiological Laboratory',
-    description: 'A controlled microbiology laboratory ensures products are free from pathogens and microbial contamination prior to dispatch. Routine testing and environmental monitoring are conducted using biosafety-controlled infrastructure.',
+    description: 'Microbiology laboratory ensures products are free from pathogens and microbial contamination prior to dispatch. Routine testing and environmental monitoring are conducted using biosafety-controlled infrastructure.',
     chips: microbiologicalEquipment,
     chipLabel: 'Equipment',
     extraChips: microbiologicalParams,
@@ -96,12 +96,22 @@ const contentSections = [
   },
   {
     title: 'Poultry Disease Diagnostics',
-    description: 'Our in-house diagnostic laboratory supports proactive flock health management through microbiological, serological, and molecular testing. Strict biosecurity protocols, controlled sample handling, and regulatory-aligned testing frameworks ensure early detection, disease prevention, and sustained flock health.',
+    description: 'Comprehensive disease control begins with certified hatcheries and extends through strict biosecurity, vector control, and continuous flock monitoring.\n\nNewcastle Disease titres are verified through periodic serological testing, while enhanced biosecurity protocols safeguard against Avian Influenza, including controlled farm access, sanitation barriers, and perimeter management.\n\nOur in-house diagnostic laboratory supports proactive flock health management through microbiological, serological, and molecular testing. Strict biosecurity protocols, controlled sample handling, and regulatory-aligned testing frameworks ensure early detection, disease prevention, and sustained flock health.',
     chips: ['Salmonella', 'Newcastle Disease', 'Avian Influenza', 'Mycoplasma'],
     chipLabel: 'Monitored Pathogens',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Research and Development',
+    description: 'Our upcoming Research and Development (R&D) facility will feature functional testing, application laboratories, and bakery application capabilities to evaluate product performance and functional properties across various end-use applications. Through close collaboration with our valued partners, we aim to develop successful product formulations by providing dedicated technical expertise, application support, and innovative solutions.',
+    fullWidth: true,
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
     ),
   },
@@ -214,7 +224,7 @@ export default function Laboratory() {
                 key={i}
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
-                className="p-6 bg-white border border-[#eee] rounded-[10px] flex flex-col gap-4 hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] transition-all duration-300 group"
+                className={`p-6 bg-white border border-[#eee] rounded-[10px] flex flex-col gap-4 ${section.fullWidth ? 'sm:col-span-2' : ''} hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] transition-all duration-300 group`}
               >
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-[8px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center text-brand-600 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
@@ -224,11 +234,14 @@ export default function Laboratory() {
                     {section.title}
                   </h3>
                 </div>
-                <p className="font-body text-[14px] text-surface-500 leading-[24px] m-0">
-                  {section.description}
-                </p>
+                {section.description.split('\n\n').map((para, k) => (
+                  <p key={k} className="font-body text-[14px] text-surface-500 leading-[24px] m-0">
+                    {para}
+                  </p>
+                ))}
 
                 {/* Primary chips */}
+                {section.chips && (
                 <div className="flex flex-col gap-2">
                   <span className="font-body text-[10px] font-bold uppercase tracking-widest text-brand-600">
                     {section.chipLabel}
@@ -244,6 +257,7 @@ export default function Laboratory() {
                     ))}
                   </div>
                 </div>
+                )}
 
                 {/* Extra chips (microbiological params) */}
                 {section.extraChips && (

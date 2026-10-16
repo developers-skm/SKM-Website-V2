@@ -23,22 +23,22 @@ const blocks = [
   {
     id: 'facility',
     eyebrow: 'Facility & Regulatory Compliance',
-    title: 'Built to EU & USDA standards.',
-    body: 'Constructed and equipped in accordance with applicable EU and USDA requirements, the facility is approved under India’s Export of Egg Products Quality Control & Monitoring Rules (1997). It operates in a fully automated, climate-controlled environment with dedicated production lines for yolk and albumen.',
+    title: 'Built as per European Union (EU) standards.',
+    body: 'Constructed and equipped in accordance with applicable European Union (EU) requirements, the facility is approved under India’s Export of Egg Products Quality Control & Monitoring Rules (1997). It operates in a fully automated, climate-controlled environment with dedicated production lines for yolk and albumen.',
     image: CampusOverview,
   },
   {
     id: 'process',
     eyebrow: 'Process Excellence',
     title: '2 million eggs, processed daily.',
-    body: 'Only microbiologically tested eggs are processed, producing approximately 7,500 tonnes annually. Operations follow cGMP, SSOP, Codex Alimentarius principles, and HACCP guidelines with every activity monitored through the integrated traceability system.',
+    body: 'Only QA cleared eggs are processed, producing approximately 7,500 tonnes annually. Operations follow cGMP, SSOP, Codex Alimentarius principles, and HACCP guidelines with every activity monitored through the integrated traceability system.',
     image: Pasteurization,
   },
   {
     id: 'zoning',
     eyebrow: 'Zoning & Hygiene Control',
     title: 'Contamination prevented by design.',
-    body: 'Strict zoning protocols, including color-coded identification of red, yellow, green, and blue areas, dedicated tools for each zone, mandatory sanitation procedures, and routine air-quality monitoring, help prevent cross-contamination.',
+    body: 'Strict zoning protocols, high risk and high care area separation, including color-coded identification, dedicated tools for each zone, mandatory sanitation procedures, and routine air-quality monitoring, help prevent cross-contamination.',
     image: CIP,
   },
   {

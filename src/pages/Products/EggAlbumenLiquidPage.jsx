@@ -28,9 +28,22 @@ export const variantsData = [
     name: 'Frozen Egg Albumen Liquid - Whip',
     description: 'Pasteurized egg white liquid containing whipping aids, blast frozen at -18°C or below to preserve structural functionality for long-term storage.',
     applications: 'Industrial bakery batters, large-scale dessert manufacturing, frozen confectionery, and aerated spreads.',
+    heroBenefits: ['Uncompromised fresh coagulating strength', 'Rapid foam overrun', 'Long shelf stability (up to 12 months in frozen state)'],
     benefits: 'Long shelf stability (up to 12 months frozen), easy thawing, and retains full whipping overrun performance.',
     specifications: { moisture: '87.0% - 89.0%', protein: 'Min 10.0%', ph: '8.5 - 9.5', storage: 'Frozen (≤ -18°C)', character: 'Frozen Stable High-Whip Base' }
   }
+];
+
+const variantNamesTable = [
+  'Egg Albumen Liquid (Chilled)',
+  'Egg Albumen Liquid (Frozen)',
+];
+
+// Display-only labels shown beside the variant table (not clickable).
+const variantStaticFilters = [
+  { axis: 'Function', options: ['Whipping and foaming', 'Gelling'] },
+  { axis: 'Chilled or frozen', options: ['Chilled', 'Frozen'] },
+  { axis: 'Packaging', options: ['1kg', '5kg', '10kg', '20kg'] },
 ];
 
 const applicationsData = [
@@ -65,9 +78,13 @@ export default function EggAlbumenLiquidPage({ onPageChange }) {
         categoryLabel: 'Egg Liquids Range',
         titleLine1: 'Egg Albumen',
         titleLine2: 'Liquid',
-        description: 'Egg Albumen Liquid is widely used in applications where foaming properties are important. Pasteurised and maintained under strict temperature control to deliver fresh performance.'
+        description: 'Egg Albumen Liquid is widely used in applications where foaming properties are important. Pasteurised and maintained under strict temperature control to deliver fresh performance.',
+        applicationTags: ['Cakes', 'Meringues', 'Macroons', 'Noodles']
       }}
       variantsData={variantsData}
+      variantNamesTable={variantNamesTable}
+      variantStaticFilters={variantStaticFilters}
+      packTypesText="1kg, 5kg, 10kg & 20kg"
       applicationsData={applicationsData}
       productName="Egg Albumen Liquid"
       productId="egg_albumen_liquid"

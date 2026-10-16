@@ -4,7 +4,6 @@
 // apart across the site. Facts sourced from the traceability content already
 // authored in src/pages/Quality/sections/Traceability.jsx.
 
-import HatcheryImg from '../assets/5. INFRASTRUCTURE/Poultry farm/Vehicle entry shower.webp';
 import FeedMillImg from '../assets/5. INFRASTRUCTURE/Feed mill/Feed mill aerial view.webp';
 import FarmImg from '../assets/5. INFRASTRUCTURE/Poultry farm/EC shed overview.webp';
 import ProcessingImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Pasteurization.webp';
@@ -24,47 +23,38 @@ const journeyStages = [
   },
   {
     step: '02',
-    id: 'hatchery',
-    label: 'Poultry farm',
-    image: HatcheryImg,
-    tagline: 'It starts behind a biosecurity shower.',
-    description: 'Every visit to our layer farms begins at a controlled entry point, with vehicle and personnel sanitation, biosecurity barriers, and perimeter management forming the foundation of our traceability system.',
-    stat: { value: '2008/798', label: 'EU biosecurity registration' },
-  },
-  {
-    step: '03',
     id: 'farm',
     label: 'Farm',
     image: FarmImg,
     tagline: `${LAYERS_HOUSED} layers, continuously monitored.`,
-    description: `Our ISO 22000-certified integrated farms house ${LAYERS_HOUSED} layers in environmentally controlled sheds, supported by automated feeding, watering, and egg collection systems, and operate in accordance with Government of India compartmentalization requirements, with continuous flock health monitoring.`,
+    description: `Every visit to our layer farms begins at a controlled entry point, with vehicle and personnel sanitation, biosecurity barriers, and perimeter management. Our ISO 22000-certified integrated farms house ${LAYERS_HOUSED} layers in environmentally controlled sheds, supported by automated feeding, watering, and egg collection systems, and operate in accordance with OIE compartmentalization requirements.`,
     stat: { value: EGGS_PER_YEAR_SHORT, label: 'Eggs produced annually on our own farms' },
   },
   {
-    step: '04',
+    step: '03',
     id: 'processing',
-    label: 'Processing',
+    label: 'Plant',
     image: ProcessingImg,
     tagline: 'Fresh eggs, processed the same day.',
-    description: 'Daily fresh egg intake moves through our EU and USDA compliant processing facility, covering breaking, pasteurization, and drying, with CCP documentation maintained at every stage.',
+    description: 'Daily fresh egg intake moves through our European Union (EU) compliant processing facility, covering breaking, pasteurization, and drying, with CCP documentation maintained at every stage.',
     stat: { value: EGGS_PROCESSED_PER_DAY_SHORT, label: 'Eggs processed per day' },
   },
   {
-    step: '05',
+    step: '04',
     id: 'qa-lab',
     label: 'QA & Lab Testing',
     image: LabImg,
     tagline: 'Every batch, tested before it ships.',
-    description: 'Our NABL-accredited laboratory, operating in accordance with ISO/IEC 17025 since 2006, conducts physicochemical, microbiological, and residue analyses, including GC-ECD/FID, HPLC, and LC-MS/MS screening for antibiotics and pesticides, in accordance with applicable EU requirements.',
+    description: 'Our ISO 17025-accredited laboratory since 2006, conducts physicochemical, microbiological, and residue analyses, including GC-ECD/FID, HPLC, and LC-MS/MS screening for antibiotics and pesticides, in accordance with applicable European Union (EU) and Japanese regulations.',
     stat: { value: 'Since 2006', label: 'NABL-accredited laboratory' },
   },
   {
-    step: '06',
+    step: '05',
     id: 'packaging-dispatch',
-    label: 'Packaging & Dispatch',
+    label: 'Egg Export',
     image: DispatchImg,
     tagline: 'Cold chain, sealed and documented, to your door.',
-    description: 'Positive-pressure packing rooms and robust cold-chain management protect product integrity through final delivery. Lot codes, batch identification, and destination details are digitally recorded, ensuring complete supply chain transparency and traceability.',
+    description: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DOP) to ensure quality and traceability. These eggs are then carefully collected, packed, and distributed to global markets through a temperature-controlled cold chain logistics system, ensuring freshness and quality throughout the supply chain.',
     stat: { value: '30+', label: 'Countries served ' },
   },
 ];

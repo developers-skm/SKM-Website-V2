@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 // Editorial featured + supporting layout - the first application image
@@ -45,7 +46,35 @@ export default function ApplicationGallery({ applicationsData, productName }) {
   );
 }
 
+// Descriptions are clamped to two lines. The "View" button only appears when
+// the text is actually cut off (measured, so it follows the tile width) and
+// opens the full text over the image.
 function ApplicationTile({ app, reduceMotion, className }) {
+  const [open, setOpen] = useState(false);
+  const [isLong, setIsLong] = useState(false);
+  const textRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const el = textRef.current;
+    if (!el) return undefined;
+    // Compare the clamped height against the natural (unclamped) height by
+    // briefly lifting the clamp - scrollHeight alone is unreliable on
+    // -webkit-line-clamp boxes across browsers.
+    const measure = () => {
+      const clamped = el.getBoundingClientRect().height;
+      const prev = el.style.cssText;
+      el.style.cssText = `${prev};display:block;-webkit-line-clamp:unset;overflow:visible`;
+      const full = el.getBoundingClientRect().height;
+      el.style.cssText = prev;
+      setIsLong(full > clamped + 1);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    document.fonts?.ready.then(measure);
+    return () => observer.disconnect();
+  }, [app.description]);
+
   return (
     <motion.div
       initial={reduceMotion ? undefined : { opacity: 0, y: 16 }}
@@ -62,13 +91,44 @@ function ApplicationTile({ app, reduceMotion, className }) {
       />
       <div
         className="absolute inset-0"
-        style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.72) 100%)' }}
+        style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.8) 100%)' }}
       />
-      <div className={`absolute bottom-0 left-0 right-0 p-4 sm:p-5 ${reduceMotion ? '' : 'transition-transform duration-300 group-hover:-translate-y-0.5'}`}>
+      <div className={`absolute bottom-0 left-0 right-0 p-4 sm:p-5 flex flex-col gap-1.5 ${open ? 'invisible' : ''}`}>
         <h3 className="font-heading font-bold text-[16px] sm:text-[19px] text-white m-0 leading-tight">
           {app.name}
         </h3>
+        {app.description && (
+          <p ref={textRef} className="font-body text-[12.5px] sm:text-[13.5px] text-white/90 leading-[1.5] m-0 line-clamp-2">
+            {app.description}
+          </p>
+        )}
+        {isLong && (
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="self-start font-body font-bold text-[11.5px] uppercase tracking-[0.05em] text-white underline underline-offset-4 decoration-white/50 hover:decoration-white cursor-pointer bg-transparent border-none p-0"
+          >
+            View
+          </button>
+        )}
       </div>
+      {open && (
+        <div className="absolute inset-0 z-10 bg-black/85 p-4 sm:p-5 flex flex-col gap-3 overflow-y-auto" data-lenis-prevent>
+          <h3 className="font-heading font-bold text-[16px] sm:text-[19px] text-white m-0 leading-tight">
+            {app.name}
+          </h3>
+          <p className="font-body text-[13.5px] text-white/90 leading-[1.6] m-0">
+            {app.description}
+          </p>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="self-start mt-auto font-body font-bold text-[11.5px] uppercase tracking-[0.05em] text-white underline underline-offset-4 decoration-white/50 hover:decoration-white cursor-pointer bg-transparent border-none p-0"
+          >
+            Close
+          </button>
+        </div>
+      )}
     </motion.div>
   );
 }

@@ -14,6 +14,7 @@ export const variantsData = [
     name: 'Egg Albumen Powder - Standard',
     description: 'Standard pasteurized dried hen egg albumen powder with general binding, structure-building, and whipping capacity. Perfect as a multi-functional baking and binding food ingredient.',
     applications: 'Bakery products, confectionery nougats, biscuit coatings, meringue cookies, and standard binders in poultry processing.',
+    heroBenefits: ['Gelling, whipping and foaming', 'Improves product texture', 'Prevents water release'],
     benefits: 'Highly versatile performance, rapid cold-water solubility, and exceptional shelf-life stability.',
     specifications: { moisture: 'Max 8.0%', protein: 'Min 80.0%', ph: '6.0 - 7.5', character: 'Standard Whipping & Binding Matrix' }
   },
@@ -67,6 +68,20 @@ export const variantsData = [
   }
 ];
 
+const variantNamesTable = [
+  'Egg Albumen Powder - Standard',
+  'Egg Albumen Powder - High Gel',
+  'Egg Albumen Powder - Super High Gel',
+  'Egg Albumen Powder - High Whip',
+];
+
+// Display-only labels shown beside the variant table (not clickable).
+const variantStaticFilters = [
+  { axis: 'Function', options: ['Gelling', 'Whipping', 'Foaming'] },
+  { axis: 'Processing treatment', options: ['Fermented and heat treated'] },
+  { axis: 'Packaging', options: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'] },
+];
+
 const applicationsData = [
   { name: 'Egg Pastry', image: EggPastryImg, description: 'Provides structure and binding in delicate pastry shells and egg-glazed confections.' },
   { name: 'Fish Products', image: FishProductsImg, description: 'Delivers firm, cohesive gel binding in fish cakes, fish balls, and seafood products.' },
@@ -101,9 +116,13 @@ export default function EggAlbumenPowderPage({ onPageChange }) {
         categoryLabel: 'Egg Powders Range',
         titleLine1: 'Egg Albumen',
         titleLine2: 'Powder',
-        description: 'Dried Hen Egg Albumen Powder used in meat & fish processing, bakery & confectionery. Specifically processed to yield exceptional gelling and whipping parameters.'
+        description: 'Dried Hen Egg Albumen Powder used in meat & fish processing, bakery & confectionery. Specifically processed to yield exceptional gelling and whipping parameters.',
+        applicationTags: ['Macroons and meringues', 'Fish Products', 'Ham & Sausages', 'Meat Products']
       }}
       variantsData={variantsData}
+      variantNamesTable={variantNamesTable}
+      variantStaticFilters={variantStaticFilters}
+      visibleTraits={['whipping', 'gelling']}
       applicationsData={applicationsData}
       productName="Egg Albumen Powder"
       productId="egg_albumen_powder"

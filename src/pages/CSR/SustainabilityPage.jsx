@@ -22,7 +22,7 @@ const pillars = [
       </svg>
     ),
     title: 'Wind Energy Generation',
-    body: 'Our contribution to a clean environment is the installation of a wind mill that generates electricity of 3.5 million units per year - powering our operations with renewable energy.',
+    body: 'Our contribution to a clean environment is the installation of a wind mill and solar panels that generate electricity of 5.1 million units per year - powering our operations with renewable energy.',
   },
   {
     label: 'Social Responsibility',
@@ -121,10 +121,10 @@ export default function SustainabilityPage({ onPageChange }) {
             <div className="flex flex-col gap-2 text-center sm:text-left">
               <span className="font-body text-[11px] font-medium uppercase tracking-widest text-brand-600">Renewable Energy</span>
               <p className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 tracking-tight">
-                3.5 Million Units{' '}
+                5.1 Million Units{' '}
                 <span className="text-surface-500 font-normal text-[18px]">of electricity per year</span>
               </p>
-              <p className="text-sm text-surface-500 m-0">Generated through our on-site wind mill installation - a cornerstone of our clean energy commitment.</p>
+              <p className="text-sm text-surface-500 m-0">Generated through our wind mill and solar panel installation - a cornerstone of our clean energy commitment.</p>
             </div>
           </motion.div>
 

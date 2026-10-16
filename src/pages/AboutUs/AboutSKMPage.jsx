@@ -550,13 +550,13 @@ function VisionMissionValuesSection() {
 const BUSINESS_MODEL_STAGES = [
   { label: 'Feed', fact: 'In-house feed mill screens every ingredient for mycotoxins, pesticides, and antibiotic residues before formulation.' },
   { label: 'Farm', fact: '2.4 million layers housed across ISO 22000 certified integrated farms, producing approximately 164 million eggs annually.' },
-  { label: 'Plant', fact: 'EU and USDA-compliant processing plant handling up to 2 million eggs per day across dedicated yolk and albumen lines.' },
+  { label: 'Plant', fact: 'European Union (EU) - Directive compliance processing plant handling up to 2 million eggs per day across dedicated yolk and albumen lines.' },
   { label: 'Laboratory', fact: 'NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006, tests every batch before release.' },
-  { label: 'Egg Export', fact: 'Exports to 30+ countries, with dedicated regional branches in Japan, Europe, and Russia.' },
+  { label: 'Egg Export', fact: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DOP) to ensure quality and traceability.' },
   // Real, verbatim-sourced facts from EggProcessingPlant.jsx / SustainabilityCommunityPage.jsx:
   // integrated biogas facility, 70-tonne poultry litter handling capacity,
   // nutrient-rich liquid fertilizer supplied to farmers at no cost.
-  { label: 'Bio-Gas', fact: 'Integrated biogas facility with 70-tonne poultry litter handling capacity, supplying nutrient-rich liquid fertilizer to farmers at no cost.' },
+  { label: 'Bio-Gas', fact: 'Integrated biogas facility with 70-tonne poultry litter handling capacity, supplying nutrient-rich liquid fertilizer for farmers.' },
 ];
 
 function IntegratedBusinessModelSection({ onPageChange }) {
@@ -640,7 +640,7 @@ function AwardsRecognitionSection({ onPageChange }) {
     <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
-          <span className="section-label">Honors &amp; Recognitions</span>
+          <span className="section-label">Awards and recognitions</span>
           <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
             Awards and recognitions
           </h2>

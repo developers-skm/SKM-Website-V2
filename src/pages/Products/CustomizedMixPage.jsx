@@ -2,6 +2,7 @@ import ProductPage from '../../components/ProductPage/ProductPage';
 import InternalLink from '../../components/common/InternalLink';
 
 import CustomizedMixMainImg from '../../assets/3. PRODUCTS/Customized Mixes/CUSTOMIZED MIX_1000x667px.png';
+import { getBrochureUrl } from '../../data/brochureUrl';
 import MayonnaiseImg from '../../assets/3. PRODUCTS/Customized Mixes/Mayonnaise 3.png';
 
 export const variantsData = [
@@ -10,9 +11,28 @@ export const variantsData = [
     name: 'Egg Yolk Powder Heat Stable',
     description: 'A custom-blended, heat-stable egg yolk powder specifically formulated for mayonnaise and bakery applications where emulsification stability under high-temperature conditions is critical. This tailored mix is designed to deliver consistent viscosity, prevent oil-water separation, and produce a smooth, creamy texture in hot-filled or thermally processed food products.',
     applications: 'Hot-filled mayonnaise, heat-processed salad dressings, baked confections, creamy sauces, and emulsion-based condiments.',
+    heroBenefits: ['Superior heat-stable emulsification'],
+    performanceOverrides: {
+      emulsification: { code: 'Y1119', label: 'Emulsification (Mayonnaise Mix)', text: 'Superior heat-stable emulsification, prevents oil-water breakdown during thermal processing, delivers rich mouthfeel and consistent texture in finished products.' },
+      binding: { code: 'W1259', label: 'Binding (Bakery Mix)', text: 'Coagulates into a firm, water-retaining protein gel matrix upon heating, improving sliceability and moisture retention.' },
+    },
     benefits: 'Superior heat-stable emulsification, prevents oil-water breakdown during thermal processing, delivers rich mouthfeel and consistent texture in finished products.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 52.0%', protein: 'Min 30.0%', ph: '5.5 – 7.0', color: 'Heat-Emulsifying Stability: > 95%' }
   }
+];
+
+const variantNamesTable = [
+  'Egg Yolk Powder - Heat Stable (Mayonnaise Mix)',
+  'Whole Egg Powder - Sugared (Bakery Mix)',
+];
+
+// Display-only labels shown beside the variant table (not clickable).
+const variantStaticFilters = [
+  { axis: 'Packaging', options: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'] },
+];
+
+const extraDocuments = [
+  { label: 'Bakery Mix - Brochure', url: getBrochureUrl('SKM BAKERY MIX A5 FLYER (F-B).pdf') },
 ];
 
 const applicationsData = [
@@ -76,9 +96,14 @@ export default function CustomizedMixPage({ onPageChange }) {
         categoryLabel: 'Customized Mixes Range',
         titleLine1: 'Customized',
         titleLine2: 'Mix',
-        description: 'Bakery & Mayonnaise Mix - Custom blends tailored for specific food applications. Our specialized egg powder formulations are engineered to deliver precision performance in heat-intensive processing environments.'
+        description: 'Bakery & Mayonnaise Mix - Custom blends tailored for specific food applications. Our specialized egg powder formulations are engineered to deliver precision performance in heat-intensive processing environments.',
+        applicationTags: ['Bakery Mix', 'Egg White Protein drink mix']
       }}
         variantsData={variantsData}
+        variantNamesTable={variantNamesTable}
+        variantStaticFilters={variantStaticFilters}
+        visibleTraits={['emulsification', 'binding']}
+        extraDocuments={extraDocuments}
         applicationsData={applicationsData}
         productName="Customized Mix"
         productId="customized_mix"

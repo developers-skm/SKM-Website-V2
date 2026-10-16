@@ -15,11 +15,12 @@ const productListPdf = getBrochureUrl('Product List - SKM Egg Products Export In
 // declarations, dedicated application guides, and packaging specification
 // PDFs don't exist anywhere in the codebase, so those document types are
 // omitted entirely rather than shown as broken/fake links.
-export default function ProductDocuments({ tdsUrl, productName, onRequestPack }) {
+export default function ProductDocuments({ tdsUrl, productName, extraDocuments = [], onRequestPack }) {
   const reduceMotion = useReducedMotion();
   const [confirmedUrl, setConfirmedUrl] = useState(null);
   const documents = [
     tdsUrl && { label: `${productName} - Technical Data Sheet`, url: tdsUrl },
+    ...extraDocuments,
     { label: 'Company Profile', url: companyProfilePdf },
     { label: 'Full Product List', url: productListPdf },
   ].filter(Boolean);

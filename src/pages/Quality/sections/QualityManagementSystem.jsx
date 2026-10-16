@@ -205,7 +205,7 @@ export default function QualityManagementSystem() {
               HACCP Food Safety Framework
             </h4>
             <p className="text-sm text-surface-500 leading-relaxed m-0 font-body">
-              The food safety system follows the general principles and guidelines of HACCP to assure the safety of products from farm to fork. At every stage right from hatchery to feed mill, farm, processing, handling and delivery are closely monitored, controlled and documented.
+              The food safety system follows the general principles and guidelines of HACCP to assure the safety of products from farm to fork. At every stage right from feed mill to farm, processing, handling and delivery are closely monitored, controlled and documented.
             </p>
           </div>
         </motion.div>

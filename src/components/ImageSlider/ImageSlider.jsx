@@ -92,6 +92,7 @@ export default function ImageSlider({ images, aspectRatio = '4/3', autoPlay = 0,
                       alt={img.label}
                       className="w-full h-full object-cover transition-transform duration-500 ease-out hover:scale-[1.04]"
                       loading="lazy"
+                      decoding="async"
                     />
                     <div
                       className="absolute inset-0 z-[2]"

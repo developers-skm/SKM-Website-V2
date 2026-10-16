@@ -28,6 +28,7 @@ export const variantsData = [
     name: 'Chilled Egg Yolk Liquid - 14% Salt',
     description: 'Pasteurised liquid hen egg yolk with 14% salt content, held under chilled storage. Highly stable against microbial growth.',
     applications: 'Bulk savory sauce preparation, highly salted mayonnaise, salad dressings.',
+    heroBenefits: ['Delivers outstanding emulsion capacity', 'Salt helps maintain emulsion stability during processing', 'Extended shelf life & enhanced emulsification'],
     benefits: 'Extra-long chilled shelf life and enhanced emulsification strength under salty environments.',
     specifications: { moisture: '42.0% - 45.0%', protein: 'Min 12.0%', ph: '5.8 - 6.8', storage: 'Chilled (0°C to 4°C)', character: 'Salt Content: 14.0% (±0.5%)' }
   },
@@ -105,6 +106,12 @@ export const variantsData = [
   }
 ];
 
+const variantNamesTable = [
+  'Egg Yolk Liquid (Chilled)',
+  'Egg Yolk Liquid - salted (Chilled / Frozen)',
+  'Egg Yolk Liquid - High colour (Chilled / Frozen)',
+];
+
 const applicationsData = [
   { name: 'Bakery', image: BakeryImg, description: 'Provides rich emulsification, golden color, and creamy mouthfeel across bakery applications.' },
   { name: 'Cosmetics', image: CosmeticsImg, description: 'Natural lecithin-rich yolk liquid used as an emulsifier and conditioning agent in cosmetic formulations.' },
@@ -137,9 +144,13 @@ export default function EggYolkLiquidPage({ onPageChange }) {
         categoryLabel: 'Egg Liquids Range',
         titleLine1: 'Egg Yolk',
         titleLine2: 'Liquid',
-        description: 'We offer a wide range of Egg Yolk Liquids. Salted yolk, heat stable egg yolk are best suited for mayonnaise and sauces preparation.'
+        description: 'We offer a wide range of Egg Yolk Liquids. Salted yolk, heat stable egg yolk are best suited for mayonnaise and sauces preparation.',
+        applicationTags: ['Cosmetics', 'Ice Cream', 'Mayonnaise']
       }}
       variantsData={variantsData}
+      variantNamesTable={variantNamesTable}
+      visibleTraits={['emulsification', 'colour']}
+      packTypesText="1kg, 5kg, 10kg & 20kg"
       applicationsData={applicationsData}
       productName="Egg Yolk Liquid"
       productId="egg_yolk_liquid"

@@ -20,12 +20,12 @@ function collectDistinct(variantsData, key) {
   return Array.from(values);
 }
 
-export default function PackagingLogistics({ packagingOptions, variantsData, onViewPackaging, onDiscussDelivery }) {
+export default function PackagingLogistics({ packagingOptions, packTypesText, variantsData, onViewPackaging, onDiscussDelivery }) {
   const reduceMotion = useReducedMotion();
   const storageValues = collectDistinct(variantsData, 'storage');
 
   const facts = [
-    packagingOptions?.length > 0 && { label: 'Available Pack Types', value: packagingOptions.join(', ') },
+    packagingOptions?.length > 0 && { label: 'Available Pack Types', value: packTypesText ?? packagingOptions.join(', ') },
     storageValues.length > 0 && {
       label: storageValues.length > 1 ? 'Storage Conditions (By Variant)' : 'Storage Conditions',
       value: storageValues.join(' / '),
@@ -50,7 +50,7 @@ export default function PackagingLogistics({ packagingOptions, variantsData, onV
           Logistics
         </span>
         <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
-          Packaging &amp; Logistics
+          Packaging &amp; Dispatch
         </h2>
       </div>
 

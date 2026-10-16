@@ -5,7 +5,7 @@ import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNa
 
 // Section 2 - Environmental responsibility. Energy, water, and waste are
 // all real, verbatim/derived facts already documented elsewhere: energy
-// (on-site wind mill generating 3.5 million units/year, SustainabilityPage.jsx),
+// (wind mill and solar panels generating 5.1 million units/year, SustainabilityPage.jsx),
 // water (real Water Treatment Plant, EggProcessingPlant.jsx utility
 // gallery), waste (real Effluent Treatment Plant + Biogas facility, 70-
 // tonne poultry litter handling capacity, free liquid fertilizer by-
@@ -20,7 +20,7 @@ const ENVIRONMENTAL_INITIATIVES = [
   {
     id: 'energy',
     label: 'Energy',
-    fact: 'An on-site wind mill generates 3.5 million units of electricity per year - powering operations with renewable energy.',
+    fact: '5.1 million units of electricity generated per year through wind mill and solar power panels- powering operations with renewable energy.',
   },
   {
     id: 'water',
@@ -30,12 +30,12 @@ const ENVIRONMENTAL_INITIATIVES = [
   {
     id: 'waste',
     label: 'Waste',
-    fact: 'An Effluent Treatment Plant treats process effluent, and an integrated biogas facility handles up to 70 tonnes of poultry litter, supplying nutrient-rich liquid fertilizer to farmers at no cost.',
+    fact: 'An Effluent Treatment Plant treats process effluent, and an integrated biogas facility handles up to 70 tonnes of poultry litter, supplying nutrient-rich liquid fertilizer to farmers.',
   },
   {
     id: 'emissions',
     label: 'Emissions',
-    fact: 'Carbon footprint is kept at the lowest possible level through the strategic location of the plant, efficient recycling of wastes, and energy-efficient processes.',
+    fact: 'Our carbon footprint is minimized through the strategic location of our processing plant, efficient waste recycling, and energy-efficient operations. Greenhouse gas (GHG) emissions are systematically monitored, with targeted reduction initiatives in place to continuously improve environmental performance and support our sustainability goals.',
   },
 ];
 
@@ -243,7 +243,7 @@ function CommunityDevelopmentSection({ onPageChange }) {
 // the real Sustainability page, which has the fuller environmental
 // policy context for these figures.
 const PERFORMANCE_INDICATORS = [
-  { value: '3.5M', label: 'Units of clean electricity generated per year', source: 'On-site wind mill' },
+  { value: '5.1M', label: 'Units of clean electricity generated per year', source: 'Wind mill and solar power panels' },
   { value: '70T', label: 'Poultry litter handling capacity', source: 'Biogas facility' },
   { value: '228', label: 'Families adopted', source: 'Gandhi Nagar & Rajiv Nagar' },
   { value: '786', label: 'Residents supported', source: 'Community welfare program' },

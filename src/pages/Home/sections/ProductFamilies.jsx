@@ -64,6 +64,7 @@ const families = [
     // Verbatim: packagingOptions value shared by both Customized Mix and
     // Customized Packages in products.js.
     format: ['Custom'],
+    description: 'Our customized product solutions are developed to meet evolving consumer demands and the rapidly changing requirements of the global food industry and household applications.',
     // No benefits/applications/storage field is genuinely shared across
     // this family (only 1 of its 4 products has any applicationsData; none
     // have a storage field; benefits are single-product, not family-wide)
@@ -82,7 +83,7 @@ const families = [
     name: 'Table Eggs',
     image: TableEggImage,
     imageAlt: 'Brown table eggs in an egg tray',
-    description: "Premium-quality eggs are carefully collected, precisely graded, and individually printed with the company seal and Date of Packing (DOP) to ensure product authenticity, quality, and traceability. Each egg pack features a unique QR code that enables end-to-end traceability, providing comprehensive information on packing locations, farms, feed ingredients, and associated quality control records and documentation.",
+    description: "Premium-quality eggs are carefully collected, precisely graded, and each pack is individually printed with a QR code to ensure product authenticity, quality, and traceability.",
     ctaLabel: 'Explore Table Eggs',
     categoryRoute: 'table_eggs',
   },

@@ -60,13 +60,16 @@ export default function ProductHero({
   primaryBadge,
   variantsData,
   applicationsData,
+  applicationTags: curatedApplicationTags,
   tdsUrl,
   onRequestQuote,
   onRequestPricing,
 }) {
   const reduceMotion = useReducedMotion();
   const benefitTags = deriveBenefitTags(variantsData);
-  const applicationTags = (applicationsData ?? []).slice(0, 4).map((a) => a.name);
+  // A page can supply its own tag wording; otherwise the first four
+  // application names are used.
+  const applicationTags = curatedApplicationTags ?? (applicationsData ?? []).slice(0, 4).map((a) => a.name);
   const itemTransition = { duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM };
 
   return (

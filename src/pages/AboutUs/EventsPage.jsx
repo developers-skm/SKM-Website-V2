@@ -103,9 +103,9 @@ const companyNews = [
     category: 'Sustainability',
     title: 'SKM Achieves Carbon-Neutral Milestone at Erode Plant via Wind Energy Investment',
     date: 'June 28, 2026',
-    excerpt: 'Over 3.5 million units of clean energy generated annually via captive wind farms, powering 85% of SKM\'s egg processing and biosecurity operations.',
+    excerpt: 'Over 5.1 million units of clean energy generated annually via captive wind farms, powering 85% of SKM\'s egg processing and biosecurity operations.',
     readTime: '4 min read',
-    content: 'As part of our commitment to sustainable food manufacturing, SKM Egg Products has achieved a major environmental milestone. In the past fiscal year, our captive wind turbine farms generated over 3.5 million units of electricity, directly powering 85% of the energy requirements at our processing plant and NABL-accredited laboratory.\n\nBy transitioning our thermal and electrical systems toward renewable sources, we have reduced our annual carbon emissions by approximately 2,800 metric tons. This carbon-neutral electricity sourcing aligns with our global customers\' sustainable supply chain policies and ensures our egg powders and liquids carry one of the lowest carbon footprints in the B2B egg ingredients industry.'
+    content: 'As part of our commitment to sustainable food manufacturing, SKM Egg Products has achieved a major environmental milestone. In the past fiscal year, our captive wind turbine farms generated over 5.1 million units of electricity, directly powering 85% of the energy requirements at our processing plant and NABL-accredited laboratory.\n\nBy transitioning our thermal and electrical systems toward renewable sources, we have reduced our annual carbon emissions by approximately 2,800 metric tons. This carbon-neutral electricity sourcing aligns with our global customers\' sustainable supply chain policies and ensures our egg powders and liquids carry one of the lowest carbon footprints in the B2B egg ingredients industry.'
   },
   {
     id: 'news3',

@@ -46,17 +46,17 @@ const PROCESSING_CAPABILITIES = [
   {
     id: 'processing-stages',
     label: 'Processing stages',
-    fact: 'Only microbiologically tested eggs are processed - egg breaking, pre-pasteurization, pasteurization, drying/filling, and cold storage - with a capacity of 2 million eggs per day.',
+    fact: 'Only QA cleared eggs are processed - egg breaking, pasteurization, drying/filling, and cold storage - with a capacity of 2 million eggs per day.',
   },
   {
     id: 'separation-lines',
     label: 'Separation lines',
-    fact: 'Two dedicated production lines - yolk and albumen - operate within a fully automated, climate-controlled environment.',
+    fact: 'Two dedicated production lines - yolk and albumen - operate in a climate-controlled environment. A dedicated line for liquid products processing and distinguished blending facility for customized mixes preparations.',
   },
   {
     id: 'pasteurisation',
     label: 'Pasteurisation',
-    fact: 'Pre-pasteurization and pasteurization stages operate under sterile zones maintained at positive pressure, supported by an automated CIP system for validated cleaning.',
+    fact: 'Pasteurization process carried out to eliminate the pathogens and entire loop cleanliness is supported by an automated CIP system for validated cleaning.',
   },
   {
     id: 'spray-drying',
@@ -69,14 +69,9 @@ const PROCESSING_CAPABILITIES = [
     fact: 'Liquid filling, cold room, and frozen storage areas maintain chilled and frozen liquid egg products under controlled temperature conditions.',
   },
   {
-    id: 'automation',
-    label: 'Automation',
-    fact: 'The plant operates as a fully automated, climate-controlled facility, with an automated CIP system validating the cleaning of tanks and pipelines.',
-  },
-  {
     id: 'hygiene-zoning',
     label: 'Hygiene zoning',
-    fact: 'Strict zoning protocols (red, white, and neutral areas) prevent cross-contamination, with dedicated tools and consumables for each zone, mandatory sanitation procedures, and routine air quality monitoring.',
+    fact: 'Strict zoning protocols, high risk and high care area separation, including color-coded identification, dedicated tools for each zone, mandatory sanitation procedures, and routine air-quality monitoring, help prevent cross-contamination. Pathogen Environment Monitoring (PEM) is in place for ensuring Salmonella free processing facility.',
   },
 ];
 
@@ -104,7 +99,7 @@ function EggProcessingPlantSection({ onPageChange }) {
           transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
           className="flex flex-col gap-4 max-w-2xl"
         >
-          <span className="section-label">Manufacturing</span>
+          <span className="section-label">Egg processing plant</span>
           <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Egg processing plant
           </h2>
@@ -324,7 +319,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
           transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
           className="flex flex-col gap-4 max-w-2xl"
         >
-          <span className="section-label">Laboratory</span>
+          <span className="section-label">Laboratory and release controls</span>
           <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Laboratory and release controls
           </h2>
@@ -338,7 +333,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
           className={`max-w-3xl p-7 rounded-[20px] border border-surface-200/70 bg-[#fdfbf7] ${CARD_INTERACTIVE}`}
         >
           <p className="font-body text-[15px] sm:text-[16px] text-surface-700 leading-[1.7] m-0">
-            Our NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006, runs physicochemical, microbiological, and residue testing on every batch - including GC-MS, HPLC, and LC-MS/MS screening. A controlled microbiology laboratory confirms products are free from pathogens and microbial contamination before dispatch, directly feeding the HACCP-driven release decision for every batch that leaves the plant.
+            Our NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006, runs physicochemical, microbiological, and residue testing on every batch - including GC-ECD / FID, HPLC, and LC-MS/MS screening.
           </p>
         </motion.div>
 
@@ -380,7 +375,7 @@ const PACKAGING_FORMATS = [
   { id: 'bag-in-bag', type: 'Powder', title: 'Bag in Bag', subtitle: 'Paper Bag', skus: ['20 Kg', '10 Kg'] },
   { id: 'liquid-ldpe', type: 'Liquid', title: 'Bag (LDPE)', subtitle: 'Low Density Polyethylene', skus: ['20 Kg', '10 Kg', '5 Kg'] },
   { id: 'pallecon', type: 'Bulk', title: 'Pallecon with Inner LDPE', subtitle: 'Bulk IBC Container', skus: ['1000 Kg'] },
-  { id: 'tetra-pack-cubes', type: 'Speciality', title: 'Tetra Pack & Cubes', subtitle: 'Speciality Liquid Blends & Egg White Cube', skus: ['1 L', '500 ML', '250 ML', '500 g', '250 g', '100 g'] },
+  { id: 'tetra-pack-cubes', type: 'Speciality', title: 'Tetra Pack & Thermo pack', subtitle: 'Speciality Liquid Blends & Thermo pack', skus: ['1 L', '500 ML', '250 ML'] },
 ];
 
 function PackagingCapabilitiesSection({ onPageChange }) {
@@ -397,7 +392,7 @@ function PackagingCapabilitiesSection({ onPageChange }) {
           transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
           className="flex flex-col gap-4 max-w-2xl"
         >
-          <span className="section-label">Packaging</span>
+          <span className="section-label">Packaging capabilities</span>
           <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Packaging capabilities
           </h2>
@@ -475,17 +470,17 @@ const LOGISTICS_TOPICS = [
   {
     id: 'export-documentation',
     label: 'Export documentation',
-    fact: 'Dedicated regional branches in Japan, Europe, and Russia coordinate import, warehousing, and compliance close to your market.',
+    fact: 'Our dedicated logistics team efficiently manages export documentation and coordinates end-to-end supply chain operations to ensure seamless and timely deliveries to our global customers.',
   },
   {
     id: 'cold-chain-capability',
     label: 'Cold-chain capability',
-    fact: 'Chilled (0°C to 4°C) and frozen (≤ -18°C) storage across cold rooms and frozen storage at the processing plant, with cold chain management protecting product integrity through to final delivery.',
+    fact: 'Chilled storage (0°C to 4°C) and frozen storage (≤ −18°C) are maintained in dedicated temperature-controlled facilities at the processing plant, with continuous cold chain management ensuring product integrity, safety, and quality throughout storage, transportation, and final delivery.',
   },
   {
     id: 'warehousing',
     label: 'Warehousing',
-    fact: 'Regional branches cover import, warehousing, and distribution - SKM Japan, SKM Europe, and SKM Russia each maintain warehousing and sales operations in their respective markets.',
+    fact: 'SKM’s regional operations in Europe and Russia manage import activities, warehousing, sales, and distribution, ensuring efficient supply chain management and reliable product availability in their respective markets.',
   },
   {
     id: 'regional-support',
@@ -518,7 +513,7 @@ function LogisticsSection({ onPageChange }) {
           transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
           className="flex flex-col gap-4 max-w-2xl"
         >
-          <span className="section-label">Logistics</span>
+          <span className="section-label">Logistics and supply continuity</span>
           <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
             Logistics and supply continuity
           </h2>
@@ -677,7 +672,7 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
 
             <motion.div {...fadeProps(0.2)} className="mt-9 lg:mt-11 max-w-3xl">
               <p className="font-body text-[15px] text-surface-600 leading-[1.7] m-0">
-                An integrated operating model - hatchery, feed mill, poultry farm, processing plant, and laboratory - under one supply chain, with dedicated regional branches coordinating import, warehousing, and compliance close to your market.
+                An integrated operating model - Feed mill, poultry farm, processing plant, and laboratory - under one supply chain, with dedicated regional branches coordinating import, warehousing, and compliance close to your market.
               </p>
             </motion.div>
 

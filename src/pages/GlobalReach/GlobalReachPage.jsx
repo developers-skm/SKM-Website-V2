@@ -19,14 +19,6 @@ import applications from '../../data/applications';
 // page (src/pages/Branches/Skm*.jsx).
 const branches = [
   {
-    name: 'SKM Japan',
-    tagline: 'Bridging Indian egg ingredient expertise with the Japanese market.',
-    vision: 'To become the strategic partner in Japan for egg powder from India.',
-    activities: ['Import egg ingredients in Japan', 'Warehousing necessary stock', 'Coordination of transport', 'Coordination with Japanese veterinary authorities'],
-    page: 'skm_japan',
-    ctaLabel: 'Contact SKM Japan',
-  },
-  {
     name: 'SKM Europe',
     tagline: 'Connecting Indian egg-based ingredients with the European food industry.',
     vision: 'To become the strategic partner in Europe for egg based ingredients primarily sourced from India.',
@@ -61,7 +53,6 @@ const branches = [
 const EU_MARKET_NAMES = new Set(['Netherlands', 'Germany', 'Sweden', 'Belgium', 'Denmark', 'UK', 'Italy']);
 
 function regionForMarket(marketName) {
-  if (marketName === 'Japan') return { branchPage: 'skm_japan', branchName: 'SKM Japan', office: 'SKM Japan - dedicated regional branch.' };
   if (marketName === 'Russia') return { branchPage: 'skm_russia', branchName: 'SKM Russia', office: 'SKM Russia - dedicated regional branch.' };
   if (EU_MARKET_NAMES.has(marketName)) return { branchPage: 'skm_europe', branchName: 'SKM Europe', office: 'SKM Europe - dedicated EU regional branch.' };
   return null;
@@ -166,22 +157,22 @@ const EXPORT_REGULATORY_TOPICS = [
   {
     id: 'export-documentation',
     label: 'Export documentation',
-    fact: 'The plant is approved under the Indian Export of Egg Products Quality Control & Monitoring Rules (1997), based on EU/USDA guidelines (Approval No: 05/2/EP/97).',
+    fact: 'The plant is approved under the Indian Export of Egg Products Quality Control & Monitoring Rules (1997), based on European Union (EU) guidelines (Approval No: 05/2/EP/97).',
   },
   {
     id: 'market-approvals',
     label: 'Market approvals',
-    fact: 'EU and USDA regulatory approval, with dedicated coordination with EU veterinary authorities for the European market.',
+    fact: 'European Union (EU) regulatory approval, with dedicated coordination with EU veterinary authorities for the European market.',
   },
   {
     id: 'certification-support',
     label: 'Certification support',
-    fact: `Real, active certifications: ${certifications.map((c) => c.name).join(', ')}.`,
+    fact: 'Active certifications: FSSAI, Export Inspection Council, BRC Food Certified, ISO 22000, ISO/IEC 17025, Halal (JUHF & BPJPH) Certified and KLBD Kosher.',
   },
   {
     id: 'product-document-availability',
     label: 'Product-document availability',
-    fact: 'Technical data sheets and product flyers are available for select products, alongside the Company Profile and full Product List, via the Resources page.',
+    fact: 'Detailed information on selected products, along with our Company Profile and complete Product List, is available on the Resources page.',
   },
 ];
 
@@ -230,7 +221,7 @@ function ExportRegulatorySupportSection({ onPageChange }) {
 // "View Packaging Options" routes to the real Customized Packages page;
 // "Discuss Shipping Requirements" routes to the real Contact Us page.
 const PACKAGING_TRANSPORT = [
-  { id: 'powder', label: 'Powder', fact: 'Bag-in-box (HDPE inner bag + corrugated carton) or bag-in-bag (multi-wall paper bag), 10 Kg to 25 Kg.' },
+  { id: 'powder', label: 'Powder', fact: 'Bag-in-box (HDPE inner bag + corrugated carton) or bag-in-bag (multi-wall paper bag), 10 Kg, 20kg & 25Kg.' },
   { id: 'chilled', label: 'Chilled', fact: 'Chilled liquid egg products stored and transported at 0°C to 4°C.' },
   { id: 'frozen', label: 'Frozen', fact: 'Frozen liquid egg products stored and transported at ≤ -18°C, with extended shelf stability for long-distance export.' },
   { id: 'bulk', label: 'Bulk', fact: 'Pallecon with inner LDPE liner - a 1000 Kg bulk IBC container, stackable and fork-lift pallet compatible.' },
@@ -340,7 +331,7 @@ export default function GlobalReachPage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'Global Reach | SKM Egg Products Export Markets & Branches',
-        description: 'SKM Egg Products exports to 30+ countries with dedicated branches in Japan, Europe, and Russia. Explore our global export markets and regional presence.',
+        description: 'SKM Egg Products exports to 30+ countries with dedicated branches in Europe and Russia. Explore our global export markets and regional presence.',
         keywords: 'egg powder exporter countries, SKM Japan, SKM Europe, SKM Russia, egg products global export, egg powder international supplier',
         canonical: 'https://www.skmegg.com/global_reach',
       }}
@@ -356,7 +347,7 @@ export default function GlobalReachPage({ onPageChange }) {
               Global Reach
             </h1>
             <p className="font-body text-[15px] sm:text-[16px] text-surface-500 leading-[28px] m-0">
-              SKM exports to 30+ countries, with dedicated regional branches in Japan, Europe, and Russia coordinating import, warehousing, and compliance close to your market.
+              SKM exports to 30+ countries, with dedicated regional branches in Europe and Russia coordinating import, warehousing, and compliance close to your market.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
@@ -401,7 +392,7 @@ export default function GlobalReachPage({ onPageChange }) {
             className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8"
           >
             <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">Regional offices</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {branches.map((branch) => (
                 <motion.div
                   key={branch.page}
