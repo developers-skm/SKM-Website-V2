@@ -29,7 +29,7 @@ const families = [
     // Verbatim benefits fields from WholeEggPowderPage.jsx / EggYolkPowderPage.jsx
     // variantsData - a representative selection, not a merged claim.
     benefits: [
-      'Long-term shelf stability, simple dosing and weight-ratio control, and reliable structural crumb development.',
+      'Provides extended shelf-life stability, precise dosing and formulation ratio control, and consistent development of a well-structured crumb texture.',
       'High fat content, rich creamy mouthfeel, natural golden-yellow coloration, and excellent emulsification properties.',
     ],
     // No storage/handling field exists anywhere in powder product data
@@ -61,9 +61,7 @@ const families = [
   {
     id: 'custom',
     name: 'Customised and Specialty Solutions',
-    // Verbatim: packagingOptions value shared by both Customized Mix and
-    // Customized Packages in products.js.
-    format: ['Custom'],
+    // No format label - "Custom" just repeated the family name.
     description: 'Our customized product solutions are developed to meet evolving consumer demands and the rapidly changing requirements of the global food industry and household applications.',
     // No benefits/applications/storage field is genuinely shared across
     // this family (only 1 of its 4 products has any applicationsData; none

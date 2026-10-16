@@ -102,7 +102,7 @@ export default function Hero({ onPageChange }) {
             </p>
 
             <p className="font-body text-[14px] sm:text-[15px] lg:text-[16px] font-semibold text-white/95 m-0">
-              30+ Countries Served · ISO 22000
+              30+ Countries Served
             </p>
 
             {/* Trust statement - two verbatim existing fragments, not merged
@@ -112,7 +112,7 @@ export default function Hero({ onPageChange }) {
                 DEFAULT_DESCRIPTION and src/pages/Home/Home.jsx's own SEO
                 description. */}
             <p className="font-body text-[13px] sm:text-[14px] lg:text-[15px] text-white/75 leading-[1.5] sm:leading-[1.6] m-0">
-              Asia's largest integrated egg processing facility since 1996. BRCGS, Halal &amp; Kosher certified.
+              Asia's largest integrated egg processing facility since 1996. BRCGS, ISO 22000, Halal (JUHF &amp; BPJPH) &amp; Kosher certified.
             </p>
 
             {/* Primary + secondary actions */}
