@@ -25,8 +25,8 @@ const formulationChallenges = [
   },
   {
     id: 'gelling',
-    label: 'Gel Strength & Foaming',
-    description: 'Firm, resilient protein gels with rapid foam overrun and long-lasting bubble stability.',
+    label: 'Gel Strength & Firmness',
+    description: 'Firm, water-retaining protein gel matrices for surimi, sausages, and restructured meat or seafood.',
     matchedProductIds: ['egg_albumen_powder', 'egg_albumen_liquid'],
   },
   {
