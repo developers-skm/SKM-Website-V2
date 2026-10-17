@@ -104,7 +104,7 @@ function FullJourney({ onPageChange }) {
           variants={itemVariants}
           className="font-body text-[16px] sm:text-[18px] text-surface-500 leading-[30px] m-0 max-w-2xl"
         >
-          Most buyers can't visit an egg processing plant across the world before they trust it. So we're showing you the whole chain instead - six documented stages, from a biosecure hatchery to the cold chain that carries your order to your door.
+        We understand that visiting an egg processing facility overseas may not always be practical. That is why we bring the entire journey to you through six documented stages, from our biosecure poultry farms to the finished products delivered to your doorstep.
         </motion.p>
       </motion.div>
 

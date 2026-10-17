@@ -124,7 +124,7 @@ const products = [
     image: CustomizedMixImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,
     shortDescription: 'Egg powder formulations blended with salt, sugar, and other ingredients to match your exact recipe specifications, customised at our end for seamless handling and convenient use at your facility.',
-    packagingOptions: ['Custom'],
+    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
   },
   {
     id: 'customized_packages',
@@ -133,7 +133,7 @@ const products = [
     image: CustomizedPackagesImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,
     shortDescription: 'Packaging options including corrugated bag-in-box, paper bag-in-bag, liquid pouches, and Tetra Pack formats, configured to meet your specific packaging and application requirements.',
-    packagingOptions: ['Custom'],
+    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
   },
 ];
 

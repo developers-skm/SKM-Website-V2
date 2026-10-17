@@ -12,7 +12,7 @@ const pillars = [
       </svg>
     ),
     title: 'Lowest Carbon Footprint',
-    body: 'Our carbon footprint is kept at the lowest possible level, thanks to the strategic location of the plant, efficient recycling of wastes, and energy-efficient processes.',
+    body: 'Our carbon footprint is minimised through the strategic location of our processing plant, efficient waste recycling, and energy-efficient processes across our operations.',
   },
   {
     label: 'Clean Energy',
@@ -135,7 +135,7 @@ export default function SustainabilityPage({ onPageChange }) {
               <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading tracking-tight m-0">Environmental Policy</h3>
             </div>
             <p className="text-sm sm:text-base text-surface-600 leading-relaxed m-0">
-              <strong className="text-surface-800">SKM Egg Products Export (India) Ltd</strong> reaffirms its commitment to minimize the adverse impact of its operations on the environment. Towards the achievement of this goal it shall endeavour to:
+              <strong className="text-surface-800">SKM Egg Products Export (India) Ltd</strong> reaffirms its commitment to minimise the adverse impact of its operations on the environment. Towards the achievement of this goal it shall endeavour to:
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {environmentalObjectives.map((point, i) => (

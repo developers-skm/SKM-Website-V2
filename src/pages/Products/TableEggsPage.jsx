@@ -36,7 +36,7 @@ const blockchainParagraphs = [
 const strengths = [
   {
     title: 'Integrated Poultry Farming',
-    body: 'Our integrated poultry farming practices prioritize bird health, hygiene, and efficient farm management to ensure consistent production of high-quality shell eggs.',
+    body: 'Our integrated poultry farming practices prioritise bird health, hygiene, and efficient farm management to ensure consistent production of high-quality shell eggs.',
     icon: (
       <svg {...iconProps}>
         <path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-5h4v5" />
@@ -54,7 +54,7 @@ const strengths = [
   },
   {
     title: 'Biosecurity & Hygiene',
-    body: 'Stringent entry screening and biosecurity controls for both personnel and vehicle movements help maintain a hygienic and secure poultry farm environment, minimizing contamination risks and safeguarding flock health.',
+    body: 'Stringent entry screening and biosecurity controls for both personnel and vehicle movements help maintain a hygienic and secure poultry farm environment, minimising contamination risks and safeguarding flock health.',
     icon: (
       <svg {...iconProps}>
         <path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3zM9 12l2 2 4-4" />

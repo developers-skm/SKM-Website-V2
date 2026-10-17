@@ -85,7 +85,7 @@ export default function CommunityDevelopmentPage({ onPageChange }) {
                 SKM.Maeilanandhan, a social activist, ventured to practice his mentor's preaching at Swaminathapuram village where he was born and brought up. This led to the formation of a Trust named <strong className="text-surface-850">SKM Health and Mind Welfare Charity Trust</strong> in the year <strong className="text-brand-600">1988</strong>, and later through this trust he started a Service Centre named <strong className="text-surface-850">Sevai Maiyam</strong> on <strong className="text-brand-600">September 15th, 1999</strong>.
               </p>
               <p className="font-body text-[15px] text-surface-600 leading-[26px] m-0">
-                Swami Vivekanandha had emphasized that people who wish to serve must volunteer and go to villages to provide food, clothes, education and medication to the ignorant, poverty-stricken and unprivileged people - stressing that they are not backward but unprivileged.
+                Swami Vivekanandha had emphasised that people who wish to serve must volunteer and go to villages to provide food, clothes, education and medication to the ignorant, poverty-stricken and unprivileged people - stressing that they are not backward but unprivileged.
               </p>
               <p className="font-body text-[15px] text-surface-600 leading-[26px] m-0">
                 As an ardent devotee of Swami Vivekanandha, Thiru SKM.Maeilanandhan wanted to execute these values at his birthplace, Saminathapuram village, and translated that vision into action through the Trust and Sevai Maiyam.

@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
-import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 
 // Section 2 - Environmental responsibility. Energy, water, and waste are
 // all real, verbatim/derived facts already documented elsewhere: energy
@@ -87,13 +86,7 @@ function EnvironmentalResponsibilitySection({ onPageChange }) {
 // reports (same precedent as every other consolidation this session —
 // branch pages, About SKM's 8 source pages, etc.).
 //
-// Section 1 - Sustainability hero. "View Sustainability Priorities"
-// scrolls to the real priorities section (built from
-// SustainabilityPage.jsx's own real pillars: Carbon Footprint, Clean
-// Energy, Community Welfare). "Download Sustainability Information" has
-// no real PDF anywhere in the repo (confirmed by search - only a
-// Sustainability *page*, no downloadable document), so it's a genuinely
-// disabled button rather than a fake download.
+// Section 1 - Sustainability hero (heading and intro only, no buttons).
 // Section 3 - Responsible feed, farming and animal welfare. Real facts
 // already documented on the Feed Mill and Poultry Farm pages (Infra
 // section) - every raw material tested for mycotoxins/pesticides/
@@ -181,7 +174,7 @@ const COMMUNITY_PROGRAMMES = [
   {
     id: 'education',
     label: 'Education',
-    fact: '239 children enrolled in coaching, 200 college students supported, and 13 graduates placed this year - with morning and evening coaching sessions led by 20 specialized teachers.',
+    fact: '239 children enrolled in coaching, 200 college students supported, and 13 graduates placed this year - with morning and evening coaching sessions led by 20 specialised teachers.',
   },
   {
     id: 'outreach',
@@ -382,26 +375,6 @@ export default function SustainabilityCommunityPage({ onPageChange }) {
             <p className="font-body text-[15px] sm:text-[16px] text-surface-500 leading-[28px] m-0 max-w-2xl">
               We adopt business strategies and activities that meet the needs of the enterprise and its stakeholders at present, while protecting, sustaining, and enhancing the human and natural resources needed in the future.
             </p>
-
-            <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
-              <button
-                type="button"
-                onClick={() => scrollToSectionId('sustainability-priorities')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-              >
-                View Sustainability Priorities
-              </button>
-
-              <button
-                type="button"
-                disabled
-                title="Coming soon"
-                aria-disabled="true"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 text-surface-400 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
-              >
-                Download Sustainability Information
-              </button>
-            </div>
           </motion.div>
         </div>
 

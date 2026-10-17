@@ -1,9 +1,8 @@
 import { useState, useMemo } from 'react';
-import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { getProductById } from '../../data/products';
-import certifications from '../../data/certifications';
 
 // Shared layout for the 3 Product Category transition pages (Egg Powders,
 // Liquid Egg Products, Customised and Speciality Products).
@@ -28,13 +27,6 @@ import certifications from '../../data/certifications';
 // mapped to the real product ids that genuinely carry that trait (verified
 // against each product's own variantsData `character`/`name` fields).
 //
-// Section 4 — Application matrix — rows are real products, columns are the
-// real applications recorded in this category's cards. Cells only ever
-// show "Suitable" (that application genuinely appears in the product's own
-// applicationsData) or stay blank — no invented "Recommended" vs. "Custom
-// formulation" tiering, since no data in the repo supports ranking severity
-// between products for a given application.
-//
 // Section 5 — Packaging, storage and delivery — real packagingOptions
 // (products.js) and, where supplied, real storage temperature language
 // already established for that category.
@@ -58,7 +50,6 @@ export default function CategoryPage({
 }) {
   const reduceMotion = useReducedMotion();
   const [activeTag, setActiveTag] = useState(null);
-  const [hasScrolledMatrix, setHasScrolledMatrix] = useState(false);
 
   const categoryProducts = useMemo(
     () => categoryProductIds.map(getProductById).filter(Boolean),
@@ -71,14 +62,6 @@ export default function CategoryPage({
     if (!tag) return categoryProducts;
     return categoryProducts.filter((p) => tag.productIds.includes(p.id));
   }, [categoryProducts, activeTag, functionalityTags]);
-
-  const allApplications = useMemo(() => {
-    const set = new Set();
-    categoryProducts.forEach((p) => {
-      (productMeta[p.id]?.applications ?? []).forEach((a) => set.add(a));
-    });
-    return Array.from(set);
-  }, [categoryProducts, productMeta]);
 
   const fadeProps = (delay = 0) => ({
     initial: { opacity: 0, y: reduceMotion ? 0 : 20 },
@@ -163,16 +146,6 @@ export default function CategoryPage({
               >
                 Compare Products
               </InternalLink>
-
-              <button
-                type="button"
-                disabled
-                title="Coming soon"
-                aria-disabled="true"
-                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 text-surface-400 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
-              >
-                Request Category Guide
-              </button>
             </motion.div>
           </div>
         </div>
@@ -191,12 +164,6 @@ export default function CategoryPage({
                   <div key={product.id} className="flex flex-col gap-3 p-5 rounded-[16px] border border-surface-200/70 bg-[#fdfbf7]">
                     <img src={product.image} alt={product.title} loading="lazy" className="w-full aspect-[4/3] object-cover rounded-[10px]" />
                     <span className="font-heading font-bold text-[16px] text-heading">{product.title}</span>
-
-                    {meta.codeRange && (
-                      <span className="font-body text-[12.5px] text-surface-400">
-                        Product codes: {meta.codeRange}
-                      </span>
-                    )}
 
                     {meta.functionality && (
                       <span className="font-body text-[13.5px] text-surface-700 leading-[1.5]">
@@ -219,7 +186,7 @@ export default function CategoryPage({
 
                     <span className="font-body text-[12.5px] text-surface-500 leading-[1.5]">
                       <strong className="font-semibold text-heading">Certifications: </strong>
-                      {certifications.map((c) => c.name).join(', ')}
+                      FSSAI, Export Inspection Council, BRCGS, ISO 22000, ISO 17025, Halal (JUHF & BPJPH) and Kosher
                     </span>
 
                     <div className="flex items-center gap-4 mt-1">
@@ -229,14 +196,6 @@ export default function CategoryPage({
                         className="font-body font-semibold text-[13.5px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
                       >
                         View Product
-                      </InternalLink>
-                      <InternalLink
-                        route="products"
-                        onPageChange={onPageChange}
-                        prefillData={{ scrollTarget: 'product-finder' }}
-                        className="font-body font-semibold text-[13px] text-surface-500 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm"
-                      >
-                        Add to Comparison
                       </InternalLink>
                     </div>
                   </div>
@@ -286,119 +245,6 @@ export default function CategoryPage({
           </div>
         )}
 
-        {/* Section 4 — Application matrix */}
-        {allApplications.length > 0 && (
-          <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
-            <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
-              <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
-                Application matrix
-              </h2>
-              <div className="flex flex-col gap-2.5">
-                <div className="relative">
-                  <div
-                    onScroll={(e) => {
-                      if (!hasScrolledMatrix && e.currentTarget.scrollLeft > 12) setHasScrolledMatrix(true);
-                    }}
-                    className="overflow-x-auto"
-                  >
-                    <table className="w-full border-collapse min-w-[640px]">
-                      <thead>
-                        <tr>
-                          <th className="sticky left-0 z-20 bg-white text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">Product</th>
-                          {allApplications.map((app) => (
-                            <th key={app} className="text-left font-body font-semibold text-[12.5px] uppercase tracking-wide text-surface-400 border-b border-surface-200/70 py-3 pr-4">
-                              {app}
-                            </th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {categoryProducts.map((product) => {
-                          const meta = productMeta[product.id] ?? {};
-                          return (
-                            <tr key={product.id}>
-                              <td className="sticky left-0 z-10 bg-white font-body font-semibold text-[14px] text-heading border-b border-surface-200/70 py-3 pr-4 shadow-[2px_0_6px_-2px_rgba(20,16,12,0.08)]">
-                                {product.title}
-                              </td>
-                              {allApplications.map((app) => (
-                                <td key={app} className="font-body text-[13.5px] text-surface-600 border-b border-surface-200/70 py-3 pr-4">
-                                  {meta.applications?.includes(app) ? (
-                                    <span className="text-brand-600 font-bold" aria-label="Suitable">
-                                      ✓
-                                    </span>
-                                  ) : ''}
-                                </td>
-                              ))}
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Scroll-right hint — fades a gradient + bouncing arrow
-                      over the table's right edge until the user scrolls it. */}
-                  <AnimatePresence>
-                    {!hasScrolledMatrix && (
-                      <motion.div
-                        initial={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                        className="lg:hidden pointer-events-none absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-white from-30% via-white/70 to-transparent flex items-center justify-end pr-3"
-                        aria-hidden="true"
-                      >
-                        <motion.svg
-                          width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                          className="text-brand-600"
-                          animate={reduceMotion ? undefined : { x: [0, 4, 0] }}
-                          transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
-                        >
-                          <path d="M9 6l6 6-6 6" />
-                        </motion.svg>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                <AnimatePresence>
-                  {!hasScrolledMatrix && (
-                    <motion.span
-                      initial={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-                      className="lg:hidden inline-flex items-center gap-1.5 font-body text-[12px] text-surface-400"
-                    >
-                      Scroll right to view more applications
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M9 6l6 6-6 6" />
-                      </svg>
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-4 mt-1">
-                <button
-                  type="button"
-                  disabled
-                  title="Coming soon"
-                  aria-disabled="true"
-                  className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-surface-300 text-surface-400 font-body font-semibold text-[15px] cursor-not-allowed opacity-60"
-                >
-                  Download Application Matrix
-                </button>
-                <InternalLink
-                  route="contact-us"
-                  onPageChange={onPageChange}
-                  className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-                >
-                  Discuss Your Application
-                </InternalLink>
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Section 5 — Packaging, storage and delivery */}
         <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
@@ -431,7 +277,7 @@ export default function CategoryPage({
                   Shipment formats
                 </span>
                 <span className="font-body text-[15px] text-surface-700 leading-[1.6]">
-                  Bulk export and containerized shipment, 30+ countries served.
+                  Bulk export and containerised shipment, 30+ countries served.
                 </span>
               </div>
             </div>

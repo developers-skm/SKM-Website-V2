@@ -8,13 +8,13 @@ import CategoryPage from './CategoryPage';
 const productMeta = {
   whole_egg_liquid: {
     codeRange: 'W1001–W1013',
-    functionality: 'Chilled or frozen, standard or sugared variants, plus a salted frozen variant.',
+    functionality: 'Chilled or frozen, standard or sugared variants.',
     applications: ['Bakery Products'],
   },
   egg_yolk_liquid: {
     codeRange: 'Y1001–Y1019',
-    functionality: 'Chilled or frozen, salted (8–14%) or high-colour variants, plus heat-stabilised salted variants.',
-    applications: ['Bakery', 'Cosmetics', 'Ice Cream', 'Mayonnaise'],
+    functionality: 'Chilled or frozen, salted or high-colour variants, plus heat-stabilised salted variants.',
+    applications: ['Cosmetics', 'Ice Cream', 'Mayonnaise'],
   },
   egg_albumen_liquid: {
     codeRange: 'A1001–A1006',
@@ -45,10 +45,10 @@ export default function LiquidEggCategoryPage({ onPageChange }) {
       }}
       categoryLabel="Product Category"
       title="Liquid Egg Products"
-      format="Pasteurised liquid egg - chilled or frozen - supplied as whole egg, egg yolk, or egg albumen blends, ready to dose directly into recipes."
+      format="Pasteurised liquid egg products are available in chilled or frozen form and supplied as whole egg, egg yolk or egg albumen, ready for direct incorporation into food formulations."
       advantages={[
-        'Full nutrient density, easy dosing and handling, eliminates eggshell-breaking hazards in industrial kitchens.',
-        'Delivers high cake volume, improves crumb softness, and significantly delays starch staling.',
+        'Retains the nutritional benefits of eggs while offering convenient dosing and handling, eliminating the need for manual egg breaking in industrial kitchens.',
+        'Enhances cake volume, improves crumb softness and helps delay starch retrogradation, contributing to prolonged product freshness.',
       ]}
       whoUsesIt="Industrial bakeries and institutional kitchens producing cakes, bakery products, and standardized ready-meal recipes at scale."
       storage="Chilled (0°C to 4°C) or Frozen (≤ -18°C), depending on variant."
