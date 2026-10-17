@@ -45,7 +45,7 @@ const families = [
     // 3 liquid product pages (Whole Egg / Egg Yolk / Egg Albumen Liquid).
     format: ['Chilled liquid', 'Frozen liquid'],
     benefits: [
-      'Provides extended shelf-life stability, precise dosing and formulation ratio control, and consistent development of a well-structured crumb texture.',
+      'Provides excellent heat-induced gel formation, strong binding properties, and emulsification functionality, enhancing structural integrity, texture, and product stability in various food applications.',
       'Delivers high cake volume, improves crumb softness, and significantly delays starch staling.',
     ],
     // Verbatim application names, recurring across the liquid family's
