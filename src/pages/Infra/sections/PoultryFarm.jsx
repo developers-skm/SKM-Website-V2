@@ -5,25 +5,29 @@ import { makeContainerVariants, makeItemVariants } from '../../../utils/animatio
 import IconInfoCard from '../../../components/common/IconInfoCard';
 import StatCard from '../../../components/common/StatCard';
 
-import MainGate from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Main gate.webp';
-import Entrance from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Entrance.webp';
+// Gallery photos: web-sized (1000x750) copies - the originals are up to ~7000x4500 and
+// froze the page while the browser decoded them for the slider. The hero image keeps
+// its original (1600px) file.
+import MainGate from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Main gate - web.webp';
+import Entrance from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Entrance - web.webp';
 import ECshedOverview from '../../../assets/5. INFRASTRUCTURE/Poultry farm/EC shed overview.webp';
-import ECshedInside from '../../../assets/5. INFRASTRUCTURE/Poultry farm/EC shed inside view.webp';
-import OpenShed from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Open shed view.webp';
-import ShedFencing from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Shed fencing.webp';
-import HenInsideCage from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Hen inside cage.webp';
-import FeederView from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Feeder view.webp';
-import EggCollectingConveyor from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Egg collecting conveyor.webp';
-import EggCollectionArea from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Egg collection area.webp';
-import Silo from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Silo.webp';
-import MenEntryShower from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Men entry shower.webp';
-import ShowerArea from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Shower area.webp';
-import VehicleEntryShower from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Vehicle entry shower.webp';
+import ECshedOverviewWeb from '../../../assets/5. INFRASTRUCTURE/Poultry farm/EC shed overview - web.webp';
+import ECshedInside from '../../../assets/5. INFRASTRUCTURE/Poultry farm/EC shed inside view - web.webp';
+import OpenShed from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Open shed view - web.webp';
+import ShedFencing from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Shed fencing - web.webp';
+import HenInsideCage from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Hen inside cage - web.webp';
+import FeederView from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Feeder view - web.webp';
+import EggCollectingConveyor from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Egg collecting conveyor - web.webp';
+import EggCollectionArea from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Egg collection area - web.webp';
+import Silo from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Silo - web.webp';
+import MenEntryShower from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Men entry shower - web.webp';
+import ShowerArea from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Shower area - web.webp';
+import VehicleEntryShower from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Vehicle entry shower - web.webp';
 
 const farmImages = [
   { src: MainGate, label: 'Main Gate' },
   { src: Entrance, label: 'Farm Entrance' },
-  { src: ECshedOverview, label: 'EC Shed Overview' },
+  { src: ECshedOverviewWeb, label: 'EC Shed Overview' },
   { src: ECshedInside, label: 'EC Shed Inside' },
   { src: OpenShed, label: 'Open Shed' },
   { src: ShedFencing, label: 'Shed Fencing' },
@@ -47,7 +51,7 @@ const statsData = [
 const infoBlocks = [
   {
     title: 'Integrated Poultry Farms',
-    body: 'Our ISO 22000 certified poultry farms ensure the production of clean, residue-free eggs under strict biosecurity controls. With 2.4 million layers housed across the farm, the farms produce approximately 164 million eggs annually. Dedicated chick and grower facilities, located separately, support controlled rearing environments. Our state-of-the-art farm facility includes environmentally controlled sheds optimized with automation.',
+    body: 'Our ISO 22000 certified poultry farms ensure the production of clean, residue-free eggs under strict biosecurity controls. With 2.4 million layers housed across the farm, the farms produce approximately 164 million eggs annually. Dedicated chick and grower facilities, located separately, support controlled rearing environments. Our state-of-the-art farm facility includes environmentally controlled sheds optimised with automation.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -65,7 +69,7 @@ const infoBlocks = [
   },
   {
     title: 'Animal Welfare & Food Safety',
-    body: 'Balanced, nutritionally optimized feed, daily sanitation protocols, potable water management, and safe disposal systems—including an on-site incinerator—maintain high standards of animal welfare and food safety.',
+    body: 'Nutritionally balanced and optimised feed, daily sanitation protocols, potable water management and safe waste disposal systems including an on-site incinerator help maintain high standards of animal welfare and food safety.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -78,6 +82,42 @@ const infoBlocks = [
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+  },
+];
+
+const cageFreeParagraphs = [
+  'Our cage-free poultry farming approach reflects our commitment to responsible farming practices and improved hen welfare. Our cage-free housing systems provide hens with the freedom to move within a carefully managed environment, allowing them to express natural behaviours such as walking, perching, nesting, and foraging.',
+  'Our integrated poultry management practices combine scientifically balanced nutrition, controlled farm environments, stringent biosecurity measures, and systematic flock health monitoring to support the well-being of our hens.',
+  'Through responsible flock management, carefully selected feed ingredients, and continuous quality monitoring, we strive to produce premium-quality eggs while maintaining high standards of hygiene, food safety, and animal welfare.',
+];
+
+const cageFreeBlocks = [
+  {
+    title: 'Natural Behaviours',
+    body: 'Litter-covered floors encourage natural activities such as scratching, pecking, and foraging.',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Continuous Monitoring',
+    body: 'Systematic monitoring of flock health, feed, water, and environmental conditions supports responsible poultry management.',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Balanced Nutrition',
+    body: 'Specially formulated poultry feed provides essential nutrients to support hen health and consistent egg production.',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
       </svg>
     ),
   },
@@ -191,6 +231,28 @@ export default function PoultryFarm() {
                 <IconInfoCard icon={block.icon} title={block.title} body={block.body} />
               </motion.div>
             ))}
+          </motion.div>
+
+          {/* Cage free farm - full-width card with supporting points */}
+          <motion.div
+            variants={itemVariants}
+            className="w-full p-6 sm:p-10 bg-white border border-[#eee] rounded-[10px] flex flex-col gap-6 shadow-[5px_3px_40px_rgba(0,72,88,0.05)]"
+          >
+            <h3 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading leading-[1.15] tracking-tight m-0">
+              Cage free farm
+            </h3>
+            <div className="flex flex-col gap-4 max-w-4xl">
+              {cageFreeParagraphs.map((para, i) => (
+                <p key={i} className="font-body text-[15px] sm:text-[16px] text-surface-600 leading-[1.75] m-0">
+                  {para}
+                </p>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+              {cageFreeBlocks.map((block, i) => (
+                <IconInfoCard key={i} icon={block.icon} title={block.title} body={block.body} />
+              ))}
+            </div>
           </motion.div>
 
           {/* Tagline Banner */}

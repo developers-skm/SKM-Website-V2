@@ -38,7 +38,7 @@ import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply
 // pasteurisation stages), spray drying (albumen/yolk dryers), liquid
 // processing (liquid filling, cold room, frozen storage), automation
 // (fully automated, climate-controlled, CIP system), hygiene zoning
-// (red/white/neutral zone protocol). "View Processing Technology" and
+// (red/white/neutral zone protocol). "View Processing Facilities" and
 // "Request Facility Information" both route to the real Egg Processing
 // Plant page - no separate technology-only or facility-info-only page
 // exists, so both point to the one real source that covers each.
@@ -131,7 +131,7 @@ function EggProcessingPlantSection({ onPageChange }) {
             onPageChange={onPageChange}
             className={BTN_PRIMARY}
           >
-            View Processing Technology
+            View Processing Facilities
           </InternalLink>
 
           <InternalLink
@@ -482,21 +482,6 @@ const LOGISTICS_TOPICS = [
     label: 'Warehousing',
     fact: 'SKM’s regional operations in Europe and Russia manage import activities, warehousing, sales, and distribution, ensuring efficient supply chain management and reliable product availability in their respective markets.',
   },
-  {
-    id: 'regional-support',
-    label: 'Regional support',
-    fact: 'SKM Japan, SKM Europe, and SKM Russia are dedicated regional branches serving the Japanese, European Union, and Russian markets respectively.',
-  },
-  {
-    id: 'supply-planning',
-    label: 'Supply planning',
-    fact: 'Dedicated regional branches in Japan, Europe, and Russia coordinate import, warehousing, and compliance close to your market.',
-  },
-  {
-    id: 'customer-communication',
-    label: 'Customer communication',
-    fact: 'Dedicated regional branches in Japan, Europe, and Russia coordinate import, warehousing, and compliance close to your market.',
-  },
 ];
 
 function LogisticsSection({ onPageChange }) {
@@ -582,7 +567,7 @@ function FinalCTASection({ onPageChange }) {
         className="mx-auto max-w-[600px] flex flex-col items-center gap-5"
       >
         <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
-          Ready to plan your supply with SKM?
+          We are ready to fulfil your orders.
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <InternalLink

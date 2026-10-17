@@ -3,12 +3,13 @@ import { motion } from 'framer-motion';
 import IconInfoCard from '../../../components/common/IconInfoCard';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
-// Import QA lab images
-import ConicalFlask from '../../../assets/4. QUALITY/Quality Assurance/Conical flask.webp';
-import ExtractionRoom from '../../../assets/4. QUALITY/Quality Assurance/Extraction room.webp';
-import GCMS from '../../../assets/4. QUALITY/Quality Assurance/GCMS.webp';
-import PetriPlate from '../../../assets/4. QUALITY/Quality Assurance/Petriplate and sample.webp';
-import Protein from '../../../assets/4. QUALITY/Quality Assurance/Protein.webp';
+// Import QA lab images - web-sized (900x1200) copies; the originals are 7008x4672
+// and froze the page while the browser decoded them for these small cards.
+import ConicalFlask from '../../../assets/4. QUALITY/Quality Assurance/Conical flask - web.webp';
+import ExtractionRoom from '../../../assets/4. QUALITY/Quality Assurance/Extraction room - web.webp';
+import GCMS from '../../../assets/4. QUALITY/Quality Assurance/GCMS - web.webp';
+import PetriPlate from '../../../assets/4. QUALITY/Quality Assurance/Petriplate and sample - web.webp';
+import Protein from '../../../assets/4. QUALITY/Quality Assurance/Protein - web.webp';
 
 const qaImages = [
   { src: ConicalFlask, alt: 'Conical Flask - Physicochemical Testing', label: 'Physicochemical Testing' },
@@ -45,7 +46,7 @@ const qaBlocks = [
   },
   {
     title: 'Residue & Contaminant Monitoring',
-    body: 'Comprehensive surveillance ensures products are free from antibiotics, pesticides, and contaminants. Advanced analytical platforms including GC-MS, LC-MS/MS, HPLC, and AAS support rigorous testing of feed inputs, water, tissues, eggs, and finished products in line with EU and Japanese standards. Sampling and analysis are conducted in accordance with EU Directive 96/23 and relevant regulatory frameworks.',
+    body: 'Comprehensive surveillance ensures products are free from antibiotics, pesticides, and contaminants. Advanced analytical platforms including GC-ECD / FID, LC-MS/MS, and HPLC support rigorous testing of feed inputs, water, tissues, eggs, and finished products in line with EU and Japanese standards. Sampling and analysis are conducted in accordance with EU Directive 96/23 and relevant regulatory frameworks.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -66,7 +67,7 @@ const qaBlocks = [
 const biosecurityBlocks = [
   {
     title: 'Disease Prevention & Monitoring',
-    body: 'Comprehensive Disease control begins with certified hatcheries and extends through strict biosecurity, vector control, and continuous flock monitoring. Newcastle Disease titres are verified through periodic serological testing, while enhanced biosecurity protocols safeguard against Avian Influenza, including controlled farm access, sanitation barriers, and perimeter management. Farms supplying eggs are registered establishments in accordance with EU Directive 2008/798 requirements.',
+    body: 'Comprehensive Disease control begins with feed mill and extends through strict biosecurity, vector control, and continuous flock monitoring. Newcastle Disease titres are verified through periodic serological testing, while enhanced biosecurity protocols safeguard against Avian Influenza, including controlled farm access, sanitation barriers, and perimeter management. Farms supplying eggs are registered establishments in accordance with EU Directive 2008/798 requirements.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
@@ -153,6 +154,9 @@ export default function QualityAssurance() {
                   alt={img.alt}
                   className="w-full h-full object-cover select-none group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
+                  decoding="async"
+                  width="900"
+                  height="1200"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-surface-950/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-3">

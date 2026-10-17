@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 
 // Import images
-import CorporateImg from '../../../assets/6. CONTACT US/20240719_SKM_EGG PRODUCTS_197_SHA05676.webp';
+import CorporateImg from '../../../assets/6. CONTACT US/20240719_SKM_EGG PRODUCTS_197_SHA05676 - web.webp';
 import FactoryImg from '../../../assets/6. CONTACT US/SKM AO Picture.jpg';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 

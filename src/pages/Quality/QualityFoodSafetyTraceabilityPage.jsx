@@ -351,114 +351,6 @@ function CertificationsApprovalsSection({ onPageChange }) {
   );
 }
 
-// Section 6 (Quality management system): HACCP and Customer specification
-// management each have a real, distinct documented fact (verbatim from
-// QualityManagementSystem.jsx's HACCP callout and FoodSafetyPolicy.jsx's
-// customer-specification commitment). Release procedures, Internal audits,
-// Supplier approval, and Corrective actions have no distinct real
-// procedure documented anywhere in the repo - each of those 4 cards states
-// the same real, general QMS-framework fact (structured management
-// review, preventive action, process-driven approach - verbatim from
-// QualityManagementSystem.jsx's pillar descriptions) rather than inventing
-// a specific procedure that isn't documented. "Read Our Quality Policy"
-// routes to the real Policy page; "Request Quality Documentation" routes
-// to the real Contact Us page (no self-serve document library exists).
-const QMS_TOPICS = [
-  {
-    id: 'haccp',
-    label: 'HACCP',
-    fact: 'The food safety system follows HACCP principles to assure product safety from farm to fork - hatchery, feed mill, farm, processing, handling, and delivery are all closely monitored, controlled, and documented.',
-  },
-  {
-    id: 'release-procedures',
-    label: 'Release procedures',
-    fact: 'Governed by the same structured management review and process-driven approach that underpins the wider QMS, with defined inputs, outputs, and performance metrics at every stage.',
-  },
-  {
-    id: 'internal-audits',
-    label: 'Internal audits',
-    fact: 'Governed by the same structured management review process - periodic reviews of quality performance data, customer feedback, and audit findings.',
-  },
-  {
-    id: 'supplier-approval',
-    label: 'Supplier approval',
-    fact: 'Governed by the same process-driven, ISO-aligned quality management principles applied throughout the organization.',
-  },
-  {
-    id: 'corrective-actions',
-    label: 'CAPA actions',
-    fact: 'Systematic identification and elimination of potential non-conformances before they impact product quality or safety, reviewed for effectiveness through structured management review.',
-  },
-  {
-    id: 'customer-specs',
-    label: 'Customer specification management',
-    fact: 'The Quality Management System is designed to deliver safe, consistent products in full alignment with defined customer specifications.',
-  },
-];
-
-function QualityManagementSystemSection({ onPageChange }) {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <div id="quality-management-system-overview" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
-      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
-
-        <motion.div
-          initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
-          className="flex flex-col gap-4 max-w-2xl"
-        >
-          <span className="section-label">Quality Management System</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Quality management system
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {QMS_TOPICS.map((topic, i) => (
-            <motion.div
-              key={topic.id}
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.04 }}
-              className="group flex flex-col gap-3 p-6 rounded-[20px] border border-surface-200/70 bg-[#fdfbf7] shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 transition-all duration-300"
-            >
-              <h3 className="font-heading font-bold text-[16px] text-heading m-0">
-                {topic.label}
-              </h3>
-              <p className="font-body text-[13.5px] text-surface-600 leading-[1.6] m-0">
-                {topic.fact}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap items-center gap-4">
-          <InternalLink
-            route="policy"
-            onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 shadow-[0_6px_20px_rgba(228,10,24,0.24)] hover:shadow-[0_10px_28px_rgba(228,10,24,0.36)] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-          >
-            Read Our Quality Policy
-          </InternalLink>
-
-          <InternalLink
-            route="contact-us"
-            onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-          >
-            Request Quality Documentation
-          </InternalLink>
-        </div>
-
-      </div>
-    </div>
-  );
-}
-
 // Section 7 (Traceability and incident response): Batch coding and Source
 // traceability each have a real, distinct fact (verbatim from
 // Traceability.jsx's "integrated traceability system links lot codes,
@@ -658,16 +550,6 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
             <motion.div {...fadeProps(0.2)} className="flex flex-wrap items-center gap-4 mt-9 lg:mt-11">
               <button
                 type="button"
-                disabled
-                title="Coming soon"
-                aria-disabled="true"
-                className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 text-surface-400 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
-              >
-                Download Certification Pack
-              </button>
-
-              <button
-                type="button"
                 onClick={() => setIsQualityModalOpen(true)}
                 className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 cursor-pointer shadow-[0_6px_20px_rgba(228,10,24,0.28)] hover:shadow-[0_10px_28px_rgba(228,10,24,0.4)] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
               >
@@ -688,9 +570,6 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
 
         {/* Section 5 - Certifications and approvals */}
         <CertificationsApprovalsSection onPageChange={onPageChange} />
-
-        {/* Section 6 - Quality management system */}
-        <QualityManagementSystemSection onPageChange={onPageChange} />
 
         {/* Section 7 - Traceability and incident response */}
         <IncidentResponseSection onPageChange={onPageChange} />

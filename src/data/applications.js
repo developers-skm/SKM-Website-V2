@@ -47,7 +47,6 @@ const applications = [
     intro: 'Our egg yolk powders and liquids provide the emulsifying backbone mayonnaise and dressing manufacturers rely on - including heat-stable variants for hot-processed sauces.',
     matchedProductIds: ['egg_yolk_powder', 'egg_yolk_powder_heat_stable', 'egg_yolk_liquid'],
     hideFormulationChallenges: true,
-    hideProcessingGuidance: true,
     relevantChallengeIds: ['emulsification', 'colour'],
   },
   {
@@ -65,7 +64,6 @@ const applications = [
       egg_albumen_liquid: 'Maintains the coagulation strength of fresh eggs, ensures smooth pumpability during processing, and delivers a clean, natural flavour profile.',
     },
     hideFormulationChallenges: true,
-    hideProcessingGuidance: true,
     functionalities: [
       { id: 'gelling', label: 'Gel Strength & Firmness', description: 'Firm, water-retaining protein gel matrices for surimi, sausages, and restructured meat or seafood.' },
       { id: 'consistency', label: 'Improve Product Consistency', description: 'Consistent gel and solubility for reliable batch-to-batch performance.' },
@@ -79,7 +77,7 @@ const applications = [
     image: NoodlesPastaImg,
     tags: ['Elasticity', 'Texture'],
     problem: 'For stronger gel & firm bite in your noodles & pasta.',
-    intro: 'Whole egg and egg albumen powders strengthen gluten structure, improve cooking integrity, and deliver the firm bite noodle and pasta manufacturers formulate for.',
+    intro: 'Whole egg powder & Egg albumen powder enhance gluten network strength, improve cooking integrity and contribute to the firm, desirable texture sought by noodle and pasta manufacturers.',
     matchedProductIds: ['whole_egg_powder', 'egg_albumen_powder', 'egg_albumen_liquid'],
     hideFormulationChallenges: true,
     functionalities: [

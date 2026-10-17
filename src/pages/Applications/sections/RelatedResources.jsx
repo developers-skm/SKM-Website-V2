@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { EASE_PREMIUM, DURATION, STAGGER, fadeUp } from '../../../utils/motionTokens';
 
+// Card titles that differ from the product's own title.
+const RESOURCE_TITLES = { egg_yolk_powder: 'Egg Yolk Powder - heat stable' };
+
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
 // Section 7 - related resources (brief §7). Of the 5 brief resource types
@@ -62,8 +65,8 @@ export default function RelatedResources({ matchedProducts, onPageChange }) {
                     <span className="font-body text-[10.5px] font-bold uppercase tracking-wider text-surface-400">
                       Product Detail
                     </span>
-                    <span className="font-heading font-semibold text-[14.5px] text-heading truncate">
-                      {product.title}
+                    <span className="font-heading font-semibold text-[14.5px] text-heading leading-snug">
+                      {RESOURCE_TITLES[product.id] ?? product.title}
                     </span>
                   </div>
                 </div>

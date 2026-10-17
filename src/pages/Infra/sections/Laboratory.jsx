@@ -4,21 +4,24 @@ import ImageSlider from '../../../components/ImageSlider/ImageSlider';
 import StatCard from '../../../components/common/StatCard';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
-import ResidueLabAerial from '../../../assets/5. INFRASTRUCTURE/Laboratory/Residue lab aerial view.webp';
-import ResidueLabFront from '../../../assets/5. INFRASTRUCTURE/Laboratory/Residue lab front view.webp';
+// Laboratory photos: web-sized copies - the originals are up to ~7000x4600 and froze the
+// page while the browser decoded them. Hero = 1920px copy, slider = 1000x750 copies.
+import ResidueLabAerial from '../../../assets/5. INFRASTRUCTURE/Laboratory/Residue lab aerial view - hero.webp';
+import ResidueLabAerialWeb from '../../../assets/5. INFRASTRUCTURE/Laboratory/Residue lab aerial view - web.webp';
+import ResidueLabFront from '../../../assets/5. INFRASTRUCTURE/Laboratory/Residue lab front view - web.webp';
 import GCandHPLC from '../../../assets/5. INFRASTRUCTURE/Laboratory/GC and HPLC.webp';
-import LCMS from '../../../assets/5. INFRASTRUCTURE/Laboratory/LCMS.webp';
-import ExtractionRoom from '../../../assets/5. INFRASTRUCTURE/Laboratory/Extraction room.webp';
-import PhysicochemicalView from '../../../assets/5. INFRASTRUCTURE/Laboratory/Physicochemical view.webp';
-import LaminarFlow from '../../../assets/5. INFRASTRUCTURE/Laboratory/Laminar flow.webp';
-import Incubators from '../../../assets/5. INFRASTRUCTURE/Laboratory/Incubators.webp';
-import MediaStorage from '../../../assets/5. INFRASTRUCTURE/Laboratory/Media Storage.webp';
-import ChemicalStorage from '../../../assets/5. INFRASTRUCTURE/Laboratory/Chemical Storage.webp';
-import Autoclave from '../../../assets/5. INFRASTRUCTURE/Laboratory/Autoclave.webp';
-import ShelfLifeStorage from '../../../assets/5. INFRASTRUCTURE/Laboratory/Shelf life storage.webp';
+import LCMS from '../../../assets/5. INFRASTRUCTURE/Laboratory/LCMS - web.webp';
+import ExtractionRoom from '../../../assets/5. INFRASTRUCTURE/Laboratory/Extraction room - web.webp';
+import PhysicochemicalView from '../../../assets/5. INFRASTRUCTURE/Laboratory/Physicochemical view - web.webp';
+import LaminarFlow from '../../../assets/5. INFRASTRUCTURE/Laboratory/Laminar flow - web.webp';
+import Incubators from '../../../assets/5. INFRASTRUCTURE/Laboratory/Incubators - web.webp';
+import MediaStorage from '../../../assets/5. INFRASTRUCTURE/Laboratory/Media Storage - web.webp';
+import ChemicalStorage from '../../../assets/5. INFRASTRUCTURE/Laboratory/Chemical Storage - web.webp';
+import Autoclave from '../../../assets/5. INFRASTRUCTURE/Laboratory/Autoclave - web.webp';
+import ShelfLifeStorage from '../../../assets/5. INFRASTRUCTURE/Laboratory/Shelf life storage - web.webp';
 
 const labImages = [
-  { src: ResidueLabAerial, label: 'Residue Lab – Aerial View' },
+  { src: ResidueLabAerialWeb, label: 'Residue Lab – Aerial View' },
   { src: ResidueLabFront, label: 'Residue Lab – Front View' },
   { src: GCandHPLC, label: 'GC & HPLC' },
   { src: LCMS, label: 'LC-MS/MS' },
@@ -40,7 +43,7 @@ const statsData = [
 ];
 
 const analyticalInstruments = [
-  'GC-MS', 'GC-ECD / FID', 'HPLC', 'LC-MS/MS', 'AAS', 'ELISA Systems',
+  'GC-ECD / FID', 'HPLC', 'LC-MS/MS', 'ELISA Systems',
 ];
 
 const physicochemicalParams = [
@@ -95,23 +98,25 @@ const contentSections = [
     ),
   },
   {
-    title: 'Poultry Disease Diagnostics',
-    description: 'Comprehensive disease control begins with certified hatcheries and extends through strict biosecurity, vector control, and continuous flock monitoring.\n\nNewcastle Disease titres are verified through periodic serological testing, while enhanced biosecurity protocols safeguard against Avian Influenza, including controlled farm access, sanitation barriers, and perimeter management.\n\nOur in-house diagnostic laboratory supports proactive flock health management through microbiological, serological, and molecular testing. Strict biosecurity protocols, controlled sample handling, and regulatory-aligned testing frameworks ensure early detection, disease prevention, and sustained flock health.',
-    chips: ['Salmonella', 'Newcastle Disease', 'Avian Influenza', 'Mycoplasma'],
-    chipLabel: 'Monitored Pathogens',
+    title: 'Research and Development',
+    description: 'Our upcoming Research and Development (R&D) facility will feature functional testing, application laboratories, and bakery application capabilities to evaluate product performance and functional properties across various end-use applications. Through close collaboration with our valued partners, we aim to develop successful product formulations by providing dedicated technical expertise, application support, and innovative solutions.',
+    chips: ['Functional', 'Product Application', 'Bakery'],
+    chipLabel: 'Key R&D Laboratories',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
     ),
   },
   {
-    title: 'Research and Development',
-    description: 'Our upcoming Research and Development (R&D) facility will feature functional testing, application laboratories, and bakery application capabilities to evaluate product performance and functional properties across various end-use applications. Through close collaboration with our valued partners, we aim to develop successful product formulations by providing dedicated technical expertise, application support, and innovative solutions.',
+    title: 'Poultry Disease Diagnostics',
+    description: 'Comprehensive disease control begins with certified hatcheries and extends through strict biosecurity, vector control, and continuous flock monitoring.\n\nNewcastle Disease titres are verified through periodic serological testing, while enhanced biosecurity protocols safeguard against Avian Influenza, including controlled farm access, sanitation barriers, and perimeter management.\n\nOur in-house diagnostic laboratory supports proactive flock health management through microbiological, serological, and molecular testing. Strict biosecurity protocols, controlled sample handling, and regulatory-aligned testing frameworks ensure early detection, disease prevention, and sustained flock health.',
+    chips: ['Salmonella', 'Newcastle Disease', 'Avian Influenza', 'Mycoplasma'],
+    chipLabel: 'Monitored Pathogens',
     fullWidth: true,
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
   },

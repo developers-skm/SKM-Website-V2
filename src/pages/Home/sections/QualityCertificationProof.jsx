@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
 import SafeImage from '../../../components/common/SafeImage';
 import { fadeUp } from '../../../utils/motionTokens';
-import LabImage from '../../../assets/4. QUALITY/Food Safety and Quality Policy/LCMS.webp';
+import LabImage from '../../../assets/4. QUALITY/Food Safety and Quality Policy/LCMS - web.webp';
 
 // Section 6 - Quality & Certifications. Composition: large dominant lab
 // photograph (7/12 columns) beside heading/copy (5/12), image mask-reveals

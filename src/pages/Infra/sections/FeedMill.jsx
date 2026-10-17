@@ -4,12 +4,12 @@ import IconInfoCard from '../../../components/common/IconInfoCard';
 import StatCard from '../../../components/common/StatCard';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
-import FeedMillAerial from '../../../assets/5. INFRASTRUCTURE/Feed mill/Feed mill aerial view.jpg';
+import FeedMillAerial from '../../../assets/5. INFRASTRUCTURE/Feed mill/Feed mill aerial view.webp';
 
 const statsData = [
   { value: 'In-House', label: 'Feed Mill Laboratory' },
   { value: 'Lot-Wise', label: 'Ingredient Storage' },
-  { value: 'Zero Residue', label: 'Verified Inputs Only' },
+  { value: 'Residue compliance', label: 'Verified Inputs Only' },
   { value: 'Automated', label: 'Farm Transport' },
 ];
 

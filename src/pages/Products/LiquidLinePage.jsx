@@ -27,7 +27,7 @@ export default function LiquidLinePage({ onPageChange }) {
           </InternalLink>
         </div>
         <TraceabilityLoopJourney
-          title="How Liquid Egg is Made"
+          title="How Liquid Egg Is Made"
           subtitle="360° Farm-to-Food Traceability - From Biosecure Farms to Hygienic Packaging & Global Dispatch"
           onPageChange={onPageChange}
           showQuality={false}

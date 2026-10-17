@@ -330,7 +330,7 @@ export default function GlobalReachPage({ onPageChange }) {
   return (
     <PageWrapper
       seo={{
-        title: 'Global Reach | SKM Egg Products Export Markets & Branches',
+        title: 'Global Presence | SKM Egg Products Export Markets & Branches',
         description: 'SKM Egg Products exports to 30+ countries with dedicated branches in Europe and Russia. Explore our global export markets and regional presence.',
         keywords: 'egg powder exporter countries, SKM Japan, SKM Europe, SKM Russia, egg products global export, egg powder international supplier',
         canonical: 'https://www.skmegg.com/global_reach',
@@ -344,7 +344,7 @@ export default function GlobalReachPage({ onPageChange }) {
           <div className="mx-auto max-w-[720px] flex flex-col items-center gap-5">
             <span className="section-label justify-center">Export Markets & Branches</span>
             <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
-              Global Reach
+              Global Presence
             </h1>
             <p className="font-body text-[15px] sm:text-[16px] text-surface-500 leading-[28px] m-0">
               SKM exports to 30+ countries, with dedicated regional branches in Europe and Russia coordinating import, warehousing, and compliance close to your market.

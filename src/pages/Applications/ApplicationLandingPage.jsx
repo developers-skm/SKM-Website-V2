@@ -7,7 +7,6 @@ import ApplicationFormulationChallenges from './sections/ApplicationFormulationC
 import RequiredFunctionalities from './sections/RequiredFunctionalities';
 import RecommendedProducts from './sections/RecommendedProducts';
 import ProductComparison from './sections/ProductComparison';
-import ProcessingGuidance from './sections/ProcessingGuidance';
 import RelatedResources from './sections/RelatedResources';
 import EnquiryCTABand from '../../components/common/EnquiryCTABand';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
@@ -65,15 +64,6 @@ export default function ApplicationLandingPage({ applicationId, onPageChange }) 
           matchedProducts={matchedProducts}
           onPageChange={onPageChange}
         />
-
-        {!application.hideProcessingGuidance && (
-          <ProcessingGuidance
-            application={application}
-            matchedProducts={matchedProducts}
-            onDownloadGuide={() => onPageChange('brochure')}
-            onContactSupport={() => onPageChange('contact-us')}
-          />
-        )}
 
         <RelatedResources matchedProducts={matchedProducts} onPageChange={onPageChange} />
         <CurvedDivider bg="#f8f4ee" fill="#fdf1f0" className="" />

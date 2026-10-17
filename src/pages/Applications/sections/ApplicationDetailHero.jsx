@@ -69,7 +69,7 @@ export default function ApplicationDetailHero({ application, productFamilies, on
           initial="hidden"
           animate="visible"
           variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
-          className="flex flex-col gap-5 max-w-[640px]"
+          className="flex flex-col gap-5 max-w-[720px]"
         >
           {/* Eyebrow Label matching ProductHero */}
           <motion.span
@@ -85,7 +85,7 @@ export default function ApplicationDetailHero({ application, productFamilies, on
           <motion.h1
             variants={itemVariants}
             transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
-            className="font-heading font-bold text-[clamp(36px,4.8vw,58px)] text-white leading-[1.05] tracking-tight m-0"
+            className="font-heading font-bold text-[clamp(22px,2.4vw,32px)] text-white leading-[1.25] tracking-tight m-0"
           >
             {application.problem}
           </motion.h1>

@@ -14,7 +14,7 @@ const formulationChallenges = [
   {
     id: 'colour',
     label: 'Improve Colour',
-    description: 'Natural golden-yellow coloration from carotenoid-rich yolk, without artificial dyes.',
+    description: 'Natural golden-yellow colouration from carotenoid-rich yolk, without artificial dyes.',
     matchedProductIds: ['egg_yolk_powder', 'egg_yolk_liquid'],
   },
   {

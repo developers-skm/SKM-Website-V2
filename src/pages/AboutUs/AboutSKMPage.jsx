@@ -620,7 +620,8 @@ function IntegratedBusinessModelSection({ onPageChange }) {
 // visual archive showcasing our history" - fits this section), since that
 // page is no longer reachable from the main nav dropdown.
 const MAJOR_AWARDS = [
-  { name: 'Padma Shree Award', desc: 'Shri SKM Maeilanandhan received the Padma Shree Award from the Honourable President of India, Shri Pranab Mukherjee.' },
+   { name: 'Padma Bhushan Award', desc: 'Shri SKM Maeilanandhan received the Padma Bhushan Award from the Honourable President of India, Droupadi Murmu.' },
+  { name: 'Padma Shree Award', desc: 'Shri S. K. M. Maeilanandhan was honoured with the prestigious Padma Shri Award, presented by the then President of India, Shri Pranab Mukherjee, in 2013.' },
   { name: 'APEDA Golden Trophy', desc: '"Golden Trophy" awarded by APEDA, Ministry of Commerce, Government of India, for 2011–2012 and 2012–2013.' },
   { name: 'Export Excellence Award', desc: 'Awarded at MEPZ, Special Economic Zone – Chennai, 2013.' },
 ];
@@ -646,7 +647,7 @@ function AwardsRecognitionSection({ onPageChange }) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {MAJOR_AWARDS.map((award, i) => (
             <motion.div
               key={award.name}

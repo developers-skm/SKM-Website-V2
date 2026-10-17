@@ -1,9 +1,11 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import QMSChart from '../../../assets/4. QUALITY/Quality Management System/QMS.png';
-import MicroLab from '../../../assets/4. QUALITY/Quality Management System/Microbiology Lab.webp';
-import PhysicoLab from '../../../assets/4. QUALITY/Quality Management System/Physicochemical lab.webp';
-import ResidueLabExt from '../../../assets/4. QUALITY/Quality Management System/Residue Lab Extraction.webp';
+// Lab photos: web-sized (1400x525) copies - the originals are ~7000x4600 and froze the
+// page while the browser decoded them for these small cards.
+import MicroLab from '../../../assets/4. QUALITY/Quality Management System/Microbiology Lab - web.webp';
+import PhysicoLab from '../../../assets/4. QUALITY/Quality Management System/Physicochemical lab - web.webp';
+import ResidueLabExt from '../../../assets/4. QUALITY/Quality Management System/Residue Lab Extraction - web.webp';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 const qmsPillars = [
@@ -101,7 +103,7 @@ export default function QualityManagementSystem() {
             variants={itemVariants}
             className="font-body text-[16px] text-surface-500 max-w-4xl leading-[30px] m-0"
           >
-            The dedicated and foolproof approach of quality management system is based on eight quality management principles, which are the management standard at SKM. The eight quality management principles form an integral part of the system for management review and preventive action. This system provides a platform for deploying excellent management practices throughout the organization. It focuses on top management commitment and involvement to improve the system, enabling us to excel in the global market. This system is based on process approach and is result-oriented.
+            The dedicated and foolproof approach of quality management system is based on eight quality management principles, which are the management standard at SKM. The eight quality management principles form an integral part of the system for management review and preventive action. This system provides a platform for deploying excellent management practices throughout the organisation. It focuses on top management commitment and involvement to improve the system, enabling us to excel in the global market. This system is based on process approach and is result-oriented.
           </motion.p>
         </div>
 
@@ -142,6 +144,9 @@ export default function QualityManagementSystem() {
                     alt={img.alt}
                     className="w-full h-full object-cover select-none group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
+                    width="1400"
+                    height="525"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-surface-950/60 to-transparent" />
                   <div className="absolute left-0 inset-y-0 flex flex-col justify-center px-5">
@@ -205,7 +210,7 @@ export default function QualityManagementSystem() {
               HACCP Food Safety Framework
             </h4>
             <p className="text-sm text-surface-500 leading-relaxed m-0 font-body">
-              The food safety system follows the general principles and guidelines of HACCP to assure the safety of products from farm to fork. At every stage right from feed mill to farm, processing, handling and delivery are closely monitored, controlled and documented.
+              The food safety system follows the general principles and guidelines of HACCP to assure the safety of products from farm to end product. At every stage right from feed mill to farm, processing, handling and delivery are closely monitored, controlled and documented.
             </p>
           </div>
         </motion.div>

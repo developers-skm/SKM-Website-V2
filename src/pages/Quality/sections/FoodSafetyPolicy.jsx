@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
-import LCMSImage from '../../../assets/4. QUALITY/Food Safety and Quality Policy/LCMS.webp';
+import LCMSImage from '../../../assets/4. QUALITY/Food Safety and Quality Policy/LCMS - web.webp';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 const commitments = [
@@ -110,7 +110,7 @@ export default function FoodSafetyPolicy() {
             Our Quality Management System is designed to deliver safe, consistent products in full alignment with defined customer specifications.
           </p>
           <p className="text-sm sm:text-base text-surface-600 leading-relaxed m-0 font-body">
-            Built on internationally recognized quality management principles, the system integrates structured management review, preventive action, and a process-driven approach led by strong top management commitment. The focus remains on measurable performance and continuous improvement across the organization.
+            Built on internationally recognised quality management principles, the system integrates structured management review, preventive action, and a process-driven approach led by strong top management commitment. The focus remains on measurable performance and continuous improvement across the organization.
           </p>
           <p className="text-sm sm:text-base text-surface-600 leading-relaxed m-0 font-body">
             Our food safety framework is based on{' '}
