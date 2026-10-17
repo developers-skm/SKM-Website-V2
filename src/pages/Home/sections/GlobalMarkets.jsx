@@ -51,7 +51,7 @@ export default function GlobalMarkets({ onPageChange }) {
               countries.
             </p>
             <p className="font-body text-[15px] lg:text-[16px] text-surface-600 leading-[1.7] max-w-xs mt-2 m-0">
-              With decades of experience and world-class certifications, SKM reliably exports and distributes premium egg solutions to food producers worldwide.
+              With decades of experience and world-class certifications, SKM reliably exports and distributes premium egg products to food producers worldwide.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-2">
               <InternalLink
@@ -103,7 +103,7 @@ export default function GlobalMarkets({ onPageChange }) {
                 className="flex flex-col gap-3"
               >
                 <h4 className="font-heading font-bold text-[13px] uppercase tracking-wide text-brand-600 m-0">
-                  {group.region === 'Americas' ? 'Colombia' : group.region}
+                  {group.region}
                 </h4>
                 <p className="font-body text-[15px] lg:text-[16px] text-surface-600 leading-[1.75] m-0">
                   {group.markets.map((m) => m.name).join(', ')}
