@@ -23,8 +23,8 @@ const blocks = [
   {
     id: 'facility',
     eyebrow: 'Facility & Regulatory Compliance',
-    title: 'Built as per European Union (EU) standards.',
-    body: 'Constructed and equipped in accordance with applicable European Union (EU) requirements, the facility is approved under India’s Export of Egg Products Quality Control & Monitoring Rules (1997). It operates in a fully automated, climate-controlled environment with dedicated production lines for yolk and albumen.',
+    title: 'Built as per European Union (EU) Regulation.',
+    body: 'Constructed and equipped in accordance with applicable European Union (EU) requirements, the facility is approved under India’s Export of Egg Products Quality Control & Monitoring Rules (1997). Our facility operates under stringent hygiene standards in a climate-controlled environment, with dedicated production lines for egg yolk and albumen.',
     image: CampusOverview,
   },
   {

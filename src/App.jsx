@@ -1,4 +1,5 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import lazyWithRetry from './utils/lazyWithRetry';
 import { AnimatePresence, motion } from 'framer-motion';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
@@ -13,77 +14,77 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 const PRODUCT_DETAIL_ROUTES = new Set(products.map((p) => p.page));
 
 // Lazy load subpages to reduce initial bundle size and eliminate unused JavaScript
-const WholeEggPowderPage = lazy(() => import('./pages/Products/WholeEggPowderPage'));
-const EggAlbumenPowderPage = lazy(() => import('./pages/Products/EggAlbumenPowderPage'));
-const EggYolkPowderPage = lazy(() => import('./pages/Products/EggYolkPowderPage'));
-const EggYolkPowderHeatStablePage = lazy(() => import('./pages/Products/EggYolkPowderHeatStablePage'));
-const EggAlbumenLiquidPage = lazy(() => import('./pages/Products/EggAlbumenLiquidPage'));
-const EggYolkLiquidPage = lazy(() => import('./pages/Products/EggYolkLiquidPage'));
-const WholeEggLiquidPage = lazy(() => import('./pages/Products/WholeEggLiquidPage'));
-const CustomizedMixPage = lazy(() => import('./pages/Products/CustomizedMixPage'));
-const CustomizedPackagesPage = lazy(() => import('./pages/Products/CustomizedPackagesPage'));
-const SpecialityEggLiquidPage = lazy(() => import('./pages/Products/SpecialityEggLiquidPage'));
-const EggWhiteCubePage = lazy(() => import('./pages/Products/EggWhiteCubePage'));
+const WholeEggPowderPage = lazyWithRetry(() => import('./pages/Products/WholeEggPowderPage'));
+const EggAlbumenPowderPage = lazyWithRetry(() => import('./pages/Products/EggAlbumenPowderPage'));
+const EggYolkPowderPage = lazyWithRetry(() => import('./pages/Products/EggYolkPowderPage'));
+const EggYolkPowderHeatStablePage = lazyWithRetry(() => import('./pages/Products/EggYolkPowderHeatStablePage'));
+const EggAlbumenLiquidPage = lazyWithRetry(() => import('./pages/Products/EggAlbumenLiquidPage'));
+const EggYolkLiquidPage = lazyWithRetry(() => import('./pages/Products/EggYolkLiquidPage'));
+const WholeEggLiquidPage = lazyWithRetry(() => import('./pages/Products/WholeEggLiquidPage'));
+const CustomizedMixPage = lazyWithRetry(() => import('./pages/Products/CustomizedMixPage'));
+const CustomizedPackagesPage = lazyWithRetry(() => import('./pages/Products/CustomizedPackagesPage'));
+const SpecialityEggLiquidPage = lazyWithRetry(() => import('./pages/Products/SpecialityEggLiquidPage'));
+const EggWhiteCubePage = lazyWithRetry(() => import('./pages/Products/EggWhiteCubePage'));
 
-const EggProcessingPlantPage = lazy(() => import('./pages/Infra/EggProcessingPlantPage'));
-const PoultryFarmPage = lazy(() => import('./pages/Infra/PoultryFarmPage'));
-const FeedMillPage = lazy(() => import('./pages/Infra/FeedMillPage'));
-const LaboratoryPage = lazy(() => import('./pages/Infra/LaboratoryPage'));
+const EggProcessingPlantPage = lazyWithRetry(() => import('./pages/Infra/EggProcessingPlantPage'));
+const PoultryFarmPage = lazyWithRetry(() => import('./pages/Infra/PoultryFarmPage'));
+const FeedMillPage = lazyWithRetry(() => import('./pages/Infra/FeedMillPage'));
+const LaboratoryPage = lazyWithRetry(() => import('./pages/Infra/LaboratoryPage'));
 
-const SkmJapanPage = lazy(() => import('./pages/Branches/SkmJapanPage'));
-const SkmEuropePage = lazy(() => import('./pages/Branches/SkmEuropePage'));
-const SkmRussiaPage = lazy(() => import('./pages/Branches/SkmRussiaPage'));
+const SkmJapanPage = lazyWithRetry(() => import('./pages/Branches/SkmJapanPage'));
+const SkmEuropePage = lazyWithRetry(() => import('./pages/Branches/SkmEuropePage'));
+const SkmRussiaPage = lazyWithRetry(() => import('./pages/Branches/SkmRussiaPage'));
 
-const SustainabilityCommunityPage = lazy(() => import('./pages/CSR/SustainabilityCommunityPage'));
-const CommunityDevelopmentPage = lazy(() => import('./pages/CSR/CommunityDevelopmentPage'));
-const TrustOutreachPage = lazy(() => import('./pages/CSR/TrustOutreachPage'));
-const EducationPage = lazy(() => import('./pages/CSR/EducationPage'));
-const SustainabilityPage = lazy(() => import('./pages/CSR/SustainabilityPage'));
-const MdArticlePage = lazy(() => import('./pages/CSR/MdArticlePage'));
+const SustainabilityCommunityPage = lazyWithRetry(() => import('./pages/CSR/SustainabilityCommunityPage'));
+const CommunityDevelopmentPage = lazyWithRetry(() => import('./pages/CSR/CommunityDevelopmentPage'));
+const TrustOutreachPage = lazyWithRetry(() => import('./pages/CSR/TrustOutreachPage'));
+const EducationPage = lazyWithRetry(() => import('./pages/CSR/EducationPage'));
+const SustainabilityPage = lazyWithRetry(() => import('./pages/CSR/SustainabilityPage'));
+const MdArticlePage = lazyWithRetry(() => import('./pages/CSR/MdArticlePage'));
 
-const Investors = lazy(() => import('./pages/Investors/Investors'));
-const BrochurePage = lazy(() => import('./pages/Brochure/BrochurePage'));
-const ContactUs = lazy(() => import('./pages/ContactUs/ContactUs'));
-const CareersRoute = lazy(() => import('./pages/Careers/CareersRoute'));
+const Investors = lazyWithRetry(() => import('./pages/Investors/Investors'));
+const BrochurePage = lazyWithRetry(() => import('./pages/Brochure/BrochurePage'));
+const ContactUs = lazyWithRetry(() => import('./pages/ContactUs/ContactUs'));
+const CareersRoute = lazyWithRetry(() => import('./pages/Careers/CareersRoute'));
 
-const JourneyPage = lazy(() => import('./pages/Journey/JourneyPage'));
-const GetQuotePage = lazy(() => import('./pages/GetQuote/GetQuotePage'));
-const ApplicationLandingPage = lazy(() => import('./pages/Applications/ApplicationLandingPage'));
-const ApplicationsHubPage = lazy(() => import('./pages/Applications/ApplicationsHubPage'));
-const ProductsHubPage = lazy(() => import('./pages/Products/ProductsHubPage'));
-const PowderLinePage = lazy(() => import('./pages/Products/PowderLinePage'));
-const LiquidLinePage = lazy(() => import('./pages/Products/LiquidLinePage'));
-const EggPowdersCategoryPage = lazy(() => import('./pages/Products/EggPowdersCategoryPage'));
-const LiquidEggCategoryPage = lazy(() => import('./pages/Products/LiquidEggCategoryPage'));
-const CustomSpecialtyCategoryPage = lazy(() => import('./pages/Products/CustomSpecialtyCategoryPage'));
-const TableEggsPage = lazy(() => import('./pages/Products/TableEggsPage'));
-const WhySKMPage = lazy(() => import('./pages/WhySKM/WhySKMPage'));
-const ManufacturingSupplyPage = lazy(() => import('./pages/Capabilities/ManufacturingSupplyPage'));
-const InnovationCustomSolutionsPage = lazy(() => import('./pages/Innovation/InnovationCustomSolutionsPage'));
-const GlobalReachPage = lazy(() => import('./pages/GlobalReach/GlobalReachPage'));
-const ResourcesPage = lazy(() => import('./pages/Resources/ResourcesPage'));
+const JourneyPage = lazyWithRetry(() => import('./pages/Journey/JourneyPage'));
+const GetQuotePage = lazyWithRetry(() => import('./pages/GetQuote/GetQuotePage'));
+const ApplicationLandingPage = lazyWithRetry(() => import('./pages/Applications/ApplicationLandingPage'));
+const ApplicationsHubPage = lazyWithRetry(() => import('./pages/Applications/ApplicationsHubPage'));
+const ProductsHubPage = lazyWithRetry(() => import('./pages/Products/ProductsHubPage'));
+const PowderLinePage = lazyWithRetry(() => import('./pages/Products/PowderLinePage'));
+const LiquidLinePage = lazyWithRetry(() => import('./pages/Products/LiquidLinePage'));
+const EggPowdersCategoryPage = lazyWithRetry(() => import('./pages/Products/EggPowdersCategoryPage'));
+const LiquidEggCategoryPage = lazyWithRetry(() => import('./pages/Products/LiquidEggCategoryPage'));
+const CustomSpecialtyCategoryPage = lazyWithRetry(() => import('./pages/Products/CustomSpecialtyCategoryPage'));
+const TableEggsPage = lazyWithRetry(() => import('./pages/Products/TableEggsPage'));
+const WhySKMPage = lazyWithRetry(() => import('./pages/WhySKM/WhySKMPage'));
+const ManufacturingSupplyPage = lazyWithRetry(() => import('./pages/Capabilities/ManufacturingSupplyPage'));
+const InnovationCustomSolutionsPage = lazyWithRetry(() => import('./pages/Innovation/InnovationCustomSolutionsPage'));
+const GlobalReachPage = lazyWithRetry(() => import('./pages/GlobalReach/GlobalReachPage'));
+const ResourcesPage = lazyWithRetry(() => import('./pages/Resources/ResourcesPage'));
 
 // About Us Subpages
-const AboutSKMPage = lazy(() => import('./pages/AboutUs/AboutSKMPage'));
-const OurCompanyPage = lazy(() => import('./pages/AboutUs/OurCompanyPage'));
-const VisionMissionPage = lazy(() => import('./pages/AboutUs/VisionMissionPage'));
-const CoreIdeologyPage = lazy(() => import('./pages/AboutUs/CoreIdeologyPage'));
-const BrandIdentityPage = lazy(() => import('./pages/AboutUs/BrandIdentityPage'));
-const CeoMessagePage = lazy(() => import('./pages/AboutUs/CeoMessagePage'));
-const AccoladesPage = lazy(() => import('./pages/AboutUs/AccoladesPage'));
-const GalleryPage = lazy(() => import('./pages/AboutUs/GalleryPage'));
-const CoffeeTableBooksPage = lazy(() => import('./pages/AboutUs/CoffeeTableBooksPage'));
-const EventsPage = lazy(() => import('./pages/AboutUs/EventsPage'));
-const EventDetailPage = lazy(() => import('./pages/Events/EventDetailPage'));
+const AboutSKMPage = lazyWithRetry(() => import('./pages/AboutUs/AboutSKMPage'));
+const OurCompanyPage = lazyWithRetry(() => import('./pages/AboutUs/OurCompanyPage'));
+const VisionMissionPage = lazyWithRetry(() => import('./pages/AboutUs/VisionMissionPage'));
+const CoreIdeologyPage = lazyWithRetry(() => import('./pages/AboutUs/CoreIdeologyPage'));
+const BrandIdentityPage = lazyWithRetry(() => import('./pages/AboutUs/BrandIdentityPage'));
+const CeoMessagePage = lazyWithRetry(() => import('./pages/AboutUs/CeoMessagePage'));
+const AccoladesPage = lazyWithRetry(() => import('./pages/AboutUs/AccoladesPage'));
+const GalleryPage = lazyWithRetry(() => import('./pages/AboutUs/GalleryPage'));
+const CoffeeTableBooksPage = lazyWithRetry(() => import('./pages/AboutUs/CoffeeTableBooksPage'));
+const EventsPage = lazyWithRetry(() => import('./pages/AboutUs/EventsPage'));
+const EventDetailPage = lazyWithRetry(() => import('./pages/Events/EventDetailPage'));
 
 // Quality Subpages
-const PolicyPage = lazy(() => import('./pages/Quality/PolicyPage'));
-const CertificationsPage = lazy(() => import('./pages/Quality/CertificationsPage'));
-const QualityAssurancePage = lazy(() => import('./pages/Quality/QualityAssurancePage'));
-const TraceabilityPage = lazy(() => import('./pages/Quality/TraceabilityPage'));
-const QualityManagementSystemPage = lazy(() => import('./pages/Quality/QualityManagementSystemPage'));
-const QualityFoodSafetyTraceabilityPage = lazy(() => import('./pages/Quality/QualityFoodSafetyTraceabilityPage'));
-const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
+const PolicyPage = lazyWithRetry(() => import('./pages/Quality/PolicyPage'));
+const CertificationsPage = lazyWithRetry(() => import('./pages/Quality/CertificationsPage'));
+const QualityAssurancePage = lazyWithRetry(() => import('./pages/Quality/QualityAssurancePage'));
+const TraceabilityPage = lazyWithRetry(() => import('./pages/Quality/TraceabilityPage'));
+const QualityManagementSystemPage = lazyWithRetry(() => import('./pages/Quality/QualityManagementSystemPage'));
+const QualityFoodSafetyTraceabilityPage = lazyWithRetry(() => import('./pages/Quality/QualityFoodSafetyTraceabilityPage'));
+const NotFound = lazyWithRetry(() => import('./pages/NotFound/NotFound'));
 
 // Instant (not smooth) reset: a smooth window.scrollTo fights Lenis's own
 // easing and the changing page height during the route transition, which

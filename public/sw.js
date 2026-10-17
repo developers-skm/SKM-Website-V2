@@ -1,4 +1,13 @@
-const CACHE_NAME = 'skm-offline-v1';
+const CACHE_NAME = 'skm-offline-v2';
+
+// A missing hashed asset is rewritten to index.html (200, text/html) by the
+// host. Caching that under a .js/.css URL poisons the cache and breaks the
+// page until it is cleared, so never store HTML for asset requests.
+function isCacheable(response) {
+  if (!response || response.status !== 200) return false;
+  const type = response.headers.get('content-type') || '';
+  return !type.includes('text/html');
+}
 
 // Critical core assets cached on service worker installation
 const CORE_ASSETS = [
@@ -83,7 +92,7 @@ self.addEventListener('fetch', (event) => {
         if (cachedResponse) {
           // Asynchronously update cache in background
           fetch(request).then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
+            if (isCacheable(networkResponse)) {
               caches.open(CACHE_NAME).then((cache) => cache.put(request, networkResponse));
             }
           }).catch(() => {/* Ignore background revalidation failure */});
@@ -91,7 +100,7 @@ self.addEventListener('fetch', (event) => {
         }
 
         return fetch(request).then((networkResponse) => {
-          if (networkResponse && networkResponse.status === 200) {
+          if (isCacheable(networkResponse)) {
             const copy = networkResponse.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
           }

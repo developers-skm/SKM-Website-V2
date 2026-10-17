@@ -552,7 +552,7 @@ const BUSINESS_MODEL_STAGES = [
   { label: 'Farm', fact: '2.4 million layers housed across ISO 22000 certified integrated farms, producing approximately 164 million eggs annually.' },
   { label: 'Plant', fact: 'European Union (EU) - Directive compliance processing plant handling up to 2 million eggs per day across dedicated yolk and albumen lines.' },
   { label: 'Laboratory', fact: 'NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006, tests every batch before release.' },
-  { label: 'Egg Export', fact: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DOP) to ensure quality and traceability.' },
+  { label: 'Egg Export', fact: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DoP) to ensure quality and traceability.' },
   // Real, verbatim-sourced facts from EggProcessingPlant.jsx / SustainabilityCommunityPage.jsx:
   // integrated biogas facility, 70-tonne poultry litter handling capacity,
   // nutrient-rich liquid fertilizer supplied to farmers at no cost.

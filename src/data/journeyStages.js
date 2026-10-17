@@ -19,7 +19,7 @@ const journeyStages = [
     label: 'Feed Mill',
     image: FeedMillImg,
     tagline: 'What the hens eat is tested before they eat it.',
-    description: 'Our in-house feed mill screens every ingredient for mycotoxins, pesticide residues, and antibiotic contamination before it is formulated into balanced, residue-free feed - from chick to grower to layer.',
+    description: 'Our in-house feed mill screens every ingredient to stringent quality screening for mycotoxins, pesticide residues, and antibiotic contamination before formulations. Nutritionally balanced feed formulations tailored to each stage of poultry growth, from chicks and growers to laying hens.',
     stat: { value: '100%', label: 'Ingredients lot-tested before use' },
   },
   {
@@ -28,7 +28,7 @@ const journeyStages = [
     label: 'Farm',
     image: FarmImg,
     tagline: `${LAYERS_HOUSED} layers, continuously monitored.`,
-    description: `Every visit to our layer farms begins at a controlled entry point, with vehicle and personnel sanitation, biosecurity barriers, and perimeter management. Our ISO 22000-certified integrated farms house ${LAYERS_HOUSED} layers in environmentally controlled sheds, supported by automated feeding, watering, and egg collection systems, and operate in accordance with OIE compartmentalization requirements.`,
+    description: `Every visit to our layer farms begins at a controlled entry point, with vehicle and personnel sanitation, biosecurity barriers and perimeter management. Our ISO 22000-certified integrated farms house ${LAYERS_HOUSED} layers in environmentally controlled sheds, supported by automated feeding, watering, and egg collection systems, and operate in accordance with OIE compartmentalization requirements.`,
     stat: { value: EGGS_PER_YEAR_SHORT, label: 'Eggs produced annually on our own farms' },
   },
   {
@@ -47,7 +47,7 @@ const journeyStages = [
     image: LabImg,
     tagline: 'Every batch, tested before it ships.',
     description: 'Our ISO 17025-accredited laboratory since 2006, conducts physicochemical, microbiological, and residue analyses, including GC-ECD/FID, HPLC, and LC-MS/MS screening for antibiotics and pesticides, in accordance with applicable European Union (EU) and Japanese regulations.',
-    stat: { value: 'Since 2006', label: 'NABL-accredited laboratory' },
+    stat: { value: 'Since 2006', label: 'ISO 17025-accredited laboratory' },
   },
   {
     step: '05',
@@ -64,8 +64,8 @@ const journeyStages = [
     label: 'Egg Export',
     image: EggExportImg,
     tagline: 'Graded, marked and shipped fresh.',
-    description: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DOP) to ensure quality and traceability. These eggs are then carefully collected, packed, and distributed to global markets through a temperature-controlled cold chain dispatch system, ensuring freshness and quality throughout the supply chain.',
-    stat: { value: 'DOP', label: 'Printed on every egg' },
+    description: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DoP) to ensure quality and traceability. These eggs are then carefully collected, packed and distributed to global markets through a temperature-controlled cold chain dispatch system, ensuring freshness and quality throughout the supply chain.',
+    stat: { value: 'DoP', label: 'Printed on every egg' },
   },
 ];
 
