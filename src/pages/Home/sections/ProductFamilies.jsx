@@ -59,6 +59,7 @@ const families = [
   {
     id: 'custom',
     name: 'Customised and Speciality Solutions',
+    format: ['Easy to use'],
     // No format label - "Custom" just repeated the family name.
     description: 'Our customised product solutions are developed to meet evolving consumer demands and the rapidly changing requirements of the global food industry and household applications.',
     // No benefits/applications/storage field is genuinely shared across
@@ -76,6 +77,7 @@ const families = [
     // its own image and description instead of deriving them from product data.
     id: 'table-eggs',
     name: 'Table Eggs',
+    format: ['Hygenically packed'],
     image: TableEggImage,
     imageAlt: 'Brown table eggs in an egg tray',
     description: "Premium-quality eggs are carefully collected, precisely graded, and each pack is individually printed with a QR code to ensure product authenticity, quality, and traceability.",
