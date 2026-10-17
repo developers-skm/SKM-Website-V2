@@ -19,7 +19,7 @@ import { fadeUp, EASE_PREMIUM } from '../../../utils/motionTokens';
 // for why it's a separate component instead of an edit to the shared one).
 const branches = [
   { name: 'SKM Europe', tagline: 'Connecting Indian egg-based ingredients with the European food industry.', page: 'skm_europe' },
-  { name: 'SKM Russia', tagline: 'Establishing a trusted supply chain for Indian egg ingredients across Russia.', page: 'skm_russia' },
+  { name: 'SKM Russia', tagline: 'Establishing a reliable and trusted supply chain for high-quality Indian egg ingredients throughout Russia.', page: 'skm_russia' },
 ];
 
 function CountBig({ value }) {

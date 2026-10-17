@@ -369,7 +369,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
 // TETRA PACK"); "Cube" is the real Egg White Cube format
 // (EggWhiteCubePage.jsx). SKUs are the real packagingOptions values from
 // products.js (speciality_egg_liquids, egg_white_cube) - 250ML/500ML/1L
-// and 100g/250g/500g, not invented.
+// and 100g/200g/500g, not invented.
 const PACKAGING_FORMATS = [
   { id: 'bag-in-box', type: 'Powder', title: 'Bag in Box', subtitle: 'Corrugated Box', skus: ['25 Kg', '20 Kg', '10 Kg'] },
   { id: 'bag-in-bag', type: 'Powder', title: 'Bag in Bag', subtitle: 'Paper Bag', skus: ['20 Kg', '10 Kg'] },

@@ -115,7 +115,7 @@ const products = [
     image: EggWhiteCubeImg,
     category: PRODUCT_CATEGORIES.SPECIALITY,
     shortDescription: 'Cooked, diced egg white with zero cholesterol and high protein content, suitable for a wide range of applications, including salads, patties, cooked dishes, and ready-to-eat foods.',
-    packagingOptions: ['100g', '250g', '500g'],
+    packagingOptions: ['100g', '200g', '500g'],
   },
   {
     id: 'customized_mix',
