@@ -61,11 +61,11 @@ export const variantsData = [
   },
   {
     code: 'W1207',
-    name: 'Whole Egg Powder - High Color',
-    description: 'Deep yellow dried whole hen egg powder sourced from dedicated layer farms fed with natural carotenoids, yielding exceptional baked color.',
+    name: 'Whole Egg Powder - High Colour',
+    description: 'Deep yellow dried whole hen egg powder sourced from dedicated layer farms fed with natural carotenoids, yielding exceptional baked colour.',
     applications: 'Artisanal brioche, high-end pastries, premium ramen egg noodles, yellow cake sheets, and custard bases.',
-    benefits: 'Vibrant golden yellow visual color without additives; high natural emulsifying activity and excellent mouthfeel.',
-    specifications: { moisture: 'Max 4.0%', fat: 'Min 40.0%', protein: 'Min 45.0%', ph: '7.0 - 8.5', color: 'Deep Golden Color Index (Beta-carotene > 18 ppm)' }
+    benefits: 'Vibrant golden yellow visual colour without additives; high natural emulsifying activity and excellent mouthfeel.',
+    specifications: { moisture: 'Max 4.0%', fat: 'Min 40.0%', protein: 'Min 45.0%', ph: '7.0 - 8.5', color: 'Deep Golden Colour Index (Beta-carotene > 18 ppm)' }
   },
   {
     code: 'W1225',
@@ -136,7 +136,7 @@ const variantStaticFilters = [
 
 const applicationsData = [
   { name: 'Bakery Mix', image: BakeryMixImg, description: 'Provides consistent volume, structure, and crumb binding in standardized industrial premixes.' },
-  { name: 'Biscuits', image: BiscuitsImg, description: 'Enhances crispy textures, dough handling, and naturally imparts a golden, oven-baked surface color.' },
+  { name: 'Biscuits', image: BiscuitsImg, description: 'Enhances crispy textures, dough handling, and naturally imparts a golden, oven-baked surface colour.' },
   { name: 'Cakes', image: CakesImg, description: 'Acts as a natural foaming agent to produce high volume, airy sponge texture, and moist mouthfeel.' },
   { name: 'Dressings', image: DressingsImg, description: 'Emulsifies water and oil molecules to prevent layer separation in mayonnaise and salad dressings.' },
   { name: 'Omelette', image: OmeletteImg, description: 'Offers rapid preparation, easy handling, and absolute flavor uniformity in convenience kitchens.' },

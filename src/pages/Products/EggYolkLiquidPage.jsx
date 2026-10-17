@@ -13,7 +13,7 @@ export const variantsData = [
     description: 'Pasteurised chilled liquid hen egg yolk with high dry matter and rich natural fats, kept under temperature control to retain fresh functionality.',
     applications: 'Rich salad dressings, standard mayonnaise, premium cakes, custards, and ice cream.',
     benefits: 'Delivers outstanding emulsion capacity, fresh creaminess, and deep golden-yellow coloration.',
-    specifications: { moisture: '50.0% - 53.0%', protein: 'Min 15.0%', ph: '6.0 - 7.0', storage: 'Chilled (0°C to 4°C)', character: 'Native Emulsifying & Color Agent' }
+    specifications: { moisture: '50.0% - 53.0%', protein: 'Min 15.0%', ph: '6.0 - 7.0', storage: 'Chilled (0°C to 4°C)', character: 'Native Emulsifying & Colour Agent' }
   },
   {
     code: 'Y1002',
@@ -35,10 +35,10 @@ export const variantsData = [
   {
     code: 'Y1004',
     name: 'Chilled Egg Yolk Liquid - 11% Salt - High Colour',
-    description: 'Salted chilled liquid yolk sourced from carotenoid-rich hen feed, offering deep golden color parameters.',
+    description: 'Salted chilled liquid yolk sourced from carotenoid-rich hen feed, offering deep golden colour parameters.',
     applications: 'Golden yellow mayonnaise, premium rich dressings, brioches, and yellow pastries.',
     benefits: 'Provides a rich, natural golden colour without artificial dyes, while maintaining emulsion stability during thermal and shear processing.',
-    specifications: { moisture: '44.0% - 47.0%', protein: 'Min 13.0%', ph: '5.8 - 6.8', storage: 'Chilled (0°C to 4°C)', character: 'Salted High Color (Beta-carotene > 35 ppm)' }
+    specifications: { moisture: '44.0% - 47.0%', protein: 'Min 13.0%', ph: '5.8 - 6.8', storage: 'Chilled (0°C to 4°C)', character: 'Salted High Colour (Beta-carotene > 35 ppm)' }
   },
   {
     code: 'Y1008',
@@ -83,15 +83,15 @@ export const variantsData = [
   {
     code: 'Y1017',
     name: 'Frozen Egg Yolk Liquid - 10% Salt - Dark Colour',
-    description: 'Speciality frozen yolk liquid with 10% salt and enhanced dark color profile, offering visual rich appearance.',
+    description: 'Speciality frozen yolk liquid with 10% salt and enhanced dark colour profile, offering visual rich appearance.',
     applications: 'Rich golden mayonnaise, gold biscuits, yellow noodle pasta, and speciality baked goods.',
     benefits: 'Premium golden presentation without dyes; excellent emulsion stability.',
-    specifications: { moisture: '44.5% - 47.5%', protein: 'Min 13.5%', ph: '5.8 - 6.8', storage: 'Frozen (≤ -18°C)', character: 'Dark Golden Color & 10% Salt' }
+    specifications: { moisture: '44.5% - 47.5%', protein: 'Min 13.5%', ph: '5.8 - 6.8', storage: 'Frozen (≤ -18°C)', character: 'Dark Golden Colour & 10% Salt' }
   },
   {
     code: 'Y1018',
     name: 'Frozen Egg Yolk Liquid - 10% Salt - Dark Colour - Stabilized',
-    description: 'Enzymatically modified frozen yolk liquid containing 10% salt, dark color properties, and enhanced thermal tolerance.',
+    description: 'Enzymatically modified frozen yolk liquid containing 10% salt, dark colour properties, and enhanced thermal tolerance.',
     applications: 'Hot pasteurised premium mayonnaise, hot-filled dressings, and retorted savory food packages.',
     benefits: 'Provides excellent heat stability, a rich golden hue, and strong water-binding capacity.',
     specifications: { moisture: '44.5% - 47.5%', protein: 'Min 13.5%', ph: '5.8 - 6.8', storage: 'Frozen (≤ -18°C)', character: 'Heat-Stable modified base & 10% Salt' }
@@ -113,7 +113,7 @@ const variantNamesTable = [
 ];
 
 const applicationsData = [
-  { name: 'Bakery', image: BakeryImg, description: 'Provides rich emulsification, golden color, and creamy mouthfeel across bakery applications.' },
+  { name: 'Bakery', image: BakeryImg, description: 'Provides rich emulsification, golden colour, and creamy mouthfeel across bakery applications.' },
   { name: 'Cosmetics', image: CosmeticsImg, description: 'Natural lecithin-rich yolk liquid used as an emulsifier and conditioning agent in cosmetic formulations.' },
   { name: 'Ice Cream', image: IceCreamImg, description: 'Delivers smooth, creamy body and stable fat emulsification in premium ice cream production.' },
   { name: 'Mayonnaise', image: MayonnaiseImg, description: 'Creates stable, rich oil-in-water emulsions with consistent viscosity in mayonnaise.', recommendedVariantCodes: ['Y1002', 'Y1003'] }

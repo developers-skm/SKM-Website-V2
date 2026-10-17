@@ -38,7 +38,7 @@ const blocks = [
     id: 'zoning',
     eyebrow: 'Zoning & Hygiene Control',
     title: 'Contamination prevented by design.',
-    body: 'Strict zoning protocols, high risk and high care area separation, including color-coded identification, dedicated tools for each zone, mandatory sanitation procedures, and routine air-quality monitoring, help prevent cross-contamination.',
+    body: 'Strict zoning protocols, high risk and high care area separation, including colour-coded identification, dedicated tools for each zone, mandatory sanitation procedures, and routine air-quality monitoring, help prevent cross-contamination.',
     image: CIP,
   },
   {

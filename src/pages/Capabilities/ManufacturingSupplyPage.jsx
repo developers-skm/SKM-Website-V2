@@ -71,7 +71,7 @@ const PROCESSING_CAPABILITIES = [
   {
     id: 'hygiene-zoning',
     label: 'Hygiene zoning',
-    fact: 'Strict zoning protocols, high risk and high care area separation, including color-coded identification, dedicated tools for each zone, mandatory sanitation procedures, and routine air-quality monitoring, help prevent cross-contamination. Pathogen Environment Monitoring (PEM) is in place for ensuring Salmonella free processing facility.',
+    fact: 'Strict zoning protocols, high risk and high care area separation, including colour-coded identification, dedicated tools for each zone, mandatory sanitation procedures, and routine air-quality monitoring, help prevent cross-contamination. Pathogen Environment Monitoring (PEM) is in place for ensuring Salmonella free processing facility.',
   },
 ];
 

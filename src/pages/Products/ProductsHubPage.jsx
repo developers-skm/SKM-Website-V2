@@ -6,7 +6,6 @@ import ScrollFrameSequence from '../../components/common/ScrollFrameSequence';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 import products, { PRODUCT_CATEGORIES } from '../../data/products';
 import { getBrochureUrl } from '../../data/brochureUrl';
-import ProductComparisonSection from './ProductComparisonSection';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 import { EASE_PREMIUM, DURATION, fadeUp, cardRise } from '../../utils/motionTokens';
 
@@ -408,16 +407,12 @@ function ProductFinder({ onPageChange }) {
                 </div>
                 <span className="font-heading font-bold text-[16.5px] text-heading tracking-[-0.005em]">{product.title}</span>
                 <span className="font-body text-[13.5px] text-surface-500 leading-[1.55]">{product.shortDescription}</span>
-                <div className="flex items-center gap-4 mt-1 pt-1">
-                  <InternalLink
-                    route={product.page}
-                    onPageChange={onPageChange}
-                    className="inline-flex items-center gap-1 font-body font-semibold text-[13.5px] text-heading hover:text-gold-600 focus:outline-none focus-gold rounded-sm transition-colors duration-200"
-                  >
-                    View Product Details
-                    <span className="inline-block transition-transform duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[7px]" aria-hidden="true">→</span>
-                  </InternalLink>
-                </div>
+                <InternalLink
+                  route={product.page}
+                  onPageChange={onPageChange}
+                  aria-label={product.title}
+                  className="absolute inset-0 z-10 rounded-[14px] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
+                />
               </motion.div>
             ))}
           </AnimatePresence>
@@ -545,14 +540,14 @@ const manufacturingLines = [
     id: 'powder',
     route: 'powder_line',
     label: 'Powder Line',
-    description: 'See how fresh eggs become spray-dried egg powders - from biosecure farms to hygienic packaging.',
+    description: 'Discover how fresh eggs are transformed into premium-quality spray-dried egg powders, from biosecure poultry farms to hygienic processing and packaging.',
     cta: 'View Manufacturing Process',
   },
   {
     id: 'liquid',
     route: 'liquid_line',
     label: 'Liquid Line',
-    description: 'See how fresh eggs become pasteurised liquid egg products - from biosecure farms to hygienic packaging.',
+    description: 'Discover how fresh eggs are transformed into premium-quality pasteurised liquid egg products, from biosecure poultry farms to hygienic processing and packaging.',
     cta: 'View Manufacturing Process',
   },
 ];
@@ -632,7 +627,7 @@ function FunctionalRequirementSection({ onPageChange }) {
           {...fadeUp(reduceMotion, { duration: 0.8, distance: 24, delay: reduceMotion ? 0 : 0.13 })}
           className="font-body text-[15px] lg:text-[16px] text-surface-500 leading-[1.6] max-w-2xl m-0"
         >
-        Function-based product selection is available across key applications, including whipping, emulsification, gelling, color development, and more. Our technical team can identify and recommend the right product to meet your specific functional requirements.
+        Function-based product selection is available across key applications, including whipping, emulsification, gelling, colour development, and more. Our technical team can identify and recommend the right product to meet your specific functional requirements.
         </motion.p>
         <motion.div
           {...fadeUp(reduceMotion, { duration: 0.85, distance: 30, delay: reduceMotion ? 0 : 0.24 })}
@@ -885,7 +880,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
               <InternalLink
                 route="whole_egg_powder"
                 onPageChange={onPageChange}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] hover:shadow-[0_14px_30px_rgba(228,10,24,0.34)] active:translate-y-0 active:scale-[0.98] focus:outline-none focus-gold"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white text-white hover:bg-white/20 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] active:translate-y-0 active:scale-[0.98] focus:outline-none focus-gold"
               >
                 Browse Egg Powders
               </InternalLink>
@@ -901,7 +896,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
               <button
                 type="button"
                 onClick={() => scrollToSectionId('functional-requirement')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-white/40 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] hover:border-white/70 hover:-translate-y-[3px] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:translate-y-0 active:scale-[0.98] cursor-pointer focus:outline-none focus-gold"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white text-white hover:bg-white/20 font-heading font-bold text-[13px] uppercase tracking-[0.04em] hover:-translate-y-[3px] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:translate-y-0 active:scale-[0.98] cursor-pointer focus:outline-none focus-gold"
               >
                 Find by Function
               </button>
@@ -927,11 +922,6 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
 
         {/* Section 4 - Browse by functional requirement */}
         <FunctionalRequirementSection onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#fff" className="" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
-
-        {/* Section 5 - Product comparison */}
-        <ProductComparisonSection onPageChange={onPageChange} />
         <CurvedDivider bg="#fff" fill="#fff" className="" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 

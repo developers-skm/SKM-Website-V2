@@ -43,7 +43,7 @@ const proofs = [
     label: 'Customised product solutions',
     title: 'Application & Customisation Support',
     description: 'Customised Mixes · Customised Packaging – Tailored formulations and packaging solutions designed to meet the specific requirements of individual production lines.',
-    page: 'why_skm',
+    page: 'applications',
   },
   {
     number: '30',
@@ -51,7 +51,7 @@ const proofs = [
     label: 'Years of industry experience',
     title: 'Global Confidence Since 1997',
     description: 'Earning the confidence of global customers since 1997, with the capacity to process 2 million eggs per day.',
-    page: 'why_skm',
+    page: 'global_reach',
   },
 ];
 

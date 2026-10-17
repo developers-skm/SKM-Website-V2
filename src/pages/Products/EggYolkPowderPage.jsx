@@ -21,7 +21,7 @@ export const variantsData = [
       },
     },
     benefits: 'Emulsification and Stability: Helps prevent oil–water separation under shear conditions, while co-dried salt enhances egg yolk protein solubility and supports emulsion stability in paste applications.\n\nColour Enhancement: Provides a naturally rich, golden appearance without artificial colours, enhancing the premium visual appeal of the finished product.\n\nProtein Enrichment: Contributes high-quality egg proteins to the formulation, enhancing its nutritional value while supporting the desired texture and functional properties of the finished product.',
-    specifications: { moisture: 'Max 4.0%', fat: 'Min 56.0%', protein: 'Min 30.0%', ph: '6.0 - 7.0', character: 'Standard Emulsifying & Color Agent' }
+    specifications: { moisture: 'Max 4.0%', fat: 'Min 56.0%', protein: 'Min 30.0%', ph: '6.0 - 7.0', character: 'Standard Emulsifying & Colour Agent' }
   },
   {
     code: 'Y1104',
@@ -38,16 +38,16 @@ export const variantsData = [
     description: 'Standard-grade spray-dried egg yolk powder optimized for bulk bakery batters, dry premixes, and industrial food applications.',
     applications: 'Industrial cake premixes, cookies, biscuit doughs, instant sauce powders, and bread coatings.',
     heroBenefit: 'Protein Enrichment - Prevents oil–water separation under shear, while co-dried salt enhances yolk protein solubility and stability for paste applications.',
-    benefits: 'Uniform fat dispersion in flour, standardized baking volume, and consistent color indexing in finished goods.',
+    benefits: 'Uniform fat dispersion in flour, standardized baking volume, and consistent colour indexing in finished goods.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 56.0%', protein: 'Min 30.0%', ph: '6.0 - 7.0', character: 'Standard Industrial Baking Grade' }
   },
   {
     code: 'Y1107',
-    name: 'Egg Yolk Powder High Color',
-    description: 'Pasteurised spray-dried hen egg yolk powder with deep golden-yellow color values derived from hens fed carotenoid-rich natural diets.',
+    name: 'Egg Yolk Powder High Colour',
+    description: 'Pasteurised spray-dried hen egg yolk powder with deep golden-yellow colour values derived from hens fed carotenoid-rich natural diets.',
     applications: 'Premium golden croissants, custard creams, sweet brioche breads, yellow egg noodles, and artisanal cakes.',
-    benefits: 'Imparts rich golden visual appeal naturally without artificial colors; enhances appearance premiumness.',
-    specifications: { moisture: 'Max 4.0%', fat: 'Min 56.0%', protein: 'Min 30.0%', ph: '6.0 - 7.0', character: 'Deep Golden Color Index (Beta-carotene > 40 ppm)' }
+    benefits: 'Imparts rich golden visual appeal naturally without artificial colours; enhances appearance premiumness.',
+    specifications: { moisture: 'Max 4.0%', fat: 'Min 56.0%', protein: 'Min 30.0%', ph: '6.0 - 7.0', character: 'Deep Golden Colour Index (Beta-carotene > 40 ppm)' }
   },
   {
     code: 'Y1225',
@@ -67,11 +67,11 @@ const variantNamesTable = [
 ];
 
 const applicationsData = [
-  { name: 'Croissant', image: CroissantImg, description: 'Delivers rich golden color, buttery lamination support, and deep egg flavor in premium croissants.' },
+  { name: 'Croissant', image: CroissantImg, description: 'Delivers rich golden colour, buttery lamination support, and deep egg flavor in premium croissants.' },
   { name: 'Ice Cream', image: IceCreamImg, description: 'Emulsifies fat and water phases to produce smooth, creamy, and stable ice cream textures.' },
   { name: 'Mayonnaise', image: MayonnaiseImg, description: 'Creates stable oil-in-water emulsions with rich mouthfeel and consistent viscosity in mayonnaise.' },
-  { name: 'Spanish Bread', image: SpanishBreadImg, description: 'Adds richness, golden crumb color, and soft texture in sweet enriched bread formulations.' },
-  { name: 'Doughnuts', image: DoughnutsImg, description: 'Provides golden fry color, soft crumb structure, and rich taste in fried doughnut products.' }
+  { name: 'Spanish Bread', image: SpanishBreadImg, description: 'Adds richness, golden crumb colour, and soft texture in sweet enriched bread formulations.' },
+  { name: 'Doughnuts', image: DoughnutsImg, description: 'Provides golden fry colour, soft crumb structure, and rich taste in fried doughnut products.' }
 ];
 
 export default function EggYolkPowderPage({ onPageChange }) {
@@ -79,8 +79,8 @@ export default function EggYolkPowderPage({ onPageChange }) {
     <ProductPage
       seo={{
         title: 'Egg Yolk Powder | Dried Egg Yolk Manufacturer & Bulk Supplier',
-        description: "SKM's premium spray-dried hen egg yolk powder for bakery, mayonnaise & food applications. 5 product variants - high color, standard, low-fat. Pasteurised, BRCGS & Halal certified. Bulk exporter from India.",
-        keywords: 'egg yolk powder, dried egg yolk, spray dried yolk, egg yolk powder manufacturer, egg yolk powder supplier India, egg yolk powder bulk, buy egg yolk powder, egg yolk powder mayonnaise, egg yolk powder bakery, pasteurised egg yolk powder, high color egg yolk, egg yolk powder exporter, egg yolk powder food industry',
+        description: "SKM's premium spray-dried hen egg yolk powder for bakery, mayonnaise & food applications. 5 product variants - high colour, standard, low-fat. Pasteurised, BRCGS & Halal certified. Bulk exporter from India.",
+        keywords: 'egg yolk powder, dried egg yolk, spray dried yolk, egg yolk powder manufacturer, egg yolk powder supplier India, egg yolk powder bulk, buy egg yolk powder, egg yolk powder mayonnaise, egg yolk powder bakery, pasteurised egg yolk powder, high colour egg yolk, egg yolk powder exporter, egg yolk powder food industry',
         canonical: 'https://www.skmegg.com/egg_yolk_powder',
         jsonLd: {
           '@context': 'https://schema.org', '@type': 'Product',
