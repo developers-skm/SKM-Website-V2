@@ -30,7 +30,9 @@ export default function ApplicationGallery({ applicationsData, productName }) {
           <ApplicationTile
             app={featured}
             reduceMotion={reduceMotion}
-            className="sm:col-span-2 lg:col-span-2 lg:row-span-2 aspect-[4/3] lg:aspect-auto"
+            className={supporting.length === 0
+              ? "sm:col-span-2 lg:col-span-2 aspect-[16/9]"
+              : "sm:col-span-2 lg:col-span-2 lg:row-span-2 aspect-[4/3] lg:aspect-auto"}
           />
         )}
         {supporting.map((app, index) => (

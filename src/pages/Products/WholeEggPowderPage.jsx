@@ -127,7 +127,7 @@ const variantNamesTable = [
 
 // Display-only labels shown beside the variant table (not clickable).
 const variantStaticFilters = [
-  { axis: 'Function', options: ['Free flow', 'Emulsification', 'Gelling'] },
+  { axis: 'Function', options: ['Free flow', 'Binding', 'Texture'] },
   { axis: 'Processing treatment', options: ['De-Sugared', 'Enriched'] },
   { axis: 'Salt or sugar level', options: ['Sugared'] },
   { axis: 'Colour', options: ['High Colour'] },

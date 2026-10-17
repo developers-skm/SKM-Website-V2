@@ -59,7 +59,7 @@ export default function VariantExplorer({ variantsData, variantNamesTable = [], 
             Variant Specifications
           </h2>
           <p className="font-body text-[17px] text-surface-600 leading-[1.7] m-0">
-            {variantsSectionSubtitle ?? `Search or compare our  ${productName}  variants to find the product that best meets your specific requirements.`}
+            {variantsSectionSubtitle ?? `Explore our ${productName}  variants to find the product that best meets your specific requirements.`}
           </p>
           {filters.length > 0 && (
             <div className="flex flex-col gap-3">

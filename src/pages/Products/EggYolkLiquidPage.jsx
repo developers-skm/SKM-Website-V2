@@ -28,7 +28,7 @@ export const variantsData = [
     name: 'Chilled Egg Yolk Liquid - 14% Salt',
     description: 'Pasteurised liquid hen egg yolk with 14% salt content, held under chilled storage. Highly stable against microbial growth.',
     applications: 'Bulk savory sauce preparation, highly salted mayonnaise, salad dressings.',
-    heroBenefits: ['Delivers outstanding emulsion capacity', 'Salt helps maintain emulsion stability during processing', 'Extended shelf life & enhanced emulsification'],
+    heroBenefits: ['Delivers outstanding emulsion capacity', 'Salt helps maintain emulsion stability during processing'],
     benefits: 'Extra-long chilled shelf life and enhanced emulsification strength under salty environments.',
     specifications: { moisture: '42.0% - 45.0%', protein: 'Min 12.0%', ph: '5.8 - 6.8', storage: 'Chilled (0°C to 4°C)', character: 'Salt Content: 14.0% (±0.5%)' }
   },
@@ -110,6 +110,7 @@ const variantNamesTable = [
   'Egg Yolk Liquid (Chilled)',
   'Egg Yolk Liquid - salted (Chilled / Frozen)',
   'Egg Yolk Liquid - High colour (Chilled / Frozen)',
+  'Egg Yolk Liquid - Salt - Stabilized - (Chilled / Frozen)',
 ];
 
 const applicationsData = [

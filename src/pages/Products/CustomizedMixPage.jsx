@@ -96,12 +96,13 @@ export default function CustomizedMixPage({ onPageChange }) {
         categoryLabel: 'Customised Mixes Range',
         titleLine1: 'Customised',
         titleLine2: 'Mix',
-        description: 'Bakery & Mayonnaise Mix - Custom blends tailored for specific food applications. Our specialized egg powder formulations are engineered to deliver precision performance in heat-intensive processing environments.',
-        applicationTags: ['Bakery Mix', 'Egg White Protein drink mix']
+        description: 'Bakery & Mayonnaise Mix - Custom blends tailored for specific food applications. Our specialised egg powder formulations are engineered to deliver precision performance in heat-intensive processing environments.',
+        applicationTags: ['Bakery Mix', 'Mayonnaise Mix']
       }}
         variantsData={variantsData}
         variantNamesTable={variantNamesTable}
         variantStaticFilters={variantStaticFilters}
+        packTypesText="10kg, 20kg, 25kg, Bag-in-Box, Bag-in-Bag"
         visibleTraits={['emulsification', 'binding']}
         extraDocuments={extraDocuments}
         applicationsData={applicationsData}

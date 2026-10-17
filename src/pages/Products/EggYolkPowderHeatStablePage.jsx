@@ -63,6 +63,18 @@ export const variantsData = [
   }
 ];
 
+const variantNamesTable = [
+  'Egg Yolk Powder Heat Stable',
+  'Egg Yolk Powder Heat Stable - Free Flow',
+];
+
+// Display-only labels shown beside the variant table (not clickable).
+const variantStaticFilters = [
+  { axis: 'Function', options: ['Emulsification'] },
+  { axis: 'Colour', options: ['Standard colour'] },
+  { axis: 'Packaging', options: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'] },
+];
+
 const applicationsData = [
   { name: 'Mayonnaise', image: MayonnaiseImg, description: 'Delivers heat-stable emulsification to prevent oil-water separation in pasteurised mayonnaise production.' },
   { name: 'Dressings', image: DressingsImg, description: 'Maintains stable creamy emulsions in salad dressings even under high-shear and thermal processing.' },
@@ -95,10 +107,13 @@ export default function EggYolkPowderHeatStablePage({ onPageChange }) {
         categoryLabel: 'Egg Powders Range',
         titleLine1: 'Egg Yolk Powder',
         titleLine2: '- Heat Stable',
-        description: 'Pasteurised Dried Hen Egg Yolk Powder for mayonnaise & food applications. Stabilized for oil emulsification during heat application.',
+        description: 'Pasteurised Dried Hen Egg Yolk Powder - Heat Stable for mayonnaise & food applications. Stabilized for oil emulsification during heat application.',
         primaryBadge: 'Modified Hen Egg Yolk Product'
       }}
       variantsData={variantsData}
+      variantNamesTable={variantNamesTable}
+      variantStaticFilters={variantStaticFilters}
+      visibleTraits={['emulsification', 'colour']}
       applicationsData={applicationsData}
       productName="Egg Yolk Powder Heat Stable"
       productId="egg_yolk_powder_heat_stable"

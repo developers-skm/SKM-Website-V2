@@ -28,7 +28,7 @@ export default function PowderLinePage({ onPageChange }) {
           </InternalLink>
         </div>
         <TraceabilityLoopJourney
-          title="How Egg Powder Is Made"
+          title="How Egg Powder is Made"
           subtitle="Feed-to-Food Traceability - From Biosecure Farms to Hygienic Packaging & Global Dispatch"
           onPageChange={onPageChange}
           showQuality={false}

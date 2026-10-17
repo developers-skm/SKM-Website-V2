@@ -64,7 +64,8 @@ const variantNamesTable = [
 
 // Display-only labels shown beside the variant table (not clickable).
 const variantStaticFilters = [
-  { axis: 'Various Ingredients', options: ['Salted', 'Sugared', 'Enriched'] },
+  { axis: 'Function', options: ['Binding', 'Texture'] },
+  { axis: 'Various Ingredients', options: ['Sugared', 'Enriched'] },
   { axis: 'Chilled or frozen', options: ['Chilled', 'Frozen'] },
   { axis: 'Packaging', options: ['1kg', '5kg', '10kg', '20kg'] },
 ];

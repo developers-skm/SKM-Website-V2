@@ -12,6 +12,13 @@ export const variantsData = [
     name: 'Chilled Egg Albumen Liquid',
     description: 'Freshly separated hen egg white liquid, pasteurised and maintained under strict chilled conditions to preserve the native protein structure and natural binding strength.',
     applications: 'Egg noodles, bakery crust glazing, surimi seafood, and structural binders in processed meat/fish products.',
+    performanceOverrides: {
+      gelling: {
+        label: 'Foaming',
+        code: 'A1002',
+        text: 'Enhances aeration, volume, and texture in bakery and confectionery applications such as sponge cakes, meringues, and mousses.',
+      },
+    },
     benefits: 'Uncompromised fresh coagulating strength, smooth pumpable handling, and absolutely clean flavor profile.',
     specifications: { moisture: '87.0% - 89.0%', protein: 'Min 10.0%', ph: '8.5 - 9.5', storage: 'Chilled (0°C to 4°C)', character: 'Native Unmodified Binding Matrix' }
   },
@@ -41,7 +48,7 @@ const variantNamesTable = [
 
 // Display-only labels shown beside the variant table (not clickable).
 const variantStaticFilters = [
-  { axis: 'Function', options: ['Whipping and foaming', 'Gelling'] },
+  { axis: 'Function', options: ['Whipping', 'Foaming'] },
   { axis: 'Chilled or frozen', options: ['Chilled', 'Frozen'] },
   { axis: 'Packaging', options: ['1kg', '5kg', '10kg', '20kg'] },
 ];

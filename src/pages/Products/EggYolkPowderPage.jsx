@@ -19,6 +19,10 @@ export const variantsData = [
         code: 'Y1101',
         text: 'Emulsification and Stability: Helps prevent oil–water separation under shear conditions, while co-dried salt enhances egg yolk protein solubility and supports emulsion stability in pasta applications.',
       },
+      colour: {
+        code: 'Y1107',
+        text: 'Provides natural colour and a creamy, thick texture while maintaining emulsion stability.',
+      },
     },
     benefits: 'Emulsification and Stability: Helps prevent oil–water separation under shear conditions, while co-dried salt enhances egg yolk protein solubility and supports emulsion stability in paste applications.\n\nColour Enhancement: Provides a naturally rich, golden appearance without artificial colours, enhancing the premium visual appeal of the finished product.\n\nProtein Enrichment: Contributes high-quality egg proteins to the formulation, enhancing its nutritional value while supporting the desired texture and functional properties of the finished product.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 56.0%', protein: 'Min 30.0%', ph: '6.0 - 7.0', character: 'Standard Emulsifying & Colour Agent' }
@@ -61,7 +65,6 @@ export const variantsData = [
 
 const variantNamesTable = [
   'Egg Yolk Powder - Standard',
-  'Egg Yolk Powder - Heat Stable',
   'Egg Yolk Powder - High Colour',
   'Egg Yolk Powder - Free flow',
 ];
@@ -103,7 +106,7 @@ export default function EggYolkPowderPage({ onPageChange }) {
       }}
       variantsData={variantsData}
       variantNamesTable={variantNamesTable}
-      visibleTraits={['emulsification']}
+      visibleTraits={['emulsification', 'colour']}
       applicationsData={applicationsData}
       productName="Egg Yolk Powder"
       productId="egg_yolk_powder"
