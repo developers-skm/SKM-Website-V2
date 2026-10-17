@@ -454,7 +454,7 @@ function PackagingCapabilitiesSection({ onPageChange }) {
   );
 }
 
-// Section 7 (Logistics and supply continuity): Cold-chain capability,
+// Section 7 (Dispatch and supply continuity): Cold-chain capability,
 // Warehousing, and Regional support each have real, distinct facts
 // (chilled 0–4°C / frozen ≤-18°C storage plus cold room/frozen storage at
 // the plant; real warehousing language from all 3 branch pages; dedicated
@@ -464,13 +464,13 @@ function PackagingCapabilitiesSection({ onPageChange }) {
 // countries served via dedicated regional branches coordinating import,
 // warehousing, and compliance) rather than inventing a specific
 // documentation or planning process that isn't real. "Discuss Export
-// Supply" and "Contact Logistics Team" both route to the real Contact Us
+// Supply" and "Contact Dispatch Team" both route to the real Contact Us
 // page - no separate logistics-specific contact channel exists.
 const LOGISTICS_TOPICS = [
   {
     id: 'export-documentation',
     label: 'Export documentation',
-    fact: 'Our dedicated logistics team efficiently manages export documentation and coordinates end-to-end supply chain operations to ensure seamless and timely deliveries to our global customers.',
+    fact: 'Our dedicated dispatch team efficiently manages export documentation and coordinates end-to-end supply chain operations to ensure seamless and timely deliveries to our global customers.',
   },
   {
     id: 'cold-chain-capability',
@@ -513,9 +513,9 @@ function LogisticsSection({ onPageChange }) {
           transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
           className="flex flex-col gap-4 max-w-2xl"
         >
-          <span className="section-label">Logistics and supply continuity</span>
+          <span className="section-label">Dispatch and supply continuity</span>
           <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Logistics and supply continuity
+            Dispatch and supply continuity
           </h2>
         </motion.div>
 
@@ -553,7 +553,7 @@ function LogisticsSection({ onPageChange }) {
             onPageChange={onPageChange}
             className={BTN_SECONDARY}
           >
-            Contact Logistics Team
+            Contact Dispatch Team
           </InternalLink>
         </div>
 
@@ -614,7 +614,7 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'Manufacturing and Supply | SKM Egg Products',
-        description: 'Production scale, supply consistency, packaging, and logistics behind SKM Egg Products - 2 million eggs processed daily, 2.4 million layers, exporting to 30+ countries.',
+        description: 'Production scale, supply consistency, packaging, and dispatch behind SKM Egg Products - 2 million eggs processed daily, 2.4 million layers, exporting to 30+ countries.',
         keywords: 'egg powder manufacturing capacity, egg processing plant scale, egg product supply chain, bulk egg powder supplier, egg product export capacity',
         canonical: 'https://www.skmegg.com/manufacturing_and_supply',
       }}
@@ -636,7 +636,7 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
                 Manufacturing and Supply
               </h1>
               <p className="font-body text-[16px] sm:text-[17px] text-surface-600 leading-[1.7] m-0 mt-4 max-w-2xl">
-                International buyers need confidence not only in product quality, but also in production scale, supply consistency, packaging, and logistics.
+                International buyers need confidence not only in product quality, but also in production scale, supply consistency, packaging, and dispatch.
               </p>
             </motion.div>
 
@@ -711,7 +711,7 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
         {/* Section 6 - Packaging capabilities */}
         <PackagingCapabilitiesSection onPageChange={onPageChange} />
 
-        {/* Section 7 - Logistics and supply continuity */}
+        {/* Section 7 - Dispatch and supply continuity */}
         <LogisticsSection onPageChange={onPageChange} />
 
         {/* Section 8 - Final CTA */}

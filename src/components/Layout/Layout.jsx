@@ -21,7 +21,7 @@ export default function Layout({ children, activePage, onPageChange, suppressMob
   // Product pages get that product's TDS; every other page offers the portfolio.
   const cartProductId = getProductIdByPage(activePage);
   const cartDownload = cartProductId
-    ? { url: getTdsUrl(cartProductId), label: 'Download TDS' }
+    ? { url: getTdsUrl(cartProductId), label: 'Download Product Detail' }
     : { url: ProductListPdf, label: 'Download Product Portfolio' };
 
   useEffect(() => {

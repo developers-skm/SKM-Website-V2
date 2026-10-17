@@ -18,27 +18,27 @@ const brochureMeta = {
     featured: true,
   },
   'SKM BAKERY MIX A5 FLYER (F-B).pdf': {
-    category: 'Product Flyer',
+    category: 'Product Detail',
     title: 'Bakery Mix',
-    desc: "Technical flyer covering SKM's specialized bakery egg mix - composition, functional benefits, and applications in the F&B industry.",
+    desc: "Product detail covering SKM's specialized bakery egg mix - composition, functional benefits, and applications in the F&B industry.",
     featured: false,
   },
   'SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf': {
-    category: 'Product Flyer',
+    category: 'Product Detail',
     title: 'Egg Albumen Powder',
-    desc: 'Detailed specification sheet for SKM Egg Albumen Powder - ideal for confectionery, sports nutrition, and meat processing.',
+    desc: 'Product detail for SKM Egg Albumen Powder - ideal for confectionery, sports nutrition, and meat processing.',
     featured: false,
   },
   'SKM EGG YOLK POWDER A5 FLYER (F-B).pdf': {
-    category: 'Product Flyer',
+    category: 'Product Detail',
     title: 'Egg Yolk Powder',
-    desc: 'Product flyer for SKM Egg Yolk Powder covering emulsification properties, composition, and key food industry applications.',
+    desc: 'Product detail for SKM Egg Yolk Powder covering emulsification properties, composition, and key food industry applications.',
     featured: false,
   },
   'SKM WHOLE EGG POWDER A5 FLYER (F-B).pdf': {
-    category: 'Product Flyer',
+    category: 'Product Detail',
     title: 'Whole Egg Powder',
-    desc: 'Specification flyer for SKM Whole Egg Powder - versatile, shelf-stable solution for bakeries, sauces, and ready meal manufacturers.',
+    desc: 'Product detail for SKM Whole Egg Powder - versatile, shelf-stable solution for bakeries, sauces, and ready meal manufacturers.',
     featured: false,
   },
 };
@@ -58,11 +58,11 @@ const containerVariants = makeContainerVariants(0.1);
 const itemVariants = makeItemVariants({ y: 22 });
 
 function CategoryBadge({ label }) {
-  const isFlyer = label === 'Product Flyer';
+  const isProductDetail = label === 'Product Detail';
   return (
     <span
       className={`inline-flex items-center font-body text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full ${
-        isFlyer
+        isProductDetail
           ? 'text-brand-600 bg-brand-600/8 border border-brand-600/15'
           : 'text-surface-600 bg-surface-100 border border-surface-200'
       }`}
@@ -138,8 +138,8 @@ export default function BrochurePage({ onPageChange }) {
     <div className="w-full flex flex-col">
       <SEO
         title="Brochures & Downloads | SKM Egg Products"
-        description="Download SKM Egg Products brochures - company profile, full product list, and individual product flyers for egg powder and liquid solutions."
-        keywords="SKM brochure, egg products PDF, company profile download, product flyer, egg powder catalog"
+        description="Download SKM Egg Products brochures - company profile, full product list, and individual product details for egg powder and liquid solutions."
+        keywords="SKM brochure, egg products PDF, company profile download, product detail, egg powder catalog"
       />
       <div className="w-full bg-page pt-[110px] pb-[90px] sm:pt-[130px] lg:pt-[120px] lg:pb-[120px] overflow-hidden">
         <motion.section
@@ -164,7 +164,7 @@ export default function BrochurePage({ onPageChange }) {
               Downloads
             </motion.h2>
             <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 max-w-2xl leading-[30px] m-0">
-              View and download our corporate documents and product flyers to learn more about SKM's capabilities, certifications, and premium egg solutions.
+              View and download our corporate documents and product details to learn more about SKM's capabilities, certifications, and premium egg solutions.
             </motion.p>
           </div>
 
@@ -192,7 +192,7 @@ export default function BrochurePage({ onPageChange }) {
               <motion.div variants={itemVariants} className="flex items-center gap-4">
                 <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-brand-600" aria-hidden="true" />
                 <h3 className="font-heading font-bold text-[13px] uppercase tracking-widest text-surface-500 m-0">
-                  Product Flyers
+                  Product Details
                 </h3>
                 <div className="flex-1 h-px bg-gradient-to-r from-surface-200 to-transparent" />
               </motion.div>

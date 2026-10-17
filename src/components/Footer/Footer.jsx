@@ -100,7 +100,7 @@ export default function Footer({ onPageChange }) {
               <div
                 key={cert.name}
                 title={cert.name}
-                className="w-20 h-20 sm:w-22 sm:h-22 md:w-24 md:h-24 rounded-[10px] hover:rounded-none overflow-hidden border border-[#eee] bg-surface-50 hover:border-brand-600/30 hover:bg-white flex items-center justify-center p-2.5 transition-all duration-500 group"
+                className="w-20 h-20 sm:w-22 sm:h-22 md:w-24 md:h-24 flex items-center justify-center group"
               >
                 <img
                   src={cert.logo}

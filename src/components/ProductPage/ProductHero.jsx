@@ -4,7 +4,7 @@
 // its own boxed panel. All copy renders directly on top of the photo.
 //
 // Three CTAs above the fold per the product-detail-page brief: primary
-// "Request a Sample", secondary "Download Technical Data Sheet" (only
+// "Request a Sample", secondary "Download Product Detail" (only
 // rendered when a real per-product PDF exists - see data/products.js —
 // never a fabricated document link), and a text-only "Request Pricing".
 // Both sample and pricing route to the same real get-quote flow with
@@ -175,7 +175,7 @@ export default function ProductHero({
                 className="self-start inline-flex items-center justify-center gap-2.5 min-h-[44px] bg-white/10 backdrop-blur-sm text-white font-heading font-bold text-[13.5px] uppercase tracking-[0.05em] leading-none px-8 py-[18px] rounded-[200px] border border-white/40 hover:border-white/70 hover:bg-white/15 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-gold"
                 style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
               >
-                Download Technical Data Sheet
+                Download Product Detail
               </a>
             )}
             <button

@@ -64,7 +64,7 @@ const journeyStages = [
     label: 'Egg Export',
     image: EggExportImg,
     tagline: 'Graded, marked and shipped fresh.',
-    description: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DOP) to ensure quality and traceability. These eggs are then carefully collected, packed, and distributed to global markets through a temperature-controlled cold chain logistics system, ensuring freshness and quality throughout the supply chain.',
+    description: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DOP) to ensure quality and traceability. These eggs are then carefully collected, packed, and distributed to global markets through a temperature-controlled cold chain dispatch system, ensuring freshness and quality throughout the supply chain.',
     stat: { value: 'DOP', label: 'Printed on every egg' },
   },
 ];

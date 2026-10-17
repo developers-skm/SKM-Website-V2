@@ -730,7 +730,7 @@ function TechnicalResourcesSection({ onPageChange }) {
           Technical resources
         </h2>
         <p className="font-body text-[15px] lg:text-[16px] text-surface-500 max-w-2xl m-0">
-         Explore our product flyers, complete product portfolio, and company profile to discover more about our products and capabilities.
+         Explore our product details, complete product portfolio, and company profile to discover more about our products and capabilities.
         </p>
         <div className="flex flex-wrap items-center gap-4 mt-1">
           <InternalLink

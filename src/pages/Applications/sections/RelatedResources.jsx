@@ -60,7 +60,7 @@ export default function RelatedResources({ matchedProducts, onPageChange }) {
                   </span>
                   <div className="flex flex-col min-w-0">
                     <span className="font-body text-[10.5px] font-bold uppercase tracking-wider text-surface-400">
-                      Product Flyer
+                      Product Detail
                     </span>
                     <span className="font-heading font-semibold text-[14.5px] text-heading truncate">
                       {product.title}

@@ -400,25 +400,25 @@ const brochureMeta = {
     featured: true,
   },
   'SKM BAKERY MIX A5 FLYER (F-B).pdf': {
-    category: 'Product Flyer',
+    category: 'Product Detail',
     title: 'Bakery Mix Product Details',
-    desc: 'Technical overview covering SKM specialized bakery egg mixes, functional whipping performance, and dosage recommendations.',
+    desc: 'Product detail covering SKM specialized bakery egg mixes, functional whipping performance, and dosage recommendations.',
     featured: false,
   },
   'SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf': {
-    category: 'Product Flyer',
+    category: 'Product Detail',
     title: 'Egg Albumen Powder Product Details',
-    desc: 'Specification guide for high-gel and high-whip Egg Albumen Powder - ideal for confectionery, meat binders, and sports nutrition.',
+    desc: 'Product detail for high-gel and high-whip Egg Albumen Powder - ideal for confectionery, meat binders, and sports nutrition.',
     featured: false,
   },
   'SKM EGG YOLK POWDER A5 FLYER (F-B).pdf': {
-    category: 'Product Flyer',
+    category: 'Product Detail',
     title: 'Egg Yolk Powder Product Details',
-    desc: 'Product flyer detailing emulsification capacity, fat content, heat stability, and applications in mayonnaise and sauces.',
+    desc: 'Product detail covering emulsification capacity, fat content, heat stability, and applications in mayonnaise and sauces.',
     featured: false,
   },
   'SKM WHOLE EGG POWDER A5 FLYER (F-B).pdf': {
-    category: 'Product Flyer',
+    category: 'Product Detail',
     title: 'Whole Egg Powder Product Details',
     desc: 'Product details for Whole Egg Powder - shelf-stable, pasteurized whole egg replacement for bakeries and commercial food manufacturing.',
     featured: false,
@@ -472,7 +472,7 @@ function BrochuresApplicationGuidesSection() {
             >
               <div className="flex flex-col gap-3">
                 <span className={`self-start font-body text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-lg ${
-                  entry.category === 'Product Flyer'
+                  entry.category === 'Product Detail'
                     ? 'text-brand-600 bg-brand-500/10 border border-brand-500/20'
                     : 'text-emerald-700 bg-emerald-500/10 border border-emerald-500/20'
                 }`}>
@@ -815,8 +815,8 @@ export default function ResourcesPage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'Resources & Technical Downloads | SKM Egg Products',
-        description: 'Access laboratory-verified technical data sheets, global quality certifications, product brochures, and application guides.',
-        keywords: 'SKM egg products brochure, egg powder technical data sheet, egg product certifications download, SKM CSR, egg products quality specification',
+        description: 'Access laboratory-verified product details, global quality certifications, product brochures, and application guides.',
+        keywords: 'SKM egg products brochure, egg powder product detail, egg product certifications download, SKM CSR, egg products quality specification',
         canonical: 'https://www.skmegg.com/resources',
       }}
       onPageChange={onPageChange}
@@ -868,7 +868,7 @@ export default function ResourcesPage({ onPageChange }) {
                 transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.15 }}
                 className="font-body text-[16px] sm:text-[18px] text-surface-600 max-w-2xl m-0 leading-relaxed"
               >
-                Search, inspect, and download official technical data sheets (TDS), global quality certifications, product brochures, and regulatory guidelines.
+                Search, inspect, and download official product details, global quality certifications, product brochures, and regulatory guidelines.
               </motion.p>
 
               {/* Luxury Search Bar */}
@@ -890,7 +890,7 @@ export default function ResourcesPage({ onPageChange }) {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search product specifications, TDS, certificates, brochures or FAQ..."
+                    placeholder="Search product details, certificates, brochures or FAQ..."
                     aria-label="Search resources"
                     className="w-full min-h-[56px] pl-14 pr-24 py-4 rounded-2xl border border-surface-200/90 bg-white/90 backdrop-blur-xl font-body text-[15px] text-heading placeholder:text-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all shadow-inner"
                   />

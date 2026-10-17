@@ -19,7 +19,7 @@ export default function ProductDocuments({ tdsUrl, productName, extraDocuments =
   const reduceMotion = useReducedMotion();
   const [confirmedUrl, setConfirmedUrl] = useState(null);
   const documents = [
-    tdsUrl && { label: `${productName} - Technical Data Sheet`, url: tdsUrl },
+    tdsUrl && { label: `${productName} - Product Detail`, url: tdsUrl },
     ...extraDocuments,
     { label: 'Company Profile', url: companyProfilePdf },
     { label: 'Full Product List', url: productListPdf },

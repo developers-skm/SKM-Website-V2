@@ -47,7 +47,7 @@ export default function PackagingLogistics({ packagingOptions, packTypesText, va
       <div className="flex flex-col gap-4 max-w-2xl">
         <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600">
           <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
-          Logistics
+          Dispatch
         </span>
         <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
           Packaging &amp; Dispatch

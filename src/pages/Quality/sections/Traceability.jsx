@@ -194,7 +194,7 @@ export default function Traceability({ onPageChange }) {
               </div>
             </div>
 
-            {/* Right: Logistics & HACCP */}
+            {/* Right: Dispatch & HACCP */}
             <div className="flex flex-col gap-6">
               {/* Packaging */}
               <div className="flex gap-4 items-start">
@@ -205,7 +205,7 @@ export default function Traceability({ onPageChange }) {
                 </div>
                 <div className="flex flex-col gap-1">
                   <h5 className="text-sm font-bold text-surface-850 m-0">
-                    Logistics &amp; Packaging
+                    Packaging &amp; Dispatch
                   </h5>
                   <p className="text-xs text-surface-500 leading-relaxed m-0 font-body">
                     Packaging details and delivery destinations are digitally recorded to ensure complete supply chain transparency.

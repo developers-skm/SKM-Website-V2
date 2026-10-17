@@ -173,7 +173,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
               transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
               className="text-base sm:text-lg text-surface-500 leading-relaxed max-w-2xl m-0 font-medium"
             >
-              Customized packages of the products tailored for hassle-free use as per the industrial requirements. From small retail SKUs to bulk IBC pallet containers - every format is engineered for food-grade safety and logistics efficiency.
+              Customized packages of the products tailored for hassle-free use as per the industrial requirements. From small retail SKUs to bulk IBC pallet containers - every format is engineered for food-grade safety and dispatch efficiency.
             </motion.p>
           </div>
         </motion.div>
