@@ -7,7 +7,6 @@ import InternalLink from '../../components/common/InternalLink';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 import { containerVariants, itemVariants } from '../../utils/animationVariants';
 import exportMarkets from '../../data/exportMarkets';
-import certifications from '../../data/certifications';
 import applications from '../../data/applications';
 
 // Section 3 - Regional offices. Combines the 3 real branches (Japan,
@@ -58,7 +57,7 @@ function regionForMarket(marketName) {
   return null;
 }
 
-const ALL_CERT_NAMES = certifications.map((c) => c.name).join(', ');
+const ALL_CERT_NAMES = 'FSSAI, Export Inspection Council, BRCGS, ISO 22000, ISO 17025, Halal (JUHF & BPJPH) and Kosher';
 const DELIVERY_FORMATS = 'Powder (bag-in-box, paper bag), chilled liquid, frozen liquid, and bulk IBC (Pallecon) formats.';
 
 function MarketMapDetailSection({ onPageChange }) {

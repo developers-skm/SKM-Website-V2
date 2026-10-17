@@ -26,6 +26,13 @@ const iconProps = {
   'aria-hidden': true,
 };
 
+const blockchainParagraphs = [
+  'At SKM, every pack of premium eggs features a unique QR code powered by blockchain-enabled traceability technology, providing consumers with transparent access to product information throughout the supply chain.',
+  'From carefully selected feed ingredients and responsible poultry farming practices to egg collection, grading, quality verification, and packing. Critical information is digitally recorded and linked through a secure blockchain-based traceability system.',
+  'By simply scanning the QR code, consumers can access comprehensive traceability information, including farm and packing details, production records, and relevant quality assurance documentation, through a single digital platform.',
+  'Our blockchain-enabled traceability system enhances data transparency, traceability, and accountability, reinforcing our commitment to delivering safe, high-quality eggs with confidence.',
+];
+
 const strengths = [
   {
     title: 'Integrated Poultry Farming',
@@ -259,6 +266,28 @@ export default function TableEggsPage({ onPageChange }) {
                 ratio="4 / 3"
                 position="50% 55%"
               />
+            </motion.div>
+          </div>
+
+          {/* Blockchain traceability card */}
+          <div className={`${wrap} mt-10 lg:mt-14`}>
+            <motion.div
+              {...fade()}
+              className="rounded-[24px] bg-page border border-surface-200/70 px-6 py-10 sm:px-12 sm:py-12 lg:px-16 lg:py-14 flex flex-col gap-6"
+            >
+              <h3 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading leading-[1.15] tracking-tight m-0">
+                Blockchain Traceability
+              </h3>
+              <div className="flex flex-col gap-4 max-w-[860px]">
+                {blockchainParagraphs.map((para) => (
+                  <p key={para.slice(0, 24)} className={bodyClass}>
+                    {para}
+                  </p>
+                ))}
+              </div>
+              <p className="font-heading font-bold text-[17px] sm:text-[19px] text-brand-600 leading-[1.4] m-0 pt-2 border-t border-surface-200/70">
+                Every Egg Pack Has a Story. Scan to Discover Its Journey.
+              </p>
             </motion.div>
           </div>
         </section>
