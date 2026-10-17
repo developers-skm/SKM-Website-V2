@@ -181,7 +181,7 @@ export default function HomeJourney({ onPageChange }) {
             Farm-to-product journey
           </h2>
           <p className="font-body text-[16px] lg:text-[17px] text-surface-500 leading-[1.8] max-w-xl m-0">
-            From biosecure layer farms and precise feed formulation to automated egg processing, NABL analytical testing, packed and despatched globally.
+            From biosecure layer farms and precise feed formulation to automated egg processing, NABL analytical testing, packed and dispatched globally.
           </p>
         </motion.div>
       </div>
