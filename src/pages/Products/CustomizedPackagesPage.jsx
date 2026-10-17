@@ -119,7 +119,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Product",
-          "name": "Customized Egg Product Packages",
+          "name": "Customised Egg Product Packages",
           "description": "Industrial packaging options for egg powder and liquid egg products - bag-in-box, paper bags, LDPE bags, and Pallecon IBC containers.",
           "brand": { "@type": "Brand", "name": "SKM Egg Products" },
           "manufacturer": { "@type": "Organization", "name": "SKM Egg Products", "url": "https://www.skmegg.com" },
@@ -165,7 +165,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
               transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
               className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading leading-[1.1] tracking-tight m-0"
             >
-              Customized{' '}
+              Customised{' '}
               Packages
             </motion.h1>
             <motion.p
@@ -173,7 +173,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
               transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
               className="text-base sm:text-lg text-surface-500 leading-relaxed max-w-2xl m-0 font-medium"
             >
-              Customized packages of the products tailored for hassle-free use as per the industrial requirements. From small retail SKUs to bulk IBC pallet containers - every format is engineered for food-grade safety and dispatch efficiency.
+              Customised packages of the products tailored for hassle-free use as per the industrial requirements. From small retail SKUs to bulk IBC pallet containers - every format is engineered for food-grade safety and dispatch efficiency.
             </motion.p>
           </div>
         </motion.div>

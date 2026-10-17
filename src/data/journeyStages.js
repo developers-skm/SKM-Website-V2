@@ -37,7 +37,7 @@ const journeyStages = [
     label: 'Plant',
     image: ProcessingImg,
     tagline: 'Fresh eggs, processed the same day.',
-    description: 'Daily fresh egg intake moves through our European Union (EU) compliant processing facility, covering breaking, pasteurization, and drying, with CCP documentation maintained at every stage.',
+    description: 'Daily fresh egg intake moves through our European Union (EU) compliant processing facility, covering breaking, pasteurisation, and drying, with CCP documentation maintained at every stage.',
     stat: { value: EGGS_PROCESSED_PER_DAY_SHORT, label: 'Eggs processed per day' },
   },
   {

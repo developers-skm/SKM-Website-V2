@@ -7,7 +7,7 @@ import { getVariantsForProduct } from '../../data/productVariants';
 import { EASE_PREMIUM, fadeUp } from '../../utils/motionTokens';
 import VariantCompareModal from '../../components/ProductPage/VariantCompareModal';
 
-// Customized Mix / Customized Packages are made to order, so there is
+// Customised Mix / Customised Packages are made to order, so there is
 // nothing to compare side by side - every other product is selectable.
 const EXCLUDED_IDS = new Set(['customized_mix', 'customized_packages']);
 const COMPARABLE_PRODUCTS = products.filter((p) => !EXCLUDED_IDS.has(p.id));

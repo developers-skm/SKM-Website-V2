@@ -24,7 +24,7 @@ const applications = [
     title: 'Bakery & Confectionery',
     image: BakeryImg,
     tags: ['Cakes', 'Pastries', 'Biscuits'],
-    problem: 'Whole Egg for volume, structure and golden colour in your cakes and pastries. Egg Albumen for whipping and foaming applications in macarons and meringues.',
+    problem: 'Whole Egg for volume, structure and golden colour in your cakes and pastries. Egg Albumen for whipping and foaming applications in macaroons and meringues.',
     intro: 'From everyday biscuits to premium artisanal brioche, our egg powders deliver the crumb binding, foaming, and natural golden colour that bakery formulations depend on.',
     matchedProductIds: ['whole_egg_powder', 'whole_egg_liquid', 'egg_albumen_powder'],
     hideFormulationChallenges: true,

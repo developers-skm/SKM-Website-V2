@@ -12,7 +12,7 @@ export const variantsData = [
   {
     code: 'A1301',
     name: 'Egg Albumen Powder - Standard',
-    description: 'Standard pasteurized dried hen egg albumen powder with general binding, structure-building, and whipping capacity. Perfect as a multi-functional baking and binding food ingredient.',
+    description: 'Standard pasteurised dried hen egg albumen powder with general binding, structure-building, and whipping capacity. Perfect as a multi-functional baking and binding food ingredient.',
     applications: 'Bakery products, confectionery nougats, biscuit coatings, meringue cookies, and standard binders in poultry processing.',
     heroBenefits: ['Gelling, whipping and foaming', 'Improves product texture', 'Prevents water release'],
     benefits: 'Highly versatile performance, rapid cold-water solubility, and exceptional shelf-life stability.',
@@ -53,7 +53,7 @@ export const variantsData = [
   {
     code: 'A1308',
     name: 'Egg Albumen Powder High Whip',
-    description: 'Pasteurized spray-dried egg white powder physically modified to achieve exceptional whipping volume, foam height, and foam stability.',
+    description: 'Pasteurised spray-dried egg white powder physically modified to achieve exceptional whipping volume, foam height, and foam stability.',
     applications: 'Aerated confectionery, marshmallows, meringues, nougats, kisses, macaroons, and soufflés.',
     benefits: 'Rapid foam overrun, high volume increase, long-lasting bubble stability, and dry aerated structure.',
     specifications: { moisture: 'Max 8.0%', protein: 'Min 80.0%', ph: '6.0 - 7.5', character: 'Whip Volume: Min 150mm foam height' }
@@ -96,13 +96,13 @@ export default function EggAlbumenPowderPage({ onPageChange }) {
     <ProductPage
       seo={{
         title: 'Egg Albumen Powder | Egg White Powder Manufacturer & Exporter',
-        description: "SKM's premium spray-dried hen egg albumen (egg white) powder for meat binding, bakery & confectionery. 7 product variants - high gel, high whip, standard. Pasteurized, BRCGS & Halal certified bulk exporter from India.",
-        keywords: 'egg albumen powder, egg white powder, dried egg white, spray dried albumen, egg albumen powder manufacturer, egg white powder supplier, high gel albumen powder, high whip egg white powder, meat binding egg powder, egg albumen powder bulk, buy egg albumen powder, pasteurized egg white powder, egg albumen powder exporter India',
+        description: "SKM's premium spray-dried hen egg albumen (egg white) powder for meat binding, bakery & confectionery. 7 product variants - high gel, high whip, standard. Pasteurised, BRCGS & Halal certified bulk exporter from India.",
+        keywords: 'egg albumen powder, egg white powder, dried egg white, spray dried albumen, egg albumen powder manufacturer, egg white powder supplier, high gel albumen powder, high whip egg white powder, meat binding egg powder, egg albumen powder bulk, buy egg albumen powder, pasteurised egg white powder, egg albumen powder exporter India',
         canonical: 'https://www.skmegg.com/egg_albumen_powder',
         jsonLd: {
           '@context': 'https://schema.org', '@type': 'Product',
           name: 'Egg Albumen Powder',
-          description: 'Premium spray-dried pasteurized hen egg albumen (egg white) powder for meat binding, bakery, and confectionery. 7 product variants including high gel and high whip.',
+          description: 'Premium spray-dried pasteurised hen egg albumen (egg white) powder for meat binding, bakery, and confectionery. 7 product variants including high gel and high whip.',
           brand: { '@type': 'Brand', name: 'SKM Egg Products' },
           manufacturer: { '@type': 'Organization', name: 'SKM Egg Products', url: 'https://www.skmegg.com' },
           category: 'Egg Powders', url: 'https://www.skmegg.com/egg_albumen_powder',

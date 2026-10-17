@@ -10,7 +10,7 @@ export default function PowderLinePage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'Powder Line | How SKM Egg Powder Is Made',
-        description: 'From biosecure farms to hygienic packaging - see how SKM egg powders are made through a HACCP-monitored breaking, pasteurization and spray-drying line.',
+        description: 'From biosecure farms to hygienic packaging - see how SKM egg powders are made through a HACCP-monitored breaking, pasteurisation and spray-drying line.',
         keywords: 'egg powder manufacturing process, spray dried egg powder, SKM powder line, egg powder plant',
         canonical: 'https://www.skmegg.com/powder_line',
       }}

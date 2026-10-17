@@ -29,7 +29,7 @@ export const PRODUCT_CATEGORIES = {
   POWDERS: 'Egg Powders',
   LIQUIDS: 'Liquid Eggs',
   SPECIALITY: 'Speciality Products',
-  CUSTOMIZED: 'Customized Solutions',
+  CUSTOMIZED: 'Customised Solutions',
 };
 
 const products = [
@@ -39,7 +39,7 @@ const products = [
     title: 'Whole Egg Powder',
     image: WholeEggPowderImg,
     category: PRODUCT_CATEGORIES.POWDERS,
-    shortDescription: 'Pasteurized spray-dried whole egg powder for bakery, confectionery and mayonnaise applications.',
+    shortDescription: 'Pasteurised spray-dried whole egg powder for bakery, confectionery and mayonnaise applications.',
     packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
     tdsUrl: WholeEggPowderTds,
   },
@@ -49,7 +49,7 @@ const products = [
     title: 'Egg Yolk Powder',
     image: EggYolkPowderImg,
     category: PRODUCT_CATEGORIES.POWDERS,
-    shortDescription: 'Pasteurized spray-dried egg yolk powder with excellent emulsifying properties and natural color, ideal for mayonnaise, dressings, and desert applications.',
+    shortDescription: 'Pasteurised spray-dried egg yolk powder with excellent emulsifying properties and natural color, ideal for mayonnaise, dressings, and desert applications.',
     packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
     tdsUrl: EggYolkPowderTds,
   },
@@ -78,7 +78,7 @@ const products = [
     title: 'Whole Egg Liquid',
     image: WholeEggLiquidImg,
     category: PRODUCT_CATEGORIES.LIQUIDS,
-    shortDescription: 'Pasteurized liquid blend of egg yolk and egg white, formulated for industrial bakeries and standardized ready-meal recipes. Available in both chilled and frozen formats.',
+    shortDescription: 'Pasteurised liquid blend of egg yolk and egg white, formulated for industrial bakeries and standardized ready-meal recipes. Available in both chilled and frozen formats.',
     packagingOptions: ['1kg', '5kg', '10kg', '20kg'],
   },
   {
@@ -87,7 +87,7 @@ const products = [
     title: 'Egg Yolk Liquid',
     image: EggYolkLiquidImg,
     category: PRODUCT_CATEGORIES.LIQUIDS,
-    shortDescription: 'Chilled pasteurized liquid egg yolk available in plain and salted variants, formulated for mayonnaise, dressings, and hot-filled sauces. Available in chilled and frozen formats.',
+    shortDescription: 'Chilled pasteurised liquid egg yolk available in plain and salted variants, formulated for mayonnaise, dressings, and hot-filled sauces. Available in chilled and frozen formats.',
     packagingOptions: ['1kg', '5kg', '10kg', '20kg'],
   },
   {
@@ -96,7 +96,7 @@ const products = [
     title: 'Egg Albumen Liquid',
     image: EggAlbumenLiquidImg,
     category: PRODUCT_CATEGORIES.LIQUIDS,
-    shortDescription: 'Pasteurized liquid egg white for health foods, sports nutrition, beverages, and bakery applications, available in chilled and frozen formats.',
+    shortDescription: 'Pasteurised liquid egg white for health foods, sports nutrition, beverages, and bakery applications, available in chilled and frozen formats.',
     packagingOptions: ['1kg', '5kg', '10kg', '20kg'],
   },
   {
@@ -120,16 +120,16 @@ const products = [
   {
     id: 'customized_mix',
     page: 'customized_mix',
-    title: 'Customized Mix',
+    title: 'Customised Mix',
     image: CustomizedMixImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,
-    shortDescription: 'Egg powder formulations blended with salt, sugar, and other ingredients to match your exact recipe specifications, customized at our end for seamless handling and convenient use at your facility.',
+    shortDescription: 'Egg powder formulations blended with salt, sugar, and other ingredients to match your exact recipe specifications, customised at our end for seamless handling and convenient use at your facility.',
     packagingOptions: ['Custom'],
   },
   {
     id: 'customized_packages',
     page: 'customized_packages',
-    title: 'Customized Packaging',
+    title: 'Customised Packaging',
     image: CustomizedPackagesImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,
     shortDescription: 'Packaging options including corrugated bag-in-box, paper bag-in-bag, liquid pouches, and Tetra Pack formats, configured to meet your specific packaging and application requirements.',

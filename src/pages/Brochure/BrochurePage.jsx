@@ -14,7 +14,7 @@ const brochureMeta = {
   'Product List - SKM Egg Products Export India Limited.pdf': {
     category: 'Corporate',
     title: 'Full Product List',
-    desc: 'Complete catalog of all SKM egg products - powders, liquids, customized mixes and specialty solutions available for global food producers.',
+    desc: 'Complete catalog of all SKM egg products - powders, liquids, customised mixes and speciality solutions available for global food producers.',
     featured: true,
   },
   'SKM BAKERY MIX A5 FLYER (F-B).pdf': {

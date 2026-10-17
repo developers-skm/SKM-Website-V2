@@ -14,7 +14,7 @@ export const variantsData = [
   {
     code: 'W1201',
     name: 'Whole Egg Powder',
-    description: 'Pasteurized Dried Whole Hen Egg Powder with enhanced natural yellow coloration parameters, specifically produced to deliver a rich, appealing golden appearance in finished baked foods.',
+    description: 'Pasteurised Dried Whole Hen Egg Powder with enhanced natural yellow coloration parameters, specifically produced to deliver a rich, appealing golden appearance in finished baked foods.',
     applications: 'Premium cakes, egg noodles, sweet pastries, custards, and biscuits.',
     benefits: 'Naturally enhances appearance, supports excellent crumb binding, and delivers a rich aroma.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 40.0%', protein: 'Min 45.0%', ph: '7.0 - 8.5', color: 'Enhanced Yellow Index (Beta-carotene > 15 ppm)' }
@@ -22,7 +22,7 @@ export const variantsData = [
   {
     code: 'W1202',
     name: 'Whole Egg Powder Standard',
-    description: 'Standard pasteurized spray-dried whole hen egg powder with excellent solubility, balanced structural binding, and reliable coagulation properties.',
+    description: 'Standard pasteurised spray-dried whole hen egg powder with excellent solubility, balanced structural binding, and reliable coagulation properties.',
     applications: 'Everyday bakery items, cookies, general biscuits, waffle and pancake dry mixes, and bulk flour recipes.',
     benefits: 'Long-term shelf stability, simple dosing and weight-ratio control, and reliable structural crumb development.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 40.0%', protein: 'Min 45.0%', ph: '7.5 - 9.0', color: 'Standard Natural Yellow' }
@@ -30,7 +30,7 @@ export const variantsData = [
   {
     code: 'W1203',
     name: 'Whole Egg Powder - 4% Sugar',
-    description: 'Pasteurized dried whole egg powder containing 4% co-dried sugar to protect proteins during drying, support yeast activity, and delay crumb staling.',
+    description: 'Pasteurised dried whole egg powder containing 4% co-dried sugar to protect proteins during drying, support yeast activity, and delay crumb staling.',
     applications: 'Sweet yeast-raised doughs, sponge cakes, sweet biscuits, wafers, and confectionery items.',
     benefits: 'Prevents protein denaturation, increases baked product volume, and improves freshness retention/moisture levels.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 38.0%', protein: 'Min 43.5%', ph: '7.0 - 8.5', color: 'Sucrose Content: 4.0% (±0.5%)' }
@@ -38,7 +38,7 @@ export const variantsData = [
   {
     code: 'W1204',
     name: 'De-Sugared Whole Egg Powder',
-    description: 'Pasteurized dried whole egg powder from which natural glucose has been enzymatically removed prior to drying to eliminate Maillard browning during shelf life.',
+    description: 'Pasteurised dried whole egg powder from which natural glucose has been enzymatically removed prior to drying to eliminate Maillard browning during shelf life.',
     applications: 'Mayonnaise, salad dressings, dehydrated savory soup packets, and long-life military rations.',
     benefits: 'Prevents brown discoloration and flavor deterioration under hot/humid storage conditions; preserves clean profile.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 41.5%', protein: 'Min 46.5%', ph: '6.5 - 8.0', color: 'Residual Glucose < 0.1%' }
@@ -70,7 +70,7 @@ export const variantsData = [
   {
     code: 'W1225',
     name: 'Whole Egg Powder Free Flow',
-    description: 'Pasteurized dried whole egg powder containing a food-grade anti-caking agent to deliver superior flow properties and minimize compaction.',
+    description: 'Pasteurised dried whole egg powder containing a food-grade anti-caking agent to deliver superior flow properties and minimize compaction.',
     applications: 'Automated dry-mix vending systems, automated ingredient hoppers, seasoning blends, and bulk packaging lines.',
     benefits: 'Avoids bridging and clumping in automated bulk feeders, ensuring high process accuracy and less downtime.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 39.5%', protein: 'Min 44.5%', ph: '7.2 - 8.8', color: 'Flow Agent (Insoluble Ash) < 1.0%' }
@@ -79,7 +79,7 @@ export const variantsData = [
     code: 'W1228',
     name: 'Whole Egg Powder - Enriched',
     description: 'Nutritionally enhanced whole egg powder containing concentrated essential nutrients and lipids, ideal for functional health lines.',
-    applications: 'Sports nutrition supplements, fortified protein mixes, meal replacement bars, and specialty health bakery lines.',
+    applications: 'Sports nutrition supplements, fortified protein mixes, meal replacement bars, and speciality health bakery lines.',
     benefits: 'High biological value protein, rich essential amino acid profile, and healthy dietary fat content.',
     specifications: { moisture: 'Max 3.8%', fat: 'Min 41.0%', protein: 'Min 46.0%', ph: '7.2 - 8.5', color: 'Vitamin/Mineral Fortified Base' }
   },
@@ -102,7 +102,7 @@ export const variantsData = [
   {
     code: 'W1215',
     name: 'Whole Egg Powder - Heat Stable',
-    description: 'Modified whole egg powder treated to preserve active emulsifying properties under pasteurization temperatures or hot culinary processing.',
+    description: 'Modified whole egg powder treated to preserve active emulsifying properties under pasteurisation temperatures or hot culinary processing.',
     applications: 'Hot-filled salad dressings, heat-sterilized mayonnaise, simmer sauces, and high-temperature emulsified gravies.',
     benefits: 'Prevents oil-water splitting in warm emulsion states; maintains excellent creaminess and thickness throughout heat cycles.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 40.0%', protein: 'Min 44.0%', ph: '7.2 - 8.5', color: 'Heat-Emulsifying Stability: > 95%' }
@@ -110,7 +110,7 @@ export const variantsData = [
   {
     code: 'W1214',
     name: 'Whole Egg Powder - High Gel',
-    description: 'Specialty spray-dried whole egg powder engineered to provide superior heat-induced gelation and binding matrix strength.',
+    description: 'Speciality spray-dried whole egg powder engineered to provide superior heat-induced gelation and binding matrix strength.',
     applications: 'Surimi products, processed seafood, binding matrices in sausage, meat replacements, and structured Asian noodles.',
     benefits: 'Coagulates into a firm, water-retaining protein gel matrix upon heating, improving sliceability and moisture retention.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 38.0%', protein: 'Min 47.0%', ph: '7.5 - 9.0', color: 'Gel Strength: > 200 g/cm²' }
@@ -150,13 +150,13 @@ export default function WholeEggPowderPage({ onPageChange }) {
     <ProductPage
       seo={{
         title: 'Whole Egg Powder | Spray Dried Egg Powder Manufacturer',
-        description: "SKM's premium spray-dried whole hen egg powder for bakery, confectionery & food processing. 13 product variants available. Pasteurized, BRCGS & Halal certified. Bulk manufacturer & exporter from India.",
-        keywords: 'whole egg powder, dried whole egg powder, spray dried egg powder, whole egg powder bulk, whole egg powder manufacturer, whole egg powder supplier India, pasteurized whole egg powder, whole egg powder bakery, egg powder food industry, buy whole egg powder, whole egg powder exporter, dried egg powder wholesale',
+        description: "SKM's premium spray-dried whole hen egg powder for bakery, confectionery & food processing. 13 product variants available. Pasteurised, BRCGS & Halal certified. Bulk manufacturer & exporter from India.",
+        keywords: 'whole egg powder, dried whole egg powder, spray dried egg powder, whole egg powder bulk, whole egg powder manufacturer, whole egg powder supplier India, pasteurised whole egg powder, whole egg powder bakery, egg powder food industry, buy whole egg powder, whole egg powder exporter, dried egg powder wholesale',
         canonical: 'https://www.skmegg.com/whole_egg_powder',
         jsonLd: {
           '@context': 'https://schema.org', '@type': 'Product',
           name: 'Whole Egg Powder',
-          description: 'Premium spray-dried pasteurized whole hen egg powder for bakery, confectionery, and food processing. 13 product variants.',
+          description: 'Premium spray-dried pasteurised whole hen egg powder for bakery, confectionery, and food processing. 13 product variants.',
           brand: { '@type': 'Brand', name: 'SKM Egg Products' },
           manufacturer: { '@type': 'Organization', name: 'SKM Egg Products', url: 'https://www.skmegg.com' },
           category: 'Egg Powders', url: 'https://www.skmegg.com/whole_egg_powder',
@@ -170,7 +170,7 @@ export default function WholeEggPowderPage({ onPageChange }) {
         categoryLabel: 'Egg Powders Range',
         titleLine1: 'Whole Egg',
         titleLine2: 'Powder',
-        description: 'Pasteurized Dried Whole Hen Egg Powder optimized for commercial bakery, noodles, mayonnaise, and general food formulations. Prepared to offer the highest functional stability and rigorous safety standards for large-scale industrial manufacturing.'
+        description: 'Pasteurised Dried Whole Hen Egg Powder optimized for commercial bakery, noodles, mayonnaise, and general food formulations. Prepared to offer the highest functional stability and rigorous safety standards for large-scale industrial manufacturing.'
       }}
       variantsData={variantsData}
       variantNamesTable={variantNamesTable}

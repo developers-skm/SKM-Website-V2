@@ -293,7 +293,7 @@ function TechnicalDocumentsSection({ onPageChange, globalSearchQuery }) {
                 {activeGroup?.label} Available Upon Request
               </p>
               <p className="font-body text-[14px] text-surface-600 max-w-lg m-0 leading-relaxed">
-                Specific regulatory, MSDS safety, or customized packaging documentation is provided directly by our quality engineering team.
+                Specific regulatory, MSDS safety, or customised packaging documentation is provided directly by our quality engineering team.
               </p>
               <InternalLink
                 route="contact-us"
@@ -396,7 +396,7 @@ const brochureMeta = {
   'Product List - SKM Egg Products Export India Limited.pdf': {
     category: 'Corporate',
     title: 'Full Product Portfolio',
-    desc: 'Complete catalog of SKM egg powders, liquid variants, customized bakery mixes, and technical food ingredients.',
+    desc: 'Complete catalog of SKM egg powders, liquid variants, customised bakery mixes, and technical food ingredients.',
     featured: true,
   },
   'SKM BAKERY MIX A5 FLYER (F-B).pdf': {
@@ -420,7 +420,7 @@ const brochureMeta = {
   'SKM WHOLE EGG POWDER A5 FLYER (F-B).pdf': {
     category: 'Product Detail',
     title: 'Whole Egg Powder Product Details',
-    desc: 'Product details for Whole Egg Powder - shelf-stable, pasteurized whole egg replacement for bakeries and commercial food manufacturing.',
+    desc: 'Product details for Whole Egg Powder - shelf-stable, pasteurised whole egg replacement for bakeries and commercial food manufacturing.',
     featured: false,
   },
 };
@@ -991,7 +991,7 @@ export default function ResourcesPage({ onPageChange }) {
                 Need Specific Technical Documentation?
               </h2>
               <p className="font-body text-[15px] text-surface-600 m-0 leading-relaxed">
-                If you require customized packaging parameters, batch analytical certificates, or proprietary formulation data, our technical engineering team is ready to assist.
+                If you require customised packaging parameters, batch analytical certificates, or proprietary formulation data, our technical engineering team is ready to assist.
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full pt-2">

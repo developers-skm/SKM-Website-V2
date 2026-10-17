@@ -75,26 +75,26 @@ export default function CustomizedMixPage({ onPageChange }) {
       <InnovationBanner onPageChange={onPageChange} />
       <ProductPage
       seo={{
-        title: 'Customized Egg Powder Mix | Custom Egg Blends for Food Industry',
-        description: "SKM's customized egg powder blends tailored for bakery, mayonnaise & specific food applications. OEM egg powder formulations including heat-stable egg yolk mix Y1119. Bulk manufacturer from India.",
-        keywords: 'customized egg powder mix, custom egg blend, egg powder formulation, OEM egg powder, egg powder for bakery, egg powder for mayonnaise, custom egg yolk mix, heat stable egg mix, tailored egg powder, egg powder food manufacturer, private label egg powder, egg powder custom blend India',
+        title: 'Customised Egg Powder Mix | Custom Egg Blends for Food Industry',
+        description: "SKM's customised egg powder blends tailored for bakery, mayonnaise & specific food applications. OEM egg powder formulations including heat-stable egg yolk mix Y1119. Bulk manufacturer from India.",
+        keywords: 'customised egg powder mix, custom egg blend, egg powder formulation, OEM egg powder, egg powder for bakery, egg powder for mayonnaise, custom egg yolk mix, heat stable egg mix, tailored egg powder, egg powder food manufacturer, private label egg powder, egg powder custom blend India',
         canonical: 'https://www.skmegg.com/customized_mix',
         jsonLd: {
           '@context': 'https://schema.org', '@type': 'Product',
-          name: 'Customized Egg Powder Mix',
+          name: 'Customised Egg Powder Mix',
           description: 'Custom egg powder blends formulated for specific food industry applications including bakery, mayonnaise, and dressings.',
           brand: { '@type': 'Brand', name: 'SKM Egg Products' },
           manufacturer: { '@type': 'Organization', name: 'SKM Egg Products', url: 'https://www.skmegg.com' },
-          category: 'Specialty Egg Products', url: 'https://www.skmegg.com/customized_mix',
+          category: 'Speciality Egg Products', url: 'https://www.skmegg.com/customized_mix',
           offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'USD', seller: { '@type': 'Organization', name: 'SKM Egg Products' } }
         }
       }}
       onPageChange={onPageChange}
       hero={{
         backgroundImage: CustomizedMixMainImg,
-        backgroundAlt: 'SKM Customized Mix background',
-        categoryLabel: 'Customized Mixes Range',
-        titleLine1: 'Customized',
+        backgroundAlt: 'SKM Customised Mix background',
+        categoryLabel: 'Customised Mixes Range',
+        titleLine1: 'Customised',
         titleLine2: 'Mix',
         description: 'Bakery & Mayonnaise Mix - Custom blends tailored for specific food applications. Our specialized egg powder formulations are engineered to deliver precision performance in heat-intensive processing environments.',
         applicationTags: ['Bakery Mix', 'Egg White Protein drink mix']
@@ -105,7 +105,7 @@ export default function CustomizedMixPage({ onPageChange }) {
         visibleTraits={['emulsification', 'binding']}
         extraDocuments={extraDocuments}
         applicationsData={applicationsData}
-        productName="Customized Mix"
+        productName="Customised Mix"
         productId="customized_mix"
       />
     </>

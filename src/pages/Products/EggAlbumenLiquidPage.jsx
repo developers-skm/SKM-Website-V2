@@ -10,7 +10,7 @@ export const variantsData = [
   {
     code: 'A1001',
     name: 'Chilled Egg Albumen Liquid',
-    description: 'Freshly separated hen egg white liquid, pasteurized and maintained under strict chilled conditions to preserve the native protein structure and natural binding strength.',
+    description: 'Freshly separated hen egg white liquid, pasteurised and maintained under strict chilled conditions to preserve the native protein structure and natural binding strength.',
     applications: 'Egg noodles, bakery crust glazing, surimi seafood, and structural binders in processed meat/fish products.',
     benefits: 'Uncompromised fresh coagulating strength, smooth pumpable handling, and absolutely clean flavor profile.',
     specifications: { moisture: '87.0% - 89.0%', protein: 'Min 10.0%', ph: '8.5 - 9.5', storage: 'Chilled (0°C to 4°C)', character: 'Native Unmodified Binding Matrix' }
@@ -18,7 +18,7 @@ export const variantsData = [
   {
     code: 'A1002',
     name: 'Chilled Egg Albumen Liquid - Whip',
-    description: 'Chilled pasteurized egg white liquid optimized with whipping enhancers to produce maximum foam expansion and stability for aerated food formulations.',
+    description: 'Chilled pasteurised egg white liquid optimized with whipping enhancers to produce maximum foam expansion and stability for aerated food formulations.',
     applications: 'Meringues, soufflés, sponge cakes, macaroons, nougats, and aerated confectionery.',
     benefits: 'Rapid foam overrun, excellent bubble strength under heat, and consistent whipping volume.',
     specifications: { moisture: '87.0% - 89.0%', protein: 'Min 10.0%', ph: '8.5 - 9.5', storage: 'Chilled (0°C to 4°C)', character: 'Enhanced Whipping & Foam Volume' }
@@ -26,7 +26,7 @@ export const variantsData = [
   {
     code: 'A1006',
     name: 'Frozen Egg Albumen Liquid - Whip',
-    description: 'Pasteurized egg white liquid containing whipping aids, blast frozen at -18°C or below to preserve structural functionality for long-term storage.',
+    description: 'Pasteurised egg white liquid containing whipping aids, blast frozen at -18°C or below to preserve structural functionality for long-term storage.',
     applications: 'Industrial bakery batters, large-scale dessert manufacturing, frozen confectionery, and aerated spreads.',
     heroBenefits: ['Uncompromised fresh coagulating strength', 'Rapid foam overrun', 'Long shelf stability (up to 12 months in frozen state)'],
     benefits: 'Long shelf stability (up to 12 months frozen), easy thawing, and retains full whipping overrun performance.',
@@ -57,14 +57,14 @@ export default function EggAlbumenLiquidPage({ onPageChange }) {
   return (
     <ProductPage
       seo={{
-        title: 'Liquid Egg White | Pasteurized Egg Albumen Liquid Supplier',
-        description: "SKM's premium pasteurized chilled & frozen liquid egg white (egg albumen) for confectionery, bakery & food processing. 3 product variants including high whip. BRCGS & Halal certified bulk exporter from India.",
-        keywords: 'liquid egg white, egg albumen liquid, pasteurized liquid egg white, egg white liquid bulk, liquid egg albumen supplier, frozen egg white, chilled egg albumen, high whip liquid albumen, liquid egg white manufacturer India, buy liquid egg white, liquid egg white food industry, pasteurized egg white liquid exporter',
+        title: 'Liquid Egg White | Pasteurised Egg Albumen Liquid Supplier',
+        description: "SKM's premium pasteurised chilled & frozen liquid egg white (egg albumen) for confectionery, bakery & food processing. 3 product variants including high whip. BRCGS & Halal certified bulk exporter from India.",
+        keywords: 'liquid egg white, egg albumen liquid, pasteurised liquid egg white, egg white liquid bulk, liquid egg albumen supplier, frozen egg white, chilled egg albumen, high whip liquid albumen, liquid egg white manufacturer India, buy liquid egg white, liquid egg white food industry, pasteurised egg white liquid exporter',
         canonical: 'https://www.skmegg.com/egg_albumen_liquid',
         jsonLd: {
           '@context': 'https://schema.org', '@type': 'Product',
           name: 'Egg Albumen Liquid',
-          description: 'Premium pasteurized chilled and frozen liquid egg albumen (egg white) for confectionery, bakery, and food processing. 3 product variants.',
+          description: 'Premium pasteurised chilled and frozen liquid egg albumen (egg white) for confectionery, bakery, and food processing. 3 product variants.',
           brand: { '@type': 'Brand', name: 'SKM Egg Products' },
           manufacturer: { '@type': 'Organization', name: 'SKM Egg Products', url: 'https://www.skmegg.com' },
           category: 'Liquid Egg Products', url: 'https://www.skmegg.com/egg_albumen_liquid',

@@ -57,7 +57,7 @@ export default function EggPowdersCategoryPage({ onPageChange }) {
       }}
       categoryLabel="Product Category"
       title="Egg Powders"
-      format="Spray-dried, pasteurized egg powder - whole egg, egg yolk, and egg albumen variants, supplied as a shelf-stable dry ingredient."
+      format="Spray-dried, pasteurised egg powder - whole egg, egg yolk, and egg albumen variants, supplied as a shelf-stable dry ingredient."
       advantages={[
         'Long-term shelf stability, simple dosing and weight ratio control, and reliable structural crumb development.',
         'High fat content, rich creamy mouthfeel, natural golden-yellow coloration, and excellent emulsification properties.',

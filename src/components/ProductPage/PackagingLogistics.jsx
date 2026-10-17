@@ -6,7 +6,7 @@ import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
 // omitted: no per-product pallet spec (units/pallet, dimensions) exists
 // anywhere in the codebase - only a general company-wide mention that IBC
 // containers are "compatible with standard fork-lift pallet systems" on the
-// Customized Packages page, which isn't a per-product fact worth restating
+// Customised Packages page, which isn't a per-product fact worth restating
 // here. "Export suitability" reuses the real, company-wide export market
 // count (data/exportMarkets.js) rather than a fabricated per-product claim.
 // Storage/chilled-frozen handling reuses the same real variant-derived

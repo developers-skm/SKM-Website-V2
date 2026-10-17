@@ -100,7 +100,7 @@ function MarketMapDetailSection({ onPageChange }) {
         >
           <div className="flex flex-col gap-1.5">
             <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Products available</span>
-            <span className="font-body text-[14px] text-surface-700 leading-[1.6]">Full catalogue - egg powders, liquid egg products, and customised/specialty solutions.</span>
+            <span className="font-body text-[14px] text-surface-700 leading-[1.6]">Full catalogue - egg powders, liquid egg products, and customised/speciality solutions.</span>
           </div>
           <div className="flex flex-col gap-1.5">
             <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Relevant certification</span>
@@ -218,7 +218,7 @@ function ExportRegulatorySupportSection({ onPageChange }) {
 // categories map to real, verified facts already established in this app
 // - powder (bag-in-box / paper bag), chilled and frozen (real product
 // storage specifications: 0°C to 4°C / ≤ -18°C), and bulk (Pallecon IBC).
-// "View Packaging Options" routes to the real Customized Packages page;
+// "View Packaging Options" routes to the real Customised Packages page;
 // "Discuss Shipping Requirements" routes to the real Contact Us page.
 const PACKAGING_TRANSPORT = [
   { id: 'powder', label: 'Powder', fact: 'Bag-in-box (HDPE inner bag + corrugated carton) or bag-in-bag (multi-wall paper bag), 10 Kg, 20kg & 25Kg.' },

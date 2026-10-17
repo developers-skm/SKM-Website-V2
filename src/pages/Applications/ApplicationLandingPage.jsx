@@ -36,7 +36,7 @@ export default function ApplicationLandingPage({ applicationId, onPageChange }) 
     <PageWrapper
       seo={{
         title: `Egg Products For ${application.title} | SKM Egg Products`,
-        description: `${application.problem} SKM's egg powders and liquid egg products for ${application.title.toLowerCase()} manufacturing - pasteurized, BRCGS, Halal & Kosher certified.`,
+        description: `${application.problem} SKM's egg powders and liquid egg products for ${application.title.toLowerCase()} manufacturing - pasteurised, BRCGS, Halal & Kosher certified.`,
         keywords: `egg products for ${application.title.toLowerCase()}, ${application.tags.join(', ').toLowerCase()}, egg powder application`,
         canonical: `https://www.skmegg.com/${application.page}`,
       }}

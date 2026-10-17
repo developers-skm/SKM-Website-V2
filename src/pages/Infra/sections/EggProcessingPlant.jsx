@@ -50,8 +50,8 @@ const processAreaImages = [
   { src: EggBreaking, label: 'Egg Breaking' },
   { src: EggConveyor, label: 'Egg Conveyor' },
   { src: EggStorage, label: 'Egg Storage' },
-  { src: PrePasteurization, label: 'Pre-Pasteurization' },
-  { src: Pasteurization, label: 'Pasteurization' },
+  { src: PrePasteurization, label: 'Pre-Pasteurisation' },
+  { src: Pasteurization, label: 'Pasteurisation' },
   { src: Concentration, label: 'Concentration' },
   { src: AlbumenDryer, label: 'Albumen Dryer' },
   { src: YolkDryer, label: 'Yolk Dryer' },
@@ -85,7 +85,7 @@ const infoBlocks = [
   },
   {
     title: 'Process Excellence',
-    body: 'Only QA cleared eggs are processed, with a capacity of 2 million eggs per day, producing approximately 7,500 tonnes annually. Customized formulations, including co-dried and dry-blend solutions, are developed in collaboration with customers. Operations follow cGMP, SSOP, Codex Alimentarius principles, and HACCP guidelines. All activities are monitored through the integrated traceability system, ensuring food safety and full traceability.',
+    body: 'Only QA cleared eggs are processed, with a capacity of 2 million eggs per day, producing approximately 7,500 tonnes annually. Customised formulations, including co-dried and dry-blend solutions, are developed in collaboration with customers. Operations follow cGMP, SSOP, Codex Alimentarius principles, and HACCP guidelines. All activities are monitored through the integrated traceability system, ensuring food safety and full traceability.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -208,7 +208,7 @@ export default function EggProcessingPlant() {
               Process Area
             </h2>
             <p className="font-body text-[15px] text-surface-500 max-w-2xl m-0 leading-[26px]">
-              Two dedicated production lines for yolk and albumen operate in a climate-controlled hygienic environment. A dedicated line for liquid products processing and distinguished blending facility for customized mixes preparations.
+              Two dedicated production lines for yolk and albumen operate in a climate-controlled hygienic environment. A dedicated line for liquid products processing and distinguished blending facility for customised mixes preparations.
             </p>
           </motion.div>
 

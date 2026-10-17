@@ -9,8 +9,8 @@ export default function LiquidLinePage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'Liquid Line | How SKM Liquid Egg Is Made',
-        description: 'From biosecure farms to hygienic packaging - see how SKM liquid egg products are made through a HACCP-monitored breaking and pasteurization line.',
-        keywords: 'liquid egg manufacturing process, pasteurized liquid egg, SKM liquid line, egg processing plant',
+        description: 'From biosecure farms to hygienic packaging - see how SKM liquid egg products are made through a HACCP-monitored breaking and pasteurisation line.',
+        keywords: 'liquid egg manufacturing process, pasteurised liquid egg, SKM liquid line, egg processing plant',
         canonical: 'https://www.skmegg.com/liquid_line',
       }}
       onPageChange={onPageChange}

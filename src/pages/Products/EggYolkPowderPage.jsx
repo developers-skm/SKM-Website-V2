@@ -11,7 +11,7 @@ export const variantsData = [
   {
     code: 'Y1101',
     name: 'Egg Yolk Powder',
-    description: 'Standard pasteurized spray-dried hen egg yolk powder with excellent emulsifying, coloring, and texturizing properties. Adds rich taste and structure to bakery and cold emulsions.',
+    description: 'Standard pasteurised spray-dried hen egg yolk powder with excellent emulsifying, coloring, and texturizing properties. Adds rich taste and structure to bakery and cold emulsions.',
     applications: 'Mayonnaise, salad dressings, culinary sauces, custards, ice cream, sponge cakes, and sweet doughs.',
     heroBenefits: ['Prevents oil–water separation', 'Provides a naturally rich golden appearance'],
     performanceOverrides: {
@@ -26,7 +26,7 @@ export const variantsData = [
   {
     code: 'Y1104',
     name: 'Egg Yolk Powder - 4% Salt',
-    description: 'Pasteurized dried hen egg yolk powder containing 4% co-dried salt to enhance the structural stability and thickness of emulsified sauces.',
+    description: 'Pasteurised dried hen egg yolk powder containing 4% co-dried salt to enhance the structural stability and thickness of emulsified sauces.',
     applications: 'Salted mayonnaise, salad dressings, hot hollandaise, bearnaise sauces, and savory spreads.',
     heroBenefit: 'Colour - Provides a naturally rich golden appearance without artificial colours, enhancing the premium visual appeal of the finished product.',
     benefits: 'Prevents oil-water separation under shear; co-dried salt improves yolk protein solubility and paste stability.',
@@ -44,7 +44,7 @@ export const variantsData = [
   {
     code: 'Y1107',
     name: 'Egg Yolk Powder High Color',
-    description: 'Pasteurized spray-dried hen egg yolk powder with deep golden-yellow color values derived from hens fed carotenoid-rich natural diets.',
+    description: 'Pasteurised spray-dried hen egg yolk powder with deep golden-yellow color values derived from hens fed carotenoid-rich natural diets.',
     applications: 'Premium golden croissants, custard creams, sweet brioche breads, yellow egg noodles, and artisanal cakes.',
     benefits: 'Imparts rich golden visual appeal naturally without artificial colors; enhances appearance premiumness.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 56.0%', protein: 'Min 30.0%', ph: '6.0 - 7.0', character: 'Deep Golden Color Index (Beta-carotene > 40 ppm)' }
@@ -52,7 +52,7 @@ export const variantsData = [
   {
     code: 'Y1225',
     name: 'Egg Yolk Powder Free Flow',
-    description: 'Pasteurized dried egg yolk powder containing a minor quantity of food-grade free-flow agent to prevent compaction and clumping.',
+    description: 'Pasteurised dried egg yolk powder containing a minor quantity of food-grade free-flow agent to prevent compaction and clumping.',
     applications: 'Vending machines, automated dry blending systems, bulk dry bakery mixes, and dry seasoning formulas.',
     benefits: 'Runs smoothly through automated dispensers and hoppers, prevents lump formation during warehousing.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 55.0%', protein: 'Min 29.5%', ph: '6.2 - 7.2', character: 'Flow Agent (Insoluble Ash) < 1.0%' }
@@ -79,13 +79,13 @@ export default function EggYolkPowderPage({ onPageChange }) {
     <ProductPage
       seo={{
         title: 'Egg Yolk Powder | Dried Egg Yolk Manufacturer & Bulk Supplier',
-        description: "SKM's premium spray-dried hen egg yolk powder for bakery, mayonnaise & food applications. 5 product variants - high color, standard, low-fat. Pasteurized, BRCGS & Halal certified. Bulk exporter from India.",
-        keywords: 'egg yolk powder, dried egg yolk, spray dried yolk, egg yolk powder manufacturer, egg yolk powder supplier India, egg yolk powder bulk, buy egg yolk powder, egg yolk powder mayonnaise, egg yolk powder bakery, pasteurized egg yolk powder, high color egg yolk, egg yolk powder exporter, egg yolk powder food industry',
+        description: "SKM's premium spray-dried hen egg yolk powder for bakery, mayonnaise & food applications. 5 product variants - high color, standard, low-fat. Pasteurised, BRCGS & Halal certified. Bulk exporter from India.",
+        keywords: 'egg yolk powder, dried egg yolk, spray dried yolk, egg yolk powder manufacturer, egg yolk powder supplier India, egg yolk powder bulk, buy egg yolk powder, egg yolk powder mayonnaise, egg yolk powder bakery, pasteurised egg yolk powder, high color egg yolk, egg yolk powder exporter, egg yolk powder food industry',
         canonical: 'https://www.skmegg.com/egg_yolk_powder',
         jsonLd: {
           '@context': 'https://schema.org', '@type': 'Product',
           name: 'Egg Yolk Powder',
-          description: 'Premium spray-dried pasteurized hen egg yolk powder for bakery, food, and mayonnaise applications. 5 product variants.',
+          description: 'Premium spray-dried pasteurised hen egg yolk powder for bakery, food, and mayonnaise applications. 5 product variants.',
           brand: { '@type': 'Brand', name: 'SKM Egg Products' },
           manufacturer: { '@type': 'Organization', name: 'SKM Egg Products', url: 'https://www.skmegg.com' },
           category: 'Egg Powders', url: 'https://www.skmegg.com/egg_yolk_powder',
@@ -99,7 +99,7 @@ export default function EggYolkPowderPage({ onPageChange }) {
         categoryLabel: 'Egg Powders Range',
         titleLine1: 'Egg Yolk',
         titleLine2: 'Powder',
-        description: 'Pasteurized Dried Hen Egg Yolk Powder for bakery, food & mayonnaise applications. Rich in lipids to ensure superior emulsifying properties.'
+        description: 'Pasteurised Dried Hen Egg Yolk Powder for bakery, food & mayonnaise applications. Rich in lipids to ensure superior emulsifying properties.'
       }}
       variantsData={variantsData}
       variantNamesTable={variantNamesTable}

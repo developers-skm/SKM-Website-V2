@@ -10,23 +10,23 @@ export const variantsData = [
   {
     code: 'Y1111',
     name: 'Egg Yolk Powder - Heat Stable',
-    description: 'Pasteurized spray-dried hen egg yolk powder enzymatically modified with phospholipase to ensure excellent thermal stability and emulsifying properties under pasteurization temperatures.',
+    description: 'Pasteurised spray-dried hen egg yolk powder enzymatically modified with phospholipase to ensure excellent thermal stability and emulsifying properties under pasteurisation temperatures.',
     applications: 'Mayonnaise, hot sauces, salad dressings, and liquid egg yolk formulations.',
     heroBenefits: [
       'Provides natural colour and a creamy, thick texture while maintaining emulsion stability.',
-      'Provides high emulsion stability during high-temperature pasteurization, preventing oil–water phase separation in sauces.',
+      'Provides high emulsion stability during high-temperature pasteurisation, preventing oil–water phase separation in sauces.',
     ],
     performanceOverrides: {
       emulsification: {
         code: 'Y1111',
-        text: 'Provides high emulsion stability during high-temperature pasteurization, preventing oil–water phase separation in sauces.',
+        text: 'Provides high emulsion stability during high-temperature pasteurisation, preventing oil–water phase separation in sauces.',
       },
       colour: {
         code: 'Y1117',
         text: 'Provides natural colour and a creamy, thick texture while maintaining emulsion stability.',
       },
     },
-    benefits: 'Maintains high emulsion stability during high-temperature pasteurization, preventing oil–water phase separation in sauces.',
+    benefits: 'Maintains high emulsion stability during high-temperature pasteurisation, preventing oil–water phase separation in sauces.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 54.0%', protein: 'Min 29.0%', ph: '6.0 - 7.0', character: 'Modified Heat-Stable Emulsifier' }
   },
   {
@@ -42,7 +42,7 @@ export const variantsData = [
     name: 'Egg Yolk Powder - Heat Stable',
     description: 'Phospholipase-modified dried yolk powder offering deep golden color and enhanced viscosity under heat application.',
     applications: 'Premium high-end mayonnaise, hollandaise sauces, and heat-treated dessert custards.',
-    benefits: 'Natural coloring and creamy thick texture; maintains active emulsion properties under pasteurizing temperatures.',
+    benefits: 'Natural coloring and creamy thick texture; maintains active emulsion properties under pasteurising temperatures.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 54.0%', protein: 'Min 29.0%', ph: '6.0 - 7.0', character: 'Deep Golden Color Index (Beta-carotene > 35 ppm)' }
   },
   {
@@ -64,7 +64,7 @@ export const variantsData = [
 ];
 
 const applicationsData = [
-  { name: 'Mayonnaise', image: MayonnaiseImg, description: 'Delivers heat-stable emulsification to prevent oil-water separation in pasteurized mayonnaise production.' },
+  { name: 'Mayonnaise', image: MayonnaiseImg, description: 'Delivers heat-stable emulsification to prevent oil-water separation in pasteurised mayonnaise production.' },
   { name: 'Dressings', image: DressingsImg, description: 'Maintains stable creamy emulsions in salad dressings even under high-shear and thermal processing.' },
   { name: 'Sauces', image: SaucesImg, description: 'Provides consistent viscosity and smooth texture in hot-filled and retort-sterilized culinary sauces.' },
   { name: 'Emulsified Products', image: EmulsifiedProductsImg, description: 'Ensures phase stability across a wide range of hot-processed emulsified food formulations.' }
@@ -75,13 +75,13 @@ export default function EggYolkPowderHeatStablePage({ onPageChange }) {
     <ProductPage
       seo={{
         title: 'Heat Stable Egg Yolk Powder | Mayonnaise Emulsifier Supplier',
-        description: "SKM's heat-stable egg yolk powder retains emulsification at high temperatures - ideal for mayonnaise, dressings & processed foods. Pasteurized, BRCGS & Halal certified. Bulk manufacturer & exporter from India.",
-        keywords: 'heat stable egg yolk powder, heat resistant egg yolk powder, egg yolk powder mayonnaise, egg yolk emulsifier powder, heat stable egg powder, egg yolk powder for dressings, mayonnaise egg powder supplier, heat stable yolk manufacturer, egg yolk powder bulk exporter, pasteurized egg yolk powder heat stable',
+        description: "SKM's heat-stable egg yolk powder retains emulsification at high temperatures - ideal for mayonnaise, dressings & processed foods. Pasteurised, BRCGS & Halal certified. Bulk manufacturer & exporter from India.",
+        keywords: 'heat stable egg yolk powder, heat resistant egg yolk powder, egg yolk powder mayonnaise, egg yolk emulsifier powder, heat stable egg powder, egg yolk powder for dressings, mayonnaise egg powder supplier, heat stable yolk manufacturer, egg yolk powder bulk exporter, pasteurised egg yolk powder heat stable',
         canonical: 'https://www.skmegg.com/egg_yolk_powder_heat_stable',
         jsonLd: {
           '@context': 'https://schema.org', '@type': 'Product',
           name: 'Egg Yolk Powder - Heat Stable',
-          description: 'Premium heat-stable spray-dried pasteurized egg yolk powder for mayonnaise, dressings and processed food applications. Maintains emulsification at high temperatures.',
+          description: 'Premium heat-stable spray-dried pasteurised egg yolk powder for mayonnaise, dressings and processed food applications. Maintains emulsification at high temperatures.',
           brand: { '@type': 'Brand', name: 'SKM Egg Products' },
           manufacturer: { '@type': 'Organization', name: 'SKM Egg Products', url: 'https://www.skmegg.com' },
           category: 'Egg Powders', url: 'https://www.skmegg.com/egg_yolk_powder_heat_stable',
@@ -95,7 +95,7 @@ export default function EggYolkPowderHeatStablePage({ onPageChange }) {
         categoryLabel: 'Egg Powders Range',
         titleLine1: 'Egg Yolk Powder',
         titleLine2: '- Heat Stable',
-        description: 'Pasteurized Dried Hen Egg Yolk Powder for mayonnaise & food applications. Stabilized for oil emulsification during heat application.',
+        description: 'Pasteurised Dried Hen Egg Yolk Powder for mayonnaise & food applications. Stabilized for oil emulsification during heat application.',
         primaryBadge: 'Modified Hen Egg Yolk Product'
       }}
       variantsData={variantsData}

@@ -55,7 +55,7 @@ function TraceabilityJourneySection({ onPageChange }) {
 // labels are shown, but each card's fact is only as specific as real data
 // supports. Feed ingredients, Poultry farm, Pasteurisation, and Packaging
 // each have a distinct real fact (feed screening, farm biosecurity/lab
-// monitoring, HACCP-monitored pasteurization, positive-pressure packing —
+// monitoring, HACCP-monitored pasteurisation, positive-pressure packing —
 // all verbatim/paraphrase-free from journeyStages.js and
 // FoodSafetyPolicy.jsx). Egg receipt, Breaking and separation, Drying or
 // liquid processing, and Final release have no distinct real documentation
@@ -89,7 +89,7 @@ const QUALITY_GATES = [
   {
     id: 'pasteurisation',
     label: 'Pasteurisation',
-    fact: 'Fresh eggs received daily undergo controlled breaking, pasteurization, and drying processes, supported by comprehensive HACCP-based monitoring and documentation at every stage to ensure product safety, quality, and traceability.',
+    fact: 'Fresh eggs received daily undergo controlled breaking, pasteurisation, and drying processes, supported by comprehensive HACCP-based monitoring and documentation at every stage to ensure product safety, quality, and traceability.',
   },
   {
     id: 'drying-liquid-processing',

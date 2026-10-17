@@ -1,6 +1,6 @@
 import CategoryPage from './CategoryPage';
 
-// This family (Customized Mix, Customized Packages, Speciality Liquid
+// This family (Customised Mix, Customised Packages, Speciality Liquid
 // Blends, Egg White Cube) has no genuinely shared benefits, applications,
 // or storage value across all 4 products - confirmed in
 // src/pages/Home/sections/ProductFamilies.jsx's own audit note. Only
@@ -31,13 +31,13 @@ export default function CustomSpecialtyCategoryPage({ onPageChange }) {
   return (
     <CategoryPage
       seo={{
-        title: 'Customised and Specialty Products | SKM Egg Products Category Guide',
-        description: 'Custom egg powder blends, specialty liquid blends, egg white cube, and customised packaging - configured to your exact recipe and format.',
-        keywords: 'customized egg products, custom egg powder blend, speciality egg liquid, egg white cube, customized packaging',
+        title: 'Customised and Speciality Products | SKM Egg Products Category Guide',
+        description: 'Custom egg powder blends, speciality liquid blends, egg white cube, and customised packaging - configured to your exact recipe and format.',
+        keywords: 'customised egg products, custom egg powder blend, speciality egg liquid, egg white cube, customised packaging',
         canonical: 'https://www.skmegg.com/category_custom',
       }}
       categoryLabel="Product Category"
-      title="Customised and Specialty Products"
+      title="Customised and Speciality Products"
       format="Custom-configured egg powder blends, speciality liquid blends, cooked egg white cube, and customised packaging - built to your exact specification rather than a fixed catalogue format."
       whoUsesIt="Food manufacturers with a specific recipe, packaging, or formulation requirement not met by a standard catalogue product - for example hot-fill mayonnaise producers needing a heat-stable custom blend."
       categoryProductIds={['customized_mix', 'customized_packages', 'speciality_egg_liquids', 'egg_white_cube']}

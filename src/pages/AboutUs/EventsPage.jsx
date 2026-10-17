@@ -77,10 +77,10 @@ const upcomingExhibitions = [
 const pastExhibitions = [
   { title: 'FI Asia Thailand 2023', tag: 'Food Ingredients Asia', location: 'Thailand', country: 'Thailand', dateRange: 'Sep 20–22, 2023', year: '2023', desc: 'SKM showcased its full line of egg powder solutions to Asian bakery and noodle manufacturers.', images: [fia23_1, fia23_2, fia23_3, fia23_4, fia23_5] },
   { title: 'Gulfood Manufacturing 2023', tag: 'Gulfood Manufacturing', location: 'Dubai WTC, Dubai', country: 'UAE', dateRange: 'Nov 7–9, 2023', year: '2023', desc: 'SKM expanded commercial partnerships with major Middle Eastern dairy and mayonnaise brands.', images: [gfm23_1, gfm23_2, gfm23_3, gfm23_4] },
-  { title: 'Fi Africa 2024', tag: 'Food Ingredients Africa', location: 'Cairo, Egypt', country: 'Egypt', dateRange: 'May 26–28, 2024', year: '2024', desc: 'SKM introduced customized yolk and whole egg mixes to the African baking sector.', images: [fia24_booth, fia24_disc, fia24_2, fia24_4, fia24_5] },
+  { title: 'Fi Africa 2024', tag: 'Food Ingredients Africa', location: 'Cairo, Egypt', country: 'Egypt', dateRange: 'May 26–28, 2024', year: '2024', desc: 'SKM introduced customised yolk and whole egg mixes to the African baking sector.', images: [fia24_booth, fia24_disc, fia24_2, fia24_4, fia24_5] },
   { title: 'Fi Vietnam 2024', tag: 'Food Ingredients Vietnam', location: 'SECC, Ho Chi Minh City', country: 'Vietnam', dateRange: 'Oct 9–11, 2024', year: '2024', desc: 'SKM reinforced its supply agreements with key Southeast Asian noodle and sauce processors.', images: [fivn24_1, fivn24_2, fivn24_3, fivn24_4, fivn24_5] },
   { title: 'FI Asia Thailand 2025', tag: 'Food Ingredients Asia', location: 'QSNCC, Bangkok', country: 'Thailand', dateRange: 'Sep 17–19, 2025', year: '2025', desc: 'SKM displayed enzyme-modified heat-stable yolk powders for high-temp processing.', images: [fia25_1, fia25_2, fia25_3, fia25_4, fia25_5] },
-  { title: 'Gulfood Manufacturing 2025', tag: 'Gulfood Manufacturing', location: 'Dubai WTC, Dubai', country: 'UAE', dateRange: 'Nov 3–5, 2025', year: '2025', desc: 'SKM established high-volume contracts for liquid pasteurized mixes with GCC partners.', images: [gfm25_1, gfm25_2, gfm25_3, gfm25_4, gfm25_5] },
+  { title: 'Gulfood Manufacturing 2025', tag: 'Gulfood Manufacturing', location: 'Dubai WTC, Dubai', country: 'UAE', dateRange: 'Nov 3–5, 2025', year: '2025', desc: 'SKM established high-volume contracts for liquid pasteurised mixes with GCC partners.', images: [gfm25_1, gfm25_2, gfm25_3, gfm25_4, gfm25_5] },
   { title: 'Fi Vietnam 2026', tag: 'Food Ingredients Vietnam', location: 'SECC, Ho Chi Minh City', country: 'Vietnam', dateRange: 'May 13–15, 2026', year: '2026', desc: 'Presented premium bakery mixes to fast-growing culinary chains across Indochina.', images: [fivn26_1, fivn26_2, fivn26_3, fivn26_4, fivn26_5] },
   { title: 'Seoul Food 2026', tag: 'Seoul Food & Hotel', location: 'KINTEX, South Korea', country: 'South Korea', dateRange: 'Jun 9–12, 2026', year: '2026', desc: 'Demonstrated complete traceability compliance for premium egg white cube products.', images: [seoul26_1, seoul26_2, seoul26_3, seoul26_4, seoul26_5] },
   { title: 'FLIP 2026 - Future Food, Livestock & Poultry Expo', tag: 'FLIP Expo', location: 'Mwalimu J.K. Nyerere Trade Fair Grounds, Dar es Salaam', country: 'Tanzania', dateRange: 'Sep 2–3, 2026', year: '2026', desc: 'The 3rd Future Food, Livestock & Poultry Expo (FLIP 2026) took place on September 2–3, 2026, at the Mwalimu J.K. Nyerere Trade Fair Grounds in Dar es Salaam, Tanzania.', images: Array.from({ length: 5 }, (_, i) => `/events/flip-tanzania-2026/${i + 1}.webp`) },
@@ -94,9 +94,9 @@ const companyNews = [
     category: 'Capacity & Expansion',
     title: 'SKM Expands Liquid Processing Capacity by 30% to Meet Growing Demand',
     date: 'July 12, 2026',
-    excerpt: 'SKM has installed state-of-the-art cold-separation lines and automated pasteurizers to ramp up liquid whole egg, yolk, and albumen production at our Erode facility.',
+    excerpt: 'SKM has installed state-of-the-art cold-separation lines and automated pasteurisers to ramp up liquid whole egg, yolk, and albumen production at our Erode facility.',
     readTime: '3 min read',
-    content: 'SKM Egg Products is pleased to announce a significant capacity expansion at our main processing facility in Erode, Tamil Nadu. By installing new high-speed cold-separation lines and automated thermal pasteurizers, our processing capacity for liquid egg products has increased by 30% to support growing demand from industrial bakeries and sauce manufacturers across Southeast Asia and the Middle East.\n\nThis expansion incorporates advanced clean-in-place (CIP) technologies and double-pasteurization parameters to ensure maximum microbiological safety and longer shelf-life while preserving the natural foaming and emulsification properties of the eggs. The new separation lines will also feed our customized mixing plant, enabling faster lead times for pre-blended products.'
+    content: 'SKM Egg Products is pleased to announce a significant capacity expansion at our main processing facility in Erode, Tamil Nadu. By installing new high-speed cold-separation lines and automated thermal pasteurisers, our processing capacity for liquid egg products has increased by 30% to support growing demand from industrial bakeries and sauce manufacturers across Southeast Asia and the Middle East.\n\nThis expansion incorporates advanced clean-in-place (CIP) technologies and double-pasteurisation parameters to ensure maximum microbiological safety and longer shelf-life while preserving the natural foaming and emulsification properties of the eggs. The new separation lines will also feed our customised mixing plant, enabling faster lead times for pre-blended products.'
   },
   {
     id: 'news2',
@@ -110,11 +110,11 @@ const companyNews = [
   {
     id: 'news3',
     category: 'Certifications & Compliance',
-    title: 'New Export Certification Earned for Premium Customized Blends',
+    title: 'New Export Certification Earned for Premium Customised Blends',
     date: 'May 15, 2026',
     excerpt: 'Expanding global reach with key compliance approvals for specialized bakery and confectionery liquid mixes in Southeast Asian markets.',
     readTime: '3 min read',
-    content: 'SKM has successfully secured new compliance certifications for our customized egg mixes from international regulatory authorities. These certifications validate our rigorous processing controls and backward-integrated supply chain transparency.\n\nThe new certifications cover customized liquid yolk and whole egg blends containing sugar, salt, and food-grade stabilizers designed for the automated industrial baking sector. Achieving these standards opens up direct export pathways to several new premium confectionery manufacturers in Japan and South Korea who require absolute traceability and zero-residue guarantees.'
+    content: 'SKM has successfully secured new compliance certifications for our customised egg mixes from international regulatory authorities. These certifications validate our rigorous processing controls and backward-integrated supply chain transparency.\n\nThe new certifications cover customised liquid yolk and whole egg blends containing sugar, salt, and food-grade stabilizers designed for the automated industrial baking sector. Achieving these standards opens up direct export pathways to several new premium confectionery manufacturers in Japan and South Korea who require absolute traceability and zero-residue guarantees.'
   }
 ];
 
@@ -145,7 +145,7 @@ const technicalInsights = [
     excerpt: 'Why heat-stable yolk powder is essential for retorted dressings and how to calibrate shear rates during production.',
     readTime: '6 min read',
     flyerName: 'SKM BAKERY MIX A5 FLYER (F-B).pdf',
-    content: 'Mayonnaise is a high-oil emulsion stabilized by the lecithin-lipoprotein complexes in egg yolk. In retorted or pasteurized dressings, standard egg yolk fails because heat denatures the proteins, breaking the emulsion and causing oil separation. SKM\'s Heat-Stable Egg Yolk Powder is enzyme-modified to increase thermal tolerance, preventing emulsion breakdown even under high-temperature pasteurization. When preparing the emulsion, the oil addition rate must be carefully calibrated against high-shear mixing speeds to maintain drop size consistency between 2 and 5 microns.'
+    content: 'Mayonnaise is a high-oil emulsion stabilized by the lecithin-lipoprotein complexes in egg yolk. In retorted or pasteurised dressings, standard egg yolk fails because heat denatures the proteins, breaking the emulsion and causing oil separation. SKM\'s Heat-Stable Egg Yolk Powder is enzyme-modified to increase thermal tolerance, preventing emulsion breakdown even under high-temperature pasteurisation. When preparing the emulsion, the oil addition rate must be carefully calibrated against high-shear mixing speeds to maintain drop size consistency between 2 and 5 microns.'
   },
   {
     id: 'insight4',
@@ -160,10 +160,10 @@ const technicalInsights = [
     id: 'insight5',
     topic: 'Market information',
     title: 'Global Egg Ingredient Trends: The Shift Towards Functional Custom Mixes',
-    excerpt: 'An analytical view on why bakeries are replacing shell eggs with customized mixes containing pre-dosed salt, sugar, and stabilizers.',
+    excerpt: 'An analytical view on why bakeries are replacing shell eggs with customised mixes containing pre-dosed salt, sugar, and stabilizers.',
     readTime: '4 min read',
     flyerName: 'SKM BAKERY MIX A5 FLYER (F-B).pdf',
-    content: 'Industrial bakeries globally are shifting away from shell egg cracking and plain egg powders toward pre-blended functional mixes. This shift is driven by three main factors: consistency, labor costs, and food safety. Custom mixes pre-blended with salt, sugar, or specialty texturizers allow bakeries to bypass ingredient scaling steps, eliminating human error on the factory floor. Additionally, these custom blends are pasteurized as a compound, ensuring a much lower microbiological profile compared to manual shell egg additions.'
+    content: 'Industrial bakeries globally are shifting away from shell egg cracking and plain egg powders toward pre-blended functional mixes. This shift is driven by three main factors: consistency, labor costs, and food safety. Custom mixes pre-blended with salt, sugar, or speciality texturizers allow bakeries to bypass ingredient scaling steps, eliminating human error on the factory floor. Additionally, these custom blends are pasteurised as a compound, ensuring a much lower microbiological profile compared to manual shell egg additions.'
   }
 ];
 

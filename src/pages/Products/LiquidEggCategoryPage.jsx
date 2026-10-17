@@ -39,13 +39,13 @@ export default function LiquidEggCategoryPage({ onPageChange }) {
     <CategoryPage
       seo={{
         title: 'Liquid Egg Products | SKM Egg Products Category Guide',
-        description: 'Chilled and frozen pasteurized liquid whole egg, egg yolk, and egg albumen - format, benefits, and typical uses for food manufacturers.',
-        keywords: 'liquid egg category, whole egg liquid, egg yolk liquid, egg albumen liquid, pasteurized liquid egg',
+        description: 'Chilled and frozen pasteurised liquid whole egg, egg yolk, and egg albumen - format, benefits, and typical uses for food manufacturers.',
+        keywords: 'liquid egg category, whole egg liquid, egg yolk liquid, egg albumen liquid, pasteurised liquid egg',
         canonical: 'https://www.skmegg.com/category_liquids',
       }}
       categoryLabel="Product Category"
       title="Liquid Egg Products"
-      format="Pasteurized liquid egg - chilled or frozen - supplied as whole egg, egg yolk, or egg albumen blends, ready to dose directly into recipes."
+      format="Pasteurised liquid egg - chilled or frozen - supplied as whole egg, egg yolk, or egg albumen blends, ready to dose directly into recipes."
       advantages={[
         'Full nutrient density, easy dosing and handling, eliminates eggshell-breaking hazards in industrial kitchens.',
         'Delivers high cake volume, improves crumb softness, and significantly delays starch staling.',

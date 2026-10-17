@@ -24,8 +24,8 @@ const infoBlocks = [
     ),
   },
   {
-    title: 'Customized Feed Formulations',
-    body: 'Customized formulations for chicks, growers, and layers deliver essential nutrients for optimal bird health and consistent egg quality. Automated vehicles ensure secure, contamination-free transport to farms.',
+    title: 'Customised Feed Formulations',
+    body: 'Customised formulations for chicks, growers, and layers deliver essential nutrients for optimal bird health and consistent egg quality. Automated vehicles ensure secure, contamination-free transport to farms.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />

@@ -42,7 +42,7 @@ const proofs = [
     symbol: '∞',
     label: 'Customised product solutions',
     title: 'Application & Customisation Support',
-    description: 'Customized Mix · Customized Packages - formulated to the specifications a production line actually needs.',
+    description: 'Customised Mix · Customised Packages - formulated to the specifications a production line actually needs.',
     page: 'why_skm',
   },
   {

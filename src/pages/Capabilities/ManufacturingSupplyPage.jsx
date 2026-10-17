@@ -32,10 +32,10 @@ import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply
 //
 // Section 2 (Egg processing plant): all 7 requested facts are real,
 // verbatim/derived from src/pages/Infra/sections/EggProcessingPlant.jsx —
-// processing stages (egg breaking → pasteurization → drying/filling →
+// processing stages (egg breaking → pasteurisation → drying/filling →
 // cold storage, the real processAreaImages sequence), separation lines
-// (two dedicated yolk/albumen lines), pasteurisation (pre-pasteurization +
-// pasteurization stages), spray drying (albumen/yolk dryers), liquid
+// (two dedicated yolk/albumen lines), pasteurisation (pre-pasteurisation +
+// pasteurisation stages), spray drying (albumen/yolk dryers), liquid
 // processing (liquid filling, cold room, frozen storage), automation
 // (fully automated, climate-controlled, CIP system), hygiene zoning
 // (red/white/neutral zone protocol). "View Processing Technology" and
@@ -46,17 +46,17 @@ const PROCESSING_CAPABILITIES = [
   {
     id: 'processing-stages',
     label: 'Processing stages',
-    fact: 'Only QA cleared eggs are processed - egg breaking, pasteurization, drying/filling, and cold storage - with a capacity of 2 million eggs per day.',
+    fact: 'Only QA cleared eggs are processed - egg breaking, pasteurisation, drying/filling, and cold storage - with a capacity of 2 million eggs per day.',
   },
   {
     id: 'separation-lines',
     label: 'Separation lines',
-    fact: 'Two dedicated production lines - yolk and albumen - operate in a climate-controlled environment. A dedicated line for liquid products processing and distinguished blending facility for customized mixes preparations.',
+    fact: 'Two dedicated production lines - yolk and albumen - operate in a climate-controlled environment. A dedicated line for liquid products processing and distinguished blending facility for customised mixes preparations.',
   },
   {
     id: 'pasteurisation',
     label: 'Pasteurisation',
-    fact: 'Pasteurization process carried out to eliminate the pathogens and entire loop cleanliness is supported by an automated CIP system for validated cleaning.',
+    fact: 'Pasteurisation process carried out to eliminate the pathogens and entire loop cleanliness is supported by an automated CIP system for validated cleaning.',
   },
   {
     id: 'spray-drying',
@@ -358,7 +358,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
 // documented mapping of packaging format to export market or
 // application), so that dimension is omitted rather than invented - only
 // the real format/type/SKU facts are shown. "Compare Packaging Options"
-// and "Discuss Custom Packaging" both route to the real Customized
+// and "Discuss Custom Packaging" both route to the real Customised
 // Packages page, which is the one real destination covering all 4
 // formats; a dedicated comparison tool doesn't exist separately.
 //

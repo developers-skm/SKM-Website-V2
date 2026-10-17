@@ -156,7 +156,7 @@ function FeedbackForm({ formData, errors, onChange }) {
           <option value="Egg Liquids">Egg Liquids</option>
           <option value="Frozen Egg Liquids">Frozen Egg Liquids</option>
           <option value="Speciality Products">Speciality Products</option>
-          <option value="Customized Mixes">Customized Mixes</option>
+          <option value="Customised Mixes">Customised Mixes</option>
           <option value="Others">Others if any</option>
         </select>
       </Field>

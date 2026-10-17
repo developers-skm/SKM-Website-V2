@@ -35,8 +35,8 @@ const features = [
     )
   },
   {
-    title: 'Pasteurized & Safe',
-    description: 'Pasteurized under strict hygiene controls to eliminate Salmonella and ensure food-grade safety standards.',
+    title: 'Pasteurised & Safe',
+    description: 'Pasteurised under strict hygiene controls to eliminate Salmonella and ensure food-grade safety standards.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -49,18 +49,18 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
   return (
     <div className="w-full flex flex-col bg-page font-body text-left">
       <SEO
-        title="Specialty Egg Liquids | Tetra Pack Pasteurized Egg Products"
-        description="SKM's specialty egg liquids in convenient tetra pack format for household, RTC & institutional use. Pasteurized for safety. Ready-to-use liquid eggs - convenient, hygienic, and shelf-stable."
-        keywords="specialty egg liquid, tetra pack egg liquid, ready to cook egg liquid, RTC egg products, household liquid egg, pasteurized egg tetra pack, egg liquid tetra pack India, ready to use egg, specialty egg products, liquid egg household, convenient egg product, shelf stable egg liquid"
+        title="Speciality Egg Liquids | Tetra Pack Pasteurised Egg Products"
+        description="SKM's speciality egg liquids in convenient tetra pack format for household, RTC & institutional use. Pasteurised for safety. Ready-to-use liquid eggs - convenient, hygienic, and shelf-stable."
+        keywords="speciality egg liquid, tetra pack egg liquid, ready to cook egg liquid, RTC egg products, household liquid egg, pasteurised egg tetra pack, egg liquid tetra pack India, ready to use egg, speciality egg products, liquid egg household, convenient egg product, shelf stable egg liquid"
         canonical="https://www.skmegg.com/speciality_egg_liquids"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Product",
-          "name": "Specialty Egg Liquids",
-          "description": "Pasteurized liquid eggs in convenient tetra pack format for household, RTC, and institutional use.",
+          "name": "Speciality Egg Liquids",
+          "description": "Pasteurised liquid eggs in convenient tetra pack format for household, RTC, and institutional use.",
           "brand": { "@type": "Brand", "name": "SKM Egg Products" },
           "manufacturer": { "@type": "Organization", "name": "SKM Egg Products", "url": "https://www.skmegg.com" },
-          "category": "Specialty Egg Products",
+          "category": "Speciality Egg Products",
           "url": "https://www.skmegg.com/speciality_egg_liquids",
           "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "INR", "seller": { "@type": "Organization", "name": "SKM Egg Products" } }
         }}
@@ -135,7 +135,7 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
             {[
               { label: 'Format', value: 'Tetra Pack', sub: 'Consumer-ready packaging' },
               { label: 'Usage', value: 'Household & Ready to Cook (RTC)', sub: 'Versatile applications' },
-              { label: 'Safety', value: 'Pasteurized', sub: 'Salmonella absent' },
+              { label: 'Safety', value: 'Pasteurised', sub: 'Salmonella absent' },
             ].map((stat) => (
               <motion.div
                 key={stat.label}

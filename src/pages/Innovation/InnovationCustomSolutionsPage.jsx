@@ -6,7 +6,7 @@ import { getProductById } from '../../data/products';
 // Innovation and Custom Solutions - new page, Section 1 (Challenge-first
 // hero) only, per this task's scope. No page for this existed anywhere in
 // the app before this change (confirmed by search) - this is a genuinely
-// new route, not a replacement of the existing "Customized Mix" product
+// new route, not a replacement of the existing "Customised Mix" product
 // page (route `customized_mix`), which stays as-is and covers the one real
 // custom SKU (Y1119, heat-stable egg yolk mix). This page is the broader
 // capability story the brief asks for: SKM's ability to solve formulation
@@ -40,7 +40,7 @@ const CHALLENGES = [
   {
     id: 'heat-stability',
     label: 'Heat stability',
-    fact: 'Heat-stable variants across egg yolk powder, egg yolk liquid, and whole egg powder resist oil-water separation and maintain emulsification under pasteurization or hot-fill processing.',
+    fact: 'Heat-stable variants across egg yolk powder, egg yolk liquid, and whole egg powder resist oil-water separation and maintain emulsification under pasteurisation or hot-fill processing.',
   },
   {
     id: 'whipping-performance',
@@ -297,21 +297,21 @@ function RDCapabilitySection({ onPageChange }) {
   );
 }
 
-// Section 5 (Existing specialty solutions): the 5 requested categories map
+// Section 5 (Existing speciality solutions): the 5 requested categories map
 // directly to 5 real products already in data/products.js - Heat-stable
 // yolk products (egg_yolk_powder_heat_stable), Custom powder mix
-// (customized_mix), Specialty liquids (speciality_egg_liquids), Consumer-
-// oriented specialty products (egg_white_cube - the one retail/ready-to-
+// (customized_mix), Speciality liquids (speciality_egg_liquids), Consumer-
+// oriented speciality products (egg_white_cube - the one retail/ready-to-
 // eat format), Custom packaging (customized_packages). Real image,
 // title, and shortDescription reused from products.js, not new copy.
-// "View Specialty Products" routes to the real Customised and Specialty
+// "View Speciality Products" routes to the real Customised and Speciality
 // Products category page; "Request a Custom Sample" routes to the real
 // get-quote flow.
 const SPECIALTY_SOLUTION_IDS = [
   { id: 'egg_yolk_powder_heat_stable', label: 'Heat-stable yolk products' },
   { id: 'customized_mix', label: 'Custom powder mix' },
-  { id: 'speciality_egg_liquids', label: 'Specialty liquids' },
-  { id: 'egg_white_cube', label: 'Consumer-oriented specialty products' },
+  { id: 'speciality_egg_liquids', label: 'Speciality liquids' },
+  { id: 'egg_white_cube', label: 'Consumer-oriented speciality products' },
   { id: 'customized_packages', label: 'Custom packaging' },
 ];
 
@@ -320,7 +320,7 @@ function ExistingSpecialtySolutionsSection({ onPageChange }) {
   const solutions = SPECIALTY_SOLUTION_IDS.map((s) => ({ ...s, product: getProductById(s.id) })).filter((s) => s.product);
 
   return (
-    <div id="existing-specialty-solutions" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
+    <div id="existing-speciality-solutions" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -332,7 +332,7 @@ function ExistingSpecialtySolutionsSection({ onPageChange }) {
         >
           <span className="section-label">Already Available</span>
           <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Existing specialty solutions
+            Existing speciality solutions
           </h2>
         </motion.div>
 
@@ -369,7 +369,7 @@ function ExistingSpecialtySolutionsSection({ onPageChange }) {
             onPageChange={onPageChange}
             className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
-            View Specialty Products
+            View Speciality Products
           </InternalLink>
 
           <InternalLink
@@ -487,7 +487,7 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
         {/* Section 4 - R&D and application capability */}
         <RDCapabilitySection onPageChange={onPageChange} />
 
-        {/* Section 5 - Existing specialty solutions */}
+        {/* Section 5 - Existing speciality solutions */}
         <ExistingSpecialtySolutionsSection onPageChange={onPageChange} />
 
         {/* Section 6 - Final CTA */}

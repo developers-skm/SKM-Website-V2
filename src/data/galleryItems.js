@@ -31,12 +31,12 @@ const raw = [
   ['egg-conveyor', `${P}/Egg conveyor.webp`, 'manufacturing', 'Egg Conveyor', 'Rows of white eggs travelling on the processing conveyor'],
   ['albumen-dryer', `${P}/Albumen Dryer.webp`, 'manufacturing', 'Albumen Dryer', 'Stainless steel albumen drying equipment in the process area'],
   ['yolk-dryer', `${P}/Yolk Dryer.webp`, 'manufacturing', 'Yolk Dryer', 'Yolk drying equipment inside the clean process area'],
-  ['pasteurization', `${P}/Pasteurization.webp`, 'manufacturing', 'Pasteurization', 'Pasteurization line inside the egg processing plant'],
+  ['pasteurization', `${P}/Pasteurization.webp`, 'manufacturing', 'Pasteurisation', 'Pasteurisation line inside the egg processing plant'],
   ['liquid-filling', `${P}/Liquid filling.webp`, 'manufacturing', 'Liquid Filling', 'Liquid egg filling machinery in the filling hall'],
   ['concentration', `${P}/Concentration.webp`, 'manufacturing', 'Concentration', 'Concentration section with stainless steel tanks and piping'],
   ['hot-room', `${P}/Hot room.webp`, 'manufacturing', 'Hot Room', 'Egg trays stacked inside the hot room'],
   ['egg-storage', `${P}/Egg Storage.webp`, 'manufacturing', 'Egg Storage', 'Stacks of egg crates in the egg storage area'],
-  ['pre-pasteurization', `${P}/Pre pasteurization.webp`, 'manufacturing', 'Pre-Pasteurization', 'Stainless steel tanks in the pre-pasteurization area'],
+  ['pre-pasteurization', `${P}/Pre pasteurization.webp`, 'manufacturing', 'Pre-Pasteurisation', 'Stainless steel tanks in the pre-pasteurisation area'],
 
   // Infrastructure
   ['campus-overview', `${C}/Campus overview.webp`, 'infrastructure', 'Campus Overview', 'Aerial view of the SKM campus with landscaped lawns'],

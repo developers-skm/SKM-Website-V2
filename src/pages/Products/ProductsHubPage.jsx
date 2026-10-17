@@ -85,7 +85,7 @@ const CATEGORY_PACKAGING_GROUPS = {
 };
 
 // Packaging filter values prefixed with this select a single product rather
-// than a packagingOptions entry (used by the Customized Solutions pills).
+// than a packagingOptions entry (used by the Customised Solutions pills).
 const PRODUCT_PILL_PREFIX = 'product:';
 
 function matchesPackaging(product, packaging) {
@@ -125,7 +125,7 @@ function groupPackagingOptions(options, category) {
   }
 
   if (category === PRODUCT_CATEGORIES.CUSTOMIZED) {
-    // Both customized products share the single "Custom" packaging value,
+    // Both customised products share the single "Custom" packaging value,
     // so offer each product as its own pill and filter by product instead.
     return [
       {
@@ -436,8 +436,8 @@ function ProductFinder({ onPageChange }) {
 const familyGroups = [
   { id: 'powders', label: 'Egg Powders', category: PRODUCT_CATEGORIES.POWDERS, ctaLabel: 'View Egg Powder Range', categoryRoute: 'category_powders' },
   { id: 'liquids', label: 'Liquid Eggs', category: PRODUCT_CATEGORIES.LIQUIDS, ctaLabel: 'View Liquid Egg Range', categoryRoute: 'category_liquids' },
-  { id: 'speciality', label: 'Speciality Products', category: PRODUCT_CATEGORIES.SPECIALITY, ctaLabel: 'Explore Specialty Products', categoryRoute: 'category_custom' },
-  { id: 'customized', label: 'Customized Solutions', category: PRODUCT_CATEGORIES.CUSTOMIZED, ctaLabel: 'Explore Custom Solutions', categoryRoute: 'category_custom' },
+  { id: 'speciality', label: 'Speciality Products', category: PRODUCT_CATEGORIES.SPECIALITY, ctaLabel: 'Explore Speciality Products', categoryRoute: 'category_custom' },
+  { id: 'customised', label: 'Customised Solutions', category: PRODUCT_CATEGORIES.CUSTOMIZED, ctaLabel: 'Explore Custom Solutions', categoryRoute: 'category_custom' },
 ];
 
 function FamilyGroupBlock({ group, onPageChange }) {
@@ -552,7 +552,7 @@ const manufacturingLines = [
     id: 'liquid',
     route: 'liquid_line',
     label: 'Liquid Line',
-    description: 'See how fresh eggs become pasteurized liquid egg products - from biosecure farms to hygienic packaging.',
+    description: 'See how fresh eggs become pasteurised liquid egg products - from biosecure farms to hygienic packaging.',
     cta: 'View Manufacturing Process',
   },
 ];
@@ -689,7 +689,7 @@ function CustomSupportSection({ onPageChange }) {
           Custom product support
         </h2>
         <p className="font-body text-[15px] lg:text-[16px] text-surface-500 max-w-2xl m-0">
-      Our Customized Mix and Customized Package solutions are precisely tailored to your recipe, process, and specific requirements
+      Our Customised Mix and Customised Package solutions are precisely tailored to your recipe, process, and specific requirements
         </p>
         <div className="flex flex-wrap items-center gap-4 mt-1">
           <InternalLink

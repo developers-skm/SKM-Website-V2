@@ -67,7 +67,7 @@ export const variantsData = [
   {
     code: 'Y1015',
     name: 'Frozen Egg Yolk Liquid - 11% Salt',
-    description: 'Pasteurized liquid egg yolk with 11% salt, blast frozen to lock in emulsifying properties.',
+    description: 'Pasteurised liquid egg yolk with 11% salt, blast frozen to lock in emulsifying properties.',
     applications: 'Mayonnaise, salad dressings, and large-scale catering kitchens.',
     benefits: 'Long frozen durability, uniform performance, and easy thawing.',
     specifications: { moisture: '44.0% - 47.0%', protein: 'Min 13.0%', ph: '5.8 - 6.8', storage: 'Frozen (≤ -18°C)', character: 'Frozen Salt Content: 11.0% (±0.5%)' }
@@ -83,8 +83,8 @@ export const variantsData = [
   {
     code: 'Y1017',
     name: 'Frozen Egg Yolk Liquid - 10% Salt - Dark Colour',
-    description: 'Specialty frozen yolk liquid with 10% salt and enhanced dark color profile, offering visual rich appearance.',
-    applications: 'Rich golden mayonnaise, gold biscuits, yellow noodle pasta, and specialty baked goods.',
+    description: 'Speciality frozen yolk liquid with 10% salt and enhanced dark color profile, offering visual rich appearance.',
+    applications: 'Rich golden mayonnaise, gold biscuits, yellow noodle pasta, and speciality baked goods.',
     benefits: 'Premium golden presentation without dyes; excellent emulsion stability.',
     specifications: { moisture: '44.5% - 47.5%', protein: 'Min 13.5%', ph: '5.8 - 6.8', storage: 'Frozen (≤ -18°C)', character: 'Dark Golden Color & 10% Salt' }
   },
@@ -92,14 +92,14 @@ export const variantsData = [
     code: 'Y1018',
     name: 'Frozen Egg Yolk Liquid - 10% Salt - Dark Colour - Stabilized',
     description: 'Enzymatically modified frozen yolk liquid containing 10% salt, dark color properties, and enhanced thermal tolerance.',
-    applications: 'Hot pasteurized premium mayonnaise, hot-filled dressings, and retorted savory food packages.',
+    applications: 'Hot pasteurised premium mayonnaise, hot-filled dressings, and retorted savory food packages.',
     benefits: 'Provides excellent heat stability, a rich golden hue, and strong water-binding capacity.',
     specifications: { moisture: '44.5% - 47.5%', protein: 'Min 13.5%', ph: '5.8 - 6.8', storage: 'Frozen (≤ -18°C)', character: 'Heat-Stable modified base & 10% Salt' }
   },
   {
     code: 'Y1019',
     name: 'Frozen Egg Yolk Liquid',
-    description: 'Freshly separated pure liquid egg yolk pasteurized and blast frozen without additives or preservatives.',
+    description: 'Freshly separated pure liquid egg yolk pasteurised and blast frozen without additives or preservatives.',
     applications: 'Premium ice cream, custards, sweet bakery batters, and natural clean-label food preparations.',
     benefits: '100% natural, clean-label ingredient; provides rich creaminess and smooth body.',
     specifications: { moisture: '50.0% - 53.0%', protein: 'Min 15.0%', ph: '6.0 - 7.0', storage: 'Frozen (≤ -18°C)', character: 'Natural 100% Yolk Liquid Base' }
@@ -123,14 +123,14 @@ export default function EggYolkLiquidPage({ onPageChange }) {
   return (
     <ProductPage
       seo={{
-        title: 'Liquid Egg Yolk | Pasteurized Egg Yolk Liquid Manufacturer',
-        description: "SKM's premium pasteurized chilled & frozen liquid egg yolk for mayonnaise, dressings, bakery & cosmetics. 12 product variants including salted, sugared, frozen yolk. BRCGS & Halal certified bulk exporter from India.",
-        keywords: 'liquid egg yolk, egg yolk liquid, pasteurized liquid egg yolk, frozen egg yolk liquid, chilled egg yolk liquid, liquid egg yolk supplier, egg yolk liquid manufacturer India, salted egg yolk liquid, sugared egg yolk liquid, buy liquid egg yolk, egg yolk liquid bulk, liquid egg yolk mayonnaise, egg yolk liquid exporter',
+        title: 'Liquid Egg Yolk | Pasteurised Egg Yolk Liquid Manufacturer',
+        description: "SKM's premium pasteurised chilled & frozen liquid egg yolk for mayonnaise, dressings, bakery & cosmetics. 12 product variants including salted, sugared, frozen yolk. BRCGS & Halal certified bulk exporter from India.",
+        keywords: 'liquid egg yolk, egg yolk liquid, pasteurised liquid egg yolk, frozen egg yolk liquid, chilled egg yolk liquid, liquid egg yolk supplier, egg yolk liquid manufacturer India, salted egg yolk liquid, sugared egg yolk liquid, buy liquid egg yolk, egg yolk liquid bulk, liquid egg yolk mayonnaise, egg yolk liquid exporter',
         canonical: 'https://www.skmegg.com/egg_yolk_liquid',
         jsonLd: {
           '@context': 'https://schema.org', '@type': 'Product',
           name: 'Egg Yolk Liquid',
-          description: 'Premium pasteurized chilled and frozen liquid egg yolk for mayonnaise, dressings, bakery, and cosmetics. 12 product variants.',
+          description: 'Premium pasteurised chilled and frozen liquid egg yolk for mayonnaise, dressings, bakery, and cosmetics. 12 product variants.',
           brand: { '@type': 'Brand', name: 'SKM Egg Products' },
           manufacturer: { '@type': 'Organization', name: 'SKM Egg Products', url: 'https://www.skmegg.com' },
           category: 'Liquid Egg Products', url: 'https://www.skmegg.com/egg_yolk_liquid',

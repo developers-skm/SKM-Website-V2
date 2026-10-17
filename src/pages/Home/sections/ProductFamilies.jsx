@@ -14,9 +14,9 @@ import TableEggImage from '../../../assets/1. HOME PAGE/TableEggImage.png';
 // approved value are omitted, not fabricated (see the per-family notes
 // below). Grid cards only surface format + the first benefit line - full
 // detail (applications, storage) still lives on each family's category
-// page, reached via the card CTA.
+// page, reached by clicking the card.
 //
-// Each family CTA navigates directly to its real category transition page
+// Each family card navigates directly to its real category transition page
 // (src/pages/Products/EggPowdersCategoryPage.jsx, LiquidEggCategoryPage.jsx,
 // CustomSpecialtyCategoryPage.jsx) - a more precise destination than the
 // /products hub's in-page anchor.
@@ -36,17 +36,16 @@ const families = [
     // (powders are specified by moisture/dryness, not temperature/storage)
     // - omitted per the missing-data rule, not invented.
     productIds: products.filter((p) => p.category === PRODUCT_CATEGORIES.POWDERS).map((p) => p.id),
-    ctaLabel: 'Explore Egg Powders',
     categoryRoute: 'category_powders',
   },
   {
     id: 'liquids',
-    name: ' Pasteurized Liquid Egg Products',
+    name: ' Pasteurised Liquid Egg Products',
     // Verbatim: specifications.storage values confirmed present across all
     // 3 liquid product pages (Whole Egg / Egg Yolk / Egg Albumen Liquid).
     format: ['Chilled liquid', 'Frozen liquid'],
     benefits: [
-      'Provides excellent heat-induced gelling and structural strength.',
+      'Provides extended shelf-life stability, precise dosing and formulation ratio control, and consistent development of a well-structured crumb texture.',
       'Delivers high cake volume, improves crumb softness, and significantly delays starch staling.',
     ],
     // Verbatim application names, recurring across the liquid family's
@@ -55,14 +54,13 @@ const families = [
     // Verbatim: specifications.storage exact values.
     storage: ['Chilled (0°C to 4°C)', 'Frozen (≤ -18°C)'],
     productIds: products.filter((p) => p.category === PRODUCT_CATEGORIES.LIQUIDS).map((p) => p.id),
-    ctaLabel: 'Explore Liquid Eggs',
     categoryRoute: 'category_liquids',
   },
   {
     id: 'custom',
-    name: 'Customised and Specialty Solutions',
+    name: 'Customised and Speciality Solutions',
     // No format label - "Custom" just repeated the family name.
-    description: 'Our customized product solutions are developed to meet evolving consumer demands and the rapidly changing requirements of the global food industry and household applications.',
+    description: 'Our customised product solutions are developed to meet evolving consumer demands and the rapidly changing requirements of the global food industry and household applications.',
     // No benefits/applications/storage field is genuinely shared across
     // this family (only 1 of its 4 products has any applicationsData; none
     // have a storage field; benefits are single-product, not family-wide)
@@ -71,7 +69,6 @@ const families = [
     productIds: products
       .filter((p) => p.category === PRODUCT_CATEGORIES.CUSTOMIZED || p.category === PRODUCT_CATEGORIES.SPECIALITY)
       .map((p) => p.id),
-    ctaLabel: 'Explore Custom Solutions',
     categoryRoute: 'category_custom',
   },
   {
@@ -82,14 +79,13 @@ const families = [
     image: TableEggImage,
     imageAlt: 'Brown table eggs in an egg tray',
     description: "Premium-quality eggs are carefully collected, precisely graded, and each pack is individually printed with a QR code to ensure product authenticity, quality, and traceability.",
-    ctaLabel: 'Explore Table Eggs',
     categoryRoute: 'table_eggs',
   },
 ];
 
 // Pointer-tracked 3D tilt for the entire family card - adapted from the
 // TiltedCard pattern (see src/components/ui/TiltedCard). The whole card
-// (image + text + CTA) rotates together as one rigid plane, so the effect
+// (image + text) rotates together as one rigid plane, so the effect
 // reads as "the card itself" tilting toward the cursor rather than just its
 // image.
 const TILT_SPRING = { damping: 30, stiffness: 100, mass: 2 };
@@ -139,7 +135,7 @@ function TiltCard({ children, reduceMotion, className = '' }) {
 
 // Vertical family card - tilt image on top, condensed content below (name,
 // product format, and the family's first listed benefit line only; full
-// detail lives on the category page behind the CTA).
+// detail lives on the category page behind the card link).
 function FamilyCard({ family, onPageChange }) {
   const reduceMotion = useReducedMotion();
 
@@ -151,7 +147,13 @@ function FamilyCard({ family, onPageChange }) {
 
   return (
     <TiltCard reduceMotion={reduceMotion}>
-      <article className="group flex flex-col h-full rounded-[24px] overflow-hidden isolate bg-white border border-surface-200/70 shadow-[0_16px_44px_rgba(36,30,24,0.12)] transition-shadow duration-300 hover:shadow-[0_20px_52px_rgba(36,30,24,0.16)]">
+      <InternalLink
+        route={family.categoryRoute}
+        onPageChange={onPageChange}
+        aria-label={family.name.trim()}
+        className="block h-full rounded-[24px] no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+      >
+      <article className="group cursor-pointer flex flex-col h-full rounded-[24px] overflow-hidden isolate bg-white border border-surface-200/70 shadow-[0_16px_44px_rgba(36,30,24,0.12)] transition-shadow duration-300 hover:shadow-[0_20px_52px_rgba(36,30,24,0.16)]">
         {heroImage && (
           <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4 / 3' }}>
             <SafeImage
@@ -180,25 +182,9 @@ function FamilyCard({ family, onPageChange }) {
               {firstBenefit}
             </p>
           )}
-
-          <div className="mt-auto pt-5">
-            <InternalLink
-              route={family.categoryRoute}
-              onPageChange={onPageChange}
-              className="group/link inline-flex items-center gap-2 font-body font-semibold text-[14px] lg:text-[15px] text-brand-600 hover:text-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
-            >
-              {family.ctaLabel}
-              <svg
-                width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
-                className="group-hover/link:translate-x-0.5 transition-transform duration-200"
-                aria-hidden
-              >
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </InternalLink>
-          </div>
         </div>
       </article>
+      </InternalLink>
     </TiltCard>
   );
 }

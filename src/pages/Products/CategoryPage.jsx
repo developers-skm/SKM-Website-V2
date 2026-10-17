@@ -6,7 +6,7 @@ import { getProductById } from '../../data/products';
 import certifications from '../../data/certifications';
 
 // Shared layout for the 3 Product Category transition pages (Egg Powders,
-// Liquid Egg Products, Customised and Specialty Products).
+// Liquid Egg Products, Customised and Speciality Products).
 //
 // Section 1 — Category hero — covers exactly the 4 required points (format,
 // main operational advantages, who commonly uses it, storage/supply

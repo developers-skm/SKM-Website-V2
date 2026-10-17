@@ -18,7 +18,7 @@ export const variantsData = [
   {
     code: 'W1009',
     name: 'Chilled Whole Egg Liquid',
-    description: 'Chilled pasteurized liquid whole egg optimized for uniform viscosity and consistent crumb binding performance in automated baking.',
+    description: 'Chilled pasteurised liquid whole egg optimized for uniform viscosity and consistent crumb binding performance in automated baking.',
     applications: 'Institutional kitchen scrambled eggs, industrial batters, cakes, muffins, and quick-bread dry mixes.',
     benefits: 'Homogeneous texture dispersion, standardized moisture content, and excellent water-binding capacity.',
     specifications: { moisture: '75.0% - 77.0% (Solids Min 23.5%)', fat: 'Min 9.5%', protein: 'Min 11.5%', ph: '7.0 - 7.8', storage: 'Chilled (0°C to 4°C)', character: 'Optimized Viscosity Baking Grade' }
@@ -75,14 +75,14 @@ export default function WholeEggLiquidPage({ onPageChange }) {
   return (
     <ProductPage
       seo={{
-        title: 'Liquid Whole Egg | Pasteurized Whole Egg Liquid Supplier',
-        description: "SKM's premium pasteurized chilled & frozen whole egg liquid for cakes, pastries, pasta & bakery. 5 product variants including sugared and frozen. BRCGS & Halal certified bulk exporter from India.",
-        keywords: 'liquid whole egg, whole egg liquid, pasteurized whole egg liquid, frozen whole egg liquid, chilled whole egg liquid, whole egg liquid supplier, liquid whole egg manufacturer India, whole egg liquid bulk, sugared whole egg liquid, buy liquid whole egg, whole egg liquid bakery, pasteurized liquid egg, whole egg liquid exporter',
+        title: 'Liquid Whole Egg | Pasteurised Whole Egg Liquid Supplier',
+        description: "SKM's premium pasteurised chilled & frozen whole egg liquid for cakes, pastries, pasta & bakery. 5 product variants including sugared and frozen. BRCGS & Halal certified bulk exporter from India.",
+        keywords: 'liquid whole egg, whole egg liquid, pasteurised whole egg liquid, frozen whole egg liquid, chilled whole egg liquid, whole egg liquid supplier, liquid whole egg manufacturer India, whole egg liquid bulk, sugared whole egg liquid, buy liquid whole egg, whole egg liquid bakery, pasteurised liquid egg, whole egg liquid exporter',
         canonical: 'https://www.skmegg.com/whole_egg_liquid',
         jsonLd: {
           '@context': 'https://schema.org', '@type': 'Product',
           name: 'Whole Egg Liquid',
-          description: 'Premium pasteurized chilled and frozen whole egg liquid for cakes, pastries, pasta, and bakery products. 5 product variants.',
+          description: 'Premium pasteurised chilled and frozen whole egg liquid for cakes, pastries, pasta, and bakery products. 5 product variants.',
           brand: { '@type': 'Brand', name: 'SKM Egg Products' },
           manufacturer: { '@type': 'Organization', name: 'SKM Egg Products', url: 'https://www.skmegg.com' },
           category: 'Liquid Egg Products', url: 'https://www.skmegg.com/whole_egg_liquid',
@@ -96,7 +96,7 @@ export default function WholeEggLiquidPage({ onPageChange }) {
         categoryLabel: 'Egg Liquids Range',
         titleLine1: 'Whole Egg',
         titleLine2: 'Liquid',
-        description: 'Whole egg liquid is ideally suited for bakery applications where texture, structure, and cake height are important. It is pasteurized and maintained under strict temperature controls to preserve quality and functionality.',
+        description: 'Whole egg liquid is ideally suited for bakery applications where texture, structure, and cake height are important. It is pasteurised and maintained under strict temperature controls to preserve quality and functionality.',
         applicationTags: ['Bakery products - Cakes, cup cakes and Egg pastry', 'Omelette and scrambled eggs']
       }}
       variantsData={variantsData}

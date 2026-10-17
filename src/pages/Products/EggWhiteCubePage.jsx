@@ -56,17 +56,17 @@ export default function EggWhiteCubePage({ onPageChange }) {
     <div className="w-full flex flex-col bg-page font-body text-left">
       <SEO
         title="Egg White Cube | High Protein Zero Cholesterol Egg Product"
-        description="SKM Egg White Cubes - high protein, zero cholesterol, low calorie specialty egg product. Essential amino acids for fitness & nutrition. A convenient ready-to-eat egg white format."
-        keywords="egg white cube, egg white protein cube, high protein egg product, zero cholesterol egg, egg white fitness, protein cube egg, low calorie egg product, egg white nutrition, specialty egg product India, egg white cube buy, egg white health food, egg white protein snack"
+        description="SKM Egg White Cubes - high protein, zero cholesterol, low calorie speciality egg product. Essential amino acids for fitness & nutrition. A convenient ready-to-eat egg white format."
+        keywords="egg white cube, egg white protein cube, high protein egg product, zero cholesterol egg, egg white fitness, protein cube egg, low calorie egg product, egg white nutrition, speciality egg product India, egg white cube buy, egg white health food, egg white protein snack"
         canonical="https://www.skmegg.com/egg_white_cube"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Product",
           "name": "Egg White Cube",
-          "description": "High protein, zero cholesterol egg white cubes with essential amino acids. Low calorie specialty egg product for fitness and nutrition.",
+          "description": "High protein, zero cholesterol egg white cubes with essential amino acids. Low calorie speciality egg product for fitness and nutrition.",
           "brand": { "@type": "Brand", "name": "SKM Egg Products" },
           "manufacturer": { "@type": "Organization", "name": "SKM Egg Products", "url": "https://www.skmegg.com" },
-          "category": "Specialty Egg Products",
+          "category": "Speciality Egg Products",
           "url": "https://www.skmegg.com/egg_white_cube",
           "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "INR", "seller": { "@type": "Organization", "name": "SKM Egg Products" } }
         }}
