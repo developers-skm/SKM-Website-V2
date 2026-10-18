@@ -66,7 +66,7 @@ function DesktopSticky() {
                   className="absolute inset-0"
                 >
                   <SafeImage
-                    src={active.image}
+                    src={active.homeImage ?? active.image}
                     alt={active.label}
                     loading="lazy"
                     className="w-full h-full object-cover"
@@ -141,7 +141,7 @@ function StackedTimeline({ reduceMotion }) {
         >
           <div className="flex-1 flex flex-col gap-4">
             <div className="relative rounded-[8px] overflow-hidden aspect-[4/3]">
-              <SafeImage src={stage.image} alt={stage.label} loading="lazy" className="w-full h-full object-cover" />
+              <SafeImage src={stage.homeImage ?? stage.image} alt={stage.label} loading="lazy" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col gap-2">
               <h3 className="font-heading font-bold text-[22px] text-heading leading-[1.2] tracking-tight m-0">

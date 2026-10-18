@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion, useInView } from 'framer-motion';
 import manufacturingImages from '../../data/manufacturingImages';
-import liquidFillingImage from '../../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Liquid filling.webp';
+import powderIntakeImage from '../../assets/products-process/powder-01-intake.webp';
+import powderSeparationImage from '../../assets/products-process/powder-02-separation.webp';
+import powderDryingImage from '../../assets/products-process/powder-04-drying.webp';
+import powderPackagingImage from '../../assets/products-process/powder-06-packaging.webp';
+import liquidFillingImage from '../../assets/products-process/liquid-packaging.webp';
 
 // ─────────────────────────────────────────────
 // Easing Tokens
@@ -104,7 +108,7 @@ const processChapters = [
 // (after packaging), chapters renumbered 01-06 with image/content sides
 // re-alternated, plus page-specific wording.
 const POWDER_LINE_ORDER = ['01', '02', '03', '04', '06', '05'];
-const powderLineChapters = POWDER_LINE_ORDER
+const baseLineChapters = POWDER_LINE_ORDER
   .map((oldStep) => processChapters.find((c) => c.step === oldStep))
   .map((c, i) => {
     const step = String(i + 1).padStart(2, '0');
@@ -121,6 +125,18 @@ const powderLineChapters = POWDER_LINE_ORDER
     };
   });
 
+// Powder-line photography, keyed by original chapter step (liquid line keeps the shared images).
+const POWDER_IMAGES = {
+  '01': powderIntakeImage,
+  '02': powderSeparationImage,
+  '04': powderDryingImage,
+  '06': powderPackagingImage,
+};
+const powderLineChapters = baseLineChapters.map((c, i) => ({
+  ...c,
+  image: POWDER_IMAGES[POWDER_LINE_ORDER[i]] ?? c.image,
+}));
+
 // The liquid line's packaging chapter is aseptic pouch filling, not powder
 // bagging - it carries its own copy and photo.
 const liquidPackagingOverride = {
@@ -133,7 +149,11 @@ const liquidPackagingOverride = {
 
 // Liquid line - same journey without the spray-drying chapter. Remaining
 // chapters are renumbered 01–05 and the image/content sides re-alternated.
-const liquidProcessChapters = powderLineChapters
+// Liquid chapters 01-02 (intake, breaking) share the powder-line photos.
+const liquidSharedImages = baseLineChapters.map((c, i) => (
+  i < 2 ? { ...c, image: POWDER_IMAGES[POWDER_LINE_ORDER[i]] } : c
+));
+const liquidProcessChapters = liquidSharedImages
   .filter((c) => c.step !== '04')
   .map((c, i) => {
     const step = String(i + 1).padStart(2, '0');

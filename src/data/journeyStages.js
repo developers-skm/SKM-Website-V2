@@ -10,6 +10,9 @@ import ProcessingImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process area
 import LabImg from '../assets/5. INFRASTRUCTURE/Laboratory/GC and HPLC.webp';
 import DispatchImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Cold room.webp';
 import EggExportImg from '../assets/5. INFRASTRUCTURE/Poultry farm/Egg collection area.webp';
+import HomeFarmImg from '../assets/home/journey-farm.webp';
+import HomeQaImg from '../assets/home/journey-qa.webp';
+import HomePackagingImg from '../assets/home/journey-packaging.webp';
 import { LAYERS_HOUSED, EGGS_PER_YEAR_SHORT, EGGS_PROCESSED_PER_DAY_SHORT } from './productionFacts';
 
 const journeyStages = [
@@ -27,6 +30,7 @@ const journeyStages = [
     id: 'farm',
     label: 'Farm',
     image: FarmImg,
+    homeImage: HomeFarmImg,
     tagline: `${LAYERS_HOUSED} layers, continuously monitored.`,
     description: `Every visit to our layer farms begins at a controlled entry point, with vehicle and personnel sanitation, biosecurity barriers and perimeter management. Our ISO 22000-certified integrated farms house ${LAYERS_HOUSED} layers in environmentally controlled sheds, supported by automated feeding, watering, and egg collection systems, and operate in accordance with OIE compartmentalization requirements.`,
     stat: { value: EGGS_PER_YEAR_SHORT, label: 'Eggs produced annually on our own farms' },
@@ -45,6 +49,7 @@ const journeyStages = [
     id: 'qa-lab',
     label: 'QA & Lab Testing',
     image: LabImg,
+    homeImage: HomeQaImg,
     tagline: 'Every batch, tested before it ships.',
     description: 'Our ISO 17025-accredited laboratory since 2006, conducts physicochemical, microbiological, and residue analyses, including GC-ECD/FID, HPLC, and LC-MS/MS screening for antibiotics and pesticides, in accordance with applicable European Union (EU) and Japanese regulations.',
     stat: { value: 'Since 2006', label: 'ISO 17025-accredited laboratory' },
@@ -54,6 +59,7 @@ const journeyStages = [
     id: 'packaging-dispatch',
     label: 'Packaging & Dispatch',
     image: DispatchImg,
+    homeImage: HomePackagingImg,
     tagline: 'Cold chain, sealed and documented, to your door.',
     description: 'Positive-pressure packing rooms and robust cold-chain management protect product integrity through final delivery. Lot codes, batch identification, and destination details are digitally recorded, ensuring complete supply chain transparency and traceability.',
     stat: { value: '30+', label: 'Countries served ' },

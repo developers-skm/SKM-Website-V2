@@ -4,8 +4,9 @@ import InternalLink from '../../../components/common/InternalLink';
 import SafeImage from '../../../components/common/SafeImage';
 import { fadeUp } from '../../../utils/motionTokens';
 
-import Biogas from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/Biogas.webp';
-import ETP from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/ETP.webp';
+import CarbonFootprint from '../../../assets/home/carbon-footprint.webp';
+import CleanEnergy1 from '../../../assets/home/clean-energy-1.webp';
+import CleanEnergy2 from '../../../assets/home/clean-energy-2.webp';
 import UtilityOverview from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/Utility Overview.webp';
 import Trust1 from '../../../assets/trust-images/trust-1.webp';
 import Trust2 from '../../../assets/trust-images/trust-2.webp';
@@ -14,18 +15,19 @@ import Trust4 from '../../../assets/trust-images/trust-4.webp';
 import Trust5 from '../../../assets/trust-images/trust-5.webp';
 
 const trustSlides = [Trust1, Trust2, Trust3, Trust4, Trust5];
+const cleanEnergySlides = [CleanEnergy1, CleanEnergy2];
 const SLIDE_INTERVAL_MS = 4500;
 
 // Crossfading slideshow for the Community Welfare story - autoplays, pauses
 // on hover/focus, and offers dot controls. Respects reduced motion (no
 // autoplay, instant swaps).
-function TrustSlideshow({ alt, reduceMotion }) {
+function TrustSlideshow({ slides, alt, reduceMotion }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     if (reduceMotion || paused) return undefined;
-    const id = setInterval(() => setActive((i) => (i + 1) % trustSlides.length), SLIDE_INTERVAL_MS);
+    const id = setInterval(() => setActive((i) => (i + 1) % slides.length), SLIDE_INTERVAL_MS);
     return () => clearInterval(id);
   }, [reduceMotion, paused, active]);
 
@@ -40,8 +42,8 @@ function TrustSlideshow({ alt, reduceMotion }) {
       <AnimatePresence initial={false}>
         <motion.img
           key={active}
-          src={trustSlides[active]}
-          alt={`${alt} (${active + 1} of ${trustSlides.length})`}
+          src={slides[active]}
+          alt={`${alt} (${active + 1} of ${slides.length})`}
           initial={reduceMotion ? { opacity: 0 } : { opacity: 0, filter: 'blur(22px)', scale: 1.12 }}
           animate={reduceMotion ? { opacity: 1 } : { opacity: 1, filter: 'blur(0px)', scale: 1 }}
           exit={reduceMotion ? { opacity: 0 } : { opacity: 0, filter: 'blur(22px)', scale: 1.04 }}
@@ -52,7 +54,7 @@ function TrustSlideshow({ alt, reduceMotion }) {
       </AnimatePresence>
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/35 to-transparent pointer-events-none" />
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-        {trustSlides.map((_, i) => (
+        {slides.map((_, i) => (
           <button
             key={i}
             type="button"
@@ -82,7 +84,7 @@ const stories = [
     eyebrow: 'Carbon Footprint',
     title: 'Low possible carbon footprint.',
     body: 'Our carbon footprint is minimised through the strategic location of our processing plant, efficient waste recycling, and energy-efficient processes across our operations.',
-    image: ETP,
+    image: CarbonFootprint,
     imageAlt: 'Effluent treatment plant at SKM Egg Products',
   },
   {
@@ -90,8 +92,9 @@ const stories = [
     eyebrow: 'Clean Energy',
     title: '5.1 million units of wind and solar energy, every year.',
     body: 'Our contribution to a clean environment is the installation of a wind mill and solar power panels that generate electricity of 5.1 million units per year - powering our operations with renewable energy.',
-    image: Biogas,
-    imageAlt: 'Biogas facility at SKM Egg Products',
+    image: CleanEnergy1,
+    imageAlt: 'Wind and solar clean energy at SKM Egg Products',
+    slides: cleanEnergySlides,
   },
   {
     number: '03',
@@ -100,7 +103,7 @@ const stories = [
     body: 'We ensure our corporate social responsibility by providing free medical, educational, and food services to an entire village through the SKM Charitable Trust.',
     image: UtilityOverview,
     imageAlt: 'SKM Charitable Trust community welfare',
-    slideshow: true,
+    slides: trustSlides,
   },
 ];
 
@@ -117,8 +120,8 @@ function Story({ story, index, reduceMotion }) {
         transition={{ duration: reduceMotion ? 0.01 : 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`relative rounded-[8px] overflow-hidden aspect-[4/3] lg:col-span-6 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}
       >
-        {story.slideshow ? (
-          <TrustSlideshow alt={story.imageAlt} reduceMotion={reduceMotion} />
+        {story.slides ? (
+          <TrustSlideshow slides={story.slides} alt={story.imageAlt} reduceMotion={reduceMotion} />
         ) : (
           <SafeImage src={story.image} alt={story.imageAlt} loading="lazy" className="w-full h-full object-cover" />
         )}
@@ -139,7 +142,7 @@ function Story({ story, index, reduceMotion }) {
           <span className="font-body text-[12.5px] font-bold uppercase tracking-widest text-brand-600">
             {story.eyebrow}
           </span>
-          <h3 className="font-heading font-bold text-[28px] sm:text-[34px] lg:text-[38px] text-heading leading-[1.15] tracking-tight m-0 max-w-md">
+          <h3 className="font-heading font-bold text-[28px] sm:text-[34px] lg:text-[38px] text-heading leading-[1.15] tracking-tight m-0 max-w-xl text-balance">
             {story.title}
           </h3>
           <p className="font-body text-[15.5px] lg:text-[16.5px] text-surface-500 leading-[1.8] max-w-md m-0">

@@ -1,11 +1,7 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
-import QMSChart from '../../../assets/4. QUALITY/Quality Management System/QMS.png';
-// Lab photos: web-sized (1400x525) copies - the originals are ~7000x4600 and froze the
-// page while the browser decoded them for these small cards.
-import MicroLab from '../../../assets/4. QUALITY/Quality Management System/Microbiology Lab - web.webp';
-import PhysicoLab from '../../../assets/4. QUALITY/Quality Management System/Physicochemical lab - web.webp';
-import ResidueLabExt from '../../../assets/4. QUALITY/Quality Management System/Residue Lab Extraction - web.webp';
+import QMSChart from '../../../assets/why-skm/qms-framework.webp';
+import QMSTools from '../../../assets/why-skm/qms-tqm-tools.webp';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 const qmsPillars = [
@@ -65,12 +61,6 @@ const qmsPillars = [
   },
 ];
 
-const labImages = [
-  { src: MicroLab, alt: 'Microbiology Laboratory', label: 'Microbiology Lab' },
-  { src: PhysicoLab, alt: 'Physicochemical Laboratory', label: 'Physicochemical Lab' },
-  { src: ResidueLabExt, alt: 'Residue Laboratory Extraction', label: 'Residue Lab' },
-];
-
 export default function QualityManagementSystem() {
   const containerVariants = makeContainerVariants(0.1);
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
@@ -127,36 +117,24 @@ export default function QualityManagementSystem() {
             </div>
           </motion.div>
 
-          {/* Lab Images */}
+          {/* TQM - 8 quality tools */}
           <motion.div
             variants={itemVariants}
-            className="flex-1 w-full flex flex-col gap-4"
+            className="flex-1 w-full"
           >
-            {labImages.map((img, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ x: 6 }}
-                className="relative rounded-[20px] border border-[#eee] overflow-hidden group hover:shadow-[5px_3px_40px_rgba(0,72,88,0.1)] hover:border-brand-600/30 transition-all duration-300"
-              >
-                <div className="relative aspect-[16/6] overflow-hidden">
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-full object-cover select-none group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="525"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-surface-950/60 to-transparent" />
-                  <div className="absolute left-0 inset-y-0 flex flex-col justify-center px-5">
-                    <p className="font-heading font-bold text-[11px] text-white uppercase tracking-widest m-0">
-                      {img.label}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+            <div className="rounded-[20px] border border-[#eee] bg-white p-4 shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/30 transition-all duration-300 overflow-hidden group">
+              <div className="w-full" style={{ aspectRatio: '1600 / 1093' }}>
+                <img
+                  src={QMSTools}
+                  alt="SKM Total Quality Management (TQM) tools"
+                  className="w-full h-full object-contain select-none group-hover:scale-102 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <p className="text-[10px] font-bold text-surface-400 uppercase tracking-widest text-center pt-3 m-0">
+                Total Quality Management (TQM)
+              </p>
+            </div>
           </motion.div>
         </div>
 

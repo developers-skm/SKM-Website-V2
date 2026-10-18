@@ -23,6 +23,11 @@ import Silo from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Silo - web.webp
 import MenEntryShower from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Men entry shower - web.webp';
 import ShowerArea from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Shower area - web.webp';
 import VehicleEntryShower from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Vehicle entry shower - web.webp';
+import CageFree1 from '../../../assets/cage-free/cage-free-1.webp';
+import CageFree2 from '../../../assets/cage-free/cage-free-2.webp';
+import CageFree3 from '../../../assets/cage-free/cage-free-3.webp';
+import CageFree4 from '../../../assets/cage-free/cage-free-4.webp';
+import CageFree5 from '../../../assets/cage-free/cage-free-5.webp';
 
 const farmImages = [
   { src: MainGate, label: 'Main Gate' },
@@ -39,6 +44,14 @@ const farmImages = [
   { src: MenEntryShower, label: 'Personnel Entry Shower' },
   { src: ShowerArea, label: 'Shower Area' },
   { src: VehicleEntryShower, label: 'Vehicle Entry Shower' },
+];
+
+const cageFreeImages = [
+  { src: CageFree1, label: 'Cage free farm 1' },
+  { src: CageFree2, label: 'Cage free farm 2' },
+  { src: CageFree3, label: 'Cage free farm 3' },
+  { src: CageFree4, label: 'Cage free farm 4' },
+  { src: CageFree5, label: 'Cage free farm 5' },
 ];
 
 const statsData = [
@@ -248,6 +261,7 @@ export default function PoultryFarm() {
                 </p>
               ))}
             </div>
+            <ImageSlider images={cageFreeImages} aspectRatio="3/4" showLabels={false} />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
               {cageFreeBlocks.map((block, i) => (
                 <IconInfoCard key={i} icon={block.icon} title={block.title} body={block.body} />

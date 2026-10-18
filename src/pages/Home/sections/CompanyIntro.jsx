@@ -6,8 +6,8 @@ import { fadeUp } from '../../../utils/motionTokens';
 
 import CampusOverview from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus/Campus overview.webp';
 import Pasteurization from '../../../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Pasteurization.webp';
-import CIP from '../../../assets/5. INFRASTRUCTURE/Egg Products/Process areas/CIP.webp';
-import UtilityOverview from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/Utility Overview.webp';
+import ZoningHygiene from '../../../assets/home/zoning-hygiene.webp';
+import CircularApproach from '../../../assets/home/circular-approach.webp';
 
 // Section 8 - Infrastructure / Manufacturing. Large sticky visual (CSS
 // position:sticky, NOT scroll-jacked/pinned like Traceability's section —
@@ -39,14 +39,14 @@ const blocks = [
     eyebrow: 'Zoning & Hygiene Control',
     title: 'Contamination prevented by design.',
     body: 'Strict zoning protocols, high risk and high care area separation, including colour-coded identification, dedicated tools for each zone, mandatory sanitation procedures, and routine air-quality monitoring, help prevent cross-contamination.',
-    image: CIP,
+    image: ZoningHygiene,
   },
   {
     id: 'utility',
     eyebrow: 'Sustainable circular economy',
     title: 'A circular approach.',
     body: 'Our integrated biogas facility processes 70 tonnes of poultry litter, producing biofuel to support our operations. Its nutrient-rich liquid by-product is supplied to farmers as a fertilizer.',
-    image: UtilityOverview,
+    image: CircularApproach,
     // Headline achievement - rendered as a highlighted callout.
     highlight: { value: '70 tonnes', label: 'of poultry litter processed into biofuel' },
   },

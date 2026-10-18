@@ -60,7 +60,7 @@ export default function SustainabilityPage({ onPageChange }) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-20"
+          className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10"
         >
 
           {/* ── Section Header ── */}
@@ -155,9 +155,6 @@ export default function SustainabilityPage({ onPageChange }) {
                 </p>
               </div>
             </div>
-            <p className="font-heading font-bold text-[16px] sm:text-[18px] text-brand-600 text-center tracking-tight m-0">
-              Our Commitment: Minimising Waste, Maximising Resource Value.
-            </p>
           </motion.div>
 
           {/* ── Environmental Policy ── */}
@@ -182,6 +179,11 @@ export default function SustainabilityPage({ onPageChange }) {
               ))}
             </div>
           </motion.div>
+
+          {/* ── Commitment Line ── */}
+          <motion.p variants={itemVariants} className="font-heading font-bold text-[18px] sm:text-[22px] text-brand-600 text-center tracking-tight m-0">
+            Our Commitment: Minimising Waste, Maximising Resource Value.
+          </motion.p>
 
           {/* ── Tagline Banner ── */}
           <motion.div

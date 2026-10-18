@@ -5,7 +5,8 @@ import SafeImage from '../../components/common/SafeImage';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 import EggCollectionArea from '../../assets/5. INFRASTRUCTURE/Poultry farm/Egg collection area.webp';
 import EggCollectingConveyor from '../../assets/5. INFRASTRUCTURE/Poultry farm/Egg collecting conveyor.webp';
-import ECShedOverview from '../../assets/5. INFRASTRUCTURE/Poultry farm/EC shed overview.webp';
+import TableEggsInfrastructure from '../../assets/home/table-eggs-infrastructure.webp';
+import BlockchainQr from '../../assets/home/blockchain-qr.jpeg';
 import FeederView from '../../assets/5. INFRASTRUCTURE/Poultry farm/Feeder view.webp';
 
 // Table Eggs (shell eggs) product-family page. Copy is rewritten from the
@@ -278,12 +279,20 @@ export default function TableEggsPage({ onPageChange }) {
               <h3 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading leading-[1.15] tracking-tight m-0">
                 Blockchain Traceability
               </h3>
-              <div className="flex flex-col gap-4 max-w-[860px]">
-                {blockchainParagraphs.map((para) => (
-                  <p key={para.slice(0, 24)} className={bodyClass}>
-                    {para}
-                  </p>
-                ))}
+              <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-14">
+                <div className="flex flex-col gap-4 max-w-[860px]">
+                  {blockchainParagraphs.map((para) => (
+                    <p key={para.slice(0, 24)} className={bodyClass}>
+                      {para}
+                    </p>
+                  ))}
+                </div>
+                <img
+                  src={BlockchainQr}
+                  alt="QR code to scan and discover the journey of an SKM egg pack"
+                  loading="lazy"
+                  className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] shrink-0 rounded-[16px] border border-surface-200/70 bg-white object-contain"
+                />
               </div>
               <p className="font-heading font-bold text-[17px] sm:text-[19px] text-brand-600 leading-[1.4] m-0 pt-2 border-t border-surface-200/70">
                 Every Egg Pack Has a Story. Scan to Discover Its Journey.
@@ -298,7 +307,7 @@ export default function TableEggsPage({ onPageChange }) {
           <div className={wrap}>
             <motion.div {...fade()}>
               <ImageFrame
-                src={ECShedOverview}
+                src={TableEggsInfrastructure}
                 alt="Aerial view of environmentally controlled layer sheds at an SKM poultry farm"
                 ratio="16 / 9"
                 position="50% 50%"

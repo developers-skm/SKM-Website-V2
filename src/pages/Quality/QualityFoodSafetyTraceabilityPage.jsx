@@ -8,7 +8,7 @@ import homeJourneyStages from '../../data/homeJourneyStages';
 import HomeJourney from '../Home/sections/HomeJourney';
 import certBRC from '../../assets/4. QUALITY/Certificates/BRC FOOD_524x600px.png';
 import certEIC from '../../assets/4. QUALITY/Certificates/EIC_524x600px.png';
-import certERC from '../../assets/4. QUALITY/Certificates/ERC_524x600px.png';
+import certISO22000 from '../../assets/4. QUALITY/Certificates/ISO 22000_524x600px.png';
 import certFSSAI from '../../assets/4. QUALITY/Certificates/FSSAI_524x600px.png';
 import certHALAL from '../../assets/4. QUALITY/Certificates/HALAL_524x600px.png';
 import certKOSHER from '../../assets/4. QUALITY/Certificates/KOSHER_524x600px.png';
@@ -281,11 +281,10 @@ const CERT_DOCUMENTS = {
   FSSAI: certFSSAI,
   'Export Inspection Council': certEIC,
   'BRC Food Certified': certBRC,
-  'Eat Right Campus': certERC,
-  'Halal Certified': certHALAL,
+  'ISO 22000': certISO22000,
+  'Halal JUHF': certHALAL,
   'KLBD Kosher': certKOSHER,
   'ISO/IEC 17025': certNABL,
-  NABL: certNABL,
 };
 function CertificationsApprovalsSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();

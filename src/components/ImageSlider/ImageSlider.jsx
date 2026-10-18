@@ -30,7 +30,7 @@ function useBreakpointSPV(max = 3) {
   return spv;
 }
 
-export default function ImageSlider({ images, aspectRatio = '4/3', autoPlay = 0, slidesPerView = 3 }) {
+export default function ImageSlider({ images, aspectRatio = '4/3', autoPlay = 0, slidesPerView = 3, showLabels = true }) {
   const spv = useBreakpointSPV(slidesPerView);
   const totalPages = Math.ceil(images.length / spv);
   const maxIdx = Math.max(0, images.length - spv);
@@ -94,6 +94,8 @@ export default function ImageSlider({ images, aspectRatio = '4/3', autoPlay = 0,
                       loading="lazy"
                       decoding="async"
                     />
+                    {showLabels && (
+                      <>
                     <div
                       className="absolute inset-0 z-[2]"
                       style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0) 24.28%, rgba(0,0,0,0.8) 91.5%)' }}
@@ -103,6 +105,8 @@ export default function ImageSlider({ images, aspectRatio = '4/3', autoPlay = 0,
                         {img.label}
                       </span>
                     </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
