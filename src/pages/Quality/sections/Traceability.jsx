@@ -70,7 +70,7 @@ export default function Traceability({ onPageChange }) {
             variants={itemVariants}
             className="font-body text-[16px] text-surface-500 max-w-2xl leading-[30px] m-0"
           >
-            Complete supply chain visibility - every egg, every batch, every step is documented and traceable from biosecure hatchery to final dispatch.
+          Complete supply chain visibility—every egg, every batch and every stage is documented and traceable, from our feed mill to final product dispatch.
           </motion.p>
         </div>
 

@@ -104,7 +104,7 @@ function FullJourney({ onPageChange }) {
           variants={itemVariants}
           className="font-body text-[16px] sm:text-[18px] text-surface-500 leading-[30px] m-0 max-w-2xl"
         >
-        We understand that visiting an egg processing facility overseas may not always be practical. That is why we bring the entire journey to you through six documented stages, from our biosecure poultry farms to the finished products delivered to your doorstep.
+        We understand that visiting an egg processing facility overseas may not always be practical. That is why we bring the entire journey to you through six documented stages, from our feed mill to the finished products.
         </motion.p>
       </motion.div>
 

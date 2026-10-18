@@ -128,6 +128,38 @@ export default function SustainabilityPage({ onPageChange }) {
             </div>
           </motion.div>
 
+          {/* ── By-Product Utilization ── */}
+          <motion.div variants={itemVariants} className="flex flex-col gap-6 p-8 sm:p-10 rounded-[10px] bg-surface-50 border border-surface-100">
+            <div className="flex flex-col gap-3">
+              <h3 className="font-heading font-bold text-[20px] sm:text-[24px] text-heading tracking-tight m-0">
+                Sustainable By-Product Utilization – Creating Value from Eggshells
+              </h3>
+              <p className="text-sm sm:text-base text-surface-600 leading-relaxed m-0">
+                At SKM, we are committed to maximising resource utilisation and minimising processing waste through sustainable by-product recovery and value addition.
+              </p>
+              <p className="text-sm sm:text-base text-surface-600 leading-relaxed m-0">
+                During egg processing, eggshells generated during the egg-breaking process are collected separately and subjected to controlled drying and separation processes to recover two valuable by-products: eggshell grit and eggshell membrane. Through systematic by-product recovery and value addition, SKM transforms eggshell residues into useful resources, contributing to waste reduction, resource efficiency and circular economy principles.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="flex flex-col gap-3 p-6 bg-white border border-[#eee] rounded-[10px] hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.08)] transition-all duration-300">
+                <h4 className="font-heading font-bold text-[16px] text-heading m-0 tracking-tight">Eggshell Grit and Powder</h4>
+                <p className="text-sm text-surface-600 leading-relaxed m-0">
+                  Recovered eggshells are processed into grit, which is either packed directly or further pulverised into fine eggshell powder. These calcium-rich by-products are supplied for agricultural and various industrial applications, creating value from materials generated during egg processing.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 p-6 bg-white border border-[#eee] rounded-[10px] hover:border-brand-600/30 hover:shadow-[5px_3px_40px_rgba(0,72,88,0.08)] transition-all duration-300">
+                <h4 className="font-heading font-bold text-[16px] text-heading m-0 tracking-tight">Eggshell Membrane</h4>
+                <p className="text-sm text-surface-600 leading-relaxed m-0">
+                  Eggshell membranes are separated, collected and packed independently for use as raw materials in agricultural, pharmaceutical and other industrial applications, subject to applicable quality standards and regulatory requirements.
+                </p>
+              </div>
+            </div>
+            <p className="font-heading font-bold text-[16px] sm:text-[18px] text-brand-600 text-center tracking-tight m-0">
+              Our Commitment: Minimising Waste, Maximising Resource Value.
+            </p>
+          </motion.div>
+
           {/* ── Environmental Policy ── */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6">
             <div className="flex flex-col gap-1">

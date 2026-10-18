@@ -572,7 +572,7 @@ export default function TraceabilityLoopJourney({ title, subtitle, onPageChange,
             animate={headerEntered ? { opacity: 1, y: 0 } : {}}
             transition={{ ...headerTransition, delay: reducedMotion ? 0 : 0.08 }}
           >
-            {title || 'How Whole Egg Powder Is Made'}
+            {title || 'How Egg Powder Is Made'}
           </motion.h2>
 
           <motion.p
