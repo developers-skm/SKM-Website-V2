@@ -107,7 +107,7 @@ export default function EggYolkPowderHeatStablePage({ onPageChange }) {
         categoryLabel: 'Egg Powders Range',
         titleLine1: 'Egg Yolk Powder',
         titleLine2: '- Heat Stable',
-        description: 'Pasteurised Dried Hen Egg Yolk Powder - Heat Stable for mayonnaise & food applications. Stabilized for oil emulsification during heat application.',
+        description: 'Pasteurised Dried Hen Egg Yolk Powder - Heat Stable for mayonnaise & food applications. Stabilised for oil emulsification during heat application.',
         primaryBadge: 'Modified Hen Egg Yolk Product'
       }}
       variantsData={variantsData}

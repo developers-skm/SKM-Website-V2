@@ -24,12 +24,12 @@ const productMeta = {
   },
   egg_yolk_powder_heat_stable: {
     codeRange: 'Y1111–Y1227',
-    functionality: 'Heat-stable emulsification for hot-processed and retort-sterilized applications.',
+    functionality: 'Heat-stable emulsification for hot-processed foods, Stabilised for oil emulsification and free flow variant.',
     applications: ['Mayonnaise', 'Dressings', 'Sauces', 'Emulsified Products'],
   },
   egg_albumen_powder: {
     codeRange: 'A1301–A1310',
-    functionality: 'High-gel binding (up to 1300+ g/cm² gel strength), high-whip foaming, and a hydrolysed high-protein variant.',
+    functionality: 'High-gel binding, different variants of gel strength and high-whip foaming variants.',
     applications: ['Egg Pastry', 'Fish Products', 'Ham Burger', 'Meat Products', 'Sausages', 'Surimi'],
   },
 };
