@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import { useScroll, useMotionValueEvent } from 'framer-motion';
 
 // Draws a pre-rendered frame sequence to a canvas, one frame per
-// scroll-progress tick through the pinned container (containerRef). Frames
+// scroll-progress tick through the pinned container (containerRef). holdEnd is
+// the trailing fraction of the scroll spent holding on the last frame, and
+// lockAtEnd keeps the last frame once reached (no rewinding on scroll-up). Frames
 // are preloaded up front for smooth scrubbing.
-export default function ScrollFrameSequence({ containerRef, basePath, frameCount }) {
+export default function ScrollFrameSequence({ containerRef, basePath, frameCount, holdEnd = 0, lockAtEnd = false }) {
   const canvasRef = useRef(null);
   const imagesRef = useRef([]);
   const [imagesReady, setImagesReady] = useState(false);
@@ -33,6 +35,15 @@ export default function ScrollFrameSequence({ containerRef, basePath, frameCount
       cancelled = true;
     };
   }, [basePath, frameCount]);
+
+  const lockedRef = useRef(false);
+  const frameFor = (progress) => {
+    if (lockedRef.current) return frameCount - 1;
+    const index = Math.min(frameCount - 1, Math.max(0, Math.round(Math.min(1, progress / (1 - holdEnd)) * (frameCount - 1))));
+    // lockAtEnd: once the last frame is reached it stays until the page reloads.
+    if (lockAtEnd && index === frameCount - 1) lockedRef.current = true;
+    return index;
+  };
 
   const drawFrame = (index) => {
     const canvas = canvasRef.current;
@@ -74,7 +85,7 @@ export default function ScrollFrameSequence({ containerRef, basePath, frameCount
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';
       }
-      if (imagesReady) drawFrame(Math.round(scrollYProgress.get() * (frameCount - 1)));
+      if (imagesReady) drawFrame(frameFor(scrollYProgress.get()));
     };
 
     resize();
@@ -85,8 +96,7 @@ export default function ScrollFrameSequence({ containerRef, basePath, frameCount
 
   useMotionValueEvent(scrollYProgress, 'change', (progress) => {
     if (!imagesReady) return;
-    const index = Math.min(frameCount - 1, Math.max(0, Math.round(progress * (frameCount - 1))));
-    drawFrame(index);
+    drawFrame(frameFor(progress));
   });
 
   return (

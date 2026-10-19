@@ -38,7 +38,7 @@ export default function OfficeAddresses() {
   ];
 
   return (
-    <div className="w-full bg-page py-[90px] lg:py-[120px] border-b border-[#eee] overflow-hidden">
+    <div className="w-full bg-white py-[90px] lg:py-[120px] overflow-hidden">
       <motion.section
         variants={containerVariants}
         initial="hidden"

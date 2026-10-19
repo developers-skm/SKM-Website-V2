@@ -7,7 +7,7 @@ export default function ContactHero() {
   const itemVariants = makeItemVariants({ y: 30, stiffness: 70 });
 
   return (
-    <div className="relative w-full bg-page overflow-hidden pt-[110px] pb-[90px] sm:pt-[130px] sm:pb-[110px] border-b border-[#eee]">
+    <div className="relative w-full bg-page overflow-hidden pt-[110px] pb-[90px] sm:pt-[130px] sm:pb-[110px]">
       {/* Background Gradients & Glows */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_120%,var(--color-brand-50)_0%,transparent_50%)] pointer-events-none opacity-100" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_-20%,var(--color-brand-100)_0%,transparent_40%)] pointer-events-none opacity-60" />

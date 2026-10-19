@@ -129,7 +129,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
       />
 
       {/* Hero Banner */}
-      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page border-b border-[#eee] overflow-hidden">
+      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page overflow-hidden">
         {!reduceMotion && (
           <>
             <motion.div
@@ -180,7 +180,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
       </div>
 
       {/* Packaging Cards Grid */}
-      <div className="w-full py-16 sm:py-20 lg:py-24">
+      <div className="w-full bg-white py-16 sm:py-20 lg:py-24">
         <motion.div
           variants={containerVariants}
           initial="hidden"

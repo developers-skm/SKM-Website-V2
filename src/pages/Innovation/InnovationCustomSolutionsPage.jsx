@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { getProductById } from '../../data/products';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Innovation and Custom Solutions - new page, Section 1 (Challenge-first
 // hero) only, per this task's scope. No page for this existed anywhere in
@@ -83,7 +84,7 @@ function ChallengesSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="challenges-skm-can-support" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div id="challenges-skm-can-support" className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -154,7 +155,7 @@ function CoDevelopmentProcessSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="co-development-process" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
+    <div id="co-development-process" className="w-full py-[60px] lg:py-[85px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -238,7 +239,7 @@ function RDCapabilitySection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="rd-application-capability" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div id="rd-application-capability" className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -320,7 +321,7 @@ function ExistingSpecialtySolutionsSection({ onPageChange }) {
   const solutions = SPECIALTY_SOLUTION_IDS.map((s) => ({ ...s, product: getProductById(s.id) })).filter((s) => s.product);
 
   return (
-    <div id="existing-speciality-solutions" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
+    <div id="existing-speciality-solutions" className="w-full py-[60px] lg:py-[85px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -398,7 +399,7 @@ function FinalCTASection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] text-center px-4">
+    <div className="w-full bg-white py-[60px] lg:py-[85px] text-center px-4">
       <motion.div
         initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -446,7 +447,7 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
       <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 - Challenge-first hero */}
-        <div className="w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[110px] lg:pb-[110px] border-b border-[#eee] text-center px-4">
+        <div className="w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[110px] lg:pb-[110px] text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -481,15 +482,19 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
         {/* Section 2 - Challenges SKM can support */}
         <ChallengesSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 3 - Co-development process */}
         <CoDevelopmentProcessSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#ececec" fill="#fff" />
         {/* Section 4 - R&D and application capability */}
         <RDCapabilitySection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 5 - Existing speciality solutions */}
         <ExistingSpecialtySolutionsSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#ececec" fill="#fff" />
         {/* Section 6 - Final CTA */}
         <FinalCTASection onPageChange={onPageChange} />
 

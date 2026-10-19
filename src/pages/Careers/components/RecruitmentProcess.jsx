@@ -10,7 +10,7 @@ const item = makeItemVariants({ y: 14 });
 // One continuous connector line behind step markers: horizontal across six columns on lg+, vertical down left on mobile.
 export default function RecruitmentProcess() {
   return (
-    <Section tone="white" labelledBy="process-title" className="border-b border-[#eae6e0]">
+    <Section tone="white" labelledBy="process-title">
       <Container className="flex flex-col gap-12 lg:gap-16">
         <SectionHeading
           id="process-title"

@@ -43,8 +43,6 @@ export default function ApplicationLandingPage({ applicationId, onPageChange }) 
     >
       <div className="w-full flex flex-col bg-page">
         <ApplicationDetailHero application={application} productFamilies={productFamilies} onPageChange={onPageChange} />
-        <CurvedDivider bg="transparent" fill="#f8f4ee" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px]" />
-        <CurvedDivider bg="transparent" fill="#121212" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px] hidden" />
 
         <ApplicationFormulationChallenges application={application} onPageChange={onPageChange} />
 

@@ -55,6 +55,7 @@ import seoul26_5 from '../../assets/Events - EXPO/Seoul Food 2026 (June 9-12)/5.
 
 // Brochure files served as static PDFs from public/documents/brochures/.
 import { getBrochureUrl } from '../../data/brochureUrl';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Section 3 - Upcoming Exhibitions Data. SKM has genuinely exhibited at
 // each of these recurring international food-ingredient fairs before (see
@@ -294,7 +295,7 @@ export default function EventsPage({ onPageChange }) {
       <div className="w-full bg-page overflow-hidden text-surface-800">
         
         {/* Section 1 - Hero */}
-        <div className="relative w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[120px] lg:pb-[120px] bg-gradient-to-b from-brand-600/5 via-transparent to-transparent border-b border-[#eee] text-center px-4">
+        <div className="relative w-full pt-[110px] pb-[80px] sm:pt-[130px] lg:pt-[120px] lg:pb-[120px] bg-gradient-to-b from-brand-600/5 via-transparent to-transparent text-center px-4">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,color-mix(in_srgb,var(--color-brand-100)_10%,transparent)_0%,transparent_50%)] pointer-events-none" />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -331,7 +332,7 @@ export default function EventsPage({ onPageChange }) {
         </div>
 
         {/* Section 2 - Upcoming Exhibitions */}
-        <section id="upcoming-exhibitions" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee]">
+        <section id="upcoming-exhibitions" className="w-full bg-white py-[60px] lg:py-[90px]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
             <div className="flex flex-col gap-2 max-w-3xl">
               <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
@@ -418,8 +419,9 @@ export default function EventsPage({ onPageChange }) {
           </div>
         </section>
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 3 - Participated Events */}
-        <section id="participated-events" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee]">
+        <section id="participated-events" className="w-full py-[60px] lg:py-[90px]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
             <div className="flex flex-col gap-2 max-w-3xl">
               <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
@@ -476,8 +478,9 @@ export default function EventsPage({ onPageChange }) {
           </div>
         </section>
 
+        <CurvedDivider bg="#ececec" fill="#fff" />
         {/* Section 4 - Company News */}
-        <section id="company-news" className="w-full py-[60px] lg:py-[90px] bg-surface-50/50 border-b border-[#eee]">
+        <section id="company-news" className="w-full py-[60px] lg:py-[90px] bg-white">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
             <div className="flex flex-col gap-2 max-w-3xl">
               <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
@@ -532,8 +535,9 @@ export default function EventsPage({ onPageChange }) {
           </div>
         </section>
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 5 - Technical Insights */}
-        <section id="technical-insights" className="w-full py-[60px] lg:py-[90px] border-b border-[#eee]">
+        <section id="technical-insights" className="w-full py-[60px] lg:py-[90px]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
             <div className="flex flex-col gap-2 max-w-3xl">
               <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
@@ -545,7 +549,7 @@ export default function EventsPage({ onPageChange }) {
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-2 pb-2 border-b border-[#eee]">
+            <div className="flex flex-wrap items-center gap-2 pb-2">
               {topics.map((topic) => (
                 <button
                   key={topic}
@@ -629,8 +633,9 @@ export default function EventsPage({ onPageChange }) {
           </div>
         </section>
 
+        <CurvedDivider bg="#ececec" fill="#fff" />
         {/* Section 6 - Subscribe */}
-        <section id="subscribe" className="w-full py-[80px] lg:py-[100px] bg-gradient-to-t from-brand-600/5 via-transparent to-transparent text-center px-4">
+        <section id="subscribe" className="w-full bg-white py-[80px] lg:py-[100px] bg-gradient-to-t from-brand-600/5 via-transparent to-transparent text-center px-4">
           <div className="mx-auto max-w-[650px] bg-white border border-[#eee] rounded-[24px] p-8 sm:p-10 shadow-lg flex flex-col items-center gap-6 relative">
             <div className="w-12 h-12 rounded-full bg-brand-600/10 flex items-center justify-center text-brand-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -836,7 +841,7 @@ export default function EventsPage({ onPageChange }) {
                 exit={{ scale: 0.95, y: 10 }}
                 className="relative w-full max-w-[650px] bg-white rounded-[20px] shadow-2xl overflow-hidden border border-[#eee]"
               >
-                <div className="p-6 border-b border-[#eee] flex items-center justify-between bg-surface-50">
+                <div className="p-6 flex items-center justify-between bg-surface-50">
                   <div className="flex items-center gap-3">
                     <span className="bg-brand-600/8 border border-brand-600/15 text-brand-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">
                       {activeArticle.category}
@@ -900,7 +905,7 @@ export default function EventsPage({ onPageChange }) {
                 exit={{ scale: 0.95, y: 10 }}
                 className="relative w-full max-w-[680px] bg-white rounded-[20px] shadow-2xl overflow-hidden border border-[#eee]"
               >
-                <div className="p-6 border-b border-[#eee] flex items-center justify-between bg-surface-50">
+                <div className="p-6 flex items-center justify-between bg-surface-50">
                   <div className="flex items-center gap-3">
                     <span className="bg-brand-600/8 border border-brand-600/15 text-brand-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">
                       Technical Insight

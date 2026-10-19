@@ -6,7 +6,7 @@ import { Container } from './layout';
 // current page. `size` should match the page body below it.
 export default function CareersPageHeader({ crumbs, eyebrow, title, onPageChange, size = 'narrow', children }) {
   return (
-    <header className="w-full bg-[#fbfaf8] border-b border-[#eee] pt-[104px] pb-10 sm:pt-[128px] sm:pb-12">
+    <header className="w-full bg-[#fbfaf8] pt-[104px] pb-10 sm:pt-[128px] sm:pb-12">
       <Container size={size} className="flex flex-col gap-5">
         <nav aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 list-none m-0 p-0 font-body text-[14px] text-surface-500">

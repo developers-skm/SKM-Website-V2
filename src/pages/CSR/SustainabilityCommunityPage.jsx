@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Section 2 - Environmental responsibility. Energy, water, and waste are
 // all real, verbatim/derived facts already documented elsewhere: energy
@@ -42,7 +43,7 @@ function EnvironmentalResponsibilitySection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="sustainability-priorities" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="sustainability-priorities" className="w-full py-[60px] lg:py-[85px] bg-white scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Our Priorities</span>
@@ -117,7 +118,7 @@ function ResponsibleFarmingSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
+    <div className="w-full py-[60px] lg:py-[85px]">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Farm to Feed</span>
@@ -187,7 +188,7 @@ function CommunityDevelopmentSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Sevai Maiyam</span>
@@ -248,7 +249,7 @@ function PerformanceIndicatorsSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">By The Numbers</span>
@@ -304,7 +305,7 @@ function GovernanceCommitmentsSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
+    <div className="w-full py-[60px] lg:py-[85px]">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Our Commitment</span>
@@ -361,7 +362,7 @@ export default function SustainabilityCommunityPage({ onPageChange }) {
       <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 - Sustainability hero */}
-        <div className="w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] text-center px-4">
+        <div className="w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -381,15 +382,19 @@ export default function SustainabilityCommunityPage({ onPageChange }) {
         {/* Section 2 - Environmental responsibility */}
         <EnvironmentalResponsibilitySection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 3 - Responsible feed, farming and animal welfare */}
         <ResponsibleFarmingSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#ececec" fill="#fff" />
         {/* Section 4 - Community development */}
         <CommunityDevelopmentSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#fff" fill="#fff" />
         {/* Section 5 - Performance indicators */}
         <PerformanceIndicatorsSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 6 - Governance and commitments */}
         <GovernanceCommitmentsSection onPageChange={onPageChange} />
 

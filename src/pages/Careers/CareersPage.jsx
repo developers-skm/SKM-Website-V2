@@ -13,6 +13,7 @@ import EarlyCareers from './components/EarlyCareers';
 import LifeAtSkm from './components/LifeAtSkm';
 import RecruitmentProcess from './components/RecruitmentProcess';
 import CareersFAQ from './components/CareersFAQ';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 export default function CareersPage({ onPageChange }) {
   const [filters, setFilters] = useState(emptyFilters);
@@ -42,16 +43,19 @@ export default function CareersPage({ onPageChange }) {
       />
       <CareersHero onViewPositions={scrollToOpenings} onPageChange={onPageChange} />
       <WhyJoinSkm />
+      <CurvedDivider bg="#fff" fill="#fff" />
       <CareerAreas activeDepartment={filters.department} onSelectDepartment={showDepartment} />
+      <CurvedDivider bg="#fff" fill="#fcfbf9" />
       <EmployerBrandStrip />
 
+      <CurvedDivider bg="#fcfbf9" fill="#fbfaf8" />
       <Section
         id="openings"
         ref={openingsRef}
         tabIndex={-1}
         tone="page"
         labelledBy="openings-title"
-        className="scroll-mt-20 focus:outline-none border-b border-[#eae6e0]"
+        className="scroll-mt-20 focus:outline-none"
       >
         <Container className="flex flex-col gap-10 lg:gap-14">
           <SectionHeading
@@ -66,8 +70,11 @@ export default function CareersPage({ onPageChange }) {
       </Section>
 
       <LifeAtSkm />
+      <CurvedDivider bg="#fff" fill="#f4f2ee" />
       <EarlyCareers onExplore={showEarlyCareers} />
+      <CurvedDivider bg="#f4f2ee" fill="#fff" />
       <RecruitmentProcess />
+      <CurvedDivider bg="#fff" fill="#fff" />
       <CareersFAQ />
     </div>
   );

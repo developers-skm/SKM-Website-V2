@@ -28,6 +28,7 @@ import CageFree2 from '../../../assets/cage-free/cage-free-2.webp';
 import CageFree3 from '../../../assets/cage-free/cage-free-3.webp';
 import CageFree4 from '../../../assets/cage-free/cage-free-4.webp';
 import CageFree5 from '../../../assets/cage-free/cage-free-5.webp';
+import CurvedDivider from '../../../components/SectionContainer/CurvedDivider';
 
 const farmImages = [
   { src: MainGate, label: 'Main Gate' },
@@ -145,7 +146,7 @@ export default function PoultryFarm() {
     <div className="w-full bg-page overflow-hidden">
 
       {/* ── Hero ── */}
-      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page border-b border-[#eee] overflow-hidden">
+      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page overflow-hidden">
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-6 items-start">
           <span className="section-label">
@@ -194,8 +195,9 @@ export default function PoultryFarm() {
         </motion.div>
       </motion.section>
 
+      <CurvedDivider bg="#ececec" fill="#fff" />
       {/* ── Gallery ── */}
-      <div className="w-full bg-page border-t border-b border-surface-100 py-16 lg:py-20">
+      <div className="w-full bg-white py-16 lg:py-20">
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -219,6 +221,7 @@ export default function PoultryFarm() {
         </motion.section>
       </div>
 
+      <CurvedDivider bg="#fff" fill="#ececec" />
       {/* ── Info Blocks ── */}
       <div className="w-full bg-page py-16 lg:py-24">
         <motion.section

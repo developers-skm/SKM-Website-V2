@@ -7,6 +7,7 @@ import { EASE_PREMIUM } from '../../utils/motionTokens';
 import products from '../../data/products';
 import certifications from '../../data/certifications';
 import { getBrochureUrl } from '../../data/brochureUrl';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Shared motion primitives for restrained, premium technical document feel
 const sectionHeadingReveal = (reduceMotion) => ({
@@ -55,7 +56,7 @@ function TechnicalDocumentsSection({ globalSearchQuery }) {
   }, [globalSearchQuery]);
 
   return (
-    <div id="technical-documents" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60 scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="technical-documents" className="relative w-full bg-white py-16 lg:py-24 scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         {/* Section Heading */}
@@ -157,7 +158,7 @@ function TechnicalDocumentsSection({ globalSearchQuery }) {
 function CertificationsSection() {
   const reduceMotion = useReducedMotion();
   return (
-    <div id="certifications" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60">
+    <div id="certifications" className="relative w-full py-16 lg:py-24">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
@@ -274,7 +275,7 @@ const productPortfolio = brochureEntries.find((e) => e.title === 'Full Product P
 function BrochuresApplicationGuidesSection() {
   const reduceMotion = useReducedMotion();
   return (
-    <div id="brochures" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60">
+    <div id="brochures" className="relative w-full bg-white py-16 lg:py-24">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
@@ -436,7 +437,7 @@ function CsrIcon({ iconType }) {
 function CsrSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
   return (
-    <div id="csr" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60">
+    <div id="csr" className="relative w-full py-16 lg:py-24">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
@@ -544,7 +545,7 @@ function FaqSection({ onPageChange, globalSearchQuery }) {
   }, [globalSearchQuery]);
 
   return (
-    <div id="faq" className="relative w-full py-16 lg:py-24 border-b border-surface-200/60">
+    <div id="faq" className="relative w-full bg-white py-16 lg:py-24">
       <div className="mx-auto max-w-[960px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         
         <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2 text-center items-center">
@@ -675,7 +676,7 @@ export default function ResourcesPage({ onPageChange }) {
         <div className="relative z-10 w-full flex flex-col">
 
           {/* Section 1 - Resource Hero & Search */}
-          <div className="w-full pt-[110px] pb-20 sm:pt-[130px] lg:pt-28 lg:pb-28 border-b border-surface-200/60 px-4 sm:px-6 lg:px-8">
+          <div className="w-full pt-[110px] pb-20 sm:pt-[130px] lg:pt-28 lg:pb-28 px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-[1000px] flex flex-col items-center text-center gap-8">
               
               {/* Premium Pill Badge */}
@@ -778,18 +779,23 @@ export default function ResourcesPage({ onPageChange }) {
           {/* Section 2 & 3 - Technical Documents */}
           <TechnicalDocumentsSection globalSearchQuery={searchQuery} />
 
+          <CurvedDivider bg="#fff" fill="#f8fafc" />
           {/* Section 4 - Certifications */}
           <CertificationsSection />
 
+          <CurvedDivider bg="#f8fafc" fill="#fff" />
           {/* Section 5 - Brochures & Guides */}
           <BrochuresApplicationGuidesSection />
 
+          <CurvedDivider bg="#fff" fill="#f8fafc" />
           {/* Section 6 - CSR */}
           <CsrSection onPageChange={onPageChange} />
 
+          <CurvedDivider bg="#f8fafc" fill="#fff" />
           {/* Section 7 - FAQ */}
           <FaqSection onPageChange={onPageChange} globalSearchQuery={searchQuery} />
 
+          <CurvedDivider bg="#fff" fill="#f8fafc" />
           {/* Section 8 - Bottom Contact CTA */}
           <div className="w-full py-20 lg:py-28 text-center px-4">
             <motion.div

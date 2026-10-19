@@ -34,7 +34,7 @@ export default function LifeAtSkm() {
   const [large, ...small] = lifeAtSkmTiles;
 
   return (
-    <Section tone="white" labelledBy="life-title" className="border-b border-[#eae6e0]">
+    <Section tone="white" labelledBy="life-title">
       <Container className="flex flex-col gap-10 lg:gap-14">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <SectionHeading

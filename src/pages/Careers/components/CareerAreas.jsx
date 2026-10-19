@@ -13,7 +13,7 @@ export default function CareerAreas({ activeDepartment, onSelectDepartment }) {
   const countFor = (department) => open.filter((job) => job.department === department).length;
 
   return (
-    <Section tone="white" labelledBy="career-areas-title" className="border-b border-[#eae6e0]">
+    <Section tone="white" labelledBy="career-areas-title">
       <Container className="flex flex-col gap-10 lg:gap-14">
         <SectionHeading
           id="career-areas-title"

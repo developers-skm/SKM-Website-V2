@@ -8,6 +8,7 @@ import { EASE_PREMIUM, DURATION, fadeUp } from '../../utils/motionTokens';
 
 const CompanyProfilePdf = getBrochureUrl('Company Profile - SKM Egg Products Export India Limited.pdf');
 import FactoryImage from '../../assets/2. ABOUT US/Our Company/Factory image.webp';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Section 2 - Company overview. Real content verbatim/derived from
 // src/pages/AboutUs/sections/OurCompany.jsx (also used on the standalone
@@ -26,7 +27,7 @@ function CompanyOverviewSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
           <motion.div
@@ -207,7 +208,7 @@ function DesktopJourneyTimeline({ onPageChange }) {
 
   return (
     <section ref={containerRef} className="relative w-full h-[320vh]">
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-center border-b border-[#eee] bg-page overflow-hidden py-6">
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-center bg-page overflow-hidden py-6">
         <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8 lg:gap-12">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -342,7 +343,7 @@ function DesktopJourneyTimeline({ onPageChange }) {
 // track - those don't translate to short, narrow touch viewports.
 function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
   return (
-    <section className="relative w-full border-b border-[#eee] bg-page py-[52px]">
+    <section className="relative w-full bg-page py-[52px]">
       <div className="mx-auto max-w-[720px] w-full px-4 sm:px-6 flex flex-col gap-8">
         <div className="flex flex-col gap-3">
           <span className="section-label">Our History</span>
@@ -407,7 +408,7 @@ function LeadershipMessageSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1000px] w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-8">
         <div className="flex flex-col items-center gap-3 text-center">
           <span className="section-label justify-center">Leadership Message</span>
@@ -477,7 +478,7 @@ function VisionMissionValuesSection() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
+    <div className="w-full py-[60px] lg:py-[85px]">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Purpose &amp; Direction</span>
@@ -563,7 +564,7 @@ function IntegratedBusinessModelSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">One Supply Chain</span>
@@ -638,7 +639,7 @@ function AwardsRecognitionSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Awards and recognitions</span>
@@ -790,7 +791,7 @@ export default function AboutSKMPage({ onPageChange }) {
             pinned via a sticky viewport inside a tall wrapper - same
             scroll-scrub pattern as the Home hero (Home/sections/Hero.jsx). */}
         <section ref={heroScrubRef} className="relative w-full h-[220vh]">
-          <div className="sticky top-0 h-[560px] sm:h-[620px] lg:h-[680px] w-full overflow-hidden border-b border-[#eee]">
+          <div className="sticky top-0 h-[560px] sm:h-[620px] lg:h-[680px] w-full overflow-hidden">
             <ScrollFrameSequence containerRef={heroScrubRef} basePath="/about-skm-sequence" frameCount={200} />
 
             {/* Left-weighted scrim - copy sits fully clear on the left,
@@ -862,21 +863,27 @@ export default function AboutSKMPage({ onPageChange }) {
         {/* Section 2 - Company overview */}
         <CompanyOverviewSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 3 - Company journey */}
         <CompanyJourneySection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#ececec" fill="#fff" />
         {/* Section 4 - Leadership message */}
         <LeadershipMessageSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 5 - Vision, mission and values */}
         <VisionMissionValuesSection />
 
+        <CurvedDivider bg="#ececec" fill="#fff" />
         {/* Section 6 - Integrated business model */}
         <IntegratedBusinessModelSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#fff" fill="#fff" />
         {/* Section 7 - Awards and recognitions */}
         <AwardsRecognitionSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 8 - Locations and global operations */}
         <LocationsSection onPageChange={onPageChange} />
 

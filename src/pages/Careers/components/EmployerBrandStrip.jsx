@@ -3,7 +3,7 @@ import { Container } from './layout';
 
 export default function EmployerBrandStrip() {
   return (
-    <section className="w-full bg-[#fcfbf9] border-y border-[#eae6e0] py-14 sm:py-20 lg:py-24">
+    <section className="w-full bg-[#fcfbf9] py-14 sm:py-20 lg:py-24">
       <Container size="narrow">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

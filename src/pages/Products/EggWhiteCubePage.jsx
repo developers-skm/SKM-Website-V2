@@ -6,6 +6,7 @@ import { containerVariants, itemVariants } from '../../utils/animationVariants';
 
 import EggWhiteCubeImg from '../../assets/3. PRODUCTS/Speciality products/Egg White Cube/EGG WHITE CUBE_1000x667px.png';
 import ProteinMixImg from '../../assets/3. PRODUCTS/Speciality products/Egg White Cube/PROTEIN MIX_1000x667px.png';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 const galleryImages = [
   { src: EggWhiteCubeImg, label: 'Egg White Cube' },
@@ -82,7 +83,7 @@ export default function EggWhiteCubePage({ onPageChange }) {
       />
 
       {/* Key Features + Product Image side by side */}
-      <div className="w-full py-[40px] lg:py-[60px] border-b border-[#eee]">
+      <div className="w-full bg-white py-[40px] lg:py-[60px]">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-12 items-start">
 
@@ -154,6 +155,7 @@ export default function EggWhiteCubePage({ onPageChange }) {
         </div>
       </div>
 
+      <CurvedDivider bg="#fff" fill="#ececec" />
       {/* Info strip */}
       <div className="w-full py-12 sm:py-16 bg-page">
         <motion.div

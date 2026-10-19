@@ -19,6 +19,7 @@ import MediaStorage from '../../../assets/5. INFRASTRUCTURE/Laboratory/Media Sto
 import ChemicalStorage from '../../../assets/5. INFRASTRUCTURE/Laboratory/Chemical Storage - web.webp';
 import Autoclave from '../../../assets/5. INFRASTRUCTURE/Laboratory/Autoclave - web.webp';
 import ShelfLifeStorage from '../../../assets/5. INFRASTRUCTURE/Laboratory/Shelf life storage - web.webp';
+import CurvedDivider from '../../../components/SectionContainer/CurvedDivider';
 
 const labImages = [
   { src: ResidueLabAerialWeb, label: 'Residue Lab – Aerial View' },
@@ -131,7 +132,7 @@ export default function Laboratory() {
     <div className="w-full bg-page overflow-hidden">
 
       {/* ── Hero ── */}
-      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page border-b border-[#eee] overflow-hidden">
+      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page overflow-hidden">
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-6 items-start">
           <span className="section-label">
@@ -179,8 +180,9 @@ export default function Laboratory() {
         </motion.div>
       </motion.section>
 
+      <CurvedDivider bg="#ececec" fill="#fff" />
       {/* ── Gallery ── */}
-      <div className="w-full bg-page border-t border-b border-surface-100 py-16 lg:py-20">
+      <div className="w-full bg-white py-16 lg:py-20">
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -204,6 +206,7 @@ export default function Laboratory() {
         </motion.section>
       </div>
 
+      <CurvedDivider bg="#fff" fill="#ececec" />
       {/* ── Content Sections ── */}
       <div className="w-full bg-page py-16 lg:py-24">
         <motion.section

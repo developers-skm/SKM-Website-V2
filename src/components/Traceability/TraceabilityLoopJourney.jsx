@@ -513,7 +513,7 @@ function CertificationsStrip({ reducedMotion, bare = false }) {
 export function ProductQualityAssurance() {
   const reducedMotion = useReducedMotion() ?? false;
   return (
-    <section className="w-full bg-[#FAFAF8] text-[#111111] py-12 sm:py-16 lg:py-20 border-y border-[#ECECEC] font-body">
+    <section className="w-full bg-[#FAFAF8] text-[#111111] py-12 sm:py-16 lg:py-20 font-body">
       <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12 flex flex-col gap-12">
         <QASection reducedMotion={reducedMotion} bare />
         <CertificationsStrip reducedMotion={reducedMotion} />

@@ -11,7 +11,7 @@ const item = makeItemVariants({ y: 16 });
 // Minimal blocks separated by thin vertical dividers - calm and executive.
 export default function WhyJoinSkm() {
   return (
-    <Section tone="white" labelledBy="why-join-title" className="border-b border-[#eae6e0]">
+    <Section tone="white" labelledBy="why-join-title">
       <Container className="flex flex-col gap-10 lg:gap-14">
         <SectionHeading
           id="why-join-title"

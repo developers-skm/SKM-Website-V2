@@ -11,6 +11,7 @@ import QualityCertificationProof from './sections/QualityCertificationProof';
 import GlobalMarkets from './sections/GlobalMarkets';
 import Sustainability from './sections/Sustainability';
 import FinalEnquiry from './sections/FinalEnquiry';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 export default function Home({ onPageChange, prefill }) {
   // "Find Your Product"/"Find Product" and the Hero's "Find the Right Egg
@@ -70,6 +71,7 @@ export default function Home({ onPageChange, prefill }) {
       {/* 9. Sustainability */}
       <Sustainability onPageChange={onPageChange} />
 
+      <CurvedDivider bg="#fff" fill="#fdfbf7" />
       {/* 10. Final conversion section */}
       <FinalEnquiry onPageChange={onPageChange} />
     </div>

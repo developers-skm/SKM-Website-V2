@@ -35,8 +35,6 @@ export default function ApplicationsHubPage({ onPageChange, prefill }) {
       <div className="w-full flex flex-col bg-page">
 
         <ApplicationHero onPageChange={onPageChange} />
-        <CurvedDivider bg="transparent" fill="#ececec" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px]" />
-        <CurvedDivider bg="transparent" fill="#121212" className="-mt-[36px] sm:-mt-[52px] lg:-mt-[64px] hidden" />
 
         <ApplicationCategories onPageChange={onPageChange} />
         <CurvedDivider bg="#ececec" fill="#f8f4ee" className="" />

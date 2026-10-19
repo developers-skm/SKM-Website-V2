@@ -5,6 +5,7 @@ import ProductHero from '../../components/ProductPage/ProductHero';
 import { containerVariants, itemVariants } from '../../utils/animationVariants';
 
 import EggLiquidMainImg from '../../assets/3. PRODUCTS/Speciality products/Egg Liquids/EGG LIQUIDS TETRA PACK_1000x667px.png';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 const features = [
   {
@@ -76,7 +77,7 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
       />
 
       {/* Key Features Grid */}
-      <div className="w-full py-[40px] lg:py-[60px] border-b border-[#eee]">
+      <div className="w-full bg-white py-[40px] lg:py-[60px]">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -122,6 +123,7 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
         </motion.div>
       </div>
 
+      <CurvedDivider bg="#fff" fill="#ececec" />
       {/* Product Info Strip */}
       <div className="w-full py-12 sm:py-16 bg-page">
         <motion.div

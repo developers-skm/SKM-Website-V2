@@ -8,6 +8,7 @@ import { ProductQualityAssurance } from '../Traceability/TraceabilityLoopJourney
 import ProductDocuments from './ProductDocuments';
 import RelatedProducts from './RelatedProducts';
 import EnquiryCTABand from '../common/EnquiryCTABand';
+import CurvedDivider from '../SectionContainer/CurvedDivider';
 import { getRelatedProducts, getTdsUrl, getProductById } from '../../data/products';
 
 // Shared shell for all 11 product detail pages (Whole Egg Powder, Egg Yolk
@@ -66,6 +67,7 @@ export default function ProductPage({
         />
       </div>
 
+
       {/* Variant specifications - light eggshell chapter */}
       <section className="w-full bg-[#f8f4ee] py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
@@ -82,6 +84,8 @@ export default function ProductPage({
         </div>
       </section>
 
+      <CurvedDivider bg="#f8f4ee" fill="#fff" />
+
       {/* Functional performance - white chapter */}
       <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
@@ -95,6 +99,8 @@ export default function ProductPage({
         </div>
       </section>
 
+      <CurvedDivider bg="#fff" fill="#f8f4ee" />
+
       {/* Applications - light eggshell chapter */}
       <section className="w-full bg-[#f8f4ee] py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
@@ -103,7 +109,9 @@ export default function ProductPage({
       </section>
 
       {/* Packaging and dispatch - white chapter */}
-      {productRecord && (
+      {productRecord ? (
+        <>
+        <CurvedDivider bg="#f8f4ee" fill="#fff" />
         <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
             <PackagingLogistics
@@ -115,10 +123,16 @@ export default function ProductPage({
             />
           </div>
         </section>
+        <CurvedDivider bg="#fff" fill="#FAFAF8" />
+        </>
+      ) : (
+        <CurvedDivider bg="#f8f4ee" fill="#FAFAF8" />
       )}
 
       {/* Quality Assurance + certifications - cream chapter */}
       <ProductQualityAssurance />
+
+      <CurvedDivider bg="#FAFAF8" fill="#fff" />
 
       {/* Documents - white chapter */}
       <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
@@ -133,12 +147,18 @@ export default function ProductPage({
       </section>
 
       {/* Related products - light eggshell chapter */}
-      {relatedProducts.length > 0 && (
+      {relatedProducts.length > 0 ? (
+        <>
+        <CurvedDivider bg="#fff" fill="#f8f4ee" />
         <section className="w-full bg-[#f8f4ee] py-12 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
             <RelatedProducts products={relatedProducts} currentCategory={productRecord?.category} onPageChange={onPageChange} />
           </div>
         </section>
+        <CurvedDivider bg="#f8f4ee" fill="#fdf1f0" />
+        </>
+      ) : (
+        <CurvedDivider bg="#fff" fill="#fdf1f0" />
       )}
 
       {/* Final CTA - soft red-tinted chapter, calm handoff into the footer. */}

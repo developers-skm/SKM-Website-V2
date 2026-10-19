@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion, useScroll, useTransform, useMotionValue, useMotionValueEvent } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import ScrollFrameSequence from '../../components/common/ScrollFrameSequence';
@@ -748,6 +748,113 @@ function TechnicalResourcesSection({ onPageChange }) {
   );
 }
 
+// Clickable regions over the final frame (frame-201), as % of the image.
+const HERO_HOTSPOTS = [
+  { route: 'whole_egg_powder', label: 'Whole Egg Powder', x: 22.5, y: 19, w: 17, h: 22 },
+  { route: 'egg_yolk_powder', label: 'Egg Yolk Powder', x: 42, y: 19, w: 16.5, h: 22 },
+  { route: 'egg_albumen_powder', label: 'Egg Albumen Powder', x: 61.5, y: 22, w: 16.5, h: 19 },
+  { route: 'whole_egg_liquid', label: 'Whole Egg Liquid', x: 14.5, y: 38, w: 13, h: 29 },
+  { route: 'egg_yolk_liquid', label: 'Egg Yolk Liquid', x: 29.5, y: 38.5, w: 13, h: 29 },
+  { route: 'egg_albumen_liquid', label: 'Egg Albumen Liquid', x: 45, y: 41, w: 13, h: 26 },
+  { route: 'egg_white_cube', label: 'Egg White Cube', x: 58, y: 44, w: 21, h: 27 },
+  { route: 'table_eggs', label: 'Table Eggs', x: 10.5, y: 60.5, w: 28, h: 32 },
+  { route: 'egg_yolk_powder_heat_stable', label: 'Egg Yolk Powder – Heat Stable', x: 68, y: 70, w: 22, h: 22 },
+];
+
+// Scroll-linked layers for the Products hero. They own their useScroll so the
+// target ref is already hydrated (the hero wrapper is a parent of these).
+const HERO_FINAL_AT = 0.8; // scroll progress at which the last frame lands
+
+// Hero scroll progress that latches at 1 once the last frame is reached, so the
+// final state stays locked when scrolling back up (resets on reload).
+function useLatchedProgress(containerRef) {
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] });
+  const latched = useMotionValue(0);
+  const done = useRef(false);
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    if (done.current) return;
+    if (v >= HERO_FINAL_AT) {
+      done.current = true;
+      latched.set(1);
+    } else {
+      latched.set(v);
+    }
+  });
+  return latched;
+}
+
+function HeroCopyFade({ containerRef, children }) {
+  const scrollYProgress = useLatchedProgress(containerRef);
+  const opacity = useTransform(scrollYProgress, [HERO_FINAL_AT - 0.12, HERO_FINAL_AT - 0.02], [1, 0]);
+  const [hidden, setHidden] = useState(false);
+  useMotionValueEvent(scrollYProgress, 'change', (v) => setHidden(v > HERO_FINAL_AT - 0.02));
+  return (
+    <motion.div style={{ opacity, pointerEvents: hidden ? 'none' : 'auto', visibility: hidden ? 'hidden' : 'visible' }} className="relative z-10">
+      {children}
+    </motion.div>
+  );
+}
+
+function HeroFinalLayers({ containerRef, onPageChange }) {
+  const scrollYProgress = useLatchedProgress(containerRef);
+  const overlayOpacity = useTransform(scrollYProgress, [HERO_FINAL_AT - 0.12, HERO_FINAL_AT], [1, 0]);
+  const hotspotOpacity = useTransform(scrollYProgress, [HERO_FINAL_AT - 0.02, HERO_FINAL_AT + 0.06], [0, 1]);
+  const [hotspotsActive, setHotspotsActive] = useState(false);
+  useMotionValueEvent(scrollYProgress, 'change', (v) => setHotspotsActive(v > HERO_FINAL_AT + 0.02));
+
+  return (
+    <>
+      <motion.div className="absolute inset-0 bg-black/15" style={{ opacity: overlayOpacity }} aria-hidden="true" />
+
+      {/* Final-frame hotspots - fade in once the sequence lands on the
+          all-products still life. The inner box mirrors the canvas's
+          object-fit: cover math (16:9 image) so percentages line up. */}
+      <motion.div
+        className="absolute inset-x-0 top-[22px] sm:top-[28px] z-30 flex flex-col items-center px-4 text-center pointer-events-none"
+        style={{ opacity: hotspotOpacity }}
+        aria-hidden={!hotspotsActive}
+      >
+        <span className="font-body font-bold text-[11px] sm:text-[12px] uppercase tracking-[0.28em] text-brand-600 mb-2">
+          Our Egg Products
+        </span>
+        <p
+          className="m-0 font-heading font-extrabold text-[22px] sm:text-[28px] lg:text-[32px] leading-[1.1] tracking-[-0.01em] text-[#3b2a1e]"
+          style={{ textShadow: '0 1px 18px rgba(255,248,238,0.85)' }}
+        >
+          Select a product to <span className="text-brand-600">discover more.</span>
+        </p>
+        <span className="mt-3 block h-[2px] w-12 rounded-full bg-brand-600" aria-hidden="true" />
+      </motion.div>
+
+      <motion.div
+        className="absolute inset-0 z-20 overflow-hidden"
+        style={{ opacity: hotspotOpacity, pointerEvents: hotspotsActive ? 'auto' : 'none', containerType: 'size' }}
+      >
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          style={{ width: 'max(100cqw, 177.78cqh)', height: 'max(100cqh, 56.25cqw)' }}
+        >
+          {HERO_HOTSPOTS.map((h) => (
+            <InternalLink
+              key={h.route}
+              route={h.route}
+              onPageChange={onPageChange}
+              aria-label={h.label}
+              tabIndex={hotspotsActive ? 0 : -1}
+              className="group absolute rounded-[18px] focus:outline-none"
+              style={{ left: `${h.x}%`, top: `${h.y}%`, width: `${h.w}%`, height: `${h.h}%` }}
+            >
+              <span className="absolute left-1/2 -translate-x-1/2 -top-2 -translate-y-full whitespace-nowrap rounded-full bg-brand-600 px-3 py-1 font-body font-semibold text-[12px] text-white opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200 pointer-events-none">
+                {h.label}
+              </span>
+            </InternalLink>
+          ))}
+        </div>
+      </motion.div>
+    </>
+  );
+}
+
 export default function ProductsHubPage({ onPageChange, prefill }) {
   const reduceMotion = useReducedMotion();
   const heroScrubRef = useRef(null);
@@ -783,17 +890,17 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             the wrapper below - same mechanism as Home's Hero. Copy keeps
             its own independent staggered entrance. */}
         <div ref={heroScrubRef} className="relative w-full h-[180vh]">
-        <div className="sticky top-0 pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] text-center px-4 overflow-hidden">
+        <div className="sticky top-0 min-h-screen pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] text-center px-4 overflow-hidden">
           <motion.div
             className="absolute inset-0 overflow-hidden"
             initial={reduceMotion ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}
             animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
             transition={{ duration: reduceMotion ? 0.01 : 1.2, ease: EASE_PREMIUM }}
           >
-            <ScrollFrameSequence containerRef={heroScrubRef} basePath="/products-sequence" frameCount={200} />
+            <ScrollFrameSequence containerRef={heroScrubRef} basePath="/products-sequence" frameCount={201} holdEnd={0.2} lockAtEnd />
           </motion.div>
 
-          <div className="absolute inset-0 bg-black/15" aria-hidden="true" />
+          <HeroFinalLayers containerRef={heroScrubRef} onPageChange={onPageChange} />
 
           {/* Thin gold line - trails the reveal's leading edge, then fades
               once the image has fully settled */}
@@ -823,6 +930,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             />
           )}
 
+          <HeroCopyFade containerRef={heroScrubRef}>
           <motion.div
             initial="hidden"
             animate="visible"
@@ -902,6 +1010,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
               </button>
             </motion.div>
           </motion.div>
+          </HeroCopyFade>
         </div>
         </div>
 
@@ -917,12 +1026,12 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
 
         {/* Manufacturing lines - Powder Line / Liquid Line */}
         <ManufacturingLinesSection onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#fff" className="" />
+        <CurvedDivider bg="#fff" fill="#ececec" className="" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         {/* Section 4 - Browse by functional requirement */}
         <FunctionalRequirementSection onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#fff" className="" />
+        <CurvedDivider bg="#ececec" fill="#fff" className="" />
         <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
 
         {/* Section 6 - Custom product support */}

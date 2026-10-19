@@ -11,7 +11,7 @@ const item = makeItemVariants({ y: 16 });
 // Tinted band with three numbered editorial columns (01, 02, 03).
 export default function EarlyCareers({ onExplore }) {
   return (
-    <Section tone="tint" labelledBy="early-careers-title" className="border-b border-[#eae6e0]">
+    <Section tone="tint" labelledBy="early-careers-title">
       <Container className="flex flex-col gap-10 lg:gap-14">
         <SectionHeading
           id="early-careers-title"

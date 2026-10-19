@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { getProductById } from '../../data/products';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Shared layout for the 3 Product Category transition pages (Egg Powders,
 // Liquid Egg Products, Customised and Speciality Products).
@@ -78,7 +79,7 @@ export default function CategoryPage({
       <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 — Category hero */}
-        <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[85px] lg:pb-[85px] border-b border-[#eee]">
+        <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[85px] lg:pb-[85px]">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
             <motion.div {...fadeProps()} className="max-w-3xl mb-9 lg:mb-11">
               <span className="section-label">{categoryLabel}</span>
@@ -151,7 +152,7 @@ export default function CategoryPage({
         </div>
 
         {/* Section 2 — Product cards */}
-        <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+        <div className="w-full py-[60px] lg:py-[85px] bg-white">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
             <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
               Products in this category
@@ -205,9 +206,10 @@ export default function CategoryPage({
           </div>
         </div>
 
+        <CurvedDivider bg="#fff" fill={functionalityTags?.length > 0 ? '#ececec' : '#fff'} />
         {/* Section 3 — Choose by functionality */}
         {functionalityTags?.length > 0 && (
-          <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
+          <div className="w-full py-[60px] lg:py-[85px]">
             <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
               <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
                 Choose by functionality
@@ -245,8 +247,9 @@ export default function CategoryPage({
           </div>
         )}
 
+        <CurvedDivider bg={functionalityTags?.length > 0 ? '#ececec' : '#fff'} fill="#fff" />
         {/* Section 5 — Packaging, storage and delivery */}
-        <div className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
+        <div className="w-full bg-white py-[60px] lg:py-[85px]">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
             <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
               Packaging, storage and delivery
@@ -302,6 +305,7 @@ export default function CategoryPage({
           </div>
         </div>
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 6 — Closing CTA */}
         <div className="w-full py-[60px] lg:py-[85px] text-center px-4">
           <div className="mx-auto max-w-[600px] flex flex-col items-center gap-5">

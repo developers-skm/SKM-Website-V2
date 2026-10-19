@@ -36,7 +36,7 @@ const SALES_EMAIL = 'exportsales@skmegg.com';
 
 export default function RegionalRouting({ onPageChange }) {
   return (
-    <div className="w-full bg-page py-[70px] lg:py-[90px] border-b border-[#eee]">
+    <div className="w-full bg-white py-[70px] lg:py-[90px]">
       <motion.section
         variants={containerVariants}
         initial="hidden"

@@ -8,7 +8,7 @@ const item = makeItemVariants({ y: 20, stiffness: 80 });
 
 export default function CareersHero({ onViewPositions }) {
   return (
-    <section aria-labelledby="careers-hero-title" className="relative w-full bg-[#fbfaf8] overflow-hidden border-b border-[#eae6e0]">
+    <section aria-labelledby="careers-hero-title" className="relative w-full bg-[#fbfaf8] overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_85%_10%,var(--color-brand-50)_0%,transparent_50%)] pointer-events-none" aria-hidden="true" />
       <Container className="relative pt-[108px] pb-14 sm:pt-[132px] sm:pb-20 lg:pt-[148px] lg:pb-24 grid grid-cols-1 lg:grid-cols-[50fr_50fr] gap-10 lg:gap-14 items-center min-h-[680px] lg:min-h-[720px]">
         <motion.div variants={container} initial="hidden" animate="visible" className="flex flex-col items-start gap-5 sm:gap-6">

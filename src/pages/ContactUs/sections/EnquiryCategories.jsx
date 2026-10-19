@@ -83,7 +83,7 @@ export default function EnquiryCategories({ onOpenEnquiry, onPageChange }) {
   };
 
   return (
-    <div className="w-full bg-page py-[90px] lg:py-[120px] overflow-hidden relative border-b border-[#eee]">
+    <div className="w-full bg-page py-[90px] lg:py-[120px] overflow-hidden relative">
       <motion.section
         variants={containerVariants}
         initial="hidden"

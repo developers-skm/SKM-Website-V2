@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { fadeUp } from '../../utils/motionTokens';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply/supply.png';
 
 // Manufacturing and Supply - new page, Section 1 (Capabilities hero) only,
@@ -89,7 +90,7 @@ function EggProcessingPlantSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="egg-processing-plant" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div id="egg-processing-plant" className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -192,7 +193,7 @@ function PoultryFarmsSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="integrated-poultry-farms" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
+    <div id="integrated-poultry-farms" className="w-full py-[60px] lg:py-[85px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -254,7 +255,7 @@ function FeedMillSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="feed-mill-raw-material-control" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div id="feed-mill-raw-material-control" className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
 
         <motion.div
@@ -309,7 +310,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="laboratory-release-controls" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
+    <div id="laboratory-release-controls" className="w-full py-[60px] lg:py-[85px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
 
         <motion.div
@@ -382,7 +383,7 @@ function PackagingCapabilitiesSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="packaging-capabilities" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div id="packaging-capabilities" className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -488,7 +489,7 @@ function LogisticsSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="logistics-supply-continuity" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div id="logistics-supply-continuity" className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -608,7 +609,7 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
       <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 - Capabilities hero */}
-        <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] overflow-hidden">
+        <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] overflow-hidden">
           <div
             className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18]"
             style={{ backgroundImage: `url(${supplyHeroImage})` }}
@@ -681,23 +682,30 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
           </div>
         </div>
 
+
         {/* Section 2 - Feed mill and raw-material control */}
         <FeedMillSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#fff" fill="#ececec" />
 
         {/* Section 3 - Integrated poultry farms */}
         <PoultryFarmsSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#ececec" fill="#fff" />
 
         {/* Section 4 - Egg processing plant */}
         <EggProcessingPlantSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#fff" fill="#ececec" />
 
         {/* Section 5 - Laboratory and release controls */}
         <LaboratoryReleaseSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#ececec" fill="#fff" />
 
         {/* Section 6 - Packaging capabilities */}
         <PackagingCapabilitiesSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#fff" fill="#fff" />
 
         {/* Section 7 - Dispatch and supply continuity */}
         <LogisticsSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#fff" fill="#ececec" />
 
         {/* Section 8 - Final CTA */}
         <FinalCTASection onPageChange={onPageChange} />

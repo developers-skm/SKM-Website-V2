@@ -7,7 +7,7 @@ const itemVariants = makeItemVariants({ y: 25 });
 
 export default function CeoMessage() {
   return (
-    <div className="w-full bg-page pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] border-b border-[#eee] overflow-hidden relative">
+    <div className="w-full bg-page pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,var(--color-brand-500)_0%,transparent_100%)] pointer-events-none opacity-[0.02]" />
 
       <motion.section

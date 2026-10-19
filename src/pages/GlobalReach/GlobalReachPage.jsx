@@ -8,6 +8,7 @@ import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNa
 import { containerVariants, itemVariants } from '../../utils/animationVariants';
 import exportMarkets from '../../data/exportMarkets';
 import applications from '../../data/applications';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Section 3 - Regional offices. Combines the 3 real branches (Japan,
 // Europe, Russia) into cards on this one page - each still keeps its own
@@ -65,7 +66,7 @@ function MarketMapDetailSection({ onPageChange }) {
   const region = regionForMarket(selected.name);
 
   return (
-    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee]">
+    <div className="w-full py-[50px] lg:py-[70px]">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
         <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">
           Select a market
@@ -177,7 +178,7 @@ const EXPORT_REGULATORY_TOPICS = [
 
 function ExportRegulatorySupportSection({ onPageChange }) {
   return (
-    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] bg-page">
+    <div className="w-full py-[50px] lg:py-[70px] bg-page">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -228,7 +229,7 @@ const PACKAGING_TRANSPORT = [
 
 function PackagingTransportSection({ onPageChange }) {
   return (
-    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee]">
+    <div className="w-full py-[50px] lg:py-[70px] bg-white">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -282,7 +283,7 @@ function PackagingTransportSection({ onPageChange }) {
 // routes to the real get-quote flow.
 function CustomerProofSection({ onPageChange }) {
   return (
-    <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] bg-page">
+    <div className="w-full py-[50px] lg:py-[70px] bg-page">
       <motion.section
         variants={containerVariants}
         initial="hidden"
@@ -339,7 +340,7 @@ export default function GlobalReachPage({ onPageChange }) {
       <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 - Global hero */}
-        <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[80px] lg:pb-[80px] border-b border-[#eee] text-center px-4">
+        <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[80px] lg:pb-[80px] text-center px-4">
           <div className="mx-auto max-w-[720px] flex flex-col items-center gap-5">
             <span className="section-label justify-center">Export Markets & Branches</span>
             <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
@@ -370,7 +371,7 @@ export default function GlobalReachPage({ onPageChange }) {
         </div>
 
         {/* Map */}
-        <div className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] bg-page">
+        <div className="w-full py-[50px] lg:py-[70px] bg-white">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8">
             <GlobalEventsDock onPageChange={onPageChange}>
               <ExportMarketsMap />
@@ -378,11 +379,13 @@ export default function GlobalReachPage({ onPageChange }) {
           </div>
         </div>
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 2 - Interactive market map detail panel */}
         <MarketMapDetailSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#ececec" fill="#fff" />
         {/* Section 3 - Regional offices */}
-        <div id="regional-branches" className="w-full py-[50px] lg:py-[70px] border-b border-[#eee] scroll-mt-[100px] xl:scroll-mt-[120px]">
+        <div id="regional-branches" className="w-full py-[50px] lg:py-[70px] bg-white scroll-mt-[100px] xl:scroll-mt-[120px]">
           <motion.section
             variants={containerVariants}
             initial="hidden"
@@ -424,15 +427,19 @@ export default function GlobalReachPage({ onPageChange }) {
           </motion.section>
         </div>
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 4 - Export and regulatory support */}
         <ExportRegulatorySupportSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#ececec" fill="#fff" />
         {/* Section 5 - Packaging and transportation */}
         <PackagingTransportSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 6 - Customer proof */}
         <CustomerProofSection onPageChange={onPageChange} />
 
+        <CurvedDivider bg="#ececec" fill="#fff" />
         {/* Section 7 - Closing CTA. The brief asks for a compact project
             form with 4 fields (Destination country, Product, Estimated
             volume, Required delivery period). No standalone reusable
@@ -444,7 +451,7 @@ export default function GlobalReachPage({ onPageChange }) {
             Rather than build new, unverified form/validation logic, the
             4 fields are shown as a real preview of what "Contact Regional
             Sales" leads into, and the button routes to that real flow. */}
-        <div className="w-full py-[60px] lg:py-[80px] text-center px-4">
+        <div className="w-full bg-white py-[60px] lg:py-[80px] text-center px-4">
           <div className="mx-auto max-w-[600px] flex flex-col items-center gap-6">
             <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading m-0 tracking-tight">
               Ready to bring SKM into your market?

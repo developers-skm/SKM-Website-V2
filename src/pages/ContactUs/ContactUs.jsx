@@ -5,6 +5,7 @@ import OfficeAddresses from './sections/OfficeAddresses';
 import EnquiryCategories from './sections/EnquiryCategories';
 import RegionalRouting from './sections/RegionalRouting';
 import EnquiryModal from './sections/EnquiryModal';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 export default function ContactUs({ onPageChange, onModalVisibilityChange }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,7 +38,9 @@ export default function ContactUs({ onPageChange, onModalVisibilityChange }) {
       />
       <ContactHero />
       <OfficeAddresses />
+      <CurvedDivider bg="#fff" fill="#ececec" />
       <EnquiryCategories onOpenEnquiry={handleOpenEnquiry} onPageChange={onPageChange} />
+      <CurvedDivider bg="#ececec" fill="#fff" />
       <RegionalRouting onPageChange={onPageChange} />
       <EnquiryModal 
         isOpen={isModalOpen} 

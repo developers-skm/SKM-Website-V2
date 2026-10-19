@@ -37,6 +37,7 @@ import Boiler from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/Boile
 import ETP from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/ETP.webp';
 import UtilityOverview from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/Utility Overview.webp';
 import WTP from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/WTP.webp';
+import CurvedDivider from '../../../components/SectionContainer/CurvedDivider';
 
 const campusImages = [
   { src: AdminEntrance, label: 'Admin Entrance' },
@@ -128,7 +129,7 @@ export default function EggProcessingPlant() {
     <div className="w-full bg-page overflow-hidden">
 
       {/* ── Hero ── */}
-      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page border-b border-[#eee] overflow-hidden">
+      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page overflow-hidden">
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-6 items-start">
           <span className="section-label">
@@ -193,8 +194,9 @@ export default function EggProcessingPlant() {
         </motion.div>
       </motion.section>
 
+      <CurvedDivider bg="#ececec" fill="#fff" />
       {/* ── Process Area ── */}
-      <div className="w-full bg-page border-t border-b border-surface-100 py-16 lg:py-20">
+      <div className="w-full bg-white py-16 lg:py-20">
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -218,6 +220,7 @@ export default function EggProcessingPlant() {
         </motion.section>
       </div>
 
+      <CurvedDivider bg="#fff" fill="#ececec" />
       {/* ── Utility Area ── */}
       <div className="w-full bg-page py-16 lg:py-20">
         <motion.section
@@ -243,8 +246,9 @@ export default function EggProcessingPlant() {
         </motion.section>
       </div>
 
+      <CurvedDivider bg="#ececec" fill="#fff" />
       {/* ── Info Blocks ── */}
-      <div className="w-full bg-page border-t border-surface-100 py-16 lg:py-24">
+      <div className="w-full bg-white py-16 lg:py-24">
         <motion.section
           variants={containerVariants}
           initial="hidden"

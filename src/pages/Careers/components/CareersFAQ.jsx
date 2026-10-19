@@ -9,14 +9,14 @@ export default function CareersFAQ() {
   const [openIndex, setOpenIndex] = useState(-1);
 
   return (
-    <Section tone="white" labelledBy="faq-title" className="border-b border-[#eae6e0]">
+    <Section tone="white" labelledBy="faq-title">
       <Container size="narrow" className="flex flex-col gap-10 lg:gap-12">
         <SectionHeading id="faq-title" label="FAQ" title="Frequently Asked Questions" text="Everything you need to know about applying and working at SKM." />
         <div className="flex flex-col border-t border-[#eae6e0]">
           {careersFaqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div key={faq.q} className="border-b border-[#eae6e0]">
+              <div key={faq.q}>
                 <h3 className="m-0">
                   <button
                     type="button"

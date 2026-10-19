@@ -14,6 +14,7 @@ import certHALAL from '../../assets/4. QUALITY/Certificates/HALAL_524x600px.png'
 import certKOSHER from '../../assets/4. QUALITY/Certificates/KOSHER_524x600px.png';
 import certNABL from '../../assets/4. QUALITY/Certificates/NABL 17025_524x600px.png';
 import traceabilityHeroImage from '../../assets/4. QUALITY/Traceability/Traceability Home Section.png';
+import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Quality, Food Safety and Traceability - combined hub page. This is a new
 // page alongside the 5 existing standalone Quality pages (Policy,
@@ -45,7 +46,7 @@ import traceabilityHeroImage from '../../assets/4. QUALITY/Traceability/Traceabi
 // Traceability" routes to the existing Traceability page.
 function TraceabilityJourneySection({ onPageChange }) {
   return (
-    <div id="farm-to-product-traceability" className="w-full border-b border-[#eee]">
+    <div id="farm-to-product-traceability" className="w-full">
       <HomeJourney onPageChange={onPageChange} />
     </div>
   );
@@ -112,7 +113,7 @@ function QualityGatesSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="quality-gates" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee]">
+    <div id="quality-gates" className="w-full py-[60px] lg:py-[85px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -204,7 +205,7 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="laboratory-capabilities" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div id="laboratory-capabilities" className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
 
         <motion.div
@@ -290,7 +291,7 @@ function CertificationsApprovalsSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div id="certifications-approvals" className="w-full py-[60px] lg:py-[85px] border-b border-[#eee] bg-white">
+    <div id="certifications-approvals" className="w-full py-[60px] lg:py-[85px] bg-white">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
 
         <motion.div
@@ -465,7 +466,7 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
       <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 - Trust hero */}
-        <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] border-b border-[#eee] overflow-hidden">
+        <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] overflow-hidden">
           <div
             className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18]"
             style={{ backgroundImage: `url(${traceabilityHeroImage})` }}
@@ -560,17 +561,21 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
 
         {/* Section 2 - Integrated farm-to-product traceability */}
         <TraceabilityJourneySection onPageChange={onPageChange} />
+        <CurvedDivider bg="#fff" fill="#ececec" />
 
         {/* Section 3 - Quality gates by production stage */}
         <QualityGatesSection onPageChange={onPageChange} />
 
         {/* Section 4 - Laboratory capabilities */}
+        <CurvedDivider bg="#ececec" fill="#fff" />
         <LaboratoryCapabilitiesSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#fff" fill="#fff" />
 
         {/* Section 5 - Certifications and approvals */}
         <CertificationsApprovalsSection onPageChange={onPageChange} />
 
         {/* Section 7 - Traceability and incident response */}
+        <CurvedDivider bg="#fff" fill="#fff" />
         <IncidentResponseSection onPageChange={onPageChange} />
 
       </div>

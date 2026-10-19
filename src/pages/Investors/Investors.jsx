@@ -883,7 +883,7 @@ function SectionContent({ value, label }) {
 // already renders (no separate/duplicated content).
 function InvestorHero({ onSelect, onDownloadAnnualReport }) {
   return (
-    <div className="relative w-full bg-page overflow-hidden pt-[110px] pb-[70px] sm:pt-[130px] sm:pb-[90px] lg:pt-[90px] border-b border-[#eee]">
+    <div className="relative w-full bg-page overflow-hidden pt-[110px] pb-[70px] sm:pt-[130px] sm:pb-[90px] lg:pt-[90px]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_120%,var(--color-brand-50)_0%,transparent_50%)] pointer-events-none opacity-100" />
       <div className="relative mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-6 z-10">
         <span className="section-label justify-center">Investor Relations</span>
