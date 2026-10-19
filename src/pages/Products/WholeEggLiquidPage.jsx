@@ -1,6 +1,6 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
 
-import WholeEggLiquidMainImg from '../../assets/3. PRODUCTS/Egg Liquids/Whole Egg Liquid/WHOLE EGG LIQUID_1000x667px.png';
+import WholeEggLiquidMainImg from '../../assets/ai-images/whole-egg-liquid.webp';
 import BakeryProductsImg from '../../assets/3. PRODUCTS/Egg Liquids/Whole Egg Liquid/Bakery products.png';
 import CakeImg from '../../assets/3. PRODUCTS/Egg Liquids/Whole Egg Liquid/Cake 3.png';
 import CupCakesImg from '../../assets/3. PRODUCTS/Egg Liquids/Whole Egg Liquid/Cup Cakes 1.png';

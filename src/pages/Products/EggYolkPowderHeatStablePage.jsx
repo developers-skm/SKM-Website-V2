@@ -1,6 +1,6 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
 
-import EggYolkHeatStablePowderMainImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder - Heat Stable/EGG YOLK HEAT STABLE POWDER_1000x667px.png';
+import EggYolkHeatStablePowderMainImg from '../../assets/ai-images/egg-yolk-heat-stable-powder.webp';
 import DressingsImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder - Heat Stable/Dressings 2.png';
 import EmulsifiedProductsImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder - Heat Stable/Emulsified products 1.png';
 import MayonnaiseImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder - Heat Stable/Mayonnaise 2.png';

@@ -1,7 +1,7 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
 
 import EggYolkPowderMainImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder/EGG YOLK POWDER_1000x667px.png';
-import DoughnutsImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder/39.png';
+import DoughnutsImg from '../../assets/ai-images/doughnuts.webp';
 import CroissantImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder/Croissant 1.png';
 import IceCreamImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder/Ice Cream 1.png';
 import MayonnaiseImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder/Mayonnaise 1.png';

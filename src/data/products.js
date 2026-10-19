@@ -4,9 +4,9 @@
 
 import WholeEggPowderImg from '../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/WHOLE EGG POWDER_1000x667px.png';
 import EggYolkPowderImg from '../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder/EGG YOLK POWDER_1000x667px.png';
-import EggYolkPowderHeatStableImg from '../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder - Heat Stable/EGG YOLK HEAT STABLE POWDER_1000x667px.png';
-import EggAlbumenPowderImg from '../assets/3. PRODUCTS/Egg Powders/Egg Albumen Powder/EGG ALBUMEN POWDER_1000x667px.png';
-import WholeEggLiquidImg from '../assets/3. PRODUCTS/Egg Liquids/Whole Egg Liquid/WHOLE EGG LIQUID_1000x667px.png';
+import EggYolkPowderHeatStableImg from '../assets/ai-images/egg-yolk-heat-stable-powder.webp';
+import EggAlbumenPowderImg from '../assets/ai-images/egg-albumen-powder.webp';
+import WholeEggLiquidImg from '../assets/ai-images/whole-egg-liquid.webp';
 import EggYolkLiquidImg from '../assets/3. PRODUCTS/Egg Liquids/Egg Yolk Liquid/EGG YOLK LIQUID_1000x667px.png';
 import EggAlbumenLiquidImg from '../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/EGG ALBUMEN LIQUID_1000x667px.png';
 import SpecialityEggLiquidImg from '../assets/3. PRODUCTS/Speciality products/Egg Liquids/EGG LIQUIDS TETRA PACK_1000x667px.png';

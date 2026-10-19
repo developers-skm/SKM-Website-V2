@@ -3,11 +3,11 @@ import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import SafeImage from '../../components/common/SafeImage';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
-import EggCollectionArea from '../../assets/5. INFRASTRUCTURE/Poultry farm/Egg collection area.webp';
+import EggCollectionArea from '../../assets/ai-images/table-eggs-collection.webp';
 import EggCollectingConveyor from '../../assets/5. INFRASTRUCTURE/Poultry farm/Egg collecting conveyor.webp';
 import TableEggsInfrastructure from '../../assets/home/table-eggs-infrastructure.webp';
 import BlockchainQr from '../../assets/home/blockchain-qr.jpeg';
-import FeederView from '../../assets/5. INFRASTRUCTURE/Poultry farm/Feeder view.webp';
+import FeederView from '../../assets/ai-images/table-eggs-silo.webp';
 
 // Table Eggs (shell eggs) product-family page. Copy is rewritten from the
 // published SKM poultry farm / quality pages. Deliberately omitted because no

@@ -613,3 +613,14 @@ p {
 #goog-gt-tt,
 .goog-te-balloon-frame { display: none !important; }
 body { top: 0 !important; }
+
+/* ── Mobile only: iOS Safari auto-zooms the page when a text field under 16px
+   is focused. Keep fields at 16px below the md breakpoint; desktop is
+   untouched. ── */
+@media (max-width: 767px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]),
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}

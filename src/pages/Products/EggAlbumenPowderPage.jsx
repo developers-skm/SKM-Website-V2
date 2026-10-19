@@ -1,6 +1,6 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
 
-import EggAlbumenPowderMainImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Albumen Powder/EGG ALBUMEN POWDER_1000x667px.png';
+import EggAlbumenPowderMainImg from '../../assets/ai-images/egg-albumen-powder.webp';
 import EggPastryImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Albumen Powder/Egg pastry 1.png';
 import FishProductsImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Albumen Powder/Fish products 2.png';
 import HamburgerImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Albumen Powder/Ham burger 1.png';
