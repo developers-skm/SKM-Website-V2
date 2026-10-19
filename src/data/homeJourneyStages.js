@@ -10,7 +10,7 @@
 
 import FeedMillLabImg from '../assets/5. INFRASTRUCTURE/Feed mill/Feed mill aerial view.webp';
 import PoultryFarmImg from '../assets/5. INFRASTRUCTURE/Poultry farm/EC shed overview.webp';
-import EggCollectionImg from '../assets/5. INFRASTRUCTURE/Poultry farm/Egg collection area.webp';
+import EggCollectionImg from '../assets/ai-images/table-eggs-collection.webp';
 import ProcessingImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Pasteurization.webp';
 import LabImg from '../assets/5. INFRASTRUCTURE/Laboratory/GC and HPLC.webp';
 import PackagingImg from '../assets/3. PRODUCTS/Customized Packages/Powder Product primary container - HDPE Bag.jpeg';

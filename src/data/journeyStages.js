@@ -9,7 +9,7 @@ import FarmImg from '../assets/5. INFRASTRUCTURE/Poultry farm/EC shed overview.w
 import ProcessingImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Pasteurization.webp';
 import LabImg from '../assets/5. INFRASTRUCTURE/Laboratory/GC and HPLC.webp';
 import DispatchImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Cold room.webp';
-import EggExportImg from '../assets/5. INFRASTRUCTURE/Poultry farm/Egg collection area.webp';
+import EggExportImg from '../assets/ai-images/table-eggs-collection.webp';
 import HomeFarmImg from '../assets/home/journey-farm.webp';
 import HomeQaImg from '../assets/home/journey-qa.webp';
 import HomePackagingImg from '../assets/home/journey-packaging.webp';
