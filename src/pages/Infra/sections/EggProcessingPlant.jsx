@@ -11,7 +11,7 @@ import AdminEntrance from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus
 import SecurityEntrance from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus/Security enterance.webp';
 import Temple from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus/Temple.webp';
 import TransportOffice from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus/Transport office.webp';
-import WeighBridge from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus/Weigh bridge.jpg';
+import WeighBridge from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus/Weigh bridge.webp';
 
 // Process area
 import AlbumenDryer from '../../../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Albumen Dryer.webp';

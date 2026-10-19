@@ -1,5 +1,5 @@
 import { useState, useEffect, Suspense } from 'react';
-import lazyWithRetry from './utils/lazyWithRetry';
+import lazyWithRetry, { preloadRoutes } from './utils/lazyWithRetry';
 import { AnimatePresence, motion } from 'framer-motion';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
@@ -105,6 +105,16 @@ function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isOnline, setIsOnline] = useState(() => (typeof navigator !== 'undefined' ? navigator.onLine : true));
   const [lastOnlinePage, setLastOnlinePage] = useState(() => (getPageFromPath() !== 'offline' ? getPageFromPath() : 'home'));
+
+  useEffect(() => {
+    const start = () => preloadRoutes();
+    if ('requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(start, { timeout: 4000 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = setTimeout(start, 2500);
+    return () => clearTimeout(id);
+  }, []);
 
   useEffect(() => {
     const handleOnline = () => setIsOnline(true);

@@ -2,8 +2,8 @@
 // product grid, product-page cross-sell, application landing pages, and the
 // Get Quote flow's product picker. Route `page` keys match the `case`s in App.jsx.
 
-import WholeEggPowderImg from '../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/WHOLE EGG POWDER_1000x667px.png';
-import EggYolkPowderImg from '../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder/EGG YOLK POWDER_1000x667px.png';
+import WholeEggPowderImg from '../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/WHOLE EGG POWDER_1000x667px.webp';
+import EggYolkPowderImg from '../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder/EGG YOLK POWDER_1000x667px.webp';
 import EggYolkPowderHeatStableImg from '../assets/ai-images/egg-yolk-heat-stable-powder.webp';
 import EggAlbumenPowderImg from '../assets/ai-images/egg-albumen-powder.webp';
 import WholeEggLiquidImg from '../assets/ai-images/whole-egg-liquid.webp';

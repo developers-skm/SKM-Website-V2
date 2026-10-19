@@ -3,7 +3,7 @@ import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { fadeUp } from '../../utils/motionTokens';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
-import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply/supply.png';
+import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply/supply.webp';
 
 // Manufacturing and Supply - new page, Section 1 (Capabilities hero) only,
 // per this task's scope. Replaces the "Capabilities" dropdown in the navbar

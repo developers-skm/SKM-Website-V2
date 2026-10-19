@@ -3,7 +3,7 @@ import ProductPage from '../../components/ProductPage/ProductPage';
 import EggAlbumenLiquidMainImg from '../../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/EGG ALBUMEN LIQUID_1000x667px.png';
 import CakesImg from '../../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/Cakes 2.png';
 import Meringues1Img from '../../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/Meringues 1.png';
-import Meringues2Img from '../../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/Meringues 2.png';
+import Meringues2Img from '../../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/Meringues 2.webp';
 import NoodlesImg from '../../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/Noodles 1.png';
 
 export const variantsData = [

@@ -13,7 +13,7 @@ import certFSSAI from '../../assets/4. QUALITY/Certificates/FSSAI_524x600px.png'
 import certHALAL from '../../assets/4. QUALITY/Certificates/HALAL_524x600px.png';
 import certKOSHER from '../../assets/4. QUALITY/Certificates/KOSHER_524x600px.png';
 import certNABL from '../../assets/4. QUALITY/Certificates/NABL 17025_524x600px.png';
-import traceabilityHeroImage from '../../assets/4. QUALITY/Traceability/Traceability Home Section.png';
+import traceabilityHeroImage from '../../assets/4. QUALITY/Traceability/Traceability Home Section.webp';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Quality, Food Safety and Traceability - combined hub page. This is a new

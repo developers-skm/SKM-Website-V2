@@ -1,7 +1,7 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
 
-import WholeEggPowderMainImg from '../../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/WHOLE EGG POWDER_1000x667px.png';
-import BakeryMixImg from '../../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/Bakery mix 1.png';
+import WholeEggPowderMainImg from '../../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/WHOLE EGG POWDER_1000x667px.webp';
+import BakeryMixImg from '../../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/Bakery mix 1.webp';
 import BiscuitsImg from '../../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/Biscuits 1.png';
 import CakesImg from '../../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/Cakes 1.png';
 import DressingsImg from '../../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/Dressings 1.png';

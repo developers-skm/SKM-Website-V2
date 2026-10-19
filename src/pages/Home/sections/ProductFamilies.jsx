@@ -4,7 +4,7 @@ import InternalLink from '../../../components/common/InternalLink';
 import SafeImage from '../../../components/common/SafeImage';
 import products, { PRODUCT_CATEGORIES, getProductById } from '../../../data/products';
 import CategoryMotif from './CategoryMotif';
-import TableEggImage from '../../../assets/1. HOME PAGE/TableEggImage.png';
+import TableEggImage from '../../../assets/1. HOME PAGE/TableEggImage.webp';
 
 // Section 3 - Product Families. Four family cards in a 2x2 grid. Every
 // format/benefit/application/storage value below is an exact verbatim
