@@ -1,6 +1,6 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
 
-import EggYolkLiquidMainImg from '../../assets/3. PRODUCTS/Egg Liquids/Egg Yolk Liquid/EGG YOLK LIQUID_1000x667px.png';
+import EggYolkLiquidMainImg from '../../assets/3. PRODUCTS/Egg Liquids/Egg Yolk Liquid/EGG YOLK LIQUID_1000x667px.webp';
 import BakeryImg from '../../assets/3. PRODUCTS/Egg Liquids/Egg Yolk Liquid/Bakery 1.png';
 import CosmeticsImg from '../../assets/3. PRODUCTS/Egg Liquids/Egg Yolk Liquid/Cosmetics 1.png';
 import IceCreamImg from '../../assets/3. PRODUCTS/Egg Liquids/Egg Yolk Liquid/Ice cream 3.png';

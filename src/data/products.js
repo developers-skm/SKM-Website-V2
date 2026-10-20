@@ -7,7 +7,7 @@ import EggYolkPowderImg from '../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder/
 import EggYolkPowderHeatStableImg from '../assets/ai-images/egg-yolk-heat-stable-powder.webp';
 import EggAlbumenPowderImg from '../assets/ai-images/egg-albumen-powder.webp';
 import WholeEggLiquidImg from '../assets/ai-images/whole-egg-liquid.webp';
-import EggYolkLiquidImg from '../assets/3. PRODUCTS/Egg Liquids/Egg Yolk Liquid/EGG YOLK LIQUID_1000x667px.png';
+import EggYolkLiquidImg from '../assets/3. PRODUCTS/Egg Liquids/Egg Yolk Liquid/EGG YOLK LIQUID_1000x667px.webp';
 import EggAlbumenLiquidImg from '../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/EGG ALBUMEN LIQUID_1000x667px.png';
 import SpecialityEggLiquidImg from '../assets/3. PRODUCTS/Speciality products/Egg Liquids/EGG LIQUIDS TETRA PACK_1000x667px.png';
 import EggWhiteCubeImg from '../assets/3. PRODUCTS/Speciality products/Egg White Cube/EGG WHITE CUBE_1000x667px.png';
