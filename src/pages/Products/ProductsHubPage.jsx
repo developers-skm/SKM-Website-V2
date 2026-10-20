@@ -6,6 +6,7 @@ import ScrollFrameSequence from '../../components/common/ScrollFrameSequence';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 import products, { PRODUCT_CATEGORIES } from '../../data/products';
 import { getBrochureUrl } from '../../data/brochureUrl';
+import useMediaQuery from '../../components/GlobalEvents/useMediaQuery';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 import { EASE_PREMIUM, DURATION, fadeUp, cardRise } from '../../utils/motionTokens';
 
@@ -761,6 +762,62 @@ const HERO_HOTSPOTS = [
   { route: 'egg_yolk_powder_heat_stable', label: 'Egg Yolk Powder – Heat Stable', x: 68, y: 70, w: 22, h: 22 },
 ];
 
+// Mobile hero - the portrait still life (/products-sequence/mobile-final.webp,
+// 1080x1919) is shown as a static image instead of the scroll frame sequence.
+// Hotspots are % of the image, which is rendered uncropped at its own aspect.
+const MOBILE_HERO_HOTSPOTS = [
+  { route: 'whole_egg_powder', label: 'Whole Egg Powder', x: 4, y: 24.5, w: 29, h: 11.5 },
+  { route: 'egg_yolk_powder', label: 'Egg Yolk Powder', x: 37, y: 24.5, w: 28, h: 11.5 },
+  { route: 'egg_albumen_powder', label: 'Egg Albumen Powder', x: 68, y: 26, w: 28, h: 10.5 },
+  { route: 'whole_egg_liquid', label: 'Whole Egg Liquid', x: 8.5, y: 36, w: 21.5, h: 14 },
+  { route: 'egg_yolk_liquid', label: 'Egg Yolk Liquid', x: 32.5, y: 36, w: 21, h: 14 },
+  { route: 'egg_albumen_liquid', label: 'Egg Albumen Liquid', x: 56, y: 36, w: 20, h: 14.5 },
+  { route: 'egg_white_cube', label: 'Egg White Cube', x: 58, y: 49, w: 39, h: 18 },
+  { route: 'egg_yolk_powder_heat_stable', label: 'Egg Yolk Powder – Heat Stable', x: 4, y: 51, w: 46, h: 13 },
+  { route: 'table_eggs', label: 'Table Eggs', x: 0, y: 65, w: 55, h: 21 },
+  { route: 'table_eggs', label: 'Table Eggs', x: 58, y: 68, w: 40, h: 20 },
+];
+
+function MobileProductsHero({ onPageChange }) {
+  return (
+    <div className="relative w-full" style={{ aspectRatio: '1080 / 1919' }}>
+      <img
+        src="/products-sequence/mobile-final.webp"
+        alt="SKM egg powders, liquid eggs, egg white cubes and table eggs"
+        width="1080"
+        height="1919"
+        fetchPriority="high"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <h1 className="sr-only">Egg Products Engineered for Performance, Consistency and Safety.</h1>
+      <div className="absolute inset-x-0 top-[96px] z-30 flex flex-col items-center px-4 text-center pointer-events-none">
+        <span className="font-body font-bold text-[11px] uppercase tracking-[0.28em] text-brand-600 mb-2">
+          Our Egg Products
+        </span>
+        <p
+          className="m-0 font-heading font-extrabold text-[24px] leading-[1.1] tracking-[-0.01em] text-[#3b2a1e]"
+          style={{ textShadow: '0 1px 18px rgba(255,248,238,0.85)' }}
+        >
+          Select a product to <span className="text-brand-600">discover more.</span>
+        </p>
+        <span className="mt-3 block h-[2px] w-12 rounded-full bg-brand-600" aria-hidden="true" />
+      </div>
+      <div className="absolute inset-0 z-20">
+        {MOBILE_HERO_HOTSPOTS.map((h) => (
+          <InternalLink
+            key={`${h.route}-${h.x}`}
+            route={h.route}
+            onPageChange={onPageChange}
+            aria-label={h.label}
+            className="absolute rounded-[14px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+            style={{ left: `${h.x}%`, top: `${h.y}%`, width: `${h.w}%`, height: `${h.h}%` }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // Scroll-linked layers for the Products hero. They own their useScroll so the
 // target ref is already hydrated (the hero wrapper is a parent of these).
 const HERO_FINAL_AT = 0.8; // scroll progress at which the last frame lands
@@ -858,6 +915,7 @@ function HeroFinalLayers({ containerRef, onPageChange }) {
 export default function ProductsHubPage({ onPageChange, prefill }) {
   const reduceMotion = useReducedMotion();
   const heroScrubRef = useRef(null);
+  const isMobile = useMediaQuery('(max-width: 767px)');
 
   // Mirrors Home.jsx's mount-aware scroll effect - Home's ProductFamilies
   // "Explore..." buttons navigate here with prefill.scrollTarget set to the
@@ -889,6 +947,9 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             transforming into egg powder) pinned for the scroll length of
             the wrapper below - same mechanism as Home's Hero. Copy keeps
             its own independent staggered entrance. */}
+        {isMobile ? (
+          <MobileProductsHero onPageChange={onPageChange} />
+        ) : (
         <div ref={heroScrubRef} className="relative w-full h-[180vh]">
         <div className="sticky top-0 min-h-screen pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] text-center px-4 overflow-hidden">
           <motion.div
@@ -1013,6 +1074,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
           </HeroCopyFade>
         </div>
         </div>
+        )}
 
         {/* Section 2 - SKM Product Finder */}
         <ProductFinder onPageChange={onPageChange} />
