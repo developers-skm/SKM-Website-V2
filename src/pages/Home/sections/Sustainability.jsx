@@ -9,7 +9,7 @@ import CleanEnergy1 from '../../../assets/home/clean-energy-1.webp';
 import CleanEnergy2 from '../../../assets/home/clean-energy-2.webp';
 import UtilityOverview from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/Utility Overview.webp';
 import Trust1 from '../../../assets/trust-images/trust-1.webp';
-import Trust2 from '../../../assets/trust-images/trust-2.webp';
+import Trust2 from '../../../assets/trust-images/trust-2.jpeg';
 import Trust3 from '../../../assets/trust-images/trust-3.webp';
 import Trust4 from '../../../assets/trust-images/trust-4.webp';
 import Trust5 from '../../../assets/trust-images/trust-5.webp';
