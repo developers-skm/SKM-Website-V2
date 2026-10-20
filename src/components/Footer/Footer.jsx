@@ -40,10 +40,10 @@ export default function Footer({ onPageChange }) {
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 pb-8 relative z-10">
 
         {/* Logo + nav row */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-10">
 
           {/* Logo */}
-          <button onClick={() => handleLinkClick('home')} className="focus:outline-none flex-shrink-0 self-start">
+          <button onClick={() => handleLinkClick('home')} className="focus:outline-none flex-shrink-0 self-center sm:self-start">
             <div className="rounded-lg px-3 py-2">
               <img
                 src={SKMLogo}
@@ -54,17 +54,17 @@ export default function Footer({ onPageChange }) {
           </button>
 
           {/* Nav links with | separators */}
-          <div className="flex flex-wrap items-center gap-y-3 justify-evenly sm:flex-1">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1 sm:flex sm:flex-wrap sm:items-center sm:gap-y-3 sm:justify-evenly sm:flex-1">
             {mainNavLinks.map((link, index) => (
               <React.Fragment key={link.value}>
                 <button
                   onClick={() => handleLinkClick(link.value)}
-                  className="font-heading font-bold text-[15px] uppercase tracking-[0.05em] text-surface-700 hover:text-brand-600 transition-colors duration-200 cursor-pointer"
+                  className="min-h-[44px] sm:min-h-0 px-2 py-2 sm:p-0 text-center font-heading font-bold text-[13.5px] sm:text-[15px] uppercase tracking-[0.04em] sm:tracking-[0.05em] text-surface-700 hover:text-brand-600 transition-colors duration-200 cursor-pointer"
                 >
                   {link.label}
                 </button>
                 {index < mainNavLinks.length - 1 && (
-                  <span className="text-surface-300 select-none text-[18px] font-light leading-none">|</span>
+                  <span className="hidden sm:inline text-surface-300 select-none text-[18px] font-light leading-none">|</span>
                 )}
               </React.Fragment>
             ))}
@@ -72,16 +72,16 @@ export default function Footer({ onPageChange }) {
         </div>
 
         {/* Certifications */}
-        <div className="mt-8 pt-8 border-t border-[#eee]">
-          <p className="font-body text-center text-[12px] font-bold uppercase tracking-widest text-surface-600 mb-5">
+        <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-[#eee]">
+          <p className="font-body text-center text-[11.5px] sm:text-[12px] font-bold uppercase tracking-[0.12em] sm:tracking-widest text-surface-600 mb-5 px-2">
             Our Certifications &amp; Quality Accreditations
           </p>
-          <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 sm:gap-4 justify-items-center items-center">
+          <div className="grid grid-cols-4 sm:grid-cols-8 gap-x-2 gap-y-3 sm:gap-4 justify-items-center items-center">
             {certificates.map((cert) => (
               <div
                 key={cert.name}
                 title={cert.name}
-                className="w-20 h-20 sm:w-22 sm:h-22 md:w-24 md:h-24 flex items-center justify-center group"
+                className="w-full max-w-[72px] aspect-square sm:max-w-none sm:aspect-auto sm:w-22 sm:h-22 md:w-24 md:h-24 flex items-center justify-center group"
               >
                 <img
                   src={cert.logo}
