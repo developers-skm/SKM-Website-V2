@@ -31,7 +31,7 @@ export default function QuickActionsCart({ downloadUrl, downloadLabel = 'Downloa
     'inline-flex items-center justify-center whitespace-nowrap min-h-[40px] font-heading font-bold text-[12px] uppercase tracking-[0.05em] leading-none px-6 py-2.5 rounded-[200px] shadow-[0_6px_20px_rgba(0,0,0,0.16)] transition-all duration-200 cursor-pointer focus:outline-none focus-gold';
 
   return (
-    <div ref={rootRef} className="fab-cart fixed right-[30px] z-50 flex flex-col items-end gap-3">
+    <div ref={rootRef} className="fab-cart fixed right-3 sm:right-[30px] z-50 flex flex-col items-end gap-3">
       <AnimatePresence>
         {open && (
           <motion.div
@@ -73,7 +73,7 @@ export default function QuickActionsCart({ downloadUrl, downloadLabel = 'Downloa
         aria-label="Quick actions"
         aria-expanded={open}
         aria-controls="quick-actions-menu"
-        className="flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white hover:bg-brand-600 text-brand-600 hover:text-white transition-all duration-200 cursor-pointer focus:outline-none focus-gold"
+        className="flex items-center justify-center w-10 h-10 sm:w-[45px] sm:h-[45px] rounded-full bg-white hover:bg-brand-600 text-brand-600 hover:text-white transition-all duration-200 cursor-pointer focus:outline-none focus-gold"
         style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.18), inset 0 0 0 2px rgba(228, 10, 24,0.25)' }}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

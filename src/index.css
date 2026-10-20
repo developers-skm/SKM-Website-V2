@@ -69,22 +69,22 @@
    mobile sticky CTA bar with a fixed 65px gap between the two stacked
    buttons; desktop keeps its original hardcoded bottom offsets. */
 .fab-scroll-top {
-  bottom: calc(var(--mobile-cta-reserve) + 65px);
+  bottom: calc(var(--mobile-cta-reserve) + 58px);
 }
 
 .fab-chatbot {
-  bottom: calc(var(--mobile-cta-reserve) + 22px);
+  bottom: calc(var(--mobile-cta-reserve) + 10px);
 }
 
 .fab-cart {
   /* Sits directly above the chatbot until the scroll-to-top button appears
      (html[data-scrolltop='visible']), then glides up to make room for it. */
-  bottom: calc(var(--mobile-cta-reserve) + 65px);
+  bottom: calc(var(--mobile-cta-reserve) + 58px);
   transition: bottom 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html[data-scrolltop='visible'] .fab-cart {
-  bottom: calc(var(--mobile-cta-reserve) + 108px);
+  bottom: calc(var(--mobile-cta-reserve) + 106px);
 }
 
 @media (prefers-reduced-motion: reduce) {

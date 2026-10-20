@@ -185,10 +185,10 @@ export default function Chatbot({ onPageChange }) {
   return (
     <>
       {/* ── Floating Action Button (FAB) ────────────────────────────────── */}
-      <div className="fab-chatbot fixed right-[30px] z-50">
+      <div className="fab-chatbot fixed right-3 sm:right-[30px] z-50">
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
-          className="relative flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white hover:bg-brand-600 text-brand-600 hover:text-white cursor-pointer focus:outline-none transition-all duration-300 group"
+          className="relative flex items-center justify-center w-10 h-10 sm:w-[45px] sm:h-[45px] rounded-full bg-white hover:bg-brand-600 text-brand-600 hover:text-white cursor-pointer focus:outline-none transition-all duration-300 group"
           style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.18), inset 0 0 0 2px var(--color-brand-600)' }}
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.94 }}

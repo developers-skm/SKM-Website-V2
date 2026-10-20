@@ -82,12 +82,12 @@ export default function ScrollToTopButton() {
           exit={{ opacity: 0, y: 15 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
           onClick={handleClick}
-          className="fab-scroll-top fixed right-[30px] z-50 flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white hover:bg-brand-600 transition-all duration-200 group cursor-pointer focus:outline-none shadow-[0_4px_16px_rgba(0,0,0,0.18)]"
+          className="fab-scroll-top fixed right-3 sm:right-[30px] z-50 flex items-center justify-center w-10 h-10 sm:w-[45px] sm:h-[45px] rounded-full bg-white hover:bg-brand-600 transition-all duration-200 group cursor-pointer focus:outline-none shadow-[0_4px_16px_rgba(0,0,0,0.18)]"
           style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.18), inset 0 0 0 2px rgba(228, 10, 24,0.25)' }}
           aria-label="Scroll to top"
         >
           {/* Circular progress SVG - stroke: brand-600 */}
-          <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none">
+          <svg viewBox="0 0 45 45" className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none">
             <circle
               strokeWidth="3"
               stroke="rgba(228, 10, 24,0.15)"
