@@ -128,11 +128,11 @@ export default function SustainabilityPage({ onPageChange }) {
             </div>
           </motion.div>
 
-          {/* ── By-Product Utilization ── */}
+          {/* ── By-Product Utilisation ── */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6 p-8 sm:p-10 rounded-[10px] bg-surface-50 border border-surface-100">
             <div className="flex flex-col gap-3">
               <h3 className="font-heading font-bold text-[20px] sm:text-[24px] text-heading tracking-tight m-0">
-                Sustainable By-Product Utilization – Creating Value from Eggshells
+                Sustainable By-Product Utilisation – Creating Value from Eggshells
               </h3>
               <p className="text-sm sm:text-base text-surface-600 leading-relaxed m-0">
                 At SKM, we are committed to maximising resource utilisation and minimising processing waste through sustainable by-product recovery and value addition.

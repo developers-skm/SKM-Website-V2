@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { eggFacts } from '../../data/eggFacts';
+import { eggCards } from '../../data/eggCards';
 
 /**
  * Curved section boundary - replaces a flat 1px border between two stacked
@@ -27,14 +28,14 @@ const EGG_HINT = 'Curious About Us? Click to Discover Our Story';
 
 // Remember the last statement so two clicks in a row never repeat it.
 let lastFactIndex = -1;
-const pickFact = () => {
-  let i = Math.floor(Math.random() * eggFacts.length);
-  if (i === lastFactIndex) i = (i + 1) % eggFacts.length;
+const pickFact = (list) => {
+  let i = Math.floor(Math.random() * list.length);
+  if (i === lastFactIndex) i = (i + 1) % list.length;
   lastFactIndex = i;
-  return eggFacts[i];
+  return list[i];
 };
 
-function RollingEgg({ pathRef, boxRef }) {
+function RollingEgg({ pathRef, boxRef, withImage }) {
   const eggRef = useRef(null);
   const labelRef = useRef(null);
   const startRef = useRef(0);
@@ -42,6 +43,10 @@ function RollingEgg({ pathRef, boxRef }) {
   const factRef = useRef(null);
   const factCycleRef = useRef(0);
   const hintTimerRef = useRef(0);
+  const pausedRef = useRef(false);
+  const fadingRef = useRef(false);
+  const fadeTimerRef = useRef(0);
+  const lastNowRef = useRef(0);
   const [fact, setFact] = useState(null);
   // The hint is revealed while the cursor is over the egg.
   const [hover, setHover] = useState(false);
@@ -70,6 +75,9 @@ function RollingEgg({ pathRef, boxRef }) {
     const frame = (now) => {
       if (!visible) return;
       if (!startRef.current) startRef.current = now - motion.phase * motion.ms;
+      // Cursor on the egg: freeze it by pushing its start time forward.
+      if (pausedRef.current && lastNowRef.current) startRef.current += now - lastNowRef.current;
+      lastNowRef.current = now;
       const elapsed = now - startRef.current;
       const cycle = Math.floor(elapsed / motion.ms);
       const t = (elapsed % motion.ms) / motion.ms;
@@ -114,7 +122,7 @@ function RollingEgg({ pathRef, boxRef }) {
         // Sentence rides above the egg, kept inside the page width.
         const lw = label.offsetWidth;
         const left = Math.min(Math.max(x - lw / 2, 8), Math.max(8, w - lw - 8));
-        label.style.opacity = fade;
+        label.style.opacity = fadingRef.current ? '0' : fade;
         label.style.transform = `translate(${left}px, ${y - eggH * 0.8}px) translateY(-100%)`;
       }
       raf = requestAnimationFrame(frame);
@@ -122,6 +130,7 @@ function RollingEgg({ pathRef, boxRef }) {
 
     const io = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
+      lastNowRef.current = 0;
       cancelAnimationFrame(raf);
       if (visible) raf = requestAnimationFrame(frame);
     });
@@ -130,6 +139,8 @@ function RollingEgg({ pathRef, boxRef }) {
     return () => {
       io.disconnect();
       clearTimeout(hintTimerRef.current);
+      clearTimeout(fadeTimerRef.current);
+      pausedRef.current = false;
       cancelAnimationFrame(raf);
     };
   }, [boxRef, pathRef, motion]);
@@ -140,15 +151,31 @@ function RollingEgg({ pathRef, boxRef }) {
     if (tRef.current > 0.6) startRef.current = performance.now();
     const elapsed = performance.now() - startRef.current;
     factCycleRef.current = Math.floor(elapsed / motion.ms);
-    const next = pickFact();
+    const next = pickFact(withImage ? eggCards : eggFacts);
     factRef.current = next;
     setFact(next);
   };
 
   // Mouse: moving the cursor over the egg reveals the invitation text.
   // Clicking (or tapping) the egg shows one of the 20 statements.
+  const handleLeave = (e) => {
+    if (e.pointerType !== 'mouse') return;
+    pausedRef.current = false;
+    // Image card: fade it out as soon as the cursor leaves the egg.
+    if (withImage && factRef.current && !fadingRef.current) {
+      fadingRef.current = true;
+      if (labelRef.current) labelRef.current.style.transition = 'opacity 0.3s ease';
+      fadeTimerRef.current = setTimeout(() => {
+        fadingRef.current = false;
+        factRef.current = null;
+        setFact(null);
+      }, 300);
+    }
+  };
+
   const handleHover = (e) => {
     if (e.pointerType !== 'mouse') return;
+    pausedRef.current = true;
     setHover(true);
     // Stay up for 2 seconds so the line can be read, even if the egg rolls
     // out from under the cursor.
@@ -165,6 +192,7 @@ function RollingEgg({ pathRef, boxRef }) {
         aria-hidden="true"
         onClick={handleShow}
         onPointerEnter={handleHover}
+        onPointerLeave={handleLeave}
         className="absolute left-0 top-0 z-[6] h-[16px] sm:h-[20px] lg:h-[24px] w-auto opacity-0 will-change-transform cursor-pointer pointer-events-auto drop-shadow-[0_1px_2px_rgba(36,30,24,0.28)]"
       >
         <defs>
@@ -188,16 +216,28 @@ function RollingEgg({ pathRef, boxRef }) {
       <div
         ref={labelRef}
         className={
-          fact
+          fact && withImage
+            ? 'absolute left-0 top-0 z-[7] w-[min(400px,calc(100vw-32px))] opacity-0 text-left overflow-hidden rounded-xl bg-white border border-surface-200 shadow-[0_8px_24px_rgba(36,30,24,0.18)] font-body text-[12.5px] leading-[1.45] text-surface-600 will-change-transform pointer-events-none'
+            : fact
             ? 'absolute left-0 top-0 z-[7] w-[min(300px,calc(100vw-32px))] opacity-0 text-left [text-shadow:0_0_6px_rgba(255,255,255,0.9)] font-body text-[12.5px] leading-[1.45] text-surface-600 will-change-transform pointer-events-none'
             : 'absolute left-0 top-0 z-[7] w-max max-w-[calc(100vw-32px)] opacity-0 text-center [text-shadow:0_0_6px_rgba(255,255,255,0.9)] font-body text-[12px] sm:text-[12.5px] font-semibold leading-[1.3] text-brand-600 will-change-transform pointer-events-none'
         }
       >
         {fact ? (
+          withImage ? (
+            <>
+              <img src={fact.image} alt="" width="640" height="427" decoding="async" className="block w-full aspect-[3/2] object-cover" />
+              <span className="block px-4 pt-3 pb-4 text-[13.5px]">
+                <span className="block font-heading font-bold text-[13px] text-brand-600 leading-[1.3] mb-0.5">{fact.title}</span>
+                {fact.text}
+              </span>
+            </>
+          ) : (
           <>
             <span className="block font-heading font-bold text-[13px] text-brand-600 leading-[1.3] mb-0.5">{fact.title}</span>
             {fact.text}
           </>
+          )
         ) : (
           EGG_HINT
         )}
@@ -208,7 +248,7 @@ function RollingEgg({ pathRef, boxRef }) {
 }
 
 
-export default function CurvedDivider({ flip = false, bg = '#fff', fill = '#ececec', className = '' }) {
+export default function CurvedDivider({ flip = false, bg = '#fff', fill = '#ececec', className = '', cards = false }) {
   const boxRef = useRef(null);
   const pathRef = useRef(null);
 
@@ -234,7 +274,7 @@ export default function CurvedDivider({ flip = false, bg = '#fff', fill = '#ecec
           strokeWidth="2"
         />
       </svg>
-      {!flip && !prefersReducedMotion() && <RollingEgg pathRef={pathRef} boxRef={boxRef} />}
+      {!flip && !prefersReducedMotion() && <RollingEgg pathRef={pathRef} boxRef={boxRef} withImage={cards} />}
     </div>
   );
 }

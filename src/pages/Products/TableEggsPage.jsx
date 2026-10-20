@@ -182,7 +182,7 @@ export default function TableEggsPage({ onPageChange }) {
           </div>
         </section>
 
-        <CurvedDivider bg="#ececec" fill="#fff" />
+        <CurvedDivider cards bg="#ececec" fill="#fff" />
         {/* 2 · About */}
         <section className="w-full py-[64px] lg:py-[96px] bg-white">
           <div className={`${wrap} grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center`}>
@@ -204,7 +204,7 @@ export default function TableEggsPage({ onPageChange }) {
           </div>
         </section>
 
-        <CurvedDivider bg="#fff" fill="#ececec" />
+        <CurvedDivider cards bg="#fff" fill="#ececec" />
         {/* 3 · Farming strengths */}
         <section className="w-full py-[64px] lg:py-[96px] bg-page">
           <div className={`${wrap} flex flex-col gap-10 lg:gap-12`}>
@@ -234,7 +234,7 @@ export default function TableEggsPage({ onPageChange }) {
           </div>
         </section>
 
-        <CurvedDivider bg="#ececec" fill="#fff" />
+        <CurvedDivider cards bg="#ececec" fill="#fff" />
         {/* 4 · Quality commitment */}
         <section className="w-full py-[64px] lg:py-[96px] bg-white">
           <div className={`${wrap} grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-16 items-center`}>
@@ -301,7 +301,7 @@ export default function TableEggsPage({ onPageChange }) {
           </div>
         </section>
 
-        <CurvedDivider bg="#fff" fill="#ececec" />
+        <CurvedDivider cards bg="#fff" fill="#ececec" />
         {/* 5 · Infrastructure - full-width banner, text row beneath */}
         <section className="w-full pt-[64px] lg:pt-[96px] pb-[64px] lg:pb-[96px] bg-page">
           <div className={wrap}>

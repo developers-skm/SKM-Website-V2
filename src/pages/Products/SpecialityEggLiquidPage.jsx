@@ -123,7 +123,7 @@ export default function SpecialityEggLiquidPage({ onPageChange }) {
         </motion.div>
       </div>
 
-      <CurvedDivider bg="#fff" fill="#ececec" />
+      <CurvedDivider cards bg="#fff" fill="#ececec" />
       {/* Product Info Strip */}
       <div className="w-full py-12 sm:py-16 bg-page">
         <motion.div

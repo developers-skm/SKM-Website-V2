@@ -155,7 +155,7 @@ export default function EggWhiteCubePage({ onPageChange }) {
         </div>
       </div>
 
-      <CurvedDivider bg="#fff" fill="#ececec" />
+      <CurvedDivider cards bg="#fff" fill="#ececec" />
       {/* Info strip */}
       <div className="w-full py-12 sm:py-16 bg-page">
         <motion.div

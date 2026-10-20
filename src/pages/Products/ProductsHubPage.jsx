@@ -1016,23 +1016,23 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
 
         {/* Section 2 - SKM Product Finder */}
         <ProductFinder onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#fff" className="" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
+        <CurvedDivider cards bg="#fff" fill="#fff" className="" />
+        <CurvedDivider cards bg="#121212" fill="#121212" className="hidden" />
 
         {/* Section 3 - Product families */}
         <ProductFamiliesSection onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#fff" className="" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
+        <CurvedDivider cards bg="#fff" fill="#fff" className="" />
+        <CurvedDivider cards bg="#121212" fill="#121212" className="hidden" />
 
         {/* Manufacturing lines - Powder Line / Liquid Line */}
         <ManufacturingLinesSection onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#ececec" className="" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
+        <CurvedDivider cards bg="#fff" fill="#ececec" className="" />
+        <CurvedDivider cards bg="#121212" fill="#121212" className="hidden" />
 
         {/* Section 4 - Browse by functional requirement */}
         <FunctionalRequirementSection onPageChange={onPageChange} />
-        <CurvedDivider bg="#ececec" fill="#fff" className="" />
-        <CurvedDivider bg="#121212" fill="#121212" className="hidden" />
+        <CurvedDivider cards bg="#ececec" fill="#fff" className="" />
+        <CurvedDivider cards bg="#121212" fill="#121212" className="hidden" />
 
         {/* Section 6 - Custom product support */}
         <CustomSupportSection onPageChange={onPageChange} />

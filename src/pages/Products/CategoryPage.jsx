@@ -206,7 +206,7 @@ export default function CategoryPage({
           </div>
         </div>
 
-        <CurvedDivider bg="#fff" fill={functionalityTags?.length > 0 ? '#ececec' : '#fff'} />
+        <CurvedDivider cards bg="#fff" fill={functionalityTags?.length > 0 ? '#ececec' : '#fff'} />
         {/* Section 3 — Choose by functionality */}
         {functionalityTags?.length > 0 && (
           <div className="w-full py-[60px] lg:py-[85px]">
@@ -247,7 +247,7 @@ export default function CategoryPage({
           </div>
         )}
 
-        <CurvedDivider bg={functionalityTags?.length > 0 ? '#ececec' : '#fff'} fill="#fff" />
+        <CurvedDivider cards bg={functionalityTags?.length > 0 ? '#ececec' : '#fff'} fill="#fff" />
         {/* Section 5 — Packaging, storage and delivery */}
         <div className="w-full bg-white py-[60px] lg:py-[85px]">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
@@ -305,7 +305,7 @@ export default function CategoryPage({
           </div>
         </div>
 
-        <CurvedDivider bg="#fff" fill="#ececec" />
+        <CurvedDivider cards bg="#fff" fill="#ececec" />
         {/* Section 6 — Closing CTA */}
         <div className="w-full py-[60px] lg:py-[85px] text-center px-4">
           <div className="mx-auto max-w-[600px] flex flex-col items-center gap-5">
