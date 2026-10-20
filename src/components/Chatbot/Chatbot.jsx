@@ -123,7 +123,12 @@ export default function Chatbot({ onPageChange }) {
 
   // Helper to format text with bold and bullet points into HTML/React elements
   const renderMessageText = (text) => {
-    const lines = text.split('\n');
+    // Hide internal product codes such as (Y1001) or [Y1001]
+    const cleaned = text
+      .replace(/\s*[([]\s*[A-Z]{1,3}\d{3,5}\s*[)\]]/g, '') // "(Y1001)"
+      .replace(/\b[A-Z]{1,3}\d{3,5}\s*\(([^)]*)\)/g, '$1') // "Y1101 (Standard)" -> "Standard"
+      .replace(/\b[A-Z]{1,3}\d{3,5}\b\s*/g, ''); // bare "Y1101"
+    const lines = cleaned.split('\n');
     return lines.map((line, index) => {
       let content = line;
       
@@ -337,6 +342,16 @@ export default function Chatbot({ onPageChange }) {
                                     if (!page || !onPageChange) return;
                                     e.preventDefault();
                                     onPageChange(page);
+                                    setMessages((prev) => [
+                                      ...prev,
+                                      {
+                                        id: `nav-${Date.now()}`,
+                                        sender: 'bot',
+                                        text: `Here is the ${labelFromUrl(src)} page! Let me know if you need anything else.`,
+                                        timestamp: new Date()
+                                      }
+                                    ]);
+                                    setIsOpen(false);
                                   }}
                                   className="inline-flex items-center px-2.5 py-1 rounded-full border border-brand-600/30 bg-brand-50 text-[11px] font-medium text-brand-600 hover:bg-brand-600 hover:text-white no-underline transition-colors"
                                 >
