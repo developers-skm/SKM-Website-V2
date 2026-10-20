@@ -16,7 +16,7 @@ import Trust5 from '../../../assets/trust-images/trust-5.webp';
 
 const trustSlides = [Trust1, Trust2, Trust3, Trust4, Trust5];
 const cleanEnergySlides = [CleanEnergy1, CleanEnergy2];
-const SLIDE_INTERVAL_MS = 4500;
+const SLIDE_INTERVAL_MS = 4000;
 
 // Crossfading slideshow for the Community Welfare story - autoplays, pauses
 // on hover/focus, and offers dot controls. Respects reduced motion (no
