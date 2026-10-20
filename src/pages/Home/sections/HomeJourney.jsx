@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion, useScroll, useMotionValueEvent, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion, useScroll, useMotionValueEvent } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
 import SafeImage from '../../../components/common/SafeImage';
 import journeyStages from '../../../data/journeyStages';
@@ -42,11 +42,6 @@ function DesktopSticky() {
     setActiveIndex((prev) => (prev === rawIndex ? prev : rawIndex));
   });
 
-  const stepProgress = useTransform(scrollYProgress, (latest) => {
-    const scaled = latest * total;
-    return scaled - Math.floor(scaled);
-  });
-
   const active = journeyStages[activeIndex];
 
   return (
@@ -74,9 +69,6 @@ function DesktopSticky() {
                 </motion.div>
               </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute top-6 right-6 bottom-6 w-[3px] rounded-full bg-white/25 z-10" aria-hidden="true">
-                <motion.div className="w-full rounded-full bg-white origin-top" style={{ scaleY: stepProgress }} />
-              </div>
             </div>
 
             <div className="relative flex-1 min-w-0 h-full flex flex-col justify-center">
