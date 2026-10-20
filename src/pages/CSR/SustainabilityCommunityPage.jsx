@@ -5,7 +5,7 @@ import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Section 2 - Environmental responsibility. Energy, water, and waste are
 // all real, verbatim/derived facts already documented elsewhere: energy
-// (wind mill and solar panels generating 5.1 million units/year, SustainabilityPage.jsx),
+// (wind mill and solar panels generating 5.2 million units/year, SustainabilityPage.jsx),
 // water (real Water Treatment Plant, EggProcessingPlant.jsx utility
 // gallery), waste (real Effluent Treatment Plant + Biogas facility, 70-
 // tonne poultry litter handling capacity, free liquid fertilizer by-
@@ -20,7 +20,7 @@ const ENVIRONMENTAL_INITIATIVES = [
   {
     id: 'energy',
     label: 'Energy',
-    fact: '5.1 million units of electricity generated per year through wind mill and solar power panels- powering operations with renewable energy.',
+    fact: '5.2 million units of electricity generated per year through wind mill and solar power panels- powering operations with renewable energy.',
   },
   {
     id: 'water',
@@ -237,7 +237,7 @@ function CommunityDevelopmentSection({ onPageChange }) {
 // the real Sustainability page, which has the fuller environmental
 // policy context for these figures.
 const PERFORMANCE_INDICATORS = [
-  { value: '5.1M', label: 'Units of clean electricity generated per year', source: 'Wind mill and solar power panels' },
+  { value: '5.2M', label: 'Units of clean electricity generated per year', source: 'Wind mill and solar power panels' },
   { value: '70T', label: 'Poultry litter handling capacity', source: 'Biogas facility' },
   { value: '228', label: 'Families adopted', source: 'Gandhi Nagar & Rajiv Nagar' },
   { value: '786', label: 'Residents supported', source: 'Community welfare program' },

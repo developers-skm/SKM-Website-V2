@@ -72,7 +72,7 @@ function TrustSlideshow({ slides, alt, reduceMotion }) {
 // Section 10 - Sustainability. New homepage section built from real content
 // on src/pages/CSR/SustainabilityPage.jsx (the "Pillars of Sustainability"
 // - Carbon Footprint, Wind Energy Generation, Community Welfare - plus the
-// 5.1M units/year wind and solar energy figure) - that page has no photography of its
+// 5.2M units/year wind and solar energy figure) - that page has no photography of its
 // own, so real plant utility/environmental imagery (biogas facility,
 // effluent treatment, utility overview - the site's actual sustainability-
 // adjacent infrastructure, also used on the Egg Processing Plant page) is
@@ -90,8 +90,8 @@ const stories = [
   {
     number: '02',
     eyebrow: 'Clean Energy',
-    title: '5.1 million units of wind and solar energy, every year.',
-    body: 'Our contribution to a clean environment is the installation of a wind mill and solar power panels that generate electricity of 5.1 million units per year - powering our operations with renewable energy.',
+    title: '5.2 million units of wind and solar energy, every year.',
+    body: 'Our contribution to a clean environment is the installation of a wind mill and solar power panels that generate electricity of 5.2 million units per year - powering our operations with renewable energy.',
     image: CleanEnergy1,
     imageAlt: 'Wind and solar clean energy at SKM Egg Products',
     slides: cleanEnergySlides,
