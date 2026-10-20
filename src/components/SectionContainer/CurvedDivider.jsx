@@ -145,8 +145,34 @@ function RollingEgg({ pathRef, boxRef, withImage }) {
     };
   }, [boxRef, pathRef, motion]);
 
-  const handleShow = () => {
+  // Fade the image card out, then remove it.
+  const dismissCard = () => {
+    if (!factRef.current || fadingRef.current) return;
+    fadingRef.current = true;
+    if (labelRef.current) labelRef.current.style.transition = 'opacity 0.3s ease';
+    fadeTimerRef.current = setTimeout(() => {
+      fadingRef.current = false;
+      factRef.current = null;
+      setFact(null);
+    }, 300);
+  };
+
+  // Touch has no "cursor leaves": tapping anywhere else, or waiting, closes it.
+  useEffect(() => {
+    if (!withImage || !fact) return undefined;
+    const onDown = (e) => {
+      if (!eggRef.current?.contains(e.target)) dismissCard();
+    };
+    document.addEventListener('pointerdown', onDown);
+    return () => document.removeEventListener('pointerdown', onDown);
+  }, [withImage, fact]);
+
+  const handleShow = (e) => {
     if (factRef.current) return;
+    if (withImage && e?.nativeEvent?.pointerType && e.nativeEvent.pointerType !== 'mouse') {
+      clearTimeout(fadeTimerRef.current);
+      fadeTimerRef.current = setTimeout(dismissCard, 4000);
+    }
     // Late in the pass there is no time to read - roll again from the start.
     if (tRef.current > 0.6) startRef.current = performance.now();
     const elapsed = performance.now() - startRef.current;
@@ -162,15 +188,7 @@ function RollingEgg({ pathRef, boxRef, withImage }) {
     if (e.pointerType !== 'mouse') return;
     pausedRef.current = false;
     // Image card: fade it out as soon as the cursor leaves the egg.
-    if (withImage && factRef.current && !fadingRef.current) {
-      fadingRef.current = true;
-      if (labelRef.current) labelRef.current.style.transition = 'opacity 0.3s ease';
-      fadeTimerRef.current = setTimeout(() => {
-        fadingRef.current = false;
-        factRef.current = null;
-        setFact(null);
-      }, 300);
-    }
+    if (withImage) dismissCard();
   };
 
   const handleHover = (e) => {
@@ -217,7 +235,7 @@ function RollingEgg({ pathRef, boxRef, withImage }) {
         ref={labelRef}
         className={
           fact && withImage
-            ? 'absolute left-0 top-0 z-[7] w-[min(400px,calc(100vw-32px))] opacity-0 text-left overflow-hidden rounded-xl bg-white border border-surface-200 shadow-[0_8px_24px_rgba(36,30,24,0.18)] font-body text-[12.5px] leading-[1.45] text-surface-600 will-change-transform pointer-events-none'
+            ? 'absolute left-0 top-0 z-[7] w-[min(230px,calc(100vw-32px))] sm:w-[min(320px,calc(100vw-32px))] lg:w-[400px] opacity-0 text-left overflow-hidden rounded-xl bg-white border border-surface-200 shadow-[0_8px_24px_rgba(36,30,24,0.18)] font-body text-[12.5px] leading-[1.45] text-surface-600 will-change-transform pointer-events-none'
             : fact
             ? 'absolute left-0 top-0 z-[7] w-[min(300px,calc(100vw-32px))] opacity-0 text-left [text-shadow:0_0_6px_rgba(255,255,255,0.9)] font-body text-[12.5px] leading-[1.45] text-surface-600 will-change-transform pointer-events-none'
             : 'absolute left-0 top-0 z-[7] w-max max-w-[calc(100vw-32px)] opacity-0 text-center [text-shadow:0_0_6px_rgba(255,255,255,0.9)] font-body text-[12px] sm:text-[12.5px] font-semibold leading-[1.3] text-brand-600 will-change-transform pointer-events-none'
@@ -227,7 +245,7 @@ function RollingEgg({ pathRef, boxRef, withImage }) {
           withImage ? (
             <>
               <img src={fact.image} alt="" width="640" height="427" decoding="async" className="block w-full aspect-[3/2] object-cover" />
-              <span className="block px-4 pt-3 pb-4 text-[13.5px]">
+              <span className="block px-3 pt-2 pb-3 text-[12px] sm:px-4 sm:pt-3 sm:pb-4 sm:text-[13.5px]">
                 <span className="block font-heading font-bold text-[13px] text-brand-600 leading-[1.3] mb-0.5">{fact.title}</span>
                 {fact.text}
               </span>
