@@ -116,12 +116,17 @@ export default function Certifications() {
               <div className="absolute inset-0 bg-brand-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
               {/* Certificate Image */}
-              <div className="relative p-6 pb-4 flex items-center justify-center">
+              <div
+                className="relative p-6 pb-4 flex items-center justify-center"
+                onContextMenu={(e) => e.preventDefault()}
+              >
                 <img
                   src={cert.image}
                   alt={cert.name}
-                  className="w-full max-w-[180px] h-auto object-contain select-none transition-transform duration-300 group-hover:scale-105"
+                  className="w-full max-w-[180px] h-auto object-contain select-none pointer-events-none transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
                 />
               </div>
 

@@ -121,15 +121,6 @@ export default function JourneyScrollSection({ steps, onStepChange }) {
               <span className="absolute top-6 left-6 font-heading font-black text-[17px] text-white bg-brand-600 w-11 h-11 rounded-full flex items-center justify-center z-10 shadow-lg">
                 {steps[activeIndex].step ?? activeIndex + 1}
               </span>
-
-              {/* Thin vertical progress indicator - how much of the
-                  current step has scrolled, resets each step. */}
-              <div className="absolute top-6 right-6 bottom-6 w-[3px] rounded-full bg-white/25 z-10" aria-hidden="true">
-                <motion.div
-                  className="w-full rounded-full bg-white origin-top"
-                  style={{ scaleY: stepProgress }}
-                />
-              </div>
             </div>
 
             {/* Right - sticky title, description, stat. Children stagger
