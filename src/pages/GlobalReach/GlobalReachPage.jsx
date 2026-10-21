@@ -44,7 +44,7 @@ const branches = [
 // person documented - for those, "Regional office" and "Contact person or
 // team" honestly state that (not a fabricated office/contact), while
 // "Products available" and "Relevant certification" stay real for every
-// market since the same real catalogue and 8 real certifications apply
+// market since the same real catalogueue and 8 real certifications apply
 // company-wide, not per-country. "Delivery format" reuses the real
 // packagingOptions categories from products.js (dry/chilled/frozen/bulk),
 // also company-wide. "Contact This Region" routes to the matching real
@@ -100,7 +100,7 @@ function MarketMapDetailSection({ onPageChange }) {
         >
           <div className="flex flex-col gap-1.5">
             <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Products available</span>
-            <span className="font-body text-[14px] text-surface-700 leading-[1.6]">Full catalogue - egg powders, liquid egg products, and customised/speciality solutions.</span>
+            <span className="font-body text-[14px] text-surface-700 leading-[1.6]">Full catalogueue - egg powders, liquid egg products, and customised/speciality solutions.</span>
           </div>
           <div className="flex flex-col gap-1.5">
             <span className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-surface-400">Relevant certification</span>
@@ -262,7 +262,7 @@ function PackagingTransportSection({ onPageChange }) {
             Discuss Shipping Requirements
           </InternalLink>
           <InternalLink
-            route="customized_packages"
+            route="customised_packages"
             onPageChange={onPageChange}
             className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-body font-semibold text-[14px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >

@@ -59,7 +59,7 @@ const applications = [
     intro: 'High-gel egg albumen and whole egg powders coagulate into a firm, water-retaining protein matrix - improving sliceability and texture in surimi, sausages, and restructured meats.',
     matchedProductIds: ['egg_albumen_powder', 'whole_egg_powder', 'egg_albumen_liquid'],
     recommendedBenefits: {
-      egg_albumen_powder: 'Improves product texture, minimizes moisture loss (purge) during cooking, and enhances chewiness and bite firmness.',
+      egg_albumen_powder: 'Improves product texture, minimises moisture loss (purge) during cooking, and enhances chewiness and bite firmness.',
       whole_egg_powder: 'Forms a firm, water-retaining protein gel matrix upon heating, enhancing sliceability and moisture retention in the finished product.',
       egg_albumen_liquid: 'Maintains the coagulation strength of fresh eggs, ensures smooth pumpability during processing, and delivers a clean, natural flavour profile.',
     },
@@ -86,7 +86,7 @@ const applications = [
     ],
     recommendedBenefits: {
       whole_egg_powder: 'Forms a firm, water-retaining protein gel matrix upon heating, enhancing sliceability and moisture retention in the finished product.',
-      egg_albumen_powder: 'Improves product texture, minimizes moisture loss (purge) during cooking, and enhances chewiness and bite firmness.',
+      egg_albumen_powder: 'Improves product texture, minimises moisture loss (purge) during cooking, and enhances chewiness and bite firmness.',
     },
     relevantChallengeIds: ['gelling', 'binding', 'texture'],
   },

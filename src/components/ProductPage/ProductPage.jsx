@@ -118,7 +118,7 @@ export default function ProductPage({
               packagingOptions={productRecord.packagingOptions}
               packTypesText={packTypesText}
               variantsData={variantsData}
-              onViewPackaging={() => onPageChange('customized_packages')}
+              onViewPackaging={() => onPageChange('customised_packages')}
               onDiscussDelivery={() => onPageChange('contact-us')}
             />
           </div>

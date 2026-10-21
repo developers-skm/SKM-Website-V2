@@ -97,7 +97,7 @@ function matchesPackaging(product, packaging) {
 const SIZE_PATTERN = /^\d+(\.\d+)?(kg|g|ml|l)$/i;
 
 // Formats any real per-product/category packagingOptions value (kg, g, mL,
-// L) into its display form - e.g. "20kg" -> "20 kg", "250ML" -> "250 ML".
+// L) into its display form - e.g. "20kg" -> "20 kg", "250ml" -> "250 ML".
 function formatSizeLabel(value) {
   const match = value.match(/^(\d+(?:\.\d+)?)(kg|g|ml|l)$/i);
   if (!match) return value;
@@ -655,8 +655,8 @@ function FunctionalRequirementSection({ onPageChange }) {
   );
 }
 
-// Section 6 - Custom product support. Real routes: customized_mix,
-// customized_packages both exist in products.js/App.jsx; contact-us is real.
+// Section 6 - Custom product support. Real routes: customised_mix,
+// customised_packages both exist in products.js/App.jsx; contact-us is real.
 function CustomSupportSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
   return (
@@ -689,7 +689,7 @@ function CustomSupportSection({ onPageChange }) {
         </p>
         <div className="flex flex-wrap items-center gap-4 mt-1">
           <InternalLink
-            route="customized_mix"
+            route="customised_mix"
             onPageChange={onPageChange}
             className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] hover:shadow-[0_14px_28px_rgba(228,10,24,0.26)] active:translate-y-0 active:scale-[0.98] focus:outline-none focus-gold"
           >
@@ -813,6 +813,12 @@ function HeroCopyFade({ containerRef, children }) {
   );
 }
 
+// Phone view skips the scroll-scrubbed sequence, so the copy stays put.
+function HeroCopyWrap({ containerRef, isMobile, children }) {
+  if (isMobile) return <div className="relative z-10">{children}</div>;
+  return <HeroCopyFade containerRef={containerRef}>{children}</HeroCopyFade>;
+}
+
 function HeroFinalLayers({ containerRef, onPageChange, isMobile }) {
   const hotspots = isMobile ? MOBILE_HERO_HOTSPOTS : HERO_HOTSPOTS;
   const ratio = isMobile ? MOBILE_HERO_RATIO : 16 / 9;
@@ -904,7 +910,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
       seo={{
         title: 'Egg Products | SKM Egg Products Catalogue',
         description: 'Browse SKM egg powders, liquid egg products, and customised solutions engineered for performance, consistency, and safety.',
-        keywords: 'egg powder catalogue, liquid egg products, egg ingredient supplier, whole egg powder, whole egg liquid',
+        keywords: 'egg powder catalogueue, liquid egg products, egg ingredient supplier, whole egg powder, whole egg liquid',
         canonical: 'https://www.skmegg.com/products',
       }}
       onPageChange={onPageChange}
@@ -920,18 +926,26 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             transforming into egg powder) pinned for the scroll length of
             the wrapper below - same mechanism as Home's Hero. Copy keeps
             its own independent staggered entrance. */}
-        <div ref={heroScrubRef} className="relative w-full h-[180vh]">
-        <div className="sticky top-0 min-h-screen pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] text-center px-4 overflow-hidden">
+        <div ref={heroScrubRef} className={`relative w-full ${isMobile ? '' : 'h-[180vh]'}`}>
+        <div className={`${isMobile ? 'relative' : 'sticky top-0'} min-h-screen pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] text-center px-4 overflow-hidden`}>
           <motion.div
             className="absolute inset-0 overflow-hidden"
             initial={reduceMotion ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}
             animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
             transition={{ duration: reduceMotion ? 0.01 : 1.2, ease: EASE_PREMIUM }}
           >
-            <ScrollFrameSequence containerRef={heroScrubRef} basePath="/products-sequence" frameCount={201} holdEnd={0.2} lockAtEnd />
+            {isMobile ? (
+              <img src="/products-sequence/mobile-final.webp" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
+            ) : (
+              <ScrollFrameSequence containerRef={heroScrubRef} basePath="/products-sequence" frameCount={201} holdEnd={0.2} lockAtEnd />
+            )}
           </motion.div>
 
-          <HeroFinalLayers containerRef={heroScrubRef} onPageChange={onPageChange} isMobile={isMobile} />
+          {isMobile ? (
+            <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
+          ) : (
+            <HeroFinalLayers containerRef={heroScrubRef} onPageChange={onPageChange} isMobile={isMobile} />
+          )}
 
           {/* Thin gold line - trails the reveal's leading edge, then fades
               once the image has fully settled */}
@@ -961,7 +975,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             />
           )}
 
-          <HeroCopyFade containerRef={heroScrubRef}>
+          <HeroCopyWrap containerRef={heroScrubRef} isMobile={isMobile}>
           <motion.div
             initial="hidden"
             animate="visible"
@@ -1041,7 +1055,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
               </button>
             </motion.div>
           </motion.div>
-          </HeroCopyFade>
+          </HeroCopyWrap>
         </div>
         </div>
 

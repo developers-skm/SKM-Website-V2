@@ -50,7 +50,7 @@ export default function LiquidEggCategoryPage({ onPageChange }) {
         'Retains the nutritional benefits of eggs while offering convenient dosing and handling, eliminating the need for manual egg breaking in industrial kitchens.',
         'Enhances cake volume, improves crumb softness and helps delay starch retrogradation, contributing to prolonged product freshness.',
       ]}
-      whoUsesIt="Industrial bakeries and institutional kitchens producing cakes, bakery products, and standardized ready-meal recipes at scale."
+      whoUsesIt="Industrial bakeries and institutional kitchens producing cakes, bakery products, and standardised ready-meal recipes at scale."
       storage="Chilled (0°C to 4°C) or Frozen (≤ -18°C), depending on variant."
       categoryProductIds={['whole_egg_liquid', 'egg_yolk_liquid', 'egg_albumen_liquid']}
       productMeta={productMeta}

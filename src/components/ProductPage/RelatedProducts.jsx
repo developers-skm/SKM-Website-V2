@@ -4,12 +4,12 @@ import { EASE_PREMIUM, DURATION, STAGGER } from '../../utils/motionTokens';
 
 // Refined editorial cross-sell cards - controlled image ratio, no heavy
 // overlay (label lives in a white lower area instead of over the photo),
-// subtle border, restrained hover. Reads as a premium ingredient catalogue
+// subtle border, restrained hover. Reads as a premium ingredient catalogueue
 // entry rather than an image-dominant poster tile.
 //
 // Section 9 (brief §9) asks each card to explain "why it may be
 // appropriate" - reuses the product's own real `shortDescription` (already
-// approved catalogue copy from data/products.js) rather than writing new
+// approved catalogueue copy from data/products.js) rather than writing new
 // per-pairing justification text. The "Compare with X" button routes to
 // that product's own page rather than a fabricated side-by-side compare
 // view - no product-vs-product comparison feature exists anywhere in the

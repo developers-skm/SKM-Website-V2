@@ -21,7 +21,7 @@ export const variantsData = [
         code: 'Y1111',
         text: 'Provides high emulsion stability during high-temperature pasteurisation, preventing oil–water phase separation in sauces.',
       },
-      colour: {
+      color: {
         code: 'Y1117',
         text: 'Provides natural colour and a creamy, thick texture while maintaining emulsion stability.',
       },
@@ -42,7 +42,7 @@ export const variantsData = [
     name: 'Egg Yolk Powder - Heat Stable',
     description: 'Phospholipase-modified dried yolk powder offering deep golden colour and enhanced viscosity under heat application.',
     applications: 'Premium high-end mayonnaise, hollandaise sauces, and heat-treated dessert custards.',
-    benefits: 'Natural coloring and creamy thick texture; maintains active emulsion properties under pasteurising temperatures.',
+    benefits: 'Natural colouring and creamy thick texture; maintains active emulsion properties under pasteurising temperatures.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 54.0%', protein: 'Min 29.0%', ph: '6.0 - 7.0', character: 'Deep Golden Colour Index (Beta-carotene > 35 ppm)' }
   },
   {

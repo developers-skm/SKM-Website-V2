@@ -38,7 +38,7 @@ const formulationChallenges = [
   {
     id: 'texture',
     label: 'Improve Texture',
-    description: 'Homogeneous texture dispersion, standardized moisture content, and excellent water-binding capacity.',
+    description: 'Homogeneous texture dispersion, standardised moisture content, and excellent water-binding capacity.',
     matchedProductIds: ['whole_egg_powder', 'whole_egg_liquid'],
   },
 ];

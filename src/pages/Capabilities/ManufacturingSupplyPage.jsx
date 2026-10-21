@@ -369,7 +369,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
 // description "tetra pack format" + its own asset filename "EGG LIQUIDS
 // TETRA PACK"); "Cube" is the real Egg White Cube format
 // (EggWhiteCubePage.jsx). SKUs are the real packagingOptions values from
-// products.js (speciality_egg_liquids, egg_white_cube) - 250ML/500ML/1L
+// products.js (speciality_egg_liquids, egg_white_cube) - 250ml/500ml/1L
 // and 100g/200g/500g, not invented.
 const PACKAGING_FORMATS = [
   { id: 'bag-in-box', type: 'Powder', title: 'Bag in Box', subtitle: 'Corrugated Box', skus: ['25 Kg', '20 Kg', '10 Kg'] },
@@ -434,7 +434,7 @@ function PackagingCapabilitiesSection({ onPageChange }) {
 
         <div className="flex flex-wrap items-center gap-4">
           <InternalLink
-            route="customized_packages"
+            route="customised_packages"
             onPageChange={onPageChange}
             className={BTN_PRIMARY}
           >

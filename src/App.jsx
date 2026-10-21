@@ -238,9 +238,9 @@ function App() {
         return <EggYolkLiquidPage onPageChange={handlePageChange} />;
       case 'whole_egg_liquid':
         return <WholeEggLiquidPage onPageChange={handlePageChange} />;
-      case 'customized_mix':
+      case 'customised_mix':
         return <CustomizedMixPage onPageChange={handlePageChange} />;
-      case 'customized_packages':
+      case 'customised_packages':
         return <CustomizedPackagesPage onPageChange={handlePageChange} />;
       case 'speciality_egg_liquids':
         return <SpecialityEggLiquidPage onPageChange={handlePageChange} />;

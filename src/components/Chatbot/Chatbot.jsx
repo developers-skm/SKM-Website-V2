@@ -292,7 +292,7 @@ export default function Chatbot({ onPageChange }) {
                 <button
                   onClick={() => setIsOpen(false)}
                   className="p-1.5 rounded-lg hover:bg-white/15 transition-colors cursor-pointer text-white/90 hover:text-white focus:outline-none flex items-center justify-center"
-                  title="Minimize chat"
+                  title="Minimise chat"
                 >
                   <svg
                     className="w-4.5 h-4.5"

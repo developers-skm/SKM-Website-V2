@@ -9,9 +9,9 @@ import CategoryPage from './CategoryPage';
 // supply considerations" are intentionally omitted here rather than merged
 // into a fabricated family-wide claim.
 //
-// productMeta: only customized_mix has real per-SKU code/applications data
+// productMeta: only customised_mix has real per-SKU code/applications data
 // (variantsData in CustomizedMixPage.jsx - single variant, code Y1119).
-// customized_packages, speciality_egg_liquids, and egg_white_cube are
+// customised_packages, speciality_egg_liquids, and egg_white_cube are
 // feature-card pages with no variantsData/applicationsData structure at
 // all, so their codeRange/functionality/applications fields are
 // intentionally omitted rather than invented.
@@ -20,7 +20,7 @@ import CategoryPage from './CategoryPage';
 // functionality tag sets for Egg Powders and Liquids, and no real trait
 // taxonomy exists across this family's 4 dissimilar products.
 const productMeta = {
-  customized_mix: {
+  customised_mix: {
     codeRange: 'Y1119',
     functionality: 'Heat-stable emulsification for hot-filled mayonnaise and thermally processed sauces.',
     applications: ['Mayonnaise'],
@@ -38,9 +38,9 @@ export default function CustomSpecialtyCategoryPage({ onPageChange }) {
       }}
       categoryLabel="Product Category"
       title="Customised and Speciality Products"
-      format="Custom-configured egg powder blends, speciality liquid blends, cooked egg white cube, and customised packaging - built to your exact specification rather than a fixed catalogue format."
-      whoUsesIt="Food manufacturers with a specific recipe, packaging, or formulation requirement not met by a standard catalogue product - for example hot-fill mayonnaise producers needing a heat-stable custom blend."
-      categoryProductIds={['customized_mix', 'customized_packages', 'speciality_egg_liquids', 'egg_white_cube']}
+      format="Custom-configured egg powder blends, speciality liquid blends, cooked egg white cube, and customised packaging - built to your exact specification rather than a fixed catalogueue format."
+      whoUsesIt="Food manufacturers with a specific recipe, packaging, or formulation requirement not met by a standard catalogueue product - for example hot-fill mayonnaise producers needing a heat-stable custom blend."
+      categoryProductIds={['customised_mix', 'customised_packages', 'speciality_egg_liquids', 'egg_white_cube']}
       productMeta={productMeta}
       onPageChange={onPageChange}
     />

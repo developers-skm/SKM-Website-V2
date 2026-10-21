@@ -58,8 +58,8 @@ export default function MdArticlePage({ onPageChange }) {
     <div className="w-full flex flex-col">
       <SEO
         title="MD Article | CSR | SKM Egg Products"
-        description="Olirum Erode Foundation (OEF) - established to develop Erode into a preferred place of living through environmental, water, and community welfare initiatives, co-founded by SKM's Managing Director."
-        keywords="OEF, Olirum Erode Foundation, SKM MD, CSR, Erode development, community welfare, SKM Shree Shivkumar"
+        description="Olirum Erodu Foundation (OEF) - established to develop Erode into a preferred place of living through environmental, water, and community welfare initiatives, co-founded by SKM's Managing Director."
+        keywords="OEF, Olirum Erodu Foundation, SKM MD, CSR, Erode development, community welfare, SKM Shree Shivkumar"
       />
       <div className="w-full bg-page pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <motion.div
@@ -82,7 +82,7 @@ export default function MdArticlePage({ onPageChange }) {
               variants={itemVariants}
               className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0"
             >
-              Olirum Erode{' '}
+              Olirum Erodu{' '}
               Foundation
             </motion.h2>
             <motion.p
@@ -96,7 +96,7 @@ export default function MdArticlePage({ onPageChange }) {
           {/* ── Foundation Overview ── */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6">
             <p className="font-body text-[15px] text-surface-600 leading-[26px] m-0">
-              <strong className="text-surface-850">Olirum Erode Foundation (OEF)</strong> has been established with the objective of developing Erode into a preferred place of living by creating and maintaining a hygienic and green environment, and also by developing and conserving water bodies available in the city. A <strong className="text-brand-600">30-member team</strong> - all successful entrepreneurs in Erode - joined together to establish this foundation.
+              <strong className="text-surface-850">Olirum Erodu Foundation (OEF)</strong> has been established with the objective of developing Erode into a preferred place of living by creating and maintaining a hygienic and green environment, and also by developing and conserving water bodies available in the city. A <strong className="text-brand-600">30-member team</strong> - all successful entrepreneurs in Erode - joined together to establish this foundation.
             </p>
 
             {/* Images row 1 */}

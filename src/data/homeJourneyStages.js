@@ -108,7 +108,7 @@ const homeJourneyStages = [
     whatHappens: 'Primary containment uses a high-density polyethylene (HDPE) inner bag for moisture protection, enclosed within a robust corrugated carton box for safe stacking and transport.',
     whatIsControlled: 'Strict zoning protocols (red, white, and neutral areas) prevent cross-contamination, with dedicated tools and consumables for each zone.',
     recordsAndChecks: 'Personnel hygiene is tightly controlled through mandatory sanitation procedures, protective clothing, environmental swabbing, and routine air quality monitoring.',
-    route: 'customized_packages',
+    route: 'customised_packages',
     ctaLabel: null,
   },
   {

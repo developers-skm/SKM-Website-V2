@@ -17,8 +17,8 @@ const educationStats = [
 const coachingHighlights = [
   'Morning sessions: 7:00 – 8:30 am at Vivekanandhar Education Centre.',
   'Evening sessions: 5:30 – 8:30 pm with expert teachers.',
-  'Computer and English courses via specialized instructors.',
-  '20 specialized teachers appointed in the coaching centre.',
+  'Computer and English courses via specialised instructors.',
+  '20 specialised teachers appointed in the coaching centre.',
   '2 teachers appointed to teach at Mettur and Saminathapuram elementary schools.',
   'Dalit children in 10th & 12th standards have scored centum results in public exams.',
 ];

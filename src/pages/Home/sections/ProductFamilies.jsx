@@ -30,7 +30,7 @@ const families = [
     // variantsData - a representative selection, not a merged claim.
     benefits: [
       'Provides extended shelf-life stability, precise dosing and formulation ratio control, and consistent development of a well-structured crumb texture.',
-      'High fat content, rich creamy mouthfeel, natural golden-yellow coloration, and excellent emulsification properties.',
+      'High fat content, rich creamy mouthfeel, natural golden-yellow colouration, and excellent emulsification properties.',
     ],
     // No storage/handling field exists anywhere in powder product data
     // (powders are specified by moisture/dryness, not temperature/storage)
@@ -73,7 +73,7 @@ const families = [
     categoryRoute: 'category_custom',
   },
   {
-    // Shell eggs aren't in the products.js catalogue, so this card carries
+    // Shell eggs aren't in the products.js catalogueue, so this card carries
     // its own image and description instead of deriving them from product data.
     id: 'table-eggs',
     name: 'Table Eggs',

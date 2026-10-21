@@ -218,7 +218,7 @@ function DesktopJourneyTimeline({ onPageChange }) {
                 Company journey
               </h2>
               <p className="font-body text-[14px] sm:text-[15px] text-surface-500 leading-[1.6] m-0">
-                Scroll down to travel through SKM's history from founding in 1996 through two decades of honors.
+                Scroll down to travel through SKM's history from founding in 1996 through two decades of honours.
               </p>
             </div>
 
@@ -351,7 +351,7 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
             Company journey
           </h2>
           <p className="font-body text-[14px] sm:text-[15px] text-surface-500 leading-[1.6] m-0">
-            SKM's history from founding in 1996 through two decades of honors.
+            SKM's history from founding in 1996 through two decades of honours.
           </p>
           <InternalLink
             route="accolades"
@@ -733,7 +733,7 @@ function LocationsSection({ onPageChange }) {
       >
         <span className="section-label justify-center">Global Operations</span>
         <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
-          Exporting to 30+ countries, with regional branches in Japan, Europe, and Russia.
+          Exporting to 30+ countries, with regional branches in Europe and Russia.
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
           <InternalLink

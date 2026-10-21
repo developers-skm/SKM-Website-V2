@@ -39,6 +39,18 @@ const filterExitVariants = {
   hidden: { opacity: 0, y: 8, transition: { duration: 0.16, ease: EASE_PREMIUM } },
 };
 
+// Every search word must appear in the haystack; a trailing "s"/"es" is
+// dropped so "certificates" still matches "certificate".
+function matchesSearch(query, ...fields) {
+  const q = (query || '').trim().toLowerCase();
+  if (!q) return true;
+  const haystack = fields.filter(Boolean).join(' ').toLowerCase();
+  return q.split(/\s+/).every((word) => {
+    const stem = word.length > 3 ? word.replace(/(es|s)$/, '') : word;
+    return haystack.includes(word) || haystack.includes(stem);
+  });
+}
+
 const TDS_PRODUCTS = products.filter((p) => p.tdsUrl);
 
 function TechnicalDocumentsSection({ globalSearchQuery }) {
@@ -54,6 +66,8 @@ function TechnicalDocumentsSection({ globalSearchQuery }) {
       return true;
     });
   }, [globalSearchQuery]);
+
+  if (globalSearchQuery?.trim() && visibleTds.length === 0) return null;
 
   return (
     <div id="technical-documents" className="relative w-full bg-white py-16 lg:py-24 scroll-mt-[100px] xl:scroll-mt-[120px]">
@@ -155,8 +169,17 @@ function TechnicalDocumentsSection({ globalSearchQuery }) {
 }
 
 // Section 4 - Certifications
-function CertificationsSection() {
+function CertificationsSection({ globalSearchQuery }) {
   const reduceMotion = useReducedMotion();
+  const visibleCerts = useMemo(
+    () => certifications.filter((cert) => matchesSearch(
+      globalSearchQuery,
+      cert.name,
+      'certificate certification certificates accreditation quality food safety',
+    )),
+    [globalSearchQuery],
+  );
+  if (visibleCerts.length === 0) return null;
   return (
     <div id="certifications" className="relative w-full py-16 lg:py-24">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
@@ -182,7 +205,7 @@ function CertificationsSection() {
           viewport={{ once: true, margin: '-80px' }}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6"
         >
-          {certifications.map((cert) => (
+          {visibleCerts.map((cert) => (
             <motion.div
               key={cert.name}
               variants={resourceItemVariants(reduceMotion)}
@@ -233,13 +256,13 @@ const brochureMeta = {
   'Product List - SKM Egg Products Export India Limited.pdf': {
     category: 'Corporate',
     title: 'Full Product Portfolio',
-    desc: 'Complete catalog of SKM egg powders, liquid variants, customised bakery mixes, and technical food ingredients.',
+    desc: 'Complete catalogue of SKM egg powders, liquid variants, customised bakery mixes, and technical food ingredients.',
     featured: true,
   },
   'SKM BAKERY MIX A5 FLYER (F-B).pdf': {
     category: 'Product Detail',
     title: 'Bakery Mix Product Details',
-    desc: 'Product detail covering SKM specialized bakery egg mixes, functional whipping performance, and dosage recommendations.',
+    desc: 'Product detail covering SKM specialised bakery egg mixes, functional whipping performance, and dosage recommendations.',
     featured: false,
   },
   'SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf': {
@@ -272,8 +295,13 @@ function buildBrochureEntries() {
 const brochureEntries = buildBrochureEntries();
 const productPortfolio = brochureEntries.find((e) => e.title === 'Full Product Portfolio');
 
-function BrochuresApplicationGuidesSection() {
+function BrochuresApplicationGuidesSection({ globalSearchQuery }) {
   const reduceMotion = useReducedMotion();
+  const visibleBrochures = useMemo(
+    () => brochureEntries.filter((e) => matchesSearch(globalSearchQuery, e.title, e.category, e.desc, 'brochure pdf download')),
+    [globalSearchQuery],
+  );
+  if (visibleBrochures.length === 0) return null;
   return (
     <div id="brochures" className="relative w-full bg-white py-16 lg:py-24">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
@@ -299,7 +327,7 @@ function BrochuresApplicationGuidesSection() {
           viewport={{ once: true, margin: '-80px' }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {brochureEntries.map((entry) => (
+          {visibleBrochures.map((entry) => (
             <motion.div
               key={entry.fileName}
               variants={resourceItemVariants(reduceMotion)}
@@ -392,7 +420,7 @@ const csrCards = [
   },
   {
     title: 'MD Vision & Article',
-    description: "The Olirum Erode Foundation - Managing Director's personal initiative across five key community focus areas.",
+    description: "The Olirum Erodu Foundation - Managing Director's personal initiative across five key community focus areas.",
     page: 'md_article',
     iconType: 'md_article',
   },
@@ -434,8 +462,13 @@ function CsrIcon({ iconType }) {
   }
 }
 
-function CsrSection({ onPageChange }) {
+function CsrSection({ onPageChange, globalSearchQuery }) {
   const reduceMotion = useReducedMotion();
+  const visibleCards = useMemo(
+    () => csrCards.filter((card) => matchesSearch(globalSearchQuery, card.title, card.description, 'csr corporate social responsibility')),
+    [globalSearchQuery],
+  );
+  if (visibleCards.length === 0) return null;
   return (
     <div id="csr" className="relative w-full py-16 lg:py-24">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
@@ -461,7 +494,7 @@ function CsrSection({ onPageChange }) {
           viewport={{ once: true, margin: '-80px' }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {csrCards.map((card) => (
+          {visibleCards.map((card) => (
             <motion.button
               key={card.page}
               variants={itemVariants}
@@ -501,7 +534,7 @@ const FAQ_CATEGORIES = [
   {
     category: 'Samples',
     question: 'Can I request a product sample?',
-    answer: 'There is no published self-serve sample catalogue - contact our team directly with your product and application to discuss a sample.',
+    answer: 'There is no published self-serve sample catalogueue - contact our team directly with your product and application to discuss a sample.',
   },
   {
     category: 'MOQ and commercial enquiry',
@@ -711,7 +744,14 @@ export default function ResourcesPage({ onPageChange }) {
               {/* Luxury Search Bar */}
               <motion.form
                 role="search"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  // Jump to the first section that still has results after filtering.
+                  const target = ['technical-documents', 'certifications', 'brochures', 'csr', 'faq']
+                    .map((id) => document.getElementById(id))
+                    .find(Boolean);
+                  target?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+                }}
                 initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: reduceMotion ? 0.01 : 0.65, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.2 }}
@@ -781,15 +821,15 @@ export default function ResourcesPage({ onPageChange }) {
 
           <CurvedDivider bg="#fff" fill="#f8fafc" />
           {/* Section 4 - Certifications */}
-          <CertificationsSection />
+          <CertificationsSection globalSearchQuery={searchQuery} />
 
           <CurvedDivider bg="#f8fafc" fill="#fff" />
           {/* Section 5 - Brochures & Guides */}
-          <BrochuresApplicationGuidesSection />
+          <BrochuresApplicationGuidesSection globalSearchQuery={searchQuery} />
 
           <CurvedDivider bg="#fff" fill="#f8fafc" />
           {/* Section 6 - CSR */}
-          <CsrSection onPageChange={onPageChange} />
+          <CsrSection onPageChange={onPageChange} globalSearchQuery={searchQuery} />
 
           <CurvedDivider bg="#f8fafc" fill="#fff" />
           {/* Section 7 - FAQ */}

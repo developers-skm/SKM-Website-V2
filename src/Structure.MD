@@ -153,7 +153,7 @@ Sections: 1 (single content block)
 
 ### MD Article | CSR — `/md_article` (MdArticlePage.jsx)
 Sections: 1 (single content block)
-1. Olirum Erode Foundation (OEF) — overview, MD's role, launch (2015), five focus areas (education, health, water, waste, infrastructure)
+1. Olirum Erodu Foundation (OEF) — overview, MD's role, launch (2015), five focus areas (education, health, water, waste, infrastructure)
 
 ---
 
@@ -298,7 +298,7 @@ Sections: 6 (shared ProductPage shell)
 ### Liquid Egg Yolk | Pasteurized Egg Yolk Liquid Manufacturer — `/egg_yolk_liquid` (EggYolkLiquidPage.jsx)
 Sections: 6 (shared ProductPage shell)
 1. ProductHero
-2. VariantExplorer — 12 variants (chilled/frozen, salt %, high color, stabilized)
+2. VariantExplorer — 12 variants (chilled/frozen, salt %, high colour, stabilized)
 3. ApplicationGallery — 4 applications (Bakery, Cosmetics, Ice Cream, Mayonnaise)
 4. TraceWidget
 5. RelatedProducts
@@ -317,7 +317,7 @@ Sections: 6 (shared ProductPage shell)
 
 ## Products — Customized / Specialty
 
-### Customized Egg Powder Mix | Custom Egg Blends for Food Industry — `/customized_mix` (CustomizedMixPage.jsx)
+### Customized Egg Powder Mix | Custom Egg Blends for Food Industry — `/customised_mix` (CustomizedMixPage.jsx)
 Sections: 6 (shared ProductPage shell)
 1. ProductHero
 2. VariantExplorer — 1 variant (Y1119 heat-stable yolk powder mix)
@@ -326,7 +326,7 @@ Sections: 6 (shared ProductPage shell)
 5. RelatedProducts
 6. FinalEnquiryCTA
 
-### Egg Product Packaging | Bulk Egg Powder & Liquid Packaging Options — `/customized_packages` (CustomizedPackagesPage.jsx)
+### Egg Product Packaging | Bulk Egg Powder & Liquid Packaging Options — `/customised_packages` (CustomizedPackagesPage.jsx)
 Sections: 3 (custom layout)
 1. Hero — "Customized Packages" intro
 2. Package Type Overview — 4 packaging format cards (Bag in Box/HDPE+Carton, Bag in Bag/Paper Bag, LDPE Liquid Bag, Pallecon IBC)

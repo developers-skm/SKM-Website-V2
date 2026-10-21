@@ -35,7 +35,7 @@ export const productsMegaMenu = {
     {
       title: 'Custom & Speciality Solutions',
       links: [
-        { label: 'Customised Mix', route: 'customized_mix' },
+        { label: 'Customised Mix', route: 'customised_mix' },
         { label: 'Speciality Egg Liquids', route: 'speciality_egg_liquids' },
         { label: 'Egg White Cube', route: 'egg_white_cube' },
       ],
@@ -43,7 +43,7 @@ export const productsMegaMenu = {
     {
       title: 'Packaging',
       links: [
-        { label: 'Customised Packages', route: 'customized_packages' },
+        { label: 'Customised Packages', route: 'customised_packages' },
       ],
     },
   ],

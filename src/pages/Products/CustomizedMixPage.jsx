@@ -78,14 +78,14 @@ export default function CustomizedMixPage({ onPageChange }) {
         title: 'Customised Egg Powder Mix | Custom Egg Blends for Food Industry',
         description: "SKM's customised egg powder blends tailored for bakery, mayonnaise & specific food applications. OEM egg powder formulations including heat-stable egg yolk mix Y1119. Bulk manufacturer from India.",
         keywords: 'customised egg powder mix, custom egg blend, egg powder formulation, OEM egg powder, egg powder for bakery, egg powder for mayonnaise, custom egg yolk mix, heat stable egg mix, tailored egg powder, egg powder food manufacturer, private label egg powder, egg powder custom blend India',
-        canonical: 'https://www.skmegg.com/customized_mix',
+        canonical: 'https://www.skmegg.com/customised_mix',
         jsonLd: {
           '@context': 'https://schema.org', '@type': 'Product',
           name: 'Customised Egg Powder Mix',
           description: 'Custom egg powder blends formulated for specific food industry applications including bakery, mayonnaise, and dressings.',
           brand: { '@type': 'Brand', name: 'SKM Egg Products' },
           manufacturer: { '@type': 'Organization', name: 'SKM Egg Products', url: 'https://www.skmegg.com' },
-          category: 'Speciality Egg Products', url: 'https://www.skmegg.com/customized_mix',
+          category: 'Speciality Egg Products', url: 'https://www.skmegg.com/customised_mix',
           offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'USD', seller: { '@type': 'Organization', name: 'SKM Egg Products' } }
         }
       }}
@@ -107,7 +107,7 @@ export default function CustomizedMixPage({ onPageChange }) {
         extraDocuments={extraDocuments}
         applicationsData={applicationsData}
         productName="Customised Mix"
-        productId="customized_mix"
+        productId="customised_mix"
       />
     </>
   );

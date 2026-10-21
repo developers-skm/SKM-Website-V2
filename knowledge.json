@@ -35,12 +35,12 @@
 
     {
       "id": "whole-egg-powder-1",
-      "text": "SKM Whole Egg Powder is a pasteurized spray-dried whole hen egg powder used in bakery, confectionery, noodles, mayonnaise, and general food formulations. Applications include: bakery mixes, cakes, biscuits, dressings, omelettes, pasta, quiches, and sauces. It provides excellent emulsification, binding, coloring, and foaming properties. Typical specifications: Moisture max 4.0%, Fat min 40.0%, Protein min 45.0%.",
+      "text": "SKM Whole Egg Powder is a pasteurized spray-dried whole hen egg powder used in bakery, confectionery, noodles, mayonnaise, and general food formulations. Applications include: bakery mixes, cakes, biscuits, dressings, omelettes, pasta, quiches, and sauces. It provides excellent emulsification, binding, colouring, and foaming properties. Typical specifications: Moisture max 4.0%, Fat min 40.0%, Protein min 45.0%.",
       "url": "https://skmegg.vercel.app/products/whole-egg-powder"
     },
     {
       "id": "whole-egg-powder-variants",
-      "text": "SKM Whole Egg Powder product variants include: W1201 (High Colour — enhanced yellow, for premium cakes and noodles), W1202 (Standard — everyday bakery, cookies), W1203 (4% Sugar — sweet doughs, sponge cakes), W1204 (De-Sugared — mayonnaise, savory soups, prevents browning), W1205 (Standard Industrial Grade), W1206 (De-Sugared Premium — retort/canned applications), W1207 (High Color Deep Golden — artisanal brioche, premium pastries), W1225 (Free Flow — automated lines, anti-caking), W1228 (Enriched — sports nutrition, meal replacements), W1259 (Sugared — chiffon cakes, aeration batters), W1260 (High Protein, min 52% protein — keto, gluten-free), W1215 (Heat Stable — hot-filled sauces), W1214 (High Gel — surimi, sausages, structured noodles).",
+      "text": "SKM Whole Egg Powder product variants include: W1201 (High Colour — enhanced yellow, for premium cakes and noodles), W1202 (Standard — everyday bakery, cookies), W1203 (4% Sugar — sweet doughs, sponge cakes), W1204 (De-Sugared — mayonnaise, savory soups, prevents browning), W1205 (Standard Industrial Grade), W1206 (De-Sugared Premium — retort/canned applications), W1207 (High Colour Deep Golden — artisanal brioche, premium pastries), W1225 (Free Flow — automated lines, anti-caking), W1228 (Enriched — sports nutrition, meal replacements), W1259 (Sugared — chiffon cakes, aeration batters), W1260 (High Protein, min 52% protein — keto, gluten-free), W1215 (Heat Stable — hot-filled sauces), W1214 (High Gel — surimi, sausages, structured noodles).",
       "url": "https://skmegg.vercel.app/products/whole-egg-powder"
     },
 
@@ -57,18 +57,18 @@
 
     {
       "id": "egg-yolk-powder-1",
-      "text": "SKM Egg Yolk Powder is a pasteurized spray-dried hen egg yolk powder used in mayonnaise, salad dressings, culinary sauces, custards, ice cream, cakes, sweet doughs, and bakery products. It provides rich emulsifying power, natural golden-yellow coloration, and creamy mouthfeel. Typical specifications: Moisture max 4.0%, Fat min 56.0%, Protein min 30.0%.",
+      "text": "SKM Egg Yolk Powder is a pasteurized spray-dried hen egg yolk powder used in mayonnaise, salad dressings, culinary sauces, custards, ice cream, cakes, sweet doughs, and bakery products. It provides rich emulsifying power, natural golden-yellow colouration, and creamy mouthfeel. Typical specifications: Moisture max 4.0%, Fat min 56.0%, Protein min 30.0%.",
       "url": "https://skmegg.vercel.app/products/egg-yolk-powder"
     },
     {
       "id": "egg-yolk-powder-variants",
-      "text": "SKM Egg Yolk Powder variants: Y1101 (Standard — mayonnaise, dressings, custards, ice cream), Y1104 (4% Salt — salted mayonnaise, hollandaise, bearnaise), Y1105 (Standard Industrial Grade — cake premixes, biscuit doughs), Y1107 (High Color — premium golden croissants, custard creams, yellow noodles), Y1225 (Free Flow — automated blending, vending). Heat Stable Egg Yolk Powder is also available, specially designed to maintain emulsifying stability under high temperatures — used in hot-process mayonnaise and pasteurized sauces.",
+      "text": "SKM Egg Yolk Powder variants: Y1101 (Standard — mayonnaise, dressings, custards, ice cream), Y1104 (4% Salt — salted mayonnaise, hollandaise, bearnaise), Y1105 (Standard Industrial Grade — cake premixes, biscuit doughs), Y1107 (High Colour — premium golden croissants, custard creams, yellow noodles), Y1225 (Free Flow — automated blending, vending). Heat Stable Egg Yolk Powder is also available, specially designed to maintain emulsifying stability under high temperatures — used in hot-process mayonnaise and pasteurized sauces.",
       "url": "https://skmegg.vercel.app/products/egg-yolk-powder"
     },
 
     {
       "id": "egg-yolk-liquid-1",
-      "text": "SKM Chilled Liquid Egg Yolk is a pasteurized liquid hen egg yolk product stored chilled (0°C to 4°C). It provides outstanding emulsification, natural golden-yellow color, and fresh creaminess. Variants include: Y1001 (Plain Chilled Yolk — mayonnaise, cakes, custards), Y1002 (11% Salt — hot sauces, dressings), Y1003 (14% Salt — highly salted mayonnaise), Y1004 (11% Salt High Color — golden mayonnaise, premium pastries), Y1008 (Stabilized 11% Salt — hot-filled processing, bearnaise). Applications: mayonnaise, salad dressings, ice cream, bakery, cosmetics.",
+      "text": "SKM Chilled Liquid Egg Yolk is a pasteurized liquid hen egg yolk product stored chilled (0°C to 4°C). It provides outstanding emulsification, natural golden-yellow colour, and fresh creaminess. Variants include: Y1001 (Plain Chilled Yolk — mayonnaise, cakes, custards), Y1002 (11% Salt — hot sauces, dressings), Y1003 (14% Salt — highly salted mayonnaise), Y1004 (11% Salt High Colour — golden mayonnaise, premium pastries), Y1008 (Stabilized 11% Salt — hot-filled processing, bearnaise). Applications: mayonnaise, salad dressings, ice cream, bakery, cosmetics.",
       "url": "https://skmegg.vercel.app/products/egg-yolk-liquid"
     },
 
@@ -80,7 +80,7 @@
 
     {
       "id": "whole-egg-liquid-1",
-      "text": "SKM Liquid Whole Egg is a pasteurized liquid blend of egg yolk and white (whole egg), convenient for industrial bakeries and food manufacturers. It provides a homogeneous mix suitable for standardized recipes. Available in chilled form. Applications: industrial bakeries, ready meal manufacturers, omelette manufacturing, and large-scale food processing.",
+      "text": "SKM Liquid Whole Egg is a pasteurized liquid blend of egg yolk and white (whole egg), convenient for industrial bakeries and food manufacturers. It provides a homogeneous mix suitable for standardised recipes. Available in chilled form. Applications: industrial bakeries, ready meal manufacturers, omelette manufacturing, and large-scale food processing.",
       "url": "https://skmegg.vercel.app/products/whole-egg-liquid"
     },
 
@@ -90,9 +90,9 @@
       "url": "https://skmegg.vercel.app/products/egg-white-cube"
     },
     {
-      "id": "speciality-customized-mix",
+      "id": "speciality-customised-mix",
       "text": "SKM offers Customized Mixes — egg powder formulations blended with specific additional ingredients such as salt, sugar, or flour tailored to customer recipe specifications. Also available: Customized Packages — industrial-sized bags, tanker deliveries, cartons, or retail packaging options configured to client requirements. Speciality Liquid Egg Blends are also available with custom salt, sugar, or other ingredient additions.",
-      "url": "https://skmegg.vercel.app/products/customized-mix"
+      "url": "https://skmegg.vercel.app/products/customised-mix"
     },
 
     {
@@ -246,7 +246,7 @@
 
     {
       "id": "product-applications-bakery",
-      "text": "SKM egg products are widely used in bakery applications. Whole Egg Powder provides volume, structure, crumb binding, and golden color in cakes, biscuits, cookies, bread, muffins, and dry mixes. Egg Yolk Powder provides emulsification and rich flavor for custards, pastries, and croissants. Egg Albumen Powder (High Whip) is used in meringues, macaroons, and aerated confectionery. Liquid Whole Egg is used in industrial bakeries for standardized recipes.",
+      "text": "SKM egg products are widely used in bakery applications. Whole Egg Powder provides volume, structure, crumb binding, and golden colour in cakes, biscuits, cookies, bread, muffins, and dry mixes. Egg Yolk Powder provides emulsification and rich flavor for custards, pastries, and croissants. Egg Albumen Powder (High Whip) is used in meringues, macaroons, and aerated confectionery. Liquid Whole Egg is used in industrial bakeries for standardised recipes.",
       "url": "https://skmegg.vercel.app/products"
     },
     {
@@ -256,7 +256,7 @@
     },
     {
       "id": "product-applications-mayonnaise",
-      "text": "SKM egg products for mayonnaise and dressings: Egg Yolk Powder (Standard Y1101, Salted Y1104, High Color Y1107) provides the emulsifying backbone for mayonnaise and salad dressings. Liquid Egg Yolk (chilled, salted variants) is used by industrial mayonnaise manufacturers. Whole Egg Powder (De-Sugared W1204, W1206) is used in long-life mayonnaise and dehydrated dressing packets to prevent Maillard browning. Heat Stable variants are used in hot-processed sauces.",
+      "text": "SKM egg products for mayonnaise and dressings: Egg Yolk Powder (Standard Y1101, Salted Y1104, High Colour Y1107) provides the emulsifying backbone for mayonnaise and salad dressings. Liquid Egg Yolk (chilled, salted variants) is used by industrial mayonnaise manufacturers. Whole Egg Powder (De-Sugared W1204, W1206) is used in long-life mayonnaise and dehydrated dressing packets to prevent Maillard browning. Heat Stable variants are used in hot-processed sauces.",
       "url": "https://skmegg.vercel.app/products/egg-yolk-powder"
     },
     {
@@ -285,7 +285,7 @@
     {
       "id": "packaging-options",
       "text": "SKM offers flexible packaging options for its egg products. Egg powders are available in industrial-sized bags (25 kg, 50 kg), bulk sacks, and retail packaging. Liquid egg products are available in bulk tankers, drums (200L), Bag-in-Box, and smaller containers depending on requirements. Customized packaging configurations are available to meet specific customer and market needs.",
-      "url": "https://skmegg.vercel.app/products/customized-packages"
+      "url": "https://skmegg.vercel.app/products/customised-packages"
     },
 
     {

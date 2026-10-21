@@ -12,7 +12,7 @@ import { variantsData as eggYolkPowderHeatStable } from '../pages/Products/EggYo
 import { variantsData as eggYolkLiquid } from '../pages/Products/EggYolkLiquidPage';
 import { variantsData as eggAlbumenPowder } from '../pages/Products/EggAlbumenPowderPage';
 import { variantsData as eggAlbumenLiquid } from '../pages/Products/EggAlbumenLiquidPage';
-import { variantsData as customizedMix } from '../pages/Products/CustomizedMixPage';
+import { variantsData as customisedMix } from '../pages/Products/CustomizedMixPage';
 
 const productVariants = {
   whole_egg_powder: wholeEggPowder,
@@ -22,7 +22,7 @@ const productVariants = {
   egg_yolk_liquid: eggYolkLiquid,
   egg_albumen_powder: eggAlbumenPowder,
   egg_albumen_liquid: eggAlbumenLiquid,
-  customized_mix: customizedMix,
+  customised_mix: customisedMix,
 };
 
 export function getVariantsForProduct(productId) {

@@ -1,4 +1,4 @@
-// Single source of truth for the product catalogue - used by the homepage
+// Single source of truth for the product catalogueue - used by the homepage
 // product grid, product-page cross-sell, application landing pages, and the
 // Get Quote flow's product picker. Route `page` keys match the `case`s in App.jsx.
 
@@ -78,7 +78,7 @@ const products = [
     title: 'Whole Egg Liquid',
     image: WholeEggLiquidImg,
     category: PRODUCT_CATEGORIES.LIQUIDS,
-    shortDescription: 'Pasteurised liquid blend of egg yolk and egg white, formulated for industrial bakeries and standardized ready-meal recipes. Available in both chilled and frozen formats.',
+    shortDescription: 'Pasteurised liquid blend of egg yolk and egg white, formulated for industrial bakeries and standardised ready-meal recipes. Available in both chilled and frozen formats.',
     packagingOptions: ['1kg', '5kg', '10kg', '20kg'],
   },
   {
@@ -106,7 +106,7 @@ const products = [
     image: SpecialityEggLiquidImg,
     category: PRODUCT_CATEGORIES.SPECIALITY,
     shortDescription: 'Custom liquid egg blends with tailored salt, sugar, or other ingredient additions, formulated to meet specific recipe requirements and provide consumers with greater convenience and ease of use.',
-    packagingOptions: ['250ML', '500ML', '1L'],
+    packagingOptions: ['250ml', '500ml', '1L'],
   },
   {
     id: 'egg_white_cube',
@@ -118,8 +118,8 @@ const products = [
     packagingOptions: ['100g', '200g', '500g'],
   },
   {
-    id: 'customized_mix',
-    page: 'customized_mix',
+    id: 'customised_mix',
+    page: 'customised_mix',
     title: 'Customised Mix',
     image: CustomizedMixImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,
@@ -127,8 +127,8 @@ const products = [
     packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
   },
   {
-    id: 'customized_packages',
-    page: 'customized_packages',
+    id: 'customised_packages',
+    page: 'customised_packages',
     title: 'Customised Packaging',
     image: CustomizedPackagesImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,

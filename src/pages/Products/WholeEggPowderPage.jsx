@@ -14,7 +14,7 @@ export const variantsData = [
   {
     code: 'W1201',
     name: 'Whole Egg Powder',
-    description: 'Pasteurised Dried Whole Hen Egg Powder with enhanced natural yellow coloration parameters, specifically produced to deliver a rich, appealing golden appearance in finished baked foods.',
+    description: 'Pasteurised Dried Whole Hen Egg Powder with enhanced natural yellow colouration parameters, specifically produced to deliver a rich, appealing golden appearance in finished baked foods.',
     applications: 'Premium cakes, egg noodles, sweet pastries, custards, and biscuits.',
     benefits: 'Naturally enhances appearance, supports excellent crumb binding, and delivers a rich aroma.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 40.0%', protein: 'Min 45.0%', ph: '7.0 - 8.5', color: 'Enhanced Yellow Index (Beta-carotene > 15 ppm)' }
@@ -40,7 +40,7 @@ export const variantsData = [
     name: 'De-Sugared Whole Egg Powder',
     description: 'Pasteurised dried whole egg powder from which natural glucose has been enzymatically removed prior to drying to eliminate Maillard browning during shelf life.',
     applications: 'Mayonnaise, salad dressings, dehydrated savory soup packets, and long-life military rations.',
-    benefits: 'Prevents brown discoloration and flavor deterioration under hot/humid storage conditions; preserves clean profile.',
+    benefits: 'Prevents brown discolouration and flavor deterioration under hot/humid storage conditions; preserves clean profile.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 41.5%', protein: 'Min 46.5%', ph: '6.5 - 8.0', color: 'Residual Glucose < 0.1%' }
   },
   {
@@ -70,7 +70,7 @@ export const variantsData = [
   {
     code: 'W1225',
     name: 'Whole Egg Powder Free Flow',
-    description: 'Pasteurised dried whole egg powder containing a food-grade anti-caking agent to deliver superior flow properties and minimize compaction.',
+    description: 'Pasteurised dried whole egg powder containing a food-grade anti-caking agent to deliver superior flow properties and minimise compaction.',
     applications: 'Automated dry-mix vending systems, automated ingredient hoppers, seasoning blends, and bulk packaging lines.',
     benefits: 'Avoids bridging and clumping in automated bulk feeders, ensuring high process accuracy and less downtime.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 39.5%', protein: 'Min 44.5%', ph: '7.2 - 8.8', color: 'Flow Agent (Insoluble Ash) < 1.0%' }
@@ -135,7 +135,7 @@ const variantStaticFilters = [
 ];
 
 const applicationsData = [
-  { name: 'Bakery Mix', image: BakeryMixImg, description: 'Provides consistent volume, structure, and crumb binding in standardized industrial premixes.' },
+  { name: 'Bakery Mix', image: BakeryMixImg, description: 'Provides consistent volume, structure, and crumb binding in standardised industrial premixes.' },
   { name: 'Biscuits', image: BiscuitsImg, description: 'Enhances crispy textures, dough handling, and naturally imparts a golden, oven-baked surface colour.' },
   { name: 'Cakes', image: CakesImg, description: 'Acts as a natural foaming agent to produce high volume, airy sponge texture, and moist mouthfeel.' },
   { name: 'Dressings', image: DressingsImg, description: 'Emulsifies water and oil molecules to prevent layer separation in mayonnaise and salad dressings.' },

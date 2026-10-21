@@ -60,7 +60,7 @@ export default function EggPowdersCategoryPage({ onPageChange }) {
       format="Spray-dried, pasteurised egg powder - whole egg, egg yolk, and egg albumen variants, supplied as a shelf-stable dry ingredient."
       advantages={[
         'Long-term shelf stability, simple dosing and weight ratio control, and reliable structural crumb development.',
-        'High fat content, rich creamy mouthfeel, natural golden-yellow coloration, and excellent emulsification properties.',
+        'High fat content, rich creamy mouthfeel, natural golden-yellow colouration, and excellent emulsification properties.',
         'Exceptional gelling and whipping performance for surimi, sausages, meringues, and confectionery (egg albumen powder).',
       ]}
       whoUsesIt="Industrial bakeries, confectioners, noodle and pasta manufacturers, and mayonnaise and dressing producers who need a stable, easy-to-dose dry ingredient."

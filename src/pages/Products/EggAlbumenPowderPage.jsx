@@ -23,7 +23,7 @@ export const variantsData = [
     name: 'Egg Albumen Powder (High Gel 1000-1100)',
     description: 'High-gelation dried egg white powder. Coagulates upon heating to form a stable, resilient protein gel structure with a gel strength in the range of 1000-1100 g/cm².',
     applications: 'Surimi seafood, processed fish balls, fish cakes, sausages, and general meat products requiring a resilient binding matrix.',
-    benefits: 'Improves product texture, minimizes moisture loss (purge) during cooking, and enhances chewiness and bite firmness.',
+    benefits: 'Improves product texture, minimises moisture loss (purge) during cooking, and enhances chewiness and bite firmness.',
     specifications: { moisture: 'Max 8.0%', protein: 'Min 82.0%', ph: '6.5 - 8.0', character: 'Gel Strength: 1000 - 1100 g/cm²' }
   },
   {
@@ -37,7 +37,7 @@ export const variantsData = [
   {
     code: 'A1304',
     name: 'Egg Albumen Powder (High Gel 1200-1300)',
-    description: 'Ultra high-gelling egg white powder with superior heat-coagulation strength ranging from 1200 to 1300 g/cm² for specialized texturing tasks.',
+    description: 'Ultra high-gelling egg white powder with superior heat-coagulation strength ranging from 1200 to 1300 g/cm² for specialised texturing tasks.',
     applications: 'Premium restructured meats, high-performance surimi, vegetarian meat alternatives, and structured seafood.',
     benefits: 'Maximizes bite firmness, prevents structural collapse in canned or retort-sterilized meat products.',
     specifications: { moisture: 'Max 7.5%', protein: 'Min 83.0%', ph: '6.5 - 8.0', character: 'Gel Strength: 1200 - 1300 g/cm²' }

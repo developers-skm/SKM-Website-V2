@@ -6,13 +6,6 @@ import EnquiryModal from '../ContactUs/sections/EnquiryModal';
 import certifications from '../../data/certifications';
 import homeJourneyStages from '../../data/homeJourneyStages';
 import HomeJourney from '../Home/sections/HomeJourney';
-import certBRC from '../../assets/4. QUALITY/Certificates/BRC FOOD_524x600px.png';
-import certEIC from '../../assets/4. QUALITY/Certificates/EIC_524x600px.png';
-import certISO22000 from '../../assets/4. QUALITY/Certificates/ISO 22000_524x600px.png';
-import certFSSAI from '../../assets/4. QUALITY/Certificates/FSSAI_524x600px.png';
-import certHALAL from '../../assets/4. QUALITY/Certificates/HALAL_524x600px.png';
-import certKOSHER from '../../assets/4. QUALITY/Certificates/KOSHER_524x600px.png';
-import certNABL from '../../assets/4. QUALITY/Certificates/NABL 17025_524x600px.png';
 import traceabilityHeroImage from '../../assets/4. QUALITY/Traceability/Traceability Home Section.webp';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
@@ -125,7 +118,7 @@ function QualityGatesSection({ onPageChange }) {
         >
           <span className="section-label">Quality Gates</span>
           <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Quality screening by production stage
+            Quality screening by production stages
           </h2>
         </motion.div>
 
@@ -260,15 +253,6 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
             Explore Laboratory Capabilities
           </InternalLink>
 
-          <button
-            type="button"
-            disabled
-            title="Coming soon"
-            aria-disabled="true"
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 text-surface-400 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
-          >
-            Download Laboratory Accreditation
-          </button>
         </div>
 
       </div>
@@ -276,17 +260,6 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
   );
 }
 
-// Real certificate document per certification (ISO/IEC 17025 and NABL share
-// the single NABL 17025 accreditation certificate).
-const CERT_DOCUMENTS = {
-  FSSAI: certFSSAI,
-  'Export Inspection Council': certEIC,
-  'BRC Food Certified': certBRC,
-  'ISO 22000': certISO22000,
-  'Halal JUHF': certHALAL,
-  'KLBD Kosher': certKOSHER,
-  'ISO/IEC 17025': certNABL,
-};
 function CertificationsApprovalsSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
@@ -317,23 +290,6 @@ function CertificationsApprovalsSection({ onPageChange }) {
               <span className="font-heading font-bold text-[13.5px] text-heading text-center">
                 {cert.name}
               </span>
-              <div className="flex items-center justify-center gap-4 pt-1 border-t border-surface-200/60">
-                <a
-                  href={CERT_DOCUMENTS[cert.name] || cert.logo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-body font-semibold text-[12px] text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm mt-2"
-                >
-                  View Certificate
-                </a>
-                <a
-                  href={CERT_DOCUMENTS[cert.name] || cert.logo}
-                  download
-                  className="font-body font-semibold text-[12px] text-surface-500 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-sm mt-2"
-                >
-                  Download
-                </a>
-              </div>
             </div>
           ))}
         </div>

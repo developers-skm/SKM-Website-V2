@@ -35,7 +35,7 @@ const ENVIRONMENTAL_INITIATIVES = [
   {
     id: 'emissions',
     label: 'Emissions',
-    fact: 'Our carbon footprint is minimized through the strategic location of our processing plant, efficient waste recycling, and energy-efficient operations. Greenhouse gas (GHG) emissions are systematically monitored, with targeted reduction initiatives in place to continuously improve environmental performance and support our sustainability goals.',
+    fact: 'Our carbon footprint is minimised through the strategic location of our processing plant, efficient waste recycling, and energy-efficient operations. Greenhouse gas (GHG) emissions are systematically monitored, with targeted reduction initiatives in place to continuously improve environmental performance and support our sustainability goals.',
   },
 ];
 

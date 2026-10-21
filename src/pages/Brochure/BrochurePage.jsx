@@ -14,13 +14,13 @@ const brochureMeta = {
   'Product List - SKM Egg Products Export India Limited.pdf': {
     category: 'Corporate',
     title: 'Full Product List',
-    desc: 'Complete catalog of all SKM egg products - powders, liquids, customised mixes and speciality solutions available for global food producers.',
+    desc: 'Complete catalogue of all SKM egg products - powders, liquids, customised mixes and speciality solutions available for global food producers.',
     featured: true,
   },
   'SKM BAKERY MIX A5 FLYER (F-B).pdf': {
     category: 'Product Detail',
     title: 'Bakery Mix',
-    desc: "Product detail covering SKM's specialized bakery egg mix - composition, functional benefits, and applications in the F&B industry.",
+    desc: "Product detail covering SKM's specialised bakery egg mix - composition, functional benefits, and applications in the F&B industry.",
     featured: false,
   },
   'SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf': {
@@ -139,7 +139,7 @@ export default function BrochurePage({ onPageChange }) {
       <SEO
         title="Brochures & Downloads | SKM Egg Products"
         description="Download SKM Egg Products brochures - company profile, full product list, and individual product details for egg powder and liquid solutions."
-        keywords="SKM brochure, egg products PDF, company profile download, product detail, egg powder catalog"
+        keywords="SKM brochure, egg products PDF, company profile download, product detail, egg powder catalogue"
       />
       <div className="w-full bg-page pt-[110px] pb-[90px] sm:pt-[130px] lg:pt-[120px] lg:pb-[120px] overflow-hidden">
         <motion.section

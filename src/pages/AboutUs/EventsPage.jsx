@@ -113,7 +113,7 @@ const companyNews = [
     category: 'Certifications & Compliance',
     title: 'New Export Certification Earned for Premium Customised Blends',
     date: 'May 15, 2026',
-    excerpt: 'Expanding global reach with key compliance approvals for specialized bakery and confectionery liquid mixes in Southeast Asian markets.',
+    excerpt: 'Expanding global reach with key compliance approvals for specialised bakery and confectionery liquid mixes in Southeast Asian markets.',
     readTime: '3 min read',
     content: 'SKM has successfully secured new compliance certifications for our customised egg mixes from international regulatory authorities. These certifications validate our rigorous processing controls and backward-integrated supply chain transparency.\n\nThe new certifications cover customised liquid yolk and whole egg blends containing sugar, salt, and food-grade stabilizers designed for the automated industrial baking sector. Achieving these standards opens up direct export pathways to several new premium confectionery manufacturers in Japan and South Korea who require absolute traceability and zero-residue guarantees.'
   }

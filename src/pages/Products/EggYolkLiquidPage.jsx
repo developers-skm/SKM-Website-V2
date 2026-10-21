@@ -12,7 +12,7 @@ export const variantsData = [
     name: 'Chilled Egg Yolk Liquid',
     description: 'Pasteurised chilled liquid hen egg yolk with high dry matter and rich natural fats, kept under temperature control to retain fresh functionality.',
     applications: 'Rich salad dressings, standard mayonnaise, premium cakes, custards, and ice cream.',
-    benefits: 'Delivers outstanding emulsion capacity, fresh creaminess, and deep golden-yellow coloration.',
+    benefits: 'Delivers outstanding emulsion capacity, fresh creaminess, and deep golden-yellow colouration.',
     specifications: { moisture: '50.0% - 53.0%', protein: 'Min 15.0%', ph: '6.0 - 7.0', storage: 'Chilled (0°C to 4°C)', character: 'Native Emulsifying & Colour Agent' }
   },
   {

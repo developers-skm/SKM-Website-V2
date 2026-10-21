@@ -8,7 +8,7 @@ import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 // hero) only, per this task's scope. No page for this existed anywhere in
 // the app before this change (confirmed by search) - this is a genuinely
 // new route, not a replacement of the existing "Customised Mix" product
-// page (route `customized_mix`), which stays as-is and covers the one real
+// page (route `customised_mix`), which stays as-is and covers the one real
 // custom SKU (Y1119, heat-stable egg yolk mix). This page is the broader
 // capability story the brief asks for: SKM's ability to solve formulation
 // and processing challenges, not just one additional product listing.
@@ -301,19 +301,19 @@ function RDCapabilitySection({ onPageChange }) {
 // Section 5 (Existing speciality solutions): the 5 requested categories map
 // directly to 5 real products already in data/products.js - Heat-stable
 // yolk products (egg_yolk_powder_heat_stable), Custom powder mix
-// (customized_mix), Speciality liquids (speciality_egg_liquids), Consumer-
+// (customised_mix), Speciality liquids (speciality_egg_liquids), Consumer-
 // oriented speciality products (egg_white_cube - the one retail/ready-to-
-// eat format), Custom packaging (customized_packages). Real image,
+// eat format), Custom packaging (customised_packages). Real image,
 // title, and shortDescription reused from products.js, not new copy.
 // "View Speciality Products" routes to the real Customised and Speciality
 // Products category page; "Request a Custom Sample" routes to the real
 // get-quote flow.
 const SPECIALTY_SOLUTION_IDS = [
   { id: 'egg_yolk_powder_heat_stable', label: 'Heat-stable yolk products' },
-  { id: 'customized_mix', label: 'Custom powder mix' },
+  { id: 'customised_mix', label: 'Custom powder mix' },
   { id: 'speciality_egg_liquids', label: 'Speciality liquids' },
   { id: 'egg_white_cube', label: 'Consumer-oriented speciality products' },
-  { id: 'customized_packages', label: 'Custom packaging' },
+  { id: 'customised_packages', label: 'Custom packaging' },
 ];
 
 function ExistingSpecialtySolutionsSection({ onPageChange }) {
