@@ -72,7 +72,6 @@ function InnovationBanner({ onPageChange }) {
 export default function CustomizedMixPage({ onPageChange }) {
   return (
     <>
-      <InnovationBanner onPageChange={onPageChange} />
       <ProductPage
       seo={{
         title: 'Customised Egg Powder Mix | Custom Egg Blends for Food Industry',
@@ -109,6 +108,7 @@ export default function CustomizedMixPage({ onPageChange }) {
         productName="Customised Mix"
         productId="customised_mix"
       />
+      <InnovationBanner onPageChange={onPageChange} />
     </>
   );
 }
