@@ -106,7 +106,7 @@ export const variantsData = [
   }
 ];
 
-const variantNamesTable = [
+export const variantNamesTable = [
   'Egg Yolk Liquid (Chilled)',
   'Egg Yolk Liquid - salted (Chilled / Frozen)',
   'Egg Yolk Liquid - High colour (Chilled / Frozen)',

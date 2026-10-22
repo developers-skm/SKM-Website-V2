@@ -63,7 +63,7 @@ export const variantsData = [
   }
 ];
 
-const variantNamesTable = [
+export const variantNamesTable = [
   'Egg Yolk Powder - Standard',
   'Egg Yolk Powder - High Colour',
   'Egg Yolk Powder - Free flow',

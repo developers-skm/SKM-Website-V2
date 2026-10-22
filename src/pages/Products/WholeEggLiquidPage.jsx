@@ -56,7 +56,7 @@ const applicationsData = [
   { name: 'Egg Pastry', image: EggPastryImg, description: 'Adds structure, binding, and a golden finish to glazed and filled egg pastry products.' }
 ];
 
-const variantNamesTable = [
+export const variantNamesTable = [
   'Whole Egg Liquid (Chilled / Frozen)',
   'Whole Egg Liquid - Sugared (Chilled / Frozen)',
   'Whole Egg Liquid - Enriched (Chilled / Frozen)',

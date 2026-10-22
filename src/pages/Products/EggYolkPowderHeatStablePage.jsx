@@ -63,7 +63,7 @@ export const variantsData = [
   }
 ];
 
-const variantNamesTable = [
+export const variantNamesTable = [
   'Egg Yolk Powder Heat Stable',
   'Egg Yolk Powder Heat Stable - Free Flow',
 ];

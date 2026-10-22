@@ -68,7 +68,7 @@ export const variantsData = [
   }
 ];
 
-const variantNamesTable = [
+export const variantNamesTable = [
   'Egg Albumen Powder - Standard',
   'Egg Albumen Powder - High Gel',
   'Egg Albumen Powder - Super High Gel',

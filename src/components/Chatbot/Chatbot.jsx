@@ -23,6 +23,8 @@ const labelFromUrl = (url) => {
 const ROUTE_OVERRIDES = {
   'quality/food-safety-policy': 'policy',
   'branches': 'global_reach',
+  'get-quote': 'get-quote',
+  'contact-us': 'contact-us',
 };
 
 const pageFromUrl = (url) => {
@@ -86,6 +88,7 @@ export default function Chatbot({ onPageChange }) {
         sender: 'bot',
         text: data.answer,
         sources: data.sources || [],
+        actions: data.actions,
         timestamp: new Date()
       };
       setMessages((prev) => [...prev, botMessage]);
@@ -128,7 +131,31 @@ export default function Chatbot({ onPageChange }) {
       .replace(/\s*[([]\s*[A-Z]{1,3}\d{3,5}\s*[)\]]/g, '') // "(Y1001)"
       .replace(/\b[A-Z]{1,3}\d{3,5}\s*\(([^)]*)\)/g, '$1') // "Y1101 (Standard)" -> "Standard"
       .replace(/\b[A-Z]{1,3}\d{3,5}\b\s*/g, ''); // bare "Y1101"
-    const lines = cleaned.split('\n');
+
+    // Drop lines left empty by code removal ("-", "•", "1.") and headings
+    // ("For Egg Yolk Powder:") that now have no list items under them.
+    const rawLines = cleaned.split('\n');
+    const isEmptyBullet = (l) => /^\s*(?:[•\-*]|\d+\.)?\s*$/.test(l);
+    const isHeading = (l) => /:\s*$/.test(l.trim());
+    const lines = rawLines.filter((l, i) => {
+      if (/^\s*$/.test(l)) return true;
+      if (isEmptyBullet(l)) return false;
+      if (isHeading(l)) {
+        const next = rawLines.slice(i + 1).find((n) => !/^\s*$/.test(n));
+        return next !== undefined && !isEmptyBullet(next) && !isHeading(next);
+      }
+      return true;
+    });
+
+    // Reply was only codes: show a helpful message instead
+    const stripped = lines.filter((l) => l.trim());
+    if (stripped.length <= 1 && rawLines.filter((l) => l.trim()).length > 3) {
+      return (
+        <p className="m-0">
+          We offer Whole Egg, Egg Albumen and Egg Yolk Powders in several grades. Tell us the product and your application, or share your requirements via the Contact page, and our team will recommend the right grade.
+        </p>
+      );
+    }
     return lines.map((line, index) => {
       let content = line;
       
@@ -329,6 +356,30 @@ export default function Chatbot({ onPageChange }) {
                     {msg.sender === 'bot' ? (
                       <>
                         {renderMessageText(msg.text)}
+                        {msg.actions?.length > 0 && (
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            {msg.actions.map((act) => {
+                              const cls = 'inline-flex items-center px-4 py-2 rounded-full bg-brand-600 text-[12px] font-semibold text-white hover:bg-brand-700 no-underline transition-colors cursor-pointer';
+                              return act.href ? (
+                                <a key={act.label} href={act.href} target="_blank" rel="noopener noreferrer" className={cls}>
+                                  {act.label}
+                                </a>
+                              ) : (
+                                <button
+                                  key={act.label}
+                                  type="button"
+                                  onClick={() => {
+                                    onPageChange?.(act.page, act.prefill);
+                                    setIsOpen(false);
+                                  }}
+                                  className={cls}
+                                >
+                                  {act.label}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
                         {msg.sources && msg.sources.length > 0 && (
                           <div className="mt-2.5 pt-2 border-t border-surface-100">
                             <p className="text-[11px] font-semibold text-surface-400 uppercase tracking-wide mb-1">Explore Products</p>

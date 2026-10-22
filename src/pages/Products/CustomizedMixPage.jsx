@@ -21,7 +21,7 @@ export const variantsData = [
   }
 ];
 
-const variantNamesTable = [
+export const variantNamesTable = [
   'Egg Yolk Powder - Heat Stable (Mayonnaise Mix)',
   'Whole Egg Powder - Sugared (Bakery Mix)',
 ];

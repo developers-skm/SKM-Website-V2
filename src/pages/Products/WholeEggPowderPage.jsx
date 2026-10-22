@@ -117,7 +117,7 @@ export const variantsData = [
   }
 ];
 
-const variantNamesTable = [
+export const variantNamesTable = [
   'Whole Egg Powder - Standard',
   'Whole Egg Powder - Sugared',
   'Whole Egg Powder - DeSugared',

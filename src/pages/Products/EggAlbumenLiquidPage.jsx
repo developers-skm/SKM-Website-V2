@@ -41,7 +41,7 @@ export const variantsData = [
   }
 ];
 
-const variantNamesTable = [
+export const variantNamesTable = [
   'Egg Albumen Liquid (Chilled)',
   'Egg Albumen Liquid (Frozen)',
 ];
