@@ -15,6 +15,13 @@ const russiaData = {
     'Sales & marketing',
     'Developing sales networking / partners',
   ],
+  contact: {
+    company: 'SKM EGG PRODUCTS EXPORT (INDIA) LIMITED',
+    addressLines: ['Leninsky Prospect, House No.148, Flat.126,', 'Entrance-3, Floor No.3,', 'Russia, Moscow - 119571'],
+    tel: '+7 (495) 434 42 63',
+    fax: '+7 (495) 434 42 63',
+    mobile: '+7 916 705 99 55',
+  },
 };
 
 export default function SkmRussiaPage({ onPageChange }) {

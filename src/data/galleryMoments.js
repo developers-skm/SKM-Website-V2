@@ -94,6 +94,15 @@ export const moments = [
 
   // ── Honours & awards (only the year is known for these) ──────────────────
   {
+    id: 'award-padma-bhushan-2026',
+    image: '/gallery/award-padma-bhushan-2026.jpg',
+    date: '2026',
+    title: 'Padma Bhushan',
+    caption: 'Shri SKM Maeilanandhan receiving the Padma Bhushan award from the President of India.',
+    type: 'award',
+    hero: true,
+  },
+  {
     id: 'award-5s-2016',
     image: '/gallery/award-5s-2016.webp',
     date: '2016',

@@ -73,7 +73,7 @@ const families = [
     categoryRoute: 'category_custom',
   },
   {
-    // Shell eggs aren't in the products.js catalogueue, so this card carries
+    // Shell eggs aren't in the products.js catalogue, so this card carries
     // its own image and description instead of deriving them from product data.
     id: 'table-eggs',
     name: 'Table Eggs',

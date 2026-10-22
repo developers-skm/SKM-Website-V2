@@ -17,6 +17,20 @@ const europeData = {
     'New product development',
     'Developing sales networking / partners',
   ],
+  contact: {
+    company: 'SKM Europe BV',
+    addressLines: ['Ridderplantsoen 7', '3523 HV Utrecht', 'The Netherlands'],
+    tel: '+31 (0)30 232 58 42',
+    fax: '+31 (0)30 232 58 46',
+    email: 'info@skmeurope.nl',
+    registration: 'Chamber of Commerce Utrecht 30207639',
+    person: {
+      name: 'Mr. Branko Klawer',
+      role: 'Sales & New Product Development Director',
+      tel: '+31 (0) 30 232 58 42',
+      email: 'brankoklawer@skmeurope.nl',
+    },
+  },
 };
 
 export default function SkmEuropePage({ onPageChange }) {

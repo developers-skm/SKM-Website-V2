@@ -26,7 +26,7 @@ const TRAITS = [
 // than the same word appearing incidentally inside a longer description
 // sentence (e.g. "protein" turning up in an unrelated gel-strength variant's
 // prose). The variant with the highest score for a trait is used as its
-// evidence; ties keep catalogueue order.
+// evidence; ties keep catalogue order.
 function scoreField(field, keywords, weight) {
   if (!field) return 0;
   const lower = field.toLowerCase();

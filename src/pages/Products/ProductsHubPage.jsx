@@ -948,7 +948,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
       seo={{
         title: 'Egg Products | SKM Egg Products Catalogue',
         description: 'Browse SKM egg powders, liquid egg products, and customised solutions engineered for performance, consistency, and safety.',
-        keywords: 'egg powder catalogueue, liquid egg products, egg ingredient supplier, whole egg powder, whole egg liquid',
+        keywords: 'egg powder catalogue, liquid egg products, egg ingredient supplier, whole egg powder, whole egg liquid',
         canonical: 'https://www.skmegg.com/products',
       }}
       onPageChange={onPageChange}

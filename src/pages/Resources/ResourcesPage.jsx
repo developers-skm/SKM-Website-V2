@@ -534,7 +534,7 @@ const FAQ_CATEGORIES = [
   {
     category: 'Samples',
     question: 'Can I request a product sample?',
-    answer: 'There is no published self-serve sample catalogueue - contact our team directly with your product and application to discuss a sample.',
+    answer: 'There is no published self-serve sample catalogue - contact our team directly with your product and application to discuss a sample.',
   },
   {
     category: 'MOQ and commercial enquiry',

@@ -542,7 +542,7 @@ function VisionMissionValuesSection() {
   );
 }
 
-// Section 6 - Integrated business model. Connects feed, farm, plant,
+// Section 5 - Integrated business model. Connects feed, farm, plant,
 // laboratory, and export operations using real facts already established
 // this session (Feed Mill / Poultry Farm / Egg Processing Plant /
 // Laboratory pages, and GlobalReachPage's real export/branch facts). "See
@@ -552,8 +552,7 @@ const BUSINESS_MODEL_STAGES = [
   { label: 'Feed', fact: 'In-house feed mill screens every ingredient for mycotoxins, pesticides, and antibiotic residues before formulation.' },
   { label: 'Farm', fact: '2.4 million layers housed across ISO 22000 certified integrated farms, producing approximately 164 million eggs annually.' },
   { label: 'Plant', fact: 'European Union (EU) - Directive compliance processing plant handling up to 2 million eggs per day across dedicated yolk and albumen lines.' },
-  { label: 'Laboratory', fact: 'NABL-accredited (ISO/IEC 17025) laboratory, operational since 2006, tests every batch before release.' },
-  { label: 'Egg Export', fact: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DoP) to ensure quality and traceability.' },
+  { label: 'UMC', fact: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DoP) to ensure quality and traceability.' },
   // Real, verbatim-sourced facts from EggProcessingPlant.jsx / SustainabilityCommunityPage.jsx:
   // integrated biogas facility, 70-tonne poultry litter handling capacity,
   // nutrient-rich liquid fertilizer supplied to farmers at no cost.
@@ -575,7 +574,7 @@ function IntegratedBusinessModelSection({ onPageChange }) {
 
         <div className="relative">
           <div className="hidden lg:block absolute left-0 right-0 top-[19px] h-px bg-surface-300" aria-hidden="true" />
-          <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
+          <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
             {BUSINESS_MODEL_STAGES.map((stage, i) => {
               const delay = i * 0.12;
               return (
@@ -590,9 +589,9 @@ function IntegratedBusinessModelSection({ onPageChange }) {
                   <span className="relative z-10 w-[38px] h-[38px] rounded-full bg-brand-600 text-white flex items-center justify-center font-heading font-bold text-[13px]">
                     {i + 1}
                   </span>
-                  <div className="flex flex-col gap-1.5 p-5 rounded-[16px] border border-[#eee] bg-[#fdfbf7] flex-1">
-                    <h3 className="font-heading font-bold text-[15px] text-heading m-0">{stage.label}</h3>
-                    <p className="font-body text-[12.5px] text-surface-500 leading-[1.5] m-0">{stage.fact}</p>
+                  <div className="flex flex-col gap-2 p-6 rounded-[16px] border border-[#eee] bg-[#fdfbf7] flex-1">
+                    <h3 className="font-heading font-bold text-[18px] text-heading m-0">{stage.label}</h3>
+                    <p className="font-body text-[15px] text-surface-500 leading-[1.6] m-0">{stage.fact}</p>
                   </div>
                 </motion.div>
               );

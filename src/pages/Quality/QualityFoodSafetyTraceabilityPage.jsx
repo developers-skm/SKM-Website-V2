@@ -253,6 +253,15 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
             Explore Laboratory Capabilities
           </InternalLink>
 
+          <button
+            type="button"
+            disabled
+            title="Coming soon"
+            aria-disabled="true"
+            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 text-surface-400 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
+          >
+            Download Laboratory Accreditation
+          </button>
         </div>
 
       </div>

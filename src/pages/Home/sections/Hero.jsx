@@ -146,7 +146,7 @@ export default function Hero({ onPageChange }) {
 
             {/* Supporting message - verbatim, src/pages/Brochure/BrochurePage.jsx:21 */}
             <p className="font-body text-[13px] sm:text-[16px] lg:text-[18px] text-white/90 leading-[1.45] sm:leading-[1.6] m-0">
-              Complete catalogueue of all SKM egg products - powders, liquids, customised mixes and speciality solutions available for global food producers.
+              Complete catalogue of all SKM egg products - powders, liquids, customised mixes and speciality solutions available for global food producers.
             </p>
 
             <p className="font-body text-[13px] sm:text-[15px] lg:text-[16px] font-semibold text-white/95 m-0">

@@ -38,8 +38,8 @@ export default function CustomSpecialtyCategoryPage({ onPageChange }) {
       }}
       categoryLabel="Product Category"
       title="Customised and Speciality Products"
-      format="Custom-configured egg powder blends, speciality liquid blends, cooked egg white cube, and customised packaging - built to your exact specification rather than a fixed catalogueue format."
-      whoUsesIt="Food manufacturers with a specific recipe, packaging, or formulation requirement not met by a standard catalogueue product - for example hot-fill mayonnaise producers needing a heat-stable custom blend."
+      format="Custom-configured egg powder blends, speciality liquid blends, cooked egg white cube, and customised packaging - built to your exact specification rather than a fixed catalogue format."
+      whoUsesIt="Food manufacturers with a specific recipe, packaging, or formulation requirement not met by a standard catalogue product - for example hot-fill mayonnaise producers needing a heat-stable custom blend."
       categoryProductIds={['customised_mix', 'customised_packages', 'speciality_egg_liquids', 'egg_white_cube']}
       productMeta={productMeta}
       onPageChange={onPageChange}

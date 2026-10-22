@@ -19,18 +19,9 @@ import { containerVariants, itemVariants } from '../../../utils/animationVariant
 // switch) - the genuine home for certifications, food safety policy, and
 // traceability documentation on this site.
 //
-// Regional offices: the 3 real branches (Japan, Europe, Russia), same data
-// already used on /global-reach (GlobalReachPage.jsx's `branches` array) —
-// reused here rather than re-describing them.
-//
 // Investor contact: MUFG Intime India Private Limited (Registrar and
 // Transfer Agent), real address and email, same data already shown on
 // /investors (Investors.jsx's InvestorContactContent).
-const branches = [
-  { name: 'SKM Japan', page: 'skm_japan' },
-  { name: 'SKM Europe', page: 'skm_europe' },
-  { name: 'SKM Russia', page: 'skm_russia' },
-];
 
 const SALES_EMAIL = 'exportsales@skmegg.com';
 
@@ -50,7 +41,7 @@ export default function RegionalRouting({ onPageChange }) {
             Reach the right team
           </h2>
           <p className="font-body text-[14px] text-surface-500 max-w-xl mx-auto m-0">
-            Corporate office and factory details are above - here's who to contact for sales, quality documentation, regional support, or investor matters.
+            Corporate office and factory details are above - here's who to contact for sales, quality documentation, or investor matters.
           </p>
         </motion.div>
 
@@ -114,28 +105,6 @@ export default function RegionalRouting({ onPageChange }) {
             </InternalLink>
           </motion.div>
         </div>
-
-        {/* Regional offices */}
-        <motion.div variants={itemVariants} className="flex flex-col gap-4">
-          <h3 className="font-heading font-bold text-[16px] text-heading m-0">Regional Offices</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {branches.map((branch) => (
-              <div
-                key={branch.page}
-                className="flex items-center justify-between gap-4 p-5 rounded-[14px] border border-[#eee] bg-white"
-              >
-                <span className="font-heading font-bold text-[14px] text-surface-800">{branch.name}</span>
-                <InternalLink
-                  route={branch.page}
-                  onPageChange={onPageChange}
-                  className="font-body text-[11.5px] font-bold uppercase tracking-wide text-brand-600 hover:underline whitespace-nowrap"
-                >
-                  Contact Regional Office →
-                </InternalLink>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </motion.section>
     </div>
   );

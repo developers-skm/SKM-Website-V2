@@ -6,7 +6,8 @@ const containerVariants = makeContainerVariants(0.12);
 const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
 export default function BranchSection({ branch }) {
-  const { name, tagline, region, vision, activities } = branch;
+  const { name, tagline, region, vision, activities, contact } = branch;
+  const telHref = (tel) => `tel:${tel.replace(/[^\d+]/g, '')}`;
 
   return (
     <div className="w-full bg-page pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
@@ -130,6 +131,81 @@ export default function BranchSection({ branch }) {
             ))}
           </div>
         </motion.div>
+
+        {/* ── Contact Details (only for branches that supply them) ── */}
+        {contact && (
+          <motion.div variants={containerVariants} className="flex flex-col gap-8">
+            <motion.div variants={itemVariants} className="flex flex-col gap-2">
+              <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">
+                Get In Touch
+              </span>
+              <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading tracking-tight m-0">
+                Contact Details
+              </h3>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <motion.address
+                variants={itemVariants}
+                className="not-italic flex flex-col gap-3 p-6 bg-white border border-[#eee] rounded-[10px] font-body text-[15px] text-surface-700 leading-[26px]"
+              >
+                <p className="font-heading font-bold text-[18px] text-heading m-0">{contact.company}</p>
+                <p className="m-0">
+                  {contact.addressLines.map((line) => (
+                    <span key={line} className="block">{line}</span>
+                  ))}
+                </p>
+                <p className="m-0">
+                  <span className="text-surface-500">Tel.</span>{' '}
+                  <a href={telHref(contact.tel)} className="hover:text-brand-600 transition-colors">{contact.tel}</a>
+                  {contact.fax && (
+                    <>
+                      <br />
+                      <span className="text-surface-500">Fax.</span> {contact.fax}
+                    </>
+                  )}
+                  {contact.mobile && (
+                    <>
+                      <br />
+                      <span className="text-surface-500">Mobile.</span>{' '}
+                      <a href={telHref(contact.mobile)} className="hover:text-brand-600 transition-colors">{contact.mobile}</a>
+                    </>
+                  )}
+                  {contact.email && (
+                    <>
+                      <br />
+                      <span className="text-surface-500">Email.</span>{' '}
+                      <a href={`mailto:${contact.email}`} className="hover:text-brand-600 transition-colors break-all">{contact.email}</a>
+                    </>
+                  )}
+                </p>
+                {contact.registration && (
+                  <p className="m-0 text-[13px] text-surface-500">{contact.registration}</p>
+                )}
+              </motion.address>
+
+              {contact.person && (
+                <motion.div
+                  variants={itemVariants}
+                  className="flex flex-col gap-3 p-6 bg-white border border-[#eee] rounded-[10px] font-body text-[15px] text-surface-700 leading-[26px]"
+                >
+                  <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">
+                    Contact Person
+                  </span>
+                  <p className="font-heading font-bold text-[18px] text-heading m-0">{contact.person.name}</p>
+                  <p className="m-0">{contact.person.role}</p>
+                  <p className="m-0">
+                    <span className="text-surface-500">Tel:</span>{' '}
+                    <a href={telHref(contact.person.tel)} className="hover:text-brand-600 transition-colors">{contact.person.tel}</a>
+                    <br />
+                    <span className="text-surface-500">Email.</span>{' '}
+                    <a href={`mailto:${contact.person.email}`} className="hover:text-brand-600 transition-colors break-all">{contact.person.email}</a>
+                  </p>
+                </motion.div>
+              )}
+            </div>
+          </motion.div>
+        )}
 
         {/* ── Tagline Banner ── */}
         <motion.div

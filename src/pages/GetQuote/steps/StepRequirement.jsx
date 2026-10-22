@@ -16,7 +16,7 @@ import { containerVariants, itemVariants } from '../../../utils/animationVariant
 // what they need, carried through as-is to the enquiry.
 //
 // "Standard or custom product" is real: PRODUCT_CATEGORIES.CUSTOMIZED
-// exists as a genuine category distinct from the 3 standard catalogueue
+// exists as a genuine category distinct from the 3 standard catalogue
 // categories (Powders, Liquids, Speciality).
 //
 // Section 3 (Sample request route): when `enquiryIntent` is
