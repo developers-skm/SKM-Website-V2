@@ -39,7 +39,7 @@ export const variantsData = [
   {
     code: 'Y1105',
     name: 'Egg Yolk Powder - Standard',
-    description: 'Standard-grade spray-dried egg yolk powder optimized for bulk bakery batters, dry premixes, and industrial food applications.',
+    description: 'Standard-grade spray-dried egg yolk powder optimised for bulk bakery batters, dry premixes, and industrial food applications.',
     applications: 'Industrial cake premixes, cookies, biscuit doughs, instant sauce powders, and bread coatings.',
     heroBenefit: 'Protein Enrichment - Prevents oil–water separation under shear, while co-dried salt enhances yolk protein solubility and stability for paste applications.',
     benefits: 'Uniform fat dispersion in flour, standardised baking volume, and consistent colour indexing in finished goods.',

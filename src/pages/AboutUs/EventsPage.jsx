@@ -128,7 +128,7 @@ const technicalInsights = [
     excerpt: 'Dive deep into how high-gel vs. medium-gel albumen powder performs under different temperatures in meat processing and confectionery.',
     readTime: '5 min read',
     flyerName: 'SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf',
-    content: 'Egg albumen contains key proteins (ovalbumin, conalbumin, ovomucoid) that denature at specific temperatures to form a firm, three-dimensional gel network. In meat processing, high-gel albumen powder is critical for achieving optimal water-binding capacity and mechanical sliceability. We recommend a heating phase of at least 74°C for 20 minutes to complete the gelation process, preventing syneresis (water release) and ensuring a clean bite. For confectionery (marshmallows and nougats), whipping properties can be optimized by maintaining a pH of 6.5 to 7.0 and whipping at room temperature before adding hot sugar syrup.'
+    content: 'Egg albumen contains key proteins (ovalbumin, conalbumin, ovomucoid) that denature at specific temperatures to form a firm, three-dimensional gel network. In meat processing, high-gel albumen powder is critical for achieving optimal water-binding capacity and mechanical sliceability. We recommend a heating phase of at least 74°C for 20 minutes to complete the gelation process, preventing syneresis (water release) and ensuring a clean bite. For confectionery (marshmallows and nougats), whipping properties can be optimised by maintaining a pH of 6.5 to 7.0 and whipping at room temperature before adding hot sugar syrup.'
   },
   {
     id: 'insight2',

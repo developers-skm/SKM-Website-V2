@@ -85,7 +85,7 @@ export default function TiltedCard({
       onMouseLeave={handleMouseLeave}
     >
       {showMobileWarning && (
-        <div className="tilted-card-mobile-alert">This effect is not optimized for mobile. Check on desktop.</div>
+        <div className="tilted-card-mobile-alert">This effect is not optimised for mobile. Check on desktop.</div>
       )}
 
       <motion.div

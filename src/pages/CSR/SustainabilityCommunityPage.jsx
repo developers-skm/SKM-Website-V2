@@ -93,7 +93,7 @@ function EnvironmentalResponsibilitySection({ onPageChange }) {
 // section) - every raw material tested for mycotoxins/pesticides/
 // antibiotics before formulation, ISO 22000 certified farms, biosecurity
 // entry showers, and the real animal-welfare fact from PoultryFarm.jsx
-// (balanced nutritionally optimized feed, daily sanitation protocols,
+// (balanced nutritionally optimised feed, daily sanitation protocols,
 // on-site incinerator). "View Responsible Farming Practices" routes to
 // the real Poultry Farm page.
 const FARMING_PRACTICES = [
@@ -110,7 +110,7 @@ const FARMING_PRACTICES = [
   {
     id: 'animal-welfare',
     label: 'Animal welfare',
-    fact: 'Balanced, nutritionally optimized feed, daily sanitation protocols, potable water management, and safe disposal systems - including an on-site incinerator - maintain high standards of animal welfare.',
+    fact: 'Balanced, nutritionally optimised feed, daily sanitation protocols, potable water management, and safe disposal systems - including an on-site incinerator - maintain high standards of animal welfare.',
   },
 ];
 

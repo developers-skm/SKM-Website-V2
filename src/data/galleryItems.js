@@ -1,5 +1,5 @@
  // Gallery photographs. Pure data (no asset imports) so scripts/build-gallery-images.mjs
-// can read it: `source` is a path relative to src/assets, and the optimized
+// can read it: `source` is a path relative to src/assets, and the optimised
 // derivatives are written to public/images/gallery/<slug>-<width>.webp.
 // Dimensions of the generated files live in galleryImageMeta.json.
 

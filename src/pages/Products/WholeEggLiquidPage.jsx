@@ -18,10 +18,10 @@ export const variantsData = [
   {
     code: 'W1009',
     name: 'Chilled Whole Egg Liquid',
-    description: 'Chilled pasteurised liquid whole egg optimized for uniform viscosity and consistent crumb binding performance in automated baking.',
+    description: 'Chilled pasteurised liquid whole egg optimised for uniform viscosity and consistent crumb binding performance in automated baking.',
     applications: 'Institutional kitchen scrambled eggs, industrial batters, cakes, muffins, and quick-bread dry mixes.',
     benefits: 'Homogeneous texture dispersion, standardised moisture content, and excellent water-binding capacity.',
-    specifications: { moisture: '75.0% - 77.0% (Solids Min 23.5%)', fat: 'Min 9.5%', protein: 'Min 11.5%', ph: '7.0 - 7.8', storage: 'Chilled (0°C to 4°C)', character: 'Optimized Viscosity Baking Grade' }
+    specifications: { moisture: '75.0% - 77.0% (Solids Min 23.5%)', fat: 'Min 9.5%', protein: 'Min 11.5%', ph: '7.0 - 7.8', storage: 'Chilled (0°C to 4°C)', character: 'Optimised Viscosity Baking Grade' }
   },
   {
     code: 'W1013_Chilled',
@@ -107,7 +107,7 @@ export default function WholeEggLiquidPage({ onPageChange }) {
       packTypesText="1kg, 5kg, 10kg & 20kg"
       applicationsData={applicationsData}
       productName="Whole Egg Liquid"
-      functionality="Natural 100% Whole Egg Proportion and Optimized Viscosity Baking Grade."
+      functionality="Natural 100% Whole Egg Proportion and Optimised Viscosity Baking Grade."
       productId="whole_egg_liquid"
       codeDisplay={stripSuffix}
     />

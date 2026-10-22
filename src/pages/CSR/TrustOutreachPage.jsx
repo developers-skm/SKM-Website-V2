@@ -121,7 +121,7 @@ export default function TrustOutreachPage({ onPageChange }) {
             className="border-l-4 border-brand-600 pl-8 py-6 bg-[rgba(228, 10, 24,0.02)] rounded-r-[10px]"
           >
             <p className="font-body text-[15px] text-surface-600 leading-[26px] m-0">
-              The main aim of <strong className="text-surface-850">"Sevai Maiyam"</strong> is that the children of the 2 Dalit colonies must be given a minimum Graduation Degree as basic education, completely free of cost. Sevai Maiyam serves to provide all basic necessities for the children of these two colonies in order to improve their standard of living. This trust volunteers many services by adopting the 2 Dalit colonies. In order to uplift the standard of living of poverty-stricken and backward people, it offers all basic necessities. Hence there is a certain amount of change in the people living there, and the future of the children living here is optimized to be bright.
+              The main aim of <strong className="text-surface-850">"Sevai Maiyam"</strong> is that the children of the 2 Dalit colonies must be given a minimum Graduation Degree as basic education, completely free of cost. Sevai Maiyam serves to provide all basic necessities for the children of these two colonies in order to improve their standard of living. This trust volunteers many services by adopting the 2 Dalit colonies. In order to uplift the standard of living of poverty-stricken and backward people, it offers all basic necessities. Hence there is a certain amount of change in the people living there, and the future of the children living here is optimised to be bright.
             </p>
           </motion.div>
 

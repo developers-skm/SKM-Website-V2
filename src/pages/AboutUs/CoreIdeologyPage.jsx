@@ -85,7 +85,7 @@ export default function CoreIdeologyPage({ onPageChange }) {
               "THINKING OUT OF THE SHELL"
             </h3>
             <p className="font-body text-[16px] text-surface-500 leading-[30px] max-w-2xl mx-auto m-0">
-              It is not just a tagline, but a reflection of the curious spirit and corporate culture of innovation we have at SKM. It drives us to challenge standards, optimize processes, and exceed global standards.
+              It is not just a tagline, but a reflection of the curious spirit and corporate culture of innovation we have at SKM. It drives us to challenge standards, optimise processes, and exceed global standards.
             </p>
           </motion.div>
 

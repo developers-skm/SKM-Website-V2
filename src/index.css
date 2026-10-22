@@ -56,7 +56,8 @@
    Chatbot.jsx) without duplicating the 64px magic number in four places. */
 :root {
   --mobile-cta-height: 64px;
-  --mobile-cta-reserve: calc(var(--mobile-cta-height) + env(safe-area-inset-bottom, 0px) + 12px);
+  /* Mobile sticky bar removed - no space reserved; floating buttons sit near the bottom edge. */
+  --mobile-cta-reserve: 0px;
 }
 
 @media (min-width: 768px) {

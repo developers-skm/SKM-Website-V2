@@ -46,7 +46,7 @@ export const variantsData = [
   {
     code: 'W1205',
     name: 'Whole Egg Powder Standard',
-    description: 'Consistent, spray-dried whole egg powder optimized for large-scale industrial batters, showing excellent emulsification capacity.',
+    description: 'Consistent, spray-dried whole egg powder optimised for large-scale industrial batters, showing excellent emulsification capacity.',
     applications: 'Industrial cakes, muffin mixes, bread coatings, standard dry mixes, and institutional food preparations.',
     benefits: 'High volume whipping stabilization, excellent water binding, and trouble-free dosing in automated lines.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 40.0%', protein: 'Min 45.0%', ph: '7.5 - 9.0', color: 'Standard Natural Yellow' }
@@ -94,7 +94,7 @@ export const variantsData = [
   {
     code: 'W1260',
     name: 'Whole Egg Powder - High Protein',
-    description: 'High-performance whole egg powder optimized with an increased protein ratio, blending yolk richness with strong egg white gelling properties.',
+    description: 'High-performance whole egg powder optimised with an increased protein ratio, blending yolk richness with strong egg white gelling properties.',
     applications: 'High-protein snacks, sports bars, nutritional pastas, gluten-free baking, and functional keto food lines.',
     benefits: 'Supports clean labels with high protein claims, provides moistness, and ensures strong heat-gel coagulation.',
     specifications: { moisture: 'Max 4.0%', fat: 'Min 35.0%', protein: 'Min 52.0%', ph: '7.2 - 8.5', color: 'Protein-Boosted Profile' }
@@ -170,7 +170,7 @@ export default function WholeEggPowderPage({ onPageChange }) {
         categoryLabel: 'Egg Powders Range',
         titleLine1: 'Whole Egg',
         titleLine2: 'Powder',
-        description: 'Pasteurised Dried Whole Hen Egg Powder optimized for commercial bakery, noodles, mayonnaise, and general food formulations. Prepared to offer the highest functional stability and rigorous safety standards for large-scale industrial manufacturing.'
+        description: 'Pasteurised Dried Whole Hen Egg Powder optimised for commercial bakery, noodles, mayonnaise, and general food formulations. Prepared to offer the highest functional stability and rigorous safety standards for large-scale industrial manufacturing.'
       }}
       variantsData={variantsData}
       variantNamesTable={variantNamesTable}

@@ -180,7 +180,7 @@ const POULTRY_CAPABILITIES = [
   {
     id: 'welfare',
     label: 'Welfare',
-    fact: 'Balanced, nutritionally optimized feed, daily sanitation protocols, potable water management, and safe disposal systems - including an on-site incinerator - maintain high standards of animal welfare.',
+    fact: 'Balanced, nutritionally optimised feed, daily sanitation protocols, potable water management, and safe disposal systems - including an on-site incinerator - maintain high standards of animal welfare.',
   },
   {
     id: 'egg-collection-controls',

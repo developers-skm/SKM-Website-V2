@@ -48,11 +48,13 @@ export default function ApplicationProductMatrix({ onPageChange }) {
         </motion.div>
 
         <motion.div {...fadeUp(reduceMotion, { delay: 0.1, distance: 24 })} className="flex flex-col gap-2.5">
-          <div className="rounded-[24px] border border-surface-200/60 overflow-hidden">
-            <table className="w-full table-fixed border-collapse">
+          {/* Phones: 8 columns can't fit, so the table scrolls sideways with the
+              Application column pinned; headers wrap on word boundaries only. */}
+          <div className="rounded-[24px] border border-surface-200/60 overflow-x-auto sm:overflow-hidden">
+            <table className="w-full min-w-[680px] sm:min-w-0 table-fixed border-collapse">
               <thead>
                 <tr className="bg-[#fbf7f1] border-b border-surface-200/70">
-                  <th className="w-[22%] bg-[#fbf7f1] text-left px-2 sm:px-4 lg:px-5 py-3 sm:py-4 font-body text-[9px] sm:text-[10.5px] lg:text-[11.5px] font-bold uppercase tracking-wider text-surface-500 align-middle">
+                  <th className="w-[130px] sm:w-[22%] sticky left-0 z-10 sm:static bg-[#fbf7f1] text-left px-3 sm:px-4 lg:px-5 py-3 sm:py-4 font-body text-[10px] sm:text-[10.5px] lg:text-[11.5px] font-bold uppercase tracking-wider text-surface-500 align-middle">
                     Application
                   </th>
                   {columnProducts.map((product) => (
@@ -60,7 +62,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
                       key={product.id}
                       onMouseEnter={() => setHoverCol(product.id)}
                       onMouseLeave={() => setHoverCol(null)}
-                      className={`px-1 sm:px-2 lg:px-3 py-3 sm:py-4 font-body text-[8px] sm:text-[10px] lg:text-[11px] font-bold uppercase tracking-normal sm:tracking-wider align-middle break-words hyphens-auto transition-colors duration-200 ${hoverCol === product.id ? 'text-brand-600 bg-[#f3c969]/10' : 'text-surface-500'}`}
+                      className={`px-1.5 sm:px-2 lg:px-3 py-3 sm:py-4 font-body text-[10px] lg:text-[11px] font-bold uppercase tracking-normal sm:tracking-wider align-middle transition-colors duration-200 ${hoverCol === product.id ? 'text-brand-600 bg-[#f3c969]/10' : 'text-surface-500'}`}
                     >
                       <span className="block text-center leading-snug">{product.title}</span>
                     </th>
@@ -76,7 +78,7 @@ export default function ApplicationProductMatrix({ onPageChange }) {
                     className={`border-b border-surface-200/50 last:border-b-0 transition-colors duration-200 ${hoverRow === app.id ? 'bg-[#f3c969]/6' : ''}`}
                   >
                     <td
-                      className={`px-2 sm:px-4 lg:px-5 py-3 sm:py-4 font-heading font-semibold text-[11.5px] sm:text-[13px] lg:text-[14.5px] leading-snug transition-colors duration-200 ${hoverRow === app.id ? 'bg-[#fdf8ec] text-brand-600' : 'bg-white text-heading'}`}
+                      className={`sticky left-0 z-10 sm:static px-3 sm:px-4 lg:px-5 py-3 sm:py-4 font-heading font-semibold text-[12px] sm:text-[13px] lg:text-[14.5px] leading-snug transition-colors duration-200 ${hoverRow === app.id ? 'bg-[#fdf8ec] text-brand-600' : 'bg-white text-heading'}`}
                     >
                       {app.title}
                     </td>

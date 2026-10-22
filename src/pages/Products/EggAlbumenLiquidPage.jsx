@@ -25,7 +25,7 @@ export const variantsData = [
   {
     code: 'A1002',
     name: 'Chilled Egg Albumen Liquid - Whip',
-    description: 'Chilled pasteurised egg white liquid optimized with whipping enhancers to produce maximum foam expansion and stability for aerated food formulations.',
+    description: 'Chilled pasteurised egg white liquid optimised with whipping enhancers to produce maximum foam expansion and stability for aerated food formulations.',
     applications: 'Meringues, soufflés, sponge cakes, macaroons, nougats, and aerated confectionery.',
     benefits: 'Rapid foam overrun, excellent bubble strength under heat, and consistent whipping volume.',
     specifications: { moisture: '87.0% - 89.0%', protein: 'Min 10.0%', ph: '8.5 - 9.5', storage: 'Chilled (0°C to 4°C)', character: 'Enhanced Whipping & Foam Volume' }

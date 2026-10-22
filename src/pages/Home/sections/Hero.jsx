@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useMotionValue, useReducedMotion, useTransform } from 'framer-motion';
 import ScrollFrameSequence from '../../../components/common/ScrollFrameSequence';
 import { getBrochureUrl } from '../../../data/brochureUrl';
 import { EASE_PREMIUM } from '../../../utils/motionTokens';
@@ -18,12 +18,46 @@ export default function Hero({ onPageChange }) {
   const scrollToApplicationSelector = useApplicationSelectorNavigation();
   const scrubContainerRef = useRef(null);
 
+  // Mobile only: the copy covers the egg animation, so the first frames show
+  // only a "Scroll to explore" hint and the copy slides up (bottom to top)
+  // over the last few frames. Tablet/desktop keep the copy in place.
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 639px)').matches);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 639px)');
+    const onChange = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+  // Progress through the pinned wrapper, measured straight from its bounding
+  // rect on every scroll/resize so it can never go stale after layout shifts.
+  const scrollYProgress = useMotionValue(0);
+  useEffect(() => {
+    const update = () => {
+      const el = scrubContainerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const range = rect.height - window.innerHeight;
+      scrollYProgress.set(range > 0 ? Math.min(1, Math.max(0, -rect.top / range)) : 0);
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, [scrollYProgress]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.78, 0.92], [0, 0, 1]);
+  const copyY = useTransform(scrollYProgress, [0, 0.78, 0.92], [70, 70, 0]);
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.06], [1, 0]);
+  const copyScrollStyle = isMobile && !reduceMotion ? { opacity: copyOpacity, y: copyY } : undefined;
+
   return (
     <section
       ref={scrubContainerRef}
       className="relative w-full h-[150vh]"
     >
-      <div className="sticky top-0 h-[640px] sm:h-[720px] lg:h-[820px] w-full overflow-hidden">
+      <div className="sticky top-0 h-[100svh] min-h-[600px] sm:min-h-0 sm:h-[720px] lg:h-[820px] w-full overflow-hidden">
         {/* Signature entrance - a soft curved (egg-inspired) mask sweeps open
             from center to reveal the hero visual, instead of a plain fade.
             Heading/CTA (below) animate on their own, independent timeline so
@@ -84,24 +118,38 @@ export default function Hero({ onPageChange }) {
             reserves none, so the hero's background/image still starts at
             y=0) - clears the logo+menu row (~60-70px tall) plus breathing
             room before the heading. */}
-        <div className="relative z-10 w-full h-full mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-16 pt-[100px] sm:pt-[145px] lg:pt-[160px] flex items-start sm:items-center">
+        <div className="relative z-10 w-full h-full mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-16 pt-[84px] pb-6 sm:pb-0 sm:pt-[145px] lg:pt-[160px] flex items-start sm:items-center">
+          {isMobile && !reduceMotion && (
+            <motion.div
+              style={{ opacity: hintOpacity }}
+              className="absolute inset-x-0 bottom-8 flex flex-col items-center gap-2 pointer-events-none"
+            >
+              <span className="font-body font-semibold text-[12px] uppercase tracking-[0.12em] text-white">
+                Scroll to explore
+              </span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </motion.div>
+          )}
+          <motion.div style={copyScrollStyle} className="max-w-[620px]">
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0.01 : 0.8, ease: [0.25, 1, 0.5, 1] }}
-            className="flex flex-col gap-3 sm:gap-5 max-w-[620px]"
+            className="flex flex-col gap-2 sm:gap-5"
           >
             {/* Exact approved heading - user-specified, verbatim */}
-            <h1 className="font-heading font-bold text-[clamp(32px,8vw,62px)] leading-[1.15] sm:leading-[1.1] text-white tracking-tight m-0">
+            <h1 className="font-heading font-bold text-[clamp(26px,7vw,62px)] leading-[1.15] sm:leading-[1.1] text-white tracking-tight m-0">
               Reliable Egg Ingredients for Food Manufacturers Worldwide.
             </h1>
 
             {/* Supporting message - verbatim, src/pages/Brochure/BrochurePage.jsx:21 */}
-            <p className="font-body text-[15px] sm:text-[16px] lg:text-[18px] text-white/90 leading-[1.5] sm:leading-[1.6] m-0">
+            <p className="font-body text-[13px] sm:text-[16px] lg:text-[18px] text-white/90 leading-[1.45] sm:leading-[1.6] m-0">
               Complete catalogueue of all SKM egg products - powders, liquids, customised mixes and speciality solutions available for global food producers.
             </p>
 
-            <p className="font-body text-[14px] sm:text-[15px] lg:text-[16px] font-semibold text-white/95 m-0">
+            <p className="font-body text-[13px] sm:text-[15px] lg:text-[16px] font-semibold text-white/95 m-0">
               30+ Countries Served
             </p>
 
@@ -111,15 +159,15 @@ export default function Hero({ onPageChange }) {
                 both already appear together in src/components/SEO/SEO.jsx's
                 DEFAULT_DESCRIPTION and src/pages/Home/Home.jsx's own SEO
                 description. */}
-            <p className="font-body text-[13px] sm:text-[14px] lg:text-[15px] text-white/75 leading-[1.5] sm:leading-[1.6] m-0">
+            <p className="font-body text-[12px] sm:text-[14px] lg:text-[15px] text-white/75 leading-[1.45] sm:leading-[1.6] m-0">
               Asia's largest integrated egg processing facility since 1996. BRCGS, ISO 22000, Halal (JUHF &amp; BPJPH) &amp; Kosher certified.
             </p>
 
             {/* Primary + secondary actions */}
-            <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-4 mt-1 sm:mt-2">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-1 sm:mt-2">
               <button
                 onClick={scrollToApplicationSelector}
-                className="btn-primary-red min-h-[46px] justify-center"
+                className="btn-primary-red min-h-[42px] sm:min-h-[46px] justify-center"
               >
                 Find the Right Egg Product
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -130,7 +178,7 @@ export default function Hero({ onPageChange }) {
 
               <button
                 onClick={() => onPageChange('get-quote')}
-                className="inline-flex items-center justify-center gap-2 min-h-[46px] px-6 rounded-[10px] border border-white/40 bg-white/10 backdrop-blur-sm text-white font-heading font-bold text-[13px] uppercase tracking-[0.03em] hover:bg-white hover:text-heading hover:border-white transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+                className="inline-flex items-center justify-center gap-2 min-h-[42px] sm:min-h-[46px] px-6 rounded-[10px] border border-white/40 bg-white/10 backdrop-blur-sm text-white font-heading font-bold text-[13px] uppercase tracking-[0.03em] hover:bg-white hover:text-heading hover:border-white transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
               >
                 Request a Quotation
               </button>
@@ -151,6 +199,7 @@ export default function Hero({ onPageChange }) {
                 Download Product Portfolio
               </span>
             </a>
+          </motion.div>
           </motion.div>
         </div>
       </div>

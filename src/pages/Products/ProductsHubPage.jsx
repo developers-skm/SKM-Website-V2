@@ -819,6 +819,44 @@ function HeroCopyWrap({ containerRef, isMobile, children }) {
   return <HeroCopyFade containerRef={containerRef}>{children}</HeroCopyFade>;
 }
 
+// Phone view: no scrub, so the all-products still life is shown straight away
+// with the "Select a product" heading and its tappable hotspots.
+function MobileHeroFinal({ onPageChange }) {
+  return (
+    <>
+      <div className="absolute inset-x-0 top-[84px] z-30 flex flex-col items-center px-4 text-center pointer-events-none">
+        <span className="font-body font-bold text-[11px] uppercase tracking-[0.28em] text-brand-600 mb-2">
+          Our Egg Products
+        </span>
+        <p
+          className="m-0 font-heading font-extrabold text-[22px] leading-[1.1] tracking-[-0.01em] text-[#3b2a1e]"
+          style={{ textShadow: '0 1px 18px rgba(255,248,238,0.85)' }}
+        >
+          Select a product to <span className="text-brand-600">discover more.</span>
+        </p>
+        <span className="mt-3 block h-[2px] w-12 rounded-full bg-brand-600" aria-hidden="true" />
+      </div>
+      <div className="absolute inset-0 z-20 overflow-hidden" style={{ containerType: 'size' }}>
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          style={{ width: `max(100cqw, ${MOBILE_HERO_RATIO * 100}cqh)`, height: `max(100cqh, ${100 / MOBILE_HERO_RATIO}cqw)` }}
+        >
+          {MOBILE_HERO_HOTSPOTS.map((h) => (
+            <InternalLink
+              key={`${h.route}-${h.x}`}
+              route={h.route}
+              onPageChange={onPageChange}
+              aria-label={h.label}
+              className="absolute rounded-[18px] focus:outline-none"
+              style={{ left: `${h.x}%`, top: `${h.y}%`, width: `${h.w}%`, height: `${h.h}%` }}
+            />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
 function HeroFinalLayers({ containerRef, onPageChange, isMobile }) {
   const hotspots = isMobile ? MOBILE_HERO_HOTSPOTS : HERO_HOTSPOTS;
   const ratio = isMobile ? MOBILE_HERO_RATIO : 16 / 9;
@@ -942,7 +980,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
           </motion.div>
 
           {isMobile ? (
-            <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
+            <MobileHeroFinal onPageChange={onPageChange} />
           ) : (
             <HeroFinalLayers containerRef={heroScrubRef} onPageChange={onPageChange} isMobile={isMobile} />
           )}
@@ -975,6 +1013,10 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             />
           )}
 
+          {isMobile && (
+            <h1 className="sr-only">Egg Products Engineered for Performance, Consistency and Safety.</h1>
+          )}
+          {!isMobile && (
           <HeroCopyWrap containerRef={heroScrubRef} isMobile={isMobile}>
           <motion.div
             initial="hidden"
@@ -1056,6 +1098,7 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             </motion.div>
           </motion.div>
           </HeroCopyWrap>
+          )}
         </div>
         </div>
 

@@ -64,7 +64,7 @@ const packagingData = [
     title: 'Bag (LDPE)',
     subtitle: 'Low Density Polyethylene',
     description:
-      'Food-grade LDPE flexible inner bag packaging optimized for chilled and frozen liquid egg products. Provides complete barrier against contamination and ensures easy dispensing.',
+      'Food-grade LDPE flexible inner bag packaging optimised for chilled and frozen liquid egg products. Provides complete barrier against contamination and ensures easy dispensing.',
     skus: ['20 Kg', '10 Kg', '5 Kg'],
     images: [
       { src: FrozenLdpeImg, label: 'Frozen Product - LDPE Bag' },
