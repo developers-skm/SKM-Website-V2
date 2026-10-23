@@ -134,7 +134,7 @@ export default function CompanyIntro({ onPageChange }) {
 
           {/* Sticky visual - desktop only, plain CSS sticky (not scroll-jacked) */}
           <div className="hidden lg:block lg:col-span-6 lg:sticky lg:top-28 lg:self-start">
-            <div className="relative rounded-[8px] overflow-hidden aspect-[4/5]">
+            <div className="relative rounded-[8px] overflow-hidden w-full h-[calc(100vh-8rem)] max-h-[760px]">
               <AnimatePresence mode="sync" initial={false}>
                 <motion.div
                   key={active.id}
@@ -152,14 +152,6 @@ export default function CompanyIntro({ onPageChange }) {
                   />
                 </motion.div>
               </AnimatePresence>
-              <div className="absolute bottom-6 left-6 right-6 flex items-center gap-3">
-                {blocks.map((b, i) => (
-                  <span
-                    key={b.id}
-                    className={`h-[3px] flex-1 rounded-full transition-colors duration-500 ${i === activeIndex ? 'bg-white' : 'bg-white/30'}`}
-                  />
-                ))}
-              </div>
             </div>
           </div>
 
