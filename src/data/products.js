@@ -24,6 +24,9 @@ import { getBrochureUrl } from './brochureUrl';
 const WholeEggPowderTds = getBrochureUrl('SKM WHOLE EGG POWDER A5 FLYER (F-B).pdf');
 const EggYolkPowderTds = getBrochureUrl('SKM EGG YOLK POWDER A5 FLYER (F-B).pdf');
 const EggAlbumenPowderTds = getBrochureUrl('SKM EGG ALBUMEN POWDER    A5 FLYER (F-B).pdf');
+const WholeEggLiquidTds = getBrochureUrl('SKM_WEL_Liquid_Flyer.pdf');
+const EggYolkLiquidTds = getBrochureUrl('SKM_EYL_Liquid_Flyer.pdf');
+const EggAlbumenLiquidTds = getBrochureUrl('SKM_EAL_Liquid_Flyer.pdf');
 
 export const PRODUCT_CATEGORIES = {
   POWDERS: 'Egg Powders',
@@ -80,6 +83,7 @@ const products = [
     category: PRODUCT_CATEGORIES.LIQUIDS,
     shortDescription: 'Pasteurised liquid blend of egg yolk and egg white, formulated for industrial bakeries and standardised ready-meal recipes. Available in both chilled and frozen formats.',
     packagingOptions: ['1kg', '5kg', '10kg', '20kg'],
+    tdsUrl: WholeEggLiquidTds,
   },
   {
     id: 'egg_yolk_liquid',
@@ -89,6 +93,7 @@ const products = [
     category: PRODUCT_CATEGORIES.LIQUIDS,
     shortDescription: 'Chilled pasteurised liquid egg yolk available in plain and salted variants, formulated for mayonnaise, dressings, and hot-filled sauces. Available in chilled and frozen formats.',
     packagingOptions: ['1kg', '5kg', '10kg', '20kg'],
+    tdsUrl: EggYolkLiquidTds,
   },
   {
     id: 'egg_albumen_liquid',
@@ -98,6 +103,7 @@ const products = [
     category: PRODUCT_CATEGORIES.LIQUIDS,
     shortDescription: 'Pasteurised liquid egg white for health foods, sports nutrition, beverages, and bakery applications, available in chilled and frozen formats.',
     packagingOptions: ['1kg', '5kg', '10kg', '20kg'],
+    tdsUrl: EggAlbumenLiquidTds,
   },
   {
     id: 'speciality_egg_liquids',
