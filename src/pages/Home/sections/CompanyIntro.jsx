@@ -4,10 +4,10 @@ import InternalLink from '../../../components/common/InternalLink';
 import SafeImage from '../../../components/common/SafeImage';
 import { fadeUp } from '../../../utils/motionTokens';
 
-import CampusOverview from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus/Campus overview.webp';
+import SkmFactory from '../../../assets/home/skm-factory.jpeg';
 import Pasteurization from '../../../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Pasteurization.webp';
 import ZoningHygiene from '../../../assets/home/zoning-hygiene.webp';
-import CircularApproach from '../../../assets/home/circular-approach.webp';
+import CircularApproach from '../../../assets/home/circular-approach.jpeg';
 
 // Section 8 - Infrastructure / Manufacturing. Large sticky visual (CSS
 // position:sticky, NOT scroll-jacked/pinned like Traceability's section —
@@ -25,7 +25,7 @@ const blocks = [
     eyebrow: 'Facility & Regulatory Compliance',
     title: 'Built as per European Union (EU) Regulation.',
     body: 'Constructed and equipped in accordance with applicable European Union (EU) requirements, the facility is approved under India’s Export of Egg Products Quality Control & Monitoring Rules (1997). Our facility operates under stringent hygiene standards in a climate-controlled environment, with dedicated production lines for egg yolk and albumen.',
-    image: CampusOverview,
+    image: SkmFactory,
   },
   {
     id: 'process',

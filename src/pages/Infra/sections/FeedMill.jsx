@@ -4,7 +4,7 @@ import IconInfoCard from '../../../components/common/IconInfoCard';
 import StatCard from '../../../components/common/StatCard';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
-import FeedMillAerial from '../../../assets/5. INFRASTRUCTURE/Feed mill/Feed mill aerial view.webp';
+import FeedMillAerial from '../../../assets/home/journey-feed-mill.jpeg';
 import CurvedDivider from '../../../components/SectionContainer/CurvedDivider';
 
 const statsData = [

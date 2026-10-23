@@ -4,7 +4,7 @@ import InternalLink from '../../../components/common/InternalLink';
 import SafeImage from '../../../components/common/SafeImage';
 import { fadeUp } from '../../../utils/motionTokens';
 
-import CarbonFootprint from '../../../assets/home/carbon-footprint.webp';
+import CarbonFootprint from '../../../assets/home/carbon-footprint.jpeg';
 import CleanEnergy1 from '../../../assets/home/clean-energy-1.webp';
 import CleanEnergy2 from '../../../assets/home/clean-energy-2.webp';
 import UtilityOverview from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/Utility Overview.webp';

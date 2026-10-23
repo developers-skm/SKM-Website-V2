@@ -8,7 +8,7 @@
 // an exact sentence quoted directly from the named source file/component,
 // not paraphrased or invented. Source is cited per stage for audit purposes.
 
-import FeedMillLabImg from '../assets/5. INFRASTRUCTURE/Feed mill/Feed mill aerial view.webp';
+import FeedMillLabImg from '../assets/home/journey-feed-mill.jpeg';
 import PoultryFarmImg from '../assets/5. INFRASTRUCTURE/Poultry farm/EC shed overview.webp';
 import EggCollectionImg from '../assets/ai-images/table-eggs-collection.webp';
 import ProcessingImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Pasteurization.webp';

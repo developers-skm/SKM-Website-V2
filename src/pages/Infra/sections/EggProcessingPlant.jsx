@@ -6,7 +6,7 @@ import StatCard from '../../../components/common/StatCard';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 // Campus
-import CampusOverview from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus/Campus overview.webp';
+import CampusOverview from '../../../assets/home/skm-factory.jpeg';
 import AdminEntrance from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus/Admin Enterance.webp';
 import SecurityEntrance from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus/Security enterance.webp';
 import Temple from '../../../assets/5. INFRASTRUCTURE/Egg Products/Campus/Temple.webp';

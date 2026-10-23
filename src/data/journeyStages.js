@@ -4,7 +4,7 @@
 // apart across the site. Facts sourced from the traceability content already
 // authored in src/pages/Quality/sections/Traceability.jsx.
 
-import FeedMillImg from '../assets/5. INFRASTRUCTURE/Feed mill/Feed mill aerial view.webp';
+import FeedMillImg from '../assets/home/journey-feed-mill.jpeg';
 import FarmImg from '../assets/5. INFRASTRUCTURE/Poultry farm/EC shed overview.webp';
 import ProcessingImg from '../assets/5. INFRASTRUCTURE/Egg Products/Process areas/Pasteurization.webp';
 import LabImg from '../assets/5. INFRASTRUCTURE/Laboratory/GC and HPLC.webp';
