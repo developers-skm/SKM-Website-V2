@@ -526,13 +526,13 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
 
         {/* Section 2 - Integrated farm-to-product traceability */}
         <TraceabilityJourneySection onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#ececec" />
+        <CurvedDivider hen bg="#fff" fill="#ececec" />
 
         {/* Section 3 - Quality gates by production stage */}
         <QualityGatesSection onPageChange={onPageChange} />
 
         {/* Section 4 - Laboratory capabilities */}
-        <CurvedDivider bg="#ececec" fill="#fff" />
+        <CurvedDivider hen bg="#ececec" fill="#fff" />
         <LaboratoryCapabilitiesSection onPageChange={onPageChange} />
         <CurvedDivider bg="#fff" fill="#fff" />
 

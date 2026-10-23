@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SEO from '../../components/SEO/SEO';
 import InternalLink from '../../components/common/InternalLink';
-import { getJobBySlug } from '../../data/jobs';
+import { getJobBySlug, useJobs } from '../../data/jobs';
 import { Container } from './components/layout';
 import CareersPageHeader from './components/CareersPageHeader';
 import JobApplicationForm from './components/JobApplicationForm';
@@ -9,9 +9,12 @@ import ApplicationSuccess from './components/ApplicationSuccess';
 
 // /careers/apply/:slug → vacancy application.
 export default function ApplyPage({ slug, onPageChange }) {
+  const { loading } = useJobs();
   const job = slug ? getJobBySlug(slug) : null;
   const [reference, setReference] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+
+  if (slug && loading) return <div className="w-full min-h-[60vh]" aria-busy="true" />;
 
   if (slug && !job) {
     return (

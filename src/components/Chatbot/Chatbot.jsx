@@ -38,6 +38,8 @@ const pageFromUrl = (url) => {
   }
 };
 
+const HR_SHORTCUT_PHRASE = 'vijayaganapathi access';
+
 export default function Chatbot({ onPageChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -79,6 +81,32 @@ export default function Chatbot({ onPageChange }) {
       timestamp: new Date()
     };
     setMessages((prev) => [...prev, userMessage]);
+
+    // Hidden shortcut to the HR portal. It only navigates - the portal still
+    // requires the server-side login - and the phrase never reaches the chat API.
+    if (text.toLowerCase().replace(/\s+/g, ' ').trim() === HR_SHORTCUT_PHRASE) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: (Date.now() + 1).toString(),
+          sender: 'bot',
+          text: 'Access granted. Welcome back, HR sir. Opening the HR portal…',
+          timestamp: new Date()
+        }
+      ]);
+      // End any earlier HR session first so the login screen always appears.
+      const endSession = fetch(`${import.meta.env.VITE_API_URL || ''}/api/v1/hr/logout`, {
+        method: 'POST',
+        credentials: 'include',
+      }).catch(() => {});
+      setTimeout(async () => {
+        await endSession;
+        setIsOpen(false);
+        onPageChange?.('newhr');
+      }, 1500);
+      return;
+    }
+
     setIsTyping(true);
 
     try {

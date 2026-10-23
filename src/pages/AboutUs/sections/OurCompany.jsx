@@ -82,7 +82,7 @@ export default function OurCompany() {
               Today, we operate as one of Asia's largest integrated egg processing facilities, combining advanced production technology with internationally aligned quality systems. Supported by fully integrated back-end farms, our operations process up to 2 million eggs per day, producing approximately 7,500 metric tonnes of egg powder annually.
             </motion.p>
             <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 leading-[30px] m-0">
-              The quality and safety of the raw material is ensured with the <strong>backward integration</strong> of our own layer farm and feed mill. Our poultry farm is ISO 22000 certified. Bio-security is maintained, and our poultry farms are registered under compartmentalization as per European Union norms.
+              The quality and safety of the raw material is ensured with the <strong>backward integration</strong> of our own layer farm and our poultry farms are operated in accordance with OIE compartmentalization requirements.
             </motion.p>
           </div>
         </div>

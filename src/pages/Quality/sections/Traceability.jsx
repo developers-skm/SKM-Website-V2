@@ -19,7 +19,7 @@ const traceabilitySteps = [
   {
     step: '03',
     label: 'Farm',
-    desc: 'Registered layer farms with EU compartmentalization compliance and continuous flock health monitoring.',
+    desc: 'Registered layer farms with OIE compartmentalization compliance and continuous flock health monitoring.',
   },
   {
     step: '04',
@@ -63,8 +63,7 @@ export default function Traceability({ onPageChange }) {
             variants={itemVariants}
             className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0"
           >
-            Farm-to-Fork{' '}
-            Traceability
+            Farm-to-Product Journey
           </motion.h2>
           <motion.p
             variants={itemVariants}

@@ -50,7 +50,7 @@ export const recruitmentSteps = [
   'HR Discussion',
   'Interview',
   'Offer',
-  'Joining',
+  'Onboarding',
 ];
 
 export const careersFaqs = [

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { makeContainerVariants } from '../../../utils/animationVariants';
-import { getFilterOptions, getOpenJobs } from '../../../data/jobs';
+import { getFilterOptions, getOpenJobs, useJobs } from '../../../data/jobs';
 import JobFilters from './JobFilters';
 import { emptyFilters, hasActiveFilters } from './filterState';
 import JobCard from './JobCard';
@@ -22,7 +22,9 @@ const matchesQuery = (job, query) => {
 // `featuredLimit` caps the list while no filter is active (landing page);
 // as soon as the user searches or filters, every match is shown.
 export default function JobBrowser({ filters, onFiltersChange, onPageChange, featuredLimit }) {
-  const options = useMemo(() => getFilterOptions(), []);
+  const { loading, version } = useJobs();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const options = useMemo(() => getFilterOptions(), [version]);
   const results = useMemo(
     () =>
       getOpenJobs().filter(
@@ -33,7 +35,8 @@ export default function JobBrowser({ filters, onFiltersChange, onPageChange, fea
           (!filters.experience || job.experience === filters.experience) &&
           (!filters.employmentType || job.employmentType === filters.employmentType)
       ),
-    [filters]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [filters, version]
   );
 
   const visible = featuredLimit && !hasActiveFilters(filters) ? results.slice(0, featuredLimit) : results;
@@ -48,7 +51,9 @@ export default function JobBrowser({ filters, onFiltersChange, onPageChange, fea
           : `${results.length} ${results.length === 1 ? 'opportunity' : 'opportunities'}`}
       </p>
 
-      {visible.length > 0 ? (
+      {loading ? (
+        <p className="font-body text-[15px] text-surface-500 m-0" role="status">Loading opportunities…</p>
+      ) : visible.length > 0 ? (
         <motion.div
           variants={listVariants}
           initial="hidden"

@@ -170,7 +170,7 @@ export default function HomeJourney({ onPageChange }) {
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Traceability</span>
           <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading leading-[1.05] tracking-tight m-0">
-            Farm-to-product journey
+            Farm-to-Product Journey
           </h2>
           <p className="font-body text-[16px] lg:text-[17px] text-surface-500 leading-[1.8] max-w-xl m-0">
             From biosecure layer farms and precise feed formulation to automated egg processing, NABL analytical testing, packed and dispatched globally.

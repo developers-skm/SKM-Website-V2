@@ -423,7 +423,7 @@ function FinalCTASection({ onPageChange }) {
             onPageChange={onPageChange}
             className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
-            Arrange a Technical Call
+            Contact Our Technical Team
           </InternalLink>
         </div>
       </motion.div>

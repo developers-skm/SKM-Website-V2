@@ -92,7 +92,7 @@ function FullJourney({ onPageChange }) {
         className="mx-auto max-w-[900px] w-full px-4 sm:px-6 lg:px-8 pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[90px] text-center flex flex-col items-center gap-5"
       >
         <motion.span variants={itemVariants} className="section-label justify-center">
-          From Farm To Your Formulation
+          From Feed To Your Formulation
         </motion.span>
         <motion.h1
           variants={itemVariants}

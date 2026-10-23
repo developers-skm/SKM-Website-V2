@@ -4,6 +4,8 @@ const rateLimit = require('express-rate-limit');
 const contactRouter = require('./routes/contact');
 const quoteRouter = require('./routes/quote');
 const careersRouter = require('./routes/careers');
+const hrRouter = require('./routes/hr');
+const publicJobsRouter = require('./routes/publicJobs');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -23,6 +25,7 @@ app.use(cors({
     const isLocal = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
     return cb(null, isLocal && process.env.NODE_ENV !== 'production');
   },
+  credentials: true, // HR portal session cookie
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -39,7 +42,10 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 app.use('/api/v1/contact', contactLimiter, contactRouter);
 app.use('/api/v1/quote', contactLimiter, quoteRouter);
+app.use('/api/v1/careers/jobs', publicJobsRouter);
 app.use('/api/v1/careers', contactLimiter, careersRouter);
+
+app.use('/api/v1/hr', hrRouter);
 
 app.use(errorHandler);
 

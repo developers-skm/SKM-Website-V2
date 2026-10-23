@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { makeContainerVariants } from '../../../utils/animationVariants';
 import { careerDepartments } from '../../../data/careersContent';
-import { getOpenJobs } from '../../../data/jobs';
+import { getOpenJobs, useJobs } from '../../../data/jobs';
 import { Container, Section } from './layout';
 import SectionHeading from './SectionHeading';
 import CareerAreaCard from './CareerAreaCard';
@@ -9,6 +9,7 @@ import CareerAreaCard from './CareerAreaCard';
 const container = makeContainerVariants(0.04);
 
 export default function CareerAreas({ activeDepartment, onSelectDepartment }) {
+  useJobs();
   const open = getOpenJobs();
   const countFor = (department) => open.filter((job) => job.department === department).length;
 

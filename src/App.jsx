@@ -46,6 +46,8 @@ const Investors = lazyWithRetry(() => import('./pages/Investors/Investors'));
 const BrochurePage = lazyWithRetry(() => import('./pages/Brochure/BrochurePage'));
 const ContactUs = lazyWithRetry(() => import('./pages/ContactUs/ContactUs'));
 const CareersRoute = lazyWithRetry(() => import('./pages/Careers/CareersRoute'));
+// Private HR portal - rendered outside the public Layout, never linked from nav.
+const HRAdminPage = lazyWithRetry(() => import('./pages/HR/HRAdminPage'));
 
 const JourneyPage = lazyWithRetry(() => import('./pages/Journey/JourneyPage'));
 const GetQuotePage = lazyWithRetry(() => import('./pages/GetQuote/GetQuotePage'));
@@ -340,6 +342,14 @@ function App() {
         return <NotFound onPageChange={handlePageChange} />;
     }
   };
+
+  if (activePage === 'newhr') {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <HRAdminPage />
+      </Suspense>
+    );
+  }
 
   return (
     <Layout activePage={activePage} onPageChange={handlePageChange} suppressMobileActions={suppressMobileActions}>

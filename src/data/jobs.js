@@ -1,6 +1,7 @@
-// Temporary, data-driven job openings. There is no jobs API/database yet, so
-// the Careers pages read from this list. Replace/extend entries (or swap the
-// helpers below for an API call) when real vacancies are available.
+import { useEffect, useSyncExternalStore } from 'react';
+
+// Job openings for the Careers pages. Live data is managed by HR at /newhr and
+// served by the API; the static list below is only an offline fallback.
 // NOTE: the entries are placeholder sample roles - confirm with HR before launch.
 
 export const jobs = [
@@ -203,11 +204,48 @@ export const jobs = [
 
 const today = () => new Date().toISOString().slice(0, 10);
 
-export const isJobOpen = (job) => job.active && job.closingDate >= today();
+export const isJobOpen = (job) => job.active && (!job.closingDate || job.closingDate >= today());
 
-export const getOpenJobs = () => jobs.filter(isJobOpen);
+// Live openings come from the HR-managed API (GET /api/v1/careers/jobs). The
+// static `jobs` list above is only the offline fallback if the API is down.
+const API_URL = import.meta.env.VITE_API_URL || '';
+let liveJobs = null; // null until the first response
+let version = 0;
+const listeners = new Set();
 
-export const getJobBySlug = (slug) => jobs.find((job) => job.slug === slug && isJobOpen(job)) ?? null;
+const publish = (next) => {
+  liveJobs = next;
+  version += 1;
+  listeners.forEach((l) => l());
+};
+
+export function loadJobs() {
+  return fetch(`${API_URL}/api/v1/careers/jobs`, { cache: 'no-store' })
+    .then((res) => (res.ok ? res.json() : Promise.reject(new Error('jobs request failed'))))
+    .then((data) => publish(Array.isArray(data.jobs) ? data.jobs : []))
+    .catch(() => {
+      if (liveJobs === null) publish(jobs);
+    });
+}
+
+const subscribe = (listener) => {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+};
+
+// Call at the top of any component that reads the helpers below: it fetches
+// fresh openings on mount and re-renders when they arrive.
+export function useJobs() {
+  useEffect(() => {
+    loadJobs();
+  }, []);
+  const v = useSyncExternalStore(subscribe, () => version);
+  return { loading: liveJobs === null, version: v };
+}
+
+export const getOpenJobs = () => (liveJobs ?? []).filter(isJobOpen);
+
+export const getJobBySlug = (slug) => getOpenJobs().find((job) => job.slug === slug) ?? null;
 
 const uniqueSorted = (values) => [...new Set(values)].sort((a, b) => a.localeCompare(b));
 

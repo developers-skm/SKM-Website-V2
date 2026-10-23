@@ -8,7 +8,6 @@ import pic3 from '../assets/ACCOLADES/Picture3.png';
 import pic4 from '../assets/ACCOLADES/Picture4.png';
 import pic5 from '../assets/ACCOLADES/Picture5.png';
 import pic6 from '../assets/ACCOLADES/Picture6.png';
-import pic7 from '../assets/ACCOLADES/Picture7.png';
 import pic8 from '../assets/ACCOLADES/Picture8.png';
 
 export const galleryItems = [
@@ -23,12 +22,6 @@ export const galleryItems = [
     name: 'The Power of i (India)',
     description:
       'SKM Egg recognised that Shree Shivkumar has single-handedly made SKM a Category Leader in key Export Markets.',
-  },
-  {
-    image: pic3,
-    name: 'Best 5S Practice Award 2016',
-    description: 'Best 5S Practice Award in 2016 provided by M/S ABK-AOTS.',
-    year: 2016,
   },
   {
     image: pic4,
@@ -53,16 +46,22 @@ export const galleryItems = [
     year: 2013,
   },
   {
-    image: pic7,
-    name: 'Padma Shree Award',
-    description:
-      'Shri SKM Maeilanandhan receiving Padma Shree Award from Honourable President of India, Shri Pranab Mukherjee.',
+    image: pic3,
+    name: 'Best 5S Practice Award 2016',
+    description: 'Best 5S Practice Award in 2016 provided by M/S ABK-AOTS.',
+    year: 2016,
   },
   {
     image: pic8,
     name: 'Padma Shree Award',
     description:
       'Shri SKM Maeilanandhan receiving Padma Shree Award from Honourable President of India, Shri Pranab Mukherjee.',
+  },
+  {
+    image: '/gallery/award-padma-bhushan-2026.jpg',
+    name: 'Padma Bhushan Award',
+    description:
+      'Shri SKM Maeilanandhan receiving the Padma Bhushan Award from the Honourable President of India, Smt. Droupadi Murmu.',
   },
 ];
 
@@ -105,10 +104,10 @@ export const timelineEvents = [
     title: 'Manufacturing Excellence Gold Award',
     description: 'Manufacturing Excellence Gold Award by Frost & Sullivan.',
   },
-  { year: '2011-12', ...galleryItems[3], title: 'Golden Trophy – APEDA' },
-  { year: '2012-13', ...galleryItems[4], title: 'Golden Trophy – APEDA' },
-  { year: '2013', ...galleryItems[5], title: 'Export Excellence Award – MEPZ' },
-  { year: '2016', ...galleryItems[2], title: 'Best 5S Practice Award' },
+  { year: '2011-12', ...galleryItems[2], title: 'Golden Trophy – APEDA' },
+  { year: '2012-13', ...galleryItems[3], title: 'Golden Trophy – APEDA' },
+  { year: '2013', ...galleryItems[4], title: 'Export Excellence Award – MEPZ' },
+  { year: '2016', ...galleryItems[5], title: 'Best 5S Practice Award' },
 ];
 
 export const landmarkHonours = [galleryItems[0], galleryItems[6]];

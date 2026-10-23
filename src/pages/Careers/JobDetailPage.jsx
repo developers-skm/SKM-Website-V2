@@ -1,6 +1,6 @@
 import SEO from '../../components/SEO/SEO';
 import InternalLink from '../../components/common/InternalLink';
-import { formatJobDate, getJobBySlug } from '../../data/jobs';
+import { formatJobDate, getJobBySlug, useJobs } from '../../data/jobs';
 import CareersPageHeader from './components/CareersPageHeader';
 import { Container } from './components/layout';
 import TextLink from './components/TextLink';
@@ -32,7 +32,10 @@ function Fact({ label, value }) {
 }
 
 export default function JobDetailPage({ slug, onPageChange }) {
+  const { loading } = useJobs();
   const job = getJobBySlug(slug);
+
+  if (loading) return <div className="w-full min-h-[60vh]" aria-busy="true" />;
 
   if (!job) {
     return (
@@ -75,16 +78,17 @@ export default function JobDetailPage({ slug, onPageChange }) {
               <h2 className="font-heading font-bold text-[26px] sm:text-[28px] text-heading leading-tight m-0">About the Role</h2>
               <p className="font-body text-[17px] text-surface-600 leading-[1.75] m-0">{job.summary}</p>
             </section>
-            <BulletSection title="Responsibilities" items={job.responsibilities} />
-            <BulletSection title="Requirements" items={job.requirements} />
-            <section className="flex flex-col gap-4">
+            {job.responsibilities?.length > 0 && <BulletSection title="Responsibilities" items={job.responsibilities} />}
+            {job.requirements?.length > 0 && <BulletSection title="Requirements" items={job.requirements} />}
+            {job.benefits?.length > 0 && <BulletSection title="Benefits" items={job.benefits} />}
+            {job.skills?.length > 0 && <section className="flex flex-col gap-4">
               <h2 className="font-heading font-bold text-[26px] sm:text-[28px] text-heading leading-tight m-0">Skills</h2>
               <ul className="flex flex-wrap gap-2 m-0 p-0 list-none">
                 {job.skills.map((skill) => (
                   <li key={skill} className="px-4 py-1.5 rounded-full border border-[#ddd] font-body text-[14px] font-semibold text-surface-700">{skill}</li>
                 ))}
               </ul>
-            </section>
+            </section>}
           </article>
 
           <aside aria-label="Job summary" className="lg:sticky lg:top-28 rounded-xl bg-[#fbfaf8] border border-[#e5e5e5] p-6 sm:p-7 flex flex-col gap-6">
@@ -96,14 +100,23 @@ export default function JobDetailPage({ slug, onPageChange }) {
               <Fact label="Department" value={job.department} />
               <Fact label="Location" value={job.location} />
               <Fact label="Experience" value={job.experience} />
+              {job.salary && <Fact label="Salary" value={job.salary} />}
+              {job.vacancies > 1 && <Fact label="Vacancies" value={job.vacancies} />}
               <Fact label="Employment Type" value={job.employmentType} />
               <Fact label="Qualification" value={job.qualification} />
-              <Fact label="Closing Date" value={formatJobDate(job.closingDate)} />
+              {job.closingDate && <Fact label="Closing Date" value={formatJobDate(job.closingDate)} />}
             </dl>
-            <InternalLink route={`careers/apply/${job.slug}`} onPageChange={onPageChange} className="btn-primary-red min-h-[48px] justify-center">
-              Apply for This Position
-              <CareerIcon name="arrow" className="w-3.5 h-3.5" />
-            </InternalLink>
+            {job.applyLink ? (
+              <a href={job.applyLink} target="_blank" rel="noopener noreferrer" className="btn-primary-red min-h-[48px] justify-center">
+                Apply Now
+                <CareerIcon name="arrow" className="w-3.5 h-3.5" />
+              </a>
+            ) : (
+              <InternalLink route={`careers/apply/${job.slug}`} onPageChange={onPageChange} className="btn-primary-red min-h-[48px] justify-center">
+                Apply for This Position
+                <CareerIcon name="arrow" className="w-3.5 h-3.5" />
+              </InternalLink>
+            )}
             <TextLink route="careers/jobs" onPageChange={onPageChange} className="self-center">Back to All Jobs</TextLink>
           </aside>
         </Container>

@@ -134,21 +134,37 @@ function CompanyOverviewSection({ onPageChange }) {
 // Products Export India Limited.pdf, the same file used on the Resources
 // page). "Explore Our Products" routes to the real Products hub.
 
-// Section 3 - Company journey. Pinned scroll-driven timeline from 1996 to 2016.
-// As the user scrolls down, the timeline advances year by year (1996 -> 2001 ->
-// 2005-06 -> 2006 -> 2007 -> 2007-08 -> 2011-13 -> 2013 -> 2016) with smooth animations,
-// real-time red progress line filling, and clickable year tabs for direct jump.
+// Section 3 - Company journey. Pinned scroll-driven "Excellence Journey": a
+// winding path climbs from the first trophy (2001) to the latest, and each
+// scroll step reveals the next trophy in sequence. Order and wording follow
+// the Excellence Journey graphic supplied by SKM.
 const JOURNEY_MILESTONES = [
-  { year: '1996', label: 'Founded', desc: "SKM Egg Products established, beginning its journey with a commitment to excellence in egg processing.", tag: 'Foundation' },
-  { year: '2001', label: 'APEDA Silver Trophy', desc: 'Recognized by APEDA as a leading exporter from India, awarded annually since 2001.', tag: 'Export Leader' },
-  { year: '2005–06', label: 'Best Export Performance Award', desc: '100% EOU category, awarded by MEPZ (Madras Export Processing Zone).', tag: 'EOU Recognition' },
-  { year: '2006', label: 'Manufacturing Excellence Silver Award', desc: 'Awarded by Frost & Sullivan.', tag: 'Quality Standards' },
-  { year: '2007', label: 'State Safety Award', desc: 'Awarded by the Government of Tamil Nadu.', tag: 'Workplace Safety' },
-  { year: '2007–08', label: 'Manufacturing Excellence Gold Award', desc: 'Awarded by Frost & Sullivan, two years running.', tag: 'Gold Benchmark' },
-  { year: '2011–13', label: 'APEDA Golden Trophy', desc: 'Golden Trophy awarded by APEDA, Ministry of Commerce, Government of India, for 2011–2012 and 2012–2013.', tag: 'National Trophy' },
-  { year: '2013', label: 'Export Excellence Award', desc: 'Awarded at MEPZ, Special Economic Zone – Chennai.', tag: 'SEZ Excellence' },
-  { year: '2016', label: 'Best 5S Practice Award', desc: 'Awarded by M/S ABK-AOTS.', tag: 'Lean Operations' },
+  { title: 'Silver Trophy - 2001', by: 'by APEDA [Govt. of India]', color: '#F5B400' },
+  { title: 'Best Export Performance Awards 2005-06', by: 'by MEPZ (Madras Export Processing Zone)', color: '#EE4266' },
+  { title: 'State Safety Award - 2007', by: 'by Government of Tamil Nadu', color: '#17A398' },
+  { title: 'Manufacturing Excellence Silver 2006 & Gold 2007 & 08', by: 'by Frost & Sullivan', color: '#2EB5C9' },
+  { title: 'Shri SKM Maeilanandhan receiving Padma Shree', by: 'by Honourable President of India, Shri Pranab Mukherjee', color: '#2F8FEF' },
+  { title: 'Export Excellence Award - 2012 & 13', by: 'at MEPZ, by Special Economic Zone - Chennai', color: '#6B3FA0' },
+  { title: 'Golden Trophy 2011-2012 and 2012-2013', by: '"APEDA" Ministry of Commerce, Government of India', color: '#8CC63F' },
+  { title: 'Hidden Gem Award 2014-15', by: 'by TiECON at Chennai', color: '#E8318A' },
+  { title: '5 S Platinum Award 2015-16 & 2016-17', by: 'by ABK AOTS - Tamil Nadu', color: '#F07A1A' },
+  { title: 'CII Award 2016-17 on Food Safety', by: 'by CII', color: '#14A86B' },
+  { title: 'Mondelez Quality and Food Safety Culture Awards 2021-2022', by: 'by Mondelez', color: '#7A3FA8' },
+  { title: 'National Client of the Year 2022', by: 'Awarded by LMI Carpe Diem', color: '#1D4FD8' },
+  { title: 'Shri SKM Maeilanandhan receiving Padma Bhushan - 2026', by: 'by Honourable President of India, Smt. Droupadi Murmu', color: '#E40A18' },
 ];
+
+function Trophy({ color, size = 40 }) {
+  return (
+    <svg viewBox="0 0 40 44" style={{ width: size, aspectRatio: "40 / 44" }} aria-hidden="true">
+      <path d="M10 4h20v12a10 10 0 0 1-20 0z" fill={color} />
+      <path d="M10 8H4v3a7 7 0 0 0 7 7M30 8h6v3a7 7 0 0 1-7 7" stroke={color} strokeWidth="3" fill="none" strokeLinecap="round" />
+      <rect x="18" y="26" width="4" height="7" fill={color} />
+      <rect x="11" y="33" width="18" height="6" rx="2" fill={color} />
+      <polygon points="20,5.5 21.6,9 25.4,9.4 22.5,11.9 23.4,15.6 20,13.6 16.6,15.6 17.5,11.9 14.6,9.4 18.4,9" fill="#fff" />
+    </svg>
+  );
+}
 
 function CompanyJourneySection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
@@ -176,160 +192,149 @@ function CompanyJourneySection({ onPageChange }) {
 // - pinned sticky sections don't translate to short/narrow touch
 // viewports).
 function DesktopJourneyTimeline({ onPageChange }) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [count, setCount] = useState(1);
   const containerRef = useRef(null);
   const reduceMotion = useReducedMotion();
   const total = JOURNEY_MILESTONES.length;
-  const milestone = JOURNEY_MILESTONES[selectedIndex];
 
-  // Drive timeline index via scroll through sticky container
+  // Stage geometry (px). The path is taller than the screen and the "camera"
+  // follows the newest trophy, so labels always have room and stay full size.
+  const W = 960;
+  const STEP = 170;
+  const PAD_TOP = 140;
+  const PAD_BOTTOM = 160;
+  const H = PAD_TOP + (total - 1) * STEP + PAD_BOTTOM;
+  const AREA_OFFSET = 150; // header height reserved above the stage
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
 
-  const progressFill = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  // The path reaches the last trophy at 92% of the scroll, leaving a short hold.
+  const drawn = useTransform(scrollYProgress, [0, 0.92], [0, 1], { clamp: true });
+  const dashOffset = useTransform(drawn, (v) => 1 - v);
 
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    // Map scroll progress (0 to 1) across the total number of milestones
-    const idx = Math.min(total - 1, Math.max(0, Math.floor(latest * total)));
-    setSelectedIndex(idx);
+  const nodeY = (i) => H - PAD_BOTTOM - i * STEP;
+  const nodeX = (i) => W / 2 + (i % 2 === 0 ? -50 : 50);
+
+  // Keep the path front at ~60% of the visible area.
+  const cameraY = useTransform(drawn, (v) => {
+    const viewH = (typeof window === 'undefined' ? 700 : window.innerHeight) - AREA_OFFSET;
+    return viewH * 0.6 - nodeY(v * (total - 1));
   });
 
-  const handleYearClick = (index) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const sectionTop = rect.top + scrollTop;
-    const sectionHeight = containerRef.current.offsetHeight - window.innerHeight;
-    const targetY = sectionTop + (index / (total - 1)) * sectionHeight;
-    window.scrollTo({ top: targetY, behavior: 'smooth' });
-  };
+  // Trophy i appears as the drawn path reaches it.
+  useMotionValueEvent(drawn, 'change', (v) => {
+    setCount(Math.min(total, Math.floor(v * (total - 1) + 0.001) + 1));
+  });
+
+  const pathD = JOURNEY_MILESTONES.reduce((d, _, i) => {
+    if (i === 0) return `M${nodeX(0)} ${nodeY(0)}`;
+    return `${d} C${nodeX(i - 1)} ${nodeY(i - 1) - STEP / 2} ${nodeX(i)} ${nodeY(i) + STEP / 2} ${nodeX(i)} ${nodeY(i)}`;
+  }, '');
 
   return (
-    <section ref={containerRef} className="relative w-full h-[320vh]">
+    <section ref={containerRef} className="relative w-full h-[800vh]">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center bg-page overflow-hidden py-6">
-        <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8 lg:gap-12">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div className="flex flex-col gap-3 max-w-2xl">
+        <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-4">
+          <div className="flex items-end justify-between gap-4">
+            <div className="flex flex-col gap-2">
               <span className="section-label">Our History</span>
-              <h2 className="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-heading leading-[1.15] tracking-tight m-0">
+              <h2 className="font-heading font-bold text-[28px] lg:text-[36px] text-heading leading-[1.15] tracking-tight m-0">
                 Company journey
               </h2>
-              <p className="font-body text-[14px] sm:text-[15px] text-surface-500 leading-[1.6] m-0">
-                Scroll down to travel through SKM's history from founding in 1996 through two decades of honours.
-              </p>
             </div>
-
             <InternalLink
               route="accolades"
               onPageChange={onPageChange}
-              className="self-start md:self-auto inline-flex items-center gap-2.5 min-h-[42px] px-6 py-2.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[12.5px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 flex-shrink-0"
+              className="inline-flex items-center gap-2.5 min-h-[42px] px-6 py-2.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[12.5px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 flex-shrink-0"
             >
               Explore Our History
             </InternalLink>
           </div>
 
-          {/* Timeline Controls & Horizontal Progress Line */}
-          <div className="relative pt-[7px]">
-            <div className="absolute left-0 right-0 top-[22px] h-[3px] rounded-full bg-surface-200" aria-hidden="true" />
-            <motion.div
-              className="absolute left-0 top-[22px] h-[3px] rounded-full bg-brand-600 origin-left"
-              style={{ width: progressFill }}
-              aria-hidden="true"
-            />
+          <div
+            className="relative mx-auto overflow-hidden"
+            style={{
+              width: W,
+              maxWidth: '100%',
+              height: `calc(100vh - ${AREA_OFFSET}px)`,
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent)',
+              maskImage: 'linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent)',
+            }}
+          >
+            <motion.div className="absolute left-0 top-0" style={{ width: W, height: H, y: cameraY }}>
+              <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className="absolute inset-0" aria-hidden="true">
+                <defs>
+                  <mask id="journey-path-mask" maskUnits="userSpaceOnUse" x="0" y="0" width={W} height={H}>
+                    <motion.path
+                      d={pathD}
+                      pathLength="1"
+                      stroke="#fff"
+                      strokeWidth="10"
+                      fill="none"
+                      strokeDasharray="1"
+                      style={{ strokeDashoffset: dashOffset }}
+                    />
+                  </mask>
+                </defs>
+                <path d={pathD} fill="none" stroke="#cfcfcf" strokeWidth="2" strokeDasharray="8 8" opacity="0.6" />
+                <path d={pathD} fill="none" stroke="#6b6b6b" strokeWidth="2.5" strokeDasharray="8 8" mask="url(#journey-path-mask)" />
+                {JOURNEY_MILESTONES.map((m, i) => (
+                  <circle
+                    key={m.title}
+                    cx={nodeX(i)}
+                    cy={nodeY(i)}
+                    r="9"
+                    fill="#fff"
+                    stroke={m.color}
+                    strokeWidth="3.5"
+                    opacity={i < count ? 1 : 0.3}
+                  />
+                ))}
+              </svg>
 
-            <div role="tablist" aria-label="Company journey milestones" className="relative grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-x-2 gap-y-6">
               {JOURNEY_MILESTONES.map((m, i) => {
-                const isSelected = i === selectedIndex;
-                const isPassed = i < selectedIndex;
+                const x = nodeX(i);
+                const y = nodeY(i);
+                const visible = i < count;
+                const left = i % 2 === 0;
                 return (
-                  <button
-                    key={m.year}
-                    type="button"
-                    role="tab"
-                    aria-selected={isSelected}
-                    onClick={() => handleYearClick(i)}
-                    className="group flex flex-col items-center gap-2.5 bg-transparent border-none p-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-lg"
-                  >
-                    <motion.span
-                      animate={{ scale: isSelected && !reduceMotion ? 1.15 : 1 }}
-                      transition={{ duration: 0.25, ease: EASE_PREMIUM }}
-                      className={`relative z-10 w-[42px] h-[42px] rounded-full flex items-center justify-center font-heading font-bold text-[10.5px] border-2 transition-colors duration-200 ${
-                        isSelected
-                          ? 'bg-brand-600 border-brand-600 text-white ring-4 ring-brand-600/25 shadow-[0_0_16px_rgba(228,10,24,0.35)]'
-                          : isPassed
-                            ? 'bg-brand-600 border-brand-600 text-white'
-                            : 'bg-white border-surface-300 text-surface-500 group-hover:border-brand-600/60'
-                      }`}
+                  <div key={m.title}>
+                    <motion.div
+                      className="absolute"
+                      style={{ left: x - 30, top: y - 78, width: 60 }}
+                      initial={false}
+                      animate={visible ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.4, y: 16 }}
+                      transition={{ type: 'spring', stiffness: 320, damping: 20 }}
                     >
-                      {m.year.slice(0, 4)}
-                    </motion.span>
-                    <span
-                      className={`font-body text-[11px] font-semibold uppercase tracking-wide transition-colors duration-200 hidden sm:block text-center leading-tight max-w-[90px] ${
-                        isSelected ? 'text-brand-600 font-bold' : 'text-surface-400'
-                      }`}
+                      <Trophy color={m.color} size={60} />
+                    </motion.div>
+                    <motion.div
+                      className={`absolute w-[330px] ${left ? 'text-right' : 'text-left'}`}
+                      style={{
+                        top: y - 48,
+                        transform: 'translateY(-50%)',
+                        ...(left ? { left: x - 30 - 330 - 10 } : { left: x + 30 + 10 }),
+                      }}
+                      initial={false}
+                      animate={visible ? { opacity: 1, x: 0 } : { opacity: 0, x: reduceMotion ? 0 : left ? 20 : -20 }}
+                      transition={{ duration: reduceMotion ? 0.01 : 0.45, ease: EASE_PREMIUM }}
                     >
-                      {m.label}
-                    </span>
-                  </button>
+                      <p className="font-heading font-bold text-[18px] leading-[1.25] m-0" style={{ color: m.color }}>
+                        {m.title}
+                      </p>
+                      <p className="font-body text-[14px] text-surface-500 leading-[1.4] m-0 mt-1">{m.by}</p>
+                    </motion.div>
+                  </div>
                 );
               })}
-            </div>
-          </div>
+            </motion.div>
 
-          {/* Animated Detail Card */}
-          <div className="relative w-full">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={milestone.year}
-                initial={{ opacity: 0, y: reduceMotion ? 0 : 20, scale: reduceMotion ? 1 : 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: reduceMotion ? 0 : -16, scale: reduceMotion ? 1 : 0.98 }}
-                transition={{ duration: reduceMotion ? 0.01 : 0.45, ease: EASE_PREMIUM }}
-                className="relative rounded-[24px] border border-[#eee] bg-[#fdfbf7] p-8 sm:p-10 flex flex-col gap-4 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.04)]"
-              >
-                {/* Background Watermark Year */}
-                <span
-                  aria-hidden="true"
-                  className="absolute right-4 -bottom-6 font-heading font-black text-[100px] sm:text-[140px] text-surface-900/[0.04] select-none pointer-events-none leading-none tabular-nums"
-                >
-                  {milestone.year}
-                </span>
-
-                <span aria-hidden="true" className="absolute top-0 left-0 right-0 h-[3px] bg-brand-600" />
-
-                <div className="flex items-center justify-between gap-4 relative z-10">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-brand-600/10 font-body text-[11px] font-bold uppercase tracking-wider text-brand-600">
-                    {milestone.tag}
-                  </span>
-                  <span className="font-body text-[12px] font-bold text-surface-400 tabular-nums flex-shrink-0">
-                    {String(selectedIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-                  </span>
-                </div>
-
-                <div className="flex flex-col gap-2 relative z-10">
-                  <span className="font-heading font-black text-[32px] sm:text-[42px] text-brand-600 leading-none tabular-nums">
-                    {milestone.year}
-                  </span>
-                  <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0">
-                    {milestone.label}
-                  </h3>
-                </div>
-
-                <p className="font-body text-[15px] sm:text-[16px] text-surface-600 leading-[1.7] m-0 max-w-[65ch] relative z-10">
-                  {milestone.desc}
-                </p>
-
-                <div className="flex items-center gap-2 pt-2 text-[12px] font-body text-surface-400 relative z-10">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M12 5v14M19 12l-7 7-7-7" />
-                  </svg>
-                  <span>Scroll down to travel to {selectedIndex < total - 1 ? JOURNEY_MILESTONES[selectedIndex + 1].year : 'the next section'}</span>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+            <span className="absolute left-2 bottom-3 font-body text-[13px] font-bold text-surface-400 tabular-nums">
+              {String(count).padStart(2, '0')} / {String(total).padStart(2, '0')}
+            </span>
           </div>
         </div>
       </div>
@@ -367,26 +372,23 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
 
           {JOURNEY_MILESTONES.map((m) => (
             <motion.div
-              key={m.year}
+              key={m.title}
               initial={{ opacity: 0, y: isReducedMotion ? 0 : 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: isReducedMotion ? 0.01 : 0.5, ease: EASE_PREMIUM, delay: isReducedMotion ? 0 : 0.05 }}
               className="relative flex gap-5 pb-8 last:pb-0"
             >
-              <span className="relative z-10 flex-shrink-0 w-[42px] h-[42px] rounded-full flex items-center justify-center font-heading font-bold text-[10px] border-2 bg-brand-600 border-brand-600 text-white">
-                {m.year.slice(0, 4)}
+              <span className="relative z-10 flex-shrink-0 w-[42px] h-[42px] rounded-full flex items-center justify-center bg-white border-2" style={{ borderColor: m.color }}>
+                <Trophy color={m.color} size={22} />
               </span>
 
               <div className="flex flex-col gap-1.5 pt-1.5">
-                <span className="inline-flex items-center w-fit px-3 py-1 rounded-full bg-brand-600/10 font-body text-[11px] font-bold uppercase tracking-wider text-brand-600">
-                  {m.tag}
-                </span>
-                <h3 className="font-heading font-bold text-[19px] text-heading leading-[1.25] m-0">
-                  {m.year} - {m.label}
+                <h3 className="font-heading font-bold text-[17px] leading-[1.25] m-0" style={{ color: m.color }}>
+                  {m.title}
                 </h3>
                 <p className="font-body text-[14px] text-surface-500 leading-[1.6] m-0">
-                  {m.desc}
+                  {m.by}
                 </p>
               </div>
             </motion.div>
@@ -413,7 +415,7 @@ function LeadershipMessageSection({ onPageChange }) {
         <div className="flex flex-col items-center gap-3 text-center">
           <span className="section-label justify-center">Leadership Message</span>
           <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
-            A Message From Our CEO
+            A Message From Our CMD
           </h2>
         </div>
 
@@ -552,7 +554,7 @@ const BUSINESS_MODEL_STAGES = [
   { label: 'Feed', fact: 'In-house feed mill screens every ingredient for mycotoxins, pesticides, and antibiotic residues before formulation.' },
   { label: 'Farm', fact: '2.4 million layers housed across ISO 22000 certified integrated farms, producing approximately 164 million eggs annually.' },
   { label: 'Plant', fact: 'European Union (EU) - Directive compliance processing plant handling up to 2 million eggs per day across dedicated yolk and albumen lines.' },
-  { label: 'UMC', fact: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DoP) to ensure quality and traceability.' },
+  { label: 'Branded Eggs', fact: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DoP) to ensure quality and traceability.' },
   // Real, verbatim-sourced facts from EggProcessingPlant.jsx / SustainabilityCommunityPage.jsx:
   // integrated biogas facility, 70-tonne poultry litter handling capacity,
   // nutrient-rich liquid fertilizer supplied to farmers at no cost.

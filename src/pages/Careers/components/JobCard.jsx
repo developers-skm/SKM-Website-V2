@@ -37,6 +37,12 @@ export default function JobCard({ job, onPageChange }) {
             <CareerIcon name="clock" className="w-4 h-4 text-surface-400" />
             {job.experience}
           </li>
+          {job.salary && (
+            <>
+              <li aria-hidden="true" className="hidden sm:block text-surface-300">•</li>
+              <li className="flex items-center gap-1.5 font-semibold text-heading">{job.salary}</li>
+            </>
+          )}
           <li aria-hidden="true" className="hidden sm:block text-surface-300">•</li>
           <li className="flex items-center gap-1.5">
             <CareerIcon name="graduate" className="w-4 h-4 text-surface-400" />

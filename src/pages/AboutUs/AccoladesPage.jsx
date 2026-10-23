@@ -11,17 +11,9 @@ const headerVariants = {
 };
 
 /*
-  Metro grid layout - images in natural order, CSS auto-placement fills rows:
-
-  Col:  1       2       3       4
-  R1: [   Pic1 (span-2)  ] [Pic2] [Pic3]
-  R2: [Pic4] [Pic5] [   Pic6 (span-2)  ]
-  R3: [   Pic7 (span-2)  ] [   Pic8 (span-2)  ]
-
-  colSpan drives which cells each image occupies; auto-placement handles rows.
+  Gallery grid - 2 columns x 4 rows of equal 8:5 tiles, matching the ~1.6:1
+  source photos so nothing is cropped heavily.
 */
-const colSpans = [2, 1, 1, 1, 1, 2, 2, 2];
-
 function GalleryCard({ item, index, className = '' }) {
   return (
     <motion.div
@@ -35,7 +27,7 @@ function GalleryCard({ item, index, className = '' }) {
       <img
         src={item.image}
         alt={item.name}
-        className="absolute inset-0 w-full h-full object-cover select-none"
+        className={`absolute inset-0 w-full h-full object-cover select-none ${item.image.startsWith("/gallery") ? "" : "scale-[1.09]"}`}
         loading="lazy"
       />
 
@@ -53,13 +45,13 @@ function GalleryCard({ item, index, className = '' }) {
 
       {/* Layer 2 - gradient + content: hidden at rest, rises from bottom on hover */}
       <div
-        className="absolute inset-0 flex flex-col justify-end px-6 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10 origin-bottom scale-y-0 opacity-0 transition-all duration-500 group-hover:scale-y-100 group-hover:opacity-100"
+        className="absolute inset-0 flex flex-col justify-end p-5 sm:p-6 origin-bottom scale-y-0 opacity-0 transition-all duration-500 group-hover:scale-y-100 group-hover:opacity-100"
         style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0) 24.28%, rgba(0,0,0,0.82) 91.5%)' }}
       >
-        <h3 className="font-heading font-bold text-[16px] sm:text-[20px] lg:text-[24px] text-white uppercase tracking-wide m-0 mb-2 leading-[1.2]">
+        <h3 className="font-heading font-bold text-[18px] xl:text-[22px] text-white uppercase tracking-wide m-0 mb-1.5 leading-[1.2]">
           {item.name}
         </h3>
-        <p className="font-body text-white/70 text-[11px] sm:text-[12px] leading-relaxed m-0 line-clamp-2">
+        <p className="font-body text-white/85 text-[13px] xl:text-[14px] leading-snug m-0">
           {item.description}
         </p>
       </div>
@@ -116,12 +108,12 @@ export default function AccoladesPage({ onPageChange }) {
             {galleryItems.map((item, idx) => (
               <div
                 key={idx}
-                className="relative aspect-square overflow-hidden group"
+                className="relative aspect-[8/5] overflow-hidden group"
               >
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="absolute inset-0 w-full h-full object-cover select-none"
+                  className={`absolute inset-0 w-full h-full object-cover select-none ${item.image.startsWith("/gallery") ? "" : "scale-[1.09]"}`}
                   loading="lazy"
                 />
                 {/* Scrim - collapses upward on hover */}
@@ -141,18 +133,14 @@ export default function AccoladesPage({ onPageChange }) {
 
           {/* Desktop: 4-col metro CSS grid - auto-placement, images in natural order */}
           <div
-            className="hidden lg:grid grid-cols-4 rounded-[20px] overflow-hidden w-full"
-            style={{
-              gridTemplateRows:
-                'clamp(200px, 22vw, 340px) clamp(200px, 22vw, 340px) clamp(160px, 16vw, 250px)',
-            }}
+            className="hidden lg:grid grid-cols-2 rounded-[20px] overflow-hidden w-full"
           >
             {galleryItems.map((item, idx) => (
               <GalleryCard
                 key={idx}
                 item={item}
                 index={idx}
-                className={colSpans[idx] === 2 ? 'col-span-2' : 'col-span-1'}
+                className="aspect-[8/5]"
               />
             ))}
           </div>
