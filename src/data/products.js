@@ -27,6 +27,7 @@ const EggAlbumenPowderTds = getBrochureUrl('SKM EGG ALBUMEN POWDER    A5 FLYER (
 const WholeEggLiquidTds = getBrochureUrl('SKM_WEL_Liquid_Flyer.pdf');
 const EggYolkLiquidTds = getBrochureUrl('SKM_EYL_Liquid_Flyer.pdf');
 const EggAlbumenLiquidTds = getBrochureUrl('SKM_EAL_Liquid_Flyer.pdf');
+const EggWhiteCubeTds = getBrochureUrl('SKM_Egg_White_Cube_Flyer.pdf');
 
 export const PRODUCT_CATEGORIES = {
   POWDERS: 'Egg Powders',
@@ -122,6 +123,7 @@ const products = [
     category: PRODUCT_CATEGORIES.SPECIALITY,
     shortDescription: 'Cooked, diced egg white with zero cholesterol and high protein content, suitable for a wide range of applications, including salads, patties, cooked dishes, and ready-to-eat foods.',
     packagingOptions: ['100g', '200g', '500g'],
+    tdsUrl: EggWhiteCubeTds,
   },
   {
     id: 'customised_mix',

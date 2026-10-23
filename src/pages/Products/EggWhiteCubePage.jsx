@@ -5,12 +5,12 @@ import ProductHero from '../../components/ProductPage/ProductHero';
 import { containerVariants, itemVariants } from '../../utils/animationVariants';
 
 import EggWhiteCubeImg from '../../assets/3. PRODUCTS/Speciality products/Egg White Cube/EGG WHITE CUBE_1000x667px.png';
-import ProteinMixImg from '../../assets/3. PRODUCTS/Speciality products/Egg White Cube/PROTEIN MIX_1000x667px.png';
+import NutriInfoImg from '../../assets/3. PRODUCTS/Speciality products/Egg White Cube/NUTRI INFO.jpg';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 const galleryImages = [
   { src: EggWhiteCubeImg, label: 'Egg White Cube' },
-  { src: ProteinMixImg, label: 'Protein Mix' },
+  { src: NutriInfoImg, label: 'Nutrition Facts' },
 ];
 
 const features = [
