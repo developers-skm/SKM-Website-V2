@@ -7,6 +7,8 @@ import { containerVariants, itemVariants } from '../../utils/animationVariants';
 import EggWhiteCubeImg from '../../assets/3. PRODUCTS/Speciality products/Egg White Cube/EGG WHITE CUBE_1000x667px.png';
 import NutriInfoImg from '../../assets/3. PRODUCTS/Speciality products/Egg White Cube/NUTRI INFO.jpg';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
+import ProductDocuments from '../../components/ProductPage/ProductDocuments';
+import { getTdsUrl } from '../../data/products';
 
 const galleryImages = [
   { src: EggWhiteCubeImg, label: 'Egg White Cube' },
@@ -53,6 +55,7 @@ const features = [
 ];
 
 export default function EggWhiteCubePage({ onPageChange }) {
+  const tdsUrl = getTdsUrl('egg_white_cube');
   return (
     <div className="w-full flex flex-col bg-page font-body text-left">
       <SEO
@@ -79,6 +82,9 @@ export default function EggWhiteCubePage({ onPageChange }) {
         categoryLabel="Speciality Products"
         titleLine1="Egg White"
         titleLine2="Cube"
+        tdsUrl={tdsUrl}
+        onRequestQuote={() => onPageChange('get-quote', { productId: 'egg_white_cube' })}
+        onRequestPricing={() => onPageChange('get-quote', { productId: 'egg_white_cube' })}
         description="Egg White Cubes are very low in calories, zero cholesterol, high in protein and provide amino acids that our bodies cannot produce, making them a great choice for everyone."
       />
 
@@ -185,7 +191,15 @@ export default function EggWhiteCubePage({ onPageChange }) {
         </motion.div>
       </div>
 
-
+      <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
+          <ProductDocuments
+            tdsUrl={tdsUrl}
+            productName="Egg White Cube"
+            onRequestPack={() => onPageChange('contact-us')}
+          />
+        </div>
+      </section>
     </div>
   );
 }
