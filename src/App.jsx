@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import lazyWithRetry, { preloadRoutes } from './utils/lazyWithRetry';
 import { AnimatePresence, motion } from 'framer-motion';
 import Layout from './components/Layout/Layout';
@@ -96,13 +96,50 @@ const scrollToTopInstant = () => {
   else window.scrollTo(0, 0);
 };
 
+const scrollToInstant = (y) => {
+  if (window.__lenis) window.__lenis.scrollTo(y, { immediate: true, force: true });
+  else window.scrollTo(0, y);
+};
+
+// Back/forward restore: the new page mounts lazily and its height grows as
+// content/images settle, so keep re-applying the saved offset until the page
+// is tall enough (and briefly after, for layout shift). Any user input cancels.
+let cancelRestore = null;
+const restoreScrollPosition = (y, onDone) => {
+  if (cancelRestore) cancelRestore();
+  const start = performance.now();
+  let rafId;
+  const finish = () => {
+    cancelAnimationFrame(rafId);
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((e) => window.removeEventListener(e, finish));
+    cancelRestore = null;
+    onDone();
+  };
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((e) =>
+    window.addEventListener(e, finish, { passive: true }),
+  );
+  cancelRestore = finish;
+  const tick = () => {
+    window.__lenis?.resize();
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    scrollToInstant(Math.max(0, Math.min(y, max)));
+    const elapsed = performance.now() - start;
+    if ((max >= y - 1 && elapsed > 1000) || elapsed > 3500) finish();
+    else rafId = requestAnimationFrame(tick);
+  };
+  rafId = requestAnimationFrame(tick);
+};
+
 function App() {
+  const pendingScrollRef = useRef(null);
   const getPageFromPath = () => {
     const path = window.location.pathname.replace(/^\//, '');
     return path || 'home';
   };
 
   const [activePage, setActivePage] = useState(getPageFromPath);
+  const activePageRef = useRef(activePage);
+  activePageRef.current = activePage;
   const [prefill, setPrefill] = useState(() => window.history.state?.prefill ?? null);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isOnline, setIsOnline] = useState(() => (typeof navigator !== 'undefined' ? navigator.onLine : true));
@@ -139,14 +176,45 @@ function App() {
     setPrefill(prefillData);
     const path = page === 'home' ? '/' : `/${page}`;
     if (window.location.pathname !== path || prefillData) {
+      // Remember where the user was on the page they're leaving so Back returns there.
+      saveScroll();
       window.history.pushState({ page, prefill: prefillData }, '', path);
     }
+    if (cancelRestore) cancelRestore();
+    pendingScrollRef.current = null;
     scrollToTopInstant();
   };
+
+  // Persist the scroll offset into the current history entry (debounced) so
+  // popstate can restore it. Skipped while a restore is in flight.
+  const saveScroll = () => {
+    if (pendingScrollRef.current !== null) return;
+    window.history.replaceState({ ...window.history.state, scrollY: window.scrollY }, '');
+  };
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
+    let timer;
+    const onScroll = () => {
+      clearTimeout(timer);
+      timer = setTimeout(saveScroll, 100);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const handlePopState = (event) => {
       const page = event.state?.page || getPageFromPath();
+      const y = event.state?.scrollY ?? 0;
+      pendingScrollRef.current = y;
+      // Same page (no exit transition to hook into): restore straight away.
+      if (page === activePageRef.current) {
+        restoreScrollPosition(y, () => { pendingScrollRef.current = null; });
+      }
       setActivePage(page);
       if (page !== 'offline') {
         setLastOnlinePage(page);
@@ -156,6 +224,14 @@ function App() {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  const handleExitComplete = () => {
+    if (pendingScrollRef.current === null) {
+      scrollToTopInstant();
+      return;
+    }
+    restoreScrollPosition(pendingScrollRef.current, () => { pendingScrollRef.current = null; });
+  };
 
   const suppressMobileActions =
     (isContactModalOpen && activePage === 'contact-us') || PRODUCT_DETAIL_ROUTES.has(activePage);
@@ -354,7 +430,7 @@ function App() {
   return (
     <Layout activePage={activePage} onPageChange={handlePageChange} suppressMobileActions={suppressMobileActions}>
       <ErrorBoundary>
-        <AnimatePresence mode="wait" onExitComplete={scrollToTopInstant}>
+        <AnimatePresence mode="wait" onExitComplete={handleExitComplete}>
           <motion.div
             key={activePage}
             initial={{ opacity: 0, y: 15 }}
