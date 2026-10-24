@@ -1,6 +1,9 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { eggFacts } from '../../data/eggFacts';
 import { eggCards } from '../../data/eggCards';
+import henBody from '../../assets/images/hen/hen-body.webp';
+import henLegA from '../../assets/images/hen/hen-leg-a.webp';
+import henLegB from '../../assets/images/hen/hen-leg-b.webp';
 
 /**
  * Curved section boundary - replaces a flat 1px border between two stacked
@@ -266,7 +269,159 @@ function RollingEgg({ pathRef, boxRef, withImage }) {
 }
 
 
-export default function CurvedDivider({ flip = false, bg = '#fff', fill = '#ececec', className = '', cards = false }) {
+/**
+ * A small hen built from layered transparent cut-outs of one photographic
+ * hen (body, near leg, far leg - see assets/images/hen). Each leg swings from
+ * its own hip, hidden under the belly feathers, so she genuinely walks: the
+ * planted foot travels backward at exactly the ground speed while the other
+ * lifts, swings forward and lands. Her speed along the divider is derived
+ * from the stride, so feet never skate. She pauses between walks (gentle
+ * breathing, nothing else moves). Feet are positioned from the real path so
+ * they stand on the line at any width; only animates on screen, and under
+ * prefers-reduced-motion she simply stands on the line.
+ *
+ * There is deliberately no peck: the head is far above the ground in this
+ * artwork, so pecking needs extra head/neck art (see the project notes).
+ */
+const HEN_FEET = 0.97; // feet sit this far down the box
+const HEN_PIVOT_A = '53.22% 77.06%'; // near-leg hip (inside the feathers)
+const HEN_PIVOT_B = '63.16% 77.06%'; // far-leg hip
+const HEN_LEG_LEN = 0.2286; // hip-to-ground, as a share of the box height
+const CYCLE_MS = 900; // one full two-leg walking cycle
+const STANCE = 0.55; // share of a leg's cycle spent planted
+const SWING_DEG = 17; // leg swings +/- this far from vertical
+const LIFT = 0.035; // foot lift during swing, as a share of box height
+const smooth = (u) => u * u * (3 - 2 * u);
+
+function WalkingHen({ pathRef, boxRef }) {
+  const henRef = useRef(null);
+  const bodyRef = useRef(null);
+  const legARef = useRef(null);
+  const legBRef = useRef(null);
+  const [motion] = useState(() => ({ dir: Math.random() < 0.5 ? 1 : -1, phase: Math.random() }));
+
+  useEffect(() => {
+    const box = boxRef.current;
+    const path = pathRef.current;
+    const hen = henRef.current;
+    const body = bodyRef.current;
+    const legA = legARef.current;
+    const legB = legBRef.current;
+    if (!box || !path || !hen || !body || !legA || !legB) return undefined;
+
+    const reduced = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const total = path.getTotalLength();
+    const at = (len) => path.getPointAtLength(Math.min(Math.max(len, 0), total));
+
+    // Put the hen at position s (0..1) along the curve, feet on the line.
+    const place = (s) => {
+      const sx = box.clientWidth / VB_W;
+      const sy = box.clientHeight / VB_H;
+      const p = at(s * total);
+      const a = at(s * total - 3);
+      const q = at(s * total + 3);
+      const tilt = (Math.atan2((q.y - a.y) * sy, (q.x - a.x) * sx) * 180) / Math.PI * motion.dir * 0.7;
+      hen.style.transform = `translate(${p.x * sx}px, ${p.y * sy}px) translate(-50%, -${HEN_FEET * 100}%) scaleX(${motion.dir}) rotate(${tilt}deg)`;
+    };
+
+    if (reduced) {
+      const still = () => { place(0.5); hen.style.opacity = '1'; };
+      still();
+      window.addEventListener('resize', still);
+      return () => window.removeEventListener('resize', still);
+    }
+
+    // One leg's pose for gait phase p (0..1): planted foot sweeps back at a
+    // constant rate, then the leg lifts, swings forward and lands.
+    const legPose = (p, amt, boxH) => {
+      const L = HEN_LEG_LEN * boxH;
+      let deg;
+      let lift = 0;
+      if (p < STANCE) {
+        deg = -SWING_DEG + 2 * SWING_DEG * (p / STANCE);
+      } else {
+        const u = (p - STANCE) / (1 - STANCE);
+        deg = SWING_DEG - 2 * SWING_DEG * smooth(u);
+        lift = LIFT * boxH * Math.sin(Math.PI * u);
+      }
+      deg *= amt;
+      // A rotated leg's foot rises by L(1 - cos); drop it back so it stays planted.
+      const plant = L * (1 - Math.cos((deg * Math.PI) / 180));
+      return `translateY(${(plant - lift * amt).toFixed(2)}px) rotate(${deg.toFixed(2)}deg)`;
+    };
+
+    let raf = 0;
+    let visible = false;
+    let last = 0;
+    let dist = motion.phase * 1e6; // px travelled (wrapped to the path length below)
+    let gait = motion.phase; // 0..1 walking-cycle phase
+    let walkAmt = 1; // 0 = standing, 1 = full stride (eased)
+    let walking = true;
+    let until = 3500 + Math.random() * 3000; // ms left in the current walk / pause
+    let clock = 0;
+
+    const frame = (now) => {
+      if (!visible) return;
+      const dt = last ? Math.min(now - last, 64) : 0;
+      last = now;
+      clock += dt;
+
+      until -= dt;
+      if (until <= 0) {
+        walking = !walking;
+        until = walking ? 4000 + Math.random() * 3500 : 1800 + Math.random() * 1600;
+      }
+      // Ease in/out of the stride so starts and stops are never abrupt.
+      walkAmt += ((walking ? 1 : 0) - walkAmt) * Math.min(1, dt / 220);
+      if (!walking && walkAmt < 0.002) walkAmt = 0;
+
+      const boxH = hen.clientHeight || 80;
+      const stepSpeed = (HEN_LEG_LEN * boxH * 2 * Math.sin((SWING_DEG * Math.PI) / 180)) / ((STANCE * CYCLE_MS) / 1000); // px/s
+      gait = (gait + (dt / CYCLE_MS) * walkAmt) % 1;
+      dist += (stepSpeed * walkAmt * dt) / 1000;
+
+      const len = Math.max(1, total * (box.clientWidth / VB_W));
+      const t = (dist % len) / len;
+      place(motion.dir > 0 ? t : 1 - t);
+      hen.style.opacity = String(Math.max(0, Math.min(1, t / 0.05, (1 - t) / 0.05)));
+
+      legA.style.transform = legPose(gait, walkAmt, boxH);
+      legB.style.transform = legPose((gait + 0.5) % 1, walkAmt, boxH);
+
+      // Body: ~1px rise-and-fall per step while walking; slow breathing at rest.
+      const bob = -((1 - Math.cos(4 * Math.PI * gait)) / 2) * 1.2 * walkAmt;
+      const breathe = 1 + 0.007 * Math.sin(clock / 700);
+      body.style.transform = `translateY(${bob.toFixed(2)}px) scaleY(${breathe.toFixed(4)})`;
+      raf = requestAnimationFrame(frame);
+    };
+
+    const io = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      last = 0;
+      cancelAnimationFrame(raf);
+      if (visible) raf = requestAnimationFrame(frame);
+    });
+    io.observe(box);
+    return () => { io.disconnect(); cancelAnimationFrame(raf); };
+  }, [boxRef, pathRef, motion]);
+
+  const layer = 'absolute inset-0 h-full w-full max-w-none select-none will-change-transform';
+  const img = { width: 289, height: 340, alt: '', 'aria-hidden': 'true', decoding: 'async', loading: 'lazy', draggable: false };
+  return (
+    <div
+      ref={henRef}
+      aria-hidden="true"
+      style={{ transformOrigin: `50% ${HEN_FEET * 100}%`, aspectRatio: '289 / 340' }}
+      className="absolute left-0 top-0 z-[6] h-[54px] sm:h-[66px] lg:h-[80px] opacity-0 will-change-transform pointer-events-none select-none drop-shadow-[0_2px_3px_rgba(36,30,24,0.22)]"
+    >
+      <img {...img} src={henLegB} ref={legBRef} className={layer} style={{ transformOrigin: HEN_PIVOT_B }} />
+      <img {...img} src={henLegA} ref={legARef} className={layer} style={{ transformOrigin: HEN_PIVOT_A }} />
+      <img {...img} src={henBody} ref={bodyRef} className={layer} style={{ transformOrigin: '50% 80%' }} />
+    </div>
+  );
+}
+
+export default function CurvedDivider({ flip = false, bg = '#fff', fill = '#ececec', className = '', cards = false, hen = false }) {
   const boxRef = useRef(null);
   const pathRef = useRef(null);
 
@@ -292,7 +447,9 @@ export default function CurvedDivider({ flip = false, bg = '#fff', fill = '#ecec
           strokeWidth="2"
         />
       </svg>
-      {!flip && !prefersReducedMotion() && <RollingEgg pathRef={pathRef} boxRef={boxRef} withImage={cards} />}
+      {!flip && (hen
+        ? <WalkingHen pathRef={pathRef} boxRef={boxRef} />
+        : !prefersReducedMotion() && <RollingEgg pathRef={pathRef} boxRef={boxRef} withImage={cards} />)}
     </div>
   );
 }

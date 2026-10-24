@@ -42,6 +42,14 @@ const ENQUIRY_TYPE_LABELS = {
   general: 'General Enquiry',
 };
 
+// enquiry_type -> recipient. Types without their own address use MAIL_TO.
+function resolveEnquiryRecipient(enquiryType) {
+  const byType = {
+    quality: process.env.MAIL_TO_QUALITY,
+  };
+  return byType[enquiryType] || process.env.MAIL_TO;
+}
+
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -69,7 +77,7 @@ async function sendEnquiryEmail(payload, attachment) {
 
   await contactTransporter.sendMail({
     from: process.env.MAIL_FROM,
-    to: process.env.MAIL_TO,
+    to: resolveEnquiryRecipient(payload.enquiry_type),
     replyTo: payload.email,
     subject: `[SKM Website] ${label} — ${payload.first_name} ${payload.last_name}`,
     html: buildEnquiryEmailHtml(payload),

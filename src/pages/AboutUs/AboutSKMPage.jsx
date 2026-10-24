@@ -7,8 +7,13 @@ import { getBrochureUrl } from '../../data/brochureUrl';
 import { EASE_PREMIUM, DURATION, fadeUp } from '../../utils/motionTokens';
 
 const CompanyProfilePdf = getBrochureUrl('Company Profile - SKM Egg Products Export India Limited.pdf');
-import FactoryImage from '../../assets/2. ABOUT US/Our Company/Factory image.webp';
+import FactoryImage from '../../assets/home/skm-factory.jpeg';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
+import accoladePic3 from '../../assets/ACCOLADES/Picture3.png';
+import accoladePic4 from '../../assets/ACCOLADES/Picture4.png';
+import accoladePic6 from '../../assets/ACCOLADES/Picture6.png';
+import accoladePic8 from '../../assets/ACCOLADES/Picture8.png';
+import goldTrophies from '../../assets/home/golden-trophies.png';
 
 // Section 2 - Company overview. Real content verbatim/derived from
 // src/pages/AboutUs/sections/OurCompany.jsx (also used on the standalone
@@ -143,15 +148,15 @@ const JOURNEY_MILESTONES = [
   { title: 'Best Export Performance Awards 2005-06', by: 'by MEPZ (Madras Export Processing Zone)', color: '#EE4266' },
   { title: 'State Safety Award - 2007', by: 'by Government of Tamil Nadu', color: '#17A398' },
   { title: 'Manufacturing Excellence Silver 2006 & Gold 2007 & 08', by: 'by Frost & Sullivan', color: '#2EB5C9' },
-  { title: 'Shri SKM Maeilanandhan receiving Padma Shree', by: 'by Honourable President of India, Shri Pranab Mukherjee', color: '#2F8FEF' },
-  { title: 'Export Excellence Award - 2012 & 13', by: 'at MEPZ, by Special Economic Zone - Chennai', color: '#6B3FA0' },
-  { title: 'Golden Trophy 2011-2012 and 2012-2013', by: '"APEDA" Ministry of Commerce, Government of India', color: '#8CC63F' },
+  { title: 'Shri SKM Maeilanandhan receiving Padma Shree', by: 'by Honourable President of India, Shri Pranab Mukherjee', color: '#2F8FEF', image: accoladePic8, crop: [544, 24, 12, 498, 310] },
+  { title: 'Export Excellence Award - 2012 & 13', by: 'at MEPZ, by Special Economic Zone - Chennai', color: '#6B3FA0', image: accoladePic6, crop: [675, 14, 6, 648, 346] },
+  { title: 'Golden Trophy 2011-2012 and 2012-2013', by: '"APEDA" Ministry of Commerce, Government of India', color: '#8CC63F', image: accoladePic4, crop: [544, 14, 8, 508, 296] },
   { title: 'Hidden Gem Award 2014-15', by: 'by TiECON at Chennai', color: '#E8318A' },
-  { title: '5 S Platinum Award 2015-16 & 2016-17', by: 'by ABK AOTS - Tamil Nadu', color: '#F07A1A' },
+  { title: '5 S Platinum Award 2015-16 & 2016-17', by: 'by ABK AOTS - Tamil Nadu', color: '#F07A1A', image: accoladePic3, crop: [665, 16, 8, 622, 392] },
   { title: 'CII Award 2016-17 on Food Safety', by: 'by CII', color: '#14A86B' },
   { title: 'Mondelez Quality and Food Safety Culture Awards 2021-2022', by: 'by Mondelez', color: '#7A3FA8' },
   { title: 'National Client of the Year 2022', by: 'Awarded by LMI Carpe Diem', color: '#1D4FD8' },
-  { title: 'Shri SKM Maeilanandhan receiving Padma Bhushan - 2026', by: 'by Honourable President of India, Smt. Droupadi Murmu', color: '#E40A18' },
+  { title: 'Shri SKM Maeilanandhan receiving Padma Bhushan - 2026', by: 'by Honourable President of India, Smt. Droupadi Murmu', color: '#E40A18', image: '/gallery/award-padma-bhushan-2026.jpg' },
 ];
 
 function Trophy({ color, size = 40 }) {
@@ -185,48 +190,144 @@ function CompanyJourneySection({ onPageChange }) {
   );
 }
 
-// Desktop / large-viewport - pinned scroll-driven timeline (320vh scroll
-// track, sticky panel, scroll-scrubbed year progression). Hidden below lg
-// so mobile never receives a forced sticky layout or scroll-jacked height
-// (same pattern as JourneyScrollSection/HomeJourney/TraceabilityLoopJourney
-// - pinned sticky sections don't translate to short/narrow touch
-// viewports).
+// Golden trophy collection (cut-out of "Golden Gallery of Distinctive Trophies",
+// transparent background). Boxes are each trophy's [x0, y0, x1, y1] in source
+// px, in the same order as JOURNEY_MILESTONES.
+const GOLD_SRC = { w: 2048, h: 768 };
+const GOLD_BOXES = [
+  [9, 305, 190, 534],
+  [209, 241, 305, 535],
+  [330, 340, 459, 534],
+  [475, 269, 616, 534],
+  [627, 308, 746, 534],
+  [750, 271, 929, 535],
+  [933, 271, 1114, 536],
+  [1141, 303, 1247, 535],
+  [1285, 226, 1385, 535],
+  [1410, 298, 1555, 536],
+  [1583, 296, 1694, 539],
+  [1732, 218, 1847, 537],
+  [1868, 134, 2035, 537],
+];
+const GOLD_ROW = { y0: 100, vw: GOLD_SRC.w, vh: 520 }; // source-px window shown in the gallery row
+const TROPHY_SHORT = [
+  'Silver Trophy', 'Best Export', 'State Safety', 'Manufacturing', 'Padma Shree', 'Export Excellence', 'APEDA Golden',
+  'Hidden Gem', '5 S Platinum', 'CII Food Safety', 'Mondelez', 'Client of the Year', 'Padma Bhushan',
+];
+
+const goldBox = (i) => {
+  const [a, b, c, d] = GOLD_BOXES[i];
+  const x0 = a - 4;
+  const y0 = b - 6;
+  return { x0, y0, w: c + 4 - x0, h: d + 10 - y0 };
+};
+
+// Background styling that shows only trophy i of the cut-out sheet inside a box
+// whose aspect ratio is the trophy's own, so it can be any size.
+const goldTrophyStyle = (i) => {
+  const { x0, y0, w, h } = goldBox(i);
+  return {
+    backgroundImage: `url(${goldTrophies})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: `${(GOLD_SRC.w / w) * 100}% ${(GOLD_SRC.h / h) * 100}%`,
+    backgroundPosition: `${(x0 / (GOLD_SRC.w - w)) * 100}% ${(y0 / (GOLD_SRC.h - h)) * 100}%`,
+    filter: 'drop-shadow(0 10px 14px rgba(120, 80, 0, 0.28))',
+  };
+};
+
+// The Accolades photo for a milestone. The PNGs ship with a pale frame baked
+// in, so `crop` = [fullWidth, x, y, w, h] (source px) trims it off. Milestones
+// with no photo show a large faint step number (path view) or nothing.
+function JourneyPhoto({ m, i, alignLeft = true, maxH, showPlaceholder = true }) {
+  if (!m.image) {
+    if (!showPlaceholder) return null;
+    return (
+      <span
+        className={`block font-heading font-bold leading-none select-none ${alignLeft ? 'text-left' : 'text-right'}`}
+        style={{ color: m.color, opacity: 0.14, fontSize: 160 }}
+        aria-hidden="true"
+      >
+        {String(i + 1).padStart(2, '0')}
+      </span>
+    );
+  }
+  const ratio = m.crop ? m.crop[3] / m.crop[4] : 544 / 340;
+  return (
+    <div
+      className="w-full overflow-hidden rounded-2xl shadow-[0_14px_40px_rgba(0,0,0,0.18)]"
+      style={{ aspectRatio: String(ratio), ...(maxH ? { width: `min(100%, ${Math.round(maxH * ratio)}px)` } : null) }}
+    >
+      <img
+        src={m.image}
+        alt={m.title}
+        className="block object-cover"
+        style={
+          m.crop
+            ? {
+                width: `${(m.crop[0] / m.crop[3]) * 100}%`,
+                maxWidth: 'none',
+                marginLeft: `${(-m.crop[1] / m.crop[3]) * 100}%`,
+                marginTop: `${(-m.crop[2] / m.crop[3]) * 100}%`,
+              }
+            : { width: '100%', height: '100%' }
+        }
+      />
+    </div>
+  );
+}
+
+// Desktop / large-viewport - pinned scroll-driven timeline. One long winding
+// "S" path links every trophy; the camera follows the path and holds on each
+// trophy for one scroll step, showing its trophy, text and Accolades photo at
+// full size. After the last trophy the view crossfades to a wide horizontal
+// overview of all of them. Hidden below lg so mobile never gets a forced
+// sticky layout (same pattern as JourneyScrollSection/HomeJourney).
+const SCENES_END = 0.86; // scroll progress where the path reaches the last trophy
+
 function DesktopJourneyTimeline({ onPageChange }) {
   const [count, setCount] = useState(1);
+  const [selected, setSelected] = useState(null);
   const containerRef = useRef(null);
   const reduceMotion = useReducedMotion();
   const total = JOURNEY_MILESTONES.length;
 
-  // Stage geometry (px). The path is taller than the screen and the "camera"
-  // follows the newest trophy, so labels always have room and stay full size.
-  const W = 960;
-  const STEP = 170;
-  const PAD_TOP = 140;
-  const PAD_BOTTOM = 160;
-  const H = PAD_TOP + (total - 1) * STEP + PAD_BOTTOM;
+  // Stage geometry (px). STEP matches the visible height so exactly one
+  // trophy fills the view at a time.
   const AREA_OFFSET = 150; // header height reserved above the stage
+  const [viewH] = useState(() => Math.max(420, (typeof window === 'undefined' ? 700 : window.innerHeight) - AREA_OFFSET));
+  const W = 1200;
+  const STEP = viewH;
+  const PAD = viewH / 2;
+  const H = PAD * 2 + (total - 1) * STEP;
+  const SWAY = 100; // how far each trophy sits left/right of centre (the S)
+  const TEXT_W = 400;
+  const PHOTO_W = Math.min(600, Math.round((viewH - 40) * (544 / 340))); // as large as the view allows
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
 
-  // The path reaches the last trophy at 92% of the scroll, leaving a short hold.
-  const drawn = useTransform(scrollYProgress, [0, 0.92], [0, 1], { clamp: true });
+  const nodeY = (i) => H - PAD - i * STEP;
+  const nodeX = (i) => W / 2 + (i % 2 === 0 ? -SWAY : SWAY);
+
+  // One trophy per scroll step: each segment glides to the next trophy, then holds on it.
+  const rawDrawn = useTransform(scrollYProgress, [0, SCENES_END], [0, 1], { clamp: true });
+  const drawn = useTransform(rawDrawn, (v) => {
+    const t = v * (total - 1);
+    const k = Math.min(Math.floor(t + 1e-6), total - 2);
+    const s = Math.min(1, Math.max(0, (t - k - 0.15) / 0.5));
+    const eased = s * s * (3 - 2 * s);
+    return v >= 1 ? 1 : (k + eased) / (total - 1);
+  });
   const dashOffset = useTransform(drawn, (v) => 1 - v);
 
-  const nodeY = (i) => H - PAD_BOTTOM - i * STEP;
-  const nodeX = (i) => W / 2 + (i % 2 === 0 ? -50 : 50);
+  // Keep the path front in the middle of the visible area.
+  const cameraY = useTransform(drawn, (v) => viewH * 0.5 + 20 - nodeY(v * (total - 1)));
 
-  // Keep the path front at ~60% of the visible area.
-  const cameraY = useTransform(drawn, (v) => {
-    const viewH = (typeof window === 'undefined' ? 700 : window.innerHeight) - AREA_OFFSET;
-    return viewH * 0.6 - nodeY(v * (total - 1));
-  });
-
-  // Trophy i appears as the drawn path reaches it.
+  // Trophy i is revealed as the path front arrives at it.
   useMotionValueEvent(drawn, 'change', (v) => {
-    setCount(Math.min(total, Math.floor(v * (total - 1) + 0.001) + 1));
+    setCount(Math.min(total, Math.floor(v * (total - 1) + 0.08) + 1));
   });
 
   const pathD = JOURNEY_MILESTONES.reduce((d, _, i) => {
@@ -234,11 +335,22 @@ function DesktopJourneyTimeline({ onPageChange }) {
     return `${d} C${nodeX(i - 1)} ${nodeY(i - 1) - STEP / 2} ${nodeX(i)} ${nodeY(i) + STEP / 2} ${nodeX(i)} ${nodeY(i)}`;
   }, '');
 
+  // Crossfade from the path to the horizontal overview at the end.
+  const overview = useTransform(scrollYProgress, [SCENES_END + 0.02, 0.99], [0, 1], { clamp: true });
+  const stageOpacity = useTransform(overview, [0, 0.4], [1, 0]);
+  const overviewOpacity = useTransform(overview, [0.4, 1], [0, 1]);
+  const overviewPointer = useTransform(overview, (o) => (o > 0.5 ? 'auto' : 'none'));
+
+  // Golden trophy collection: reset the selection when scrolling back up out of it.
+  useMotionValueEvent(overview, 'change', (o) => {
+    if (o < 0.3) setSelected(null);
+  });
+
   return (
-    <section ref={containerRef} className="relative w-full h-[800vh]">
+    <section ref={containerRef} className="relative w-full h-[1300vh]">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center bg-page overflow-hidden py-6">
         <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-4">
-          <div className="flex items-end justify-between gap-4">
+          <div className="flex items-end gap-6 lg:gap-8">
             <div className="flex flex-col gap-2">
               <span className="section-label">Our History</span>
               <h2 className="font-heading font-bold text-[28px] lg:text-[36px] text-heading leading-[1.15] tracking-tight m-0">
@@ -255,81 +367,213 @@ function DesktopJourneyTimeline({ onPageChange }) {
           </div>
 
           <div
-            className="relative mx-auto overflow-hidden"
+            className="relative w-full overflow-hidden"
             style={{
-              width: W,
-              maxWidth: '100%',
-              height: `calc(100vh - ${AREA_OFFSET}px)`,
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent)',
-              maskImage: 'linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent)',
+              height: viewH,
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent)',
+              maskImage: 'linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent)',
             }}
           >
-            <motion.div className="absolute left-0 top-0" style={{ width: W, height: H, y: cameraY }}>
-              <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className="absolute inset-0" aria-hidden="true">
-                <defs>
-                  <mask id="journey-path-mask" maskUnits="userSpaceOnUse" x="0" y="0" width={W} height={H}>
-                    <motion.path
-                      d={pathD}
-                      pathLength="1"
-                      stroke="#fff"
-                      strokeWidth="10"
-                      fill="none"
-                      strokeDasharray="1"
-                      style={{ strokeDashoffset: dashOffset }}
-                    />
-                  </mask>
-                </defs>
-                <path d={pathD} fill="none" stroke="#cfcfcf" strokeWidth="2" strokeDasharray="8 8" opacity="0.6" />
-                <path d={pathD} fill="none" stroke="#6b6b6b" strokeWidth="2.5" strokeDasharray="8 8" mask="url(#journey-path-mask)" />
-                {JOURNEY_MILESTONES.map((m, i) => (
-                  <circle
-                    key={m.title}
-                    cx={nodeX(i)}
-                    cy={nodeY(i)}
-                    r="9"
-                    fill="#fff"
-                    stroke={m.color}
-                    strokeWidth="3.5"
-                    opacity={i < count ? 1 : 0.3}
-                  />
-                ))}
-              </svg>
+            <motion.div className="absolute inset-0" style={{ opacity: stageOpacity }}>
+              <motion.div
+                className="absolute top-0"
+                style={{ width: W, height: H, left: `calc(50% - ${W / 2}px)`, y: cameraY }}
+              >
+                <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className="absolute inset-0" aria-hidden="true">
+                  <defs>
+                    <mask id="journey-path-mask" maskUnits="userSpaceOnUse" x="0" y="0" width={W} height={H}>
+                      <motion.path
+                        d={pathD}
+                        pathLength="1"
+                        stroke="#fff"
+                        strokeWidth="10"
+                        fill="none"
+                        strokeDasharray="1"
+                        style={{ strokeDashoffset: dashOffset }}
+                      />
+                    </mask>
+                  </defs>
+                  <path d={pathD} fill="none" stroke="#cfcfcf" strokeWidth="2.5" strokeDasharray="10 10" opacity="0.6" />
+                  <path d={pathD} fill="none" stroke="#e40a18" strokeWidth="3.5" strokeDasharray="10 10" mask="url(#journey-path-mask)" />
+                </svg>
 
-              {JOURNEY_MILESTONES.map((m, i) => {
-                const x = nodeX(i);
-                const y = nodeY(i);
-                const visible = i < count;
-                const left = i % 2 === 0;
-                return (
-                  <div key={m.title}>
-                    <motion.div
-                      className="absolute"
-                      style={{ left: x - 30, top: y - 78, width: 60 }}
-                      initial={false}
-                      animate={visible ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.4, y: 16 }}
-                      transition={{ type: 'spring', stiffness: 320, damping: 20 }}
-                    >
-                      <Trophy color={m.color} size={60} />
-                    </motion.div>
-                    <motion.div
-                      className={`absolute w-[330px] ${left ? 'text-right' : 'text-left'}`}
-                      style={{
-                        top: y - 48,
-                        transform: 'translateY(-50%)',
-                        ...(left ? { left: x - 30 - 330 - 10 } : { left: x + 30 + 10 }),
-                      }}
-                      initial={false}
-                      animate={visible ? { opacity: 1, x: 0 } : { opacity: 0, x: reduceMotion ? 0 : left ? 20 : -20 }}
-                      transition={{ duration: reduceMotion ? 0.01 : 0.45, ease: EASE_PREMIUM }}
-                    >
-                      <p className="font-heading font-bold text-[18px] leading-[1.25] m-0" style={{ color: m.color }}>
-                        {m.title}
-                      </p>
-                      <p className="font-body text-[14px] text-surface-500 leading-[1.4] m-0 mt-1">{m.by}</p>
-                    </motion.div>
+                {JOURNEY_MILESTONES.map((m, i) => {
+                  const x = nodeX(i);
+                  const y = nodeY(i);
+                  const visible = i < count;
+                  const left = i % 2 === 0; // text on the left, photo on the right, then alternate
+                  const cy = y - 20; // text/photo centre line
+                  return (
+                    <div key={m.title}>
+                      <motion.div
+                        className="absolute flex flex-col items-center"
+                        style={{ left: x - 48, top: y - 123, width: 96 }}
+                        initial={false}
+                        animate={visible ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.4, y: 16 }}
+                        transition={{ type: 'spring', stiffness: 320, damping: 20 }}
+                      >
+                        <Trophy color={m.color} size={96} />
+                        <span
+                          className="block w-[22px] h-[22px] rounded-full bg-white mt-1.5"
+                          style={{ border: `4px solid ${m.color}` }}
+                        />
+                      </motion.div>
+
+                      <motion.div
+                        className={`absolute ${left ? 'text-right' : 'text-left'}`}
+                        style={{
+                          top: cy,
+                          width: TEXT_W,
+                          y: '-50%',
+                          ...(left ? { left: x - 80 - TEXT_W } : { left: x + 80 }),
+                        }}
+                        initial={false}
+                        animate={visible ? { opacity: 1, x: 0 } : { opacity: 0, x: reduceMotion ? 0 : left ? 30 : -30 }}
+                        transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: EASE_PREMIUM }}
+                      >
+                        <p className="font-heading font-bold text-[32px] leading-[1.2] m-0" style={{ color: m.color }}>
+                          {m.title}
+                        </p>
+                        <p className="font-body text-[19px] text-surface-500 leading-[1.45] m-0 mt-3">{m.by}</p>
+                      </motion.div>
+
+                      <motion.div
+                        className="absolute"
+                        style={{
+                          top: cy,
+                          width: PHOTO_W,
+                          y: '-50%',
+                          ...(left ? { left: x + 90 } : { left: x - 90 - PHOTO_W }),
+                        }}
+                        initial={false}
+                        animate={visible ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: reduceMotion ? 0 : left ? -30 : 30, scale: 0.94 }}
+                        transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM }}
+                      >
+                        <JourneyPhoto m={m} i={i} alignLeft={left} />
+                      </motion.div>
+                    </div>
+                  );
+                })}
+              </motion.div>
+            </motion.div>
+
+            {/* Final view - the golden trophy collection. Click a trophy: it flies to the left
+                and its Accolades photo + details appear on the right. */}
+            <motion.div
+              className="absolute inset-0"
+              style={{ opacity: overviewOpacity, pointerEvents: overviewPointer }}
+            >
+              {selected === null ? (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                  <p className="font-body text-[14px] text-surface-500 m-0">Click a trophy to see its award</p>
+                  <div
+                    className="relative w-full"
+                    style={{
+                      maxWidth: Math.round((viewH - 70) * (GOLD_ROW.vw / GOLD_ROW.vh)),
+                      aspectRatio: `${GOLD_ROW.vw} / ${GOLD_ROW.vh}`,
+                    }}
+                  >
+                    {JOURNEY_MILESTONES.map((m, i) => {
+                      const { x0, y0, w, h } = goldBox(i);
+                      return (
+                        <div key={m.title}>
+                          <motion.button
+                            type="button"
+                            layoutId={`gold-trophy-${i}`}
+                            onClick={() => setSelected(i)}
+                            aria-label={m.title}
+                            title={m.title}
+                            whileHover={reduceMotion ? undefined : { y: -8, scale: 1.05 }}
+                            className="absolute p-0 border-0 bg-transparent cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-md"
+                            style={{
+                              left: `${(x0 / GOLD_ROW.vw) * 100}%`,
+                              top: `${((y0 - GOLD_ROW.y0) / GOLD_ROW.vh) * 100}%`,
+                              width: `${(w / GOLD_ROW.vw) * 100}%`,
+                              height: `${(h / GOLD_ROW.vh) * 100}%`,
+                              ...goldTrophyStyle(i),
+                            }}
+                          />
+                          <span
+                            className="absolute text-center font-heading font-bold pointer-events-none"
+                            style={{
+                              left: `${((x0 + w / 2) / GOLD_ROW.vw) * 100}%`,
+                              top: `${((y0 + h + 6 - GOLD_ROW.y0) / GOLD_ROW.vh) * 100}%`,
+                              transform: 'translateX(-50%)',
+                              width: 96,
+                              fontSize: 11,
+                              lineHeight: 1.25,
+                              color: m.color,
+                            }}
+                          >
+                            {TROPHY_SHORT[i]}
+                          </span>
+                        </div>
+                      );
+                    })}
                   </div>
-                );
-              })}
+                </div>
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center gap-10 lg:gap-16 px-6">
+                  <motion.div
+                    layoutId={`gold-trophy-${selected}`}
+                    className="flex-none"
+                    style={{
+                      height: Math.min(380, viewH - 70),
+                      aspectRatio: `${goldBox(selected).w} / ${goldBox(selected).h}`,
+                      ...goldTrophyStyle(selected),
+                    }}
+                    transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: EASE_PREMIUM }}
+                  />
+                  <motion.div
+                    key={selected}
+                    className="flex flex-col gap-4 flex-1 max-w-[640px] min-w-0"
+                    initial={{ opacity: 0, x: reduceMotion ? 0 : 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: EASE_PREMIUM, delay: reduceMotion ? 0 : 0.3 }}
+                  >
+                    <JourneyPhoto
+                      m={JOURNEY_MILESTONES[selected]}
+                      i={selected}
+                      maxH={viewH - 190}
+                      showPlaceholder={false}
+                    />
+                    <div>
+                      <p className="font-heading font-bold text-[28px] leading-[1.2] m-0" style={{ color: JOURNEY_MILESTONES[selected].color }}>
+                        {JOURNEY_MILESTONES[selected].title}
+                      </p>
+                      <p className="font-body text-[17px] text-surface-500 leading-[1.45] m-0 mt-2">
+                        {JOURNEY_MILESTONES[selected].by}
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  <div className="absolute top-1 right-2 flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setSelected((selected + total - 1) % total)}
+                      aria-label="Previous trophy"
+                      className="w-10 h-10 rounded-full bg-white border border-surface-200 text-heading font-bold cursor-pointer hover:bg-surface-100 transition-colors"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSelected((selected + 1) % total)}
+                      aria-label="Next trophy"
+                      className="w-10 h-10 rounded-full bg-white border border-surface-200 text-heading font-bold cursor-pointer hover:bg-surface-100 transition-colors"
+                    >
+                      ›
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSelected(null)}
+                      className="h-10 px-5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[12.5px] uppercase tracking-[0.04em] cursor-pointer transition-colors"
+                    >
+                      All trophies
+                    </button>
+                  </div>
+                </div>
+              )}
             </motion.div>
 
             <span className="absolute left-2 bottom-3 font-body text-[13px] font-bold text-surface-400 tabular-nums">
@@ -341,6 +585,7 @@ function DesktopJourneyTimeline({ onPageChange }) {
     </section>
   );
 }
+
 
 // Mobile / tablet (< lg) and reduced-motion fallback - plain stacked
 // milestone list, reveal-on-scroll (whileInView) per card instead of a
@@ -390,6 +635,14 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
                 <p className="font-body text-[14px] text-surface-500 leading-[1.6] m-0">
                   {m.by}
                 </p>
+                {m.image && (
+                  <img
+                    src={m.image}
+                    alt={m.title}
+                    loading="lazy"
+                    className="mt-2 w-full max-w-[320px] rounded-xl object-cover border-4 border-white shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
+                  />
+                )}
               </div>
             </motion.div>
           ))}
