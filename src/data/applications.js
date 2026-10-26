@@ -6,6 +6,10 @@ import BakeryImg from '../assets/1. HOME PAGE/PRODUCT APPLICATIONS AREAS/BAKERY 
 import MayonnaiseImg from '../assets/1. HOME PAGE/PRODUCT APPLICATIONS AREAS/MAYONISE & SALAD DRESSING _800x533px.webp';
 import MeatFishImg from '../assets/1. HOME PAGE/PRODUCT APPLICATIONS AREAS/MEAT & FISH_800x533px.webp';
 import NoodlesPastaImg from '../assets/1. HOME PAGE/PRODUCT APPLICATIONS AREAS/NOODLES & PASTA_800x533px.webp';
+import BakeryIcon from '../assets/home/application-icons/bakery.webp';
+import MayonnaiseIcon from '../assets/home/application-icons/mayonnaise.webp';
+import MeatFishIcon from '../assets/home/application-icons/meat-fish.webp';
+import NoodlesPastaIcon from '../assets/home/application-icons/noodles-pasta.webp';
 
 // `relevantChallengeIds` (references data/formulationChallenges.js ids)
 // curates which formulation challenges genuinely apply to each
@@ -23,6 +27,7 @@ const applications = [
     page: 'app_bakery',
     title: 'Bakery & Confectionery',
     image: BakeryImg,
+    icon: BakeryIcon,
     tags: ['Cakes', 'Pastries', 'Biscuits'],
     problem: 'For structure, golden colour, whipping and foaming applications.',
     intro: 'From everyday biscuits to premium artisanal brioche, our egg powders deliver the crumb binding, foaming, and natural golden colour that bakery formulations depend on.',
@@ -42,6 +47,7 @@ const applications = [
     page: 'app_mayo',
     title: 'Mayonnaise & Salad Dressing',
     image: MayonnaiseImg,
+    icon: MayonnaiseIcon,
     tags: ['Emulsification', 'Sauces'],
     problem: 'For stable emulsion that holds up through hot-fill processing.',
     intro: 'Our egg yolk powders and liquids provide the emulsifying backbone mayonnaise and dressing manufacturers rely on - including heat-stable variants for hot-processed sauces.',
@@ -54,6 +60,7 @@ const applications = [
     page: 'app_meat_fish',
     title: 'Meat & Fish',
     image: MeatFishImg,
+    icon: MeatFishIcon,
     tags: ['Binding', 'Gelation'],
     problem: 'Firmer texture and better moisture retention in surimi or sausages.',
     intro: 'High-gel egg albumen and whole egg powders coagulate into a firm, water-retaining protein matrix - improving sliceability and texture in surimi, sausages, and restructured meats.',
@@ -75,6 +82,7 @@ const applications = [
     page: 'app_noodles_pasta',
     title: 'Noodles & Pasta',
     image: NoodlesPastaImg,
+    icon: NoodlesPastaIcon,
     tags: ['Elasticity', 'Texture'],
     problem: 'For stronger gel & firm bite in your noodles & pasta.',
     intro: 'Whole egg powder & Egg albumen powder enhance gluten network strength, improve cooking integrity and contribute to the firm, desirable texture sought by noodle and pasta manufacturers.',

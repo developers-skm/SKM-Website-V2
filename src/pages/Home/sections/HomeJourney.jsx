@@ -72,7 +72,6 @@ function DesktopSticky() {
             </div>
 
             <div className="relative flex-1 min-w-0 h-full flex flex-col justify-center">
-              <span className="section-label mb-6">Traceability</span>
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={active.id}

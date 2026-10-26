@@ -144,31 +144,25 @@ function CompanyOverviewSection({ onPageChange }) {
 // scroll step reveals the next trophy in sequence. Order and wording follow
 // the Excellence Journey graphic supplied by SKM.
 const JOURNEY_MILESTONES = [
-  { title: 'Silver Trophy - 2001', by: 'by APEDA [Govt. of India]', color: '#F5B400' },
-  { title: 'Best Export Performance Awards 2005-06', by: 'by MEPZ (Madras Export Processing Zone)', color: '#EE4266' },
-  { title: 'State Safety Award - 2007', by: 'by Government of Tamil Nadu', color: '#17A398' },
-  { title: 'Manufacturing Excellence Silver 2006 & Gold 2007 & 08', by: 'by Frost & Sullivan', color: '#2EB5C9' },
-  { title: 'Shri SKM Maeilanandhan receiving Padma Shree', by: 'by Honourable President of India, Shri Pranab Mukherjee', color: '#2F8FEF', image: accoladePic8, crop: [544, 24, 12, 498, 310] },
-  { title: 'Export Excellence Award - 2012 & 13', by: 'at MEPZ, by Special Economic Zone - Chennai', color: '#6B3FA0', image: accoladePic6, crop: [675, 14, 6, 648, 346] },
-  { title: 'Golden Trophy 2011-2012 and 2012-2013', by: '"APEDA" Ministry of Commerce, Government of India', color: '#8CC63F', image: accoladePic4, crop: [544, 14, 8, 508, 296] },
-  { title: 'Hidden Gem Award 2014-15', by: 'by TiECON at Chennai', color: '#E8318A' },
-  { title: '5 S Platinum Award 2015-16 & 2016-17', by: 'by ABK AOTS - Tamil Nadu', color: '#F07A1A', image: accoladePic3, crop: [665, 16, 8, 622, 392] },
-  { title: 'CII Award 2016-17 on Food Safety', by: 'by CII', color: '#14A86B' },
-  { title: 'Mondelez Quality and Food Safety Culture Awards 2021-2022', by: 'by Mondelez', color: '#7A3FA8' },
-  { title: 'National Client of the Year 2022', by: 'Awarded by LMI Carpe Diem', color: '#1D4FD8' },
+  { title: 'Silver Trophy - 2001', by: 'by APEDA [Govt. of India]', color: '#E40A18' },
+  { title: 'Best Export Performance Awards 2005-06', by: 'by MEPZ (Madras Export Processing Zone)', color: '#E40A18' },
+  { title: 'State Safety Award - 2007', by: 'by Government of Tamil Nadu', color: '#E40A18' },
+  { title: 'Manufacturing Excellence Silver 2006 & Gold 2007 & 08', by: 'by Frost & Sullivan', color: '#E40A18' },
+  { title: 'Shri SKM Maeilanandhan receiving Padma Shree', by: 'by Honourable President of India, Shri Pranab Mukherjee', color: '#E40A18', image: accoladePic8, crop: [544, 24, 12, 498, 310] },
+  { title: 'Export Excellence Award - 2012 & 13', by: 'at MEPZ, by Special Economic Zone - Chennai', color: '#E40A18', image: accoladePic6, crop: [675, 14, 6, 648, 346] },
+  { title: 'Golden Trophy 2011-2012 and 2012-2013', by: '"APEDA" Ministry of Commerce, Government of India', color: '#E40A18', image: accoladePic4, crop: [544, 14, 8, 508, 296] },
+  { title: 'Hidden Gem Award 2014-15', by: 'by TiECON at Chennai', color: '#E40A18' },
+  { title: '5 S Platinum Award 2015-16 & 2016-17', by: 'by ABK AOTS - Tamil Nadu', color: '#E40A18', image: accoladePic3, crop: [665, 16, 8, 622, 392] },
+  { title: 'CII Award 2016-17 on Food Safety', by: 'by CII', color: '#E40A18' },
+  { title: 'Mondelez Quality and Food Safety Culture Awards 2021-2022', by: 'by Mondelez', color: '#E40A18' },
+  { title: 'National Client of the Year 2022', by: 'Awarded by LMI Carpe Diem', color: '#E40A18' },
   { title: 'Shri SKM Maeilanandhan receiving Padma Bhushan - 2026', by: 'by Honourable President of India, Smt. Droupadi Murmu', color: '#E40A18', image: '/gallery/award-padma-bhushan-2026.jpg' },
 ];
 
-function Trophy({ color, size = 40 }) {
-  return (
-    <svg viewBox="0 0 40 44" style={{ width: size, aspectRatio: "40 / 44" }} aria-hidden="true">
-      <path d="M10 4h20v12a10 10 0 0 1-20 0z" fill={color} />
-      <path d="M10 8H4v3a7 7 0 0 0 7 7M30 8h6v3a7 7 0 0 1-7 7" stroke={color} strokeWidth="3" fill="none" strokeLinecap="round" />
-      <rect x="18" y="26" width="4" height="7" fill={color} />
-      <rect x="11" y="33" width="18" height="6" rx="2" fill={color} />
-      <polygon points="20,5.5 21.6,9 25.4,9.4 22.5,11.9 23.4,15.6 20,13.6 16.6,15.6 17.5,11.9 14.6,9.4 18.4,9" fill="#fff" />
-    </svg>
-  );
+// Golden cut-out of milestone i's own trophy (see GOLD_BOXES), scaled to `height`.
+function Trophy({ i, height = 100 }) {
+  const { w, h } = goldBox(i);
+  return <div aria-hidden="true" style={{ height, aspectRatio: `${w} / ${h}`, ...goldTrophyStyle(i) }} />;
 }
 
 function CompanyJourneySection({ onPageChange }) {
@@ -412,7 +406,7 @@ function DesktopJourneyTimeline({ onPageChange }) {
                         animate={visible ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.4, y: 16 }}
                         transition={{ type: 'spring', stiffness: 320, damping: 20 }}
                       >
-                        <Trophy color={m.color} size={96} />
+                        <Trophy i={i} height={112} />
                         <span
                           className="block w-[22px] h-[22px] rounded-full bg-white mt-1.5"
                           style={{ border: `4px solid ${m.color}` }}
@@ -615,7 +609,7 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
         <div className="relative flex flex-col">
           <div className="absolute left-[20px] top-2 bottom-2 w-[2px] bg-surface-200" aria-hidden="true" />
 
-          {JOURNEY_MILESTONES.map((m) => (
+          {JOURNEY_MILESTONES.map((m, i) => (
             <motion.div
               key={m.title}
               initial={{ opacity: 0, y: isReducedMotion ? 0 : 20 }}
@@ -625,7 +619,7 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
               className="relative flex gap-5 pb-8 last:pb-0"
             >
               <span className="relative z-10 flex-shrink-0 w-[42px] h-[42px] rounded-full flex items-center justify-center bg-white border-2" style={{ borderColor: m.color }}>
-                <Trophy color={m.color} size={22} />
+                <Trophy i={i} height={28} />
               </span>
 
               <div className="flex flex-col gap-1.5 pt-1.5">

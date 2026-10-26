@@ -36,18 +36,19 @@
 
 // Photo series: one moment per photograph. Numbered ids follow the folder order
 // (public/gallery/<slug>-01.webp, -02, …). `each[i]` overrides fields for photo i.
-const series = (slug, count, { each = [], ...base }) =>
+const series = (slug, count, { each = [], omit = [], ...base }) =>
   Array.from({ length: count }, (_, i) => {
     const n = String(i + 1).padStart(2, '0');
     return { id: `${slug}-${n}`, image: `/gallery/${slug}-${n}.webp`, ...base, ...each[i] };
-  });
+  }).filter((_, i) => !omit.includes(i + 1));
 
 export const moments = [
   // ── Events & celebrations ─────────────────────────────────────────────────
   ...series('family-fest-2022', 9, {
     date: '2022-04-12', dateLabel: '12 Apr 2022', title: 'Family Fest 2022',
     caption: 'The SKM family coming together to celebrate.', type: 'celebration',
-    each: [{ date: '2022-04-10', dateLabel: '10 Apr 2022' }, { hero: true }],
+    each: [{ date: '2022-04-10', dateLabel: '10 Apr 2022' }, {}, { hero: true }],
+    omit: [2],
   }),
   ...series('lmi-training-2021', 5, {
     date: '2021-02-12', dateLabel: '12 Feb 2021', title: 'Leadership Management International (LMI) Training',

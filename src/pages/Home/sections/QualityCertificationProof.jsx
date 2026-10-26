@@ -15,15 +15,21 @@ export default function QualityCertificationProof({ onPageChange }) {
     <div className="w-full bg-white pt-16 pb-14 lg:pt-[128px] lg:pb-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
+        <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 mb-8 lg:mb-12">
+          <span className="section-label">Quality &amp; Certifications</span>
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] text-heading leading-[1.1] lg:leading-[1.05] tracking-tight m-0">
+            Quality, verified at every step.
+          </h2>
+        </motion.div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-center mb-10 lg:mb-24">
-          <span className="section-label order-1 lg:order-none !hidden max-lg:!flex">Quality &amp; Certifications</span>
 
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="order-2 lg:order-none lg:col-span-7 relative rounded-[8px] overflow-hidden aspect-[4/3] lg:aspect-[16/12]"
+            className="lg:col-span-7 relative rounded-[8px] overflow-hidden aspect-[4/3] lg:aspect-[16/10]"
           >
             <SafeImage
               src={LabImage}
@@ -33,11 +39,7 @@ export default function QualityCertificationProof({ onPageChange }) {
             />
           </motion.div>
 
-          <motion.div {...fadeUp(reduceMotion, { delay: 0.3 })} className="order-3 lg:order-none lg:col-span-5 flex flex-col gap-3 lg:gap-6">
-            <span className="section-label !hidden lg:!flex">Quality &amp; Certifications</span>
-            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] text-heading leading-[1.1] lg:leading-[1.05] tracking-tight m-0">
-              Quality, verified at every step.
-            </h2>
+          <motion.div {...fadeUp(reduceMotion, { delay: 0.3 })} className="lg:col-span-5 flex flex-col gap-3 lg:gap-6">
             <p className="font-body text-[15px] lg:text-[18px] text-surface-600 leading-[1.65] lg:leading-[1.75] max-w-lg m-0">
               Every batch is governed by a documented Food Safety &amp; Quality Policy : HACCP-based hazard control, verified residue testing, and internationally aligned management systems, from raw material intake to finished product release.
             </p>

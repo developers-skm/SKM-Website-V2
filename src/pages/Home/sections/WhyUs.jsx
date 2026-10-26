@@ -48,9 +48,9 @@ const proofs = [
   {
     number: '30',
     suffix: '+',
-    label: 'Years of industry experience',
+    label: 'Export Markets & Branches',
     title: 'Global Confidence Since 1997',
-    description: 'Earning the confidence of global customers since 1997, with the capacity to process 2 million eggs per day.',
+    description: 'SKM exports to 30+ countries, with dedicated regional branches in Europe and Russia coordinating import, warehousing, and compliance close to your market.',
     page: 'global_reach',
   },
 ];
@@ -72,8 +72,11 @@ function StatNumber({ value, featured, suffix }) {
 }
 
 // Font glyphs for ∞ are lopsided (left loop larger than right), so the
-// infinity is drawn as a mirror-symmetric SVG lemniscate instead.
-function InfinitySymbol() {
+// infinity is drawn as a mirror-symmetric SVG lemniscate instead. The stroke
+// is pen-drawn on scroll-in (pathLength 0 -> 1) as if the symbol were being
+// written; the closed path starts at the centre crossing and traces both
+// loops. Under reduced motion it renders fully drawn.
+function InfinitySymbol({ reduceMotion }) {
   return (
     <strong className="block m-0 text-brand-600 h-[26vw] sm:h-[110px] lg:h-[136px] flex items-center">
       <svg
@@ -87,14 +90,23 @@ function InfinitySymbol() {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M65 32 C50 8 8 8 8 32 C8 56 50 56 65 32 C80 8 122 8 122 32 C122 56 80 56 65 32 Z" />
+        <motion.path
+          d="M65 32 C50 8 8 8 8 32 C8 56 50 56 65 32 C80 8 122 8 122 32 C122 56 80 56 65 32 Z"
+          initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
+          whileInView={{ pathLength: 1, opacity: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{
+            pathLength: { duration: 2.2, delay: 0.5, ease: [0.45, 0, 0.25, 1] },
+            opacity: { duration: 0.01, delay: 0.5 },
+          }}
+        />
       </svg>
     </strong>
   );
 }
 
-function SymbolNumber({ symbol }) {
-  if (symbol === '∞') return <InfinitySymbol />;
+function SymbolNumber({ symbol, reduceMotion }) {
+  if (symbol === '∞') return <InfinitySymbol reduceMotion={reduceMotion} />;
   return (
     <strong className="block font-heading font-black text-brand-600 leading-[0.85] tracking-tight m-0 text-[26vw] sm:text-[110px] lg:text-[136px]">
       {symbol}
@@ -131,7 +143,7 @@ function ProofRow({ proof, index, onPageChange, reduceMotion, isDimmed, onFocusR
         {proof.milestone ? (
           <MilestoneNumber prefix={proof.prefix} number={proof.number} />
         ) : proof.symbol ? (
-          <SymbolNumber symbol={proof.symbol} />
+          <SymbolNumber symbol={proof.symbol} reduceMotion={reduceMotion} />
         ) : (
           <StatNumber value={proof.number} featured={proof.featured} suffix={proof.suffix} />
         )}
