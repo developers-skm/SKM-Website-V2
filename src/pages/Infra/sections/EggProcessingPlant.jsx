@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import ImageSlider from '../../../components/ImageSlider/ImageSlider';
 import IconInfoCard from '../../../components/common/IconInfoCard';
 import StatCard from '../../../components/common/StatCard';
+import PageHeroBanner from '../../../components/common/PageHeroBanner';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 // Campus
@@ -129,21 +130,13 @@ export default function EggProcessingPlant() {
     <div className="w-full bg-page overflow-hidden">
 
       {/* ── Hero ── */}
-      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-6 items-start">
-          <span className="section-label">
-            Infrastructure
-          </span>
-          <h1 className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading leading-[1.1] tracking-tight m-0">
-            Egg Processing{' '}
-            Plant
-          </h1>
-          <p className="font-body text-[16px] leading-[30px] text-surface-500 max-w-2xl m-0">
-            European Union (EU) Directive compliance egg processing facility with a capacity of 2 million eggs per day, producing premium egg products under stringent food safety standards.
-          </p>
-        </div>
-      </div>
+      <PageHeroBanner
+        image={CampusOverview}
+        alt="Aerial view of the SKM egg processing plant campus"
+        label="Infrastructure"
+        title="Egg Processing Plant"
+        description="European Union (EU) Directive compliance egg processing facility with a capacity of 2 million eggs per day, producing premium egg products under stringent food safety standards."
+      />
 
       {/* ── Campus Overview ── */}
       <motion.section
@@ -165,28 +158,6 @@ export default function EggProcessingPlant() {
           {statsData.map((s, i) => (
             <StatCard key={i} value={s.value} label={s.label} />
           ))}
-        </motion.div>
-
-        {/* Grand Campus Overview Image */}
-        <motion.div
-          variants={itemVariants}
-          className="relative w-full overflow-hidden rounded-[24px] group shadow-[0_8px_40px_rgba(0,0,0,0.12)] aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]"
-        >
-          <img
-            src={CampusOverview}
-            alt="Campus Overview"
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-            loading="lazy"
-            decoding="async"
-          />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
-          {/* Label */}
-          <div className="absolute bottom-0 left-0 right-0 px-6 pb-6">
-            <span className="font-heading font-bold text-white text-[18px] sm:text-[22px] tracking-tight drop-shadow-md">
-              Campus Overview
-            </span>
-          </div>
         </motion.div>
 
         <motion.div variants={itemVariants}>

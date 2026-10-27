@@ -1,20 +1,20 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
-import cloud1 from '../../assets/clouds/cloud-1.webp';
-import cloud2 from '../../assets/clouds/cloud-2.webp';
-import cloud3 from '../../assets/clouds/cloud-3.webp';
-import cloud4 from '../../assets/clouds/cloud-4.webp';
-import wisp1 from '../../assets/clouds/wisp-1.webp';
-import wisp2 from '../../assets/clouds/wisp-2.webp';
+import backLeft from '../../assets/clouds/bank-back-left.webp';
+import backRight from '../../assets/clouds/bank-back-right.webp';
+import frontLeft from '../../assets/clouds/bank-front-left.webp';
+import frontRight from '../../assets/clouds/bank-front-right.webp';
 
 // Cinematic cloud merge / unmerge page transition.
 //
 // Layered cloud formations drift in from the left and right edges, overlap
 // and merge across the WHOLE screen, the route changes while it is fully
 // covered, then the formations separate back towards their own edges.
-// There are no panels or doors: each formation is just a scatter of soft
-// cloud sprites, so nothing parks in the middle of the screen.
+// There are no panels or doors: each formation is one continuous cumulus
+// bank (procedurally generated billow height-field, lit and self-shadowed)
+// that is solid on its own side and breaks into real billows at its leading
+// edge, so the two banks knit together with no seam or outline.
 //
 // The host is mounted once in App (it must outlive the page that starts the
 // transition); pages trigger it with startCloudTransition().
@@ -39,64 +39,23 @@ export function startCloudTransition({ delay = 0, onClosed }) {
   listener({ delay, onClosed });
 }
 
-function mulberry32(seed) {
-  let a = seed;
-  return () => {
-    a |= 0; a = (a + 0x6d2b79f5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-// Cloud sprites are procedurally generated (fractal noise + a light-march
-// shadow pass) transparent WebPs - irregular silhouettes, feathered fringes,
-// lit upper-left with silver-blue undersides. Several distinct masses and
-// wisps so no shape repeats obviously.
-const MASSES = [cloud1, cloud2, cloud3, cloud4];
-const WISPS = [wisp1, wisp2];
-
-// One formation: sprites scattered over a full viewport-sized box with heavy
-// overlap, so when it sits at x = 0 it covers the whole screen. Back layers
-// use bigger, softer masses; front layers add smaller masses and wisps.
-function buildSprites(seed, count, { minW, maxW, wispChance }) {
-  const rand = mulberry32(seed);
-  const cols = Math.ceil(Math.sqrt(count * 1.6));
-  const rows = Math.ceil(count / cols);
-  const sprites = [];
-  for (let i = 0; i < count; i += 1) {
-    const c = i % cols;
-    const r = Math.floor(i / cols);
-    const wisp = rand() < wispChance;
-    const pool = wisp ? WISPS : MASSES;
-    sprites.push({
-      src: pool[Math.floor(rand() * pool.length)],
-      left: ((c + 0.5) / cols) * 100 + (rand() - 0.5) * (100 / cols) * 1.1,
-      top: ((r + 0.5) / rows) * 100 + (rand() - 0.5) * (100 / rows) * 1.1,
-      width: minW + rand() * (maxW - minW), // vmax
-      flip: rand() > 0.5 ? -1 : 1,
-      rotate: (rand() - 0.5) * 12,
-      opacity: wisp ? 0.75 : 0.92 + rand() * 0.08,
-      ratio: wisp ? 0.4375 : 0.625,
-    });
-  }
-  return sprites;
-}
-
+// Two depth layers per side. Back: hazier, bluer and slower; front: crisper
+// and quicker. Each image is a full-viewport, solid-on-one-side cloud bank.
 const LAYERS = [
-  // back: big, soft, slower, slightly hazy; front: defined, quicker, with wisps
-  { id: 'back', count: 9, minW: 85, maxW: 120, wispChance: 0, speed: 1.12, delay: 0.1, seedL: 11, seedR: 47, haze: 'blur(1.5px)', opacity: 0.9 },
-  { id: 'mid', count: 9, minW: 70, maxW: 100, wispChance: 0.15, speed: 1, delay: 0.05, seedL: 23, seedR: 61, haze: 'none', opacity: 1 },
-  { id: 'front', count: 8, minW: 55, maxW: 85, wispChance: 0.3, speed: 0.9, delay: 0, seedL: 37, seedR: 79, haze: 'none', opacity: 1 },
+  { id: 'back', left: backLeft, right: backRight, speed: 1.12, delay: 0.1, haze: 'none', opacity: 1 },
+  { id: 'front', left: frontLeft, right: frontRight, speed: 0.9, delay: 0, haze: 'none', opacity: 1 },
 ];
 
-function Formation({ side, layer, merged, sprites }) {
+function Formation({ side, layer, merged }) {
   const sign = side === 'left' ? -1 : 1;
-  const hidden = `${sign * 140}%`; // far enough that no sprite edge shows
+  const hidden = `${sign * 104}%`;
   return (
-    <motion.div
-      className="absolute inset-0 will-change-transform"
-      style={{ filter: layer.haze, opacity: layer.opacity }}
+    <motion.img
+      src={side === 'left' ? layer.left : layer.right}
+      alt=""
+      draggable={false}
+      decoding="async"
+      className="absolute inset-0 w-full h-full object-cover select-none will-change-transform"
       initial={{ x: hidden }}
       animate={{ x: merged ? '0%' : hidden }}
       transition={{
@@ -104,26 +63,7 @@ function Formation({ side, layer, merged, sprites }) {
         delay: merged ? layer.delay : layer.delay * 0.8,
         ease: EASE,
       }}
-    >
-      {sprites.map((p, i) => (
-        <img
-          key={i}
-          src={p.src}
-          alt=""
-          draggable={false}
-          decoding="async"
-          className="absolute max-w-none select-none"
-          style={{
-            left: `${p.left}%`,
-            top: `${p.top}%`,
-            width: `${p.width}vmax`,
-            height: `${p.width * p.ratio}vmax`,
-            opacity: p.opacity,
-            transform: `translate(-50%, -50%) scaleX(${p.flip}) rotate(${p.rotate}deg)`,
-          }}
-        />
-      ))}
-    </motion.div>
+    />
   );
 }
 
@@ -132,18 +72,8 @@ export default function CloudPageTransition() {
   const activeRef = useRef(false);
   const timersRef = useRef([]);
 
-  const layers = useMemo(
-    () =>
-      LAYERS.map((l) => ({
-        ...l,
-        left: buildSprites(l.seedL, l.count, l),
-        right: buildSprites(l.seedR, l.count, l),
-      })),
-    [],
-  );
-
   useEffect(() => {
-    [...MASSES, ...WISPS].forEach((src) => {
+    LAYERS.flatMap((l) => [l.left, l.right]).forEach((src) => {
       const img = new Image();
       img.src = src;
     });
@@ -199,7 +129,7 @@ export default function CloudPageTransition() {
           can show through, and fades out as they separate. */}
       <motion.div
         className="absolute inset-0"
-        style={{ background: 'linear-gradient(180deg, #a9c4e2 0%, #c9dbee 48%, #e3edf7 100%)' }}
+        style={{ background: 'linear-gradient(180deg, #8fb6e0 0%, #b5d0ec 45%, #d9e8f6 100%)' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: merged ? 1 : 0 }}
         transition={
@@ -208,10 +138,10 @@ export default function CloudPageTransition() {
             : { duration: 0.3, ease: 'easeIn' }
         }
       />
-      {layers.map((l) => (
+      {LAYERS.map((l) => (
         <div key={l.id} className="absolute inset-0">
-          <Formation side="left" layer={l} merged={merged} sprites={l.left} />
-          <Formation side="right" layer={l} merged={merged} sprites={l.right} />
+          <Formation side="left" layer={l} merged={merged} />
+          <Formation side="right" layer={l} merged={merged} />
         </div>
       ))}
     </div>,
