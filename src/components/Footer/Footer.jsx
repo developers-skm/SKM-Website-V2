@@ -1,5 +1,5 @@
 import React from 'react';
-import SKMLogo from '../../assets/LOGO/logo1.png';
+import SKMLogo from '../../assets/LOGO/skm-star-logo.png';
 import certificates from '../../data/certifications';
 
 
@@ -48,7 +48,7 @@ export default function Footer({ onPageChange }) {
               <img
                 src={SKMLogo}
                 alt="SKM Egg Products"
-                className="h-16 w-auto max-w-[160px] object-contain"
+                className="h-[72px] w-auto object-contain"
               />
             </div>
           </button>
