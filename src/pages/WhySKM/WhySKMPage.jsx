@@ -68,7 +68,7 @@ export default function WhySKMPage({ onPageChange }) {
             <div className="flex items-end justify-between gap-4 flex-wrap">
               <div className="flex flex-col gap-1">
                 <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">8 Active Certifications</span>
-                <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">Certifications</h2>
+                <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">Certifications</h2>
               </div>
               <button
                 onClick={() => onPageChange('certifications')}
@@ -112,7 +112,7 @@ export default function WhySKMPage({ onPageChange }) {
             viewport={{ once: true, margin: '-100px' }}
             className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8"
           >
-            <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">Quality & Food Safety</h2>
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">Quality & Food Safety</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {qualityCards.map((card) => (
                 <motion.button
@@ -139,7 +139,7 @@ export default function WhySKMPage({ onPageChange }) {
             viewport={{ once: true, margin: '-100px' }}
             className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8"
           >
-            <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">Infrastructure</h2>
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">Infrastructure</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {infraCards.map((card) => (
                 <motion.button
@@ -164,8 +164,8 @@ export default function WhySKMPage({ onPageChange }) {
         {/* Traceability cross-link */}
         <div className="w-full py-[50px] lg:py-[70px]">
           <div className="mx-auto max-w-[900px] w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-5">
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading m-0 tracking-tight">
-              Want the full farm-to-product story?
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+              Want the Full Farm-to-Product Story?
             </h2>
             <p className="font-body text-[14px] text-surface-500 leading-[24px] m-0 max-w-lg">
               See the six-stage journey behind every batch, or go straight to the technical traceability framework if you're documenting for an audit.
@@ -190,8 +190,8 @@ export default function WhySKMPage({ onPageChange }) {
         {/* Closing CTA */}
         <div className="w-full py-[60px] lg:py-[80px] text-center px-4">
           <div className="mx-auto max-w-[600px] flex flex-col items-center gap-5">
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading m-0 tracking-tight">
-              Ready to talk formulation?
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+              Ready to Talk Formulation?
             </h2>
             <button
               onClick={() => onPageChange('get-quote')}

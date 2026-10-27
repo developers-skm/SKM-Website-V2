@@ -204,8 +204,8 @@ export default function WhyUs({ onPageChange }) {
           <div className="lg:col-span-4">
             <motion.div {...fadeUp(reduceMotion)} className="lg:sticky lg:top-32 flex flex-col gap-4 max-w-md">
               <span className="section-label">Why SKM</span>
-              <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[44px] text-heading leading-[1.12] tracking-tight m-0">
-                Why manufacturers choose SKM
+              <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+                Why Manufacturers Choose SKM
               </h2>
               <p className="font-body text-[16px] lg:text-[18px] font-normal text-surface-600 leading-[1.6] m-0">
                 Uncompromising standards in every single egg.

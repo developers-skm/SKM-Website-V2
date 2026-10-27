@@ -163,8 +163,8 @@ export default function Sustainability({ onPageChange }) {
 
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-4">
           <span className="section-label">Sustainability</span>
-          <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading leading-[1.05] tracking-tight m-0">
-            Sustainable &amp; socially responsible.
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Sustainable &amp; Socially Responsible.
           </h2>
         </motion.div>
 

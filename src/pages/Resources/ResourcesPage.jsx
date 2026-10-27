@@ -80,7 +80,7 @@ function TechnicalDocumentsSection({ globalSearchQuery }) {
               Verified Specifications
             </span>
           </div>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
             Product Details
           </h2>
           <p className="font-body text-[14.5px] text-surface-600 max-w-2xl m-0 leading-relaxed">
@@ -190,7 +190,7 @@ function CertificationsSection({ globalSearchQuery }) {
               International Accreditation
             </span>
           </div>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
             Global Quality & Food Safety Certificates
           </h2>
           <p className="font-body text-[14.5px] text-surface-600 max-w-2xl m-0 leading-relaxed">
@@ -312,8 +312,8 @@ function BrochuresApplicationGuidesSection({ globalSearchQuery }) {
               Downloads & Publications
             </span>
           </div>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
-            Corporate Brochures & Product details
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+            Corporate Brochures & Product Details
           </h2>
           <p className="font-body text-[14.5px] text-surface-600 max-w-2xl m-0 leading-relaxed">
             Access our official downloadable PDF literature, company overview documentation, and product details.
@@ -479,7 +479,7 @@ function CsrSection({ onPageChange, globalSearchQuery }) {
               Beyond The Factory Floor
             </span>
           </div>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
             Corporate Social Responsibility (CSR)
           </h2>
           <p className="font-body text-[14.5px] text-surface-600 max-w-2xl m-0 leading-relaxed">
@@ -585,7 +585,7 @@ function FaqSection({ onPageChange, globalSearchQuery }) {
           <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600">
             Knowledge Center
           </span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight">
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
             Frequently Asked Questions
           </h2>
           <p className="font-body text-[14.5px] text-surface-600 max-w-xl m-0 leading-relaxed">
@@ -845,7 +845,7 @@ export default function ResourcesPage({ onPageChange }) {
               <div className="w-14 h-14 rounded-full bg-brand-500/10 text-brand-600 flex items-center justify-center">
                 <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
               </div>
-              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
                 Need Specific Technical Documentation?
               </h2>
               <p className="font-body text-[15px] text-surface-600 m-0 leading-relaxed">

@@ -60,7 +60,7 @@ export default function RecommendedProducts({ application, matchedProducts, onPa
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-3">
           <span className="section-label">Products That Solve This</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.1] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
             Recommended Products For {application.title}
           </h2>
           <div className="flex flex-col gap-1 max-w-[860px]">

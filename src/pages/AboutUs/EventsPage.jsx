@@ -335,7 +335,7 @@ export default function EventsPage({ onPageChange }) {
         <section id="upcoming-exhibitions" className="w-full bg-white py-[60px] lg:py-[90px]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
             <div className="flex flex-col gap-2 max-w-3xl">
-              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
                 Upcoming Exhibitions
               </h2>
               <p className="font-body text-[14.5px] text-surface-500 leading-[1.6]">
@@ -424,7 +424,7 @@ export default function EventsPage({ onPageChange }) {
         <section id="participated-events" className="w-full py-[60px] lg:py-[90px]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
             <div className="flex flex-col gap-2 max-w-3xl">
-              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
                 Participated Events
               </h2>
               <p className="font-body text-[14.5px] text-surface-500 leading-[1.6]">
@@ -483,7 +483,7 @@ export default function EventsPage({ onPageChange }) {
         <section id="company-news" className="w-full py-[60px] lg:py-[90px] bg-white">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
             <div className="flex flex-col gap-2 max-w-3xl">
-              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
                 Company News
               </h2>
               <p className="font-body text-[14.5px] text-surface-500 leading-[1.6]">
@@ -540,7 +540,7 @@ export default function EventsPage({ onPageChange }) {
         <section id="technical-insights" className="w-full py-[60px] lg:py-[90px]">
           <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
             <div className="flex flex-col gap-2 max-w-3xl">
-              <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
                 Technical Insights
               </h2>
               <p className="font-body text-[14.5px] text-surface-500 leading-[1.6]">
@@ -644,7 +644,7 @@ export default function EventsPage({ onPageChange }) {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">
+              <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
                 Subscribe to SKM Updates
               </h2>
               <p className="font-body text-[14px] text-surface-500 max-w-md mx-auto leading-relaxed">
@@ -863,7 +863,7 @@ export default function EventsPage({ onPageChange }) {
                 </div>
 
                 <div className="p-6 max-h-[70vh] overflow-y-auto">
-                  <h2 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 leading-tight mb-4">
+                  <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 mb-4">
                     {activeArticle.title}
                   </h2>
                   <div className="font-body text-[14.5px] text-surface-600 leading-relaxed space-y-4 whitespace-pre-line">
@@ -927,7 +927,7 @@ export default function EventsPage({ onPageChange }) {
                 </div>
 
                 <div className="p-6 max-h-[70vh] overflow-y-auto">
-                  <h2 className="font-heading font-bold text-[22px] sm:text-[25px] text-heading m-0 leading-tight mb-4">
+                  <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 mb-4">
                     {activeInsight.title}
                   </h2>
                   <div className="font-body text-[14.5px] text-surface-600 leading-relaxed whitespace-pre-line bg-surface-50 p-4 rounded-xl mb-4 border border-[#eee]">

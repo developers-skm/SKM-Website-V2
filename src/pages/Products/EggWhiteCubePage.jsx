@@ -105,8 +105,8 @@ export default function EggWhiteCubePage({ onPageChange }) {
                 <span className="section-label">
                   Nutritional Benefits
                 </span>
-                <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading uppercase tracking-wider m-0">
-                  A Great Choice For Everyone
+                <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] text-heading leading-[1.1] lg:leading-[1.05] tracking-tight m-0">
+                  A Great Choice for Everyone
                 </h2>
               </div>
 

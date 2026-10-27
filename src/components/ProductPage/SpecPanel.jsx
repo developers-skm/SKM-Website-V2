@@ -85,7 +85,7 @@ export default function SpecPanel({
           <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
           At A Glance
         </span>
-        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
+        <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
           Specification Summary
         </h2>
       </div>

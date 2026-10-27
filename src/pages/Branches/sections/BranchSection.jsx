@@ -27,7 +27,7 @@ export default function BranchSection({ branch }) {
 
           <motion.h2
             variants={itemVariants}
-            className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0"
+            className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0"
           >
             {name.split(' ')[0]}{' '}
             {name.split(' ').slice(1).join(' ')}

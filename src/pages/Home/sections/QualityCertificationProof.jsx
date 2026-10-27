@@ -17,8 +17,8 @@ export default function QualityCertificationProof({ onPageChange }) {
 
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 mb-8 lg:mb-12">
           <span className="section-label">Quality &amp; Certifications</span>
-          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] text-heading leading-[1.1] lg:leading-[1.05] tracking-tight m-0">
-            Quality, verified at every step.
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Quality, Verified at Every Step.
           </h2>
         </motion.div>
 

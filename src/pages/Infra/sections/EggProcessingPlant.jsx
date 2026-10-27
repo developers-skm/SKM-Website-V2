@@ -155,7 +155,7 @@ export default function EggProcessingPlant() {
       >
         <motion.div variants={itemVariants} className="flex flex-col gap-2">
           <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Campus</span>
-          <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
             Campus Overview
           </h2>
         </motion.div>
@@ -206,7 +206,7 @@ export default function EggProcessingPlant() {
         >
           <motion.div variants={itemVariants} className="flex flex-col gap-2">
             <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Inside the Plant</span>
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
               Process Area
             </h2>
             <p className="font-body text-[15px] text-surface-500 max-w-2xl m-0 leading-[26px]">
@@ -232,7 +232,7 @@ export default function EggProcessingPlant() {
         >
           <motion.div variants={itemVariants} className="flex flex-col gap-2">
             <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Support Systems</span>
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
               Utility Area
             </h2>
             <p className="font-body text-[15px] text-surface-500 max-w-2xl m-0 leading-[26px]">
@@ -260,7 +260,7 @@ export default function EggProcessingPlant() {
             <span className="section-label justify-center">
               Plant Operations
             </span>
-            <h2 className="font-heading font-bold text-[34px] sm:text-[40px] text-heading leading-[1.1] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
               Standards &{' '}
               Sustainability
             </h2>

@@ -98,7 +98,7 @@ function SectionHeader({ label }) {
       <span className="font-body text-[11px] font-medium uppercase tracking-widest text-brand-600">
         Investors
       </span>
-      <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading tracking-tight m-0">
+      <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
         {label}
       </h2>
     </div>

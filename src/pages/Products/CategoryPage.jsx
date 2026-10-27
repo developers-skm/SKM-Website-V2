@@ -154,8 +154,8 @@ export default function CategoryPage({
         {/* Section 2 — Product cards */}
         <div className="w-full py-[60px] lg:py-[85px] bg-white">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
-            <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
-              Products in this category
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+              Products in This Category
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -211,8 +211,8 @@ export default function CategoryPage({
         {functionalityTags?.length > 0 && (
           <div className="w-full py-[60px] lg:py-[85px]">
             <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
-              <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
-                Choose by functionality
+              <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+                Choose by Functionality
               </h2>
               <div className="flex flex-wrap items-center gap-2.5">
                 {functionalityTags.map((tag) => (
@@ -251,8 +251,8 @@ export default function CategoryPage({
         {/* Section 5 — Packaging, storage and delivery */}
         <div className="w-full bg-white py-[60px] lg:py-[85px]">
           <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6">
-            <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
-              Packaging, storage and delivery
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+              Packaging, Storage and Delivery
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="flex flex-col gap-2.5 p-6 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7]">
@@ -309,7 +309,7 @@ export default function CategoryPage({
         {/* Section 6 — Closing CTA */}
         <div className="w-full py-[60px] lg:py-[85px] text-center px-4">
           <div className="mx-auto max-w-[600px] flex flex-col items-center gap-5">
-            <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
               Ready to move forward with {title}?
             </h2>
             <div className="flex flex-col sm:flex-row items-center gap-4">

@@ -37,8 +37,8 @@ export default function RegionalRouting({ onPageChange }) {
       >
         <motion.div variants={itemVariants} className="flex flex-col gap-2 text-center">
           <span className="section-label justify-center">Contact Routing</span>
-          <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
-            Reach the right team
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+            Reach the Right Team
           </h2>
           <p className="font-body text-[14px] text-surface-500 max-w-xl mx-auto m-0">
             Corporate office and factory details are above - here's who to contact for sales, quality documentation, or investor matters.

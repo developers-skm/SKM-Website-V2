@@ -94,8 +94,8 @@ export default function EnquiryCategories({ onOpenEnquiry, onPageChange }) {
         {/* Heading */}
         <div className="text-center flex flex-col items-center gap-4 select-none">
           <span className="section-label justify-center">How Can We Help?</span>
-          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
-            What brings you here today?
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            What Brings You Here Today?
           </h2>
           <p className="font-body text-[15px] text-surface-500 max-w-2xl leading-[26px] m-0">
             Select the option that matches your intent - we'll only ask what's relevant to it.

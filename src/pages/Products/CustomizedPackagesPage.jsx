@@ -193,7 +193,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
             <span className="text-xs font-semibold uppercase tracking-widest text-brand-650">
               Available Formats
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-surface-850 uppercase tracking-wider m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] text-heading leading-[1.1] lg:leading-[1.05] tracking-tight m-0">
               Package Type Overview
             </h2>
           </div>

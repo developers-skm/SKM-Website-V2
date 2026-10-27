@@ -95,8 +95,8 @@ function ChallengesSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Formulation Challenges</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Challenges SKM can support
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Challenges SKM Can Support
           </h2>
         </motion.div>
 
@@ -166,8 +166,8 @@ function CoDevelopmentProcessSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">How We Work Together</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Co-development process
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Co-Development Process
           </h2>
         </motion.div>
 
@@ -250,8 +250,8 @@ function RDCapabilitySection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">R&amp;D</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            R&amp;D and application capability
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            R&amp;D and Application Capability
           </h2>
         </motion.div>
 
@@ -332,8 +332,8 @@ function ExistingSpecialtySolutionsSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Already Available</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Existing speciality solutions
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Existing Speciality Solutions
           </h2>
         </motion.div>
 
@@ -407,8 +407,8 @@ function FinalCTASection({ onPageChange }) {
         transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
         className="mx-auto max-w-[600px] flex flex-col items-center gap-5"
       >
-        <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
-          Ready to solve your formulation challenge?
+        <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+          Ready to Solve Your Formulation Challenge?
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <InternalLink

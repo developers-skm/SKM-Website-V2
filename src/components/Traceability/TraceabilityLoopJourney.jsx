@@ -587,7 +587,7 @@ export default function TraceabilityLoopJourney({ title, subtitle, onPageChange,
           </motion.div>
 
           <motion.h2
-            className="font-heading font-semibold text-[34px] sm:text-[44px] lg:text-[50px] text-[#111111] leading-[1.1] tracking-tight m-0"
+            className="font-heading font-semibold text-[#111111] tracking-tight m-0"
             initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
             animate={headerEntered ? { opacity: 1, y: 0 } : {}}
             transition={{ ...headerTransition, delay: reducedMotion ? 0 : 0.08 }}

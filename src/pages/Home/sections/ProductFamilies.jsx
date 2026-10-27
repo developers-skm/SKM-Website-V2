@@ -206,9 +206,9 @@ export default function ProductFamilies({ onPageChange }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="font-heading font-bold text-[34px] sm:text-[42px] lg:text-[48px] text-heading leading-[1.1] tracking-tight m-0"
+          className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0"
         >
-          Product families
+          Product Families
         </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">

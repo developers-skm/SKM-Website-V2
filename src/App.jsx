@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
 import PageLoader from './components/PageLoader/PageLoader';
+import CloudPageTransition from './components/common/CloudPageTransition';
 import products from './data/products';
 import OfflinePage from './pages/Offline/OfflinePage';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
@@ -445,6 +446,7 @@ function App() {
           </motion.div>
         </AnimatePresence>
       </ErrorBoundary>
+      <CloudPageTransition />
     </Layout>
   );
 }

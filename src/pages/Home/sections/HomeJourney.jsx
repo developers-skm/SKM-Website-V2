@@ -168,7 +168,7 @@ export default function HomeJourney({ onPageChange }) {
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 pt-24 lg:pt-28">
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Traceability</span>
-          <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading leading-[1.05] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
             Farm-to-Product Journey
           </h2>
           <p className="font-body text-[16px] lg:text-[17px] text-surface-500 leading-[1.8] max-w-xl m-0">

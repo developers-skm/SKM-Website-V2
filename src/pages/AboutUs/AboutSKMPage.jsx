@@ -88,7 +88,7 @@ function CompanyOverviewSection({ onPageChange }) {
 
           <motion.div {...fadeUp(reduceMotion, { distance: 20, delay: 0.1 })} className="flex-1 flex flex-col gap-5">
             <span className="section-label">Company Overview</span>
-            <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
               Who We Are
             </h2>
             <p className="font-body text-[15px] text-surface-600 leading-[1.7] m-0">
@@ -347,8 +347,8 @@ function DesktopJourneyTimeline({ onPageChange }) {
           <div className="flex items-end gap-6 lg:gap-8">
             <div className="flex flex-col gap-2">
               <span className="section-label">Our History</span>
-              <h2 className="font-heading font-bold text-[28px] lg:text-[36px] text-heading leading-[1.15] tracking-tight m-0">
-                Company journey
+              <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+                Company Journey
               </h2>
             </div>
             <InternalLink
@@ -591,8 +591,8 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
       <div className="mx-auto max-w-[720px] w-full px-4 sm:px-6 flex flex-col gap-8">
         <div className="flex flex-col gap-3">
           <span className="section-label">Our History</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
-            Company journey
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Company Journey
           </h2>
           <p className="font-body text-[14px] sm:text-[15px] text-surface-500 leading-[1.6] m-0">
             SKM's history from founding in 1996 through two decades of honours.
@@ -661,8 +661,8 @@ function LeadershipMessageSection({ onPageChange }) {
       <div className="mx-auto max-w-[1000px] w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-8">
         <div className="flex flex-col items-center gap-3 text-center">
           <span className="section-label justify-center">Leadership Message</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
-            A Message From Our CMD
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            A Message from Our CMD
           </h2>
         </div>
 
@@ -731,8 +731,8 @@ function VisionMissionValuesSection() {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Purpose &amp; Direction</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
-            Vision, mission and values
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Vision, Mission and Values
           </h2>
         </div>
 
@@ -816,8 +816,8 @@ function IntegratedBusinessModelSection({ onPageChange }) {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">One Supply Chain</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
-            Integrated business model
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Integrated Business Model
           </h2>
         </div>
 
@@ -891,8 +891,8 @@ function AwardsRecognitionSection({ onPageChange }) {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Awards and recognitions</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
-            Awards and recognitions
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Awards and Recognitions
           </h2>
         </div>
 
@@ -980,8 +980,8 @@ function LocationsSection({ onPageChange }) {
         className="mx-auto max-w-[600px] flex flex-col items-center gap-5"
       >
         <span className="section-label justify-center">Global Operations</span>
-        <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
-          Exporting to 30+ countries, with regional branches in Europe and Russia.
+        <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+          Exporting to 30+ Countries, with Regional Branches in Europe and Russia.
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
           <InternalLink

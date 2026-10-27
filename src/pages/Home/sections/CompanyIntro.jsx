@@ -112,8 +112,8 @@ export default function CompanyIntro({ onPageChange }) {
 
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-10">
           <span className="section-label">Infrastructure</span>
-          <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[52px] text-heading leading-[1.05] tracking-tight m-0">
-            Asia's largest integrated egg processing facility.
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Asia's Largest Integrated Egg Processing Facility.
           </h2>
         </motion.div>
 

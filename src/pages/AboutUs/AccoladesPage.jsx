@@ -87,7 +87,7 @@ export default function AccoladesPage({ onPageChange }) {
             </motion.span>
             <motion.h2
               variants={itemVariants}
-              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0 uppercase"
+              className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] text-heading leading-[1.1] lg:leading-[1.05] tracking-tight m-0"
             >
               Accolades &amp;{' '}
               Achievements

@@ -28,6 +28,8 @@ import CageFree2 from '../../../assets/cage-free/cage-free-2.webp';
 import CageFree3 from '../../../assets/cage-free/cage-free-3.webp';
 import CageFree4 from '../../../assets/cage-free/cage-free-4.webp';
 import CageFree5 from '../../../assets/cage-free/cage-free-5.webp';
+import PageHeroBanner from '../../../components/common/PageHeroBanner';
+import heroImage from '../../../assets/page-heroes/poultry-farm.webp';
 import CurvedDivider from '../../../components/SectionContainer/CurvedDivider';
 
 const farmImages = [
@@ -146,21 +148,13 @@ export default function PoultryFarm() {
     <div className="w-full bg-page overflow-hidden">
 
       {/* ── Hero ── */}
-      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-6 items-start">
-          <span className="section-label">
-            Infrastructure
-          </span>
-          <h1 className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading leading-[1.1] tracking-tight m-0">
-            Poultry{' '}
-            Farm
-          </h1>
-          <p className="font-body text-[16px] leading-[30px] text-surface-500 max-w-2xl m-0">
-            ISO 22000 certified integrated poultry farms housing 2.4 million layers, producing approximately 164 million eggs annually under strict biosecurity and animal welfare standards.
-          </p>
-        </div>
-      </div>
+      <PageHeroBanner
+        image={heroImage}
+        alt="Aerial view of an integrated poultry farm at golden hour"
+        label="Infrastructure"
+        title="Poultry Farm"
+        description="ISO 22000 certified integrated poultry farms housing 2.4 million layers, producing approximately 164 million eggs annually under strict biosecurity and animal welfare standards."
+      />
 
       {/* ── Stats + Featured Image ── */}
       <motion.section
@@ -207,7 +201,7 @@ export default function PoultryFarm() {
         >
           <motion.div variants={itemVariants} className="flex flex-col gap-2">
             <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Farm Gallery</span>
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
               Farm Facilities
             </h2>
             <p className="font-body text-[15px] text-surface-500 max-w-2xl m-0 leading-[26px]">
@@ -235,7 +229,7 @@ export default function PoultryFarm() {
             <span className="section-label justify-center">
               Farm Operations
             </span>
-            <h2 className="font-heading font-bold text-[34px] sm:text-[40px] text-heading leading-[1.1] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
               Integrated &{' '}
               Biosecure
             </h2>

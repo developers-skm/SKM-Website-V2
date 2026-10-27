@@ -55,7 +55,7 @@ export default function VariantExplorer({ variantsData, variantNamesTable = [], 
             <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
             Product Range
           </span>
-          <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading m-0 tracking-tight leading-[1.1]">
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
             Variant Specifications
           </h2>
           <p className="font-body text-[17px] text-surface-600 leading-[1.7] m-0">

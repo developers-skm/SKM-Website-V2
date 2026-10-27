@@ -28,7 +28,7 @@ function CompactJourney({ onPageChange }) {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="flex flex-col gap-4 max-w-xl">
             <span className="section-label">From Farm To Your Formulation</span>
-            <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[44px] text-heading leading-[1.1] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
               Our Journey
             </h2>
             <p className="font-body text-[15px] text-surface-500 leading-[26px] m-0">
@@ -120,8 +120,8 @@ function FullJourney({ onPageChange }) {
         className="w-full bg-page border-t border-[#eee] py-[70px] lg:py-[90px]"
       >
         <div className="mx-auto max-w-[700px] w-full px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-6">
-          <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading leading-[1.15] tracking-tight m-0">
-            This is the process behind every product we make.
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            This Is the Process Behind Every Product We Make.
           </h2>
           <p className="font-body text-[15px] text-surface-500 leading-[26px] m-0">
             Explore the egg powders and liquid egg products this chain produces, or talk to us about your formulation.

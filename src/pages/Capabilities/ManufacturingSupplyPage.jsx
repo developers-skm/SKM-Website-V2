@@ -1,9 +1,12 @@
+import { useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { startCloudTransition } from '../../components/common/CloudPageTransition';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
-import { fadeUp } from '../../utils/motionTokens';
+import { fadeUp, EASE_PREMIUM } from '../../utils/motionTokens';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply/supply.webp';
+import farmToPortImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply/integrated-farm-to-port-complex.png';
 
 // Manufacturing and Supply - new page, Section 1 (Capabilities hero) only,
 // per this task's scope. Replaces the "Capabilities" dropdown in the navbar
@@ -43,6 +46,18 @@ import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply
 // "Request Facility Information" both route to the real Egg Processing
 // Plant page - no separate technology-only or facility-info-only page
 // exists, so both point to the one real source that covers each.
+// Clickable regions over the farm-to-port hero image, as % of the image box
+// (the box keeps the image's 1774x887 ratio, so these stay aligned at any width).
+const ZOOM_DURATION = 1.6;
+const HERO_IMAGE_RATIO = 1774 / 887;
+const HERO_HOTSPOTS = [
+  { route: 'feed_mill', label: 'Feed Mill', left: 66, top: 9, width: 30, height: 31 },
+  { route: 'poultry_farm', label: 'Poultry Farm', left: 61, top: 40, width: 36, height: 25 },
+  { route: 'egg_processing_plant', label: 'Egg Processing Plant', left: 53, top: 66, width: 43, height: 31 },
+  { route: 'global_reach', label: 'Export & Dispatch', left: 2, top: 58, width: 44, height: 40 },
+  { route: 'csr_sustainability', label: 'Biogas & Sustainability', left: 4, top: 35, width: 30, height: 22 },
+];
+
 const PROCESSING_CAPABILITIES = [
   {
     id: 'processing-stages',
@@ -101,8 +116,8 @@ function EggProcessingPlantSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Egg processing plant</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Egg processing plant
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Egg Processing Plant
           </h2>
         </motion.div>
 
@@ -204,8 +219,8 @@ function PoultryFarmsSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Farm Operations</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Integrated poultry farms
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Integrated Poultry Farms
           </h2>
         </motion.div>
 
@@ -266,8 +281,8 @@ function FeedMillSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Raw-Material Control</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Feed mill and raw-material control
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Feed Mill and Raw-Material Control
           </h2>
         </motion.div>
 
@@ -321,8 +336,8 @@ function LaboratoryReleaseSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Laboratory and release controls</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Laboratory and release controls
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Laboratory and Release Controls
           </h2>
         </motion.div>
 
@@ -394,8 +409,8 @@ function PackagingCapabilitiesSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Packaging capabilities</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Packaging capabilities
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Packaging Capabilities
           </h2>
         </motion.div>
 
@@ -500,8 +515,8 @@ function LogisticsSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Dispatch and supply continuity</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Dispatch and supply continuity
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Dispatch and Supply Continuity
           </h2>
         </motion.div>
 
@@ -567,8 +582,8 @@ function FinalCTASection({ onPageChange }) {
         transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
         className="mx-auto max-w-[600px] flex flex-col items-center gap-5"
       >
-        <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-heading m-0 tracking-tight">
-          We are ready to fulfil your orders.
+        <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+          We Are Ready to Fulfil Your Orders.
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <InternalLink
@@ -593,6 +608,28 @@ function FinalCTASection({ onPageChange }) {
 
 export default function ManufacturingSupplyPage({ onPageChange }) {
   const reduceMotion = useReducedMotion();
+  const heroRef = useRef(null);
+  const [zoom, setZoom] = useState(null);
+
+  // Hotspot click: zoom the screen into the clicked area, bring the cloud
+  // gates in over the zoom, and only change route once they fully close.
+  const handleHotspotClick = (event, hotspot) => {
+    if (reduceMotion || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (zoom || !heroRef.current) return;
+    const hero = heroRef.current.getBoundingClientRect();
+    const box = event.currentTarget.getBoundingClientRect();
+    const ox = box.left + box.width / 2 - hero.left;
+    const oy = box.top + box.height / 2 - hero.top;
+    const scale = Math.min(4, Math.max(2.4, Math.min(hero.width / box.width, hero.height / box.height) * 0.85));
+    // Pull the clicked point to the screen centre, clamped so the image edge never shows.
+    const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+    const x = clamp(hero.width / 2 - ox, -(hero.width - ox) * (scale - 1), ox * (scale - 1));
+    const y = clamp(hero.height / 2 - oy, -(hero.height - oy) * (scale - 1), oy * (scale - 1));
+    setZoom({ ox, oy, scale, x, y });
+    startCloudTransition({ delay: ZOOM_DURATION * 1000 * 0.45, onClosed: () => onPageChange(hotspot.route) });
+  };
 
   const fadeProps = (delay = 0) => fadeUp(reduceMotion, { delay });
 
@@ -608,8 +645,106 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
     >
       <div className="w-full flex flex-col bg-page">
 
-        {/* Section 1 - Capabilities hero */}
-        <div className="relative w-full pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] overflow-hidden">
+        {/* Section 1 - Integrated Farm-to-Port hero. Modelled on the Products
+            hub hero: full-screen image revealed with a slow vertical clip, a
+            "select to discover more" heading, and hover-only hotspot labels.
+            The hotspot layer mirrors the image's object-fit: cover math, so
+            the percentages line up at any viewport size. */}
+        <div ref={heroRef} className="relative w-full min-h-screen overflow-hidden">
+          <motion.div
+            className="absolute inset-0"
+            animate={zoom ? { scale: zoom.scale, x: zoom.x, y: zoom.y } : { scale: 1, x: 0, y: 0 }}
+            transition={{ duration: ZOOM_DURATION, ease: [0.5, 0, 0.2, 1] }}
+            style={{ transformOrigin: zoom ? `${zoom.ox}px ${zoom.oy}px` : "50% 50%" }}
+          >
+          <motion.div
+            className="absolute inset-0 overflow-hidden"
+            initial={reduceMotion ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}
+            animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+            transition={{ duration: reduceMotion ? 0.01 : 1.2, ease: EASE_PREMIUM }}
+          >
+            <img
+              src={farmToPortImage}
+              alt="Integrated Farm-to-Port Agriculture Complex - farmland, feed mill, poultry houses, processing plant and container port"
+              className="absolute inset-0 w-full h-full object-cover object-center select-none"
+              loading="eager"
+              decoding="async"
+              draggable={false}
+            />
+          </motion.div>
+          </motion.div>
+
+          {/* Soft cream scrim behind the heading */}
+          <div
+            className="absolute inset-x-0 top-0 h-[220px] pointer-events-none bg-gradient-to-b from-[#fdfbf7]/70 to-transparent"
+            aria-hidden="true"
+          />
+
+          {/* Thin gold line trailing the reveal's leading edge */}
+          {!reduceMotion && (
+            <motion.div
+              className="absolute inset-x-0 h-px pointer-events-none"
+              style={{ background: 'linear-gradient(90deg, rgba(243,201,105,0) 0%, rgba(243,201,105,0.85) 50%, rgba(243,201,105,0) 100%)' }}
+              initial={{ top: '100%', opacity: 1 }}
+              animate={{ top: '0%', opacity: 0 }}
+              transition={{
+                top: { duration: 1.2, ease: EASE_PREMIUM },
+                opacity: { duration: 1.5, delay: 0.3, ease: EASE_PREMIUM },
+              }}
+            />
+          )}
+
+          <motion.div
+            className="absolute inset-x-0 top-[84px] sm:top-[28px] z-30 flex flex-col items-center px-4 text-center pointer-events-none"
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: zoom ? 0 : 1, y: 0 }}
+            transition={zoom ? { duration: 0.4 } : { duration: reduceMotion ? 0.01 : 0.9, delay: reduceMotion ? 0 : 0.75, ease: EASE_PREMIUM }}
+          >
+            <span className="font-body font-bold text-[11px] sm:text-[12px] uppercase tracking-[0.28em] text-brand-600 mb-2">
+              Our Facilities
+            </span>
+            <p
+              className="m-0 font-heading font-extrabold text-[22px] sm:text-[28px] lg:text-[32px] leading-[1.1] tracking-[-0.01em] text-[#3b2a1e]"
+              style={{ textShadow: '0 1px 18px rgba(255,248,238,0.85)' }}
+            >
+              Select a facility to <span className="text-brand-600">discover more.</span>
+            </p>
+            <span className="mt-3 block h-[2px] w-12 rounded-full bg-brand-600" aria-hidden="true" />
+          </motion.div>
+
+          <motion.div
+            className="absolute inset-0 z-20"
+            animate={zoom ? { scale: zoom.scale, x: zoom.x, y: zoom.y } : { scale: 1, x: 0, y: 0 }}
+            transition={{ duration: ZOOM_DURATION, ease: [0.5, 0, 0.2, 1] }}
+            style={{ transformOrigin: zoom ? `${zoom.ox}px ${zoom.oy}px` : "50% 50%" }}
+          >
+          <div className="absolute inset-0 overflow-hidden" style={{ containerType: 'size' }}>
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              style={{ width: `max(100cqw, ${HERO_IMAGE_RATIO * 100}cqh)`, height: `max(100cqh, ${100 / HERO_IMAGE_RATIO}cqw)` }}
+            >
+              {HERO_HOTSPOTS.map((h) => (
+                <InternalLink
+                  key={h.route}
+                  route={h.route}
+                  onPageChange={onPageChange}
+                  onClick={(e) => handleHotspotClick(e, h)}
+                  aria-label={h.label}
+                  className="group absolute rounded-[18px] focus:outline-none"
+                  style={{ left: `${h.left}%`, top: `${h.top}%`, width: `${h.width}%`, height: `${h.height}%` }}
+                >
+                  <span className="absolute left-1/2 -translate-x-1/2 -top-2 -translate-y-full whitespace-nowrap rounded-full bg-brand-600 px-3 py-1 font-body font-semibold text-[12px] text-white opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200 pointer-events-none" hidden={!!zoom}>
+                    {h.label}
+                  </span>
+                </InternalLink>
+              ))}
+            </div>
+          </div>
+          </motion.div>
+        </div>
+
+        {/* Section 2 - Capabilities hero */}
+        <div className="relative w-full pt-[40px] pb-[70px] sm:pt-[50px] lg:pt-[60px] lg:pb-[100px] overflow-hidden">
           <div
             className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-[0.18]"
             style={{ backgroundImage: `url(${supplyHeroImage})` }}

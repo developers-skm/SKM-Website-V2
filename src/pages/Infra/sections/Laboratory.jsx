@@ -192,7 +192,7 @@ export default function Laboratory() {
         >
           <motion.div variants={itemVariants} className="flex flex-col gap-2">
             <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Lab Facilities</span>
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
               Laboratory Gallery
             </h2>
             <p className="font-body text-[15px] text-surface-500 max-w-2xl m-0 leading-[26px]">
@@ -220,7 +220,7 @@ export default function Laboratory() {
             <span className="section-label justify-center">
               Lab Capabilities
             </span>
-            <h2 className="font-heading font-bold text-[34px] sm:text-[40px] text-heading leading-[1.1] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
               Analytical{' '}
               Excellence
             </h2>

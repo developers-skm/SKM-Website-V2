@@ -18,7 +18,7 @@ export default function SectionHeading({ label, title, text, align = 'left', id,
     >
       <div className={`flex flex-col gap-3 ${centered ? 'items-center' : 'items-start'}`}>
         <span className="section-label !mb-0">{label}</span>
-        <h2 id={id} className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.12] tracking-tight m-0 max-w-[22ch] sm:max-w-none">
+        <h2 id={id} className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0 max-w-[22ch] sm:max-w-none">
           {title}
         </h2>
         {text && <p className="font-body text-[16px] sm:text-[17px] text-surface-500 max-w-[600px] leading-[1.65] m-0">{text}</p>}

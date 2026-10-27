@@ -65,7 +65,7 @@ export default function OfficeAddresses() {
                   </span>
                   
                   {/* Title */}
-                  <h2 className="font-heading font-bold text-[26px] sm:text-[34px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0 uppercase">
+                  <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] text-heading leading-[1.1] lg:leading-[1.05] tracking-tight m-0">
                     {loc.title}
                   </h2>
                   

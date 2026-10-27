@@ -11,7 +11,7 @@ export default function EnquiryCTABand({ eyebrow, heading, actions }) {
             {eyebrow}
           </span>
         )}
-        <h2 className="font-heading font-bold text-[28px] sm:text-[36px] text-heading m-0 tracking-tight leading-[1.15]">
+        <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
           {heading}
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-2">

@@ -129,7 +129,7 @@ function ApplicationRow({ app, index, isActive, onActivate, onPageChange, reduce
 
           <motion.span
             style={{ x: ringX, rotate: ringRotate, opacity: ringOpacity, width: ringSize, height: ringSize }}
-            className={`flex-shrink-0 rounded-full bg-white flex items-center justify-center border transition-[border-color,box-shadow] duration-300 ${isActive ? 'border-brand-600 shadow-[0_6px_18px_rgba(232,16,31,0.18)]' : 'border-surface-200'}`}
+            className={`flex-shrink-0 rounded-full bg-white overflow-hidden flex items-center justify-center border transition-[border-color,box-shadow] duration-300 ${isActive ? 'border-brand-600 shadow-[0_6px_18px_rgba(232,16,31,0.18)]' : 'border-surface-200'}`}
           >
             <img
               src={app.icon}
@@ -137,8 +137,7 @@ function ApplicationRow({ app, index, isActive, onActivate, onPageChange, reduce
               width="256" height="256"
               loading="lazy"
               draggable="false"
-              style={{ width: ringSize * 0.75, height: ringSize * 0.75 }}
-              className="object-contain"
+              className="w-full h-full rounded-full object-cover"
             />
           </motion.span>
         </div>
@@ -180,7 +179,7 @@ export default function ApplicationAreas({ onPageChange }) {
 
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-12 lg:mb-16">
           <span className="section-label">Applications</span>
-          <h2 className="font-heading font-bold text-[38px] sm:text-[52px] lg:text-[62px] text-heading leading-[1.02] tracking-tight m-0">
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
             Scope of Product Applications 
           </h2>
         </motion.div>

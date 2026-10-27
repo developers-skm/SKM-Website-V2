@@ -17,7 +17,7 @@ export default function ApplicationGallery({ applicationsData, productName }) {
           <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
           Applications Gallery
         </span>
-        <h2 className="font-heading font-bold text-[34px] sm:text-[42px] text-heading tracking-tight m-0 leading-[1.1]">
+        <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
           Culinary Applications
         </h2>
         <p className="font-body text-[17px] text-surface-600 m-0 leading-[1.7]">

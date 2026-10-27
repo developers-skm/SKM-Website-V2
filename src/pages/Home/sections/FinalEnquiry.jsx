@@ -44,9 +44,9 @@ export default function FinalEnquiry({ onPageChange }) {
       <div className="relative mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
 
-          <h2 className="lg:col-span-9 font-heading font-bold text-[44px] sm:text-[60px] lg:text-[76px] text-heading leading-[1.02] tracking-tight m-0">
-            <LineReveal reduceMotion={reduceMotion}>Tell us what you are</LineReveal>
-            <LineReveal delay={0.1} reduceMotion={reduceMotion}>manufacturing.</LineReveal>
+          <h2 className="lg:col-span-9 font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] text-heading leading-[1.1] lg:leading-[1.05] tracking-tight m-0">
+            <LineReveal reduceMotion={reduceMotion}>Tell Us What You Are</LineReveal>
+            <LineReveal delay={0.1} reduceMotion={reduceMotion}>Manufacturing.</LineReveal>
           </h2>
 
           <motion.p

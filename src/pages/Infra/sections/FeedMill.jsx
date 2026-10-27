@@ -5,6 +5,8 @@ import StatCard from '../../../components/common/StatCard';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 import FeedMillAerial from '../../../assets/home/journey-feed-mill.jpeg';
+import PageHeroBanner from '../../../components/common/PageHeroBanner';
+import heroImage from '../../../assets/page-heroes/feed-mill.webp';
 import CurvedDivider from '../../../components/SectionContainer/CurvedDivider';
 
 const statsData = [
@@ -61,21 +63,13 @@ export default function FeedMill() {
     <div className="w-full bg-page overflow-hidden">
 
       {/* ── Hero ── */}
-      <div className="relative pt-[110px] pb-[90px] sm:pt-[130px] bg-page overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-6 items-start">
-          <span className="section-label">
-            Infrastructure
-          </span>
-          <h1 className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading leading-[1.1] tracking-tight m-0">
-            Feed{' '}
-            Mill
-          </h1>
-          <p className="font-body text-[16px] leading-[30px] text-surface-500 max-w-2xl m-0">
-            An integrated, in-house feed mill producing safe, balanced, residue-free nutrition for every stage of flock development - from chick to layer.
-          </p>
-        </div>
-      </div>
+      <PageHeroBanner
+        image={heroImage}
+        alt="Aerial view of the feed mill and grain processing plant"
+        label="Infrastructure"
+        title="Feed Mill"
+        description="An integrated, in-house feed mill producing safe, balanced, residue-free nutrition for every stage of flock development - from chick to layer."
+      />
 
       {/* ── Stats + Featured Image ── */}
       <motion.section
@@ -124,7 +118,7 @@ export default function FeedMill() {
             <span className="section-label justify-center">
               Mill Operations
             </span>
-            <h2 className="font-heading font-bold text-[34px] sm:text-[40px] text-heading leading-[1.1] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
               Safe Nutrition,{' '}
               Controlled Inputs
             </h2>

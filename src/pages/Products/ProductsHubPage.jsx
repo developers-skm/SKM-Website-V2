@@ -267,7 +267,7 @@ function ProductFinder({ onPageChange }) {
           <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.14em] text-gold-600">
             Find Your Product
           </span>
-          <h2 className="font-heading font-bold text-[30px] sm:text-[36px] lg:text-[40px] text-heading leading-[1.12] tracking-[-0.01em] m-0">
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
             SKM Product Finder
           </h2>
         </motion.div>
@@ -518,8 +518,8 @@ function ProductFamiliesSection({ onPageChange }) {
           <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.14em] text-gold-600">
             Our Portfolio
           </span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
-            Product families
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Product Families
           </h2>
         </motion.div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
@@ -565,8 +565,8 @@ function ManufacturingLinesSection({ onPageChange }) {
           <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.14em] text-gold-600">
             Manufacturing Process
           </span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
-            Explore our manufacturing lines
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Explore Our Manufacturing Lines
           </h2>
         </motion.div>
 
@@ -620,9 +620,9 @@ function FunctionalRequirementSection({ onPageChange }) {
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-7">
         <motion.h2
           {...fadeUp(reduceMotion, { duration: 0.9, distance: 40 })}
-          className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0"
+          className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0"
         >
-          Browse by functional requirement
+          Browse by Functional Requirement
         </motion.h2>
         <motion.p
           {...fadeUp(reduceMotion, { duration: 0.8, distance: 24, delay: reduceMotion ? 0 : 0.13 })}
@@ -681,8 +681,8 @@ function CustomSupportSection({ onPageChange }) {
         {...fadeUp(reduceMotion, { duration: 0.85, distance: 34 })}
         className="relative mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6"
       >
-        <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
-          Custom product support
+        <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+          Custom Product Support
         </h2>
         <p className="font-body text-[15px] lg:text-[16px] text-surface-500 max-w-2xl m-0">
       Our Customised Mix and Customised Package solutions are precisely tailored to your recipe, process, and specific requirements
@@ -722,8 +722,8 @@ function TechnicalResourcesSection({ onPageChange }) {
         {...fadeUp(reduceMotion, { duration: 0.85, distance: 34 })}
         className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-6"
       >
-        <h2 className="font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.1] tracking-tight m-0">
-          Technical resources
+        <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+          Technical Resources
         </h2>
         <p className="font-body text-[15px] lg:text-[16px] text-surface-500 max-w-2xl m-0">
          Explore our product details, complete product portfolio, and company profile to discover more about our products and capabilities.

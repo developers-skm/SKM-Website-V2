@@ -43,7 +43,7 @@ export default function GlobalMarkets({ onPageChange }) {
 
           <motion.div {...fadeUp(reduceMotion)} className="lg:col-span-4 flex flex-col gap-5 lg:relative lg:z-10">
             <span className="section-label">Global Presence</span>
-            <h2 className="font-heading font-bold text-[36px] sm:text-[44px] lg:text-[48px] text-heading leading-[1.05] tracking-tight m-0">
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
               Exporting to
             </h2>
             <CountBig value="30+" />

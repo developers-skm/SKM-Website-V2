@@ -8,6 +8,8 @@ import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNa
 import { containerVariants, itemVariants } from '../../utils/animationVariants';
 import exportMarkets from '../../data/exportMarkets';
 import applications from '../../data/applications';
+import PageHeroBanner from '../../components/common/PageHeroBanner';
+import heroImage from '../../assets/page-heroes/global-reach-port.webp';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Section 3 - Regional offices. Combines the 3 real branches (Japan,
@@ -68,8 +70,8 @@ function MarketMapDetailSection({ onPageChange }) {
   return (
     <div className="w-full py-[50px] lg:py-[70px]">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
-        <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">
-          Select a market
+        <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+          Select a Market
         </h2>
 
         <div className="flex flex-wrap gap-2">
@@ -186,8 +188,8 @@ function ExportRegulatorySupportSection({ onPageChange }) {
         viewport={{ once: true, margin: '-100px' }}
         className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8"
       >
-        <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">
-          Export and regulatory support
+        <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+          Export and Regulatory Support
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {EXPORT_REGULATORY_TOPICS.map((topic) => (
@@ -237,8 +239,8 @@ function PackagingTransportSection({ onPageChange }) {
         viewport={{ once: true, margin: '-100px' }}
         className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8"
       >
-        <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">
-          Packaging and transportation
+        <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+          Packaging and Transportation
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {PACKAGING_TRANSPORT.map((item) => (
@@ -293,8 +295,8 @@ function CustomerProofSection({ onPageChange }) {
       >
         <div className="flex flex-col gap-2">
           <span className="font-body text-[12px] font-medium uppercase tracking-widest text-brand-600">Industries Served</span>
-          <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">
-            Trusted across food manufacturing
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+            Trusted Across Food Manufacturing
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -340,16 +342,14 @@ export default function GlobalReachPage({ onPageChange }) {
       <div className="w-full flex flex-col bg-page">
 
         {/* Section 1 - Global hero */}
-        <div className="w-full pt-[110px] pb-[60px] sm:pt-[130px] lg:pt-[80px] lg:pb-[80px] text-center px-4">
-          <div className="mx-auto max-w-[720px] flex flex-col items-center gap-5">
-            <span className="section-label justify-center">Export Markets & Branches</span>
-            <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
-              Global Presence
-            </h1>
-            <p className="font-body text-[15px] sm:text-[16px] text-surface-500 leading-[28px] m-0">
-              SKM exports to 30+ countries, with dedicated regional branches in Europe and Russia coordinating import, warehousing, and compliance close to your market.
-            </p>
-
+        <PageHeroBanner
+          image={heroImage}
+          alt="Aerial view of a modern container port"
+          label="Export Markets & Branches"
+          title="Global Presence"
+          description="SKM exports to 30+ countries, with dedicated regional branches in Europe and Russia coordinating import, warehousing, and compliance close to your market."
+          align="center"
+        >
             <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
               <button
                 type="button"
@@ -367,8 +367,7 @@ export default function GlobalReachPage({ onPageChange }) {
                 Discuss Export Availability
               </InternalLink>
             </div>
-          </div>
-        </div>
+        </PageHeroBanner>
 
         {/* Map */}
         <div className="w-full py-[50px] lg:py-[70px] bg-white">
@@ -393,7 +392,7 @@ export default function GlobalReachPage({ onPageChange }) {
             viewport={{ once: true, margin: '-100px' }}
             className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-8"
           >
-            <h2 className="font-heading font-bold text-[24px] sm:text-[28px] text-heading m-0 tracking-tight">Regional offices</h2>
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">Regional Offices</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {branches.map((branch) => (
                 <motion.div
@@ -453,8 +452,8 @@ export default function GlobalReachPage({ onPageChange }) {
             Sales" leads into, and the button routes to that real flow. */}
         <div className="w-full bg-white py-[60px] lg:py-[80px] text-center px-4">
           <div className="mx-auto max-w-[600px] flex flex-col items-center gap-6">
-            <h2 className="font-heading font-bold text-[24px] sm:text-[30px] text-heading m-0 tracking-tight">
-              Ready to bring SKM into your market?
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
+              Ready to Bring SKM into Your Market?
             </h2>
             <div className="grid grid-cols-2 gap-3 w-full max-w-[420px]">
               {['Destination country', 'Product', 'Estimated volume', 'Required delivery period'].map((field) => (

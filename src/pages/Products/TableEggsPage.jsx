@@ -81,7 +81,7 @@ const qualityPoints = [
 
 const wrap = 'mx-auto max-w-[1440px] w-full px-5 sm:px-8 lg:px-[88px]';
 const eyebrow = 'section-label';
-const h2Class = 'font-heading font-bold text-[32px] sm:text-[38px] lg:text-[42px] text-heading leading-[1.15]! tracking-tight m-0';
+const h2Class = 'font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] text-heading leading-[1.1] lg:leading-[1.05] tracking-tight m-0';
 const bodyClass = 'font-body text-[16px] leading-[1.75] text-surface-500 m-0';
 
 const btnBase =
@@ -349,7 +349,7 @@ export default function TableEggsPage({ onPageChange }) {
               className="rounded-[24px] bg-[#fdf1f0] border border-brand-600/10 px-6 py-10 sm:px-12 sm:py-12 lg:px-16 lg:py-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8"
             >
               <div className="flex flex-col gap-3 max-w-[560px]">
-                <h2 className={h2Class}>Let&apos;s discuss about table Eggs</h2>
+                <h2 className={h2Class}>Let&apos;s Discuss About Table Eggs</h2>
                 <p className={bodyClass}>
                   Connect with the SKM team to discuss table egg availability and your business requirements.
                 </p>

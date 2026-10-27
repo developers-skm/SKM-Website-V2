@@ -49,7 +49,7 @@ export default function StepCommercialDetails({ formData, setFormData, errors, e
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-1.5">
         <h2 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 tracking-tight">
-          Commercial details
+          Commercial Details
         </h2>
         <p className="font-body text-[13.5px] text-surface-500 m-0">
           Approximate figures are fine - our team will confirm exact quantities and dates with you.

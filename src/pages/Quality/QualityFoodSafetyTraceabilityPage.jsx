@@ -117,8 +117,8 @@ function QualityGatesSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Quality Gates</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Quality screening by production stages
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Quality Screening by Production Stages
           </h2>
         </motion.div>
 
@@ -209,8 +209,8 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">NABL-Accredited Laboratory</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Laboratory capabilities
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Laboratory Capabilities
           </h2>
         </motion.div>
 
@@ -284,8 +284,8 @@ function CertificationsApprovalsSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Certifications</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Certifications and approvals
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Certifications and Approvals
           </h2>
         </motion.div>
 
@@ -359,8 +359,8 @@ function IncidentResponseSection({ onPageChange }) {
           className="flex flex-col gap-4 max-w-2xl"
         >
           <span className="section-label">Incident Response</span>
-          <h2 className="font-heading font-bold text-[32px] sm:text-[40px] lg:text-[46px] text-heading leading-[1.1] tracking-tight m-0">
-            Traceability and incident response
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Traceability and Incident Response
           </h2>
         </motion.div>
 

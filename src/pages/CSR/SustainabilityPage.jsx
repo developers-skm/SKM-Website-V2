@@ -1,6 +1,8 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
+import PageHeroBanner from '../../components/common/PageHeroBanner';
+import heroImage from '../../assets/page-heroes/sustainability-biogas.webp';
 import { makeContainerVariants, makeItemVariants } from '../../utils/animationVariants';
 
 const pillars = [
@@ -54,7 +56,15 @@ export default function SustainabilityPage({ onPageChange }) {
         description="SKM Egg Products' commitment to sustainability - from wind energy generation and waste recycling to community welfare and environmental compliance."
         keywords="SKM sustainability, CSR, environmental policy, wind mill, carbon footprint, clean energy, SKM charitable trust"
       />
-      <div className="w-full bg-page pt-[110px] pb-[40px] sm:pt-[130px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
+      <PageHeroBanner
+        image={heroImage}
+        alt="Modern biogas plant amid green fields"
+        label="CSR - Sustainability"
+        title="Sustainable & Socially Responsible"
+        description="Business strategies that meet the needs of the enterprise and its stakeholders today, while protecting the human and natural resources of the future."
+        align="center"
+      />
+      <div className="w-full bg-page pt-[50px] pb-[40px] lg:pt-[60px] lg:pb-[60px] overflow-hidden">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -62,20 +72,6 @@ export default function SustainabilityPage({ onPageChange }) {
           viewport={{ once: true, margin: '-80px' }}
           className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10"
         >
-
-          {/* ── Section Header ── */}
-          <div className="text-center flex flex-col items-center gap-4">
-            <motion.span variants={itemVariants} className="section-label justify-center">
-              CSR - Sustainability
-            </motion.span>
-            <motion.h2
-              variants={itemVariants}
-              className="font-heading font-bold text-[38px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0"
-            >
-              Sustainable &amp;{' '}
-              Socially Responsible
-            </motion.h2>
-          </div>
 
           {/* ── Mission Statement ── */}
           <motion.div

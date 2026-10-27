@@ -47,8 +47,8 @@ function EnvironmentalResponsibilitySection({ onPageChange }) {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Our Priorities</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
-            Environmental responsibility
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Environmental Responsibility
           </h2>
         </div>
 
@@ -122,8 +122,8 @@ function ResponsibleFarmingSection({ onPageChange }) {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Farm to Feed</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
-            Responsible feed, farming and animal welfare
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Responsible Feed, Farming and Animal Welfare
           </h2>
         </div>
 
@@ -192,8 +192,8 @@ function CommunityDevelopmentSection({ onPageChange }) {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Sevai Maiyam</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
-            Community development
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Community Development
           </h2>
         </div>
 
@@ -253,8 +253,8 @@ function PerformanceIndicatorsSection({ onPageChange }) {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">By The Numbers</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
-            Performance indicators
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Performance Indicators
           </h2>
         </div>
 
@@ -309,8 +309,8 @@ function GovernanceCommitmentsSection({ onPageChange }) {
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Our Commitment</span>
-          <h2 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.15] tracking-tight m-0">
-            Governance and commitments
+          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+            Governance and Commitments
           </h2>
         </div>
 

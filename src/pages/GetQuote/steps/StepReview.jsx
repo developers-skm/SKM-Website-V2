@@ -27,7 +27,7 @@ export default function StepReview({ formData }) {
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-1.5">
         <h2 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 tracking-tight">
-          Review your enquiry
+          Review Your Enquiry
         </h2>
         <p className="font-body text-[13.5px] text-surface-500 m-0">
           Check the details below, then submit - you can go back to change anything first.
