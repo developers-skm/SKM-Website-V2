@@ -7,7 +7,7 @@ import { containerVariants, itemVariants } from '../../utils/animationVariants';
 
 const qualityCards = [
   { title: 'Food Safety & Quality Policy', description: 'Built on HACCP, ISO 22000, and BRCGS global standards - preventing contamination at every stage.', page: 'policy' },
-  { title: 'Quality Assurance & Laboratory', description: 'NABL-accredited lab testing every batch for physicochemical, residue and microbiological safety.', page: 'quality_assurance' },
+  { title: 'Quality Assurance & Laboratory', description: 'NABL-accredited lab testing every batch for physicochemical, residue and microbiological safety.', page: 'quality_food_safety_traceability' },
   { title: 'Quality Management System', description: 'ISO 22000, BRCGS, HACCP, 5S and TQM frameworks covering raw material to dispatch.', page: 'quality_management_system' },
 ];
 
@@ -15,7 +15,7 @@ const infraCards = [
   { title: 'Egg Processing Plant', stat: '2M', statLabel: 'Eggs Processed Daily', description: 'European Union (EU) Compliance facility, approved under Indian Export of Egg Products Rules 1997.', page: 'egg_processing_plant' },
   { title: 'Poultry Farm', stat: '2.4M', statLabel: 'Layers Housed', description: 'ISO 22000 certified integrated farms with environmentally controlled sheds and full biosecurity.', page: 'poultry_farm' },
   { title: 'Feed Mill', stat: 'Residue compliance', statLabel: 'Residue verified ingredients', description: 'In-house feed mill screening every ingredient for mycotoxins, pesticides, and antibiotics.', page: 'feed_mill' },
-  { title: 'Laboratory', stat: 'Since 2006', statLabel: 'NABL Accredited', description: 'GC - ECD /FID, HPLC, and LC MS/MS testing platforms for raw material, water and finished products.', page: 'laboratory' },
+  { title: 'Laboratory', stat: 'Since 2006', statLabel: 'NABL Accredited', description: 'GC - ECD /FID, HPLC, and LC MS/MS testing platforms for raw material, water and finished products.', page: 'quality_food_safety_traceability' },
 ];
 
 export default function WhySKMPage({ onPageChange }) {

@@ -30,7 +30,6 @@ const EggWhiteCubePage = lazyWithRetry(() => import('./pages/Products/EggWhiteCu
 const EggProcessingPlantPage = lazyWithRetry(() => import('./pages/Infra/EggProcessingPlantPage'));
 const PoultryFarmPage = lazyWithRetry(() => import('./pages/Infra/PoultryFarmPage'));
 const FeedMillPage = lazyWithRetry(() => import('./pages/Infra/FeedMillPage'));
-const LaboratoryPage = lazyWithRetry(() => import('./pages/Infra/LaboratoryPage'));
 
 const SkmJapanPage = lazyWithRetry(() => import('./pages/Branches/SkmJapanPage'));
 const SkmEuropePage = lazyWithRetry(() => import('./pages/Branches/SkmEuropePage'));
@@ -82,7 +81,6 @@ const EventDetailPage = lazyWithRetry(() => import('./pages/Events/EventDetailPa
 // Quality Subpages
 const PolicyPage = lazyWithRetry(() => import('./pages/Quality/PolicyPage'));
 const CertificationsPage = lazyWithRetry(() => import('./pages/Quality/CertificationsPage'));
-const QualityAssurancePage = lazyWithRetry(() => import('./pages/Quality/QualityAssurancePage'));
 const TraceabilityPage = lazyWithRetry(() => import('./pages/Quality/TraceabilityPage'));
 const QualityManagementSystemPage = lazyWithRetry(() => import('./pages/Quality/QualityManagementSystemPage'));
 const QualityFoodSafetyTraceabilityPage = lazyWithRetry(() => import('./pages/Quality/QualityFoodSafetyTraceabilityPage'));
@@ -132,8 +130,20 @@ const restoreScrollPosition = (y, onDone) => {
 
 function App() {
   const pendingScrollRef = useRef(null);
+  // Removed pages whose old URLs now point at their replacement.
+  const REMOVED_PAGE_REDIRECTS = {
+    laboratory: 'quality_food_safety_traceability',
+    quality_assurance: 'quality_food_safety_traceability',
+    'quality-assurance': 'quality_food_safety_traceability',
+  };
+
   const getPageFromPath = () => {
     const path = window.location.pathname.replace(/^\//, '');
+    const redirect = REMOVED_PAGE_REDIRECTS[path];
+    if (redirect) {
+      window.history.replaceState({ ...window.history.state, page: redirect }, '', `/${redirect}`);
+      return redirect;
+    }
     return path || 'home';
   };
 
@@ -168,7 +178,8 @@ function App() {
     };
   }, []);
 
-  const handlePageChange = (page, prefillData = null) => {
+  const handlePageChange = (requestedPage, prefillData = null) => {
+    const page = REMOVED_PAGE_REDIRECTS[requestedPage] || requestedPage;
     setActivePage(page);
     if (page !== 'offline') {
       setLastOnlinePage(page);
@@ -333,9 +344,6 @@ function App() {
       case 'certifications':
       case 'quality-certifications':
         return <CertificationsPage onPageChange={handlePageChange} />;
-      case 'quality_assurance':
-      case 'quality-assurance':
-        return <QualityAssurancePage onPageChange={handlePageChange} />;
       case 'traceability':
       case 'quality-traceability':
         return <TraceabilityPage onPageChange={handlePageChange} />;
@@ -351,8 +359,6 @@ function App() {
         return <PoultryFarmPage onPageChange={handlePageChange} />;
       case 'feed_mill':
         return <FeedMillPage onPageChange={handlePageChange} />;
-      case 'laboratory':
-        return <LaboratoryPage onPageChange={handlePageChange} />;
       case 'sustainability_and_community':
         return <SustainabilityCommunityPage onPageChange={handlePageChange} />;
       case 'community_development':

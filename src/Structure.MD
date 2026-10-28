@@ -65,10 +65,6 @@ Sections: 1
 Sections: 1
 1. Certifications — BRCGS AA Grade, Halal, Kosher, FSSAI, EU & USDA, NABL lab certification showcase
 
-### Quality Assurance | HACCP Egg Quality Testing & Residue Analysis — `/quality_assurance` (QualityAssurancePage.jsx)
-Sections: 1
-1. QualityAssurance — HACCP process, residue analysis (GC-MS, HPLC), micro/physicochemical testing
-
 ### Egg Traceability | Farm-to-Fork Supply Chain Transparency — `/traceability` (TraceabilityPage.jsx)
 Sections: 1
 1. Traceability — farm-to-fork chain (feed mill → poultry farm → processing → delivery)
@@ -92,10 +88,6 @@ Sections: 1
 ### In-house Poultry Feed Mill | Residue-Free Egg Production — `/feed_mill` (FeedMillPage.jsx)
 Sections: 1
 1. FeedMill — residue-free nutrition formulation, ingredient screening laboratory
-
-### NABL Accredited Egg Testing Laboratory | ISO/IEC 17025 — `/laboratory` (LaboratoryPage.jsx)
-Sections: 1
-1. Laboratory — NABL-accredited lab (since 2006): residue analysis, micro/physicochemical testing, disease diagnostics
 
 ---
 

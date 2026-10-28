@@ -6,6 +6,9 @@ import EnquiryModal from '../ContactUs/sections/EnquiryModal';
 import homeJourneyStages from '../../data/homeJourneyStages';
 import HomeJourney from '../Home/sections/HomeJourney';
 import traceabilityHeroImage from '../../assets/4. QUALITY/Traceability/Traceability Home Section.webp';
+import LaboratoryHighlights from '../Infra/sections/LaboratoryHighlights';
+import LaboratoryAnalytical from '../Infra/sections/LaboratoryAnalytical';
+import LaboratoryGallery from '../Infra/sections/LaboratoryGallery';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 
 // Quality, Food Safety and Traceability - combined hub page. This is a new
@@ -101,7 +104,7 @@ const QUALITY_GATES = [
   },
 ];
 
-function QualityGatesSection({ onPageChange }) {
+function QualityGatesSection() {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -142,115 +145,6 @@ function QualityGatesSection({ onPageChange }) {
               </p>
             </motion.div>
           ))}
-        </div>
-
-        <InternalLink
-          route="quality_assurance"
-          onPageChange={onPageChange}
-          className="self-start inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 shadow-[0_6px_20px_rgba(228,10,24,0.24)] hover:shadow-[0_10px_28px_rgba(228,10,24,0.36)] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-        >
-          View Quality-Control Process
-        </InternalLink>
-
-      </div>
-    </div>
-  );
-}
-
-// Section 4 (Laboratory capabilities): the 4 testing categories requested
-// (residue, microbiological, physicochemical, disease-related) map exactly
-// onto the 4 real content sections already documented on the Laboratory
-// page (src/pages/Infra/sections/Laboratory.jsx `contentSections` —
-// Analytical Instruments & Technology covers residue screening,
-// Physicochemical & Functional Testing, Microbiological Laboratory,
-// Poultry Disease Diagnostics). Descriptions and chip lists are reused
-// verbatim from that same source, condensed into one organised grid rather
-// than duplicated as new copy. "Download Laboratory Accreditation" is a
-// genuinely disabled button - only a NABL logo image exists in the repo
-// (src/assets/4. QUALITY/Certificates/NABL 17025_524x600px.png), not a
-// downloadable accreditation certificate document. "Explore Laboratory
-// Capabilities" routes to the real Laboratory page.
-const LAB_CAPABILITIES = [
-  {
-    title: 'Residue Testing',
-    description: 'Advanced analytical platforms support comprehensive safety and residue monitoring - precise screening of feed ingredients, additives, water, tissues, eggs, and finished products for antibiotics, pesticides, and contaminants in line with EU and Japanese regulations (including EU 96/23).',
-    chips: ['GC-ECD / FID', 'HPLC', 'LC-MS/MS', 'NIR', 'ELISA Systems'],
-  },
-  {
-    title: 'Physicochemical Testing',
-    description: 'Modern laboratory equipment verifies freshness and key parameters - evaluating emulsification, foam stability, gel strength, viscosity, baking performance, and product flow characteristics.',
-    chips: ['Protein, Fat, Moisture, Ash', 'pH, Total Solids, Solubility'],
-  },
-  {
-    title: 'Microbiological Testing',
-    description: 'Microbiology laboratory ensures products are free from pathogens and microbial contamination prior to dispatch, with routine testing and environmental monitoring in biosafety-controlled infrastructure.',
-    chips: ['Laminar Airflow', 'Biosafety Cabinet'],
-  },
-  {
-    title: 'Poultry Disease Diagnostics',
-    description: 'An in-house diagnostic laboratory supports proactive flock health management through microbiological, serological, and molecular testing, with regulatory-aligned frameworks for early detection and disease prevention.',
-    chips: ['Microbiology', 'Serology', 'Necropsy', 'Post Mortem'],
-  },
-];
-
-function LaboratoryCapabilitiesSection({ onPageChange }) {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <div id="laboratory-capabilities" className="w-full py-[60px] lg:py-[85px] bg-white">
-      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10">
-
-        <motion.div
-          initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
-          className="flex flex-col gap-4 max-w-2xl"
-        >
-          <span className="section-label">NABL-Accredited Laboratory</span>
-          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
-            Laboratory Capabilities
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {LAB_CAPABILITIES.map((cap, i) => (
-            <motion.div
-              key={cap.title}
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              className="group flex flex-col gap-4 p-6 rounded-[20px] border border-surface-200/70 bg-[#fdfbf7] shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 transition-all duration-300"
-            >
-              <h3 className="font-heading font-bold text-[18px] text-heading m-0">
-                {cap.title}
-              </h3>
-              <p className="font-body text-[14px] text-surface-600 leading-[1.6] m-0">
-                {cap.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {cap.chips.map((chip) => (
-                  <span
-                    key={chip}
-                    className="font-body whitespace-nowrap text-[11.5px] font-semibold uppercase tracking-wide text-brand-700 bg-brand-600/6 border border-brand-600/12 px-2.5 py-1 rounded-full"
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap items-center gap-4">
-          <InternalLink
-            route="laboratory"
-            onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 shadow-[0_6px_20px_rgba(228,10,24,0.24)] hover:shadow-[0_10px_28px_rgba(228,10,24,0.36)] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-          >
-            Explore Laboratory Capabilities
-          </InternalLink>
         </div>
 
       </div>
@@ -300,9 +194,9 @@ function IncidentResponseSection({ onPageChange }) {
           transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
           className="flex flex-col gap-4 max-w-2xl"
         >
-          <span className="section-label">Incident Response</span>
+          <span className="section-label">Traceability and Incident Response</span>
           <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
-            Traceability and Incident Response
+            Incident Response
           </h2>
         </motion.div>
 
@@ -466,20 +360,45 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
           </div>
         </div>
 
-        {/* Section 2 - Integrated farm-to-product traceability */}
-        <TraceabilityJourneySection onPageChange={onPageChange} />
+        {/* Laboratory highlights (stats + featured lab image) */}
+        <div className="w-full bg-page pt-[60px] pb-[60px] lg:pt-[85px] lg:pb-[85px]">
+          <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 mb-10">
+           <div className="flex flex-col gap-4 max-w-3xl">
+            <span className="section-label">Infrastructure</span>
+            <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
+              Quality &amp; Laboratory
+            </h2>
+            <p className="font-body text-[16px] leading-[30px] text-surface-500 m-0">
+              Our ISO/IEC 17025 (NABL) accredited laboratory, operational since 2006, supports compliance with European and Japanese regulatory standards. Built on 5S, TQM, Quality Circles, and HACCP principles, the facility ensures disciplined control from raw material to finished product.
+            </p>
+           </div>
+          </div>
+          <LaboratoryHighlights showStats={false} className="mx-auto max-w-[1680px] px-6 sm:px-10 lg:px-16" />
+        </div>
+
+        {/* Laboratory gallery */}
+        <CurvedDivider bg="#ececec" fill="#fff" />
+        <div className="w-full bg-white pt-[10px] pb-[60px] lg:pb-[85px]">
+          <LaboratoryGallery className="mx-auto max-w-[1680px] px-6 sm:px-10 lg:px-16" />
+        </div>
+
         <CurvedDivider bg="#fff" fill="#ececec" />
 
         {/* Section 3 - Quality gates by production stage */}
-        <QualityGatesSection onPageChange={onPageChange} />
+        <QualityGatesSection />
 
-        {/* Section 4 - Laboratory capabilities */}
+        {/* Analytical Excellence (from Laboratory page) */}
+        <div className="w-full bg-page pb-[60px] lg:pb-[85px]">
+          <LaboratoryAnalytical className="mx-auto max-w-[1680px] px-6 sm:px-10 lg:px-16" />
+        </div>
+
         <CurvedDivider bg="#ececec" fill="#fff" />
-        <LaboratoryCapabilitiesSection onPageChange={onPageChange} />
-        <CurvedDivider bg="#fff" fill="#fff" />
 
         {/* Section 7 - Traceability and incident response */}
         <IncidentResponseSection onPageChange={onPageChange} />
+
+        {/* Section 2 - Integrated farm-to-product traceability (last section) */}
+        <TraceabilityJourneySection onPageChange={onPageChange} />
 
       </div>
 

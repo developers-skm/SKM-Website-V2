@@ -88,14 +88,14 @@ const homeJourneyStages = [
   {
     id: 'laboratory-testing',
     label: 'Laboratory testing',
-    // Source: src/pages/Infra/sections/Laboratory.jsx ("Analytical
+    // Source: src/pages/Infra/sections/LaboratoryAnalytical.jsx ("Analytical
     // Instruments & Technology" and "Microbiological Laboratory" content
     // sections).
     image: LabImg,
     whatHappens: 'Advanced analytical platforms support comprehensive safety and residue monitoring - precise screening of feed ingredients, additives, water, tissues, eggs, and finished products for antibiotics, pesticides, and contaminants in line with EU and Japanese regulations (including EU 96/23).',
     whatIsControlled: 'A controlled microbiology laboratory ensures products are free from pathogens and microbial contamination prior to dispatch.',
     recordsAndChecks: 'Routine testing and environmental monitoring are conducted using biosafety-controlled infrastructure.',
-    route: 'laboratory',
+    route: 'quality_food_safety_traceability',
     ctaLabel: 'View Laboratory',
   },
   {

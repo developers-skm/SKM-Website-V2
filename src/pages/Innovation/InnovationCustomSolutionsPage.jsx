@@ -205,12 +205,12 @@ function CoDevelopmentProcessSection({ onPageChange }) {
 }
 
 // Section 4 (R&D and application capability): real equipment and testing
-// capability from src/pages/Infra/sections/Laboratory.jsx —
+// capability from src/pages/Infra/sections/LaboratoryAnalytical.jsx —
 // analytical/residue platforms (GC-MS, HPLC, LC-MS/MS, etc.),
 // physicochemical/functional testing (emulsification, foam stability, gel
 // strength, viscosity, baking performance), and microbiological testing.
 // "Team expertise" has no real named-team, headcount, or credential data
-// anywhere in the repo - the closest real fact is Laboratory.jsx's own
+// anywhere in the repo - the closest real fact is LaboratoryAnalytical.jsx's own
 // gallery caption ("A dedicated Quality Assurance team oversees systematic
 // monitoring, validation, and documentation across all production
 // stages"), reused verbatim rather than inventing team size or
@@ -277,7 +277,7 @@ function RDCapabilitySection({ onPageChange }) {
 
         <div className="flex flex-wrap items-center gap-4">
           <InternalLink
-            route="laboratory"
+            route="quality_food_safety_traceability"
             onPageChange={onPageChange}
             className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >

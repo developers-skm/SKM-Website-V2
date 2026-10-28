@@ -313,7 +313,7 @@ function FeedMillSection({ onPageChange }) {
 
 // Section 5 (Laboratory and release controls): connects the NABL-
 // accredited laboratory directly to manufacturing decisions using real
-// facts from src/pages/Infra/sections/Laboratory.jsx and
+// facts from src/pages/Infra/sections/LaboratoryAnalytical.jsx and
 // QualityManagementSystem.jsx - routine testing and environmental
 // monitoring confirm products are free from pathogens and microbial
 // contamination prior to dispatch (i.e. before release), and the
@@ -354,7 +354,7 @@ function LaboratoryReleaseSection({ onPageChange }) {
         </motion.div>
 
         <InternalLink
-          route="laboratory"
+          route="quality_food_safety_traceability"
           onPageChange={onPageChange}
           className={`self-start ${BTN_PRIMARY}`}
         >

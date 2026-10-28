@@ -44,7 +44,7 @@ export default function QualityCertificationProof({ onPageChange }) {
               Every batch is governed by a documented Food Safety &amp; Quality Policy : HACCP-based hazard control, verified residue testing, and internationally aligned management systems, from raw material intake to finished product release.
             </p>
             <InternalLink
-              route="quality_assurance"
+              route="quality_food_safety_traceability"
               onPageChange={onPageChange}
               className="group self-start inline-flex items-center gap-2 font-body font-semibold text-[15px] text-brand-600 hover:text-brand-700 mt-1 lg:mt-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
             >
