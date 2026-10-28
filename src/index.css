@@ -538,6 +538,30 @@ p {
   animation-play-state: paused;
 }
 
+/* ── Hen chasing the rolling egg on CurvedDivider ────────────────────────── */
+
+@keyframes hen-leg-a {
+  0%, 100% { transform: rotate(-20deg); }
+  50%      { transform: rotate(20deg); }
+}
+@keyframes hen-leg-b {
+  0%, 100% { transform: rotate(20deg); }
+  50%      { transform: rotate(-20deg); }
+}
+@keyframes hen-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3%); }
+}
+
+.hen-leg-a { transform-origin: 49% 76%; animation: hen-leg-a 0.5s ease-in-out infinite; }
+.hen-leg-b { transform-origin: 64% 77%; animation: hen-leg-b 0.5s ease-in-out infinite; }
+.hen-bob   { animation: hen-bob 0.17s ease-in-out infinite; }
+.hen-chase[data-paused] .hen-leg-a,
+.hen-chase[data-paused] .hen-leg-b,
+.hen-chase[data-paused] .hen-bob {
+  animation-play-state: paused;
+}
+
 /* ── Reduced motion — global safety net ──────────────────────────────────── */
 
 /*

@@ -1,6 +1,9 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { eggFacts } from '../../data/eggFacts';
 import { eggCards } from '../../data/eggCards';
+import henBody from '../../assets/images/hen/hen-body.webp';
+import henLegA from '../../assets/images/hen/hen-leg-a.webp';
+import henLegB from '../../assets/images/hen/hen-leg-b.webp';
 
 /**
  * Curved section boundary - replaces a flat 1px border between two stacked
@@ -38,6 +41,7 @@ const pickFact = (list) => {
 function RollingEgg({ pathRef, boxRef, withImage }) {
   const eggRef = useRef(null);
   const labelRef = useRef(null);
+  const henRef = useRef(null);
   const startRef = useRef(0);
   const tRef = useRef(0);
   const factRef = useRef(null);
@@ -117,6 +121,24 @@ function RollingEgg({ pathRef, boxRef, withImage }) {
       egg.style.opacity = fade;
       egg.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) rotate(${roll}deg)`;
 
+      // The hen runs the same curve a few strides behind the egg, facing the
+      // way the egg is rolling, with its feet planted on the line.
+      const hen = henRef.current;
+      if (hen) {
+        const henH = parseFloat(getComputedStyle(hen).height) || 40;
+        const gap = (henH * 0.5 + eggH * 0.5 + 18) / sx;
+        const hs = s - (motion.dir > 0 ? 1 : -1) * (gap / total);
+        const hp = at(hs * total);
+        const ha = at(hs * total - 3);
+        const hq = at(hs * total + 3);
+        const hdx = (hq.x - ha.x) * sx;
+        const hdy = (hq.y - ha.y) * sy;
+        const tilt = (Math.atan2(hdy, hdx) * 180) / Math.PI;
+        const edge = Math.max(0, Math.min(1, hs / 0.06, (1 - hs) / 0.06));
+        hen.style.opacity = String(Math.min(edge, Number(fade)));
+        hen.style.transform = `translate(${hp.x * sx}px, ${hp.y * sy}px) rotate(${tilt}deg) translate(-50%, -96%) scaleX(${motion.dir > 0 ? 1 : -1})`;
+      }
+
       const label = labelRef.current;
       if (label) {
         // Sentence rides above the egg, kept inside the page width.
@@ -187,6 +209,7 @@ function RollingEgg({ pathRef, boxRef, withImage }) {
   const handleLeave = (e) => {
     if (e.pointerType !== 'mouse') return;
     pausedRef.current = false;
+    henRef.current?.removeAttribute('data-paused');
     // Image card: fade it out as soon as the cursor leaves the egg.
     if (withImage) dismissCard();
   };
@@ -194,6 +217,7 @@ function RollingEgg({ pathRef, boxRef, withImage }) {
   const handleHover = (e) => {
     if (e.pointerType !== 'mouse') return;
     pausedRef.current = true;
+    henRef.current?.setAttribute('data-paused', '');
     setHover(true);
     // Stay up for 2 seconds so the line can be read, even if the egg rolls
     // out from under the cursor.
@@ -203,6 +227,20 @@ function RollingEgg({ pathRef, boxRef, withImage }) {
 
   return (
     <>
+      {/* Hen only chases the egg on product pages (the `cards` dividers). */}
+      {withImage && (
+        <div
+          ref={henRef}
+          className="hen-chase absolute left-0 top-0 z-[5] h-[34px] sm:h-[44px] lg:h-[54px] aspect-[289/340] opacity-0 will-change-transform pointer-events-none"
+        >
+          <div className="hen-bob relative h-full w-full">
+            {/* Both legs show at once; they swing from the hip in opposite phase. */}
+            <img src={henLegA} alt="" draggable="false" className="hen-leg-a absolute inset-0 h-full w-full" />
+            <img src={henLegB} alt="" draggable="false" className="hen-leg-b absolute inset-0 h-full w-full" />
+            <img src={henBody} alt="" draggable="false" className="absolute inset-0 h-full w-full" />
+          </div>
+        </div>
+      )}
       <svg
         ref={eggRef}
         viewBox="0 0 24 30"
