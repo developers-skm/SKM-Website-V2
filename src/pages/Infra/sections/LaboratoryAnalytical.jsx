@@ -16,7 +16,7 @@ const microbiologicalParams = [
 ];
 
 const microbiologicalEquipment = [
-  'Biosafety cabinets', 'Laminar airflow systems', 'Dedicated media storage facilities',
+  'Biosafety cabinets', 'Laminar airflow',
 ];
 
 const contentSections = [
@@ -69,7 +69,7 @@ const contentSections = [
     title: 'Poultry Disease Diagnostics',
     description: 'Comprehensive Disease control begins with feed mill and extends through strict biosecurity, vector control, and continuous flock monitoring. \n\nNewcastle Disease titres are verified through periodic serological testing, while enhanced biosecurity protocols safeguard against Avian Influenza, including controlled farm access, sanitation barriers, and perimeter management\n\nOur in-house diagnostic laboratory supports proactive flock health management through microbiological, serological, and molecular testing. Strict biosecurity protocols, controlled sample handling, and regulatory-aligned testing frameworks ensure early detection, disease prevention, and sustained flock health.',
     chips: ['Microbiology', 'Serology', 'Necropsy', 'Post Mortem'],
-    chipLabel: 'Monitored Pathogens',
+    chipLabel: 'Testings',
     fullWidth: true,
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -136,6 +136,10 @@ export default function LaboratoryAnalytical({ className = '' }) {
               </p>
             ))}
 
+            {/* Chips footer - pinned to the card bottom so every card in a row lines up */}
+            {(section.chips || section.extraChips) && (
+            <div className="mt-auto flex flex-col gap-4">
+
             {/* Primary chips */}
             {section.chips && (
             <div className="flex flex-col gap-2">
@@ -172,6 +176,8 @@ export default function LaboratoryAnalytical({ className = '' }) {
                   ))}
                 </div>
               </div>
+            )}
+            </div>
             )}
           </motion.div>
         ))}
