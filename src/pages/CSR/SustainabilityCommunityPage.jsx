@@ -223,69 +223,126 @@ function CommunityDevelopmentSection({ onPageChange }) {
       </div>
     </div>
   );
-}
 
-// Section 5 - Performance indicators. All figures are real and already
-// used elsewhere on this page/site (wind energy, biogas capacity,
-// community reach, education outcomes). None of these figures carry a
-// published reporting period (fiscal year, audit date, etc.) anywhere in
-// the repo - they're documented as current, standing facts, not annually-
-// reported metrics - so no invented reporting period is attached; each
-// figure is labeled with only the real qualifier that exists (e.g. "per
-// year" for the wind energy figure, "this year" for graduate placements,
-// verbatim from EducationPage.jsx). "View Detailed Performance" routes to
-// the real Sustainability page, which has the fuller environmental
-// policy context for these figures.
-const PERFORMANCE_INDICATORS = [
-  { value: '5.2M', label: 'Units of clean electricity generated per year', source: 'Wind mill and solar power panels' },
-  { value: '70T', label: 'Poultry litter handling capacity', source: 'Biogas facility' },
-  { value: '228', label: 'Families adopted', source: 'Gandhi Nagar & Rajiv Nagar' },
-  { value: '786', label: 'Residents supported', source: 'Community welfare program' },
-  { value: '239', label: 'Children enrolled in coaching', source: 'Education program' },
-  { value: '13', label: 'Graduates placed this year', source: 'Education program' },
+}
+// Section 4b - Corporate Social Responsibility. Moved here from the
+// Resources page: the five CSR programme cards, each routing to its
+// detailed page.
+const CSR_CARDS = [
+  {
+    title: 'Community Development',
+    description: 'The SKM Health and Mind Welfare Charity Trust - Sevai Maiyam - supporting adopted families with housing, sanitation, and welfare.',
+    page: 'community_development',
+    iconType: 'community',
+  },
+  {
+    title: 'Trust Outreach Programs',
+    description: 'Sanitation, education fees, medical services, financial aid, elder care, and community initiatives.',
+    page: 'trust_outreach',
+    iconType: 'trust',
+  },
+  {
+    title: 'Education Initiatives',
+    description: 'ABL teaching systems, coaching centres, libraries, and educational support for underprivileged students.',
+    page: 'csr_education',
+    iconType: 'education',
+  },
+  {
+    title: 'Environmental Sustainability',
+    description: 'Carbon footprint reduction, wind energy investments, eco-efficient processing, and environmental policy commitments.',
+    page: 'csr_sustainability',
+    iconType: 'sustainability',
+  },
+  {
+    title: 'MD Vision & Article',
+    description: "The Olirum Erodu Foundation - Managing Director's personal initiative across five key community focus areas.",
+    page: 'md_article',
+    iconType: 'md_article',
+  },
 ];
 
-function PerformanceIndicatorsSection({ onPageChange }) {
+function CsrIcon({ iconType }) {
+  switch (iconType) {
+    case 'community':
+      return (
+        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0v-5a2 2 0 012-2h2a2 2 0 012 2v5m-6 0h6" />
+        </svg>
+      );
+    case 'trust':
+      return (
+        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+      );
+    case 'education':
+      return (
+        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+        </svg>
+      );
+    case 'sustainability':
+      return (
+        <svg className="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5a2.5 2.5 0 002.5-2.5V8.5a.5.5 0 01.5-.5h.5a2.5 2.5 0 002.5-2.5V3.935" />
+        </svg>
+      );
+    default:
+      return (
+        <svg className="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+        </svg>
+      );
+  }
+}
+
+function CsrSection({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full py-[60px] lg:py-[85px] bg-white">
+    <div id="csr" className="w-full py-[60px] lg:py-[85px] scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
-          <span className="section-label">By The Numbers</span>
+          <span className="section-label">Beyond The Factory Floor</span>
           <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
-            Performance Indicators
+            Corporate Social Responsibility (CSR)
           </h2>
+          <p className="font-body text-[15px] text-surface-500 leading-[1.7] m-0">
+            Discover SKM's commitment to community welfare, clean energy, education, and sustainable development.
+          </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
-          {PERFORMANCE_INDICATORS.map((stat, i) => (
-            <motion.div
-              key={stat.label}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {CSR_CARDS.map((card, i) => (
+            <motion.button
+              key={card.page}
+              type="button"
               initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.04 }}
-              className="p-5 bg-brand-600/4 border border-[rgba(228, 10, 24,0.10)] rounded-[10px] flex flex-col gap-1.5"
+              transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
+              onClick={() => onPageChange(card.page)}
+              className="group flex flex-col items-start gap-3 p-6 text-left rounded-[16px] border border-[#eee] bg-[#fdfbf7] hover:border-brand-600/30 hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:-translate-y-1 transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
             >
-              <span className="font-heading font-bold text-[24px] sm:text-[26px] text-brand-600 leading-tight">{stat.value}</span>
-              <span className="font-body text-[12px] font-medium text-surface-700 leading-tight">{stat.label}</span>
-              <span className="font-body text-[10.5px] text-surface-400 uppercase tracking-wide">{stat.source}</span>
-            </motion.div>
+              <span className="p-3 rounded-xl bg-white border border-surface-200/60 flex items-center justify-center">
+                <CsrIcon iconType={card.iconType} />
+              </span>
+              <h3 className="font-heading font-bold text-[15px] text-heading m-0 group-hover:text-brand-600 transition-colors duration-200">
+                {card.title}
+              </h3>
+              <p className="font-body text-[13px] text-surface-500 leading-[1.5] m-0">{card.description}</p>
+              <span className="mt-auto pt-2 font-body font-bold text-[12px] text-brand-600 inline-flex items-center gap-1 group-hover:underline">
+                Explore Overview →
+              </span>
+            </motion.button>
           ))}
         </div>
-
-        <InternalLink
-          route="csr_sustainability"
-          onPageChange={onPageChange}
-          className="self-start inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-        >
-          View Detailed Performance
-        </InternalLink>
       </div>
     </div>
   );
 }
+
 
 // Section 6 - Governance and commitments. Real environmental commitments
 // (verbatim from SustainabilityPage.jsx's own environmental objectives)
@@ -386,13 +443,13 @@ export default function SustainabilityCommunityPage({ onPageChange }) {
         {/* Section 3 - Responsible feed, farming and animal welfare */}
         <ResponsibleFarmingSection onPageChange={onPageChange} />
 
-        <CurvedDivider bg="#ececec" fill="#fff" />
-        {/* Section 4 - Community development */}
-        <CommunityDevelopmentSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#ececec" fill="#ececec" />
+        {/* Section 4 - Corporate Social Responsibility */}
+        <CsrSection onPageChange={onPageChange} />
 
-        <CurvedDivider bg="#fff" fill="#fff" />
-        {/* Section 5 - Performance indicators */}
-        <PerformanceIndicatorsSection onPageChange={onPageChange} />
+        <CurvedDivider bg="#ececec" fill="#fff" />
+        {/* Section 4b - Community development */}
+        <CommunityDevelopmentSection onPageChange={onPageChange} />
 
         <CurvedDivider bg="#fff" fill="#ececec" />
         {/* Section 6 - Governance and commitments */}

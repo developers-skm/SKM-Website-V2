@@ -172,7 +172,7 @@ export default function WhySKMPage({ onPageChange }) {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <button
-                onClick={() => onPageChange('journey')}
+                onClick={() => onPageChange('traceability')}
                 className="inline-flex items-center gap-2.5 bg-brand-600 hover:bg-[#a80000] text-white font-heading font-bold text-[13px] uppercase tracking-[0.05em] leading-none px-7 py-[15px] rounded-[200px] transition-all duration-300 shadow-[0_4px_20px_rgba(228,10,24,0.25)] hover:shadow-[0_6px_28px_rgba(228,10,24,0.4)] cursor-pointer"
               >
                 See Our Journey

@@ -49,7 +49,7 @@ const applications = [
     image: MayonnaiseImg,
     icon: MayonnaiseIcon,
     tags: ['Emulsification', 'Sauces'],
-    problem: 'For stable emulsion that holds up through hot-fill processing.',
+    problem: 'For rich golden colour, emulsification and hot-fill processing.',
     intro: 'Our egg yolk powders and liquids provide the emulsifying backbone mayonnaise and dressing manufacturers rely on - including heat-stable variants for hot-processed sauces.',
     matchedProductIds: ['egg_yolk_powder', 'egg_yolk_powder_heat_stable', 'egg_yolk_liquid'],
     hideFormulationChallenges: true,

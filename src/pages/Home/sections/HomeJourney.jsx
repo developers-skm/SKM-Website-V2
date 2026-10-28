@@ -159,7 +159,7 @@ function StackedTimeline({ reduceMotion }) {
   );
 }
 
-export default function HomeJourney({ onPageChange }) {
+export default function HomeJourney({ onPageChange, showCta = true, showStages = true }) {
   const reduceMotion = useReducedMotion();
   const useSticky = !reduceMotion;
 
@@ -177,7 +177,7 @@ export default function HomeJourney({ onPageChange }) {
         </motion.div>
       </div>
 
-      {useSticky ? (
+      {!showStages ? null : useSticky ? (
         <>
           <div className="hidden lg:block">
             <DesktopSticky />
@@ -192,8 +192,9 @@ export default function HomeJourney({ onPageChange }) {
         </div>
       )}
 
-      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 pb-24 lg:pb-28 pt-8">
-        <div className="pt-8 border-t border-surface-200/70">
+      {showCta ? (
+      <div className={`mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 pb-24 lg:pb-28 ${showStages ? 'pt-8' : 'pt-10'}`}>
+        <div className={showStages ? 'pt-8 border-t border-surface-200/70' : ''}>
           <InternalLink
             route="traceability"
             onPageChange={onPageChange}
@@ -207,6 +208,9 @@ export default function HomeJourney({ onPageChange }) {
           </InternalLink>
         </div>
       </div>
+      ) : (
+        <div className="pb-16 lg:pb-20" />
+      )}
     </section>
   );
 }

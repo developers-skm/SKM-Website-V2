@@ -157,7 +157,10 @@ const JOURNEY_MILESTONES = [
   { title: 'Mondelez Quality and Food Safety Culture Awards 2021-2022', by: 'by Mondelez', color: '#E40A18' },
   { title: 'National Client of the Year 2022', by: 'Awarded by LMI Carpe Diem', color: '#E40A18' },
   { title: 'Shri SKM Maeilanandhan receiving Padma Bhushan - 2026', by: 'by Honourable President of India, Smt. Droupadi Murmu', color: '#E40A18', image: '/gallery/award-padma-bhushan-2026.jpg' },
-];
+]
+  // `n` = the milestone's slot in the (oldest-first) trophy sprite sheet; shown newest-first.
+  .map((m, n) => ({ ...m, n }))
+  .reverse();
 
 // Golden cut-out of milestone i's own trophy (see GOLD_BOXES), scaled to `height`.
 function Trophy({ i, height = 100 }) {
@@ -406,7 +409,7 @@ function DesktopJourneyTimeline({ onPageChange }) {
                         animate={visible ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.4, y: 16 }}
                         transition={{ type: 'spring', stiffness: 320, damping: 20 }}
                       >
-                        <Trophy i={i} height={112} />
+                        <Trophy i={m.n} height={112} />
                         <span
                           className="block w-[22px] h-[22px] rounded-full bg-white mt-1.5"
                           style={{ border: `4px solid ${m.color}` }}
@@ -468,12 +471,12 @@ function DesktopJourneyTimeline({ onPageChange }) {
                     }}
                   >
                     {JOURNEY_MILESTONES.map((m, i) => {
-                      const { x0, y0, w, h } = goldBox(i);
+                      const { x0, y0, w, h } = goldBox(m.n);
                       return (
                         <div key={m.title}>
                           <motion.button
                             type="button"
-                            layoutId={`gold-trophy-${i}`}
+                            layoutId={`gold-trophy-${m.n}`}
                             onClick={() => setSelected(i)}
                             aria-label={m.title}
                             title={m.title}
@@ -484,7 +487,7 @@ function DesktopJourneyTimeline({ onPageChange }) {
                               top: `${((y0 - GOLD_ROW.y0) / GOLD_ROW.vh) * 100}%`,
                               width: `${(w / GOLD_ROW.vw) * 100}%`,
                               height: `${(h / GOLD_ROW.vh) * 100}%`,
-                              ...goldTrophyStyle(i),
+                              ...goldTrophyStyle(m.n),
                             }}
                           />
                           <span
@@ -499,7 +502,7 @@ function DesktopJourneyTimeline({ onPageChange }) {
                               color: m.color,
                             }}
                           >
-                            {TROPHY_SHORT[i]}
+                            {TROPHY_SHORT[m.n]}
                           </span>
                         </div>
                       );
@@ -509,12 +512,12 @@ function DesktopJourneyTimeline({ onPageChange }) {
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center gap-10 lg:gap-16 px-6">
                   <motion.div
-                    layoutId={`gold-trophy-${selected}`}
+                    layoutId={`gold-trophy-${JOURNEY_MILESTONES[selected].n}`}
                     className="flex-none"
                     style={{
                       height: Math.min(380, viewH - 70),
-                      aspectRatio: `${goldBox(selected).w} / ${goldBox(selected).h}`,
-                      ...goldTrophyStyle(selected),
+                      aspectRatio: `${goldBox(JOURNEY_MILESTONES[selected].n).w} / ${goldBox(JOURNEY_MILESTONES[selected].n).h}`,
+                      ...goldTrophyStyle(JOURNEY_MILESTONES[selected].n),
                     }}
                     transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: EASE_PREMIUM }}
                   />
@@ -619,7 +622,7 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
               className="relative flex gap-5 pb-8 last:pb-0"
             >
               <span className="relative z-10 flex-shrink-0 w-[42px] h-[42px] rounded-full flex items-center justify-center bg-white border-2" style={{ borderColor: m.color }}>
-                <Trophy i={i} height={28} />
+                <Trophy i={m.n} height={28} />
               </span>
 
               <div className="flex flex-col gap-1.5 pt-1.5">
@@ -688,7 +691,7 @@ function LeadershipMessageSection({ onPageChange }) {
           <div className="w-14 h-[3px] rounded-full bg-brand-600" />
           <div className="flex flex-col items-center gap-1 text-center">
             <h4 className="font-heading text-[17px] font-bold text-heading m-0">Mr. SKM Shree Shivkumar</h4>
-            <p className="font-body text-[12px] font-bold text-brand-600 m-0 uppercase tracking-widest">Chief Executive Officer</p>
+            <p className="font-body text-[12px] font-bold text-brand-600 m-0 uppercase tracking-widest">Chairman & Managing Director</p>
           </div>
         </motion.div>
 

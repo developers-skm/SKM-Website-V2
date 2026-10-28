@@ -19,7 +19,7 @@ const proofs = [
     label: 'stage Documented supply chain process',
     title: 'End-to-End Traceability',
     description: 'Complete control over the supply chain - six documented stages from feed origin to finished product.',
-    page: 'journey',
+    page: 'traceability',
     featured: true,
   },
   {
@@ -49,7 +49,7 @@ const proofs = [
     number: '30',
     suffix: '+',
     label: 'Export Markets & Branches',
-    title: 'Global Confidence Since 1997',
+    title: 'Global Presence Since 1997',
     description: 'SKM exports to 30+ countries, with dedicated regional branches in Europe and Russia coordinating import, warehousing, and compliance close to your market.',
     page: 'global_reach',
   },

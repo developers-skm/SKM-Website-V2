@@ -82,7 +82,7 @@ const stories = [
   {
     number: '01',
     eyebrow: 'Carbon Footprint',
-    title: 'Low possible carbon footprint.',
+    title: 'Lower carbon footprint.',
     body: 'Our carbon footprint is minimised through the strategic location of our processing plant, efficient waste recycling, and energy-efficient processes across our operations.',
     image: CarbonFootprint,
     imageAlt: 'Effluent treatment plant at SKM Egg Products',
@@ -176,7 +176,7 @@ export default function Sustainability({ onPageChange }) {
 
         <motion.div {...fadeUp(reduceMotion, { delay: 0.1 })} className="pt-10 lg:pt-12 border-t border-surface-200/70">
           <InternalLink
-            route="csr_sustainability"
+            route="sustainability_and_community"
             onPageChange={onPageChange}
             className="group inline-flex items-center gap-2 font-body font-semibold text-[15px] text-brand-600 hover:text-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-sm"
           >

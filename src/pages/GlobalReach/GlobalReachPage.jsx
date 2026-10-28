@@ -168,7 +168,7 @@ const EXPORT_REGULATORY_TOPICS = [
   },
   {
     id: 'certification-support',
-    label: 'Certification support',
+    label: 'Certification',
     fact: 'Active certifications: FSSAI, Export Inspection Council, BRC Food Certified, ISO 22000, ISO/IEC 17025, Halal (JUHF & BPJPH) Certified and KLBD Kosher.',
   },
   {

@@ -28,14 +28,6 @@ const qaChecklist = [
   'Foreign Material Control Systems',
 ];
 
-const certifications = [
-  { name: 'BRCGS', label: 'Global Food Safety Initiative' },
-  { name: 'ISO 22000', label: 'Food Safety Management System' },
-  { name: 'HACCP', label: 'Controlled' },
-  { name: 'Halal', label: 'Halal Compliance' },
-  { name: 'Kosher', label: 'Kosher Compliance' },
- ];
-
 // ─────────────────────────────────────────────
 // Process Chapters Data
 // ─────────────────────────────────────────────
@@ -45,7 +37,7 @@ const processChapters = [
     category: 'CHAPTER 01 • RAW INGREDIENT INTAKE',
     title: 'Fresh Egg Collection & Transportation',
     narrative:
-    'Shell eggs are procured daily from certified integrated layer farms and transported to our facility in climate-controlled vehicles. Upon arrival, the shell eggs are graded before entering the production process.',
+    'Shell eggs are procured daily from certified layer farms and transported to our facility in climate-controlled vehicles. Upon arrival, the shell eggs are graded before entering the production process.',
     highlights: ['100% Traceable Origin', 'climate-controlled vehicles.','Graded before production'],
     illustrationSide: 'left', // left: image, center: node, right: content
     image: manufacturingImages.intake,
@@ -55,7 +47,7 @@ const processChapters = [
     step: '02',
     category: 'CHAPTER 02 • MECHANICAL SEPARATION',
     title: 'Automated Breaking & Stage Filtration',
-    narrative:'High-speed egg-breaking machines automatically crack shell eggs and separate the raw liquid egg from shell fragments. The liquid whole egg then passes through duplex stainless-steel strainers to remove fine shell particles and natural membrane strands, ensuring a clean and consistent liquid egg stream.',
+    narrative:'Efficient egg-breaking machines automatically crack shell eggs and separate the raw liquid egg from shell fragments. The liquid whole egg then passes through duplex stainless-steel strainers to remove fine shell particles and natural membrane strands, ensuring a clean and consistent liquid egg stream.',
     highlights: ['Automated Breaking Knife System', 'Duplex Stainless Steel Strainers', 'Continuous Mechanical Shell Separation'],
     illustrationSide: 'right', // left: content, center: node, right: image
     image: manufacturingImages.breaking,
@@ -65,7 +57,7 @@ const processChapters = [
     step: '03',
     category: 'CHAPTER 03 • THERMAL PROCESSING',
     title: 'Pasteurisation & Homogenization',
-    narrative:'Filtered liquid whole egg undergoes continuous pasteurisation through plate heat exchangers. Precisely controlled thermal profiles effectively reduce pathogenic microorganisms, including Salmonella and Listeria, while preserving the functional properties of native egg proteins.',
+    narrative:'Filtered liquid whole egg undergoes continuous pasteurisation through plate heat exchangers. Precisely controlled thermal profiles effectively eliminates pathogenic microorganisms, including Salmonella and Listeria, while preserving the functional properties of native egg proteins.',
     highlights: ['Stainless Steel Plate Heat Exchanger', 'USDA Thermal Sterilisation Profile', 'HACCP - Critical Control Point Monitored'],
     illustrationSide: 'left',
     image: manufacturingImages.pasteurization,
@@ -96,7 +88,7 @@ const processChapters = [
     step: '06',
     category: 'CHAPTER 06 • PROTECTIVE PACKAGING ',
     title: 'HEPA Cleanroom Packaging',
-    narrative:'Finished egg powder is sifted through a fine-mesh sifter and passed through high-intensity magnetic traps to control physical contaminants. The powder is packed in positive-pressure, HEPA-filtered cleanrooms, accurately weighed, and sealed in 20/25 kg HDPE bags. Each pack is assigned a unique barcode, enabling complete backward traceability throughout the supply chain.',
+    narrative:'Finished egg powder is sieved through a fine-mesh sifter and passed through high-intensity magnetic traps to control physical contaminants. The powder is packed in positive-pressure, HEPA-filtered cleanrooms, accurately weighed, and sealed in 20/25 kg HDPE bags. Each pack is assigned a unique barcode, enabling complete backward traceability throughout the supply chain.',
     highlights: ['HEPA Positive-Pressure Cleanroom', 'High-Intensity Magnetic Traps', 'Barcode Lot Traceability'],
     illustrationSide: 'right',
     image: manufacturingImages.packaging,
@@ -120,7 +112,7 @@ const baseLineChapters = POWDER_LINE_ORDER
       illustrationSide: i % 2 === 0 ? 'left' : 'right',
       highlights: c.highlights.map((h) => (h === '100% Traceable Origin' ? '100% Traceable' : h)),
       narrative: isQuality
-        ? 'Every production batch undergoes comprehensive analytical, chemical, and microbiological testing in an NABL-accredited (ISO/IEC 17025) laboratory before Certificate of Analysis (COA) issuance.'
+        ? 'Every production batch undergoes comprehensive analytical, chemical, and microbiological testing in an NABL-accredited (ISO/IEC 17025) laboratory before Certificate of Analysis (COA) is issued.'
         : c.narrative,
     };
   });
@@ -468,45 +460,6 @@ function QASection({ reducedMotion, bare = false }) {
   );
 }
 
-// ─────────────────────────────────────────────
-// Certifications Strip
-// ─────────────────────────────────────────────
-function CertificationsStrip({ reducedMotion, bare = false }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.55, ease: EASE_PRECISE }}
-      className={`flex flex-col gap-6 relative z-10 ${bare ? '' : 'pt-10 border-t border-[#ECECEC]'}`}
-    >
-      <span className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-[#AAAAAA]">
-        International Food Safety Certifications
-      </span>
-
-      <div className="flex flex-wrap items-start gap-x-10 gap-y-5">
-        {certifications.map((cert) => (
-          <div
-            key={cert.name}
-            title={cert.label}
-            className="flex flex-col gap-0.5 group cursor-default transition-opacity duration-200 opacity-70 hover:opacity-100"
-          >
-            <div className="relative inline-block">
-              <span className="font-heading font-semibold text-[18px] sm:text-[20px] text-[#555555] group-hover:text-[#111111] transition-colors duration-200">
-                {cert.name}
-              </span>
-              <span className="absolute left-0 -bottom-0.5 w-full h-[1px] bg-[#E40A18] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
-            </div>
-            <span className="font-mono text-[10px] text-[#AAAAAA] tracking-wider uppercase">
-              {cert.label}
-            </span>
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
 // Standalone Quality Assurance + certifications chapter - rendered on each
 // product detail page (ProductPage.jsx), separate from the manufacturing
 // process timeline.
@@ -516,7 +469,6 @@ export function ProductQualityAssurance() {
     <section className="w-full bg-[#FAFAF8] text-[#111111] py-12 sm:py-16 lg:py-20 font-body">
       <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12 flex flex-col gap-12">
         <QASection reducedMotion={reducedMotion} bare />
-        <CertificationsStrip reducedMotion={reducedMotion} />
       </div>
     </section>
   );
@@ -657,9 +609,6 @@ export default function TraceabilityLoopJourney({ title, subtitle, onPageChange,
           <>
             {/* Quality Assurance */}
             <QASection reducedMotion={reducedMotion} />
-
-            {/* Certifications Strip */}
-            <CertificationsStrip reducedMotion={reducedMotion} />
           </>
         )}
 

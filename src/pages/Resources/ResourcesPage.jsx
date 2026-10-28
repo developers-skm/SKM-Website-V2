@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
-import { containerVariants, itemVariants } from '../../utils/animationVariants';
 import { EASE_PREMIUM } from '../../utils/motionTokens';
 import products from '../../data/products';
 import certifications from '../../data/certifications';
@@ -392,139 +391,7 @@ function BrochuresApplicationGuidesSection({ globalSearchQuery }) {
   );
 }
 
-// Section 6 - CSR Cards
-const csrCards = [
-  {
-    title: 'Community Development',
-    description: 'The SKM Health and Mind Welfare Charity Trust - Sevai Maiyam - supporting adopted families with housing, sanitation, and welfare.',
-    page: 'community_development',
-    iconType: 'community',
-  },
-  {
-    title: 'Trust Outreach Programs',
-    description: 'Sanitation, education fees, medical services, financial aid, elder care, and community initiatives.',
-    page: 'trust_outreach',
-    iconType: 'trust',
-  },
-  {
-    title: 'Education Initiatives',
-    description: 'ABL teaching systems, coaching centres, libraries, and educational support for underprivileged students.',
-    page: 'csr_education',
-    iconType: 'education',
-  },
-  {
-    title: 'Environmental Sustainability',
-    description: 'Carbon footprint reduction, wind energy investments, eco-efficient processing, and environmental policy commitments.',
-    page: 'csr_sustainability',
-    iconType: 'sustainability',
-  },
-  {
-    title: 'MD Vision & Article',
-    description: "The Olirum Erodu Foundation - Managing Director's personal initiative across five key community focus areas.",
-    page: 'md_article',
-    iconType: 'md_article',
-  },
-];
-
-function CsrIcon({ iconType }) {
-  switch (iconType) {
-    case 'community':
-      return (
-        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0v-5a2 2 0 012-2h2a2 2 0 012 2v5m-6 0h6" />
-        </svg>
-      );
-    case 'trust':
-      return (
-        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
-      );
-    case 'education':
-      return (
-        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-        </svg>
-      );
-    case 'sustainability':
-      return (
-        <svg className="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5a2.5 2.5 0 002.5-2.5V8.5a.5.5 0 01.5-.5h.5a2.5 2.5 0 002.5-2.5V3.935" />
-        </svg>
-      );
-    default:
-      return (
-        <svg className="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-        </svg>
-      );
-  }
-}
-
-function CsrSection({ onPageChange, globalSearchQuery }) {
-  const reduceMotion = useReducedMotion();
-  const visibleCards = useMemo(
-    () => csrCards.filter((card) => matchesSearch(globalSearchQuery, card.title, card.description, 'csr corporate social responsibility')),
-    [globalSearchQuery],
-  );
-  if (visibleCards.length === 0) return null;
-  return (
-    <div id="csr" className="relative w-full py-16 lg:py-24">
-      <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
-        
-        <motion.div {...sectionHeadingReveal(reduceMotion)} className="flex flex-col gap-2">
-          <div className="flex items-center">
-            <span className="font-body text-[12px] font-bold uppercase tracking-widest text-brand-600">
-              Beyond The Factory Floor
-            </span>
-          </div>
-          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
-            Corporate Social Responsibility (CSR)
-          </h2>
-          <p className="font-body text-[14.5px] text-surface-600 max-w-2xl m-0 leading-relaxed">
-            Discover SKM's commitment to community welfare, clean energy, education, and sustainable development.
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {visibleCards.map((card) => (
-            <motion.button
-              key={card.page}
-              variants={itemVariants}
-              whileHover={reduceMotion ? undefined : { y: -5 }}
-              transition={{ duration: 0.32, ease: EASE_PREMIUM }}
-              onClick={() => onPageChange(card.page)}
-              className="group flex flex-col items-start gap-3 p-6 text-left rounded-2xl bg-white/80 backdrop-blur-xl border border-surface-200/80 shadow-lg shadow-black/5 hover:border-brand-500/40 hover:shadow-2xl transition-all duration-300 cursor-pointer focus:outline-none"
-            >
-              <div className="p-3 rounded-xl bg-surface-100 border border-surface-200/60 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <CsrIcon iconType={card.iconType} />
-              </div>
-              <h3 className="font-heading font-bold text-[18px] text-heading m-0 group-hover:text-brand-600 transition-colors duration-200">
-                {card.title}
-              </h3>
-              <p className="font-body text-[13.5px] text-surface-500 leading-relaxed m-0">
-                {card.description}
-              </p>
-              <span className="mt-2 font-body font-bold text-[12px] text-brand-600 inline-flex items-center gap-1 group-hover:underline">
-                Explore Overview →
-              </span>
-            </motion.button>
-          ))}
-        </motion.div>
-
-      </div>
-    </div>
-  );
-}
-
-// Section 7 - FAQ
+// Section 6 - FAQ
 const FAQ_CATEGORIES = [
   {
     category: 'Product selection',
@@ -554,7 +421,7 @@ const FAQ_CATEGORIES = [
   {
     category: 'Export documentation',
     question: 'What regulatory approvals does SKM hold for export?',
-    answer: 'The plant is approved under the Indian Export of Egg Products Quality Control & Monitoring Rules (1997), based on EU/USDA guidelines (Approval No: 05/2/EP/97).',
+    answer: 'The plant is approved under the Indian Export of Egg Products Quality Control & Monitoring Rules (1997), based on EU guidelines (Approval No: 05/2/EP/97).',
   },
   {
     category: 'Quality and certification',
@@ -747,7 +614,7 @@ export default function ResourcesPage({ onPageChange }) {
                 onSubmit={(e) => {
                   e.preventDefault();
                   // Jump to the first section that still has results after filtering.
-                  const target = ['technical-documents', 'certifications', 'brochures', 'csr', 'faq']
+                  const target = ['technical-documents', 'certifications', 'brochures', 'faq']
                     .map((id) => document.getElementById(id))
                     .find(Boolean);
                   target?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
@@ -799,7 +666,6 @@ export default function ResourcesPage({ onPageChange }) {
                   { label: 'Product Details', target: 'technical-documents' },
                   { label: 'Certifications', target: 'certifications' },
                   { label: 'Brochures', target: 'brochures' },
-                  { label: 'CSR', target: 'csr' },
                   { label: 'FAQ', target: 'faq' },
                 ].map((tag) => (
                   <button
@@ -827,16 +693,12 @@ export default function ResourcesPage({ onPageChange }) {
           {/* Section 5 - Brochures & Guides */}
           <BrochuresApplicationGuidesSection globalSearchQuery={searchQuery} />
 
-          <CurvedDivider bg="#fff" fill="#f8fafc" />
-          {/* Section 6 - CSR */}
-          <CsrSection onPageChange={onPageChange} globalSearchQuery={searchQuery} />
-
-          <CurvedDivider bg="#f8fafc" fill="#fff" />
-          {/* Section 7 - FAQ */}
+          <CurvedDivider bg="#fff" fill="#fff" />
+          {/* Section 6 - FAQ */}
           <FaqSection onPageChange={onPageChange} globalSearchQuery={searchQuery} />
 
           <CurvedDivider bg="#fff" fill="#f8fafc" />
-          {/* Section 8 - Bottom Contact CTA */}
+          {/* Section 7 - Bottom Contact CTA */}
           <div className="w-full py-20 lg:py-28 text-center px-4">
             <motion.div
               {...sectionHeadingReveal(reduceMotion)}

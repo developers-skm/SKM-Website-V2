@@ -57,7 +57,7 @@ export default function CeoMessage() {
                 Mr. SKM Shree Shivkumar
               </h4>
               <p className="font-body text-[12px] font-bold text-brand-600 m-0 uppercase tracking-widest">
-                Chief Executive Officer
+                Chairman & Managing Director
               </p>
             </div>
           </div>

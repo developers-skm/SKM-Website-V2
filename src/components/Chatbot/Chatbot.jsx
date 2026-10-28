@@ -117,6 +117,9 @@ export default function Chatbot({ onPageChange }) {
         text: data.answer,
         sources: data.sources || [],
         actions: data.actions,
+        products: data.products,
+        locations: data.locations,
+        productsFirst: data.productsFirst,
         timestamp: new Date()
       };
       setMessages((prev) => [...prev, botMessage]);
@@ -383,7 +386,69 @@ export default function Chatbot({ onPageChange }) {
                   >
                     {msg.sender === 'bot' ? (
                       <>
+                        {msg.productsFirst && msg.products?.length > 0 && (
+                          <div className="mb-3 flex flex-col gap-2">
+                            {msg.products.map((p) => (
+                              <button
+                                key={p.id}
+                                type="button"
+                                onClick={() => {
+                                  onPageChange?.(p.page);
+                                  setIsOpen(false);
+                                }}
+                                className="block w-full overflow-hidden rounded-xl border border-[#eee] bg-white text-left hover:border-brand-600/40 transition-colors cursor-pointer"
+                              >
+                                <img src={p.image} alt={p.title} className="w-full h-36 object-cover" />
+                                <span className="block px-3 py-2 text-[13px] font-semibold text-heading">{p.title}</span>
+                              </button>
+                            ))}
+                          </div>
+                        )}
                         {renderMessageText(msg.text)}
+                        {!msg.productsFirst && msg.products?.length > 0 && (
+                          <div className="mt-3 flex flex-col gap-2">
+                            {msg.products.map((p) => (
+                              <button
+                                key={p.id}
+                                type="button"
+                                onClick={() => {
+                                  onPageChange?.(p.page);
+                                  setIsOpen(false);
+                                }}
+                                className="flex items-center gap-3 p-2 rounded-xl border border-[#eee] bg-white text-left hover:border-brand-600/40 hover:bg-brand-50 transition-colors cursor-pointer"
+                              >
+                                <img src={p.image} alt={p.title} className="w-16 h-16 rounded-lg object-cover flex-shrink-0" />
+                                <span className="min-w-0">
+                                  <span className="block text-[13px] font-semibold text-heading">{p.title}</span>
+                                  <span className="block text-[11px] text-surface-500 line-clamp-2">{p.description}</span>
+                                </span>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                        {msg.locations?.length > 0 && (
+                          <div className="mt-3 flex flex-col gap-3">
+                            {msg.locations.map((l) => (
+                              <div key={l.id} className="rounded-xl border border-[#eee] bg-white overflow-hidden">
+                                <img src={l.image} alt={l.title} className="w-full h-28 object-cover" />
+                                <div className="p-3">
+                                  <span className="block text-[10px] font-semibold uppercase tracking-wide text-brand-600">{l.badge}</span>
+                                  <span className="block text-[13px] font-semibold text-heading">{l.title}</span>
+                                  <span className="block text-[12px] text-surface-600 mt-1">{l.address}</span>
+                                  <span className="block text-[12px] text-surface-600 mt-1">Call: {l.phone}</span>
+                                  <div className="mt-2 flex flex-wrap gap-2">
+                                    <a href={l.directionsLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-3 py-1.5 rounded-full bg-brand-600 text-[11px] font-semibold text-white hover:bg-brand-700 no-underline transition-colors">
+                                      Get directions
+                                    </a>
+                                    <a href={l.phoneLink} className="inline-flex items-center px-3 py-1.5 rounded-full border border-brand-600/30 bg-brand-50 text-[11px] font-semibold text-brand-600 hover:bg-brand-600 hover:text-white no-underline transition-colors">
+                                      Call
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                         {msg.actions?.length > 0 && (
                           <div className="mt-3 flex flex-wrap gap-2">
                             {msg.actions.map((act) => {

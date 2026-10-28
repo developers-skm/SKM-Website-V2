@@ -115,14 +115,6 @@ Sections: 1
 
 ---
 
-## Journey
-
-### Our Journey — Farm-to-Product Traceability — `/journey` (JourneyPage.jsx)
-Sections: 1
-1. JourneyStrip (full) — six-stage farm-to-product chain (hatchery → factory floor), ISO 22000/NABL-backed CCP documentation
-
----
-
 ## Contact Us
 
 ### Contact SKM Egg Products | Get Egg Powder & Liquid Egg Enquiry — `/contact-us` (ContactUs.jsx)

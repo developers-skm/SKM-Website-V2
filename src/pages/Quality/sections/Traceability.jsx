@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Trace1 from '../../../assets/4. QUALITY/Traceability/Traceability Picture 1.png';
 import Trace2 from '../../../assets/4. QUALITY/Traceability/Traceability Picture 2.png';
-import TraceabilityLoopJourney from '../../../components/Traceability/TraceabilityLoopJourney';
+import HomeJourney from '../../Home/sections/HomeJourney';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
 
 const traceabilitySteps = [
@@ -43,40 +43,19 @@ export default function Traceability({ onPageChange }) {
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
   return (
-    <div id="quality-traceability" className="w-full bg-page pt-[100px] sm:pt-[110px] lg:pt-[120px] pb-[40px] lg:pb-[60px] overflow-hidden">
+    <div id="quality-traceability" className="w-full bg-page pb-[40px] lg:pb-[60px] overflow-x-clip">
+      {/* Section 1 - 6-stage farm-to-product journey (same component as Home) */}
+      <div className="w-full bg-white pt-[40px] lg:pt-[50px]">
+        <HomeJourney onPageChange={onPageChange} showCta={false} />
+      </div>
+
       <motion.section
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
-        className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-16"
+        className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 pt-[60px] lg:pt-[80px] flex flex-col gap-16"
       >
-        {/* Header */}
-        <div className="text-center flex flex-col items-center gap-4">
-          <motion.span
-            variants={itemVariants}
-            className="section-label justify-center"
-          >
-            Traceability
-          </motion.span>
-          <motion.h2
-            variants={itemVariants}
-            className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0"
-          >
-            Farm-to-Product Journey
-          </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="font-body text-[16px] text-surface-500 max-w-2xl leading-[30px] m-0"
-          >
-          Complete supply chain visibility—every egg, every batch and every stage is documented and traceable, from our feed mill to final product dispatch.
-          </motion.p>
-        </div>
-
-        {/* Interactive 360° Loop Flow Journey: How Whole Egg Powder Is Made */}
-        <motion.div variants={itemVariants}>
-          <TraceabilityLoopJourney onPageChange={onPageChange} />
-        </motion.div>
 
         {/* Traceability Images */}
         <motion.div

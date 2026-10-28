@@ -8,7 +8,7 @@ import products, { PRODUCT_CATEGORIES } from '../../data/products';
 import { getBrochureUrl } from '../../data/brochureUrl';
 import useMediaQuery from '../../components/GlobalEvents/useMediaQuery';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
-import { EASE_PREMIUM, DURATION, fadeUp, cardRise } from '../../utils/motionTokens';
+import { EASE_PREMIUM, DURATION, fadeUp } from '../../utils/motionTokens';
 
 const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
 
@@ -418,117 +418,6 @@ function ProductFinder({ onPageChange }) {
             ))}
           </AnimatePresence>
         </motion.div>
-      </div>
-    </div>
-  );
-}
-
-// Section 3 - Product families. Real disclosure-per-category pattern
-// (matching ProductFamilies.jsx on Home), covering all products via their
-// real categories. "Egg White Cube" and "Speciality Liquid Blends" both
-// live under PRODUCT_CATEGORIES.SPECIALITY - the brief's separate "Egg
-// White Cube" and "Packaging solutions" categories are represented via the
-// same real SPECIALITY/CUSTOMIZED groupings rather than invented new ones.
-const familyGroups = [
-  { id: 'powders', label: 'Egg Powders', category: PRODUCT_CATEGORIES.POWDERS, ctaLabel: 'View Egg Powder Range', categoryRoute: 'category_powders' },
-  { id: 'liquids', label: 'Liquid Eggs', category: PRODUCT_CATEGORIES.LIQUIDS, ctaLabel: 'View Liquid Egg Range', categoryRoute: 'category_liquids' },
-  { id: 'speciality', label: 'Speciality Products', category: PRODUCT_CATEGORIES.SPECIALITY, ctaLabel: 'Explore Speciality Products', categoryRoute: 'category_custom' },
-  { id: 'customised', label: 'Customised Solutions', category: PRODUCT_CATEGORIES.CUSTOMIZED, ctaLabel: 'Explore Custom Solutions', categoryRoute: 'category_custom' },
-];
-
-function FamilyGroupBlock({ group, onPageChange }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const reduceMotion = useReducedMotion();
-  const groupProducts = products.filter((p) => p.category === group.category);
-  const listId = `hub-family-${group.id}-products`;
-
-  return (
-    <motion.div
-      whileHover={reduceMotion ? undefined : { y: -8 }}
-      whileTap={reduceMotion ? undefined : { y: -5, scale: 0.99 }}
-      transition={{ duration: 0.42, ease: EASE_PREMIUM }}
-      className="group/card flex flex-col p-7 rounded-[16px] border border-surface-200/70 bg-[#fdfbf7] shadow-[0_1px_2px_rgba(20,16,12,0.03)] transition-[border-color,box-shadow] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-gold-500/60 hover:shadow-[0_24px_48px_-20px_rgba(20,16,12,0.18)]"
-    >
-      <h3 className="font-heading font-bold text-[19px] sm:text-[20px] text-heading leading-[1.2] tracking-[-0.01em] m-0 transition-colors duration-300 group-hover/card:text-heading">
-        {group.label}
-      </h3>
-      <p className="font-body text-[13px] text-surface-400 mt-2 mb-5 tracking-[0.01em]">
-        {groupProducts.length} product{groupProducts.length === 1 ? '' : 's'}
-      </p>
-
-      <InternalLink
-        route={group.categoryRoute}
-        onPageChange={onPageChange}
-        className="group/cta inline-flex items-center gap-1.5 font-body font-semibold text-[14px] text-brand-600 hover:text-brand-700 self-start focus:outline-none focus-gold rounded-sm mb-3"
-      >
-        {group.ctaLabel}
-        <span className="inline-block transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cta:translate-x-1" aria-hidden="true">→</span>
-      </InternalLink>
-
-      <button
-        type="button"
-        aria-expanded={isExpanded}
-        aria-controls={listId}
-        onClick={() => setIsExpanded((prev) => !prev)}
-        className="group inline-flex items-center gap-2 font-body font-semibold text-[12.5px] uppercase tracking-[0.06em] text-surface-400 hover:text-brand-600 bg-transparent border-none p-0 cursor-pointer self-start focus:outline-none focus-gold rounded-sm transition-colors duration-200"
-      >
-        {isExpanded ? 'Hide products' : 'Show products'}
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className={`transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isExpanded ? 'rotate-180' : ''}`} aria-hidden>
-          <path d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-
-      <AnimatePresence initial={false}>
-        {isExpanded && (
-          <motion.ul
-            id={listId}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.3, ease: EASE_PREMIUM }}
-            className="flex flex-col overflow-hidden list-none m-0 p-0 mt-4"
-          >
-            {groupProducts.map((product) => (
-              <li key={product.id} className="border-t border-surface-200/70 first:border-t-0">
-                <InternalLink
-                  route={product.page}
-                  onPageChange={onPageChange}
-                  className="block py-2.5 font-body text-[14px] text-surface-700 hover:text-brand-600 transition-colors duration-150 focus:outline-none focus-gold rounded-sm"
-                >
-                  {product.title}
-                </InternalLink>
-              </li>
-            ))}
-          </motion.ul>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
-
-function ProductFamiliesSection({ onPageChange }) {
-  const reduceMotion = useReducedMotion();
-  return (
-    <div id="product-families" className="w-full py-[68px] lg:py-[96px] bg-white scroll-mt-[100px] xl:scroll-mt-[120px]">
-      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10 lg:gap-12">
-        <motion.div
-          {...fadeUp(reduceMotion, { duration: 0.9, distance: 40 })}
-          className="flex flex-col gap-2.5"
-        >
-          <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.14em] text-gold-600">
-            Our Portfolio
-          </span>
-          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
-            Product Families
-          </h2>
-        </motion.div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
-          {familyGroups.map((group, index) => (
-            <motion.div key={group.id} {...cardRise(reduceMotion, { index, distance: 36, stagger: 0.09, delay: 0.2, duration: 0.85 })}>
-              <FamilyGroupBlock group={group} onPageChange={onPageChange} />
-            </motion.div>
-          ))}
-        </div>
       </div>
     </div>
   );
@@ -1042,15 +931,8 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
             <motion.div
               variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 26 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-[640px] mt-2"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-[440px] mt-2"
             >
-              <button
-                type="button"
-                onClick={() => scrollToSectionId('product-families')}
-                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-gold-400/70 hover:bg-white/15 hover:-translate-y-[3px] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98] focus:outline-none focus-gold"
-              >
-                <span className="font-body font-semibold text-[13.5px] text-white">Browse by product format</span>
-              </button>
               <button
                 type="button"
                 onClick={() => scrollToSectionId('product-finder')}
@@ -1104,11 +986,6 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
 
         {/* Section 2 - SKM Product Finder */}
         <ProductFinder onPageChange={onPageChange} />
-        <CurvedDivider cards bg="#fff" fill="#fff" className="" />
-        <CurvedDivider cards bg="#121212" fill="#121212" className="hidden" />
-
-        {/* Section 3 - Product families */}
-        <ProductFamiliesSection onPageChange={onPageChange} />
         <CurvedDivider cards bg="#fff" fill="#fff" className="" />
         <CurvedDivider cards bg="#121212" fill="#121212" className="hidden" />
 

@@ -36,7 +36,7 @@ function CompactJourney({ onPageChange }) {
             </p>
           </div>
           <button
-            onClick={() => onPageChange?.('journey')}
+            onClick={() => onPageChange?.('traceability')}
             className="group inline-flex items-center gap-2 font-body font-semibold text-[13px] uppercase tracking-[0.05em] text-brand-600 hover:text-brand-700 bg-transparent border-none p-0 cursor-pointer whitespace-nowrap self-start sm:self-auto"
           >
             See The Full Journey
@@ -53,7 +53,7 @@ function CompactJourney({ onPageChange }) {
               key={stage.id}
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              onClick={() => onPageChange?.('journey')}
+              onClick={() => onPageChange?.('traceability')}
               className="group relative flex flex-col rounded-[14px] overflow-hidden aspect-[3/4] cursor-pointer border border-[#eee] focus:outline-none"
             >
               <img

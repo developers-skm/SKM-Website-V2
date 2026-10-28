@@ -50,7 +50,6 @@ const CareersRoute = lazyWithRetry(() => import('./pages/Careers/CareersRoute'))
 // Private HR portal - rendered outside the public Layout, never linked from nav.
 const HRAdminPage = lazyWithRetry(() => import('./pages/HR/HRAdminPage'));
 
-const JourneyPage = lazyWithRetry(() => import('./pages/Journey/JourneyPage'));
 const GetQuotePage = lazyWithRetry(() => import('./pages/GetQuote/GetQuotePage'));
 const ApplicationLandingPage = lazyWithRetry(() => import('./pages/Applications/ApplicationLandingPage'));
 const ApplicationsHubPage = lazyWithRetry(() => import('./pages/Applications/ApplicationsHubPage'));
@@ -386,8 +385,6 @@ function App() {
           />
         );
 
-      case 'journey':
-        return <JourneyPage onPageChange={handlePageChange} />;
       case 'get-quote':
         return <GetQuotePage onPageChange={handlePageChange} prefill={prefill} />;
 

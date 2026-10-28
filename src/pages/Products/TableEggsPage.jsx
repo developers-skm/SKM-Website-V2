@@ -74,7 +74,7 @@ const strengths = [
 ];
 
 const qualityPoints = [
-  { title: 'Routine sample testing', body: 'Water, bird tissue and shell egg samples are examined in the farm laboratory.' },
+  { title: 'Routine sample testing', body: 'Feed ingredients, composite feed, Water, bird tissue and shell egg samples are examined in the farm laboratory.' },
   { title: 'Hygiene controls', body: 'Established sanitation and biosecurity procedures support clean farm environments.' },
   { title: 'Structured safety practices', body: 'Documented quality and food safety systems guide day-to-day farm operations.' },
 ];
@@ -210,7 +210,7 @@ export default function TableEggsPage({ onPageChange }) {
           <div className={`${wrap} flex flex-col gap-10 lg:gap-12`}>
             <motion.div {...fade()} className="flex flex-col gap-4 max-w-[640px]">
               <span className={eyebrow}>Our Farming Strengths</span>
-              <h2 className={h2Class}>Quality Starts at the Farm</h2>
+              <h2 className={h2Class}>Quality Starts at the Feed </h2>
               <p className={bodyClass}>Four essential practices shape our approach to table egg production.</p>
             </motion.div>
 
@@ -324,7 +324,7 @@ export default function TableEggsPage({ onPageChange }) {
               </div>
               <div className="flex flex-col gap-5 lg:pt-8">
                 <p className={bodyClass}>
-                  SKM&apos;s poultry farming infrastructure brings together managed poultry facilities, feed practices and routine monitoring to support consistent egg production operations.
+                  SKM&apos;s poultry farming infrastructure brings together managed poultry facilities, feed practices and routine monitoring to support traceable egg production operations.
                 </p>
                 <InternalLink
                   route="poultry_farm"

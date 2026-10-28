@@ -3,7 +3,6 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import EnquiryModal from '../ContactUs/sections/EnquiryModal';
-import certifications from '../../data/certifications';
 import homeJourneyStages from '../../data/homeJourneyStages';
 import HomeJourney from '../Home/sections/HomeJourney';
 import traceabilityHeroImage from '../../assets/4. QUALITY/Traceability/Traceability Home Section.webp';
@@ -40,7 +39,7 @@ import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 function TraceabilityJourneySection({ onPageChange }) {
   return (
     <div id="farm-to-product-traceability" className="w-full">
-      <HomeJourney onPageChange={onPageChange} />
+      <HomeJourney onPageChange={onPageChange} showStages={false} />
     </div>
   );
 }
@@ -97,7 +96,7 @@ const QUALITY_GATES = [
   },
   {
     id: 'final-release',
-    label: 'Final release',
+    label: 'Product Dispatch',
     fact: 'Every production batch undergoes stringent quality testing and verification of Critical Control Point (CCP) compliance before being approved for dispatch, ensuring product safety, quality, and regulatory compliance.',
   },
 ];
@@ -175,22 +174,22 @@ const LAB_CAPABILITIES = [
   {
     title: 'Residue Testing',
     description: 'Advanced analytical platforms support comprehensive safety and residue monitoring - precise screening of feed ingredients, additives, water, tissues, eggs, and finished products for antibiotics, pesticides, and contaminants in line with EU and Japanese regulations (including EU 96/23).',
-    chips: ['GC-MS', 'GC-ECD / FID', 'HPLC', 'LC-MS/MS', 'AAS', 'ELISA Systems'],
+    chips: ['GC-ECD / FID', 'HPLC', 'LC-MS/MS', 'NIR', 'ELISA Systems'],
   },
   {
     title: 'Physicochemical Testing',
     description: 'Modern laboratory equipment verifies freshness and key parameters - evaluating emulsification, foam stability, gel strength, viscosity, baking performance, and product flow characteristics.',
-    chips: ['Protein, fat, moisture, ash', 'pH, total solids, solubility', 'Organic acids and biochemical markers'],
+    chips: ['Protein, Fat, Moisture, Ash', 'pH, Total Solids, Solubility'],
   },
   {
     title: 'Microbiological Testing',
     description: 'Microbiology laboratory ensures products are free from pathogens and microbial contamination prior to dispatch, with routine testing and environmental monitoring in biosafety-controlled infrastructure.',
-    chips: ['Salmonella', 'E. coli', 'Enterobacteriaceae', 'Total Plate Count', 'Staphylococcus aureus', 'Bacillus cereus', 'Yeast & Mold'],
+    chips: ['Laminar Airflow', 'Biosafety Cabinet'],
   },
   {
     title: 'Poultry Disease Diagnostics',
     description: 'An in-house diagnostic laboratory supports proactive flock health management through microbiological, serological, and molecular testing, with regulatory-aligned frameworks for early detection and disease prevention.',
-    chips: ['Salmonella', 'Newcastle Disease', 'Avian Influenza', 'Mycoplasma'],
+    chips: ['Microbiology', 'Serology', 'Necropsy', 'Post Mortem'],
   },
 ];
 
@@ -230,11 +229,11 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
               <p className="font-body text-[14px] text-surface-600 leading-[1.6] m-0">
                 {cap.description}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mt-auto">
                 {cap.chips.map((chip) => (
                   <span
                     key={chip}
-                    className="font-body text-[11.5px] font-semibold uppercase tracking-wide text-brand-700 bg-brand-600/6 border border-brand-600/12 px-2.5 py-1 rounded-full"
+                    className="font-body whitespace-nowrap text-[11.5px] font-semibold uppercase tracking-wide text-brand-700 bg-brand-600/6 border border-brand-600/12 px-2.5 py-1 rounded-full"
                   >
                     {chip}
                   </span>
@@ -252,64 +251,7 @@ function LaboratoryCapabilitiesSection({ onPageChange }) {
           >
             Explore Laboratory Capabilities
           </InternalLink>
-
-          <button
-            type="button"
-            disabled
-            title="Coming soon"
-            aria-disabled="true"
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-surface-300 text-surface-400 font-heading font-bold text-[13px] uppercase tracking-[0.04em] cursor-not-allowed opacity-60"
-          >
-            Download Laboratory Accreditation
-          </button>
         </div>
-
-      </div>
-    </div>
-  );
-}
-
-function CertificationsApprovalsSection({ onPageChange }) {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <div id="certifications-approvals" className="w-full py-[60px] lg:py-[85px] bg-white">
-      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-8">
-
-        <motion.div
-          initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: reduceMotion ? 0.01 : 0.6 }}
-          className="flex flex-col gap-4 max-w-2xl"
-        >
-          <span className="section-label">Certifications</span>
-          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
-            Certifications and Approvals
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-          {certifications.map((cert) => (
-            <div
-              key={cert.name}
-              className="group flex flex-col gap-3 p-5 rounded-[18px] border border-surface-200/70 bg-[#fdfbf7] shadow-[0_3px_16px_rgba(36,30,24,0.04)] hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:border-brand-600/20 hover:-translate-y-1 transition-all duration-300"
-            >
-              <img src={cert.logo} alt={cert.name} loading="lazy" className="w-full aspect-square object-contain rounded-[12px] bg-white p-2 shadow-[0_2px_10px_rgba(36,30,24,0.06)]" />
-              <span className="font-heading font-bold text-[13.5px] text-heading text-center">
-                {cert.name}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        <InternalLink
-          route="contact-us"
-          onPageChange={onPageChange}
-          className="self-start inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full border border-brand-600 text-brand-600 hover:bg-brand-600/6 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-        >
-          Request Market-Specific Documentation
-        </InternalLink>
 
       </div>
     </div>
@@ -536,11 +478,7 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
         <LaboratoryCapabilitiesSection onPageChange={onPageChange} />
         <CurvedDivider bg="#fff" fill="#fff" />
 
-        {/* Section 5 - Certifications and approvals */}
-        <CertificationsApprovalsSection onPageChange={onPageChange} />
-
         {/* Section 7 - Traceability and incident response */}
-        <CurvedDivider bg="#fff" fill="#fff" />
         <IncidentResponseSection onPageChange={onPageChange} />
 
       </div>

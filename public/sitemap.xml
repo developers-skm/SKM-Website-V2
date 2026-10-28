@@ -139,13 +139,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Our Journey & Get a Quote -->
-  <url>
-    <loc>https://www.skmegg.com/journey</loc>
-    <lastmod>2026-07-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
   <url>
     <loc>https://www.skmegg.com/get-quote</loc>
     <lastmod>2026-07-04</lastmod>
