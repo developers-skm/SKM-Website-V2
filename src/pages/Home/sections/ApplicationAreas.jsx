@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
+import { createPortal } from 'react-dom';
 import applications from '../../../data/applications';
 import InternalLink from '../../../components/common/InternalLink';
 import { getProductById } from '../../../data/products';
@@ -39,7 +40,47 @@ function matchedCount(app) {
 // bottom rules); smaller on phones where the text column needs the width.
 const ringSizeFor = (viewportWidth) => (viewportWidth >= 640 ? 120 : 96);
 
-function ApplicationRow({ app, index, isActive, onActivate, onPageChange, reduceMotion }) {
+function IconLightbox({ app, onClose, reduceMotion }) {
+  useEffect(() => {
+    if (!app) return undefined;
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [app, onClose]);
+
+  return createPortal(
+    <AnimatePresence>
+      {app && (
+        <motion.div
+          key="icon-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${app.title} icon`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: reduceMotion ? 0.01 : 0.25 }}
+          onClick={onClose}
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/40 backdrop-blur-md cursor-zoom-out p-6"
+        >
+          <motion.img
+            src={app.icon}
+            alt={app.title}
+            initial={{ scale: reduceMotion ? 1 : 0.85, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: reduceMotion ? 1 : 0.9, opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.3, ease: EASE_PREMIUM }}
+            draggable="false"
+            className="w-[min(85vw,85vh,560px)] aspect-square rounded-full object-cover bg-white shadow-2xl"
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body
+  );
+}
+
+function ApplicationRow({ app, index, isActive, onActivate, onPageChange, onOpenIcon, reduceMotion }) {
   const rowRef = useRef(null);
   const inView = useInView(rowRef, { once: true, margin: '-60px' });
   const [ringSize, setRingSize] = useState(() => ringSizeFor(typeof window === 'undefined' ? 1024 : window.innerWidth));
@@ -129,7 +170,14 @@ function ApplicationRow({ app, index, isActive, onActivate, onPageChange, reduce
 
           <motion.span
             style={{ x: ringX, rotate: ringRotate, opacity: ringOpacity, width: ringSize, height: ringSize }}
-            className={`flex-shrink-0 rounded-full bg-white overflow-hidden flex items-center justify-center border transition-[border-color,box-shadow] duration-300 ${isActive ? 'border-brand-600 shadow-[0_6px_18px_rgba(232,16,31,0.18)]' : 'border-surface-200'}`}
+            role="button"
+            tabIndex={0}
+            aria-label={`View ${app.title} icon full size`}
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); onOpenIcon(app); }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); onOpenIcon(app); }
+            }}
+            className={`flex-shrink-0 rounded-full bg-white overflow-hidden flex items-center justify-center border cursor-zoom-in transition-[border-color,box-shadow] duration-300 ${isActive ? 'border-brand-600 shadow-[0_6px_18px_rgba(232,16,31,0.18)]' : 'border-surface-200'}`}
           >
             <img
               src={app.icon}
@@ -150,6 +198,8 @@ export default function ApplicationAreas({ onPageChange }) {
   const reduceMotion = useReducedMotion();
   const [activeId, setActiveId] = useState(applications[0]?.id);
   const [isPaused, setIsPaused] = useState(false);
+  const [lightboxApp, setLightboxApp] = useState(null);
+  const closeLightbox = useCallback(() => setLightboxApp(null), []);
   const active = applications.find((a) => a.id === activeId) ?? applications[0];
 
   const activateById = useCallback((id) => {
@@ -247,6 +297,7 @@ export default function ApplicationAreas({ onPageChange }) {
                 isActive={app.id === active.id}
                 onActivate={() => activateById(app.id)}
                 onPageChange={onPageChange}
+                onOpenIcon={setLightboxApp}
                 reduceMotion={reduceMotion}
               />
             ))}
@@ -264,6 +315,7 @@ export default function ApplicationAreas({ onPageChange }) {
 
         </div>
       </div>
+      <IconLightbox app={lightboxApp} onClose={closeLightbox} reduceMotion={reduceMotion} />
     </div>
   );
 }
