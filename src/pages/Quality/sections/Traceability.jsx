@@ -8,34 +8,35 @@ import { makeContainerVariants, makeItemVariants } from '../../../utils/animatio
 const traceabilitySteps = [
   {
     step: '01',
-    label: 'Polutry farm',
-    desc: 'Certified hatcheries with strict biosecurity protocols form the foundation of our traceability chain.',
-  },
-  {
-    step: '02',
     label: 'Feed Mill',
     desc: 'Controlled feed formulation with tested ingredients, ensuring nutritional integrity from the start.',
   },
   {
-    step: '03',
+    step: '02',
     label: 'Farm',
     desc: 'Registered layer farms with OIE compartmentalization compliance and continuous flock health monitoring.',
   },
   {
-    step: '04',
+    step: '03',
     label: 'Processing',
     desc: 'Validated HACCP-monitored processing facility with daily fresh egg intake and full CCP documentation.',
   },
   {
-    step: '05',
+    step: '04',
     label: 'QA & Lab Testing',
     desc: 'NABL-accredited laboratory conducts physicochemical, microbiological, and residue testing on every batch.',
   },
   {
-    step: '06',
+    step: '05',
     label: 'Packaging & Dispatch',
     desc: 'Positive pressure packing rooms and cold chain management ensure product integrity to final delivery.',
   },
+   {
+    step: '06',
+    label: 'Egg Export',
+    desc: 'Positive pressure packing rooms and cold chain management ensure product integrity to final delivery.',
+  },
+
 ];
 
 export default function Traceability({ onPageChange }) {
