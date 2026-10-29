@@ -193,7 +193,18 @@ export default function Chatbot({ onPageChange }) {
     const cleaned = text
       .replace(/\s*[([]\s*[A-Z]{1,3}\d{3,5}\s*[)\]]/g, '') // "(Y1001)"
       .replace(/\b[A-Z]{1,3}\d{3,5}\s*\(([^)]*)\)/g, '$1') // "Y1101 (Standard)" -> "Standard"
-      .replace(/\b[A-Z]{1,3}\d{3,5}\b\s*/g, ''); // bare "Y1101"
+      .replace(/\b[A-Z]{1,3}\d{3,5}\b\s*/g, '') // bare "Y1101"
+      // Tidy what the removed codes leave behind: "(, , , )", "( , Salted)", "(Standard , )", " ,"
+      .replace(/\(\s*(?:[,;/&]\s*)*\)/g, '')
+      .replace(/\(\s*(?:[,;]\s*)+/g, '(')
+      .replace(/(?:\s*[,;])+\s*\)/g, ')')
+      .replace(/\s+([,;.)])/g, '$1')
+      .replace(/\(\s+/g, '(')
+      .replace(/,(?:\s*,)+/g, ',')
+      .replace(/[ \t]{2,}/g, ' ')
+      .replace(/[ \t]+$/gm, '')
+      // A removed code can leave a lone ". " in front of a list item or line.
+      .replace(/^(\s*(?:[•\-*]|\d+\.)?\s*)[.,;:]\s+/gm, '$1');
 
     // Drop lines left empty by code removal ("-", "•", "1.") and headings
     // ("For Egg Yolk Powder:") that now have no list items under them.

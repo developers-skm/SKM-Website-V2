@@ -1,5 +1,5 @@
 import journeyStages from '../data/journeyStages';
-import { siteAnswer } from './siteKnowledge';
+import { siteAnswer, suggestProducts } from './siteKnowledge';
 import officeLocations from '../data/officeLocations';
 import products, { getTdsUrl, getProductById, PRODUCT_CATEGORIES } from '../data/products';
 
@@ -62,6 +62,7 @@ const LOCAL_ANSWERS = [
       "• **Pallecon with inner LDPE (liquid)** - 1000 Kg bulk IBC container.\n" +
       "Packaging can be configured to your handling and dosing needs. Choose your preferred packaging in the Get Quote form.",
     sources: [SITE + '/products/customised-packages'],
+    productId: 'customised_packages',
   },
 ];
 
@@ -139,7 +140,9 @@ const SPECIFIC_PRODUCT = /yolk|yellow|albumen|egg white|whole|heat[- ]?stable|mi
 const ALL_PRODUCTS_INTENT = /\b(all|your|what|which|show)\b.*\bproducts?\b|\bproduct (list|range|catalou?gue)\b/i;
 
 function productListReply(message) {
-  if (!LIST_INTENT.test(message) || SPECIFIC_PRODUCT.test(message)) return null;
+  // A bare category ("egg liquids ?", "powders") is a list request too.
+  const bareCategory = message.trim().split(/\s+/).length <= 4;
+  if (!(LIST_INTENT.test(message) || bareCategory) || SPECIFIC_PRODUCT.test(message)) return null;
   const match = CATEGORY_LISTS.find((c) => c.test.test(message));
   if (match) return productCardsReply(products.filter((p) => p.category === match.category), match.intro);
   if (ALL_PRODUCTS_INTENT.test(message)) {
@@ -213,6 +216,10 @@ function functionReply(message) {
     actions: [{ label: 'Ask our technical team', page: 'get-quote', prefill: { enquiryIntent: 'general' } }],
   };
 }
+
+// "I want to make macaroons - which product is suitable?" - matched against the
+// application text on each product page (see suggestProducts).
+const SUITABLE_INTENT = /\b(products? (for|in)|(ideal|good|best|used?) for|for making|what can i use|suitable|suit|suits|best|recommend\w*|suggest\w*|which product|what product|use for|used for|make|making|prepare|preparing|want|need|looking for)\b/i;
 
 // "Anything easy to use?" - the ready-to-use speciality products.
 const EASY_USE_INTENT = /\b(easy|easier|ease|simple|convenient|convenience|quick|ready)([- ]to[- ](use|cook|eat|prepare))?\b.*\b(use|using|products?|options?|cook\w*|eat|prepare)\b|\b(ready[- ]to[- ](use|cook|eat)|easy[- ]to[- ]use|hassle[- ]free)\b/i;
@@ -370,16 +377,37 @@ function hideContextWording(text) {
 // pointed to the technical team instead.
 const SPEC_VALUE = /\d\s*(%|percent\b)|\b(max|min|maximum|minimum)\.?\s+(of\s+)?\d|\d\s*(g\/cm|ppm|ppb|cfu|mg\/|kcal)|>\s*\d{3,}/i;
 
+const BULLET = /^\s*(?:[•\-*]|\d+\.)\s+/;
+
 function hideSpecValues(text) {
   let removed = false;
-  const kept = text
-    .split('\n')
-    .map((line) => {
-      const sentences = line.split(/(?<=[.!?])\s+/);
-      const ok = sentences.filter((s) => !SPEC_VALUE.test(s));
-      if (ok.length !== sentences.length) removed = true;
-      return ok.join(' ');
-    })
+  const lines = text.split('\n').map((line) => {
+    const sentences = line.split(/(?<=[.!?])\s+/);
+    const ok = sentences.filter((s) => !SPEC_VALUE.test(s));
+    if (ok.length === sentences.length) return { text: line, dropped: false };
+    removed = true;
+    if (ok.length) return { text: ok.join(' '), dropped: false };
+    // A list item that was only a value ("• Egg Yolk Powder - moisture max 4%"):
+    // keep the product name in front of the value, if there is one.
+    const head = BULLET.test(line) ? line.split(/\s[-–]\s|:\s/)[0].trim() : '';
+    const keepHead = head && !SPEC_VALUE.test(head) && head.replace(BULLET, '').split(/\s+/).length >= 2;
+    return { text: keepHead ? head : '', dropped: !keepHead, bullet: BULLET.test(line) };
+  });
+
+  // "... the following products:" must not introduce a list that lost its items.
+  lines.forEach((l, i) => {
+    if (!/:\s*$/.test(l.text) || l.dropped) return;
+    let total = 0;
+    let left = 0;
+    for (let j = i + 1; j < lines.length && (BULLET.test(lines[j].text) || lines[j].bullet); j++) {
+      total++;
+      if (!lines[j].dropped) left++;
+    }
+    if (total > left && left < 2) l.text = '';
+  });
+
+  const kept = lines
+    .map((l) => l.text)
     .filter((line, i, all) => line.trim() || (i > 0 && all[i - 1].trim()))
     .join('\n')
     .trim();
@@ -392,6 +420,25 @@ function withoutSpecValues(reply) {
   const { text, removed } = hideSpecValues(reply.answer);
   if (!removed) return reply;
   return { ...reply, answer: text, actions: [...(reply.actions ?? []), ...TECHNICAL_ACTIONS] };
+}
+
+// Products an answer names, by their site titles ("Egg White Cube" also matches
+// "SKM Egg White Cubes"). The longest titles are checked first so "Egg Yolk Powder -
+// Heat Stable" is not also reported as plain "Egg Yolk Powder"; at most 3 are shown.
+function productsMentioned(text) {
+  const found = [];
+  const lower = text.toLowerCase();
+  let rest = lower;
+  const byLength = [...products].filter((p) => p.id !== 'customised_packages').sort((a, b) => b.title.length - a.title.length);
+  for (const p of byLength) {
+    const base = p.title.toLowerCase().replace(/\s*-\s*/g, '[ -]*').replace(/\s+/g, '\\s+');
+    const re = new RegExp(`${base}s?`, 'i');
+    if (re.test(rest)) {
+      found.push({ p, at: lower.search(re) });
+      rest = rest.replace(new RegExp(`${base}s?`, 'gi'), ' ');
+    }
+  }
+  return found.sort((a, b) => a.at - b.at).slice(0, 3).map((f) => f.p);
 }
 
 export async function sendChatMessage(message) {
@@ -408,6 +455,18 @@ export async function sendChatMessage(message) {
   if (EASY_USE_INTENT.test(message) && !TECHNICAL_INTENT.test(message)) return easyUseReply();
   const byFunction = functionReply(message);
   if (byFunction) return byFunction;
+  if (SUITABLE_INTENT.test(message) && !TECHNICAL_INTENT.test(message) && !VARIANT_PRODUCTS.some((p) => p.test.test(message))) {
+    const found = await suggestProducts(message);
+    if (found) {
+      const items = found.ids.map(getProductById).filter(Boolean);
+      const forWhat = found.terms.length ? `**${found.terms.join(' and ')}**` : 'your application';
+      const bakery = /cake|bread|bakery|muffin|cookie|biscuit|pastr|sponge|dough|bun/i.test(found.terms.join(' '));
+      const intro = bakery
+        ? `Yes, we offer a range of egg products suitable for ${forWhat} and other bakery applications, helping improve texture, softness, volume, moisture retention, and overall product quality.`
+        : `Yes, we offer ${items.length > 1 ? 'egg products' : 'an egg product'} suitable for ${forWhat}.`;
+      return productCardsReply(items, `${intro} Tap a product below to open its page.`);
+    }
+  }
   if (!TECHNICAL_INTENT.test(message) && !BROCHURE_INTENT.test(message)) {
     const list = productListReply(message);
     if (list) return list;
@@ -429,7 +488,13 @@ export async function sendChatMessage(message) {
   const local = LOCAL_ANSWERS.find((a) => a.test.test(message));
   if (local) {
     const answer = typeof local.answer === 'function' ? local.answer() : local.answer;
-    return { answer, sources: local.sources };
+    const p = local.productId && getProductById(local.productId);
+    return {
+      answer,
+      sources: local.sources,
+      products: p ? [{ id: p.id, page: p.page, title: p.title, image: p.image, description: p.shortDescription }] : undefined,
+      productsFirst: Boolean(p),
+    };
   }
 
   const res = await fetch('https://chatbot-worker.meowlovessyou.workers.dev/chat', {
@@ -452,15 +517,18 @@ export async function sendChatMessage(message) {
     const site = await siteAnswer(message);
     return site ? withoutSpecValues(site) : FALLBACK_REPLY;
   }
-  // When the question is about one specific product, show its image card under the answer.
+  // Show the image card of the product the question is about - or, when the question
+  // does not name one, the product(s) the answer talks about.
   const named = VARIANT_PRODUCTS.find((p) => p.test.test(message));
-  const product = named && getProductById(named.slug.replace(/-/g, '_'));
+  const asked = named && getProductById(named.slug.replace(/-/g, '_'));
+  const answer = hideContextWording(data.answer);
+  const shown = asked ? [asked] : productsMentioned(answer);
   return withoutSpecValues({
     ...data,
-    answer: hideContextWording(data.answer),
-    products: product
-      ? [{ id: product.id, page: product.page, title: product.title, image: product.image, description: product.shortDescription }]
+    answer,
+    products: shown.length
+      ? shown.map((p) => ({ id: p.id, page: p.page, title: p.title, image: p.image, description: p.shortDescription }))
       : data.products,
-    productsFirst: Boolean(product),
+    productsFirst: shown.length === 1,
   });
 }

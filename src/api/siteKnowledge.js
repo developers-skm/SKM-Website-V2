@@ -49,13 +49,17 @@ const PAGES = [
 const STOPWORDS = new Set((
   'the and for are was were you your our about what whats who how why when where which does did can could would should will ' +
   'tell give show explain describe details detail information info please know more any there their its this that these those with from into ' +
+  'choose choice select pick buy get order find like would thing things one type types prefer preferred go going try trying ' +
+  'want wants make making made suitable suit suits best good need needs recommend suggest product products use using used ' +
   'initiative initiatives effort efforts practice practices activity activities program programs programme programmes measures ' +
   'have has had been being not yes skm eggs egg me us we they them is it of to in on at an as or be by a i'
 ).split(/\s+/));
 
 const stem = (w) => w.replace(/(ies)$/, 'y').replace(/(ing|es|s)$/, '');
+// A stopword, including a one-letter typo of one ("sutable" for "suitable").
+const isStopword = (w) => STOPWORDS.has(w) || (w.length >= 6 && [...STOPWORDS].some((s) => s.length >= 6 && sameWord(w, s)));
 const tokenize = (text) =>
-  (text.toLowerCase().match(/[a-z0-9]+/g) || []).filter((w) => w.length >= 3 && !STOPWORDS.has(w)).map(stem);
+  (text.toLowerCase().match(/[a-z0-9]+/g) || []).filter((w) => w.length >= 3 && !isStopword(w)).map(stem);
 
 // A sentence a visitor reads on the page: long enough, ends like a sentence.
 // Tailwind class lists, keyword lists, paths, SVG data and code are rejected.
@@ -92,6 +96,71 @@ async function loadUnits(file) {
   const units = key ? extractUnits(await sources[key]()).map((text) => ({ text, tokens: new Set(tokenize(text)) })) : [];
   cache.set(file, units);
   return units;
+}
+
+// ── Product suggestions: "which product is suitable for macaroons?" ────────
+// Searches what each product page displays (application tags, applications,
+// descriptions) so the suggestion always matches the page itself.
+const PRODUCT_FILES = {
+  whole_egg_powder: 'Products/WholeEggPowderPage.jsx',
+  egg_yolk_powder: 'Products/EggYolkPowderPage.jsx',
+  egg_yolk_powder_heat_stable: 'Products/EggYolkPowderHeatStablePage.jsx',
+  egg_albumen_powder: 'Products/EggAlbumenPowderPage.jsx',
+  whole_egg_liquid: 'Products/WholeEggLiquidPage.jsx',
+  egg_yolk_liquid: 'Products/EggYolkLiquidPage.jsx',
+  egg_albumen_liquid: 'Products/EggAlbumenLiquidPage.jsx',
+  customised_mix: 'Products/CustomizedMixPage.jsx',
+};
+
+// Plain text a visitor reads: quoted strings, minus import paths and class lists.
+function extractWords(raw) {
+  const out = [];
+  const literal = /'((?:[^'\\\n]|\\.)+)'|"((?:[^"\\\n]|\\.)+)"|`((?:[^`\\])+)`/g;
+  let m;
+  while ((m = literal.exec(raw))) {
+    const s = m[1] ?? m[2] ?? m[3];
+    if (s.length >= 3 && !/[/{}<>=]|\$\{/.test(s) && !CLASS_LIKE.test(s)) out.push(s);
+  }
+  return out;
+}
+
+// "macaroons" must also find the page's own spelling "Macroons".
+function sameWord(a, b) {
+  if (a === b) return true;
+  if (a.length < 5 || b.length < 5 || Math.abs(a.length - b.length) > 1) return false;
+  let i = 0;
+  while (i < a.length && i < b.length && a[i] === b[i]) i++;
+  const restA = a.slice(i);
+  const restB = b.slice(i);
+  return restA.slice(1) === restB || restA === restB.slice(1) || restA.slice(1) === restB.slice(1);
+}
+
+const productTokens = new Map();
+async function loadProductTokens(id) {
+  if (productTokens.has(id)) return productTokens.get(id);
+  const key = Object.keys(sources).find((k) => k.endsWith(`/pages/${PRODUCT_FILES[id]}`));
+  const tokens = key ? [...new Set(tokenize(extractWords(await sources[key]()).join(' ')))] : [];
+  productTokens.set(id, tokens);
+  return tokens;
+}
+
+export async function suggestProducts(message) {
+  const query = [...new Set(tokenize(message))];
+  if (!query.length) return null;
+  // One matching topic word is enough - leftover filler words must not veto a suggestion;
+  // the best-matching products are the ones that share the most words.
+  const needed = 1;
+  const ranked = [];
+  for (const id of Object.keys(PRODUCT_FILES)) {
+    const tokens = await loadProductTokens(id);
+    const matched = query.filter((q) => tokens.some((t) => sameWord(q, t)));
+    if (matched.length >= needed) ranked.push({ id, hits: matched.length, matched });
+  }
+  if (!ranked.length) return null;
+  ranked.sort((a, b) => b.hits - a.hits);
+  const top = ranked.filter((r) => r.hits === ranked[0].hits).slice(0, 3);
+  const words = (message.toLowerCase().match(/[a-z0-9]+/g) || []).filter((w) => top[0].matched.includes(stem(w)) && !isStopword(w));
+  return { ids: top.map((r) => r.id), terms: [...new Set(words)] };
 }
 
 const MAX_CHARS = 750;
