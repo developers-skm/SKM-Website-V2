@@ -4,12 +4,12 @@ import InternalLink from '../../../components/common/InternalLink';
 import SafeImage from '../../../components/common/SafeImage';
 import { fadeUp } from '../../../utils/motionTokens';
 
-import CarbonFootprint from '../../../assets/home/carbon-footprint.jpeg';
+import CarbonFootprint from '../../../assets/home/carbon-footprint.webp';
 import CleanEnergy1 from '../../../assets/home/clean-energy-1.webp';
 import CleanEnergy2 from '../../../assets/home/clean-energy-2.webp';
 import UtilityOverview from '../../../assets/5. INFRASTRUCTURE/Egg Products/Utility/Utility Overview.webp';
 import Trust1 from '../../../assets/trust-images/trust-1.webp';
-import Trust2 from '../../../assets/trust-images/trust-2.jpeg';
+import Trust2 from '../../../assets/trust-images/trust-2.webp';
 import Trust3 from '../../../assets/trust-images/trust-3.webp';
 import Trust4 from '../../../assets/trust-images/trust-4.webp';
 import Trust5 from '../../../assets/trust-images/trust-5.webp';

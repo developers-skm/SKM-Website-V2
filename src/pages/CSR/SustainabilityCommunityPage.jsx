@@ -11,11 +11,11 @@ import EducationCoachingCentre from '../../assets/trust-images/education-coachin
 import EducationCoachingStudents from '../../assets/trust-images/education-coaching-students.webp';
 import TrustOutreachWaste from '../../assets/trust-images/trust-outreach-waste-collection.webp';
 import EducationExtra from '../../assets/trust-images/education-extra.webp';
-import Trust2 from '../../assets/trust-images/trust-2.jpeg';
+import Trust2 from '../../assets/trust-images/trust-2.webp';
 import Trust3 from '../../assets/trust-images/trust-3.webp';
 import Trust4 from '../../assets/trust-images/trust-4.webp';
 import Trust5 from '../../assets/trust-images/trust-5.webp';
-import CarbonFootprint from '../../assets/home/carbon-footprint.jpeg';
+import CarbonFootprint from '../../assets/home/carbon-footprint.webp';
 import OefCommunityActivity from '../../assets/trust-images/oef-community-activity.webp';
 
 // Section 2 - Environmental responsibility. Energy, water, and waste are
