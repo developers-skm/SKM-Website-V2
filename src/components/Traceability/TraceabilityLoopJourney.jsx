@@ -57,7 +57,7 @@ const processChapters = [
     step: '03',
     category: 'CHAPTER 03 • THERMAL PROCESSING',
     title: 'Pasteurisation & Homogenization',
-    narrative:'Filtered liquid whole egg undergoes continuous pasteurisation through plate heat exchangers. Precisely controlled thermal profiles effectively eliminates pathogenic microorganisms, including Salmonella and Listeria, while preserving the functional properties of native egg proteins.',
+    narrative:'Filtered liquid whole egg undergoes continuous pasteurisation through plate heat - exchangers. Precisely controlled thermal profiles effectively eliminates pathogenic microorganisms, including Salmonella and Listeria, while preserving the functional properties of native egg proteins.',
     highlights: ['Stainless Steel Plate Heat Exchanger', 'USDA Thermal Sterilisation Profile', 'HACCP - Critical Control Point Monitored'],
     illustrationSide: 'left',
     image: manufacturingImages.pasteurization,
@@ -67,7 +67,7 @@ const processChapters = [
     step: '04',
     category: 'CHAPTER 04 • ATOMISATION & DRYING',
     title: 'Spray Drying',
-    narrative:'Pasteurised liquid egg is atomised through high-pressure nozzles into spray dryers, where fine liquid droplets come into contact with filtered hot air, rapidly evaporating moisture to produce uniform, free-flowing egg powder with a moisture content below 5.0%.',
+    narrative:'Pasteurised liquid egg is atomised through high-pressure nozzles into spray dryers, where fine droplets come into contact with filtered hot air, rapidly evaporating moisture to produce uniform, free-flowing egg powder with a moisture content below 5.0%.',
     highlights: ['High-Pressure Atomisation Nozzles', 'Filtered Hot Air Evaporation', '< 5.0% Final Moisture '],
     illustrationSide: 'right',
     image: manufacturingImages.sprayDrying,
@@ -133,7 +133,7 @@ const powderLineChapters = baseLineChapters.map((c, i) => ({
 // bagging - it carries its own copy and photo.
 const liquidPackagingOverride = {
   narrative:
-    'Pasteurised liquid egg products are transferred from aseptic storage tanks to an aseptic filling machine, where they are packed into LDPE pouches under controlled hygienic conditions. The filling area undergoes thorough cleaning, while the filling line is subjected to an integrated Clean-in-Place (CIP) and sterilisation process to ensure hygienic conditions and readiness for subsequent production batches. An automated sanitisation system sanitises the filling nozzle and its surrounding area before each pouch-filling cycle, further enhancing hygiene and minimising contamination risks.',
+    'Pasteurised liquid egg products are transferred from aseptic storage tanks to an aseptic filling machine, where they are packed into LDPE pouches under controlled, hygienic conditions. The filling area undergoes thorough cleaning, while the filling line is subjected to an integrated Clean-in-Place (CIP) and sterilisation process to ensure hygienic conditions and readiness for subsequent production batches. An automated - sanitisation system sanitises the filling nozzle and its surrounding area before each pouch-filling cycle, further enhancing hygiene and minimising contamination risks.',
   highlights: ['Aseptic filling', 'CIP & Sterilisation', 'Equipment auto sanitisation before filling'],
   image: liquidFillingImage,
   altText: 'Aseptic liquid egg pouch filling machine in the filling area',

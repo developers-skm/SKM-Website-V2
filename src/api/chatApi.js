@@ -1,4 +1,5 @@
 import journeyStages from '../data/journeyStages';
+import { siteAnswer } from './siteKnowledge';
 import officeLocations from '../data/officeLocations';
 import products, { getTdsUrl, getProductById, PRODUCT_CATEGORIES } from '../data/products';
 
@@ -172,6 +173,47 @@ function locationReply(message) {
   };
 }
 
+// Functionality -> recommended product (SKM's functionality table). Asking for
+// a function ("fat", "gelling", "emulsification"...) shows the product that
+// delivers it. Questions asking for values still go to the technical team.
+const FUNCTION_RULES = [
+  { test: /\bfat\b/i, label: 'fat', id: 'egg_yolk_powder' },
+  { test: /\bgel(l?ing)?\b/i, label: 'gelling', id: 'egg_albumen_powder' },
+  { test: /\bwhip(ping|ped)?\b/i, label: 'whipping', id: 'egg_albumen_powder' },
+  { test: /\bfoam(ing|y)?\b/i, label: 'foaming', id: 'egg_albumen_powder', note: 'The High Whip variant is the one for foaming.' },
+  { test: /\bemulsi(fication|fier|fying|fy|on)\b/i, label: 'emulsification', id: 'egg_yolk_powder_heat_stable' },
+  { test: /\bbind(ing|er)?\b/i, label: 'binding', id: 'whole_egg_powder' },
+  { test: /\btexture\b/i, label: 'texture', id: 'whole_egg_powder' },
+  { test: /\byellow\b|\bcolou?r(ing)?\b/i, label: 'yellow colour', id: 'egg_yolk_powder' },
+];
+const FUNCTION_VALUE_INTENT = /\b(content|percent(age)?|how much|values?|spec(s|ification|ifications)?|tds|coa|amount|levels?|analysis|strength|range|min|max)\b|%/i;
+
+function functionReply(message) {
+  if (FUNCTION_VALUE_INTENT.test(message)) return null;
+  const rules = FUNCTION_RULES.filter((r) => r.test.test(message));
+  if (!rules.length) return null;
+  const items = [...new Set(rules.map((r) => r.id))].map(getProductById).filter(Boolean);
+  const card = (p) => ({ id: p.id, page: p.page, title: p.title, image: p.image, description: p.shortDescription });
+  const notes = rules.filter((r) => r.note).map((r) => r.note);
+  if (items.length === 1) {
+    const [p] = items;
+    const labels = rules.map((r) => r.label).join(' and ');
+    return {
+      answer: [`For **${labels}**, our recommended product is **${p.title}**.`, p.shortDescription, ...notes].join('\n'),
+      sources: [],
+      products: [card(p)],
+      productsFirst: true,
+      actions: [{ label: `Open ${p.title} page`, page: p.page }],
+    };
+  }
+  return {
+    answer: ['Here are the recommended products for what you asked. Tap one to open its page.', ...rules.map((r) => `• **${r.label}** - ${getProductById(r.id)?.title}`), ...notes].join('\n'),
+    sources: [],
+    products: items.map(card),
+    actions: [{ label: 'Ask our technical team', page: 'get-quote', prefill: { enquiryIntent: 'general' } }],
+  };
+}
+
 // "Anything easy to use?" - the ready-to-use speciality products.
 const EASY_USE_INTENT = /\b(easy|easier|ease|simple|convenient|convenience|quick|ready)([- ]to[- ](use|cook|eat|prepare))?\b.*\b(use|using|products?|options?|cook\w*|eat|prepare)\b|\b(ready[- ]to[- ](use|cook|eat)|easy[- ]to[- ]use|hassle[- ]free)\b/i;
 const EASY_USE_PRODUCT_IDS = ['speciality_egg_liquids', 'egg_white_cube'];
@@ -323,6 +365,35 @@ function hideContextWording(text) {
     .replace(/^(\W*)([a-z])/, (_, pre, c) => pre + c.toUpperCase());
 }
 
+// Specification values (percentages, g/cm2, ppm, "max of"/"min of") are never
+// shown by the bot - sentences containing them are removed and the reader is
+// pointed to the technical team instead.
+const SPEC_VALUE = /\d\s*(%|percent\b)|\b(max|min|maximum|minimum)\.?\s+(of\s+)?\d|\d\s*(g\/cm|ppm|ppb|cfu|mg\/|kcal)|>\s*\d{3,}/i;
+
+function hideSpecValues(text) {
+  let removed = false;
+  const kept = text
+    .split('\n')
+    .map((line) => {
+      const sentences = line.split(/(?<=[.!?])\s+/);
+      const ok = sentences.filter((s) => !SPEC_VALUE.test(s));
+      if (ok.length !== sentences.length) removed = true;
+      return ok.join(' ');
+    })
+    .filter((line, i, all) => line.trim() || (i > 0 && all[i - 1].trim()))
+    .join('\n')
+    .trim();
+  if (!removed) return { text, removed };
+  const note = 'For specification values, please contact our technical team.';
+  return { text: kept ? `${kept}\n${note}` : note, removed };
+}
+
+function withoutSpecValues(reply) {
+  const { text, removed } = hideSpecValues(reply.answer);
+  if (!removed) return reply;
+  return { ...reply, answer: text, actions: [...(reply.actions ?? []), ...TECHNICAL_ACTIONS] };
+}
+
 export async function sendChatMessage(message) {
   // Short messages only, so a real question containing "how are you" still reaches the product answers.
   const isShort = message.trim().split(/\s+/).length <= 6;
@@ -335,6 +406,8 @@ export async function sendChatMessage(message) {
   if (LOCATION_INTENT.test(message)) return locationReply(message);
   if (PROTEIN_INTENT.test(message) && !PROTEIN_VALUE_INTENT.test(message)) return proteinReply();
   if (EASY_USE_INTENT.test(message) && !TECHNICAL_INTENT.test(message)) return easyUseReply();
+  const byFunction = functionReply(message);
+  if (byFunction) return byFunction;
   if (!TECHNICAL_INTENT.test(message) && !BROCHURE_INTENT.test(message)) {
     const list = productListReply(message);
     if (list) return list;
@@ -346,6 +419,12 @@ export async function sendChatMessage(message) {
   if (variants) return variants;
 
   if (STORAGE_INTENT.test(message)) return storageReply(message);
+
+  // "Cage free farm" has its own section on the Poultry Farm page - not the generic farm stage.
+  if (/cage[- ]?free|free[- ]?range|animal welfare/i.test(message)) {
+    const site = await siteAnswer(message);
+    if (site) return withoutSpecValues(site);
+  }
 
   const local = LOCAL_ANSWERS.find((a) => a.test.test(message));
   if (local) {
@@ -365,15 +444,23 @@ export async function sendChatMessage(message) {
 
   const data = await res.json();
   // The worker answers "I don't know" when it has nothing; show a helpful reply instead.
-  if (!data.answer || /^\W*i do(n'|n’)?t know\W*$/i.test(data.answer.trim())) return FALLBACK_REPLY;
+  // (Also "I do not know" / "I don't have information"). Before giving up, look
+  // for the answer in the text the website pages display.
+  // The worker often continues after "I don't know" ("The provided context does not mention..."),
+  // so a reply that opens that way, or says the context lacks the topic, counts as no answer.
+  if (!data.answer || /^\W*i (do(n'|n’)?t|do not|dont|cannot|can't|can’t) (know|find|have)\b|\b(context|information|text) (does not|doesn't|doesn’t|do not) (specifically )?(mention|contain|include|provide|have)/i.test(data.answer.trim())) {
+    const site = await siteAnswer(message);
+    return site ? withoutSpecValues(site) : FALLBACK_REPLY;
+  }
   // When the question is about one specific product, show its image card under the answer.
   const named = VARIANT_PRODUCTS.find((p) => p.test.test(message));
   const product = named && getProductById(named.slug.replace(/-/g, '_'));
-  return {
+  return withoutSpecValues({
     ...data,
     answer: hideContextWording(data.answer),
     products: product
       ? [{ id: product.id, page: product.page, title: product.title, image: product.image, description: product.shortDescription }]
       : data.products,
-  };
+    productsFirst: Boolean(product),
+  });
 }

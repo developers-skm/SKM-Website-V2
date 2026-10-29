@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ImageSlider from '../../../components/ImageSlider/ImageSlider';
 import { makeContainerVariants, makeItemVariants } from '../../../utils/animationVariants';
@@ -24,7 +24,6 @@ import MenEntryShower from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Men e
 import ShowerArea from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Shower area - web.webp';
 import VehicleEntryShower from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Vehicle entry shower - web.webp';
 import CageFree1 from '../../../assets/cage-free/cage-free-1.webp';
-import CageFree2 from '../../../assets/cage-free/cage-free-2.webp';
 import CageFree3 from '../../../assets/cage-free/cage-free-3.webp';
 import CageFree4 from '../../../assets/cage-free/cage-free-4.webp';
 import CageFree5 from '../../../assets/cage-free/cage-free-5.webp';
@@ -51,7 +50,6 @@ const farmImages = [
 
 const cageFreeImages = [
   { src: CageFree1, label: 'Cage free farm 1' },
-  { src: CageFree2, label: 'Cage free farm 2' },
   { src: CageFree3, label: 'Cage free farm 3' },
   { src: CageFree4, label: 'Cage free farm 4' },
   { src: CageFree5, label: 'Cage free farm 5' },
@@ -139,7 +137,60 @@ const cageFreeBlocks = [
   },
 ];
 
+// The Manufacturing & Supply hero's "Cage Free Farm" hotspot leaves this flag
+// (see ManufacturingSupplyPage) so the page opens at the Cage free farm card
+// instead of the top. Stale flags (> 15s) are ignored.
+const CAGE_FREE_ANCHOR_KEY = 'skm:poultry-anchor';
+
 export default function PoultryFarm() {
+
+  useEffect(() => {
+    let target = null;
+    try {
+      // Not cleared here: React StrictMode (dev) runs this effect twice, and the
+      // first run is cancelled. The flag is cleared once the scroll has finished.
+      const raw = sessionStorage.getItem(CAGE_FREE_ANCHOR_KEY);
+      const flag = raw ? JSON.parse(raw) : null;
+      if (flag && Date.now() - flag.at < 15000) target = flag.id;
+    } catch { /* storage unavailable - open at the top as usual */ }
+    if (!target) return undefined;
+    const clearFlag = () => {
+      try { sessionStorage.removeItem(CAGE_FREE_ANCHOR_KEY); } catch { /* ignore */ }
+    };
+
+    // The page height keeps changing while images load and the route
+    // transition settles, so re-aim until the target holds still.
+    const start = performance.now();
+    let rafId;
+    let stableFrames = 0;
+    let lastY = -1;
+    const cancel = () => cancelAnimationFrame(rafId);
+    // A user scroll/tap hands control back, so the flag goes with it.
+    const onUserInput = () => { cancel(); clearFlag(); };
+    const events = ['wheel', 'touchstart', 'keydown', 'mousedown'];
+    events.forEach((e) => window.addEventListener(e, onUserInput, { passive: true, once: true }));
+    const tick = () => {
+      const el = document.getElementById(target);
+      if (el) {
+        window.__lenis?.resize();
+        const y = Math.max(0, el.getBoundingClientRect().top + window.scrollY - 110);
+        if (window.__lenis) window.__lenis.scrollTo(y, { immediate: true, force: true });
+        else window.scrollTo(0, y);
+        stableFrames = Math.abs(y - lastY) < 2 ? stableFrames + 1 : 0;
+        lastY = y;
+      }
+      if (stableFrames > 20 || performance.now() - start > 3500) {
+        clearFlag();
+        return;
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => {
+      cancel();
+      events.forEach((e) => window.removeEventListener(e, onUserInput));
+    };
+  }, []);
 
   const containerVariants = makeContainerVariants(0.1);
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
@@ -245,6 +296,7 @@ export default function PoultryFarm() {
 
           {/* Cage free farm - full-width card with supporting points */}
           <motion.div
+            id="cage-free-farm"
             variants={itemVariants}
             className="w-full p-6 sm:p-10 bg-white border border-[#eee] rounded-[10px] flex flex-col gap-6 shadow-[5px_3px_40px_rgba(0,72,88,0.05)]"
           >

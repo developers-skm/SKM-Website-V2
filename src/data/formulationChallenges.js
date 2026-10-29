@@ -9,7 +9,7 @@ const formulationChallenges = [
     id: 'emulsification',
     label: 'Improve Emulsification',
     description: 'Stable oil-in-water emulsions that hold up through mixing, storage, or hot-fill processing.',
-    matchedProductIds: ['egg_yolk_powder', 'egg_yolk_liquid'],
+    matchedProductIds: ['egg_yolk_powder', 'egg_yolk_powder_heat_stable', 'egg_yolk_liquid'],
   },
   {
     id: 'colour',

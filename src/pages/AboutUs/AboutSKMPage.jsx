@@ -1075,7 +1075,7 @@ export default function AboutSKMPage({ onPageChange }) {
                   transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: EASE_PREMIUM }}
                   className="font-heading font-bold text-[34px] sm:text-[44px] lg:text-[52px] text-white leading-[1.12] tracking-tight m-0"
                 >
-                  Asia's Largest Integrated Egg Processing Facility Since 1996.
+                  Asia's Largest Integrated Egg Processing Facility.
                 </motion.h1>
                 <motion.p
                   variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 16 }, visible: { opacity: 1, y: 0 } }}

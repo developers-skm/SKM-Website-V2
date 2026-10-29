@@ -38,6 +38,38 @@ const pageFromUrl = (url) => {
   }
 };
 
+// Heading above the page buttons follows what the buttons are: all products ->
+// "Explore Products", all contact pages -> "Explore Contact", a mix -> "Explore More".
+const SOURCE_GROUPS = [
+  { name: 'Products', test: (path, key) => path.startsWith('products/') || path === 'products' },
+  { name: 'Contact', test: (path, key) => key === 'contact-us' },
+  { name: 'Quote', test: (path, key) => key === 'get-quote' },
+  { name: 'About SKM', test: (path, key) => /^(about_skm|our_company|vision_mission|ceo_message|core_ideology|brand_identity|accolades|gallery|events|coffee_table_books|about_company|about_us)$/.test(key) },
+  { name: 'Global Presence', test: (path, key) => /^(skm_japan|skm_europe|skm_russia|global_reach|global_markets)$/.test(key) },
+  { name: 'Quality', test: (path, key) => path.startsWith('quality') || /^(certifications|policy|traceability|quality_management_system|quality_food_safety_traceability)$/.test(key) },
+  { name: 'Infrastructure', test: (path, key) => /^(poultry_farm|feed_mill|egg_processing_plant|manufacturing_and_supply)$/.test(key) },
+  { name: 'Sustainability', test: (path, key) => /^(csr_sustainability|sustainability_and_community|community_development|csr_education|trust_outreach)$/.test(key) },
+  { name: 'Applications', test: (path, key) => /^(applications|app_\w+)$/.test(key) },
+  { name: 'Investors', test: (path, key) => key === 'investors' },
+];
+
+const sourcesHeading = (urls) => {
+  const groups = new Set(
+    urls.map((url) => {
+      try {
+        const path = new URL(url).pathname.replace(/^\/|\/$/g, '');
+        const key = pageFromUrl(url);
+        return SOURCE_GROUPS.find((g) => g.test(path, key))?.name ?? null;
+      } catch {
+        return null;
+      }
+    }),
+  );
+  if (groups.size !== 1 || groups.has(null)) return 'Explore More';
+  const [name] = groups;
+  return name === 'Quote' ? 'Get a Quote' : `Explore ${name}`;
+};
+
 const HR_SHORTCUT_PHRASE = 'vijayaganapathi access';
 
 export default function Chatbot({ onPageChange }) {
@@ -475,7 +507,7 @@ export default function Chatbot({ onPageChange }) {
                         )}
                         {msg.sources && msg.sources.length > 0 && (
                           <div className="mt-2.5 pt-2 border-t border-surface-100">
-                            <p className="text-[11px] font-semibold text-surface-400 uppercase tracking-wide mb-1">Explore Products</p>
+                            <p className="text-[11px] font-semibold text-surface-400 uppercase tracking-wide mb-1">{sourcesHeading([...new Set(msg.sources)])}</p>
                             <div className="flex flex-wrap gap-1.5">
                               {[...new Set(msg.sources)].map((src) => (
                                 <a

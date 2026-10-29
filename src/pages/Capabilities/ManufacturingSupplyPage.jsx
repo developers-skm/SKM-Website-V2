@@ -6,7 +6,7 @@ import InternalLink from '../../components/common/InternalLink';
 import { fadeUp, EASE_PREMIUM } from '../../utils/motionTokens';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 import supplyHeroImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply/supply.webp';
-import farmToPortImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply/integrated-farm-to-port-complex.png';
+import farmToPortImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply/integrated-farm-to-port-complex.webp';
 
 // Manufacturing and Supply - new page, Section 1 (Capabilities hero) only,
 // per this task's scope. Replaces the "Capabilities" dropdown in the navbar
@@ -47,15 +47,18 @@ import farmToPortImage from '../../assets/5. INFRASTRUCTURE/Manufacturing Supply
 // Plant page - no separate technology-only or facility-info-only page
 // exists, so both point to the one real source that covers each.
 // Clickable regions over the farm-to-port hero image, as % of the image box
-// (the box keeps the image's 1774x887 ratio, so these stay aligned at any width).
+// (the box keeps the image's 1600x800 ratio, so these stay aligned at any width).
 const ZOOM_DURATION = 1.6;
-const HERO_IMAGE_RATIO = 1774 / 887;
+const HERO_IMAGE_RATIO = 1600 / 800;
 const HERO_HOTSPOTS = [
-  { route: 'feed_mill', label: 'Feed Mill', left: 66, top: 9, width: 30, height: 31 },
-  { route: 'poultry_farm', label: 'Poultry Farm', left: 61, top: 40, width: 36, height: 25 },
-  { route: 'egg_processing_plant', label: 'Egg Processing Plant', left: 53, top: 66, width: 43, height: 31 },
-  { route: 'global_reach', label: 'Export & Dispatch', left: 2, top: 58, width: 44, height: 40 },
-  { route: 'csr_sustainability', label: 'Biogas & Sustainability', left: 4, top: 35, width: 30, height: 22 },
+  // labelInside: area hugs the top edge of the image, so a label above it would be clipped/hidden.
+  { route: 'feed_mill', label: 'Feed Mill', labelInside: true, left: 52, top: 3, width: 34, height: 30 },
+  { route: 'poultry_farm', label: 'Poultry Farm', left: 52, top: 40, width: 40, height: 24 },
+  // Open-yard pens at the right edge - opens Poultry Farm scrolled to its "Cage free farm" card.
+  { route: 'poultry_farm', label: 'Cage Free Farm', anchor: 'cage-free-farm', left: 82, top: 29, width: 18, height: 13 },
+  { route: 'egg_processing_plant', label: 'Egg Processing Plant', left: 53, top: 64, width: 43, height: 31 },
+  { route: 'global_reach', label: 'Export & Dispatch', left: 2, top: 62, width: 30, height: 36 },
+  { route: 'csr_sustainability', label: 'Biogas & Sustainability', left: 3, top: 33, width: 26, height: 20 },
 ];
 
 const PROCESSING_CAPABILITIES = [
@@ -725,15 +728,21 @@ export default function ManufacturingSupplyPage({ onPageChange }) {
             >
               {HERO_HOTSPOTS.map((h) => (
                 <InternalLink
-                  key={h.route}
+                  key={h.label}
                   route={h.route}
                   onPageChange={onPageChange}
-                  onClick={(e) => handleHotspotClick(e, h)}
+                  onClick={(e) => {
+                    try {
+                      if (h.anchor) sessionStorage.setItem('skm:poultry-anchor', JSON.stringify({ id: h.anchor, at: Date.now() }));
+                      else sessionStorage.removeItem('skm:poultry-anchor');
+                    } catch { /* storage unavailable - page just opens at the top */ }
+                    handleHotspotClick(e, h);
+                  }}
                   aria-label={h.label}
                   className="group absolute rounded-[18px] focus:outline-none"
                   style={{ left: `${h.left}%`, top: `${h.top}%`, width: `${h.width}%`, height: `${h.height}%` }}
                 >
-                  <span className="absolute left-1/2 -translate-x-1/2 -top-2 -translate-y-full whitespace-nowrap rounded-full bg-brand-600 px-3 py-1 font-body font-semibold text-[12px] text-white opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200 pointer-events-none" hidden={!!zoom}>
+                  <span className={`absolute left-1/2 -translate-x-1/2 ${h.labelInside ? 'top-1/2 -translate-y-1/2' : '-top-2 -translate-y-full'} whitespace-nowrap rounded-full bg-brand-600 px-3 py-1 font-body font-semibold text-[12px] text-white opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200 pointer-events-none`} hidden={!!zoom}>
                     {h.label}
                   </span>
                 </InternalLink>

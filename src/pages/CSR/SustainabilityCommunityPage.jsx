@@ -109,7 +109,7 @@ const FARMING_PRACTICES = [
   },
   {
     id: 'animal-welfare',
-    label: 'Animal welfare',
+    label: 'Flock Health Management',
     fact: 'Balanced, nutritionally optimised feed, daily sanitation protocols, potable water management, and safe disposal systems - including an on-site incinerator - maintain high standards of animal welfare.',
   },
 ];
@@ -123,7 +123,7 @@ function ResponsibleFarmingSection({ onPageChange }) {
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Farm to Feed</span>
           <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
-            Responsible Feed, Farming and Animal Welfare
+            Responsible Feed, Farming and Flock Health Management
           </h2>
         </div>
 

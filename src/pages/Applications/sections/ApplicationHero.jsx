@@ -94,7 +94,7 @@ export default function ApplicationHero({ onPageChange }) {
           initial="hidden"
           animate="visible"
           variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } } }}
-          className="flex flex-col gap-5 max-w-[640px]"
+          className="flex flex-col gap-5 max-w-[720px]"
         >
           {/* Eyebrow Label matching ProductHero */}
           <motion.span
@@ -119,9 +119,9 @@ export default function ApplicationHero({ onPageChange }) {
           <motion.p
             variants={itemVariants}
             transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
-            className="font-body text-[16px] lg:text-[18px] text-white/90 leading-[1.6] m-0"
+            className="font-body text-[18px] lg:text-[22px] font-medium text-white/90 leading-[1.55] m-0 max-w-[680px] pl-5 border-l-4 border-brand-600 bg-gradient-to-r from-black/30 to-transparent py-3 pr-4 rounded-r-lg"
           >
-            Food manufacturers usually think about the product they're developing before they think about an egg product code. Start with what you're making, and we'll point you to the right ingredient.
+            Food manufacturers usually think about the product they're developing before they think about an egg product code. <strong className="font-bold text-white">Start with what you're making, and we'll point you to the right ingredient.</strong>
           </motion.p>
 
           {/* Primary + secondary actions matching Home Hero */}

@@ -167,11 +167,21 @@ function TechnicalDocumentsSection({ globalSearchQuery }) {
   );
 }
 
+// Resources-only ordering: ISO 22000 and KLBD Kosher trade places. The shared
+// data/certifications.js order is left alone (home, footer, product pages use it).
+const resourcesCertifications = (() => {
+  const list = [...certifications];
+  const iso = list.findIndex((c) => c.name === 'ISO 22000');
+  const kosher = list.findIndex((c) => c.name === 'KLBD Kosher');
+  if (iso !== -1 && kosher !== -1) [list[iso], list[kosher]] = [list[kosher], list[iso]];
+  return list;
+})();
+
 // Section 4 - Certifications
 function CertificationsSection({ globalSearchQuery }) {
   const reduceMotion = useReducedMotion();
   const visibleCerts = useMemo(
-    () => certifications.filter((cert) => matchesSearch(
+    () => resourcesCertifications.filter((cert) => matchesSearch(
       globalSearchQuery,
       cert.name,
       'certificate certification certificates accreditation quality food safety',
@@ -401,7 +411,7 @@ const FAQ_CATEGORIES = [
   {
     category: 'Samples',
     question: 'Can I request a product sample?',
-    answer: 'There is no published self-serve sample catalogue - contact our team directly with your product and application to discuss a sample.',
+    answer: 'Yes, SKM can provide product samples for evaluation. Please contact our sales team to request a sample, specifying the product and quantity needed.',
   },
   {
     category: 'MOQ and commercial enquiry',

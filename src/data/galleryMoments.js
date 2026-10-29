@@ -47,29 +47,34 @@ export const moments = [
   ...series('family-fest-2022', 9, {
     date: '2022-04-12', dateLabel: '12 Apr 2022', title: 'Family Fest 2022',
     caption: 'The SKM family coming together to celebrate.', type: 'celebration',
-    each: [{ date: '2022-04-10', dateLabel: '10 Apr 2022' }, {}, { hero: true }],
-    omit: [2],
+    each: [{}, {}, {}, {}, { hero: true }],
+    omit: [1, 2, 3, 4, 7, 8, 9], // only photos 05 (hall) and 06 (stage) are kept
   }),
   ...series('lmi-training-2021', 5, {
     date: '2021-02-12', dateLabel: '12 Feb 2021', title: 'Leadership Management International (LMI) Training',
     caption: 'Leadership development training for the SKM team.', type: 'event',
     each: [{ hero: true }],
+    omit: [2, 3, 4], // only the first and last photos are kept
   }),
   ...series('agm-2019', 3, {
     date: '2019', title: 'Shareholders Meeting 2019',
     caption: 'Annual general meeting with SKM shareholders.', type: 'event',
+    omit: [3], // last photo removed
   }),
   ...series('family-fest-2019', 4, {
     date: '2019-05-03', dateLabel: '3 May 2019', title: 'Family Fest 2019',
     caption: 'The SKM family coming together to celebrate.', type: 'celebration',
+    omit: [3, 4], // only the first two photos are kept
   }),
   ...series('independence-day-2016', 2, {
     date: '2016-08-15', dateLabel: '15 Aug 2016', title: 'Independence Day 2016',
     caption: 'Independence Day celebration at SKM.', type: 'celebration',
+    omit: [1], // first photo removed
   }),
   ...series('agm-2014', 4, {
     date: '2014-09-10', dateLabel: '10 Sep 2014', title: 'Shareholders Meeting 2014',
     caption: 'Annual general meeting with SKM shareholders.', type: 'event',
+    omit: [1, 2], // first two photos removed
   }),
   ...series('family-fest-2014', 4, {
     date: '2014-01-12', dateLabel: '12 Jan 2014', title: 'Family Fest 2014',
@@ -78,6 +83,7 @@ export const moments = [
   ...series('agm-2013', 3, {
     date: '2013-09-30', dateLabel: '30 Sep 2013', title: 'Shareholders Meeting 2013',
     caption: 'Annual general meeting with SKM shareholders.', type: 'event',
+    omit: [1], // first photo removed
   }),
   ...series('agm-2012', 1, {
     date: '2012-09-29', dateLabel: '29 Sep 2012', title: 'Shareholders Meeting 2012',
@@ -91,6 +97,7 @@ export const moments = [
   // No date on record → shown last, under "Archive"
   ...series('sathabishegam', 3, {
     title: 'Sathabishegam', caption: 'A sacred ceremony celebrated with the SKM family.', type: 'celebration',
+    omit: [3], // last photo removed
   }),
 
   // ── Honours & awards (only the year is known for these) ──────────────────
