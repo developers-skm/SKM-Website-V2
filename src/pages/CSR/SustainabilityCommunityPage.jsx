@@ -1,7 +1,22 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
+import SevaiMaiyam2 from '../../assets/trust-images/sevai-maiyam-2.webp';
+import Samynathapuram from '../../assets/trust-images/samynathapuram.webp';
+import EducationCultural from '../../assets/trust-images/education-cultural.webp';
+import EducationPdc from '../../assets/trust-images/education-pdc.webp';
+import EducationCoachingCentre from '../../assets/trust-images/education-coaching-centre.webp';
+import EducationCoachingStudents from '../../assets/trust-images/education-coaching-students.webp';
+import TrustOutreachWaste from '../../assets/trust-images/trust-outreach-waste-collection.webp';
+import EducationExtra from '../../assets/trust-images/education-extra.webp';
+import Trust2 from '../../assets/trust-images/trust-2.jpeg';
+import Trust3 from '../../assets/trust-images/trust-3.webp';
+import Trust4 from '../../assets/trust-images/trust-4.webp';
+import Trust5 from '../../assets/trust-images/trust-5.webp';
+import CarbonFootprint from '../../assets/home/carbon-footprint.jpeg';
+import OefCommunityActivity from '../../assets/trust-images/oef-community-activity.webp';
 
 // Section 2 - Environmental responsibility. Energy, water, and waste are
 // all real, verbatim/derived facts already documented elsewhere: energy
@@ -155,146 +170,127 @@ function ResponsibleFarmingSection({ onPageChange }) {
   );
 }
 
-// Section 4 - Community development. Combines the 4 requested categories
-// using real facts already documented across CommunityDevelopmentPage.jsx,
-// TrustOutreachPage.jsx, and EducationPage.jsx - all under the real SKM
-// Health and Mind Welfare Charity Trust (Sevai Maiyam). "Explore Community
-// Programmes" routes to the real Community Development page, the primary
-// source for this program.
-const COMMUNITY_PROGRAMMES = [
-  {
-    id: 'welfare',
-    label: 'Welfare',
-    fact: '228 families adopted across Gandhi Nagar and Rajiv Nagar - 786 residents, including 239 children and 62 elderly - under the SKM Health and Mind Welfare Charity Trust (Sevai Maiyam).',
-  },
-  {
-    id: 'health',
-    label: 'Health',
-    fact: 'Medical care provided to Dalit women from the start of pregnancy through delivery, with post-delivery consultations covering child rearing and disease prevention.',
-  },
-  {
-    id: 'education',
-    label: 'Education',
-    fact: '239 children enrolled in coaching, 200 college students supported, and 13 graduates placed this year - with morning and evening coaching sessions led by 20 specialised teachers.',
-  },
-  {
-    id: 'outreach',
-    label: 'Outreach',
-    fact: 'Individual toilets with proper drainage, streets kept clean with maintained trees, weekly garbage collection, and electrical lighting installed and maintained in every street.',
-  },
-];
-
-function CommunityDevelopmentSection({ onPageChange }) {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <div className="w-full py-[60px] lg:py-[85px] bg-white">
-      <div className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
-        <div className="flex flex-col gap-4 max-w-2xl">
-          <span className="section-label">Sevai Maiyam</span>
-          <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
-            Community Development
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {COMMUNITY_PROGRAMMES.map((item, i) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              className="flex flex-col gap-3 p-6 rounded-[16px] border border-[#eee] bg-[#fdfbf7]"
-            >
-              <h3 className="font-heading font-bold text-[15px] text-heading m-0">{item.label}</h3>
-              <p className="font-body text-[13px] text-surface-500 leading-[1.5] m-0">{item.fact}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        <InternalLink
-          route="community_development"
-          onPageChange={onPageChange}
-          className="self-start inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-        >
-          Explore Community Programmes
-        </InternalLink>
-      </div>
-    </div>
-  );
-
-}
-// Section 4b - Corporate Social Responsibility. Moved here from the
+// Section 4 - Corporate Social Responsibility. Moved here from the
 // Resources page: the five CSR programme cards, each routing to its
 // detailed page.
 const CSR_CARDS = [
   {
     title: 'Community Development',
-    description: 'The SKM Health and Mind Welfare Charity Trust - Sevai Maiyam - supporting adopted families with housing, sanitation, and welfare.',
     page: 'community_development',
-    iconType: 'community',
+    images: [
+      { src: SevaiMaiyam2, alt: 'Sevai Maiyam community welfare centre' },
+      { src: Samynathapuram, alt: 'Community families supported by the SKM Trust' },
+    ],
+    points: [
+      'Established in 1988, the SKM Health and Mind Welfare Charity Trust is dedicated to uplifting underprivileged communities through education, healthcare, and social welfare initiatives.',
+      'Established in 1999, Sevai Maiyam serves as a dedicated community welfare centre, providing essential services and opportunities for holistic social development.',
+      'Supporting families in Gandhi Nagar and Rajiv Nagar through integrated initiatives focused on education, healthcare, sanitation, and improved living standards.',
+      'Supporting expectant mothers through prenatal and postnatal healthcare, medical consultations and guidance on child health and disease prevention.',
+    ],
   },
   {
-    title: 'Trust Outreach Programs',
-    description: 'Sanitation, education fees, medical services, financial aid, elder care, and community initiatives.',
-    page: 'trust_outreach',
-    iconType: 'trust',
-  },
-  {
-    title: 'Education Initiatives',
-    description: 'ABL teaching systems, coaching centres, libraries, and educational support for underprivileged students.',
+    title: 'Education',
     page: 'csr_education',
-    iconType: 'education',
+    images: [
+      { src: EducationCoachingCentre, alt: 'Coaching centre' },
+      { src: EducationCoachingStudents, alt: 'Students at coaching sessions' },
+      { src: EducationPdc, alt: 'Computer and PDC classes' },
+      { src: EducationCultural, alt: 'Cultural education activities' },
+      { src: EducationExtra, alt: 'Children playing and taking part in activities on the trust campus' },
+    ],
+    points: [
+      'Providing free educational support from the age of three through higher education, empowering children to pursue academic achievement and brighter futures.',
+      'Removing financial barriers to education by providing school fees, textbooks, uniforms, and essential learning materials to children from disadvantaged families.',
+      'Offering structured academic coaching, English language development, and computer education through qualified teachers to enhance learning and future opportunities.',
+      'Nurturing young minds through activity-based learning, value-based education, personality development, yoga, meditation, music, and cultural activities.',
+      'Supporting students in achieving academic success, completing higher education, and progressing towards meaningful employment and financial independence.',
+    ],
   },
+  {
+    title: 'Trust Outreach',
+    page: 'trust_outreach',
+    images: [
+      { src: TrustOutreachWaste, alt: 'SKM community waste collection in the village street' },
+      { src: Trust2, alt: 'Community healthcare support' },
+      { src: Trust3, alt: 'Community facilities' },
+      { src: Trust4, alt: 'Elder care and welfare' },
+      { src: Trust5, alt: 'Neighbourhood sanitation initiatives' },
+    ],
+    points: [
+      'Developing and maintaining essential community facilities, including healthcare centres, educational facilities, hygienic kitchens, dining halls, and wellness spaces.',
+      'Extending assistance to families during important life events and challenging circumstances through financial support, essential services, and community welfare initiatives.',
+      'Providing free medical consultations, paediatric healthcare, eye examinations, and essential medical support to improve community health and well-being.',
+      'Ensuring dignity and well-being for senior citizens through nutritious meals, healthcare assistance, essential supplies, clothing, and personal care services.',
+      'Promoting healthier living environments through household sanitation facilities, drainage systems, waste management, tree planting, and neighbourhood cleanliness initiatives.',
+    ],
+  },
+];
+
+const CSR_SUMMARY_CARDS = [
   {
     title: 'Environmental Sustainability',
     description: 'Carbon footprint reduction, wind energy investments, eco-efficient processing, and environmental policy commitments.',
     page: 'csr_sustainability',
-    iconType: 'sustainability',
+    image: CarbonFootprint,
+    alt: 'SKM biogas dome supporting a lower carbon footprint',
   },
   {
     title: 'MD Vision & Article',
     description: "The Olirum Erodu Foundation - Managing Director's personal initiative across five key community focus areas.",
     page: 'md_article',
-    iconType: 'md_article',
+    image: OefCommunityActivity,
+    alt: 'Olirum Erodu Foundation community activity',
   },
 ];
 
-function CsrIcon({ iconType }) {
-  switch (iconType) {
-    case 'community':
-      return (
-        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0v-5a2 2 0 012-2h2a2 2 0 012 2v5m-6 0h6" />
-        </svg>
-      );
-    case 'trust':
-      return (
-        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
-      );
-    case 'education':
-      return (
-        <svg className="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-        </svg>
-      );
-    case 'sustainability':
-      return (
-        <svg className="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5a2.5 2.5 0 002.5-2.5V8.5a.5.5 0 01.5-.5h.5a2.5 2.5 0 002.5-2.5V3.935" />
-        </svg>
-      );
-    default:
-      return (
-        <svg className="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-        </svg>
-      );
-  }
+const CSR_SLIDE_INTERVAL_MS = 4500;
+
+function CsrImageSlider({ images, offset, reduceMotion }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduceMotion || images.length < 2) return undefined;
+    let timer;
+    const start = setTimeout(() => {
+      timer = setInterval(() => setIndex((i) => (i + 1) % images.length), CSR_SLIDE_INTERVAL_MS);
+    }, offset);
+    return () => {
+      clearTimeout(start);
+      clearInterval(timer);
+    };
+  }, [images.length, offset, reduceMotion]);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      <AnimatePresence initial={false}>
+        <motion.img
+          key={index}
+          src={images[index].src}
+          alt={images[index].alt}
+          loading="lazy"
+          initial={{ opacity: 0, scale: reduceMotion ? 1 : 1.06 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: reduceMotion ? 0.01 : 0.9, ease: 'easeOut' }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </AnimatePresence>
+      {images.length > 1 && (
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+          {images.map((img, i) => (
+            <button
+              key={img.alt}
+              type="button"
+              aria-label={`Show image ${i + 1} of ${images.length}`}
+              aria-current={i === index}
+              onClick={() => setIndex(i)}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white ${i === index ? 'w-6 bg-white' : 'w-2 bg-white/60 hover:bg-white/80'}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 function CsrSection({ onPageChange }) {
@@ -313,29 +309,68 @@ function CsrSection({ onPageChange }) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="flex flex-col gap-6">
           {CSR_CARDS.map((card, i) => (
-            <motion.button
+            <motion.article
               key={card.page}
-              type="button"
               initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.05 }}
-              onClick={() => onPageChange(card.page)}
-              className="group flex flex-col items-start gap-3 p-6 text-left rounded-[16px] border border-[#eee] bg-[#fdfbf7] hover:border-brand-600/30 hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] hover:-translate-y-1 transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+              transition={{ duration: reduceMotion ? 0.01 : 0.4 }}
+              className="flex flex-col lg:flex-row overflow-hidden rounded-[16px] border border-[#eee] bg-[#fdfbf7] hover:border-brand-600/30 hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] transition-all duration-300"
             >
-              <span className="p-3 rounded-xl bg-white border border-surface-200/60 flex items-center justify-center">
-                <CsrIcon iconType={card.iconType} />
-              </span>
-              <h3 className="font-heading font-bold text-[15px] text-heading m-0 group-hover:text-brand-600 transition-colors duration-200">
-                {card.title}
-              </h3>
-              <p className="font-body text-[13px] text-surface-500 leading-[1.5] m-0">{card.description}</p>
-              <span className="mt-auto pt-2 font-body font-bold text-[12px] text-brand-600 inline-flex items-center gap-1 group-hover:underline">
-                Explore Overview →
-              </span>
-            </motion.button>
+              <div className="flex flex-col gap-4 p-6 sm:p-8 lg:p-10 lg:w-[58%]">
+                <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 leading-tight">
+                  {card.title}
+                </h3>
+                <ul className="flex flex-col gap-3 m-0 p-0 list-none">
+                  {card.points.map((point) => (
+                    <li key={point} className="flex items-start gap-3">
+                      <span className="mt-[9px] w-1.5 h-1.5 rounded-full bg-brand-600 shrink-0" aria-hidden="true" />
+                      <p className="font-body text-[14px] sm:text-[15px] text-surface-500 leading-[1.6] m-0">{point}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="relative w-full h-[240px] sm:h-[320px] lg:h-auto lg:flex-1">
+                <CsrImageSlider images={card.images} offset={i * 1500} reduceMotion={reduceMotion} />
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {CSR_SUMMARY_CARDS.map((card, i) => (
+            <motion.article
+              key={card.page}
+              initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: reduceMotion ? 0.01 : 0.4, delay: reduceMotion ? 0 : i * 0.08 }}
+              className="group flex flex-col overflow-hidden rounded-[16px] border border-[#eee] bg-[#fdfbf7] hover:border-brand-600/30 hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] transition-all duration-300"
+            >
+              <div className="relative w-full h-[220px] sm:h-[260px] overflow-hidden">
+                <img
+                  src={card.image}
+                  alt={card.alt}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="flex flex-col flex-1 gap-3 p-6 sm:p-8">
+                <h3 className="font-heading font-bold text-[20px] sm:text-[24px] text-heading m-0 leading-tight">
+                  {card.title}
+                </h3>
+                <p className="font-body text-[14px] sm:text-[15px] text-surface-500 leading-[1.6] m-0">{card.description}</p>
+                <button
+                  type="button"
+                  onClick={() => onPageChange(card.page)}
+                  className="mt-auto pt-2 self-start font-body font-bold text-[13px] text-brand-600 inline-flex items-center gap-1 hover:underline cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded"
+                >
+                  Explore Overview →
+                </button>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>
@@ -447,11 +482,7 @@ export default function SustainabilityCommunityPage({ onPageChange }) {
         {/* Section 4 - Corporate Social Responsibility */}
         <CsrSection onPageChange={onPageChange} />
 
-        <CurvedDivider bg="#ececec" fill="#fff" />
-        {/* Section 4b - Community development */}
-        <CommunityDevelopmentSection onPageChange={onPageChange} />
-
-        <CurvedDivider bg="#fff" fill="#ececec" />
+        <CurvedDivider bg="#ececec" fill="#ececec" />
         {/* Section 6 - Governance and commitments */}
         <GovernanceCommitmentsSection onPageChange={onPageChange} />
 
