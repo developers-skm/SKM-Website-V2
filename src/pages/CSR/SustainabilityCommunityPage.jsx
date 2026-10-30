@@ -226,6 +226,10 @@ const CSR_CARDS = [
   },
 ];
 
+const CSR_FOCUS_AREAS = ['Education', 'Community Development', 'Trust Outreach', 'Health'];
+
+const CSR_SLIDER_IMAGES = CSR_CARDS.flatMap((card) => card.images.slice(0, 2));
+
 const CSR_SUMMARY_CARDS = [
   {
     title: 'Environmental Sustainability',
@@ -309,35 +313,30 @@ function CsrSection({ onPageChange }) {
           </p>
         </div>
 
-        <div className="flex flex-col gap-6">
-          {CSR_CARDS.map((card, i) => (
-            <motion.article
-              key={card.page}
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.4 }}
-              className="flex flex-col lg:flex-row overflow-hidden rounded-[16px] border border-[#eee] bg-[#fdfbf7] hover:border-brand-600/30 hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] transition-all duration-300"
-            >
-              <div className="flex flex-col gap-4 p-6 sm:p-8 lg:p-10 lg:w-[58%]">
-                <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 leading-tight">
-                  {card.title}
-                </h3>
-                <ul className="flex flex-col gap-3 m-0 p-0 list-none">
-                  {card.points.map((point) => (
-                    <li key={point} className="flex items-start gap-3">
-                      <span className="mt-[9px] w-1.5 h-1.5 rounded-full bg-brand-600 shrink-0" aria-hidden="true" />
-                      <p className="font-body text-[14px] sm:text-[15px] text-surface-500 leading-[1.6] m-0">{point}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="relative w-full h-[240px] sm:h-[320px] lg:h-auto lg:flex-1">
-                <CsrImageSlider images={card.images} offset={i * 1500} reduceMotion={reduceMotion} />
-              </div>
-            </motion.article>
-          ))}
-        </div>
+        <motion.article
+          initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: reduceMotion ? 0.01 : 0.4 }}
+          className="flex flex-col lg:flex-row overflow-hidden rounded-[16px] border border-[#eee] bg-[#fdfbf7] hover:border-brand-600/30 hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] transition-all duration-300"
+        >
+          <div className="flex flex-col justify-center gap-6 p-6 sm:p-8 lg:p-10 lg:w-[50%]">
+            <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 leading-tight">
+              Our CSR Focus Areas
+            </h3>
+            <ul className="flex flex-col m-0 p-0 list-none">
+              {CSR_FOCUS_AREAS.map((title) => (
+                <li key={title} className="flex items-center gap-3 py-4 border-b border-[#eee] last:border-b-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-600 shrink-0" aria-hidden="true" />
+                  <span className="font-heading font-bold text-[17px] sm:text-[19px] text-heading">{title}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="relative w-full h-[240px] sm:h-[320px] lg:h-auto lg:min-h-[380px] lg:flex-1">
+            <CsrImageSlider images={CSR_SLIDER_IMAGES} offset={0} reduceMotion={reduceMotion} />
+          </div>
+        </motion.article>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {CSR_SUMMARY_CARDS.map((card, i) => (

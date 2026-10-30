@@ -59,15 +59,25 @@ export default function YearSection({ group, onOpen }) {
         {blocks.map((b) =>
           b.award ? (
             <AwardMoment key={b.m.id} moment={b.m} flip={b.n % 2 === 1} onOpen={onOpen} />
+          ) : b.items.length === 1 ? (
+            // A lone photo (no neighbour to fill the other column): image on one side, text fills the rest.
+            <MomentCard key={b.items[0].id} moment={b.items[0]} variant="split" flip={Number(group.id) % 2 === 1} onOpen={onOpen} />
           ) : (
             // Plain moments flow in two columns so the next one fills the side
-            // space; the right column is dropped for a staggered rhythm.
-            <div key={b.items[0].id} className="grid items-start gap-x-10 gap-y-14 lg:grid-cols-2 xl:gap-x-14">
-              {b.items.map((m, i) => (
-                <div key={m.id} className={i % 2 === 1 ? 'lg:mt-24' : ''}>
-                  <MomentCard moment={m} variant="half" onOpen={onOpen} />
-                </div>
-              ))}
+            // space; the right column is dropped for a staggered rhythm. An odd
+            // one out at the end would leave an empty side, so it gets the split
+            // layout instead (image left, text on the right).
+            <div key={b.items[0].id} className="flex flex-col gap-14 lg:gap-24">
+              <div className="grid items-start gap-x-10 gap-y-14 lg:grid-cols-2 xl:gap-x-14">
+                {(b.items.length % 2 ? b.items.slice(0, -1) : b.items).map((m, i) => (
+                  <div key={m.id} className={i % 2 === 1 ? 'lg:mt-24' : ''}>
+                    <MomentCard moment={m} variant="half" onOpen={onOpen} />
+                  </div>
+                ))}
+              </div>
+              {b.items.length % 2 === 1 && (
+                <MomentCard moment={b.items[b.items.length - 1]} variant="split" onOpen={onOpen} />
+              )}
             </div>
           )
         )}

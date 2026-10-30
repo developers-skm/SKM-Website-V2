@@ -36,25 +36,29 @@ export function DateMarker({ moment, className = '' }) {
   );
 }
 
-export default function MomentCard({ moment, variant, onOpen }) {
+export default function MomentCard({ moment, variant, flip = false, onOpen }) {
   const reduce = useReducedMotion();
   const img = imageProps(moment.image, 1200);
   const { ref: frameRef, y: parY } = useParallax(reduce);
   const tilt = useTilt(reduce);
-  const place = PLACEMENT[variant === 'half' ? 'half' : img.ratio < 1 ? 'portrait' : variant];
+  // 'split': a year's only photo - image on one side, text fills the other.
+  const split = variant === 'split';
+  const place = PLACEMENT[variant === 'half' || split ? 'half' : img.ratio < 1 ? 'portrait' : variant];
 
   return (
     <motion.article
-      className="grid grid-cols-12"
+      className={split ? 'grid items-center gap-x-10 gap-y-6 lg:grid-cols-2 xl:gap-x-14' : 'grid grid-cols-12'}
       variants={container}
       initial={reduce ? false : 'hidden'}
       whileInView="visible"
       viewport={{ once: true, margin: '0px 0px -12% 0px' }}
     >
-      <div className={`col-span-12 ${place.box}`}>
-        <motion.div variants={rise}>
-          <DateMarker moment={moment} className="mb-4" />
-        </motion.div>
+      <div className={split ? `${flip ? 'lg:order-2' : ''}` : `col-span-12 ${place.box}`}>
+        {!split && (
+          <motion.div variants={rise}>
+            <DateMarker moment={moment} className="mb-4" />
+          </motion.div>
+        )}
 
         <motion.button
           type="button"
@@ -84,17 +88,33 @@ export default function MomentCard({ moment, variant, onOpen }) {
           <span className="pointer-events-none absolute inset-0 hidden bg-gradient-to-t from-black/45 via-transparent to-transparent opacity-0 transition-opacity duration-500 lg:block lg:group-hover:opacity-100 group-focus-visible:opacity-100" />
         </motion.button>
 
-        <motion.div variants={rise} className="mt-5">
-          <h3 aria-label={moment.title} className="m-0 font-heading font-bold leading-[1.15] tracking-tight text-heading text-[clamp(1.35rem,2.2vw,2rem)]">
+        {!split && (
+          <motion.div variants={rise} className="mt-5">
+            <h3 aria-label={moment.title} className="m-0 font-heading font-bold leading-[1.15] tracking-tight text-heading text-[clamp(1.35rem,2.2vw,2rem)]">
+              <MaskText text={moment.title} />
+            </h3>
+            {moment.caption && (
+              <p className="mt-2 mb-0 max-w-[52ch] font-body text-[15px] leading-[26px] text-surface-500">
+                {moment.caption}
+              </p>
+            )}
+          </motion.div>
+        )}
+      </div>
+
+      {split && (
+        <motion.div variants={rise} className={`flex flex-col justify-center ${flip ? 'lg:order-1 lg:pr-6' : 'lg:pl-6'}`}>
+          <DateMarker moment={moment} className="mb-5" />
+          <h3 aria-label={moment.title} className="m-0 font-heading font-bold leading-[1.1] tracking-tight text-heading text-[clamp(1.75rem,3.2vw,3rem)]">
             <MaskText text={moment.title} />
           </h3>
           {moment.caption && (
-            <p className="mt-2 mb-0 max-w-[52ch] font-body text-[15px] leading-[26px] text-surface-500">
+            <p className="mt-4 mb-0 max-w-[44ch] font-body text-[16px] leading-[28px] text-surface-500">
               {moment.caption}
             </p>
           )}
         </motion.div>
-      </div>
+      )}
     </motion.article>
   );
 }

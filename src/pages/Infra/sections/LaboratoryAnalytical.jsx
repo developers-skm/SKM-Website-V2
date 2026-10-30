@@ -67,7 +67,7 @@ const contentSections = [
   },
   {
     title: 'Poultry Disease Diagnostics',
-    description: 'Comprehensive Disease control begins with feed mill and extends through strict biosecurity, vector control, and continuous flock monitoring. \n\nNewcastle Disease titres are verified through periodic serological testing, while enhanced biosecurity protocols safeguard against Avian Influenza, including controlled farm access, sanitation barriers, and perimeter management\n\nOur in-house diagnostic laboratory supports proactive flock health management through microbiological, serological, and molecular testing. Strict biosecurity protocols, controlled sample handling, and regulatory-aligned testing frameworks ensure early detection, disease prevention, and sustained flock health.',
+    description: 'Comprehensive Disease control begins with feed mill and extends through strict biosecurity, vector control, and continuous flock monitoring. \n\nNewcastle Disease titres are verified through periodic serological testing, while enhanced biosecurity protocols safeguard against Avian Influenza, including controlled farm access, sanitation barriers, and perimeter management\n\nOur in-house diagnostic laboratory supports proactive flock health management through microbiological and serological. Strict biosecurity protocols, controlled sample handling, and regulatory-aligned testing frameworks ensure early detection, disease prevention, and sustained flock health.',
     chips: ['Microbiology', 'Serology', 'Necropsy', 'Post Mortem'],
     chipLabel: 'Testings',
     fullWidth: true,

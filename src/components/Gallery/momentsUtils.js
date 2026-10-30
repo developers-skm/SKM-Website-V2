@@ -66,7 +66,14 @@ export function buildTimeline(moments, filterId = 'all') {
       (p ? dated : undated).push(item);
     });
 
-  dated.sort((a, b) => b._key - a._key || String(a.id).localeCompare(String(b.id)));
+  // Newest first; an optional `order` number hand-orders moments within the same year.
+  dated.sort((a, b) => {
+    if (a.year === b.year && (a.order != null || b.order != null)) {
+      const byOrder = (a.order ?? 0) - (b.order ?? 0);
+      if (byOrder) return byOrder;
+    }
+    return b._key - a._key || String(a.id).localeCompare(String(b.id));
+  });
 
   const groups = [];
   dated.forEach((item) => {

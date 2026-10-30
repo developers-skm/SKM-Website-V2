@@ -49,10 +49,10 @@ const farmImages = [
 ];
 
 const cageFreeImages = [
-  { src: CageFree1, label: 'Cage free farm 1' },
+  { src: CageFree5, label: 'Cage free farm 5' },
   { src: CageFree3, label: 'Cage free farm 3' },
   { src: CageFree4, label: 'Cage free farm 4' },
-  { src: CageFree5, label: 'Cage free farm 5' },
+  { src: CageFree1, label: 'Cage free farm 1' },
 ];
 
 const statsData = [

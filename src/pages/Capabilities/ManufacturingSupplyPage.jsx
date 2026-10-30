@@ -152,14 +152,6 @@ function EggProcessingPlantSection({ onPageChange }) {
           >
             View Processing Facilities
           </InternalLink>
-
-          <InternalLink
-            route="contact-us"
-            onPageChange={onPageChange}
-            className={BTN_SECONDARY}
-          >
-            Request Facility Information
-          </InternalLink>
         </div>
 
       </div>

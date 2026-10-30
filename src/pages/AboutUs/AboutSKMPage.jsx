@@ -144,19 +144,19 @@ function CompanyOverviewSection({ onPageChange }) {
 // scroll step reveals the next trophy in sequence. Order and wording follow
 // the Excellence Journey graphic supplied by SKM.
 const JOURNEY_MILESTONES = [
-  { title: 'Silver Trophy - 2001', by: 'by APEDA [Govt. of India]', color: '#E40A18' },
-  { title: 'Best Export Performance Awards 2005-06', by: 'by MEPZ (Madras Export Processing Zone)', color: '#E40A18' },
-  { title: 'State Safety Award - 2007', by: 'by Government of Tamil Nadu', color: '#E40A18' },
-  { title: 'Manufacturing Excellence Silver 2006 & Gold 2007 & 08', by: 'by Frost & Sullivan', color: '#E40A18' },
-  { title: 'Shri SKM Maeilanandhan receiving Padma Shree', by: 'by Honourable President of India, Shri Pranab Mukherjee', color: '#E40A18', image: accoladePic8, crop: [544, 24, 12, 498, 310] },
-  { title: 'Export Excellence Award - 2012 & 13', by: 'at MEPZ, by Special Economic Zone - Chennai', color: '#E40A18', image: accoladePic6, crop: [675, 14, 6, 648, 346] },
+  { title: 'Silver Trophy - 2001', by: 'Bestowed by APEDA [Govt. of India]', color: '#E40A18' },
+  { title: 'Best Export Performance Awards 2005-06', by: 'Bestowed by MEPZ (Madras Export Processing Zone)', color: '#E40A18' },
+  { title: 'State Safety Award - 2007', by: 'Bestowed by Government of Tamil Nadu', color: '#E40A18' },
+  { title: 'Manufacturing Excellence Silver 2006 & Gold 2007 & 08', by: 'Bestowed by Frost & Sullivan', color: '#E40A18' },
+  { title: 'Shri SKM Maeilanandhan receiving Padma Shree', by: 'Bestowed by Honourable President of India, Shri Pranab Mukherjee', color: '#E40A18', image: accoladePic8, crop: [544, 24, 12, 498, 310] },
+  { title: 'Export Excellence Award - 2012 & 13', by: 'Bestowed at MEPZ by Special Economic Zone - Chennai', color: '#E40A18', image: accoladePic6, crop: [675, 14, 6, 648, 346] },
   { title: 'Golden Trophy 2011-2012 and 2012-2013', by: '"APEDA" Ministry of Commerce, Government of India', color: '#E40A18', image: accoladePic4, crop: [544, 14, 8, 508, 296] },
-  { title: 'Hidden Gem Award 2014-15', by: 'by TiECON at Chennai', color: '#E40A18' },
-  { title: '5 S Platinum Award 2015-16 & 2016-17', by: 'by ABK AOTS - Tamil Nadu', color: '#E40A18', image: accoladePic3, crop: [665, 16, 8, 622, 392] },
-  { title: 'CII Award 2016-17 on Food Safety', by: 'by CII', color: '#E40A18' },
-  { title: 'Mondelez Quality and Food Safety Culture Awards 2021-2022', by: 'by Mondelez', color: '#E40A18' },
-  { title: 'National Client of the Year 2022', by: 'Awarded by LMI Carpe Diem', color: '#E40A18' },
-  { title: 'Shri SKM Maeilanandhan receiving Padma Bhushan - 2026', by: 'by Honourable President of India, Smt. Droupadi Murmu', color: '#E40A18', image: '/gallery/award-padma-bhushan-2026.jpg' },
+  { title: 'Hidden Gem Award 2014-15', by: 'Bestowed by TiECON at Chennai', color: '#E40A18' },
+  { title: '5 S Platinum Award 2015-16 & 2016-17', by: 'Bestowed by ABK AOTS - Tamil Nadu', color: '#E40A18', image: accoladePic3, crop: [665, 16, 8, 622, 392] },
+  { title: 'CII Award 2016-17 on Food Safety', by: 'Bestowed by CII', color: '#E40A18' },
+  { title: 'Mondelez Quality and Food Safety Culture Awards 2021-2022', by: 'Bestowed by Mondelez', color: '#E40A18' },
+  { title: 'National Client of the Year 2022', by: 'Bestowed by LMI Carpe Diem', color: '#E40A18' },
+  { title: 'Shri SKM Maeilanandhan receiving Padma Bhushan - 2026', by: 'Bestowed by Honourable President of India, Smt. Droupadi Murmu', color: '#E40A18', image: '/gallery/award-padma-bhushan-2026.jpg' },
 ]
   // `n` = the milestone's slot in the (oldest-first) trophy sprite sheet; shown newest-first.
   .map((m, n) => ({ ...m, n }))

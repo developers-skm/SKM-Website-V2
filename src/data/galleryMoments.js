@@ -53,18 +53,18 @@ export const moments = [
   ...series('lmi-training-2021', 5, {
     date: '2021-02-12', dateLabel: '12 Feb 2021', title: 'Leadership Management International (LMI) Training',
     caption: 'Leadership development training for the SKM team.', type: 'event',
-    each: [{ hero: true }],
-    omit: [2, 3, 4], // only the first and last photos are kept
+    each: [{}, {}, {}, {}, { hero: true }],
+    omit: [1, 2, 3, 4], // only the last photo is kept
   }),
   ...series('agm-2019', 3, {
     date: '2019', title: 'Shareholders Meeting 2019',
     caption: 'Annual general meeting with SKM shareholders.', type: 'event',
-    omit: [3], // last photo removed
+    omit: [2, 3], // only photo 01 is kept
   }),
   ...series('family-fest-2019', 4, {
     date: '2019-05-03', dateLabel: '3 May 2019', title: 'Family Fest 2019',
     caption: 'The SKM family coming together to celebrate.', type: 'celebration',
-    omit: [3, 4], // only the first two photos are kept
+    omit: [1, 3, 4], // only photo 02 is kept
   }),
   ...series('independence-day-2016', 2, {
     date: '2016-08-15', dateLabel: '15 Aug 2016', title: 'Independence Day 2016',
@@ -74,16 +74,19 @@ export const moments = [
   ...series('agm-2014', 4, {
     date: '2014-09-10', dateLabel: '10 Sep 2014', title: 'Shareholders Meeting 2014',
     caption: 'Annual general meeting with SKM shareholders.', type: 'event',
-    omit: [1, 2], // first two photos removed
+    omit: [1, 2, 4], // only photo 03 is kept
+    order: 3, // shown last in 2014
   }),
   ...series('family-fest-2014', 4, {
     date: '2014-01-12', dateLabel: '12 Jan 2014', title: 'Family Fest 2014',
     caption: 'The SKM family coming together to celebrate.', type: 'celebration',
+    each: [{}, {}, { order: 2 }, { order: 1 }], // photo 04 leads, then 03
+    omit: [1, 2], // only photos 03 and 04 are kept
   }),
   ...series('agm-2013', 3, {
     date: '2013-09-30', dateLabel: '30 Sep 2013', title: 'Shareholders Meeting 2013',
     caption: 'Annual general meeting with SKM shareholders.', type: 'event',
-    omit: [1], // first photo removed
+    omit: [1, 2], // only photo 03 is kept
   }),
   ...series('agm-2012', 1, {
     date: '2012-09-29', dateLabel: '29 Sep 2012', title: 'Shareholders Meeting 2012',
@@ -97,14 +100,21 @@ export const moments = [
   // No date on record → shown last, under "Archive"
   ...series('sathabishegam', 3, {
     title: 'Sathabishegam', caption: 'A sacred ceremony celebrated with the SKM family.', type: 'celebration',
-    omit: [3], // last photo removed
+    omit: [2, 3], // only photo 01 is kept
   }),
+  {
+    id: 'archive-family-gathering',
+    image: '/gallery/archive-family-gathering.png',
+    title: 'A Proud Moment of Honour and Recognition for Our Esteemed Chairman',
+    caption: 'Leaders and team members together on a memorable occasion.',
+    type: 'celebration',
+  },
 
   // ── Honours & awards (only the year is known for these) ──────────────────
   {
     id: 'award-padma-bhushan-2026',
     image: '/gallery/award-padma-bhushan-2026.jpg',
-    date: '2026',
+    dateLabel: '2026', // no `date` → listed under Honours (first, ahead of Padma Shree)
     title: 'Padma Bhushan',
     caption: 'Shri SKM Maeilanandhan receiving the Padma Bhushan award from the President of India.',
     type: 'award',

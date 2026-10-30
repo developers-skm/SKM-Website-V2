@@ -133,7 +133,7 @@ const powderLineChapters = baseLineChapters.map((c, i) => ({
 // bagging - it carries its own copy and photo.
 const liquidPackagingOverride = {
   narrative:
-    'Pasteurised liquid egg products are transferred from aseptic storage tanks to an aseptic filling machine, where they are packed into LDPE pouches under controlled, hygienic conditions. The filling area undergoes thorough cleaning, while the filling line is subjected to an integrated Clean-in-Place (CIP) and sterilisation process to ensure hygienic conditions and readiness for subsequent production batches. An automated - sanitisation system sanitises the filling nozzle and its surrounding area before each pouch-filling cycle, further enhancing hygiene and minimising contamination risks.',
+    'Pasteurised liquid egg products are transferred from aseptic storage tanks to an aseptic filling machine, where they are packed into LDPE pouches under controlled, hygienic conditions. The filling area undergoes thorough cleaning, while the filling line is subjected to an integrated Clean-in-Place (CIP) and sterilisation process to ensure hygienic conditions and readiness for subsequent production batches. An automated-sanitisation system sanitises the filling nozzle and its surrounding area before each pouch-filling cycle, further enhancing hygiene and minimising contamination risks.',
   highlights: ['Aseptic filling', 'CIP & Sterilisation', 'Equipment auto sanitisation before filling'],
   image: liquidFillingImage,
   altText: 'Aseptic liquid egg pouch filling machine in the filling area',
