@@ -1,9 +1,11 @@
 import React from 'react';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import BranchSection from './sections/BranchSection';
+import russiaImage from '../../assets/branches/skm-russia.jpg';
 
 const russiaData = {
   name: 'SKM Russia',
+  image: russiaImage,
   region: 'Russia',
   tagline: 'Establishing a trusted supply chain for Indian egg ingredients across Russia.',
   vision: 'To become the strategic partner in Russia for egg based ingredients primarily sourced from India.',

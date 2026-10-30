@@ -28,6 +28,7 @@ const agmVideos = [
 const investorConCallVideos = [
   { title: 'Investor Con. Call', src: 'https://www.youtube.com/embed/MEgxK79gULA?si=CUse_PHCWn0j0JbJ' },
   { title: 'Investor Con. Call', src: 'https://www.youtube.com/embed/1h8kwY5WRZ4?si=CFCQE4llnG8xZERz' },
+  { title: 'Investor Concall- FY27 Q2', src: 'https://www.youtube.com/embed/NpY-Ngvq1mY?si=73Yt3ZUSmGy7zbKF' },
 ];
 
 const sectionFolders = {
@@ -812,6 +813,7 @@ function InvestorConCallContent({ label }) {
       </div>
 
       <InvestorVideo {...investorConCallVideos[1]} />
+      <InvestorVideo {...investorConCallVideos[2]} />
     </motion.div>
   );
 }
@@ -834,7 +836,6 @@ function SectionContent({ value, label }) {
     return <ComingSoonContent label={label} />;
   }
 
-  const videos = files.filter(f => ['mp4', 'avi', 'mov', 'webm'].includes(f.ext));
   const docs = files.filter(f => !['mp4', 'avi', 'mov', 'webm'].includes(f.ext));
 
   return (
@@ -847,7 +848,7 @@ function SectionContent({ value, label }) {
     >
       <SectionHeader label={label} />
 
-      {videos.length > 0 && agmVideos.map(({ title, src }) => (
+      {value === 'agm_meeting' && agmVideos.map(({ title, src }) => (
         <div key={src} className="flex flex-col gap-3">
           <h3 className="font-heading font-semibold text-[18px] text-heading m-0">{title}</h3>
           <div className="rounded-[12px] overflow-hidden border border-[#eee] bg-black aspect-video w-full">

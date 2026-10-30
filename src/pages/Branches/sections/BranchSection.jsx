@@ -6,7 +6,7 @@ const containerVariants = makeContainerVariants(0.12);
 const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
 export default function BranchSection({ branch }) {
-  const { name, tagline, region, vision, activities, contact } = branch;
+  const { name, image, tagline, region, vision, activities, contact } = branch;
   const telHref = (tel) => `tel:${tel.replace(/[^\d+]/g, '')}`;
 
   return (
@@ -55,15 +55,24 @@ export default function BranchSection({ branch }) {
 
             {/* Image container - rounded-[10px] matching migration plan */}
             <div className="w-full max-w-2xl rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-500 overflow-hidden">
-              <div className="relative rounded-[16px] overflow-hidden aspect-[4/3] w-full bg-surface-100 flex flex-col items-center justify-center gap-3">
-                <svg className="w-12 h-12 text-surface-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="font-body text-[11px] font-semibold uppercase tracking-widest text-surface-400 m-0">
-                  Image coming soon
-                </p>
-                <div className="absolute inset-0 border-2 border-dashed border-[#eee] rounded-[16px] pointer-events-none" />
-              </div>
+              {image ? (
+                <img
+                  src={image}
+                  alt={name}
+                  loading="lazy"
+                  className="block w-full h-auto rounded-[16px]"
+                />
+              ) : (
+                <div className="relative rounded-[16px] overflow-hidden aspect-[4/3] w-full bg-surface-100 flex flex-col items-center justify-center gap-3">
+                  <svg className="w-12 h-12 text-surface-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <p className="font-body text-[11px] font-semibold uppercase tracking-widest text-surface-400 m-0">
+                    Image coming soon
+                  </p>
+                  <div className="absolute inset-0 border-2 border-dashed border-[#eee] rounded-[16px] pointer-events-none" />
+                </div>
+              )}
             </div>
           </motion.div>
 

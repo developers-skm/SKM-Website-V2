@@ -1,9 +1,11 @@
 import React from 'react';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import BranchSection from './sections/BranchSection';
+import europeImage from '../../assets/branches/skm-europe.webp';
 
 const europeData = {
   name: 'SKM Europe',
+  image: europeImage,
   region: 'Europe',
   tagline: 'Connecting Indian egg-based ingredients with the European food industry.',
   vision: 'To become the strategic partner in Europe for egg based ingredients primarily sourced from India.',
