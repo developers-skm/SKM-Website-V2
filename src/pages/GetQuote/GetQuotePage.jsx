@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import StepRequirement from './steps/StepRequirement';
@@ -7,6 +7,8 @@ import StepContactDetails from './steps/StepContactDetails';
 import StepReview from './steps/StepReview';
 import ConfirmationScreen from './ConfirmationScreen';
 import submitQuote from './submitQuote';
+import EnquirySuccessDialog from '../../components/common/EnquirySuccessDialog';
+import newSubmissionId from '../../utils/submissionId';
 
 // Section 2 - Guided form (brief §2). 4 steps, progressive disclosure —
 // only the current step's fields are shown, matching the brief's explicit
@@ -87,6 +89,11 @@ export default function GetQuotePage({ onPageChange, prefill }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
+  // Snapshot kept for the confirmation summary after the live form is cleared.
+  const [submittedData, setSubmittedData] = useState(null);
+  // One id per form attempt: lets the server drop an accidental duplicate send.
+  const submissionIdRef = useRef(newSubmissionId());
 
   const intentCopy = INTENT_COPY[prefill?.enquiryIntent] ?? null;
   const isSampleCart = prefill?.enquiryIntent === 'sample-or-documents';
@@ -168,6 +175,7 @@ export default function GetQuotePage({ onPageChange, prefill }) {
   };
 
   const handleSubmit = async () => {
+    if (isSubmitting) return;
     if (!validateStep(3)) return;
     // Honeypot - a genuine visitor never fills this hidden field. Silently
     // pretend success instead of telling a bot what tripped it.
@@ -201,8 +209,14 @@ export default function GetQuotePage({ onPageChange, prefill }) {
         message: formData.message.trim(),
         consent: formData.consent,
         website: formData.website || '',
+        submission_id: submissionIdRef.current,
       });
+      setSubmittedData(formData);
+      setFormData(initialFormData);
+      setStep(1);
       setIsSubmitted(true);
+      setShowSuccess(true);
+      submissionIdRef.current = newSubmissionId();
     } catch (err) {
       console.error('Quote submit error:', err);
       // Show the server's own message for validation (400) and rate-limit (429)
@@ -229,7 +243,7 @@ export default function GetQuotePage({ onPageChange, prefill }) {
     >
       <div className="w-full bg-page">
         {isSubmitted ? (
-          <ConfirmationScreen formData={formData} onPageChange={onPageChange} />
+          <ConfirmationScreen formData={submittedData ?? formData} onPageChange={onPageChange} />
         ) : (
           <div className="mx-auto max-w-[760px] w-full px-4 sm:px-6 lg:px-8 pt-[110px] pb-[50px] sm:pt-[130px] lg:pt-[130px] lg:pb-[70px] flex flex-col gap-10">
 
@@ -347,6 +361,7 @@ export default function GetQuotePage({ onPageChange, prefill }) {
           </div>
         )}
       </div>
+      {showSuccess && <EnquirySuccessDialog onClose={() => setShowSuccess(false)} />}
     </PageWrapper>
   );
 }

@@ -2,6 +2,8 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const { body, validationResult } = require('express-validator');
 const { sendQuoteEmail } = require('../utils/mailer');
+const dedupe = require('../middleware/dedupe');
+const { isValidCountry, getProduct } = require('../config/routing');
 
 const router = express.Router();
 
@@ -34,12 +36,22 @@ const validators = [
     .isLength({ min: 2, max: 120 }).withMessage('Company name must be 2–120 characters.'),
   body('email').trim().isEmail().withMessage('A valid email is required.')
     .isLength({ max: 254 }).withMessage('Email is too long.')
-    .normalizeEmail(),
+    .customSanitizer((value) => String(value).toLowerCase()), // not normalizeEmail(): it strips Gmail dots and would corrupt Reply-To
   body('phone').trim().notEmpty().withMessage('Phone number is required.')
     .customSanitizer((value) => String(value).replace(/[\s-]/g, ''))
     .matches(PHONE_PATTERN).withMessage('Enter a valid phone number.'),
-  body('destination_country').optional({ nullable: true, checkFalsy: true }).trim()
-    .isLength({ max: 100 }).withMessage('Invalid destination country.'),
+  // Country drives recipient routing, so it must be one of the known values.
+  body('destination_country').trim().notEmpty().withMessage('Select your country.')
+    .custom(isValidCountry).withMessage('Invalid destination country.'),
+  body('product_id').optional({ nullable: true, checkFalsy: true }).custom((v) => !!getProduct(v)).withMessage('Invalid product selected.'),
+  body('sample_product_ids').optional({ nullable: true })
+    .isArray({ max: 20 }).withMessage('Invalid product selection.')
+    .bail()
+    .custom((ids) => ids.every((id) => typeof id === 'string' && getProduct(id))).withMessage('Invalid product selected.'),
+  body().custom((_, { req }) => {
+    if (!req.body.product_id && !(req.body.sample_product_ids || []).length) throw new Error('Select a product.');
+    return true;
+  }),
   body('enquiry_intent').optional({ nullable: true, checkFalsy: true }).trim()
     .isIn(VALID_ENQUIRY_INTENTS).withMessage('Invalid enquiry type.'),
   body('quantity_value').optional({ nullable: true, checkFalsy: true })
@@ -54,7 +66,7 @@ const validators = [
   }),
 ];
 
-router.post('/submit', quoteSubmitLimiter, express.json(), validators, async (req, res, next) => {
+router.post('/submit', quoteSubmitLimiter, express.json(), dedupe, validators, async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -64,8 +76,9 @@ router.post('/submit', quoteSubmitLimiter, express.json(), validators, async (re
     const payload = {
       enquiry_type: req.body.enquiry_type || 'quote_request',
       enquiry_intent: req.body.enquiry_intent || null,
-      product_id: req.body.product_id || null,
-      sample_product_ids: req.body.sample_product_ids || null,
+      // Deduped list of validated product ids; recipients are derived from these
+      // on the server - any recipient the client might send is never read.
+      product_ids: [...new Set([req.body.product_id, ...(req.body.sample_product_ids || [])].filter(Boolean))],
       application_id: req.body.application_id || null,
       functional_requirement: req.body.functional_requirement || null,
       product_type: req.body.product_type || null,

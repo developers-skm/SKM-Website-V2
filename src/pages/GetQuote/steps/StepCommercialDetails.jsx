@@ -120,6 +120,7 @@ export default function StepCommercialDetails({ formData, setFormData, errors, e
         <Field label="Destination Country" required error={errors?.country}>
           <select value={formData.country} onChange={handleChange('country')} className={selectClass} autoComplete="country-name">
             <option value="">— Select your country —</option>
+            <option value="India">🇮🇳 India</option>
             {exportMarkets
               .slice()
               .sort((a, b) => a.name.localeCompare(b.name))

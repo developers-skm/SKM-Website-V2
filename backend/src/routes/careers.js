@@ -3,6 +3,7 @@ const express = require('express');
 const { body, validationResult } = require('express-validator');
 const upload = require('../middleware/upload');
 const { sendCareerApplicationEmail } = require('../utils/mailer');
+const dedupe = require('../middleware/dedupe');
 
 const router = express.Router();
 
@@ -36,7 +37,7 @@ const validators = [
   ].map(optionalText),
 ];
 
-router.post('/apply', upload.single('resume'), validators, async (req, res, next) => {
+router.post('/apply', upload.single('resume'), dedupe, validators, async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

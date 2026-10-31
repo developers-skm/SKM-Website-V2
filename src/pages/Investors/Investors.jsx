@@ -69,15 +69,13 @@ const menuItems = [
   { label: 'Board Meeting Notice', value: 'board_meeting_notice', recommended: true },
   { label: 'Code of Conduct', value: 'code_of_conduct', recommended: true },
   { label: 'Investor Contact', value: 'investor_contact', recommended: true },
-  { label: 'Disclosures Under Regulation 46 Of The LODR', value: 'disclosures_lodr' },
-  { label: '31st AGM Meeting', value: 'agm_meeting' },
+  { label: 'AGM Meeting', value: 'agm_meeting' },
   { label: 'Investor Con. Call', value: 'investor_con_call' },
   { label: 'MOA and AOA', value: 'moa_aoa' },
   { label: 'Financial Report', value: 'financial_report' },
   { label: 'SEBI KYC Format', value: 'sebi_kyc' },
   { label: 'Scrutinizer Reports', value: 'scrutinizer_reports' },
   { label: 'Unclaimed Dividend', value: 'unclaimed_dividend' },
-  { label: 'Stock Prices', value: 'stock_prices' },
   { label: 'Board Committee', value: 'board_committee' },
   { label: 'Limited Review Reports', value: 'limited_review_reports' },
   { label: 'Policy / Info', value: 'investor_policy' },
@@ -89,6 +87,9 @@ const menuItems = [
   { label: 'Postal Ballot Notice', value: 'postal_ballot' },
   { label: 'Directors', value: 'directors' },
 ];
+
+// Group heading (not a page): the categories below it are the Regulation 46 disclosures.
+const ARCHIVE_GROUP_LABEL = 'Disclosures Under Regulation 46 Of The LODR';
 
 const recommendedItems = menuItems.filter((m) => m.recommended);
 const archiveItems = menuItems.filter((m) => !m.recommended);
@@ -882,7 +883,7 @@ function SectionContent({ value, label }) {
 // Download Annual Report, Search Disclosures, Contact Investor Relations —
 // all 4 are real actions against the same real document data this page
 // already renders (no separate/duplicated content).
-function InvestorHero({ onSelect, onDownloadAnnualReport }) {
+function InvestorHero({ onSelect, onDownloadAnnualReport, onSearchDisclosures }) {
   return (
     <div className="relative w-full bg-page overflow-hidden pt-[110px] pb-[70px] sm:pt-[130px] sm:pb-[90px] lg:pt-[90px]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_120%,var(--color-brand-50)_0%,transparent_50%)] pointer-events-none opacity-100" />
@@ -908,7 +909,7 @@ function InvestorHero({ onSelect, onDownloadAnnualReport }) {
             Download Annual Report
           </button>
           <button
-            onClick={() => onSelect('disclosures_lodr')}
+            onClick={onSearchDisclosures}
             className="inline-flex items-center gap-2 bg-transparent hover:bg-brand-600/6 text-surface-900 border border-surface-250 font-heading font-bold text-[12.5px] uppercase tracking-[0.05em] leading-none px-6 py-[13px] rounded-[200px] transition-all duration-300 cursor-pointer"
           >
             Search Disclosures
@@ -952,6 +953,12 @@ export default function Investors({ onPageChange }) {
     scrollToSectionId(MENU_SECTION_ID);
   };
 
+  const handleSearchDisclosures = () => {
+    setShowArchive(true);
+    setMobileMenuOpen(true);
+    scrollToSectionId(MENU_SECTION_ID);
+  };
+
   return (
     <div className="w-full flex flex-col min-h-screen bg-page">
       <SEO
@@ -959,7 +966,7 @@ export default function Investors({ onPageChange }) {
         description="Investor relations for SKM Egg Products - disclosures, annual reports, board information, corporate governance, shareholding patterns, and more."
         keywords="SKM investors, annual report, LODR disclosures, corporate governance, shareholding pattern, board committee"
       />
-      <InvestorHero onSelect={handleSelect} onDownloadAnnualReport={handleDownloadAnnualReport} />
+      <InvestorHero onSelect={handleSelect} onDownloadAnnualReport={handleDownloadAnnualReport} onSearchDisclosures={handleSearchDisclosures} />
 
       <div id={MENU_SECTION_ID} className="mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 py-10 lg:py-14 flex flex-col lg:flex-row gap-8 flex-1 scroll-mt-[100px] xl:scroll-mt-[120px]">
 
@@ -1011,6 +1018,12 @@ export default function Investors({ onPageChange }) {
                   >
                     {showArchive ? 'Hide' : 'View'} All Categories ({archiveItems.length})
                   </button>
+
+                  {showArchive && (
+                    <p className="font-body text-[10.5px] font-bold uppercase tracking-wide text-surface-500 px-5 pt-3 pb-1 m-0 bg-surface-50/60">
+                      {ARCHIVE_GROUP_LABEL}
+                    </p>
+                  )}
 
                   {showArchive && archiveItems.map((item) => (
                     <button
@@ -1084,6 +1097,9 @@ export default function Investors({ onPageChange }) {
                   transition={{ duration: 0.2, ease: 'easeInOut' }}
                   className="overflow-hidden flex flex-col gap-0.5"
                 >
+                  <p className="font-body text-[10.5px] font-bold uppercase tracking-wide text-surface-500 px-1 pt-3 m-0 leading-snug">
+                    {ARCHIVE_GROUP_LABEL}
+                  </p>
                   <div className="pt-2 pb-1">
                     <input
                       type="text"

@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { FormSection, SelectField, TextField, FieldShell } from './careerFields';
 import ResumeUploader from './ResumeUploader';
 import { careerDepartments } from '../../../data/careersContent';
+import newSubmissionId from '../../../utils/submissionId';
 
 const API_URL = import.meta.env.VITE_API_URL || '';
 
@@ -33,8 +34,9 @@ const validate = (form, isTalentPool) => {
 };
 
 // Builds the multipart body for POST /api/v1/careers/apply.
-const buildFormData = (form, job) => {
+const buildFormData = (form, job, submissionId) => {
   const data = new FormData();
+  data.append('submission_id', submissionId);
   const fields = {
     application_type: job ? 'job' : 'talent_pool',
     job_id: job?.id,
@@ -78,6 +80,7 @@ export default function JobApplicationForm({ job, onSuccess }) {
   const [submitError, setSubmitError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const errorSummaryRef = useRef(null);
+  const submissionIdRef = useRef(newSubmissionId());
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -89,6 +92,7 @@ export default function JobApplicationForm({ job, onSuccess }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (isSubmitting) return;
     const found = validate(form, isTalentPool);
     setErrors(found);
     if (Object.keys(found).length > 0) {
@@ -104,7 +108,7 @@ export default function JobApplicationForm({ job, onSuccess }) {
       const res = await fetch(`${API_URL}/api/v1/careers/apply`, {
         method: 'POST',
         headers: { Accept: 'application/json' },
-        body: buildFormData(form, job),
+        body: buildFormData(form, job, submissionIdRef.current),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.message || 'Submission failed');

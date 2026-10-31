@@ -1,8 +1,9 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Field, inputClass, selectClass } from '../../../components/common/FormField';
 import useScrollLock from '../../../hooks/useScrollLock';
+import newSubmissionId from '../../../utils/submissionId';
 
 // ── Shared field components ──────────────────────────────────────────────────
 
@@ -530,6 +531,7 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const submissionIdRef = useRef(newSubmissionId());
 
   useScrollLock(isOpen);
 
@@ -540,6 +542,7 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
     setIsSubmitting(false);
     setIsSuccess(false);
     setSubmitError('');
+    submissionIdRef.current = newSubmissionId();
   }, [isOpen, enquiryType]);
 
   if (!isOpen) return null;
@@ -581,7 +584,7 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (isSubmitting || !validate()) return;
 
     setIsSubmitting(true);
     setSubmitError('');
@@ -612,6 +615,7 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
       feedback_type:           formData.feedbackType           || null,
       partner_category:        formData.partnerCategory        || null,
       message:                 formData.message                || null,
+      submission_id:           submissionIdRef.current,
     };
 
     try {

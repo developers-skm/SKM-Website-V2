@@ -2,10 +2,13 @@ const express = require('express');
 const { body, validationResult } = require('express-validator');
 const upload = require('../middleware/upload');
 const { sendEnquiryEmail } = require('../utils/mailer');
+const dedupe = require('../middleware/dedupe');
+const { ENQUIRY_TYPES } = require('../config/routing');
 
 const router = express.Router();
 
-const VALID_ENQUIRY_TYPES = ['job', 'internship', 'feedback', 'vendor', 'service', 'quality', 'general'];
+// Recipient per type lives in config/routing.js (the client never supplies one).
+const VALID_ENQUIRY_TYPES = Object.keys(ENQUIRY_TYPES).filter((t) => t !== 'talent_pool');
 
 const validators = [
   body('enquiry_type').trim().isIn(VALID_ENQUIRY_TYPES).withMessage('Invalid enquiry type.'),
@@ -16,7 +19,7 @@ const validators = [
   body('message').optional({ nullable: true, checkFalsy: true }).trim(),
 ];
 
-router.post('/submit', upload.single('resume'), validators, async (req, res, next) => {
+router.post('/submit', upload.single('resume'), dedupe, validators, async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
