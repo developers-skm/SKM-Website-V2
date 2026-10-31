@@ -1,8 +1,7 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useReducedMotion, useScroll, useTransform, useMotionValue, useMotionValueEvent } from 'framer-motion';
+import { useState, useMemo, useEffect } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
-import ScrollFrameSequence from '../../components/common/ScrollFrameSequence';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 import products, { PRODUCT_CATEGORIES } from '../../data/products';
 import { getBrochureUrl } from '../../data/brochureUrl';
@@ -638,145 +637,43 @@ function TechnicalResourcesSection({ onPageChange }) {
   );
 }
 
-// Clickable regions over the final frame (frame-201), as % of the image.
+// Clickable regions over the hero still life, as % of each image
+// (desktop-final.webp 1600x900 photo, mobile-final.webp 1024x1536). Positioned with
+// the same object-fit: cover math as the image itself.
+const HERO_RATIO = 1600 / 900;
 const HERO_HOTSPOTS = [
-  { route: 'whole_egg_powder', label: 'Whole Egg Powder', x: 22.5, y: 19, w: 17, h: 22 },
-  { route: 'egg_yolk_powder', label: 'Egg Yolk Powder', x: 42, y: 19, w: 16.5, h: 22 },
-  { route: 'egg_albumen_powder', label: 'Egg Albumen Powder', x: 61.5, y: 22, w: 16.5, h: 19 },
-  { route: 'whole_egg_liquid', label: 'Whole Egg Liquid', x: 14.5, y: 38, w: 13, h: 29 },
-  { route: 'egg_yolk_liquid', label: 'Egg Yolk Liquid', x: 29.5, y: 38.5, w: 13, h: 29 },
-  { route: 'egg_albumen_liquid', label: 'Egg Albumen Liquid', x: 45, y: 41, w: 13, h: 26 },
-  { route: 'egg_white_cube', label: 'Egg White Cube', x: 58, y: 44, w: 21, h: 27 },
-  { route: 'table_eggs', label: 'Table Eggs', x: 10.5, y: 60.5, w: 28, h: 32 },
-  { route: 'egg_yolk_powder_heat_stable', label: 'Egg Yolk Powder – Heat Stable', x: 68, y: 70, w: 22, h: 22 },
+  { route: 'egg_albumen_powder', label: 'Egg Albumen Powder', x: 6, y: 10, w: 21.5, h: 22 },
+  { route: 'whole_egg_powder', label: 'Whole Egg Powder', x: 29, y: 7, w: 20.5, h: 25 },
+  { route: 'egg_yolk_powder', label: 'Egg Yolk Powder', x: 51, y: 7, w: 21, h: 25 },
+  { route: 'egg_yolk_powder_heat_stable', label: 'Egg Yolk Powder – Heat Stable', x: 73, y: 8, w: 21.5, h: 25 },
+  { route: 'egg_albumen_liquid', label: 'Egg Albumen Liquid', x: 9.5, y: 31.5, w: 16, h: 31 },
+  { route: 'egg_yolk_liquid', label: 'Egg Yolk Liquid', x: 29, y: 31.5, w: 16, h: 30 },
+  { route: 'whole_egg_liquid', label: 'Whole Egg Liquid', x: 48.5, y: 33, w: 15, h: 29 },
+  { route: 'egg_white_cube', label: 'Egg White Cube', x: 68, y: 34, w: 29, h: 35 },
+  { route: 'table_eggs', label: 'Table Eggs', x: 5, y: 60, w: 46, h: 34 },
+  { route: 'table_eggs', label: 'Table Eggs', x: 57.5, y: 66, w: 33, h: 33 },
 ];
 
-// Mobile final state - the scroll sequence still plays on mobile, then fades to
-// the portrait still life (/products-sequence/mobile-final.webp, 1080x1919).
-// Hotspots are % of that image, using the same object-fit: cover math.
-const MOBILE_HERO_RATIO = 1080 / 1919;
+const MOBILE_HERO_RATIO = 1024 / 1536;
 const MOBILE_HERO_HOTSPOTS = [
-  { route: 'whole_egg_powder', label: 'Whole Egg Powder', x: 4, y: 24.5, w: 29, h: 11.5 },
-  { route: 'egg_yolk_powder', label: 'Egg Yolk Powder', x: 37, y: 24.5, w: 28, h: 11.5 },
-  { route: 'egg_albumen_powder', label: 'Egg Albumen Powder', x: 68, y: 26, w: 28, h: 10.5 },
-  { route: 'whole_egg_liquid', label: 'Whole Egg Liquid', x: 8.5, y: 36, w: 21.5, h: 14 },
-  { route: 'egg_yolk_liquid', label: 'Egg Yolk Liquid', x: 32.5, y: 36, w: 21, h: 14 },
-  { route: 'egg_albumen_liquid', label: 'Egg Albumen Liquid', x: 56, y: 36, w: 20, h: 14.5 },
-  { route: 'egg_white_cube', label: 'Egg White Cube', x: 58, y: 49, w: 39, h: 18 },
-  { route: 'egg_yolk_powder_heat_stable', label: 'Egg Yolk Powder – Heat Stable', x: 4, y: 51, w: 46, h: 13 },
-  { route: 'table_eggs', label: 'Table Eggs', x: 0, y: 65, w: 55, h: 21 },
-  { route: 'table_eggs', label: 'Table Eggs', x: 58, y: 68, w: 40, h: 20 },
+  { route: 'egg_albumen_powder', label: 'Egg Albumen Powder', x: 1.5, y: 25.5, w: 24.5, h: 13.5 },
+  { route: 'whole_egg_powder', label: 'Whole Egg Powder', x: 26.5, y: 25, w: 23.5, h: 13.5 },
+  { route: 'egg_yolk_powder', label: 'Egg Yolk Powder', x: 50.5, y: 25, w: 23.5, h: 13.5 },
+  { route: 'egg_yolk_powder_heat_stable', label: 'Egg Yolk Powder – Heat Stable', x: 74.5, y: 25.5, w: 24, h: 13.5 },
+  { route: 'egg_albumen_liquid', label: 'Egg Albumen Liquid', x: 3.5, y: 39.5, w: 20.5, h: 19.5 },
+  { route: 'egg_yolk_liquid', label: 'Egg Yolk Liquid', x: 25.5, y: 39.5, w: 20, h: 19 },
+  { route: 'whole_egg_liquid', label: 'Whole Egg Liquid', x: 46.5, y: 39.5, w: 19, h: 19.5 },
+  { route: 'egg_white_cube', label: 'Egg White Cube', x: 65, y: 42.5, w: 32, h: 21 },
+  { route: 'table_eggs', label: 'Table Eggs', x: 0, y: 59.5, w: 59, h: 26.5 },
+  { route: 'table_eggs', label: 'Table Eggs', x: 61, y: 64, w: 37, h: 27 },
 ];
 
-// Scroll-linked layers for the Products hero. They own their useScroll so the
-// target ref is already hydrated (the hero wrapper is a parent of these).
-const HERO_FINAL_AT = 0.8; // scroll progress at which the last frame lands
-
-// Hero scroll progress that latches at 1 once the last frame is reached, so the
-// final state stays locked when scrolling back up (resets on reload).
-function useLatchedProgress(containerRef) {
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] });
-  const latched = useMotionValue(0);
-  const done = useRef(false);
-  useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    if (done.current) return;
-    if (v >= HERO_FINAL_AT) {
-      done.current = true;
-      latched.set(1);
-    } else {
-      latched.set(v);
-    }
-  });
-  return latched;
-}
-
-function HeroCopyFade({ containerRef, children }) {
-  const scrollYProgress = useLatchedProgress(containerRef);
-  const opacity = useTransform(scrollYProgress, [HERO_FINAL_AT - 0.12, HERO_FINAL_AT - 0.02], [1, 0]);
-  const [hidden, setHidden] = useState(false);
-  useMotionValueEvent(scrollYProgress, 'change', (v) => setHidden(v > HERO_FINAL_AT - 0.02));
-  return (
-    <motion.div style={{ opacity, pointerEvents: hidden ? 'none' : 'auto', visibility: hidden ? 'hidden' : 'visible' }} className="relative z-10">
-      {children}
-    </motion.div>
-  );
-}
-
-// Phone view skips the scroll-scrubbed sequence, so the copy stays put.
-function HeroCopyWrap({ containerRef, isMobile, children }) {
-  if (isMobile) return <div className="relative z-10">{children}</div>;
-  return <HeroCopyFade containerRef={containerRef}>{children}</HeroCopyFade>;
-}
-
-// Phone view: no scrub, so the all-products still life is shown straight away
-// with the "Select a product" heading and its tappable hotspots.
-function MobileHeroFinal({ onPageChange }) {
-  return (
-    <>
-      <div className="absolute inset-x-0 top-[84px] z-30 flex flex-col items-center px-4 text-center pointer-events-none">
-        <span className="font-body font-bold text-[11px] uppercase tracking-[0.28em] text-brand-600 mb-2">
-          Our Egg Products
-        </span>
-        <p
-          className="m-0 font-heading font-extrabold text-[22px] leading-[1.1] tracking-[-0.01em] text-[#3b2a1e]"
-          style={{ textShadow: '0 1px 18px rgba(255,248,238,0.85)' }}
-        >
-          Select a product to <span className="text-brand-600">discover more.</span>
-        </p>
-        <span className="mt-3 block h-[2px] w-12 rounded-full bg-brand-600" aria-hidden="true" />
-      </div>
-      <div className="absolute inset-0 z-20 overflow-hidden" style={{ containerType: 'size' }}>
-        <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-          style={{ width: `max(100cqw, ${MOBILE_HERO_RATIO * 100}cqh)`, height: `max(100cqh, ${100 / MOBILE_HERO_RATIO}cqw)` }}
-        >
-          {MOBILE_HERO_HOTSPOTS.map((h) => (
-            <InternalLink
-              key={`${h.route}-${h.x}`}
-              route={h.route}
-              onPageChange={onPageChange}
-              aria-label={h.label}
-              className="absolute rounded-[18px] focus:outline-none"
-              style={{ left: `${h.x}%`, top: `${h.y}%`, width: `${h.w}%`, height: `${h.h}%` }}
-            />
-          ))}
-        </div>
-      </div>
-    </>
-  );
-}
-
-function HeroFinalLayers({ containerRef, onPageChange, isMobile }) {
+function HeroHotspots({ onPageChange, isMobile }) {
   const hotspots = isMobile ? MOBILE_HERO_HOTSPOTS : HERO_HOTSPOTS;
-  const ratio = isMobile ? MOBILE_HERO_RATIO : 16 / 9;
-  const scrollYProgress = useLatchedProgress(containerRef);
-  const overlayOpacity = useTransform(scrollYProgress, [HERO_FINAL_AT - 0.12, HERO_FINAL_AT], [1, 0]);
-  const hotspotOpacity = useTransform(scrollYProgress, [HERO_FINAL_AT - 0.02, HERO_FINAL_AT + 0.06], [0, 1]);
-  const [hotspotsActive, setHotspotsActive] = useState(false);
-  useMotionValueEvent(scrollYProgress, 'change', (v) => setHotspotsActive(v > HERO_FINAL_AT + 0.02));
-
+  const ratio = isMobile ? MOBILE_HERO_RATIO : HERO_RATIO;
   return (
     <>
-      <motion.div className="absolute inset-0 bg-black/15" style={{ opacity: overlayOpacity }} aria-hidden="true" />
-
-      {isMobile && (
-        <motion.img
-          src="/products-sequence/mobile-final.webp"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 z-[15] w-full h-full object-cover"
-          style={{ opacity: hotspotOpacity }}
-        />
-      )}
-
-      {/* Final-frame hotspots - fade in once the sequence lands on the
-          all-products still life. The inner box mirrors the canvas's
-          object-fit: cover math (16:9 image) so percentages line up. */}
-      <motion.div
-        className="absolute inset-x-0 top-[84px] sm:top-[28px] z-30 flex flex-col items-center px-4 text-center pointer-events-none"
-        style={{ opacity: hotspotOpacity }}
-        aria-hidden={!hotspotsActive}
-      >
+      <div className="absolute inset-x-0 top-[84px] sm:top-[28px] z-30 flex flex-col items-center px-4 text-center pointer-events-none">
         <span className="font-body font-bold text-[11px] sm:text-[12px] uppercase tracking-[0.28em] text-brand-600 mb-2">
           Our Egg Products
         </span>
@@ -787,12 +684,9 @@ function HeroFinalLayers({ containerRef, onPageChange, isMobile }) {
           Select a product to <span className="text-brand-600">discover more.</span>
         </p>
         <span className="mt-3 block h-[2px] w-12 rounded-full bg-brand-600" aria-hidden="true" />
-      </motion.div>
+      </div>
 
-      <motion.div
-        className="absolute inset-0 z-20 overflow-hidden"
-        style={{ opacity: hotspotOpacity, pointerEvents: hotspotsActive ? 'auto' : 'none', containerType: 'size' }}
-      >
+      <div className="absolute inset-0 z-20 overflow-hidden" style={{ containerType: 'size' }}>
         <div
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
           style={{ width: `max(100cqw, ${ratio * 100}cqh)`, height: `max(100cqh, ${100 / ratio}cqw)` }}
@@ -803,24 +697,75 @@ function HeroFinalLayers({ containerRef, onPageChange, isMobile }) {
               route={h.route}
               onPageChange={onPageChange}
               aria-label={h.label}
-              tabIndex={hotspotsActive ? 0 : -1}
               className="group absolute rounded-[18px] focus:outline-none"
               style={{ left: `${h.x}%`, top: `${h.y}%`, width: `${h.w}%`, height: `${h.h}%` }}
             >
-              <span className="absolute left-1/2 -translate-x-1/2 -top-2 -translate-y-full whitespace-nowrap rounded-full bg-brand-600 px-3 py-1 font-body font-semibold text-[12px] text-white opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200 pointer-events-none">
-                {h.label}
-              </span>
+              {!isMobile && (
+                <span className="absolute left-1/2 -translate-x-1/2 -top-2 -translate-y-full whitespace-nowrap rounded-full bg-brand-600 px-3 py-1 font-body font-semibold text-[12px] text-white opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200 pointer-events-none">
+                  {h.label}
+                </span>
+              )}
             </InternalLink>
           ))}
         </div>
-      </motion.div>
+      </div>
     </>
+  );
+}
+
+// Desktop: the full image is shown uncropped. desktop-final.webp is the
+// 1600x900 still life with a 126px blended extension on top (1600x1026) that
+// holds the heading, so hotspot % (measured on the 900px photo) are rebased.
+const DESKTOP_EXT = 126;
+const DESKTOP_TOTAL = 900 + DESKTOP_EXT;
+function DesktopHero({ onPageChange }) {
+  const reduceMotion = useReducedMotion();
+  return (
+    <motion.div
+      className="relative w-full overflow-hidden"
+      style={{ aspectRatio: `1600 / ${DESKTOP_TOTAL}` }}
+      initial={reduceMotion ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}
+      animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+      transition={{ duration: reduceMotion ? 0.01 : 1.2, ease: EASE_PREMIUM }}
+    >
+      <img src="/products-sequence/desktop-final.webp" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full" />
+
+      <div className="absolute inset-x-0 top-[2.7%] z-30 flex flex-col items-center px-4 text-center pointer-events-none">
+        <span className="font-body font-bold text-[12px] uppercase tracking-[0.28em] text-brand-600 mb-2">
+          Our Egg Products
+        </span>
+        <p className="m-0 font-heading font-extrabold text-[28px] lg:text-[32px] leading-[1.1] tracking-[-0.01em] text-[#3b2a1e]">
+          Select a product to <span className="text-brand-600">discover more.</span>
+        </p>
+        <span className="mt-3 block h-[2px] w-12 rounded-full bg-brand-600" aria-hidden="true" />
+      </div>
+
+      {HERO_HOTSPOTS.map((h) => (
+        <InternalLink
+          key={`${h.route}-${h.x}`}
+          route={h.route}
+          onPageChange={onPageChange}
+          aria-label={h.label}
+          className="group absolute z-20 rounded-[18px] focus:outline-none"
+          style={{
+            left: `${h.x}%`,
+            top: `${((h.y * 9 + DESKTOP_EXT) / DESKTOP_TOTAL) * 100}%`,
+            width: `${h.w}%`,
+            height: `${(h.h * 9 / DESKTOP_TOTAL) * 100}%`,
+          }}
+        >
+          <span className="absolute left-1/2 -translate-x-1/2 -top-2 -translate-y-full whitespace-nowrap rounded-full bg-brand-600 px-3 py-1 font-body font-semibold text-[12px] text-white opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200 pointer-events-none">
+            {h.label}
+          </span>
+        </InternalLink>
+      ))}
+      <h1 className="sr-only">Egg Products Engineered for Performance, Consistency and Safety.</h1>
+    </motion.div>
   );
 }
 
 export default function ProductsHubPage({ onPageChange, prefill }) {
   const reduceMotion = useReducedMotion();
-  const heroScrubRef = useRef(null);
   const isMobile = useMediaQuery('(max-width: 767px)');
 
   // Mirrors Home.jsx's mount-aware scroll effect - Home's ProductFamilies
@@ -844,145 +789,32 @@ export default function ProductsHubPage({ onPageChange, prefill }) {
     >
       <div className="w-full flex flex-col bg-page">
 
-        {/* Section 1 - Products hero. A premium entrance distinct from Home's
-            center-out egg mask: the visual rises into place as a single
-            unbroken image (a slow vertical reveal + gentle upward drift,
-            like a blind lifting), while a thin gold line trails just above
-            the image's leading edge and fades once the reveal settles.
-            The background itself is a scroll-scrubbed frame sequence (egg
-            transforming into egg powder) pinned for the scroll length of
-            the wrapper below - same mechanism as Home's Hero. Copy keeps
-            its own independent staggered entrance. */}
-        <div ref={heroScrubRef} className={`relative w-full ${isMobile ? '' : 'h-[180vh]'}`}>
-        <div className={`${isMobile ? 'relative' : 'sticky top-0'} min-h-screen pt-[110px] pb-[70px] sm:pt-[130px] lg:pt-[100px] lg:pb-[100px] text-center px-4 overflow-hidden`}>
+        {/* Section 1 - Products hero. A static all-products still life
+            (separate desktop / mobile images) that rises into place with a
+            vertical reveal; every product is a tappable hotspot. */}
+        {isMobile ? (
+        <div className="relative w-full min-h-screen pt-[110px] pb-[70px] text-center px-4 overflow-hidden">
           <motion.div
             className="absolute inset-0 overflow-hidden"
             initial={reduceMotion ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}
             animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
             transition={{ duration: reduceMotion ? 0.01 : 1.2, ease: EASE_PREMIUM }}
           >
-            {isMobile ? (
-              <img src="/products-sequence/mobile-final.webp" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
-            ) : (
-              <ScrollFrameSequence containerRef={heroScrubRef} basePath="/products-sequence" frameCount={201} holdEnd={0.2} lockAtEnd />
-            )}
+            <img
+              src="/products-sequence/mobile-final.webp"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
           </motion.div>
 
-          {isMobile ? (
-            <MobileHeroFinal onPageChange={onPageChange} />
-          ) : (
-            <HeroFinalLayers containerRef={heroScrubRef} onPageChange={onPageChange} isMobile={isMobile} />
-          )}
+          <HeroHotspots onPageChange={onPageChange} isMobile />
 
-          {/* Thin gold line - trails the reveal's leading edge, then fades
-              once the image has fully settled */}
-          {!reduceMotion && (
-            <motion.div
-              className="absolute inset-x-0 h-px pointer-events-none"
-              style={{ background: 'linear-gradient(90deg, rgba(243,201,105,0) 0%, rgba(243,201,105,0.85) 50%, rgba(243,201,105,0) 100%)' }}
-              initial={{ top: '100%', opacity: 1 }}
-              animate={{ top: '0%', opacity: 0 }}
-              transition={{
-                top: { duration: 1.2, ease: EASE_PREMIUM },
-                opacity: { duration: 1.5, delay: 0.3, ease: EASE_PREMIUM },
-              }}
-            />
-          )}
-
-          {/* Soft yolk-gold glow - settles upper-right once the reveal
-              completes, echoing the site's warm accent without competing
-              with the photo */}
-          {!reduceMotion && (
-            <motion.div
-              className="absolute inset-0 pointer-events-none mix-blend-soft-light"
-              style={{ background: 'radial-gradient(55% 50% at 84% 16%, rgba(232,182,74,0.45) 0%, rgba(232,182,74,0) 70%)' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1, ease: EASE_PREMIUM }}
-            />
-          )}
-
-          {isMobile && (
-            <h1 className="sr-only">Egg Products Engineered for Performance, Consistency and Safety.</h1>
-          )}
-          {!isMobile && (
-          <HeroCopyWrap containerRef={heroScrubRef} isMobile={isMobile}>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.1, delayChildren: reduceMotion ? 0 : 0.75 } } }}
-            className="relative z-10 mx-auto max-w-[820px] flex flex-col items-center gap-6"
-          >
-            <motion.span
-              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 18 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: reduceMotion ? 0.01 : DURATION.fast, ease: EASE_PREMIUM }}
-              className="section-label justify-center !text-white"
-            >
-              Products
-            </motion.span>
-            <motion.h1
-              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 40 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.9, ease: EASE_PREMIUM }}
-              className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[52px] text-white leading-[1.15] tracking-tight m-0"
-            >
-              Egg Products Engineered for Performance, Consistency and Safety.
-            </motion.h1>
-
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 26 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-[440px] mt-2"
-            >
-              <button
-                type="button"
-                onClick={() => scrollToSectionId('product-finder')}
-                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-gold-400/70 hover:bg-white/15 hover:-translate-y-[3px] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98] focus:outline-none focus-gold"
-              >
-                <span className="font-body font-semibold text-[13.5px] text-white">Browse by packaging</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollToSectionId('functional-requirement')}
-                className="flex flex-col items-center gap-1.5 p-4 rounded-[16px] border border-white/20 bg-white/10 backdrop-blur-sm cursor-pointer hover:border-gold-400/70 hover:bg-white/15 hover:-translate-y-[3px] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98] focus:outline-none focus-gold"
-              >
-                <span className="font-body font-semibold text-[13.5px] text-white">Browse by functionality</span>
-              </button>
-            </motion.div>
-
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: reduceMotion ? 0 : 20 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: reduceMotion ? 0.01 : DURATION.cardHover, ease: EASE_PREMIUM }}
-              className="flex flex-col sm:flex-row items-center gap-4 mt-4"
-            >
-              <InternalLink
-                route="whole_egg_powder"
-                onPageChange={onPageChange}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white text-white hover:bg-white/20 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] active:translate-y-0 active:scale-[0.98] focus:outline-none focus-gold"
-              >
-                Browse Egg Powders
-              </InternalLink>
-
-              <InternalLink
-                route="whole_egg_liquid"
-                onPageChange={onPageChange}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white text-white hover:bg-white/20 font-heading font-bold text-[13px] uppercase tracking-[0.04em] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] active:translate-y-0 active:scale-[0.98] focus:outline-none focus-gold"
-              >
-                Browse Liquid Eggs
-              </InternalLink>
-
-              <button
-                type="button"
-                onClick={() => scrollToSectionId('functional-requirement')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white text-white hover:bg-white/20 font-heading font-bold text-[13px] uppercase tracking-[0.04em] hover:-translate-y-[3px] transition-all duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:translate-y-0 active:scale-[0.98] cursor-pointer focus:outline-none focus-gold"
-              >
-                Find by Function
-              </button>
-            </motion.div>
-          </motion.div>
-          </HeroCopyWrap>
-          )}
+          <h1 className="sr-only">Egg Products Engineered for Performance, Consistency and Safety.</h1>
         </div>
-        </div>
+        ) : (
+          <DesktopHero onPageChange={onPageChange} />
+        )}
 
         {/* Section 2 - SKM Product Finder */}
         <ProductFinder onPageChange={onPageChange} />

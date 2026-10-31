@@ -34,6 +34,7 @@ const investorConCallVideos = [
 const sectionFolders = {
   agm_meeting: ['31st AGM Proceedings','AGM Notice'],
   moa_aoa: ['MOA AND AOA'],
+  familiarisation_programme: ['Familiarisation Programme for Independent Directors'],
   annual_secretarial_compliance: ['Annual Secretarial Compliance Report'],
   annual_report: ['Annual Reports'],
   quarterly_results: ['Quarterly Results'],
@@ -73,6 +74,7 @@ const menuItems = [
   { label: 'AGM Meeting', value: 'agm_meeting' },
   { label: 'Investor Con. Call', value: 'investor_con_call' },
   { label: 'MOA and AOA', value: 'moa_aoa' },
+  { label: 'Familiarisation Programme for Independent Directors', value: 'familiarisation_programme' },
   { label: 'Annual Secretarial Compliance Report', value: 'annual_secretarial_compliance' },
   { label: 'Financial Report', value: 'financial_report' },
   { label: 'SEBI KYC Format', value: 'sebi_kyc' },
@@ -868,7 +870,16 @@ function SectionContent({ value, label }) {
         </div>
       ))}
 
-      {docs.length > 0 && (
+      {value === 'familiarisation_programme' ? (
+        <div className="flex flex-col gap-3">
+          <h3 className="font-heading font-semibold text-[18px] text-heading m-0">2025-26</h3>
+          <div className="flex flex-col gap-2">
+            {docs.map((file, idx) => (
+              <DocumentRow key={idx} file={{ ...file, displayName: 'Familiarisation Programme - ID 2025-26' }} />
+            ))}
+          </div>
+        </div>
+      ) : docs.length > 0 && (
         <div className="flex flex-col gap-2">
           {docs.map((file, idx) => (
             <DocumentRow key={idx} file={file} />
