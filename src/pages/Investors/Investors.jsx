@@ -1,4 +1,4 @@
-﻿import { useState, useRef, useMemo } from 'react';
+﻿import { useState, useRef, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
@@ -34,7 +34,8 @@ const investorConCallVideos = [
 ];
 
 const sectionFolders = {
-  agm_meeting: ['31st AGM Proceedings','AGM Notice'],
+  agm_meeting: ['31st AGM Proceedings'],
+  agm_notice: ['AGM Notice'],
   moa_aoa: ['MOA AND AOA'],
   familiarisation_programme: ['Familiarisation Programme for Independent Directors'],
   annual_secretarial_compliance: ['Annual Secretarial Compliance Report'],
@@ -74,6 +75,7 @@ const menuItems = [
   { label: 'Code of Conduct', value: 'code_of_conduct', recommended: true },
   { label: 'Investor Contact', value: 'investor_contact', recommended: true },
   { label: 'AGM Meeting', value: 'agm_meeting' },
+  { label: 'AGM Notice', value: 'agm_notice' },
   { label: 'Investor Con. Call', value: 'investor_con_call' },
   { label: 'MOA and AOA', value: 'moa_aoa' },
   { label: 'Familiarisation Programme for Independent Directors', value: 'familiarisation_programme' },
@@ -766,13 +768,21 @@ function ComingSoonContent({ label }) {
   );
 }
 
+// A cross-origin YouTube iframe swallows wheel events while the cursor is over
+// it, so the page stops scrolling (and Lenis smooth-scroll stutters). The iframe
+// stays inert behind a transparent cover until clicked; it goes inert again as
+// soon as the cursor leaves, so scrolling past a video is never blocked.
 function InvestorVideo({ title, src }) {
+  const [active, setActive] = useState(false);
   return (
     <div className="flex flex-col gap-3">
       <h3 className="font-heading font-semibold text-[18px] text-heading m-0">{title}</h3>
-      <div className="rounded-[12px] overflow-hidden border border-[#eee] bg-black aspect-video w-full">
+      <div
+        className="relative rounded-[12px] overflow-hidden border border-[#eee] bg-black aspect-video w-full"
+        onMouseLeave={() => setActive(false)}
+      >
         <iframe
-          className="w-full h-full"
+          className={`w-full h-full ${active ? '' : 'pointer-events-none'}`}
           src={src}
           title={title}
           frameBorder="0"
@@ -780,6 +790,42 @@ function InvestorVideo({ title, src }) {
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         />
+        {!active && (
+          <button
+            type="button"
+            aria-label={`Activate video: ${title}`}
+            onClick={() => setActive(true)}
+            className="absolute inset-0 w-full h-full bg-transparent border-0 p-0 cursor-pointer"
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+const investorConCallAudios = [
+  { title: 'Investor Con.Call - 22-05-2026 - Audio', file: 'investor-con-call-22-05-2026.mp3' },
+  { title: 'Investor Con.Call - 29-07-2026 - Audio', file: 'investor-con-call-29-07-2026.mp3' },
+  { title: 'Investor Con.Call - 23-10-2026 - Audio', file: 'investor-con-call-23-10-2026.mp3' },
+];
+
+function InvestorAudio({ title, file }) {
+  const src = `/documents/investors/Investor%20Con%20Call/${file}`;
+  return (
+    <div className="flex flex-col gap-3">
+      <h3 className="font-heading font-semibold text-[18px] text-heading m-0">{title}</h3>
+      <div className="rounded-[12px] border border-brand-600/30 bg-brand-600/5 p-4 flex flex-col sm:flex-row sm:items-center gap-4">
+        <audio className="w-full sm:flex-1 min-w-0 accent-brand-600" controls preload="none" src={src} />
+        <a
+          href={src}
+          download={file}
+          className="inline-flex items-center justify-center gap-2 flex-shrink-0 rounded-[10px] bg-brand-600 hover:bg-brand-700 text-white font-body text-[13px] font-semibold px-5 py-2.5 no-underline transition-colors"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+          </svg>
+          Download Audio
+        </a>
       </div>
     </div>
   );
@@ -797,30 +843,13 @@ function InvestorConCallContent({ label }) {
       <SectionHeader label={label} />
       <InvestorVideo {...investorConCallVideos[0]} />
 
-      <div className="flex flex-col gap-3">
-        <h3 className="font-heading font-semibold text-[18px] text-heading m-0">Investor Con.Call - 29-07-2026 - Audio</h3>
-        <div className="rounded-[12px] border border-brand-600/30 bg-brand-600/5 p-4 flex flex-col sm:flex-row sm:items-center gap-4">
-          <audio
-            className="w-full sm:flex-1 min-w-0 accent-brand-600"
-            controls
-            preload="none"
-            src="/documents/investors/Investor%20Con%20Call/investor-con-call-29-07-2026.mp3"
-          />
-          <a
-            href="/documents/investors/Investor%20Con%20Call/investor-con-call-29-07-2026.mp3"
-            download="Investor-Con-Call-29-07-2026.mp3"
-            className="inline-flex items-center justify-center gap-2 flex-shrink-0 rounded-[10px] bg-brand-600 hover:bg-brand-700 text-white font-body text-[13px] font-semibold px-5 py-2.5 no-underline transition-colors"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-            </svg>
-            Download Audio
-          </a>
-        </div>
-      </div>
+      <InvestorAudio {...investorConCallAudios[0]} />
+      <InvestorAudio {...investorConCallAudios[1]} />
 
       <InvestorVideo {...investorConCallVideos[1]} />
       <InvestorVideo {...investorConCallVideos[2]} />
+
+      <InvestorAudio {...investorConCallAudios[2]} />
     </motion.div>
   );
 }
@@ -941,7 +970,7 @@ function SectionContent({ value, label }) {
   const folders = sectionFolders[value];
   const files = folders ? getFilesFromFolders(folders) : [];
 
-  if (!folders || files.length === 0) {
+  if (!folders || (files.length === 0 && value !== 'agm_meeting')) {
     return <ComingSoonContent label={label} />;
   }
 
@@ -958,20 +987,7 @@ function SectionContent({ value, label }) {
       <SectionHeader label={label} />
 
       {value === 'agm_meeting' && agmVideos.map(({ title, src }) => (
-        <div key={src} className="flex flex-col gap-3">
-          <h3 className="font-heading font-semibold text-[18px] text-heading m-0">{title}</h3>
-          <div className="rounded-[12px] overflow-hidden border border-[#eee] bg-black aspect-video w-full">
-            <iframe
-              className="w-full h-full"
-              src={src}
-              title={title}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
-          </div>
-        </div>
+        <InvestorVideo key={src} title={title} src={src} />
       ))}
 
       {value === 'familiarisation_programme' ? (
@@ -1050,6 +1066,25 @@ export default function Investors({ onPageChange }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showArchive, setShowArchive] = useState(false);
   const [archiveSearch, setArchiveSearch] = useState('');
+
+  // Sidebar taller than the viewport: let it travel with the page until its
+  // bottom edge reaches the bottom of the screen, then pin it there. (A fixed
+  // top offset would leave the lower categories unreachable.)
+  const sidebarRef = useRef(null);
+  const [sidebarTop, setSidebarTop] = useState(96);
+  useEffect(() => {
+    const el = sidebarRef.current;
+    if (!el) return undefined;
+    const update = () => setSidebarTop(Math.min(96, window.innerHeight - el.offsetHeight - 24));
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    window.addEventListener('resize', update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', update);
+    };
+  }, []);
 
   const activeLabel = menuItems.find(m => m.value === activeItem)?.label ?? '';
 
@@ -1163,7 +1198,7 @@ export default function Investors({ onPageChange }) {
 
         {/* Desktop: sticky sidebar */}
         <aside className="hidden lg:flex flex-col w-72 xl:w-80 flex-shrink-0">
-          <div className="sticky top-24 flex flex-col gap-0.5 pr-2">
+          <div ref={sidebarRef} style={{ top: sidebarTop }} className="sticky flex flex-col gap-0.5 pr-2">
             <p className="font-body text-[10px] font-bold uppercase tracking-widest text-surface-400 px-3 pb-3 mb-1 border-b border-[#eee]">
               Most Used
             </p>
@@ -1227,7 +1262,7 @@ export default function Investors({ onPageChange }) {
                     />
                   </div>
                   {/* Only this list scrolls; Lenis is told to leave the wheel alone here. */}
-                  <div data-lenis-prevent className="flex max-h-[min(360px,calc(100vh-420px))] min-h-[140px] flex-col gap-0.5 overflow-y-auto overscroll-contain pr-1 custom-scrollbar">
+                  <div className="flex flex-col gap-0.5 pb-2">
                     {filteredArchiveItems.map((item) => {
                       const isActive = activeItem === item.value;
                       return (
