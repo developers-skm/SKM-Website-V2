@@ -34,6 +34,7 @@ const investorConCallVideos = [
 const sectionFolders = {
   agm_meeting: ['31st AGM Proceedings','AGM Notice'],
   moa_aoa: ['MOA AND AOA'],
+  annual_secretarial_compliance: ['Annual Secretarial Compliance Report'],
   annual_report: ['Annual Reports'],
   quarterly_results: ['Quarterly Results'],
   scrutinizer_reports: ['Scrutinizer Reports'],
@@ -72,6 +73,7 @@ const menuItems = [
   { label: 'AGM Meeting', value: 'agm_meeting' },
   { label: 'Investor Con. Call', value: 'investor_con_call' },
   { label: 'MOA and AOA', value: 'moa_aoa' },
+  { label: 'Annual Secretarial Compliance Report', value: 'annual_secretarial_compliance' },
   { label: 'Financial Report', value: 'financial_report' },
   { label: 'SEBI KYC Format', value: 'sebi_kyc' },
   { label: 'Scrutinizer Reports', value: 'scrutinizer_reports' },
