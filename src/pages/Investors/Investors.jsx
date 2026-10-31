@@ -823,7 +823,96 @@ function InvestorConCallContent({ label }) {
   );
 }
 
+const policyInfoOptions = [
+  { value: 'policy', label: 'Policy', folders: ['Policy'] },
+  { value: 'information', label: 'Information', folders: [] },
+  { value: 'investors_presentation', label: 'Investors Presentation', folders: [] },
+];
+
+function PolicyInfoContent({ label }) {
+  const [selected, setSelected] = useState(policyInfoOptions[0].value);
+  const [open, setOpen] = useState(false);
+  const current = policyInfoOptions.find((o) => o.value === selected);
+  const docs = getFilesFromFolders(current.folders).sort((a, b) => a.name.localeCompare(b.name));
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -12 }}
+      transition={{ duration: 0.22, ease: 'easeOut' }}
+      className="flex flex-col gap-6"
+    >
+      <SectionHeader label={label} />
+
+      <div className="relative w-full sm:w-80">
+        <button
+          type="button"
+          onClick={() => setOpen((prev) => !prev)}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          className="w-full flex items-center justify-between gap-3 px-5 py-3.5 rounded-[10px] bg-white border border-[#eee] font-heading font-bold text-[13px] text-surface-800 cursor-pointer focus:outline-none focus:border-brand-600/50"
+        >
+          <span className="truncate">{current.label}</span>
+          <svg
+            className={`w-4 h-4 text-surface-400 flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <AnimatePresence>
+          {open && (
+            <motion.ul
+              role="listbox"
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.15 }}
+              className="absolute z-20 left-0 right-0 mt-2 p-1.5 m-0 list-none rounded-[10px] border border-[#eee] bg-white shadow-[5px_3px_40px_rgba(0,72,88,0.1)]"
+            >
+              {policyInfoOptions.map((opt) => (
+                <li key={opt.value} role="option" aria-selected={opt.value === selected}>
+                  <button
+                    type="button"
+                    onClick={() => { setSelected(opt.value); setOpen(false); }}
+                    className={`w-full text-left px-4 py-2.5 rounded-[8px] font-body text-[12.5px] font-medium cursor-pointer transition-colors duration-200 ${
+                      opt.value === selected
+                        ? 'text-brand-600 bg-brand-600/5'
+                        : 'text-surface-600 hover:bg-surface-50 hover:text-brand-600'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                </li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {docs.length > 0 ? (
+        <div className="flex flex-col gap-2">
+          {docs.map((file) => (
+            <DocumentRow key={file.url} file={file} />
+          ))}
+        </div>
+      ) : (
+        <div className="rounded-[10px] border border-dashed border-[#eee] bg-surface-50/50 px-5 py-10 text-center">
+          <p className="font-body text-[13px] text-surface-500 m-0">
+            No documents have been published under {current.label} yet.
+          </p>
+        </div>
+      )}
+    </motion.div>
+  );
+}
+
 function SectionContent({ value, label }) {
+  if (value === 'investor_policy') {
+    return <PolicyInfoContent label={label} />;
+  }
   if (value === 'investor_con_call') {
     return <InvestorConCallContent label={label} />;
   }
