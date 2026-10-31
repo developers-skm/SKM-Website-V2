@@ -7,6 +7,8 @@ import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNa
 // (not imported as JS modules) so Vite doesn't bundle/hash/sourcemap
 // hundreds of MB of PDFs and video into the JS build.
 import investorFiles from '../../data/investorFiles.json';
+import powerOfIAward from '../../assets/ACCOLADES/Picture1.png';
+import powerOfICover from '../../assets/ACCOLADES/Picture2.png';
 
 function getFilesFromFolders(folderNames) {
   return investorFiles
@@ -823,6 +825,81 @@ function InvestorConCallContent({ label }) {
   );
 }
 
+function NewsContent({ label }) {
+  const creditRatingDocs = getFilesFromFolders(['News']);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -12 }}
+      transition={{ duration: 0.22, ease: 'easeOut' }}
+      className="flex flex-col gap-8"
+    >
+      <SectionHeader label={label} />
+
+      {/* Power of i award */}
+      <div className="flex flex-col gap-4">
+        <h3 className="font-heading font-semibold text-[18px] leading-snug text-brand-600 m-0">
+          The Power of i (India) - SKM Egg recognised.{' '}
+          Shree Shivkumar has Single-Handedly made SKM a Category Leader in key Export Markets.
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <img
+            src={powerOfIAward}
+            alt="SKM Egg receiving The Power of i award"
+            loading="lazy"
+            className="w-full h-auto rounded-[12px] border border-[#eee]"
+          />
+          <img
+            src={powerOfICover}
+            alt="Outlook Business cover - The Power of i, May 27, 2016"
+            loading="lazy"
+            className="w-full h-auto rounded-[12px] border border-[#eee]"
+          />
+        </div>
+      </div>
+
+      {/* Credit rating */}
+      <div className="rounded-[10px] border border-[#eee] bg-white p-5 sm:p-6 flex flex-col gap-4">
+        <div className="flex flex-col gap-1.5">
+          <h3 className="font-heading font-bold text-[20px] text-heading m-0">Credit Rating</h3>
+          <p className="font-body text-[13px] font-medium text-brand-600 m-0 leading-relaxed">
+            We are glad to inform that the credit rating of our company has been upgraded by CRISIL as on date
+          </p>
+        </div>
+        <ol className="flex flex-col gap-2 list-none p-0 m-0">
+          <li className="font-body text-[13px] text-surface-600 leading-relaxed">
+            <span className="font-semibold text-surface-800">1) Long-Term Rating - </span>
+            CRISIL BBB-/Stable (Upgraded from CRISIL BB/Stable)
+          </li>
+          <li className="font-body text-[13px] text-surface-600 leading-relaxed">
+            <span className="font-semibold text-surface-800">2) Short-Term Rating - </span>
+            CRISIL A3 (Upgraded from CRISIL A4+)
+          </li>
+        </ol>
+        {creditRatingDocs.length > 0 && (
+          <div className="flex flex-col gap-2 pt-1">
+            {creditRatingDocs.map((file) => (
+              <DocumentRow key={file.url} file={file} />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Export milestone & tax payer award */}
+      <div className="flex flex-col gap-3 border-l-2 border-brand-600/30 pl-5">
+        <p className="font-body text-[13.5px] text-surface-600 leading-[1.8] m-0">
+          SKM Egg Products Export (India) Limited has exported first ever consignment to Russia and touched a new milestone in the export sales in addition to the exports already with Japan, Europe and middle east countries. This success was achieved due to the continuous efforts taken by the Managing Director &amp; CEO and employees of the company for the past many years. We hope that we will achieve significant growth in the Russian market in the coming years ahead and the expected potential is very high.
+        </p>
+        <p className="font-body text-[13.5px] text-surface-600 leading-[1.8] m-0">
+          Further, with a great sense of pride, we have to inform that the company has been awarded TOP Tax payer award and certification by the Central Excise Department on 24th Feb,2015 (Central Excise day) at Salem by the Joint Commissioner of Central Excise for the period 2013-14.
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
 const policyInfoOptions = [
   { value: 'policy', label: 'Policy', folders: ['Policy'] },
   { value: 'information', label: 'Information', folders: [] },
@@ -910,6 +987,9 @@ function PolicyInfoContent({ label }) {
 }
 
 function SectionContent({ value, label }) {
+  if (value === 'investor_news') {
+    return <NewsContent label={label} />;
+  }
   if (value === 'investor_policy') {
     return <PolicyInfoContent label={label} />;
   }
