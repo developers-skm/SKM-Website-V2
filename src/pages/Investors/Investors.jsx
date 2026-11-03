@@ -875,29 +875,12 @@ function InvestorConCallContent({ label }) {
   );
 }
 
-// Image preview of a PDF; clicking it opens the full PDF in a new tab.
-function PdfPreviewCard({ title, url, previewSrc, alt }) {
-  return (
-    <div className="flex flex-col gap-3">
-      <h3 className="font-heading font-semibold text-[18px] text-heading m-0">{title}</h3>
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Open ${title} (PDF)`}
-        className="group relative block rounded-[12px] overflow-hidden border border-[#eee] bg-white hover:border-brand-600/30 hover:shadow-md transition-all duration-200"
-      >
-        <img src={previewSrc} alt={alt} loading="lazy" className="block w-full h-auto" />
-        <span className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-[10px] bg-brand-600 group-hover:bg-brand-700 text-white font-body text-[13px] font-semibold px-4 py-2 shadow-md transition-colors">
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-          Click to open full page
-        </span>
-      </a>
-    </div>
-  );
-}
+const newspaperAdvt = {
+  name: 'Newspaper Advt-2026-27-Q2.pdf',
+  displayName: 'Newspaper Advt-2026-27-Q2',
+  url: '/documents/investors/News/Newspaper%20Advt-2026-27-Q2.pdf',
+  ext: 'pdf',
+};
 
 function NewsContent({ label }) {
   const creditRatingDocs = getFilesFromFolders(['News']);
@@ -913,12 +896,7 @@ function NewsContent({ label }) {
       <SectionHeader label={label} />
 
       {/* Newspaper advertisement */}
-      <PdfPreviewCard
-        title="Newspaper Advertisement - FY 2026-27 Q2"
-        url="/documents/investors/News/Newspaper%20Advt-2026-27-Q2.pdf"
-        previewSrc="/documents/investors/News/Newspaper%20Advt-2026-27-Q2-preview.webp"
-        alt="SKM Egg Products unaudited financial results for the quarter ended 30 September 2026, newspaper advertisement"
-      />
+      <DocumentRow file={newspaperAdvt} />
 
       {/* Power of i award */}
       <div className="flex flex-col gap-4">
