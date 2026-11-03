@@ -21,6 +21,22 @@ function getFilesFromFolders(folderNames) {
     .sort((a, b) => b.name.localeCompare(a.name));
 }
 
+// Annual Reports tab: newest financial year first (2025-26, 2024-25, ...); within a
+// year the Annual Report comes before the Annual Return (MGT-7).
+function financialYear(name) {
+  const m = name.match(/(20d{2})s*-s*d{2}/);
+  return m ? Number(m[1]) : 0;
+}
+function sortAnnualReports(files) {
+  const isReturn = (name) => /MGT-?7|Annual Return/i.test(name);
+  return [...files].sort(
+    (a, b) =>
+      financialYear(b.name) - financialYear(a.name) ||
+      Number(isReturn(a.name)) - Number(isReturn(b.name)) ||
+      a.name.localeCompare(b.name),
+  );
+}
+
 // AGM recordings, shown in this order (oldest AGM first).
 const agmVideos = [
   { title: '30th AGM Meeting', src: 'https://www.youtube.com/embed/uyskddiZzd0?si=MlGOF08DIXqAOLFZ' },
@@ -832,6 +848,7 @@ function InvestorAudio({ title, file }) {
 }
 
 function InvestorConCallContent({ label }) {
+  const transcripts = getFilesFromFolders(['Investor Con Call']);
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -850,7 +867,35 @@ function InvestorConCallContent({ label }) {
       <InvestorVideo {...investorConCallVideos[2]} />
 
       <InvestorAudio {...investorConCallAudios[2]} />
+
+      {transcripts.map((file) => (
+        <DocumentRow key={file.name} file={file} />
+      ))}
     </motion.div>
+  );
+}
+
+// Image preview of a PDF; clicking it opens the full PDF in a new tab.
+function PdfPreviewCard({ title, url, previewSrc, alt }) {
+  return (
+    <div className="flex flex-col gap-3">
+      <h3 className="font-heading font-semibold text-[18px] text-heading m-0">{title}</h3>
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open ${title} (PDF)`}
+        className="group relative block rounded-[12px] overflow-hidden border border-[#eee] bg-white hover:border-brand-600/30 hover:shadow-md transition-all duration-200"
+      >
+        <img src={previewSrc} alt={alt} loading="lazy" className="block w-full h-auto" />
+        <span className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-[10px] bg-brand-600 group-hover:bg-brand-700 text-white font-body text-[13px] font-semibold px-4 py-2 shadow-md transition-colors">
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          Click to open full page
+        </span>
+      </a>
+    </div>
   );
 }
 
@@ -866,6 +911,14 @@ function NewsContent({ label }) {
       className="flex flex-col gap-8"
     >
       <SectionHeader label={label} />
+
+      {/* Newspaper advertisement */}
+      <PdfPreviewCard
+        title="Newspaper Advertisement - FY 2026-27 Q2"
+        url="/documents/investors/News/Newspaper%20Advt-2026-27-Q2.pdf"
+        previewSrc="/documents/investors/News/Newspaper%20Advt-2026-27-Q2-preview.webp"
+        alt="SKM Egg Products unaudited financial results for the quarter ended 30 September 2026, newspaper advertisement"
+      />
 
       {/* Power of i award */}
       <div className="flex flex-col gap-4">
@@ -974,7 +1027,8 @@ function SectionContent({ value, label }) {
     return <ComingSoonContent label={label} />;
   }
 
-  const docs = files.filter(f => !['mp4', 'avi', 'mov', 'webm'].includes(f.ext));
+  const visibleFiles = files.filter(f => !['mp4', 'avi', 'mov', 'webm'].includes(f.ext));
+  const docs = value === 'annual_report' ? sortAnnualReports(visibleFiles) : visibleFiles;
 
   return (
     <motion.div
