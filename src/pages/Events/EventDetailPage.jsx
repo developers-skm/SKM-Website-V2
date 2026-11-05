@@ -14,7 +14,7 @@ export default function EventDetailPage({ slug, onPageChange }) {
     return (
       <PageWrapper seo={{ title: 'Event not found | SKM Egg Products', description: 'This event could not be found.', canonical: 'https://www.skmegg.com/events' }}>
         <div className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-5 px-4 pb-24 pt-[160px] text-center">
-          <h1 className="m-0 font-heading text-[32px] font-bold text-heading">Event not found</h1>
+          <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">Event not found</h1>
           <InternalLink route="events" onPageChange={onPageChange} className={link}>View all events →</InternalLink>
         </div>
       </PageWrapper>
@@ -44,7 +44,7 @@ export default function EventDetailPage({ slug, onPageChange }) {
 
           <header className="flex flex-col gap-4">
             <span className="section-label">Event</span>
-            <h1 className="m-0 font-heading text-[clamp(2.2rem,4.5vw,3.75rem)] font-bold leading-[1.05] tracking-tight text-heading">{ev.title}</h1>
+            <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">{ev.title}</h1>
             {meta.length > 0 && (
               <p className="m-0 flex flex-wrap gap-x-5 gap-y-1 font-body text-[13px] font-semibold uppercase tracking-[0.1em] text-surface-500">
                 {meta.map((m) => <span key={m}>{m}</span>)}

@@ -281,7 +281,7 @@ export default function QualityFoodSafetyTraceabilityPage({ onPageChange }) {
           <div className="relative mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
             <motion.div {...fadeProps()} className="max-w-3xl mb-9 lg:mb-11">
               <span className="section-label">Quality, Food Safety &amp; Traceability</span>
-              <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0 mt-3">
+              <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0 mt-3">
                 Can this supplier consistently deliver a safe, compliant and traceable ingredient?
               </h1>
             </motion.div>

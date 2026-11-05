@@ -782,7 +782,7 @@ export default function EnquiryModal({ isOpen, onClose, enquiryType }) {
                   </div>
 
                   <div className="flex flex-col gap-2 max-w-[260px]">
-                    <h3 className="font-heading text-xl font-bold text-surface-850 m-0 tracking-tight">Enquiry Received</h3>
+                    <h3 className="font-heading text-xl font-bold text-heading m-0 tracking-tight">Enquiry Received</h3>
                     <p className="font-body text-sm text-surface-500 leading-relaxed m-0 font-medium">
                       Thank you for reaching out. A representative will get back to you shortly.
                     </p>

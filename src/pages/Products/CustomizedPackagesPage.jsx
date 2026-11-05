@@ -222,7 +222,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
                         {pkg.subtitle}
                       </span>
                     </div>
-                    <h3 className="text-lg sm:text-xl font-black text-surface-850 m-0 leading-snug">
+                    <h3 className="font-heading text-lg sm:text-xl font-bold text-heading m-0 leading-snug">
                       {pkg.type} Package in {pkg.title}
                     </h3>
                     <p className="text-xs text-surface-500 leading-relaxed m-0 mt-1">

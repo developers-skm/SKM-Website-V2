@@ -142,7 +142,7 @@ export default function OfflinePage({ onPageChange, targetPage = 'home' }) {
           </motion.div>
 
           {/* Headline */}
-          <h1 className="font-heading text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-surface-900 tracking-tight leading-[1.15] mb-4">
+          <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0 mb-4">
             Looks like the connection cracked.
           </h1>
 

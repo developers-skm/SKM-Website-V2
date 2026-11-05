@@ -792,7 +792,7 @@ function InvestorVideo({ title, src }) {
   const [active, setActive] = useState(false);
   return (
     <div className="flex flex-col gap-3">
-      <h3 className="font-heading font-semibold text-[18px] text-heading m-0">{title}</h3>
+      <h3 className="font-heading font-bold text-[18px] text-heading m-0">{title}</h3>
       <div
         className="relative rounded-[12px] overflow-hidden border border-[#eee] bg-black aspect-video w-full"
         onMouseLeave={() => setActive(false)}
@@ -829,7 +829,7 @@ function InvestorAudio({ title, file }) {
   const src = `/documents/investors/Investor%20Con%20Call/${file}`;
   return (
     <div className="flex flex-col gap-3">
-      <h3 className="font-heading font-semibold text-[18px] text-heading m-0">{title}</h3>
+      <h3 className="font-heading font-bold text-[18px] text-heading m-0">{title}</h3>
       <div className="rounded-[12px] border border-brand-600/30 bg-brand-600/5 p-4 flex flex-col sm:flex-row sm:items-center gap-4">
         <audio className="w-full sm:flex-1 min-w-0 accent-brand-600" controls preload="none" src={src} />
         <a
@@ -1024,7 +1024,7 @@ function SectionContent({ value, label }) {
 
       {value === 'familiarisation_programme' ? (
         <div className="flex flex-col gap-3">
-          <h3 className="font-heading font-semibold text-[18px] text-heading m-0">2025-26</h3>
+          <h3 className="font-heading font-bold text-[18px] text-heading m-0">2025-26</h3>
           <div className="flex flex-col gap-2">
             {docs.map((file, idx) => (
               <DocumentRow key={idx} file={{ ...file, displayName: 'Familiarisation Programme - ID 2025-26' }} />
@@ -1054,7 +1054,7 @@ function InvestorHero({ onSelect, onDownloadAnnualReport, onSearchDisclosures })
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_120%,var(--color-brand-50)_0%,transparent_50%)] pointer-events-none opacity-100" />
       <div className="relative mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-6 z-10">
         <span className="section-label justify-center">Investor Relations</span>
-        <h1 className="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[56px] text-heading leading-[1.1] tracking-tight m-0">
+        <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
           Investor Relations
         </h1>
         <p className="font-body text-[15px] sm:text-[16px] text-surface-500 max-w-2xl leading-[27px] m-0">

@@ -32,7 +32,7 @@ export default function PageHeroBanner({ image, alt = '', label, title, descript
           }`}
         >
           <span className={`section-label ${centered ? 'justify-center' : ''}`}>{label}</span>
-          <h1 className="font-heading font-bold text-[42px] sm:text-[52px] lg:text-[60px] text-heading leading-[1.1] tracking-tight m-0">
+          <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
             {title}
           </h1>
           <p className={`font-body text-[16px] leading-[30px] text-surface-600 m-0 ${centered ? 'max-w-2xl' : 'max-w-2xl'}`}>

@@ -210,7 +210,7 @@ function ProcessContent({ chapter, entered }) {
 
       {/* Title with hover underline */}
       <div className="relative self-start group/title">
-        <h3 className="font-heading font-semibold text-[22px] sm:text-[26px] lg:text-[28px] text-[#111111] leading-[1.25] m-0 transition-colors duration-200 group-hover/title:text-[#2a2a2a]">
+        <h3 className="font-heading font-bold text-[22px] sm:text-[26px] lg:text-[28px] text-heading leading-[1.25] m-0 transition-colors duration-200 group-hover/title:text-[#2a2a2a]">
           {chapter.title}
         </h3>
         <span className="absolute left-0 -bottom-0.5 w-full h-[1.5px] bg-[#E40A18] scale-x-0 group-hover/title:scale-x-100 origin-left transition-transform duration-300" />
@@ -421,7 +421,7 @@ function QASection({ reducedMotion, bare = false }) {
           </span>
         </div>
 
-        <h3 className="font-heading font-semibold text-[28px] sm:text-[34px] text-[#111111] leading-[1.2] m-0">
+        <h3 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading leading-[1.2] m-0">
           Tested Against Global Food Safety Standards
         </h3>
 

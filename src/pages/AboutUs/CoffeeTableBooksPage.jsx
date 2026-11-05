@@ -108,7 +108,7 @@ export default function CoffeeTableBooksPage({ onPageChange }) {
                     </span>
                   </div>
 
-                  <h3 className="font-heading text-[22px] sm:text-[26px] font-bold text-surface-800 m-0">
+                  <h3 className="font-heading text-[22px] sm:text-[26px] font-bold text-heading m-0">
                     {book.title}
                   </h3>
                   <p className="font-body text-[15px] text-surface-500 leading-[26px] m-0">

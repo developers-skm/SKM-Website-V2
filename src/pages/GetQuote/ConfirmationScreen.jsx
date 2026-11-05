@@ -100,7 +100,7 @@ export default function ConfirmationScreen({ formData, onPageChange }) {
         </motion.div>
 
         <div className="flex flex-col gap-3">
-          <h1 className="font-heading font-bold text-[28px] sm:text-[34px] text-heading m-0 tracking-tight">
+          <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
             Your enquiry is in.
           </h1>
           <p className="font-body text-[11.5px] font-bold uppercase tracking-wider text-brand-600 m-0">

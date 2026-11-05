@@ -154,7 +154,7 @@ export default function TableEggsPage({ onPageChange }) {
                 </ol>
               </nav>
               <span className={eyebrow}>Table Eggs</span>
-              <h1 className="font-heading font-bold text-[38px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1]! tracking-tight m-0">
+              <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
                 From farm fresh eggs
               </h1>
               <p className={`${bodyClass} text-[17px] max-w-[52ch]`}>
@@ -221,7 +221,7 @@ export default function TableEggsPage({ onPageChange }) {
                     <div className="flex items-center justify-center w-12 h-12 rounded-[12px] bg-brand-600/8 text-brand-600 mb-5">
                       {s.icon}
                     </div>
-                    <h3 className="font-heading font-semibold text-[17px] text-heading leading-[1.3]! tracking-tight m-0 mb-2.5">
+                    <h3 className="font-heading font-bold text-[17px] text-heading leading-[1.3]! tracking-tight m-0 mb-2.5">
                       {s.title}
                     </h3>
                     <p className="font-body text-[15px] leading-[1.6] text-surface-500 m-0">
@@ -253,7 +253,7 @@ export default function TableEggsPage({ onPageChange }) {
                       {i + 1}
                     </span>
                     <div>
-                      <h3 className="font-heading font-semibold text-[16px] text-heading m-0 leading-[1.3]!">{p.title}</h3>
+                      <h3 className="font-heading font-bold text-[16px] text-heading m-0 leading-[1.3]!">{p.title}</h3>
                       <p className="font-body text-[14.5px] leading-[1.6] text-surface-500 m-0 mt-1">{p.body}</p>
                     </div>
                   </li>

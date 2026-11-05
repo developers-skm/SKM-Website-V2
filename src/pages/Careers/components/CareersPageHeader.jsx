@@ -28,7 +28,7 @@ export default function CareersPageHeader({ crumbs, eyebrow, title, onPageChange
           </ol>
         </nav>
         {eyebrow && <span className="section-label !mb-0">{eyebrow}</span>}
-        <h1 className="font-heading font-bold text-[34px] sm:text-[44px] lg:text-[52px] text-heading leading-[1.1] tracking-tight m-0">{title}</h1>
+        <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">{title}</h1>
         {children}
       </Container>
     </header>

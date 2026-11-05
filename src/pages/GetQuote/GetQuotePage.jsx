@@ -249,7 +249,7 @@ export default function GetQuotePage({ onPageChange, prefill }) {
 
             {intentCopy && (
               <div className="flex flex-col gap-1.5">
-                <h1 className="font-heading font-bold text-[26px] sm:text-[30px] text-heading m-0 tracking-tight">
+                <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
                   {intentCopy.heading}
                 </h1>
                 <p className="font-body text-[14px] text-surface-500 m-0">

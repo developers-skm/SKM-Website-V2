@@ -455,7 +455,7 @@ export default function InnovationCustomSolutionsPage({ onPageChange }) {
             className="mx-auto max-w-[820px] flex flex-col items-center gap-7"
           >
             <span className="section-label justify-center">Innovation and Custom Solutions</span>
-            <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[56px] text-heading leading-[1.15] tracking-tight m-0">
+            <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
               Let us develop the egg functionality your product requires.
             </h1>
 

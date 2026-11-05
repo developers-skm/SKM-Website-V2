@@ -306,7 +306,7 @@ export default function EventsPage({ onPageChange }) {
             <span className="section-label justify-center bg-brand-600/10 text-brand-600 font-semibold px-3 py-1 rounded-full text-[12px] uppercase tracking-wider">
               Corporate Feed
             </span>
-            <h1 className="font-heading font-bold text-[38px] sm:text-[50px] lg:text-[62px] text-heading leading-[1.1] tracking-tight m-0">
+            <h1 className="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[54px] text-heading leading-[1.1] tracking-tight m-0">
               News, Insights &amp; Events
             </h1>
             <p className="font-body text-[16px] sm:text-[18px] text-surface-500 max-w-2xl leading-[1.6] m-0">
