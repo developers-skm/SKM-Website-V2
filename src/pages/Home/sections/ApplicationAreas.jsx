@@ -40,6 +40,12 @@ function matchedCount(app) {
 // bottom rules); smaller on phones where the text column needs the width.
 const ringSizeFor = (viewportWidth) => (viewportWidth >= 640 ? 120 : 96);
 
+// Mouse-driven devices open the icon preview on hover (and close it when the
+// pointer leaves the icon); touch devices open it with a tap and close it with
+// a tap anywhere.
+const canHover = () =>
+  typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
 function IconLightbox({ app, onClose, reduceMotion }) {
   useEffect(() => {
     if (!app) return undefined;
@@ -61,7 +67,7 @@ function IconLightbox({ app, onClose, reduceMotion }) {
           exit={{ opacity: 0 }}
           transition={{ duration: reduceMotion ? 0.01 : 0.25 }}
           onClick={onClose}
-          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/40 backdrop-blur-md cursor-zoom-out p-6"
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/40 backdrop-blur-md cursor-zoom-out p-6 [@media(hover:hover)_and_(pointer:fine)]:pointer-events-none"
         >
           <motion.img
             src={app.icon}
@@ -80,7 +86,7 @@ function IconLightbox({ app, onClose, reduceMotion }) {
   );
 }
 
-function ApplicationRow({ app, index, isActive, onActivate, onPageChange, onOpenIcon, reduceMotion }) {
+function ApplicationRow({ app, index, isActive, onActivate, onPageChange, onOpenIcon, onCloseIcon, reduceMotion }) {
   const rowRef = useRef(null);
   const inView = useInView(rowRef, { once: true, margin: '-60px' });
   const [ringSize, setRingSize] = useState(() => ringSizeFor(typeof window === 'undefined' ? 1024 : window.innerWidth));
@@ -128,6 +134,12 @@ function ApplicationRow({ app, index, isActive, onActivate, onPageChange, onOpen
     roll(0);
   };
 
+  // Skip while the ring is still rolling under a stationary cursor.
+  const openOnHover = () => {
+    if (!canHover() || rollingRef.current) return;
+    onOpenIcon(app);
+  };
+
   const rollDegrees = (rollDistance / (ringSize / 2)) * (180 / Math.PI);
   const ringX = useTransform(progress, (p) => (p - 1) * rollDistance);
   const ringRotate = useTransform(progress, (p) => (p - 1) * rollDegrees);
@@ -173,7 +185,13 @@ function ApplicationRow({ app, index, isActive, onActivate, onPageChange, onOpen
             role="button"
             tabIndex={0}
             aria-label={`View ${app.title} icon full size`}
-            onClick={(e) => { e.preventDefault(); e.stopPropagation(); onOpenIcon(app); }}
+            onMouseEnter={openOnHover}
+            onMouseMove={openOnHover}
+            onMouseLeave={() => { if (canHover()) onCloseIcon(); }}
+            onClick={(e) => {
+              if (canHover()) return; // desktop: hover already previews; click follows the row link
+              e.preventDefault(); e.stopPropagation(); onOpenIcon(app);
+            }}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); onOpenIcon(app); }
             }}
@@ -298,6 +316,7 @@ export default function ApplicationAreas({ onPageChange }) {
                 onActivate={() => activateById(app.id)}
                 onPageChange={onPageChange}
                 onOpenIcon={setLightboxApp}
+                onCloseIcon={closeLightbox}
                 reduceMotion={reduceMotion}
               />
             ))}

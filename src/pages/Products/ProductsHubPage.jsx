@@ -638,34 +638,34 @@ function TechnicalResourcesSection({ onPageChange }) {
 }
 
 // Clickable regions over the hero still life, as % of each image
-// (desktop-final.webp 1600x900 photo, mobile-final.webp 1024x1536). Positioned with
+// (desktop-final.webp 1600x900 photo, mobile-final.webp 1086x1448). Positioned with
 // the same object-fit: cover math as the image itself.
 const HERO_RATIO = 1600 / 900;
 const HERO_HOTSPOTS = [
-  { route: 'egg_albumen_powder', label: 'Egg Albumen Powder', x: 6, y: 10, w: 21.5, h: 22 },
-  { route: 'whole_egg_powder', label: 'Whole Egg Powder', x: 29, y: 7, w: 20.5, h: 25 },
-  { route: 'egg_yolk_powder', label: 'Egg Yolk Powder', x: 51, y: 7, w: 21, h: 25 },
-  { route: 'egg_yolk_powder_heat_stable', label: 'Egg Yolk Powder – Heat Stable', x: 73, y: 8, w: 21.5, h: 25 },
-  { route: 'egg_albumen_liquid', label: 'Egg Albumen Liquid', x: 9.5, y: 31.5, w: 16, h: 31 },
-  { route: 'egg_yolk_liquid', label: 'Egg Yolk Liquid', x: 29, y: 31.5, w: 16, h: 30 },
-  { route: 'whole_egg_liquid', label: 'Whole Egg Liquid', x: 48.5, y: 33, w: 15, h: 29 },
-  { route: 'egg_white_cube', label: 'Egg White Cube', x: 68, y: 34, w: 29, h: 35 },
-  { route: 'table_eggs', label: 'Table Eggs', x: 5, y: 60, w: 46, h: 34 },
-  { route: 'table_eggs', label: 'Table Eggs', x: 57.5, y: 66, w: 33, h: 33 },
+  { route: 'egg_albumen_powder', label: 'Egg Albumen Powder', x: 5.9, y: 7.2, w: 21, h: 24 },
+  { route: 'whole_egg_powder', label: 'Whole Egg Powder', x: 28.6, y: 7.2, w: 20.8, h: 24 },
+  { route: 'egg_yolk_powder', label: 'Egg Yolk Powder', x: 50.9, y: 7.2, w: 20.6, h: 24.5 },
+  { route: 'egg_yolk_powder_heat_stable', label: 'Egg Yolk Powder – Heat Stable', x: 73.1, y: 7.2, w: 21.3, h: 24.5 },
+  { route: 'egg_albumen_liquid', label: 'Egg Albumen Liquid', x: 9.4, y: 31.4, w: 15.9, h: 30.2 },
+  { route: 'whole_egg_liquid', label: 'Whole Egg Liquid', x: 29, y: 31.3, w: 15.6, h: 29.2 },
+  { route: 'egg_yolk_liquid', label: 'Egg Yolk Liquid', x: 48.4, y: 31.3, w: 15.4, h: 29.5 },
+  { route: 'egg_white_cube', label: 'Egg White Cube', x: 68.1, y: 34.2, w: 29.5, h: 35 },
+  { route: 'table_eggs', label: 'Table Eggs', x: 4.9, y: 60.2, w: 52, h: 37.5 },
+  { route: 'table_eggs', label: 'Table Eggs', x: 57.6, y: 67, w: 31.8, h: 30.8 },
 ];
 
-const MOBILE_HERO_RATIO = 1024 / 1536;
+const MOBILE_HERO_RATIO = 1086 / 1448;
 const MOBILE_HERO_HOTSPOTS = [
-  { route: 'egg_albumen_powder', label: 'Egg Albumen Powder', x: 1.5, y: 25.5, w: 24.5, h: 13.5 },
-  { route: 'whole_egg_powder', label: 'Whole Egg Powder', x: 26.5, y: 25, w: 23.5, h: 13.5 },
-  { route: 'egg_yolk_powder', label: 'Egg Yolk Powder', x: 50.5, y: 25, w: 23.5, h: 13.5 },
-  { route: 'egg_yolk_powder_heat_stable', label: 'Egg Yolk Powder – Heat Stable', x: 74.5, y: 25.5, w: 24, h: 13.5 },
-  { route: 'egg_albumen_liquid', label: 'Egg Albumen Liquid', x: 3.5, y: 39.5, w: 20.5, h: 19.5 },
-  { route: 'egg_yolk_liquid', label: 'Egg Yolk Liquid', x: 25.5, y: 39.5, w: 20, h: 19 },
-  { route: 'whole_egg_liquid', label: 'Whole Egg Liquid', x: 46.5, y: 39.5, w: 19, h: 19.5 },
-  { route: 'egg_white_cube', label: 'Egg White Cube', x: 65, y: 42.5, w: 32, h: 21 },
-  { route: 'table_eggs', label: 'Table Eggs', x: 0, y: 59.5, w: 59, h: 26.5 },
-  { route: 'table_eggs', label: 'Table Eggs', x: 61, y: 64, w: 37, h: 27 },
+  { route: 'egg_albumen_powder', label: 'Egg Albumen Powder', x: 1.7, y: 22.8, w: 24.1, h: 14.9 },
+  { route: 'whole_egg_powder', label: 'Whole Egg Powder', x: 26.9, y: 22.8, w: 23.3, h: 14.9 },
+  { route: 'egg_yolk_powder', label: 'Egg Yolk Powder', x: 50.8, y: 22.8, w: 23.3, h: 14.9 },
+  { route: 'egg_yolk_powder_heat_stable', label: 'Egg Yolk Powder – Heat Stable', x: 74.9, y: 22.8, w: 23.7, h: 14.9 },
+  { route: 'egg_albumen_liquid', label: 'Egg Albumen Liquid', x: 2.9, y: 40.6, w: 21.2, h: 19.3 },
+  { route: 'whole_egg_liquid', label: 'Whole Egg Liquid', x: 24.9, y: 40.6, w: 20.7, h: 19.3 },
+  { route: 'egg_yolk_liquid', label: 'Egg Yolk Liquid', x: 46.5, y: 40.6, w: 20.5, h: 19.3 },
+  { route: 'egg_white_cube', label: 'Egg White Cube', x: 66.3, y: 41.3, w: 32.4, h: 21.4 },
+  { route: 'table_eggs', label: 'Table Eggs', x: 0, y: 62.8, w: 58.9, h: 30.7 },
+  { route: 'table_eggs', label: 'Table Eggs', x: 59, y: 66.3, w: 38.5, h: 21.4 },
 ];
 
 function HeroHotspots({ onPageChange, isMobile }) {

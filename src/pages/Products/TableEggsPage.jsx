@@ -6,7 +6,7 @@ import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 import EggCollectionArea from '../../assets/ai-images/table-eggs-collection.webp';
 import EggCollectingConveyor from '../../assets/5. INFRASTRUCTURE/Poultry farm/Egg collecting conveyor.webp';
 import TableEggsInfrastructure from '../../assets/home/table-eggs-infrastructure.webp';
-import BlockchainQr from '../../assets/home/blockchain-qr.jpeg';
+import BlockchainQr from '../../assets/home/blockchain-qr-scan.webp';
 import FeederView from '../../assets/ai-images/table-eggs-silo.webp';
 
 // Table Eggs (shell eggs) product-family page. Copy is rewritten from the
@@ -289,9 +289,9 @@ export default function TableEggsPage({ onPageChange }) {
                 </div>
                 <img
                   src={BlockchainQr}
-                  alt="QR code to scan and discover the journey of an SKM egg pack"
+                  alt="Scanning the QR code on an SKM egg pack with a smartphone to view its traceability information"
                   loading="lazy"
-                  className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] shrink-0 rounded-[16px] border border-surface-200/70 bg-white object-contain"
+                  className="w-full max-w-[420px] lg:w-[380px] aspect-[3/2] shrink-0 rounded-[16px] border border-surface-200/70 bg-white object-cover"
                 />
               </div>
               <p className="font-heading font-bold text-[17px] sm:text-[19px] text-brand-600 leading-[1.4] m-0 pt-2 border-t border-surface-200/70">

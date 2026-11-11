@@ -226,7 +226,20 @@ const CSR_CARDS = [
   },
 ];
 
-const CSR_FOCUS_AREAS = ['Education', 'Community Development', 'Trust Outreach', 'Health'];
+const CSR_FOCUS_AREAS = [
+  {
+    title: 'Community Development',
+    description: 'Supporting underprivileged communities through healthcare, maternal and child welfare, sanitation, family assistance, and community development programmes to improve living conditions.',
+  },
+  {
+    title: 'Education',
+    description: "Providing free educational support from early childhood through higher education, including school fees, textbooks, uniforms, academic coaching, English language training, computer education, personality development, yoga, meditation, and cultural activities to support students' education and career opportunities.",
+  },
+  {
+    title: 'Trust Outreach',
+    description: 'Developing and maintaining community facilities, providing financial assistance to families in need, supporting senior citizens with meals, clothing and personal care, and carrying out environmental initiatives, including tree planting, waste management, and neighbourhood cleanliness programmes.',
+  },
+];
 
 const CSR_SLIDER_IMAGES = CSR_CARDS.flatMap((card) => card.images.slice(0, 2));
 
@@ -321,14 +334,22 @@ function CsrSection({ onPageChange }) {
           className="flex flex-col lg:flex-row overflow-hidden rounded-[16px] border border-[#eee] bg-[#fdfbf7] hover:border-brand-600/30 hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] transition-all duration-300"
         >
           <div className="flex flex-col justify-center gap-6 p-6 sm:p-8 lg:p-10 lg:w-[50%]">
-            <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 leading-tight">
-              Our CSR Focus Areas
-            </h3>
+            <div className="flex flex-col gap-3">
+              <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-heading m-0 leading-tight">
+                SKM Health and Mind Welfare Charity Trust
+              </h3>
+              <p className="font-body text-[14px] sm:text-[15px] text-surface-500 leading-[1.6] m-0">
+                Established in 1988, the SKM Health and Mind Welfare Charity Trust, along with Sevai Maiyam established in 1999, supports underprivileged communities through various social welfare initiatives.
+              </p>
+            </div>
             <ul className="flex flex-col m-0 p-0 list-none">
-              {CSR_FOCUS_AREAS.map((title) => (
-                <li key={title} className="flex items-center gap-3 py-4 border-b border-[#eee] last:border-b-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-600 shrink-0" aria-hidden="true" />
-                  <span className="font-heading font-bold text-[17px] sm:text-[19px] text-heading">{title}</span>
+              {CSR_FOCUS_AREAS.map(({ title, description }) => (
+                <li key={title} className="flex items-start gap-3 py-4 border-t border-[#eee]">
+                  <span className="w-1.5 h-1.5 mt-[9px] rounded-full bg-brand-600 shrink-0" aria-hidden="true" />
+                  <div className="flex flex-col gap-1.5">
+                    <span className="font-heading font-bold text-[17px] sm:text-[19px] text-heading">{title}</span>
+                    <p className="font-body text-[14px] text-surface-500 leading-[1.6] m-0">{description}</p>
+                  </div>
                 </li>
               ))}
             </ul>

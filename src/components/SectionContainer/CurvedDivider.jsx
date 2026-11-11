@@ -24,6 +24,37 @@ const VB_W = 1440;
 const VB_H = 120;
 
 
+// ── Hen placement ─────────────────────────────────────────────────────────
+// Every page can show the hen, but not on every divider: a page with 5
+// dividers shows it on 3. Mounted dividers register here; the hen goes to at
+// most MAX_HENS of them, evenly spread in document order (first, middle,
+// last), and is recomputed whenever dividers mount or unmount.
+const MAX_HENS = 3;
+const registry = new Map(); // box element -> setShowHen
+let recomputeQueued = false;
+
+function pickHenDividers(boxes) {
+  const n = boxes.length;
+  if (n <= MAX_HENS) return new Set(boxes);
+  const chosen = new Set();
+  for (let k = 0; k < MAX_HENS; k += 1) chosen.add(boxes[Math.round((k * (n - 1)) / (MAX_HENS - 1))]);
+  return chosen;
+}
+
+function recomputeHens() {
+  recomputeQueued = false;
+  const boxes = [...registry.keys()].sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+  const chosen = pickHenDividers(boxes);
+  registry.forEach((setShowHen, box) => setShowHen(chosen.has(box)));
+}
+
+// Batched so a page mounting several dividers recomputes once.
+function queueRecompute() {
+  if (recomputeQueued) return;
+  recomputeQueued = true;
+  Promise.resolve().then(recomputeHens);
+}
+
 const prefersReducedMotion = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 const HINT_MS = 2000;
@@ -38,7 +69,7 @@ const pickFact = (list) => {
   return list[i];
 };
 
-function RollingEgg({ pathRef, boxRef, withImage }) {
+function RollingEgg({ pathRef, boxRef, withImage, showHen }) {
   const eggRef = useRef(null);
   const labelRef = useRef(null);
   const henRef = useRef(null);
@@ -227,8 +258,8 @@ function RollingEgg({ pathRef, boxRef, withImage }) {
 
   return (
     <>
-      {/* Hen only chases the egg on product pages (the `cards` dividers). */}
-      {withImage && (
+      {/* The hen chases the egg on a few dividers per page (see pickHenDividers). */}
+      {showHen && (
         <div
           ref={henRef}
           className="hen-chase absolute left-0 top-0 z-[5] h-[34px] sm:h-[44px] lg:h-[54px] aspect-[289/340] opacity-0 will-change-transform pointer-events-none"
@@ -307,6 +338,19 @@ function RollingEgg({ pathRef, boxRef, withImage }) {
 export default function CurvedDivider({ flip = false, bg = '#fff', fill = '#ececec', className = '', cards = false }) {
   const boxRef = useRef(null);
   const pathRef = useRef(null);
+  const [showHen, setShowHen] = useState(false);
+
+  // Flipped dividers have no egg (and so no hen) and don't count toward the spread.
+  useEffect(() => {
+    const box = boxRef.current;
+    if (flip || !box) return undefined;
+    registry.set(box, setShowHen);
+    queueRecompute();
+    return () => {
+      registry.delete(box);
+      queueRecompute();
+    };
+  }, [flip]);
 
   return (
     <div
@@ -330,7 +374,7 @@ export default function CurvedDivider({ flip = false, bg = '#fff', fill = '#ecec
           strokeWidth="2"
         />
       </svg>
-      {!flip && !prefersReducedMotion() && <RollingEgg pathRef={pathRef} boxRef={boxRef} withImage={cards} />}
+      {!flip && !prefersReducedMotion() && <RollingEgg pathRef={pathRef} boxRef={boxRef} withImage={cards} showHen={showHen} />}
     </div>
   );
 }
