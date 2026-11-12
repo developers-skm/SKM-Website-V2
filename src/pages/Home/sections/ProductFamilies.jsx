@@ -197,7 +197,7 @@ export default function ProductFamilies({ onPageChange }) {
   return (
     <div
       id="product-discovery"
-      className="w-full overflow-x-hidden bg-white py-[60px] lg:py-[85px] scroll-mt-[100px] xl:scroll-mt-[120px]"
+      className="w-full overflow-x-hidden bg-white py-14 lg:py-20 scroll-mt-[100px] xl:scroll-mt-[120px]"
     >
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 flex flex-col gap-10 lg:gap-12">
 

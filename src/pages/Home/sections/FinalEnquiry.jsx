@@ -30,7 +30,7 @@ export default function FinalEnquiry({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative w-full bg-[#fdfbf7] py-24 lg:py-36 overflow-hidden">
+    <div className="relative w-full bg-[#fdfbf7] py-14 lg:py-20 overflow-hidden">
       <motion.div
         aria-hidden
         className="absolute left-1/2 top-1/3 -translate-x-1/2 w-[680px] h-[680px] rounded-full pointer-events-none"

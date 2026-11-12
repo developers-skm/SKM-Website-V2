@@ -107,7 +107,7 @@ export default function CompanyIntro({ onPageChange }) {
   const active = blocks[activeIndex];
 
   return (
-    <div className="w-full bg-white py-20 lg:py-28">
+    <div className="w-full bg-white py-14 lg:py-20">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-10">

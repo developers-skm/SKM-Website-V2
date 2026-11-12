@@ -38,7 +38,7 @@ export default function GlobalMarkets({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full bg-white py-[110px] lg:py-[140px]">
+    <div className="w-full bg-white py-14 lg:py-20">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
         {/* Split - typography left (~36%), large map right (~64%) */}

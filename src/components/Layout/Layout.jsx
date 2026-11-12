@@ -1,6 +1,7 @@
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import ScrollToTopButton from '../ScrollToTop/ScrollToTopButton';
+import BackButton from './BackButton';
 import Chatbot from '../Chatbot/Chatbot';
 import QuickActionsCart from '../QuickActions/QuickActionsCart';
 import { getProductIdByPage, getTdsUrl } from '../../data/products';
@@ -36,6 +37,7 @@ export default function Layout({ children, activePage, onPageChange }) {
             />
           )}
           <ScrollToTopButton />
+          <BackButton activePage={activePage} />
           <Chatbot onPageChange={onPageChange} />
         </>
       )}

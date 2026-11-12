@@ -155,6 +155,8 @@ function RollingEgg({ pathRef, boxRef, withImage, showHen }) {
       // The hen runs the same curve a few strides behind the egg, facing the
       // way the egg is rolling, with its feet planted on the line.
       const hen = henRef.current;
+      // Top edge of the hen, so the label can sit clear above it.
+      let labelBottom = y - eggH * 0.8;
       if (hen) {
         const henH = parseFloat(getComputedStyle(hen).height) || 40;
         const gap = (henH * 0.5 + eggH * 0.5 + 18) / sx;
@@ -165,6 +167,7 @@ function RollingEgg({ pathRef, boxRef, withImage, showHen }) {
         const hdx = (hq.x - ha.x) * sx;
         const hdy = (hq.y - ha.y) * sy;
         const tilt = (Math.atan2(hdy, hdx) * 180) / Math.PI;
+        labelBottom = Math.min(labelBottom, hp.y * sy - henH * 1.0 - 6);
         const edge = Math.max(0, Math.min(1, hs / 0.06, (1 - hs) / 0.06));
         hen.style.opacity = String(Math.min(edge, Number(fade)));
         hen.style.transform = `translate(${hp.x * sx}px, ${hp.y * sy}px) rotate(${tilt}deg) translate(-50%, -96%) scaleX(${motion.dir > 0 ? 1 : -1})`;
@@ -176,7 +179,7 @@ function RollingEgg({ pathRef, boxRef, withImage, showHen }) {
         const lw = label.offsetWidth;
         const left = Math.min(Math.max(x - lw / 2, 8), Math.max(8, w - lw - 8));
         label.style.opacity = fadingRef.current ? '0' : fade;
-        label.style.transform = `translate(${left}px, ${y - eggH * 0.8}px) translateY(-100%)`;
+        label.style.transform = `translate(${left}px, ${labelBottom}px) translateY(-100%)`;
       }
       raf = requestAnimationFrame(frame);
     };

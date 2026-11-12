@@ -243,7 +243,7 @@ export default function ApplicationAreas({ onPageChange }) {
   }, [reduceMotion, isPaused]);
 
   return (
-    <div id="application-selector" className="w-full bg-white pt-24 pb-24 lg:pt-32 lg:pb-32 scroll-mt-[100px] xl:scroll-mt-[120px]">
+    <div id="application-selector" className="w-full bg-white py-14 lg:py-20 scroll-mt-[100px] xl:scroll-mt-[120px]">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-12 lg:mb-16">

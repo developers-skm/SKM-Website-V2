@@ -12,7 +12,7 @@ export default function QualityCertificationProof({ onPageChange }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full bg-white pt-16 pb-14 lg:pt-[128px] lg:pb-[120px]">
+    <div className="w-full bg-white py-14 lg:py-20">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 mb-8 lg:mb-12">
@@ -22,7 +22,7 @@ export default function QualityCertificationProof({ onPageChange }) {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-center mb-10 lg:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-center">
 
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
@@ -54,18 +54,15 @@ export default function QualityCertificationProof({ onPageChange }) {
                 <path d="M-9.6438e-05 10.0002L6.27441 10.0002L3.62736 7.32687L-9.63211e-05 7.32687L-9.6438e-05 10.0002Z" />
               </svg>
             </InternalLink>
+            <InternalLink
+              route="certifications"
+              onPageChange={onPageChange}
+              className="self-start inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 mt-2 lg:mt-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-colors duration-[250ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            >
+              View All Certifications
+            </InternalLink>
           </motion.div>
         </div>
-
-        <motion.div {...fadeUp(reduceMotion)} className="flex flex-wrap items-center gap-4 pt-6 lg:pt-12 border-t border-surface-200/70">
-          <InternalLink
-            route="certifications"
-            onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-6 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-colors duration-[250ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-          >
-            View All Certifications
-          </InternalLink>
-        </motion.div>
 
       </div>
     </div>

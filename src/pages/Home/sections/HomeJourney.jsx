@@ -30,7 +30,7 @@ const copyItemVariants = {
   exit: { opacity: 0, y: -8, transition: { duration: 0.22, ease: EASE } },
 };
 
-function DesktopSticky() {
+function DesktopSticky({ cta }) {
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const total = journeyStages.length;
@@ -50,7 +50,8 @@ function DesktopSticky() {
         <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
           <div className="flex items-stretch gap-10 xl:gap-16 h-[min(80vh,860px)]">
 
-            <div className="relative flex-[1.2] min-w-0 h-full rounded-[8px] overflow-hidden">
+            <div className="flex-[1.2] min-w-0 h-full flex flex-col gap-6">
+            <div className="relative flex-1 min-h-0 rounded-[8px] overflow-hidden">
               <AnimatePresence mode="sync" initial={false}>
                 <motion.div
                   key={active.id}
@@ -69,6 +70,8 @@ function DesktopSticky() {
                 </motion.div>
               </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+            </div>
+            {cta && <div className="shrink-0">{cta}</div>}
             </div>
 
             <div className="relative flex-1 min-w-0 h-full flex flex-col justify-center">
@@ -163,9 +166,25 @@ export default function HomeJourney({ onPageChange, showCta = true, showStages =
   const reduceMotion = useReducedMotion();
   const useSticky = !reduceMotion;
 
+  const cta = showCta ? (
+    <InternalLink
+      route="traceability"
+      onPageChange={onPageChange}
+      className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-colors duration-[250ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+    >
+      Explore Complete Traceability System
+      <svg width="11" height="11" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true">
+        <path d="M10 0.0495054L10 10.0001L8.13725 10.0001L-8.22301e-08 1.8812L1.86275 -3.55691e-07L7.35294 5.5446L7.30392 0.0495053L10 0.0495054Z" />
+        <path d="M-9.6438e-05 10.0002L6.27441 10.0002L3.62736 7.32687L-9.63211e-05 7.32687L-9.6438e-05 10.0002Z" />
+      </svg>
+    </InternalLink>
+  ) : null;
+  // With the pinned desktop layout the button sits directly under the image.
+  const ctaUnderImage = showStages && useSticky;
+
   return (
     <section className="w-full bg-white">
-      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 pt-24 lg:pt-28">
+      <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 pt-14 lg:pt-20">
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">Traceability</span>
           <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
@@ -180,10 +199,11 @@ export default function HomeJourney({ onPageChange, showCta = true, showStages =
       {!showStages ? null : useSticky ? (
         <>
           <div className="hidden lg:block">
-            <DesktopSticky />
+            <DesktopSticky cta={cta} />
           </div>
           <div className="lg:hidden mx-auto max-w-[1680px] w-full px-6 sm:px-10 py-16">
             <StackedTimeline reduceMotion={reduceMotion} />
+            {cta && <div className="pt-2">{cta}</div>}
           </div>
         </>
       ) : (
@@ -192,24 +212,16 @@ export default function HomeJourney({ onPageChange, showCta = true, showStages =
         </div>
       )}
 
-      {showCta ? (
-      <div className={`mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 pb-24 lg:pb-28 ${showStages ? 'pt-8' : 'pt-10'}`}>
+      {ctaUnderImage ? (
+        <div className="pb-14 lg:pb-20" />
+      ) : showCta ? (
+      <div className={`mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16 pb-14 lg:pb-20 ${showStages ? 'pt-8' : 'pt-10'}`}>
         <div className={showStages ? 'pt-8 border-t border-surface-200/70' : ''}>
-          <InternalLink
-            route="traceability"
-            onPageChange={onPageChange}
-            className="inline-flex items-center gap-2.5 min-h-[46px] px-7 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-body font-semibold text-[15px] transition-colors duration-[250ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-          >
-            Explore Complete Traceability System
-            <svg width="11" height="11" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true">
-              <path d="M10 0.0495054L10 10.0001L8.13725 10.0001L-8.22301e-08 1.8812L1.86275 -3.55691e-07L7.35294 5.5446L7.30392 0.0495053L10 0.0495054Z" />
-              <path d="M-9.6438e-05 10.0002L6.27441 10.0002L3.62736 7.32687L-9.63211e-05 7.32687L-9.6438e-05 10.0002Z" />
-            </svg>
-          </InternalLink>
+          {cta}
         </div>
       </div>
       ) : (
-        <div className="pb-16 lg:pb-20" />
+        <div className="pb-14 lg:pb-20" />
       )}
     </section>
   );

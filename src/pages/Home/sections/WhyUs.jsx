@@ -195,7 +195,7 @@ export default function WhyUs({ onPageChange }) {
   }, []);
 
   return (
-    <div className="w-full bg-white pt-[110px] pb-[100px] lg:pt-[136px] lg:pb-[128px]">
+    <div className="w-full bg-white py-14 lg:py-20">
       <div className="mx-auto max-w-[1560px] w-full px-6 sm:px-10 lg:px-16">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">

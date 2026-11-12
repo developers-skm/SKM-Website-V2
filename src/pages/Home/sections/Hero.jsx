@@ -5,7 +5,6 @@ import { getBrochureUrl } from '../../../data/brochureUrl';
 import { EASE_PREMIUM } from '../../../utils/motionTokens';
 
 const ProductListPdf = getBrochureUrl('Product List - SKM Egg Products Export India Limited.pdf');
-import useApplicationSelectorNavigation from '../../../components/Navbar/useApplicationSelectorNavigation';
 
 // Full-bleed hero - the food-application photo fills the entire section,
 // copy sits on top of it with a left-weighted gradient scrim for
@@ -15,7 +14,6 @@ import useApplicationSelectorNavigation from '../../../components/Navbar/useAppl
 // approved repository content (see the source note on each block).
 export default function Hero({ onPageChange }) {
   const reduceMotion = useReducedMotion();
-  const scrollToApplicationSelector = useApplicationSelectorNavigation();
   const scrubContainerRef = useRef(null);
 
   // Mobile only: the copy covers the egg animation, so the first frames show
@@ -57,7 +55,7 @@ export default function Hero({ onPageChange }) {
       ref={scrubContainerRef}
       className="relative w-full h-[150vh]"
     >
-      <div className="sticky top-0 h-[100svh] min-h-[600px] sm:min-h-0 sm:h-[720px] lg:h-[820px] w-full overflow-hidden">
+      <div className="sticky top-0 h-[100svh] min-h-[600px] sm:min-h-[720px] sm:h-auto lg:min-h-[820px] w-full overflow-hidden">
         {/* Signature entrance - a soft curved (egg-inspired) mask sweeps open
             from center to reveal the hero visual, instead of a plain fade.
             Heading/CTA (below) animate on their own, independent timeline so
@@ -118,7 +116,7 @@ export default function Hero({ onPageChange }) {
             reserves none, so the hero's background/image still starts at
             y=0) - clears the logo+menu row (~60-70px tall) plus breathing
             room before the heading. */}
-        <div className="relative z-10 w-full h-full mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-16 pt-[84px] pb-6 sm:pb-0 sm:pt-[145px] lg:pt-[160px] flex items-start sm:items-center">
+        <div className="relative z-10 w-full h-full mx-auto max-w-[1680px] px-5 sm:px-8 lg:px-16 pt-[84px] pb-6 sm:pb-12 sm:pt-[145px] lg:pt-[160px] sm:min-h-[720px] lg:min-h-[820px] flex items-start sm:items-center">
           {isMobile && !reduceMotion && (
             <motion.div
               style={{ opacity: hintOpacity }}
@@ -165,17 +163,6 @@ export default function Hero({ onPageChange }) {
 
             {/* Primary + secondary actions */}
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-1 sm:mt-2">
-              <button
-                onClick={scrollToApplicationSelector}
-                className="btn-primary-red min-h-[42px] sm:min-h-[46px] justify-center"
-              >
-                Find the Right Egg Product
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </button>
-
               <button
                 onClick={() => onPageChange('get-quote')}
                 className="inline-flex items-center justify-center gap-2 min-h-[42px] sm:min-h-[46px] px-6 rounded-[10px] border border-white/40 bg-white/10 backdrop-blur-sm text-white font-heading font-bold text-[13px] uppercase tracking-[0.03em] hover:bg-white hover:text-heading hover:border-white transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
