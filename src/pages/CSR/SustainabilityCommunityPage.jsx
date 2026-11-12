@@ -16,7 +16,8 @@ import Trust3 from '../../assets/trust-images/trust-3.webp';
 import Trust4 from '../../assets/trust-images/trust-4.webp';
 import Trust5 from '../../assets/trust-images/trust-5.webp';
 import CarbonFootprint from '../../assets/home/carbon-footprint.webp';
-import OefCommunityActivity from '../../assets/trust-images/oef-community-activity.webp';
+import MdVision1 from '../../assets/trust-images/md-vision-1.webp';
+import MdVision3 from '../../assets/trust-images/md-vision-3.webp';
 
 // Section 2 - Environmental responsibility. Energy, water, and waste are
 // all real, verbatim/derived facts already documented elsewhere: energy
@@ -248,15 +249,18 @@ const CSR_SUMMARY_CARDS = [
     title: 'Environmental Sustainability',
     description: 'Carbon footprint reduction, wind energy investments, eco-efficient processing, and environmental policy commitments.',
     page: 'csr_sustainability',
-    image: CarbonFootprint,
-    alt: 'SKM biogas dome supporting a lower carbon footprint',
+    images: [{ src: CarbonFootprint, alt: 'SKM biogas dome supporting a lower carbon footprint' }],
+    slideOffset: 0,
   },
   {
     title: 'MD Vision & Article',
     description: "The Olirum Erodu Foundation - Managing Director's personal initiative across five key community focus areas.",
     page: 'md_article',
-    image: OefCommunityActivity,
-    alt: 'Olirum Erodu Foundation community activity',
+    images: [
+      { src: MdVision1, alt: 'Olirum Erodu Foundation team handing over eggs to a child' },
+      { src: MdVision3, alt: 'Children with Olirum Erodu Foundation banner' },
+    ],
+    slideOffset: 1500,
   },
 ];
 
@@ -370,12 +374,7 @@ function CsrSection({ onPageChange }) {
               className="group flex flex-col overflow-hidden rounded-[16px] border border-[#eee] bg-[#fdfbf7] hover:border-brand-600/30 hover:shadow-[0_14px_36px_rgba(36,30,24,0.1)] transition-all duration-300"
             >
               <div className="relative w-full h-[220px] sm:h-[260px] overflow-hidden">
-                <img
-                  src={card.image}
-                  alt={card.alt}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                <CsrImageSlider images={card.images} offset={card.slideOffset} reduceMotion={reduceMotion} />
               </div>
               <div className="flex flex-col flex-1 gap-3 p-6 sm:p-8">
                 <h3 className="font-heading font-bold text-[20px] sm:text-[24px] text-heading m-0 leading-tight">
