@@ -120,7 +120,6 @@ export default function PlayOnceFrameSequence({ basePath, frameCount, durationMs
   // Static first frame while waiting for the section to scroll into view.
   useEffect(() => {
     if (imagesReady && !inView) drawFrame(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imagesReady, inView]);
 
   return (

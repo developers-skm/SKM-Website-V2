@@ -119,11 +119,12 @@ function ApplicationRow({ app, index, isActive, onActivate, onPageChange, onOpen
     });
   }, [progress]);
 
+  const canRoll = rollDistance > 0;
   useEffect(() => {
-    if (reduceMotion || !inView || rollDistance <= 0) return undefined;
+    if (reduceMotion || !inView || !canRoll) return undefined;
     roll(0.15 + index * 0.15);
     return () => controlsRef.current?.stop();
-  }, [reduceMotion, inView, rollDistance > 0, index, roll]);
+  }, [reduceMotion, inView, canRoll, index, roll]);
 
   // Hovering a row replays the roll (ring back to the left, text re-revealed
   // as it travels). Ignored while a roll is already running so moving the

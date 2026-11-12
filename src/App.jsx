@@ -128,25 +128,25 @@ const restoreScrollPosition = (y, onDone) => {
   rafId = requestAnimationFrame(tick);
 };
 
+// Removed pages whose old URLs now point at their replacement.
+const REMOVED_PAGE_REDIRECTS = {
+  laboratory: 'quality_food_safety_traceability',
+  quality_assurance: 'quality_food_safety_traceability',
+  'quality-assurance': 'quality_food_safety_traceability',
+};
+
+const getPageFromPath = () => {
+  const path = window.location.pathname.replace(/^\//, '');
+  const redirect = REMOVED_PAGE_REDIRECTS[path];
+  if (redirect) {
+    window.history.replaceState({ ...window.history.state, page: redirect }, '', `/${redirect}`);
+    return redirect;
+  }
+  return path || 'home';
+};
+
 function App() {
   const pendingScrollRef = useRef(null);
-  // Removed pages whose old URLs now point at their replacement.
-  const REMOVED_PAGE_REDIRECTS = {
-    laboratory: 'quality_food_safety_traceability',
-    quality_assurance: 'quality_food_safety_traceability',
-    'quality-assurance': 'quality_food_safety_traceability',
-  };
-
-  const getPageFromPath = () => {
-    const path = window.location.pathname.replace(/^\//, '');
-    const redirect = REMOVED_PAGE_REDIRECTS[path];
-    if (redirect) {
-      window.history.replaceState({ ...window.history.state, page: redirect }, '', `/${redirect}`);
-      return redirect;
-    }
-    return path || 'home';
-  };
-
   const [activePage, setActivePage] = useState(getPageFromPath);
   const activePageRef = useRef(activePage);
   activePageRef.current = activePage;

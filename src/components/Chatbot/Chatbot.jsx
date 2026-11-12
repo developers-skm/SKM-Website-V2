@@ -237,7 +237,7 @@ export default function Chatbot({ onPageChange }) {
       const isBullet = content.trim().startsWith('•') || content.trim().startsWith('-') || /^\d+\./.test(content.trim());
       if (isBullet) {
         // Strip out bullet symbol for styling
-        content = content.replace(/^[•\-\d+\.]\s*/, '');
+        content = content.replace(/^[•\-\d+.]\s*/, '');
       }
 
       // Parse bold tags **text**

@@ -5,7 +5,7 @@
 const DEPARTMENTS = {
   HR: 'hrd@skmegg.com',
   QUALITY: 'quality@skmegg.com',
-  EXPORT_SALES: 'developer@skmegg.com',
+  EXPORT_SALES: 'exportsales@skmegg.com',
   COMMERCIAL_LIQUIDS: 'commercialbesteggs@skmegg.com',
   CUSTOMER_CARE: 'customercare@skmegg.com',
 };

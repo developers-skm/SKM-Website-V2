@@ -1,6 +1,9 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import InternalLink from '../../../components/common/InternalLink';
-import ExportMarketsMap from '../../../components/GlobalMap/ExportMarketsMap';
+import { lazy, Suspense } from 'react';
+// The map pulls in d3-geo / d3-zoom / react-simple-maps (~180 kB of source);
+// load it as its own chunk instead of inflating the main bundle.
+const ExportMarketsMap = lazy(() => import('../../../components/GlobalMap/ExportMarketsMap'));
 import marketsByRegion from '../../../data/exportMarketRegions';
 import useCountUp from '../../../utils/useCountUp';
 import { fadeUp, EASE_PREMIUM } from '../../../utils/motionTokens';
@@ -76,7 +79,9 @@ export default function GlobalMarkets({ onPageChange }) {
           </motion.div>
 
           <div className="lg:col-span-8">
-            <ExportMarketsMap />
+            <Suspense fallback={<div className="min-h-[420px] lg:h-[820px] rounded-[20px] border border-[#eee] bg-white" aria-hidden="true" />}>
+              <ExportMarketsMap />
+            </Suspense>
           </div>
         </div>
 

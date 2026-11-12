@@ -29,7 +29,7 @@ function TrustSlideshow({ slides, alt, reduceMotion }) {
     if (reduceMotion || paused) return undefined;
     const id = setInterval(() => setActive((i) => (i + 1) % slides.length), SLIDE_INTERVAL_MS);
     return () => clearInterval(id);
-  }, [reduceMotion, paused, active]);
+  }, [reduceMotion, paused, active, slides.length]);
 
   return (
     <div
