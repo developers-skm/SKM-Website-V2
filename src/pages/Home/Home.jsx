@@ -28,7 +28,7 @@ export default function Home({ onPageChange, prefill }) {
     <div className="w-full flex flex-col">
       <SEO
         title="Egg Powder & Liquid Egg Manufacturer | SKM Egg Products"
-        description="Asia's largest integrated egg processing facility since 1996. SKM Egg Products manufactures and exports premium whole egg powder, egg albumen powder, egg yolk powder, and liquid egg products. BRCGS, Halal & Kosher certified. Processing 2 million eggs daily."
+        description="Asia's largest integrated egg processing facility since 1997. SKM Egg Products manufactures and exports premium whole egg powder, egg albumen powder, egg yolk powder, and liquid egg products. BRCGS, Halal & Kosher certified. Processing 2 million eggs daily."
         keywords="egg powder manufacturer India, whole egg powder, egg albumen powder, egg yolk powder, spray dried egg powder, dried egg powder, liquid egg products, pasteurised egg, egg white powder, egg powder exporter, egg products manufacturer, egg powder bulk supplier, egg powder food industry, halal egg powder, kosher egg powder, BRCGS egg, SKM egg products"
         canonical="https://www.skmegg.com/"
         jsonLd={{
@@ -36,7 +36,7 @@ export default function Home({ onPageChange, prefill }) {
           "@type": "WebSite",
           "name": "SKM Egg Products",
           "url": "https://www.skmegg.com",
-          "description": "Asia's largest integrated egg processing facility since 1996. Manufacturer and exporter of premium egg powder and liquid egg products.",
+          "description": "Asia's largest integrated egg processing facility since 1997. Manufacturer and exporter of premium egg powder and liquid egg products.",
           "potentialAction": {
             "@type": "SearchAction",
             "target": "https://www.skmegg.com/?q={search_term_string}",

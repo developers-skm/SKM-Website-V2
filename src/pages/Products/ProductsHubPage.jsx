@@ -1,5 +1,6 @@
-import { useState, useMemo, useEffect } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { useState, useMemo, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useReducedMotion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import ScrollFrameSequence from '../../components/common/ScrollFrameSequence';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
@@ -720,25 +721,43 @@ const DESKTOP_EXT = 126;
 const DESKTOP_TOTAL = 900 + DESKTOP_EXT;
 function DesktopHero({ onPageChange }) {
   const reduceMotion = useReducedMotion();
+  const scrubRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: scrubRef, offset: ['start start', 'end end'] });
+  // The scroll-scrubbed frames play first; the finished still life (with its
+  // heading and product hotspots) fades in over the last frame at the end.
+  const finalOpacity = useTransform(scrollYProgress, reduceMotion ? [0, 0.01] : [0.72, 0.9], [0, 1]);
+  // Once the finished still life (the last frame) has been reached it is locked:
+  // scrolling back up no longer rewinds the animation, it stays put.
+  const [finalReady, setFinalReady] = useState(false);
+  const lockAt = reduceMotion ? 0.01 : 0.9;
+  useMotionValueEvent(scrollYProgress, 'change', (v) => { if (v >= lockAt) setFinalReady(true); });
+  useEffect(() => { if (scrollYProgress.get() >= lockAt) setFinalReady(true); }, [scrollYProgress, lockAt]);
   return (
+    <div ref={scrubRef} className="relative w-full" style={{ height: reduceMotion ? '100svh' : '260svh' }}>
     <motion.div
-      className="relative w-full overflow-hidden"
-      style={{ aspectRatio: `1600 / ${DESKTOP_TOTAL}` }}
+      className="sticky top-0 w-full h-[100svh] min-h-[480px] overflow-hidden bg-[#f1d9bf]"
+      style={{ containerType: 'size' }}
       initial={reduceMotion ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}
       animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
       transition={{ duration: reduceMotion ? 0.01 : 1.2, ease: EASE_PREMIUM }}
     >
+      {!reduceMotion && (
+        <ScrollFrameSequence containerRef={scrubRef} basePath="/products-sequence" frameCount={200} holdEnd={0.2} lockAtEnd />
+      )}
+
+      <motion.div className="absolute inset-0" style={finalReady ? { opacity: 1 } : { opacity: finalOpacity, pointerEvents: 'none' }}>
+      {/* The still life covers the whole frame edge to edge. Any extra height is
+          trimmed mostly from the bottom (the top holds the heading area). */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2"
+        style={{
+          width: `max(100cqw, ${(1600 / DESKTOP_TOTAL) * 100}cqh)`,
+          height: `max(100cqh, ${(DESKTOP_TOTAL / 1600) * 100}cqw)`,
+          top: `calc((100cqh - max(100cqh, ${(DESKTOP_TOTAL / 1600) * 100}cqw)) * 0.3)`,
+        }}
+      >
       <img src="/products-sequence/desktop-final.webp" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full" />
 
-      <div className="absolute inset-x-0 top-[2.7%] z-30 flex flex-col items-center px-4 text-center pointer-events-none">
-        <span className="font-body font-bold text-[12px] uppercase tracking-[0.28em] text-brand-600 mb-2">
-          Our Egg Products
-        </span>
-        <p className="m-0 font-heading font-extrabold text-[28px] lg:text-[32px] leading-[1.1] tracking-[-0.01em] text-[#3b2a1e]">
-          Select a product to <span className="text-brand-600">discover more.</span>
-        </p>
-        <span className="mt-3 block h-[2px] w-12 rounded-full bg-brand-600" aria-hidden="true" />
-      </div>
 
       {HERO_HOTSPOTS.map((h) => (
         <InternalLink
@@ -759,8 +778,21 @@ function DesktopHero({ onPageChange }) {
           </span>
         </InternalLink>
       ))}
+      </div>
+
+      <div className="absolute inset-x-0 top-[28px] z-30 flex flex-col items-center px-4 text-center pointer-events-none">
+        <span className="font-body font-bold text-[12px] uppercase tracking-[0.28em] text-brand-600 mb-2">
+          Our Egg Products
+        </span>
+        <p className="m-0 font-heading font-extrabold text-[28px] lg:text-[32px] leading-[1.1] tracking-[-0.01em] text-[#3b2a1e]">
+          Select a product to <span className="text-brand-600">discover more.</span>
+        </p>
+        <span className="mt-3 block h-[2px] w-12 rounded-full bg-brand-600" aria-hidden="true" />
+      </div>
+      </motion.div>
       <h1 className="sr-only">Egg Products Engineered for Performance, Consistency and Safety.</h1>
     </motion.div>
+    </div>
   );
 }
 

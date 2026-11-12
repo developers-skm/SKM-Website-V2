@@ -1,9 +1,12 @@
-﻿import React from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO/SEO';
 import { makeContainerVariants, makeItemVariants } from '../../utils/animationVariants';
-import PlaygroundImg from '../../assets/trust-images/oef-playground.webp';
-import SportsCourtImg from '../../assets/trust-images/oef-sports-court.webp';
+import FrameSlider from "../../components/ImageSlider/FrameSlider";
+import MdArticle1 from "../../assets/trust-images/md-article-1.webp";
+import MdArticle2 from "../../assets/trust-images/md-article-2.webp";
+import MdArticle3 from "../../assets/trust-images/md-article-3.webp";
+import MdArticle4 from "../../assets/trust-images/md-article-4.webp";
 import CommunityEveningImg from '../../assets/trust-images/oef-community-evening.webp';
 import CommunityActivityImg from '../../assets/trust-images/oef-community-activity.webp';
 
@@ -50,7 +53,31 @@ const focusAreas = [
   },
 ];
 
+// Before / After gallery: the left frame shows the "before" photos, the right
+// frame the matching "after" photos, and both slide together to the next pair.
+const mdSlidesBefore = [
+  { src: MdArticle2, alt: 'Before: river with sluice, trees and farmland' },
+  { src: MdArticle3, alt: 'Before: open land and dirt path before development' },
+];
+const mdSlidesAfter = [
+  { src: MdArticle1, alt: 'After: restored water channel with greenery on both banks' },
+  { src: MdArticle4, alt: 'After: canal running through green farmland' },
+];
+
 export default function MdArticlePage({ onPageChange }) {
+  const [slide, setSlide] = useState(0);
+  const [hoverA, setHoverA] = useState(false);
+  const [hoverB, setHoverB] = useState(false);
+  const pausedRef = useRef(false);
+  pausedRef.current = hoverA || hoverB;
+  useEffect(() => {
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const id = setInterval(() => {
+      if (!pausedRef.current) setSlide((s) => (s + 1) % mdSlidesBefore.length);
+    }, 4500);
+    return () => clearInterval(id);
+  }, []);
+
   const containerVariants = makeContainerVariants(0.1);
   const itemVariants = makeItemVariants({ y: 25, stiffness: 80 });
 
@@ -102,10 +129,10 @@ export default function MdArticlePage({ onPageChange }) {
             {/* Images row 1 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <img src={PlaygroundImg} alt="Children playing at the community playground" loading="lazy" decoding="async" className="w-full aspect-[4/3] rounded-2xl object-cover" />
+                <FrameSlider images={mdSlidesBefore} label="Before" index={slide} onIndexChange={setSlide} onHoverChange={setHoverA} />
               </div>
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <img src={SportsCourtImg} alt="Girls playing volleyball on the community sports court" loading="lazy" decoding="async" className="w-full aspect-[4/3] rounded-2xl object-cover" />
+                <FrameSlider images={mdSlidesAfter} label="After" index={slide} onIndexChange={setSlide} onHoverChange={setHoverB} />
               </div>
             </div>
           </motion.div>

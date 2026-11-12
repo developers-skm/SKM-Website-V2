@@ -95,7 +95,7 @@ function ContentBlock({ block, index, onEnter, reduceMotion }) {
 }
 
 const stats = [
-  { value: '1996', label: 'Established' },
+  { value: '1997', label: 'Established' },
   { value: '2 Million', label: 'Eggs processed per day' },
   { value: '7,500 MT', label: 'Egg powder annually' },
   { value: 'ISO 22000', label: 'Certified poultry & processing facility' },

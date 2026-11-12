@@ -17,7 +17,7 @@ import goldTrophies from '../../assets/home/golden-trophies.png';
 
 // Section 2 - Company overview. Real content verbatim/derived from
 // src/pages/AboutUs/sections/OurCompany.jsx (also used on the standalone
-// Our Company page): founded 1996, Asia's largest integrated egg
+// Our Company page): founded 1997, Asia's largest integrated egg
 // processing facility, 2M eggs/day, 7,500 MT egg powder annually, ISO
 // 22000 certified poultry & feed mill (EU compartmentalization). "View
 // Manufacturing Capabilities" routes to the real Manufacturing and Supply
@@ -71,7 +71,7 @@ function CompanyOverviewSection({ onPageChange }) {
                     Integrated Feed & Farm Facility
                   </span>
                   <p className="font-body text-[13px] sm:text-[14px] font-medium text-white/90 m-0">
-                    Erode, Tamil Nadu, India • Est. 1996
+                    Erode, Tamil Nadu, India • Est. 1997
                   </p>
                 </motion.div>
 
@@ -92,7 +92,7 @@ function CompanyOverviewSection({ onPageChange }) {
               Who We Are
             </h2>
             <p className="font-body text-[15px] text-surface-600 leading-[1.7] m-0">
-              Established in 1996, SKM Egg Products began its journey with a clear commitment to excellence in egg processing. Today, we operate as one of Asia's largest integrated egg processing facilities, combining advanced production technology with internationally aligned quality systems.
+              Established in 1997, SKM Egg Products began its journey with a clear commitment to excellence in egg processing. Today, we operate as one of Asia's largest integrated egg processing facilities, combining advanced production technology with internationally aligned quality systems.
             </p>
             <p className="font-body text-[15px] text-surface-600 leading-[1.7] m-0">
               Supported by fully integrated back-end farms, our operations process up to 2 million eggs per day, producing approximately 7,500 metric tonnes of egg powder annually - serving food manufacturers across bakery, mayonnaise, meat & fish, and noodles & pasta industries.
@@ -598,7 +598,7 @@ function MobileJourneyTimeline({ onPageChange, isReducedMotion = false }) {
             Company Journey
           </h2>
           <p className="font-body text-[14px] sm:text-[15px] text-surface-500 leading-[1.6] m-0">
-            SKM's history from founding in 1996 through two decades of honours.
+            SKM's history from founding in 1997 through two decades of honours.
           </p>
           <InternalLink
             route="accolades"
@@ -1015,7 +1015,7 @@ export default function AboutSKMPage({ onPageChange }) {
     <PageWrapper
       seo={{
         title: 'About SKM | Company Overview, History & Leadership',
-        description: "SKM Egg Products - Asia's largest integrated egg processing facility since 1996. Company overview, history, leadership message, values, and global operations in one place.",
+        description: "SKM Egg Products - Asia's largest integrated egg processing facility since 1997. Company overview, history, leadership message, values, and global operations in one place.",
         keywords: 'SKM Egg Products company, about SKM, egg powder manufacturer history, SKM CEO, SKM vision mission, SKM Egg Products India',
         canonical: 'https://www.skmegg.com/about_skm',
         jsonLd: {
@@ -1023,11 +1023,11 @@ export default function AboutSKMPage({ onPageChange }) {
           "@type": "AboutPage",
           "name": "About SKM",
           "url": "https://www.skmegg.com/about_skm",
-          "description": "Asia's largest integrated egg processing facility since 1996. Company overview, history, leadership message, values, and global operations in one place.",
+          "description": "Asia's largest integrated egg processing facility since 1997. Company overview, history, leadership message, values, and global operations in one place.",
           "mainEntity": {
             "@type": "Organization",
             "name": "SKM Egg Products",
-            "foundingDate": "1996",
+            "foundingDate": "1997",
             "founder": { "@type": "Person", "name": "Mr. SKM Shree Shivkumar" },
             "url": "https://www.skmegg.com",
           },

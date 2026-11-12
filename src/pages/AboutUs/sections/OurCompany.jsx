@@ -49,7 +49,7 @@ export default function OurCompany() {
                 Integrated Feed & Farm Facility
               </span>
               <p className="font-body text-[13px] sm:text-[14px] text-white/90 m-0 leading-normal">
-                Ensuring biosecurity and 100% traceability at every stage • Est. 1996
+                Ensuring biosecurity and 100% traceability at every stage • Est. 1997
               </p>
             </div>
             <span className="hidden sm:inline-flex items-center px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 font-body text-[12px] font-semibold text-white flex-shrink-0">
@@ -76,7 +76,7 @@ export default function OurCompany() {
 
           <div className="flex-1 flex flex-col gap-4 lg:pt-2">
             <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 leading-[30px] m-0">
-              Established in 1996, SKM Egg Products began its journey with a clear commitment to excellence in egg processing.
+              Established in 1997, SKM Egg Products began its journey with a clear commitment to excellence in egg processing.
             </motion.p>
             <motion.p variants={itemVariants} className="font-body text-[16px] text-surface-500 leading-[30px] m-0">
               Today, we operate as one of Asia's largest integrated egg processing facilities, combining advanced production technology with internationally aligned quality systems. Supported by fully integrated back-end farms, our operations process up to 2 million eggs per day, producing approximately 7,500 metric tonnes of egg powder annually.

@@ -15,7 +15,7 @@ const books = [
     subtitle: "The SKM Story & Heritage",
     release: "Silver Jubilee Edition",
     pages: "68 Pages",
-    desc: "A premium celebratory coffee table book documenting our history since 1996. It details Mr. SKM Shree Shivkumar's visionary leadership, operational scale, and our journey to becoming Asia's largest egg processor.",
+    desc: "A premium celebratory coffee table book documenting our history since 1997. It details Mr. SKM Shree Shivkumar's visionary leadership, operational scale, and our journey to becoming Asia's largest egg processor.",
     coverGradient: "from-red-650 to-brand-950",
     goldDetails: true,
     pdfUrl: productListPdf,

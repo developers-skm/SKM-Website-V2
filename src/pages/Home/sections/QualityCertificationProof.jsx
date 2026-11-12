@@ -41,7 +41,7 @@ export default function QualityCertificationProof({ onPageChange }) {
 
           <motion.div {...fadeUp(reduceMotion, { delay: 0.3 })} className="lg:col-span-5 flex flex-col gap-3 lg:gap-6">
             <p className="font-body text-[15px] lg:text-[18px] text-surface-600 leading-[1.65] lg:leading-[1.75] max-w-lg m-0">
-              Every batch is governed by a documented Food Safety &amp; Quality Policy : HACCP-based hazard control, verified residue testing, and internationally aligned management systems, from raw material intake to finished product release.
+              Every production batch is governed by a documented Food Safety and Quality Policy, supported by HACCP-based hazard identification and control, verified residue testing, stringent quality assurance procedures and internationally aligned food safety management systems. These comprehensive measures are implemented throughout the production process, from raw material intake and processing to final product testing and release, ensuring consistent product quality, safety and compliance with established standards.
             </p>
             <InternalLink
               route="quality_food_safety_traceability"

@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 const SITE_URL = 'https://www.skmegg.com';
 const SITE_NAME = 'SKM Egg Products';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/android-chrome-512x512.png`;
-const DEFAULT_DESCRIPTION = "Asia's largest integrated egg processing facility since 1996. Manufacturer & exporter of premium egg powder, liquid eggs, egg albumen, egg yolk. BRCGS, Halal & Kosher certified.";
+const DEFAULT_DESCRIPTION = "Asia's largest integrated egg processing facility since 1997. Manufacturer & exporter of premium egg powder, liquid eggs, egg albumen, egg yolk. BRCGS, Halal & Kosher certified.";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -13,8 +13,8 @@ const organizationSchema = {
   "alternateName": "SKM Egg Products Export India",
   "url": SITE_URL,
   "logo": `${SITE_URL}/android-chrome-512x512.png`,
-  "description": "Asia's largest integrated egg processing facility, processing 2 million eggs daily since 1996.",
-  "foundingDate": "1996",
+  "description": "Asia's largest integrated egg processing facility, processing 2 million eggs daily since 1997.",
+  "foundingDate": "1997",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "IN",

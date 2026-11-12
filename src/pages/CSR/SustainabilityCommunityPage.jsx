@@ -253,7 +253,7 @@ const CSR_SUMMARY_CARDS = [
     slideOffset: 0,
   },
   {
-    title: 'MD Vision & Article',
+    title: 'MD Vision & Letter',
     description: "The Olirum Erodu Foundation - Managing Director's personal initiative across five key community focus areas.",
     page: 'md_article',
     images: [

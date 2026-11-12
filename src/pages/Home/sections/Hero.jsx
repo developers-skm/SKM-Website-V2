@@ -153,12 +153,12 @@ export default function Hero({ onPageChange }) {
 
             {/* Trust statement - two verbatim existing fragments, not merged
                 into a new sentence. "Asia's largest integrated egg processing
-                facility since 1996." and "BRCGS, Halal & Kosher certified."
+                facility since 1997." and "BRCGS, Halal & Kosher certified."
                 both already appear together in src/components/SEO/SEO.jsx's
                 DEFAULT_DESCRIPTION and src/pages/Home/Home.jsx's own SEO
                 description. */}
             <p className="font-body text-[12px] sm:text-[14px] lg:text-[15px] text-white/75 leading-[1.45] sm:leading-[1.6] m-0">
-              Asia's largest integrated egg processing facility since 1996. BRCGS, ISO 22000, Halal (JUHF &amp; BPJPH) &amp; Kosher certified.
+              Asia's largest integrated egg processing facility since 1997. BRCGS, ISO 22000, Halal (JUHF &amp; BPJPH) &amp; Kosher certified.
             </p>
 
             {/* Primary + secondary actions */}

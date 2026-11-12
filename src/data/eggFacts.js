@@ -2,7 +2,7 @@
 // section divider (see CurvedDivider). One statement per click.
 export const eggFacts = [
   { title: 'Excellence in Every Egg', text: 'SKM delivers premium-quality egg ingredients designed to meet the demanding standards of food manufacturers worldwide.' },
-  { title: 'Trusted Since 1996', text: 'With three decades of experience, SKM has established a strong reputation for quality, innovation, and customer satisfaction.' },
+  { title: 'Trusted Since 1997', text: 'With three decades of experience, SKM has established a strong reputation for quality, innovation, and customer satisfaction.' },
   { title: 'Quality from Farm to Finish', text: 'Our integrated farming and processing operations provide greater control over raw material quality, safety, and consistency.' },
   { title: 'Advanced Manufacturing Technology', text: 'Modern, automated processing facilities help us maintain exceptional hygiene, precision, and product reliability.' },
   { title: 'International Quality Standards', text: 'Our commitment to recognized food safety standards and rigorous quality management builds confidence in every product.' },
