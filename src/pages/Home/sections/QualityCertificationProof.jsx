@@ -15,32 +15,32 @@ export default function QualityCertificationProof({ onPageChange }) {
     <div className="w-full bg-white py-14 lg:py-20">
       <div className="mx-auto max-w-[1680px] w-full px-6 sm:px-10 lg:px-16">
 
-        <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 mb-8 lg:mb-12">
+        <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 mb-8 lg:mb-10">
           <span className="section-label">Quality &amp; Certifications</span>
           <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
             Quality, Verified at Every Step.
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-stretch">
 
           <motion.div
             initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-7 relative rounded-[8px] overflow-hidden aspect-[4/3] lg:aspect-[16/10]"
+            className="lg:col-span-7 relative rounded-[8px] overflow-hidden aspect-[4/3] lg:aspect-auto lg:min-h-[430px]"
           >
             <SafeImage
               src={LabImage}
               alt="SKM in-house quality testing laboratory"
               loading="lazy"
-              className="w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           </motion.div>
 
-          <motion.div {...fadeUp(reduceMotion, { delay: 0.3 })} className="lg:col-span-5 flex flex-col gap-3 lg:gap-6">
-            <p className="font-body text-[15px] lg:text-[18px] text-surface-600 leading-[1.65] lg:leading-[1.75] max-w-lg m-0">
+          <motion.div {...fadeUp(reduceMotion, { delay: 0.3 })} className="lg:col-span-5 flex flex-col justify-center gap-3 lg:gap-5">
+            <p className="font-body text-[15px] lg:text-[16.5px] text-surface-600 leading-[1.65] lg:leading-[1.7] max-w-xl m-0">
               Every production batch is governed by a documented Food Safety and Quality Policy, supported by HACCP-based hazard identification and control, verified residue testing, stringent quality assurance procedures and internationally aligned food safety management systems. These comprehensive measures are implemented throughout the production process, from raw material intake and processing to final product testing and release, ensuring consistent product quality, safety and compliance with established standards.
             </p>
             <InternalLink

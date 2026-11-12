@@ -74,9 +74,13 @@ export default function QuickActionsCart({ downloadUrl, downloadLabel = 'Downloa
         aria-label="Quick actions"
         aria-expanded={open}
         aria-controls="quick-actions-menu"
-        className="flex items-center justify-center w-10 h-10 sm:w-[45px] sm:h-[45px] rounded-full bg-white hover:bg-brand-600 text-brand-600 hover:text-white transition-all duration-200 cursor-pointer focus:outline-none focus-gold"
+        className="relative flex items-center justify-center w-10 h-10 sm:w-[45px] sm:h-[45px] rounded-full bg-white hover:bg-brand-600 text-brand-600 hover:text-white transition-all duration-200 cursor-pointer focus:outline-none focus-gold"
         style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.18), inset 0 0 0 2px rgba(228, 10, 24,0.25)' }}
       >
+        {/* Solid red ring - same size and weight as the scroll-to-top button's ring. */}
+        <svg viewBox="0 0 45 45" aria-hidden="true" className="absolute inset-0 w-full h-full pointer-events-none">
+          <circle cx="22.5" cy="22.5" r="20" fill="transparent" stroke="var(--color-brand-600)" strokeWidth="2.5" />
+        </svg>
         {/* Line-art glyph used as a mask so it takes the button's text colour
             (red, white on hover) exactly like the other floating buttons. */}
         <span
