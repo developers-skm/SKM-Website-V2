@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import QuickActionsIcon from '../../assets/images/quick-actions-icon.webp';
 
 // Floating cart button shown sitewide (rendered by Layout.jsx), stacked above
 // the ScrollToTop / Chatbot buttons (see .fab-cart in index.css). Clicking it
@@ -76,11 +77,16 @@ export default function QuickActionsCart({ downloadUrl, downloadLabel = 'Downloa
         className="flex items-center justify-center w-10 h-10 sm:w-[45px] sm:h-[45px] rounded-full bg-white hover:bg-brand-600 text-brand-600 hover:text-white transition-all duration-200 cursor-pointer focus:outline-none focus-gold"
         style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.18), inset 0 0 0 2px rgba(228, 10, 24,0.25)' }}
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <circle cx="9" cy="21" r="1" />
-          <circle cx="20" cy="21" r="1" />
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-        </svg>
+        {/* Line-art glyph used as a mask so it takes the button's text colour
+            (red, white on hover) exactly like the other floating buttons. */}
+        <span
+          aria-hidden="true"
+          className="block w-[22px] h-[22px] sm:w-6 sm:h-6 bg-current"
+          style={{
+            WebkitMask: `url(${QuickActionsIcon}) center / contain no-repeat`,
+            mask: `url(${QuickActionsIcon}) center / contain no-repeat`,
+          }}
+        />
       </button>
     </div>
   );
