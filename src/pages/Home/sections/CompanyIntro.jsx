@@ -23,7 +23,7 @@ const blocks = [
   {
     id: 'facility',
     eyebrow: 'Facility & Regulatory Compliance',
-    title: 'Built as per European Union (EU) Regulation.',
+    title: 'Built as per European Union (EU) Regulation',
     body: 'Constructed and equipped in accordance with applicable European Union (EU) requirements, the facility is approved under India’s Export of Egg Products Quality Control & Monitoring Rules (1997). Our facility operates under stringent hygiene standards in a climate-controlled environment, with dedicated production lines for egg yolk and albumen.',
     image: SkmFactory,
   },
@@ -113,7 +113,7 @@ export default function CompanyIntro({ onPageChange }) {
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-10">
           <span className="section-label">Infrastructure</span>
           <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
-            Asia's Largest Integrated Egg Processing Facility.
+            Asia's Largest Integrated Egg Processing Facility
           </h2>
         </motion.div>
 

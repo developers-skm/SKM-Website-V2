@@ -82,7 +82,7 @@ const stories = [
   {
     number: '01',
     eyebrow: 'Carbon Footprint',
-    title: 'Lower carbon footprint.',
+    title: 'Lower Carbon Footprint',
     body: 'Our carbon footprint is minimised through the strategic location of our processing plant, efficient waste recycling, and energy-efficient processes across our operations.',
     image: CarbonFootprint,
     imageAlt: 'Effluent treatment plant at SKM Egg Products',
@@ -90,7 +90,7 @@ const stories = [
   {
     number: '02',
     eyebrow: 'Clean Energy',
-    title: '5.2 million units of wind and solar energy, every year.',
+    title: '5.2 Million Units of Wind and Solar Energy, Every Year.',
     body: 'Our contribution to a clean environment is the installation of a wind mill and solar power panels that generate electricity of 5.2 million units per year - powering our operations with renewable energy.',
     image: CleanEnergy1,
     imageAlt: 'Wind and solar clean energy at SKM Egg Products',
