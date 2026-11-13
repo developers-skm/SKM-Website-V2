@@ -8,7 +8,7 @@ import JobApplicationForm from './components/JobApplicationForm';
 import ApplicationSuccess from './components/ApplicationSuccess';
 
 // /careers/apply/:slug → vacancy application.
-export default function ApplyPage({ slug, onPageChange }) {
+export default function ApplyPage({ slug, onPageChange, prefill }) {
   const { loading } = useJobs();
   const job = slug ? getJobBySlug(slug) : null;
   const [reference, setReference] = useState(null);
@@ -25,6 +25,40 @@ export default function ApplyPage({ slug, onPageChange }) {
             <InternalLink route="careers/jobs" onPageChange={onPageChange} className="btn-primary-red">Browse All Jobs</InternalLink>
           </div>
         </CareersPageHeader>
+      </div>
+    );
+  }
+
+  if (!job) {
+    return (
+      <div className="w-full flex flex-col">
+        <SEO title="General Application | Careers at SKM Egg Products" noindex />
+        <CareersPageHeader
+          onPageChange={onPageChange}
+          crumbs={[{ label: 'Careers', route: 'careers' }, { label: 'General Application' }]}
+          size="form"
+          eyebrow="Talent Pool"
+          title="General Application"
+        >
+          <p className="font-body text-[15px] text-surface-600 m-0">
+            Share your profile and we will reach out when a suitable role opens.
+          </p>
+        </CareersPageHeader>
+        <div className="w-full bg-white py-12 sm:py-16 lg:py-20">
+          <Container size="form">
+            {submitted ? (
+              <ApplicationSuccess reference={reference} onPageChange={onPageChange} />
+            ) : (
+              <JobApplicationForm
+                initialDepartment={prefill?.department}
+                onSuccess={(ref) => {
+                  setReference(ref);
+                  setSubmitted(true);
+                }}
+              />
+            )}
+          </Container>
+        </div>
       </div>
     );
   }

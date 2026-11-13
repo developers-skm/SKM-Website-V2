@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { FormSection, SelectField, TextField, FieldShell } from './careerFields';
+import { FormSection, SelectField, TextField, TextAreaField, FieldShell } from './careerFields';
 import ResumeUploader from './ResumeUploader';
 import { careerDepartments } from '../../../data/careersContent';
 import newSubmissionId from '../../../utils/submissionId';
@@ -9,7 +9,8 @@ const API_URL = import.meta.env.VITE_API_URL || '';
 const REFERRAL_SOURCES = ['LinkedIn', 'Employee Referral', 'Website', 'Job Portal', 'College', 'Other'];
 
 const emptyForm = {
-  firstName: '', lastName: '', email: '', phone: '', currentLocation: '',
+  firstName: '', lastName: '', dob: '', gender: '', email: '', phone: '',
+  currentAddress: '', permanentAddress: '', districtCity: '',
   currentCompany: '', currentDesignation: '', highestQualification: '', specialization: '',
   totalExperience: '', relevantExperience: '', currentCtc: '', expectedCtc: '', noticePeriod: '',
   willingToRelocate: '', referralSource: '',
@@ -19,6 +20,9 @@ const emptyForm = {
 
 // Same rule the old Contact modal used (kept so behaviour is unchanged).
 const EMAIL_PATTERN = /\S+@\S+\.\S+/;
+const GENDERS = ['Male', 'Female', 'Other', 'Prefer not to say'];
+const PHONE_PATTERN = /^\+?[\d\s-]{10,15}$/;
+const todayIso = () => new Date().toISOString().slice(0, 10);
 
 const validate = (form, isTalentPool) => {
   const errors = {};
@@ -26,7 +30,14 @@ const validate = (form, isTalentPool) => {
   if (!form.lastName.trim()) errors.lastName = 'Last name is required.';
   if (!form.email.trim()) errors.email = 'Email is required.';
   else if (!EMAIL_PATTERN.test(form.email)) errors.email = 'Enter a valid email address.';
-  if (!form.phone.trim()) errors.phone = 'Phone number is required.';
+  if (!form.phone.trim()) errors.phone = 'Mobile number is required.';
+  else if (!PHONE_PATTERN.test(form.phone.trim())) errors.phone = 'Enter a valid mobile number.';
+  if (!form.dob) errors.dob = 'Date of birth is required.';
+  else if (form.dob > todayIso()) errors.dob = 'Date of birth cannot be in the future.';
+  if (!form.gender) errors.gender = 'Select your gender.';
+  if (!form.currentAddress.trim()) errors.currentAddress = 'Current address is required.';
+  if (!form.permanentAddress.trim()) errors.permanentAddress = 'Permanent address is required.';
+  if (!form.districtCity.trim()) errors.districtCity = 'District / city is required.';
   if (!form.highestQualification.trim()) errors.highestQualification = 'Highest qualification is required.';
   if (isTalentPool && !form.preferredDepartment) errors.preferredDepartment = 'Select a preferred department.';
   if (!form.resume) errors.resume = 'Please upload your resume.';
@@ -47,7 +58,11 @@ const buildFormData = (form, job, submissionId) => {
     last_name: form.lastName,
     email: form.email,
     phone: form.phone,
-    current_location: form.currentLocation,
+    date_of_birth: form.dob,
+    gender: form.gender,
+    current_address: form.currentAddress,
+    permanent_address: form.permanentAddress,
+    district_city: form.districtCity,
     current_company: form.currentCompany,
     current_designation: form.currentDesignation,
     highest_qualification: form.highestQualification,
@@ -73,9 +88,12 @@ const buildFormData = (form, job, submissionId) => {
 // Full-page application form. `job` set → vacancy application; omitted →
 // general Talent Pool profile. Calls onSuccess(reference) with the reference
 // ID returned by the server.
-export default function JobApplicationForm({ job, onSuccess }) {
+export default function JobApplicationForm({ job, onSuccess, initialDepartment }) {
   const isTalentPool = !job;
-  const [form, setForm] = useState(emptyForm);
+  const [form, setForm] = useState(() => ({
+    ...emptyForm,
+    preferredDepartment: careerDepartments.includes(initialDepartment) ? initialDepartment : '',
+  }));
   const [errors, setErrors] = useState({});
   const [submitError, setSubmitError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -129,9 +147,29 @@ export default function JobApplicationForm({ job, onSuccess }) {
       <FormSection title="Personal Information">
         <TextField {...bind('firstName')} label="First Name" required autoComplete="given-name" />
         <TextField {...bind('lastName')} label="Last Name" required autoComplete="family-name" />
-        <TextField {...bind('email')} label="Email" type="email" required autoComplete="email" />
-        <TextField {...bind('phone')} label="Phone Number" type="tel" required autoComplete="tel" placeholder="+91 98765 43210" />
-        <TextField {...bind('currentLocation')} label="Current Location" placeholder="City, State" autoComplete="address-level2" />
+        <TextField {...bind('dob')} label="Date of Birth" type="date" required max={todayIso()} autoComplete="bday" />
+        <SelectField {...bind('gender')} label="Gender" required options={GENDERS} />
+        <TextField {...bind('phone')} label="Mobile No" type="tel" required autoComplete="tel" placeholder="+91 98765 43210" />
+        <TextField {...bind('email')} label="Email ID" type="email" required autoComplete="email" />
+        <div className="sm:col-span-2">
+          <TextAreaField {...bind('currentAddress')} label="Current Address" required autoComplete="street-address" />
+        </div>
+        <div className="sm:col-span-2 flex flex-col gap-2">
+          <TextAreaField {...bind('permanentAddress')} label="Permanent Address" required />
+          <label className="inline-flex items-center gap-2 font-body text-[13px] text-surface-600 cursor-pointer self-start">
+            <input
+              type="checkbox"
+              className="w-4 h-4 accent-[var(--color-brand-600)]"
+              checked={Boolean(form.currentAddress) && form.permanentAddress === form.currentAddress}
+              onChange={(event) => {
+                setForm((prev) => ({ ...prev, permanentAddress: event.target.checked ? prev.currentAddress : '' }));
+                setErrors((prev) => ({ ...prev, permanentAddress: null }));
+              }}
+            />
+            Same as current address
+          </label>
+        </div>
+        <TextField {...bind('districtCity')} label="District / City" required autoComplete="address-level2" />
         {isTalentPool && <TextField {...bind('linkedinUrl')} label="LinkedIn Profile" type="url" placeholder="https://www.linkedin.com/in/…" hint="Optional" />}
       </FormSection>
 

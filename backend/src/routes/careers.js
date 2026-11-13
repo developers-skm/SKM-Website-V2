@@ -25,7 +25,12 @@ const validators = [
   body('first_name').trim().notEmpty().withMessage('First name is required.'),
   body('last_name').trim().notEmpty().withMessage('Last name is required.'),
   body('email').trim().isEmail().withMessage('A valid email is required.'),
-  body('phone').trim().notEmpty().withMessage('Phone number is required.'),
+  body('phone').trim().notEmpty().withMessage('Mobile number is required.'),
+  body('date_of_birth').trim().isISO8601({ strict: true }).withMessage('A valid date of birth is required.'),
+  body('gender').trim().notEmpty().withMessage('Gender is required.'),
+  body('current_address').trim().notEmpty().withMessage('Current address is required.'),
+  body('permanent_address').trim().notEmpty().withMessage('Permanent address is required.'),
+  body('district_city').trim().notEmpty().withMessage('District / city is required.'),
   body('highest_qualification').trim().notEmpty().withMessage('Highest qualification is required.'),
   body('job_id').if(body('application_type').equals('job')).trim().notEmpty().withMessage('Job ID is required.'),
   body('job_title').if(body('application_type').equals('job')).trim().notEmpty().withMessage('Job title is required.'),
@@ -50,7 +55,8 @@ router.post('/apply', upload.single('resume'), dedupe, validators, async (req, r
     const reference = generateReference();
     const fields = [
       'application_type', 'job_id', 'job_title', 'job_department', 'job_location',
-      'first_name', 'last_name', 'email', 'phone', 'current_location',
+      'first_name', 'last_name', 'date_of_birth', 'gender', 'email', 'phone',
+      'current_address', 'permanent_address', 'district_city', 'current_location',
       'current_company', 'current_designation', 'highest_qualification', 'specialization',
       'total_experience', 'relevant_experience', 'current_ctc', 'expected_ctc', 'notice_period',
       'willing_to_relocate', 'referral_source', 'preferred_department', 'preferred_role', 'linkedin_url',

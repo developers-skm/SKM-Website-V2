@@ -16,6 +16,21 @@ export const careerDepartments = [
   'Farm & Feed Operations',
 ];
 
+export const departmentDescriptions = {
+  'Production': 'Responsible for managing egg processing operations, ensuring efficient production, product quality, process hygiene, optimum resource utilisation and compliance with food safety standards to achieve production targets.',
+  'Engineering': 'Responsible for maintaining plant machinery, utilities and equipment through preventive maintenance, troubleshooting and continuous improvement to ensure operational efficiency, equipment reliability and minimum downtime.',
+  'Quality Assurance': 'Responsible for implementing food safety and quality management systems, monitoring process compliance, conducting audits and ensuring products meet customer specifications, regulatory requirements and international food safety standards.',
+  'Laboratory': 'Responsible for conducting physicochemical, microbiological and product quality testing of raw materials, in-process samples and finished egg products to ensure product safety, consistency and compliance with established specifications.',
+  'Sales & Marketing': 'Responsible for promoting egg-based ingredients, developing customer relationships, identifying domestic and international market opportunities and supporting business growth through effective sales and marketing strategies.',
+  'Logistics': 'Responsible for coordinating domestic and international shipments, export documentation, inventory movement and supply chain activities to ensure timely product delivery, cost efficiency and compliance with logistics requirements.',
+  'Information Systems / IT': 'Responsible for maintaining IT infrastructure, ERP systems, network security and digital applications while providing technical support, ensuring data integrity and driving process automation across business operations.',
+  'Finance & Accounts': 'Responsible for managing financial transactions, accounting records, budgeting, taxation, cost analysis and financial reporting to ensure regulatory compliance, financial accuracy and effective business decision-making.',
+  'HR & Administration': 'Responsible for recruitment, employee engagement, training, performance management, statutory compliance and administrative activities to support workforce development and smooth organisational operations.',
+  'Procurement': 'Responsible for sourcing raw materials, ingredients, packaging materials, equipment and services through supplier evaluation, negotiation, cost optimisation and inventory coordination to ensure uninterrupted plant operations.',
+  'Transport': 'Responsible for managing vehicle operations, transportation schedules, fleet maintenance and material movement to ensure safe, timely and cost-effective transportation of raw materials and finished products.',
+  'Farm & Feed Operations': 'Responsible for managing poultry farm and feed mill operations, including flock health, biosecurity, feed quality, nutrition, egg production and operational efficiency to ensure a consistent supply of high-quality eggs.',
+};
+
 export const whyJoinSkm = [
   { icon: 'growth', title: 'Growth & Learning', text: 'Expand your technical and professional capabilities as part of a expanding global food manufacturing group.' },
   { icon: 'innovation', title: 'Innovation', text: 'Work alongside modern processing equipment, automated systems, and advanced testing technology.' },

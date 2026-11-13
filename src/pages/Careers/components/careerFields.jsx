@@ -79,3 +79,20 @@ export function FormSection({ title, children }) {
     </fieldset>
   );
 }
+
+export function TextAreaField({ id, label, required, error, hint, rows = 3, className = '', ...areaProps }) {
+  return (
+    <FieldShell id={id} label={label} required={required} error={error} hint={hint}>
+      <textarea
+        id={id}
+        name={id}
+        rows={rows}
+        required={required}
+        aria-invalid={error ? 'true' : undefined}
+        aria-describedby={describedBy(id, error, hint)}
+        className={`${inputClass(Boolean(error))} resize-y ${className}`}
+        {...areaProps}
+      />
+    </FieldShell>
+  );
+}

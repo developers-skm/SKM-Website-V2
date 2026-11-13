@@ -24,11 +24,6 @@ export default function CareersPage({ onPageChange }) {
     openingsRef.current?.focus({ preventScroll: true });
   }, []);
 
-  const showDepartment = (department) => {
-    setFilters({ ...emptyFilters, department: filters.department === department ? '' : department });
-    scrollToOpenings();
-  };
-
   const showEarlyCareers = () => {
     setFilters({ ...emptyFilters, experience: 'Fresher' });
     scrollToOpenings();
@@ -44,7 +39,7 @@ export default function CareersPage({ onPageChange }) {
       <CareersHero onViewPositions={scrollToOpenings} onPageChange={onPageChange} />
       <WhyJoinSkm />
       <CurvedDivider bg="#fff" fill="#fff" />
-      <CareerAreas activeDepartment={filters.department} onSelectDepartment={showDepartment} />
+      <CareerAreas activeDepartment={filters.department} onPageChange={onPageChange} />
       <CurvedDivider bg="#fff" fill="#fcfbf9" />
       <EmployerBrandStrip />
 

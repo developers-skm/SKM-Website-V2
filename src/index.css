@@ -649,3 +649,14 @@ body { top: 0 !important; }
     font-size: 16px;
   }
 }
+
+/* Scrollable but with no visible scrollbar (overrides the global styled one). */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { makeContainerVariants } from '../../../utils/animationVariants';
 import { careerDepartments } from '../../../data/careersContent';
@@ -5,11 +6,13 @@ import { getOpenJobs, useJobs } from '../../../data/jobs';
 import { Container, Section } from './layout';
 import SectionHeading from './SectionHeading';
 import CareerAreaCard from './CareerAreaCard';
+import CareerAreaModal from './CareerAreaModal';
 
 const container = makeContainerVariants(0.04);
 
-export default function CareerAreas({ activeDepartment, onSelectDepartment }) {
+export default function CareerAreas({ activeDepartment, onPageChange }) {
   useJobs();
+  const [selected, setSelected] = useState(null);
   const open = getOpenJobs();
   const countFor = (department) => open.filter((job) => job.department === department).length;
 
@@ -35,11 +38,19 @@ export default function CareerAreas({ activeDepartment, onSelectDepartment }) {
               department={department}
               openCount={countFor(department)}
               active={activeDepartment === department}
-              onSelect={onSelectDepartment}
+              onSelect={setSelected}
             />
           ))}
         </motion.ul>
       </Container>
+      {selected && (
+        <CareerAreaModal
+          department={selected}
+          jobs={open.filter((job) => job.department === selected)}
+          onClose={() => setSelected(null)}
+          onPageChange={onPageChange}
+        />
+      )}
     </Section>
   );
 }
