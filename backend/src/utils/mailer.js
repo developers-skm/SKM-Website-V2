@@ -257,4 +257,65 @@ async function sendCareerApplicationEmail(payload, attachment, reference) {
   });
 }
 
-module.exports = { sendEnquiryEmail, sendQuoteEmail, sendCareerApplicationEmail };
+
+// ── Internship applications ─────────────────────────────────────────────────
+const INTERNSHIP_FIELD_LABELS = [
+  ['name', 'Name'],
+  ['institute', 'Institute'],
+  ['course', 'Course'],
+  ['current_year', 'Current Year of Course'],
+  ['period_from', 'Internship Period From'],
+  ['period_to', 'Internship Period To'],
+  ['email', 'Email ID'],
+  ['phone', 'Mobile No'],
+];
+
+async function sendInternshipApplicationEmail(payload, reference) {
+  const rows = [
+    ['Reference', reference],
+    ['Submitted', formatSubmittedAt()],
+    ...INTERNSHIP_FIELD_LABELS.map(([key, text]) => [text, payload[key]]),
+  ].filter(([, value]) => value !== null && value !== undefined && value !== '');
+
+  await contactTransporter.sendMail({
+    from: process.env.MAIL_FROM,
+    to: applyOverride(resolveEnquiryRecipient('internship')),
+    replyTo: payload.email,
+    subject: `SKM Website - New Internship Application - ${singleLine(payload.name)}`,
+    html: buildEmailHtml({ heading: `New Internship Application - ${singleLine(payload.name)}`, rows }),
+  });
+}
+// ── Group employment (contract manpower agencies) ───────────────────────────
+const GROUP_EMPLOYMENT_FIELD_LABELS = [
+  ['agency_name', 'Name of Agency'],
+  ['agency_experience', 'Agency Experience'],
+  ['manpower_min', 'Manpower Supply - Minimum'],
+  ['manpower_max', 'Manpower Supply - Maximum'],
+  ['location', 'Location'],
+  ['email', 'Email'],
+  ['phone', 'Mobile'],
+];
+
+async function sendGroupEmploymentEmail(payload, reference) {
+  const rows = [
+    ['Reference', reference],
+    ['Submitted', formatSubmittedAt()],
+    ...GROUP_EMPLOYMENT_FIELD_LABELS.map(([key, text]) => [text, payload[key]]),
+  ].filter(([, value]) => value !== null && value !== undefined && value !== '');
+
+  await contactTransporter.sendMail({
+    from: process.env.MAIL_FROM,
+    to: applyOverride(resolveEnquiryRecipient('internship')),
+    replyTo: payload.email,
+    subject: `SKM Website - Group Employment Enquiry - ${singleLine(payload.agency_name)}`,
+    html: buildEmailHtml({ heading: `Group Employment Enquiry - ${singleLine(payload.agency_name)}`, rows }),
+  });
+}
+
+module.exports = {
+  sendEnquiryEmail,
+  sendQuoteEmail,
+  sendCareerApplicationEmail,
+  sendInternshipApplicationEmail,
+  sendGroupEmploymentEmail,
+};

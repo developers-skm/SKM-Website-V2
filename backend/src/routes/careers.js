@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const upload = require('../middleware/upload');
-const { sendCareerApplicationEmail } = require('../utils/mailer');
+const { sendCareerApplicationEmail, sendInternshipApplicationEmail, sendGroupEmploymentEmail } = require('../utils/mailer');
 const dedupe = require('../middleware/dedupe');
 
 const router = express.Router();
@@ -66,6 +66,61 @@ router.post('/apply', upload.single('resume'), dedupe, validators, async (req, r
     await sendCareerApplicationEmail(payload, req.file, reference);
 
     res.status(201).json({ message: 'Application received.', reference });
+  } catch (err) {
+    next(err);
+  }
+});
+
+const internshipValidators = [
+  body('name').trim().notEmpty().withMessage('Name is required.').isLength({ max: 120 }),
+  body('institute').trim().notEmpty().withMessage('Institute is required.').isLength({ max: 200 }),
+  body('course').trim().notEmpty().withMessage('Course is required.').isLength({ max: 120 }),
+  body('current_year').trim().notEmpty().withMessage('Current year of course is required.').isLength({ max: 40 }),
+  body('period_from').trim().isISO8601({ strict: true }).withMessage('A valid internship start date is required.'),
+  body('period_to').trim().isISO8601({ strict: true }).withMessage('A valid internship end date is required.')
+    .custom((value, { req }) => value >= req.body.period_from).withMessage('End date cannot be before the start date.'),
+  body('email').trim().isEmail().withMessage('A valid email is required.'),
+  body('phone').trim().notEmpty().withMessage('Mobile number is required.').isLength({ max: 20 }),
+];
+
+router.post('/internship', dedupe, internshipValidators, async (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array()[0].msg, errors: errors.array() });
+    }
+    const reference = generateReference();
+    const fields = ['name', 'institute', 'course', 'current_year', 'period_from', 'period_to', 'email', 'phone'];
+    const payload = Object.fromEntries(fields.map((f) => [f, req.body[f] || null]));
+    await sendInternshipApplicationEmail(payload, reference);
+    res.status(201).json({ message: 'Internship application received.', reference });
+  } catch (err) {
+    next(err);
+  }
+});
+
+const groupEmploymentValidators = [
+  body('agency_name').trim().notEmpty().withMessage('Name of agency is required.').isLength({ max: 200 }),
+  body('agency_experience').trim().notEmpty().withMessage('Agency experience is required.').isLength({ max: 500 }),
+  body('manpower_min').trim().isInt({ min: 1, max: 1000000 }).withMessage('Minimum manpower must be a whole number of at least 1.'),
+  body('manpower_max').trim().isInt({ min: 1, max: 1000000 }).withMessage('Maximum manpower must be a whole number of at least 1.')
+    .custom((value, { req }) => Number(value) >= Number(req.body.manpower_min)).withMessage('Maximum manpower cannot be less than the minimum.'),
+  body('location').trim().notEmpty().withMessage('Location is required.').isLength({ max: 200 }),
+  body('email').trim().isEmail().withMessage('A valid email is required.'),
+  body('phone').trim().notEmpty().withMessage('Mobile number is required.').isLength({ max: 20 }),
+];
+
+router.post('/group-employment', dedupe, groupEmploymentValidators, async (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array()[0].msg, errors: errors.array() });
+    }
+    const reference = generateReference();
+    const fields = ['agency_name', 'agency_experience', 'manpower_min', 'manpower_max', 'location', 'email', 'phone'];
+    const payload = Object.fromEntries(fields.map((f) => [f, req.body[f] || null]));
+    await sendGroupEmploymentEmail(payload, reference);
+    res.status(201).json({ message: 'Enquiry received.', reference });
   } catch (err) {
     next(err);
   }

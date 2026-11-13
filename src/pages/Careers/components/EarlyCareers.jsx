@@ -8,8 +8,8 @@ import TextLink from './TextLink';
 const container = makeContainerVariants(0.08);
 const item = makeItemVariants({ y: 16 });
 
-// Tinted band with three numbered editorial columns (01, 02, 03).
-export default function EarlyCareers({ onExplore }) {
+// Tinted band with numbered editorial columns (01, 02).
+export default function EarlyCareers({ onPageChange }) {
   return (
     <Section tone="tint" labelledBy="early-careers-title">
       <Container className="flex flex-col gap-10 lg:gap-14">
@@ -39,8 +39,8 @@ export default function EarlyCareers({ onExplore }) {
               </div>
               <h3 className="font-heading font-bold text-[21px] text-heading m-0 tracking-tight">{path.title}</h3>
               <p className="font-body text-[15px] text-surface-600 leading-[1.68] m-0 flex-1">{path.text}</p>
-              <TextLink onClick={onExplore} className="self-start pt-2 font-semibold">
-                Learn More
+              <TextLink route={path.route} onPageChange={onPageChange} className="self-start pt-2 font-semibold">
+                {path.cta}
               </TextLink>
             </motion.li>
           ))}

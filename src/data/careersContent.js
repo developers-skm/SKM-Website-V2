@@ -41,21 +41,27 @@ export const whyJoinSkm = [
 export const earlyCareerPaths = [
   {
     number: '01',
-    icon: 'graduate',
-    title: 'Graduate Opportunities',
-    text: 'Structured career entry pathways for motivated graduates in engineering, science, food technology, and business management.',
+    icon: 'training',
+    title: 'Industrial Visit',
+    text: 'We welcome students and academic institutions to explore our egg processing operations through organised industrial visits. These visits provide practical exposure to modern food processing technologies, quality assurance systems, food safety practices and sustainable manufacturing processes, bridging the gap between academic learning and industrial experience.',
+    cta: 'Request a Visit',
+    route: 'contact-us',
   },
   {
     number: '02',
     icon: 'internship',
-    title: 'Internships',
-    text: 'Hands-on practical exposure inside our manufacturing plant, quality laboratories, and corporate departments for current students.',
+    title: 'Internship',
+    text: 'Internship programmes are available for students with hands-on practical experience across manufacturing operations, quality laboratories and corporate departments, bridging academic learning with real-world industrial practices, process engineering, and professional development.',
+    cta: 'Apply for Internship',
+    route: 'careers/internship',
   },
   {
     number: '03',
-    icon: 'training',
-    title: 'Industrial Training',
-    text: 'Immersive industrial apprenticeships designed to bridge academic study with real-world plant operations and process engineering.',
+    icon: 'teamwork',
+    title: 'Group Employment',
+    text: 'Employment opportunities for contract workers across various departments, supporting workforce requirements through skilled and unskilled manpower.',
+    cta: 'Share Agency Details',
+    route: 'careers/group-employment',
   },
 ];
 

@@ -10,7 +10,7 @@ import CareerAreaModal from './CareerAreaModal';
 
 const container = makeContainerVariants(0.04);
 
-export default function CareerAreas({ activeDepartment, onPageChange }) {
+export default function CareerAreas({ onPageChange }) {
   useJobs();
   const [selected, setSelected] = useState(null);
   const open = getOpenJobs();
@@ -37,7 +37,6 @@ export default function CareerAreas({ activeDepartment, onPageChange }) {
               key={department}
               department={department}
               openCount={countFor(department)}
-              active={activeDepartment === department}
               onSelect={setSelected}
             />
           ))}

@@ -3,6 +3,8 @@ import CareersPage from './CareersPage';
 import JobsPage from './JobsPage';
 import JobDetailPage from './JobDetailPage';
 import ApplyPage from './ApplyPage';
+import InternshipPage from './InternshipPage';
+import GroupEmploymentPage from './GroupEmploymentPage';
 import NotFound from '../NotFound/NotFound';
 
 // The app's router (App.jsx) is a flat `activePage` string, so nested Careers
@@ -19,6 +21,8 @@ function resolve({ path, onPageChange, prefill }) {
   if (!section) return <CareersPage key={key} onPageChange={onPageChange} />;
   if (section === 'jobs' && !slug) return <JobsPage key={key} onPageChange={onPageChange} prefill={prefill} />;
   if (section === 'jobs') return <JobDetailPage key={key} slug={slug} onPageChange={onPageChange} />;
+  if (section === 'group-employment') return <GroupEmploymentPage key={key} onPageChange={onPageChange} />;
+  if (section === 'internship') return <InternshipPage key={key} onPageChange={onPageChange} />;
   // No slug → general (talent pool) application.
   if (section === 'apply') return <ApplyPage key={key} slug={slug} onPageChange={onPageChange} prefill={prefill} />;
   return <NotFound onPageChange={onPageChange} />;
