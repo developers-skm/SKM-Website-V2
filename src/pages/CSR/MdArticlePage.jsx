@@ -7,8 +7,11 @@ import MdArticle1 from "../../assets/trust-images/md-article-1.webp";
 import MdArticle2 from "../../assets/trust-images/md-article-2.webp";
 import MdArticle3 from "../../assets/trust-images/md-article-3.webp";
 import MdArticle4 from "../../assets/trust-images/md-article-4.webp";
-import CommunityEveningImg from '../../assets/trust-images/oef-community-evening.webp';
-import CommunityActivityImg from '../../assets/trust-images/oef-community-activity.webp';
+import MdCommunity1 from '../../assets/trust-images/md-community-1.webp';
+import MdCommunity2 from '../../assets/trust-images/md-community-2.webp';
+import MdCommunity3 from '../../assets/trust-images/md-community-3.webp';
+import MdCommunity4 from '../../assets/trust-images/md-community-4.webp';
+import MdCommunity5 from '../../assets/trust-images/md-community-5.webp';
 
 const focusAreas = [
   {
@@ -62,6 +65,17 @@ const mdSlidesBefore = [
 const mdSlidesAfter = [
   { src: MdArticle1, alt: 'After: restored water channel with greenery on both banks' },
   { src: MdArticle4, alt: 'After: canal running through green farmland' },
+];
+
+// Row 2: egg-distribution programme photos, two independent slideshows.
+const communitySlidesLeft = [
+  { src: MdCommunity1, alt: 'Students holding packs of eggs at an Olirum Erodu Foundation programme' },
+  { src: MdCommunity4, alt: 'Foundation members handing egg packs to a schoolgirl' },
+  { src: MdCommunity5, alt: 'Group of schoolchildren holding egg packs' },
+];
+const communitySlidesRight = [
+  { src: MdCommunity2, alt: 'Schoolchildren and teachers gathered with egg packs' },
+  { src: MdCommunity3, alt: 'Children holding up egg packs received from the foundation' },
 ];
 
 export default function MdArticlePage({ onPageChange }) {
@@ -151,10 +165,10 @@ export default function MdArticlePage({ onPageChange }) {
             {/* Images row 2 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <img src={CommunityEveningImg} alt="Children gathered at an evening community programme" loading="lazy" decoding="async" className="w-full aspect-[4/3] rounded-2xl object-cover" />
+                <FrameSlider images={communitySlidesLeft} aspectRatio="3/2" interval={4800} />
               </div>
               <div className="rounded-[20px] border border-[#eee] bg-white/70 p-3 shadow-[5px_3px_40px_rgba(0,72,88,0.07)] overflow-hidden">
-                <img src={CommunityActivityImg} alt="Community members taking part in a group activity" loading="lazy" decoding="async" className="w-full aspect-[4/3] rounded-2xl object-cover" />
+                <FrameSlider images={communitySlidesRight} aspectRatio="3/2" interval={5600} />
               </div>
             </div>
           </motion.div>
