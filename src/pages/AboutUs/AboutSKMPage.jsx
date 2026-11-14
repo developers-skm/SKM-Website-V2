@@ -802,13 +802,13 @@ function VisionMissionValuesSection() {
 // Supply hub page.
 const BUSINESS_MODEL_STAGES = [
   { label: 'Feed', fact: 'In-house feed mill screens every ingredient for mycotoxins, pesticides, and antibiotic residues before formulation.' },
-  { label: 'Farm', fact: '2.4 million layers housed across ISO 22000 certified integrated farms, producing approximately 164 million eggs annually.' },
-  { label: 'Plant', fact: 'European Union (EU) - Directive compliance processing plant handling up to 2 million eggs per day across dedicated yolk and albumen lines.' },
-  { label: 'Branded Eggs', fact: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DoP) to ensure quality and traceability.' },
+  { label: 'Egg Production', fact: '2.4 million layers housed across ISO 22000 certified integrated farms, producing approximately 164 million eggs annually.' },
+  { label: 'Egg Processing', fact: 'European Union (EU) - Directive compliance processing plant handling up to 2 million eggs per day across dedicated yolk and albumen lines.' },
+  { label: 'Branded selling', fact: 'Premium-quality eggs are precisely graded and individually printed with the company seal and Date of Packing (DoP) to ensure quality and traceability.' },
   // Real, verbatim-sourced facts from EggProcessingPlant.jsx / SustainabilityCommunityPage.jsx:
   // integrated biogas facility, 70-tonne poultry litter handling capacity,
   // nutrient-rich liquid fertilizer supplied to farmers at no cost.
-  { label: 'Bio-Gas', fact: 'Integrated biogas facility with 70-tonne poultry litter handling capacity, supplying nutrient-rich liquid fertilizer for farmers.' },
+  { label: 'Sustainable Energy', fact: 'Integrated biogas facility with 70-tonne poultry litter handling capacity, supplying nutrient-rich liquid fertilizer for farmers.' },
 ];
 
 function IntegratedBusinessModelSection({ onPageChange }) {
@@ -820,7 +820,7 @@ function IntegratedBusinessModelSection({ onPageChange }) {
         <div className="flex flex-col gap-4 max-w-2xl">
           <span className="section-label">One Supply Chain</span>
           <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
-            Integrated Business Model
+            Integrated Operations 
           </h2>
         </div>
 

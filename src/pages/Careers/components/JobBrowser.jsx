@@ -66,7 +66,7 @@ export default function JobBrowser({ filters, onFiltersChange, onPageChange, fea
         </motion.div>
       ) : (
         <div className="rounded-xl bg-white border border-dashed border-surface-300 p-10 text-center flex flex-col items-center gap-3">
-          <h3 className="font-heading font-bold text-[20px] text-heading m-0">No matching opportunities</h3>
+          <h3 className="font-heading font-bold text-[20px] text-heading m-0"></h3>
           <p className="font-body text-[15px] text-surface-500 max-w-md m-0">
             Try adjusting your search or filters.
           </p>

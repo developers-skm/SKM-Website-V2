@@ -157,18 +157,38 @@ export default function Hero({ onPageChange }) {
                 both already appear together in src/components/SEO/SEO.jsx's
                 DEFAULT_DESCRIPTION and src/pages/Home/Home.jsx's own SEO
                 description. */}
-            <p className="font-body text-[12px] sm:text-[14px] lg:text-[15px] text-white/75 leading-[1.45] sm:leading-[1.6] m-0">
-              Asia's largest integrated egg processing facility since 1997. BRCGS, ISO 22000, Halal (JUHF &amp; BPJPH) &amp; Kosher certified.
-            </p>
+            <ul className="list-none p-0 m-0 flex flex-col gap-2 sm:gap-3 font-body text-[12px] sm:text-[14px] lg:text-[15px] text-white/75 leading-[1.45] sm:leading-[1.6]">
+              {[
+                'One of the largest fully integrated egg processing plants, delivering world-class quality and certified excellence.',
+                'Partner with us and experience the quality of our premium egg ingredients in your products. Since 1997.',
+                <>
+                  <span className="font-semibold text-white/90">Globally Recognized Certifications:</span>{' '}
+                  BRCGS | ISO 22000 | Halal (JUHF &amp; BPJPH) | Kosher | fssai
+                </>,
+              ].map((point, i) => (
+                <li key={i} className="flex items-start gap-2.5">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#F3C969"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="shrink-0 mt-[0.28em]"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
 
             {/* Primary + secondary actions */}
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-1 sm:mt-2">
-              <button
-                onClick={() => onPageChange('get-quote')}
-                className="inline-flex items-center justify-center gap-2 min-h-[42px] sm:min-h-[46px] px-6 rounded-[10px] border border-white/40 bg-white/10 backdrop-blur-sm text-white font-heading font-bold text-[13px] uppercase tracking-[0.03em] hover:bg-white hover:text-heading hover:border-white transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
-              >
-                Request a Quotation
-              </button>
+              
             </div>
 
             {/* Download Product Portfolio - real existing PDF asset */}
@@ -183,7 +203,7 @@ export default function Hero({ onPageChange }) {
                 <path d="M5 19h14" />
               </svg>
               <span className="underline underline-offset-4 decoration-white/40 hover:decoration-white/80">
-                Download Product Portfolio
+                Overview
               </span>
             </a>
           </motion.div>

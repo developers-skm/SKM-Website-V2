@@ -22,21 +22,15 @@ import TableEggImage from '../../../assets/1. HOME PAGE/TableEggImage.webp';
 // /products hub's in-page anchor.
 const families = [
   {
-    id: 'powders',
-    name: 'Egg Powders',
-    // Verbatim: whole_egg_powder's shortDescription in products.js.
-    format: ['Powder', 'Spray-dried'],
-    // Verbatim benefits fields from WholeEggPowderPage.jsx / EggYolkPowderPage.jsx
-    // variantsData - a representative selection, not a merged claim.
-    benefits: [
-      'Provides extended shelf-life stability, precise dosing and formulation ratio control, and consistent development of a well-structured crumb texture.',
-      'High fat content, rich creamy mouthfeel, natural golden-yellow colouration, and excellent emulsification properties.',
-    ],
-    // No storage/handling field exists anywhere in powder product data
-    // (powders are specified by moisture/dryness, not temperature/storage)
-    // - omitted per the missing-data rule, not invented.
-    productIds: products.filter((p) => p.category === PRODUCT_CATEGORIES.POWDERS).map((p) => p.id),
-    categoryRoute: 'category_powders',
+    // Shell eggs aren't in the products.js catalogue, so this card carries
+    // its own image and description instead of deriving them from product data.
+    id: 'table-eggs',
+    name: 'Table Eggs',
+    format: ['Hygenically packed'],
+    image: TableEggImage,
+    imageAlt: 'Brown table eggs in an egg tray',
+    description: "Premium-quality eggs are carefully collected, precisely graded, and each pack is individually printed with a QR code to ensure product authenticity, quality, and traceability.",
+    categoryRoute: 'table_eggs',
   },
   {
     id: 'liquids',
@@ -57,6 +51,23 @@ const families = [
     categoryRoute: 'category_liquids',
   },
   {
+    id: 'powders',
+    name: 'Egg Powders',
+    // Verbatim: whole_egg_powder's shortDescription in products.js.
+    format: ['Powder', 'Spray-dried'],
+    // Verbatim benefits fields from WholeEggPowderPage.jsx / EggYolkPowderPage.jsx
+    // variantsData - a representative selection, not a merged claim.
+    benefits: [
+      'Provides extended shelf-life stability, precise dosing and formulation ratio control, and consistent development of a well-structured crumb texture.',
+      'High fat content, rich creamy mouthfeel, natural golden-yellow colouration, and excellent emulsification properties.',
+    ],
+    // No storage/handling field exists anywhere in powder product data
+    // (powders are specified by moisture/dryness, not temperature/storage)
+    // - omitted per the missing-data rule, not invented.
+    productIds: products.filter((p) => p.category === PRODUCT_CATEGORIES.POWDERS).map((p) => p.id),
+    categoryRoute: 'category_powders',
+  },
+  {
     id: 'custom',
     name: 'Customised and Speciality Solutions',
     format: ['Easy to use'],
@@ -71,17 +82,6 @@ const families = [
       .filter((p) => p.category === PRODUCT_CATEGORIES.CUSTOMIZED || p.category === PRODUCT_CATEGORIES.SPECIALITY)
       .map((p) => p.id),
     categoryRoute: 'category_custom',
-  },
-  {
-    // Shell eggs aren't in the products.js catalogue, so this card carries
-    // its own image and description instead of deriving them from product data.
-    id: 'table-eggs',
-    name: 'Table Eggs',
-    format: ['Hygenically packed'],
-    image: TableEggImage,
-    imageAlt: 'Brown table eggs in an egg tray',
-    description: "Premium-quality eggs are carefully collected, precisely graded, and each pack is individually printed with a QR code to ensure product authenticity, quality, and traceability.",
-    categoryRoute: 'table_eggs',
   },
 ];
 

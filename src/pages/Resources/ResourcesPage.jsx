@@ -414,11 +414,6 @@ const FAQ_CATEGORIES = [
     answer: 'Yes, SKM can provide product samples for evaluation. Please contact our sales team to request a sample, specifying the product and quantity needed.',
   },
   {
-    category: 'MOQ and commercial enquiry',
-    question: 'What is your minimum order quantity?',
-    answer: 'Minimum order quantity varies by product and packaging format - contact our team directly for a commercial quote specific to your requirement.',
-  },
-  {
     category: 'Packaging',
     question: 'What packaging formats are available?',
     answer: 'Bag-in-box and paper bag for powders (10,15,25 Kg), LDPE bags for chilled/frozen liquids (5–20 Kg), and Pallecon IBC bulk containers (1000 Kg).',

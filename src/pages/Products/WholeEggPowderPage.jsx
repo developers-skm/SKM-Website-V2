@@ -179,6 +179,7 @@ export default function WholeEggPowderPage({ onPageChange }) {
       applicationsData={applicationsData}
       productName="Whole Egg Powder"
       productId="whole_egg_powder"
+      packTypesText="10kg, 20kg, 25kg, Bag-in-Bag"
     />
   );
 }
