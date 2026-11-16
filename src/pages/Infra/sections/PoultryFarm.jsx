@@ -18,7 +18,7 @@ import ShedFencing from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Shed fen
 import HenInsideCage from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Hen inside cage - web.webp';
 import FeederView from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Feeder view - web.webp';
 import EggCollectingConveyor from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Egg collecting conveyor - web.webp';
-import EggCollectionArea from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Egg collection area - web.webp';
+import EggCollectionArea from '../../../assets/ai-images/table-eggs-collection.webp';
 import Silo from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Silo - web.webp';
 import MenEntryShower from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Men entry shower - web.webp';
 import ShowerArea from '../../../assets/5. INFRASTRUCTURE/Poultry farm/Shower area - web.webp';
