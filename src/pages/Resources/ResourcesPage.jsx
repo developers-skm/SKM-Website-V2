@@ -416,7 +416,7 @@ const FAQ_CATEGORIES = [
   {
     category: 'Packaging',
     question: 'What packaging formats are available?',
-    answer: 'Bag-in-box and paper bag for powders (10,15,25 Kg), LDPE bags for chilled/frozen liquids (5–20 Kg), and Pallecon IBC bulk containers (1000 Kg).',
+    answer: 'Bag-in-box and kraft paper bag for powders (10,15,25 Kg), LDPE bags for chilled/frozen liquids (5–20 Kg), and Pallecon IBC bulk containers (1000 Kg).',
   },
   {
     category: 'Storage',

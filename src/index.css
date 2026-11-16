@@ -129,6 +129,14 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.4;
 }
 
+/* Sub headings render in Title Case site-wide ("Cage free farm" -> "Cage Free Farm").
+   In @layer base so Tailwind utilities (uppercase / normal-case) still win. */
+@layer base {
+  h2, h3, h4 {
+    text-transform: capitalize;
+  }
+}
+
 p {
   font-family: var(--font-body);
   font-size: 17px;

@@ -30,21 +30,21 @@ const blocks = [
   {
     id: 'process',
     eyebrow: 'Process Excellence',
-    title: '2 million eggs, processed daily.',
+    title: '2 million eggs, processed daily',
     body: 'Only QA cleared eggs are processed, producing approximately 7,500 tonnes annually. Operations follow cGMP, SSOP, Codex Alimentarius principles, and HACCP guidelines with every activity monitored through the integrated traceability system.',
     image: Pasteurization,
   },
   {
     id: 'zoning',
     eyebrow: 'Zoning & Hygiene Control',
-    title: 'Contamination prevented by design.',
+    title: 'Contamination prevented by design',
     body: 'Strict zoning protocols, high risk and high care area separation, including colour-coded identification, dedicated tools for each zone, mandatory sanitation procedures, and routine air-quality monitoring, help prevent cross-contamination.',
     image: ZoningHygiene,
   },
   {
     id: 'utility',
     eyebrow: 'Sustainable circular economy',
-    title: 'A circular approach.',
+    title: 'A circular approach',
     body: 'Our integrated biogas facility processes 70 tonnes of poultry litter, producing biofuel to support our operations. Its nutrient-rich liquid by-product is supplied to farmers as a fertilizer.',
     image: CircularApproach,
     // Headline achievement - rendered as a highlighted callout.

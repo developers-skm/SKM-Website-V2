@@ -27,7 +27,7 @@ const proofs = [
     prefix: 'Since',
     number: '2006',
     label: 'ISO 17025-accredited laboratory',
-    title: 'Certified. Controlled. Compliant.',
+    title: 'Certified. Controlled. Compliant',
     description: 'ISO 22000 & BRCGS certified, HACCP-driven hazard management, verified residue control, and consistent functionality.',
     page: 'why_skm',
   },

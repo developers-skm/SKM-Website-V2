@@ -104,7 +104,6 @@ export default function WholeEggLiquidPage({ onPageChange }) {
       variantNamesTable={variantNamesTable}
       variantStaticFilters={variantStaticFilters}
       visibleTraits={['binding', 'texture']}
-      packTypesText="1kg, 5kg, 10kg & 20kg"
       applicationsData={applicationsData}
       productName="Whole Egg Liquid"
       functionality="Natural 100% Whole Egg Proportion and Optimised Viscosity Baking Grade."

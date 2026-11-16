@@ -984,7 +984,7 @@ function LocationsSection({ onPageChange }) {
       >
         <span className="section-label justify-center">Global Operations</span>
         <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
-          Exporting to 30+ Countries, with Regional Branches in Europe and Russia.
+          Exporting to 30+ Countries, with Regional Branches in Europe and Russia
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
           <InternalLink

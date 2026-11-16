@@ -1,5 +1,6 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
 import InternalLink from '../../components/common/InternalLink';
+import { POWDER_PACK_TYPES } from '../../data/products';
 
 import CustomizedMixMainImg from '../../assets/3. PRODUCTS/Customized Mixes/CUSTOMIZED MIX_1000x667px.png';
 import { getBrochureUrl } from '../../data/brochureUrl';
@@ -101,7 +102,7 @@ export default function CustomizedMixPage({ onPageChange }) {
         variantsData={variantsData}
         variantNamesTable={variantNamesTable}
         variantStaticFilters={variantStaticFilters}
-        packTypesText="10kg, 20kg, 25kg, Bag-in-Box, Bag-in-Bag"
+        packTypesText={POWDER_PACK_TYPES}
         visibleTraits={['emulsification', 'binding']}
         extraDocuments={extraDocuments}
         applicationsData={applicationsData}

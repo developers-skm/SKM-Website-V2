@@ -91,7 +91,6 @@ export default function EggAlbumenLiquidPage({ onPageChange }) {
       variantsData={variantsData}
       variantNamesTable={variantNamesTable}
       variantStaticFilters={variantStaticFilters}
-      packTypesText="1kg, 5kg, 10kg & 20kg"
       applicationsData={applicationsData}
       productName="Egg Albumen Liquid"
       productId="egg_albumen_liquid"

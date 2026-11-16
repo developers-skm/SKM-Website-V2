@@ -383,10 +383,10 @@ function LaboratoryReleaseSection({ onPageChange }) {
 // and 100g/200g/500g, not invented.
 const PACKAGING_FORMATS = [
   { id: 'bag-in-box', type: 'Powder', title: 'Bag in Box', subtitle: 'Corrugated Box', skus: ['25 Kg', '20 Kg', '10 Kg'] },
-  { id: 'bag-in-bag', type: 'Powder', title: 'Bag in Bag', subtitle: 'Paper Bag', skus: ['20 Kg', '10 Kg'] },
+  { id: 'bag-in-bag', type: 'Powder', title: 'Bag in Bag', subtitle: 'Kraft Paper Bag', skus: ['20 Kg', '10 Kg'] },
   { id: 'liquid-ldpe', type: 'Liquid', title: 'Bag (LDPE)', subtitle: 'Low Density Polyethylene', skus: ['20 Kg', '10 Kg', '5 Kg'] },
   { id: 'pallecon', type: 'Bulk', title: 'Pallecon with Inner LDPE', subtitle: 'Bulk IBC Container', skus: ['1000 Kg'] },
-  { id: 'tetra-pack-cubes', type: 'Speciality', title: 'Tetra Pack & Thermo pack', subtitle: 'Speciality Liquid Blends & Thermo pack', skus: ['1 L', '500 ML', '250 ML'] },
+  { id: 'tetra-pack-cubes', type: 'Speciality', title: 'Tetra Pack & Thermo pack', subtitle: 'Speciality Liquid Blends & Thermo pack', skus: ['1 L', '500 mL', '250 mL'] },
 ];
 
 function PackagingCapabilitiesSection({ onPageChange }) {
@@ -578,7 +578,7 @@ function FinalCTASection({ onPageChange }) {
         className="mx-auto max-w-[600px] flex flex-col items-center gap-5"
       >
         <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading m-0 tracking-tight">
-          We Are Ready to Fulfil Your Orders.
+          We Are Ready to Fulfil Your Orders
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <InternalLink

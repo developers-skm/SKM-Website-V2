@@ -20,7 +20,7 @@ export default function EmployerBrandStrip() {
           </div>
 
           <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight max-w-[22ch] m-0">
-            Great Products Begin with Great People.
+            Great Products Begin with Great People
           </h2>
 
           <p className="font-body text-[17px] sm:text-[19px] text-surface-600 leading-[1.65] max-w-[680px] m-0">

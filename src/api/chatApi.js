@@ -57,7 +57,7 @@ const LOCAL_ANSWERS = [
     answer:
       "SKM packaging options:\n" +
       "• **Bag in Box (powder)** - HDPE inner bag in a corrugated carton: 25 Kg, 20 Kg, 10 Kg.\n" +
-      "• **Bag in Bag (powder)** - multi-wall paper bag: 20 Kg, 10 Kg.\n" +
+      "• **Bag in Bag (powder)** - multi-wall kraft paper bag: 20 Kg, 10 Kg.\n" +
       "• **Bag - LDPE (liquid)** - for chilled and frozen liquid egg: 20 Kg, 10 Kg, 5 Kg.\n" +
       "• **Pallecon with inner LDPE (liquid)** - 1000 Kg bulk IBC container.\n" +
       "Packaging can be configured to your handling and dosing needs. Choose your preferred packaging in the Get Quote form.",

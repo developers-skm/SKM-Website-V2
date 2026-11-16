@@ -151,7 +151,6 @@ export default function EggYolkLiquidPage({ onPageChange }) {
       variantsData={variantsData}
       variantNamesTable={variantNamesTable}
       visibleTraits={['emulsification', 'colour']}
-      packTypesText="1kg, 5kg, 10kg & 20kg"
       applicationsData={applicationsData}
       productName="Egg Yolk Liquid"
       productId="egg_yolk_liquid"

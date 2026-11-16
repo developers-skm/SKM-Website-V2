@@ -902,7 +902,7 @@ function NewsContent({ label }) {
       <div className="flex flex-col gap-4">
         <h3 className="font-heading font-semibold text-[18px] leading-snug text-brand-600 m-0">
           The Power of i (India) - SKM Egg recognised.{' '}
-          Shree Shivkumar has Single-Handedly made SKM a Category Leader in key Export Markets.
+          Shree Shivkumar has Single-Handedly made SKM a Category Leader in key Export Markets
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <img

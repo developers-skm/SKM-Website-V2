@@ -78,9 +78,31 @@ export default function PackagingLogistics({ packagingOptions, packTypesText, va
               <dt className="font-body text-[11.5px] font-semibold uppercase tracking-wider text-surface-400">
                 {label}
               </dt>
-              <dd className="font-heading font-bold text-[17px] text-heading leading-snug m-0">
-                {value}
-              </dd>
+              {Array.isArray(value) ? (
+                <dd className="m-0 flex flex-col gap-3 mt-1">
+                  {value.map(({ type, sizes }) => (
+                    <div key={type} className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                      <span className="font-heading font-bold text-[15px] text-heading min-w-[84px]">
+                        {type}
+                      </span>
+                      <span className="flex flex-wrap gap-2">
+                        {sizes.map((size) => (
+                          <span
+                            key={size}
+                            className="inline-flex items-center rounded-full border border-brand-600/25 bg-brand-600/[0.05] px-3.5 py-1 font-body font-semibold text-[13.5px] text-brand-600"
+                          >
+                            {size}
+                          </span>
+                        ))}
+                      </span>
+                    </div>
+                  ))}
+                </dd>
+              ) : (
+                <dd className="font-heading font-bold text-[17px] text-heading leading-snug m-0">
+                  {value}
+                </dd>
+              )}
             </motion.div>
           ))}
         </motion.dl>

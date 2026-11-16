@@ -72,6 +72,12 @@ const sourcesHeading = (urls) => {
 
 const HR_SHORTCUT_PHRASE = 'vijayaganapathi access';
 
+const SpeechRecognitionApi =
+  typeof window !== 'undefined' ? window.SpeechRecognition || window.webkitSpeechRecognition : null;
+const SILENCE_MS = 1500; // auto-send after this much silence once the user has spoken
+const INITIAL_WAIT_MS = 6000; // how long to wait for the user to start speaking
+const VOICE_UNSUPPORTED = 'Voice input is not supported in this browser. Please use Chrome or Edge.';
+
 export default function Chatbot({ onPageChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -85,7 +91,13 @@ export default function Chatbot({ onPageChange }) {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
 
+  const [isListening, setIsListening] = useState(false);
+  const [voiceError, setVoiceError] = useState('');
+
   const messagesEndRef = useRef(null);
+  const recognitionRef = useRef(null);
+  const silenceTimerRef = useRef(null);
+  const transcriptRef = useRef('');
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -167,6 +179,84 @@ export default function Chatbot({ onPageChange }) {
       setIsTyping(false);
     }
   };
+
+  // ── Voice input (speech-to-text) ─────────────────────────────────────────
+  // Tap the mic and speak; the live transcript fills the input. After 1.5 s of
+  // silence the recognised text is sent automatically - the reply then comes
+  // back through the normal chat flow (text + product/location images).
+  const handleSendRef = useRef(handleSend);
+  handleSendRef.current = handleSend;
+
+  const stopListening = (send) => {
+    clearTimeout(silenceTimerRef.current);
+    const text = transcriptRef.current.trim();
+    transcriptRef.current = '';
+    const rec = recognitionRef.current;
+    recognitionRef.current = null;
+    try { rec?.stop(); } catch { /* already stopped */ }
+    setIsListening(false);
+    if (send && text) {
+      setInputValue('');
+      handleSendRef.current(text);
+    }
+  };
+
+  const startListening = () => {
+    if (isTyping) return;
+    if (!SpeechRecognitionApi) {
+      setVoiceError(VOICE_UNSUPPORTED);
+      return;
+    }
+    setVoiceError('');
+    const rec = new SpeechRecognitionApi();
+    rec.lang = 'en-IN';
+    rec.continuous = true;
+    rec.interimResults = true;
+    transcriptRef.current = '';
+
+    rec.onresult = (event) => {
+      let text = '';
+      for (let i = 0; i < event.results.length; i += 1) text += event.results[i][0].transcript;
+      transcriptRef.current = text;
+      setInputValue(text);
+      clearTimeout(silenceTimerRef.current);
+      silenceTimerRef.current = setTimeout(() => stopListening(true), SILENCE_MS);
+    };
+    rec.onerror = (event) => {
+      if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+        setVoiceError('Microphone access is blocked. Please allow it in your browser settings.');
+      } else if (event.error === 'audio-capture') {
+        setVoiceError('No microphone was found.');
+      } else if (event.error === 'network') {
+        setVoiceError('Voice service is unavailable in this browser (Brave blocks it). Please use Chrome or Edge.');
+      }
+      if (event.error !== 'no-speech' && event.error !== 'aborted') stopListening(false);
+    };
+    rec.onend = () => {
+      // Browser ended the session itself (e.g. long silence): send what we heard.
+      if (recognitionRef.current === rec) stopListening(true);
+    };
+
+    recognitionRef.current = rec;
+    try {
+      rec.start();
+      setIsListening(true);
+      setInputValue('');
+      // Give the user time to begin speaking before giving up.
+      silenceTimerRef.current = setTimeout(() => stopListening(true), INITIAL_WAIT_MS);
+    } catch {
+      recognitionRef.current = null;
+    }
+  };
+
+  // Stop the mic if the window is closed or the component unmounts.
+  useEffect(() => {
+    if (!isOpen && recognitionRef.current) stopListening(false);
+  }, [isOpen]);
+  useEffect(() => () => {
+    clearTimeout(silenceTimerRef.current);
+    try { recognitionRef.current?.abort(); } catch { /* noop */ }
+  }, []);
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -568,6 +658,12 @@ export default function Chatbot({ onPageChange }) {
             </div>
 
 
+            {voiceError && (
+              <p className="m-0 px-4 py-1.5 text-[11.5px] leading-snug text-brand-600 bg-brand-50 border-t border-surface-100">
+                {voiceError}
+              </p>
+            )}
+
             {/* Input Bar */}
             <div className="flex items-center px-4 py-2 border-t border-surface-100 bg-white gap-2">
               <input
@@ -575,10 +671,41 @@ export default function Chatbot({ onPageChange }) {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask about egg powders, liquid products..."
+                placeholder={isListening ? 'Listening… speak now' : 'Ask about egg powders, liquid products...'}
                 className="flex-grow bg-transparent text-surface-800 placeholder-surface-400 text-[13px] py-2.5 focus:outline-none border-none"
-                disabled={isTyping}
+                disabled={isTyping || isListening}
               />
+              <button
+                type="button"
+                onClick={() => (isListening ? stopListening(true) : startListening())}
+                disabled={isTyping}
+                aria-label={isListening ? 'Stop voice input' : 'Speak your question'}
+                title={isListening ? 'Tap to stop and send' : 'Speak your question'}
+                className={`relative w-8.5 h-8.5 rounded-xl flex items-center justify-center flex-shrink-0 focus:outline-none transition-all duration-200 ${
+                  isListening
+                    ? 'bg-brand-600 text-white cursor-pointer'
+                    : isTyping
+                      ? 'bg-surface-100 text-surface-400 cursor-default'
+                      : 'bg-brand-50 text-brand-600 hover:bg-brand-600 hover:text-white cursor-pointer'
+                }`}
+              >
+                {isListening && (
+                  <span className="absolute inset-0 rounded-xl bg-brand-600/40 animate-ping" aria-hidden="true" />
+                )}
+                <svg
+                  className="relative w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="9" y="2" width="6" height="12" rx="3" />
+                  <path d="M5 11a7 7 0 0 0 14 0" />
+                  <line x1="12" y1="18" x2="12" y2="22" />
+                </svg>
+              </button>
               <button
                 onClick={() => handleSend()}
                 disabled={isTyping || !inputValue.trim()}

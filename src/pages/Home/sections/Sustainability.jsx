@@ -90,7 +90,7 @@ const stories = [
   {
     number: '02',
     eyebrow: 'Clean Energy',
-    title: '5.2 Million Units of Wind and Solar Energy, Every Year.',
+    title: '5.2 Million Units of Wind and Solar Energy, Every Year',
     body: 'Our contribution to a clean environment is the installation of a wind mill and solar power panels that generate electricity of 5.2 million units per year - powering our operations with renewable energy.',
     image: CleanEnergy1,
     imageAlt: 'Wind and solar clean energy at SKM Egg Products',
@@ -99,7 +99,7 @@ const stories = [
   {
     number: '03',
     eyebrow: 'Community Welfare',
-    title: 'Free healthcare, education, and food for an entire village.',
+    title: 'Free healthcare, education, and food for an entire village',
     body: 'We ensure our corporate social responsibility by providing free medical, educational, and food services to an entire village through the SKM Charitable Trust.',
     image: UtilityOverview,
     imageAlt: 'SKM Charitable Trust community welfare',
@@ -164,7 +164,7 @@ export default function Sustainability({ onPageChange }) {
         <motion.div {...fadeUp(reduceMotion)} className="flex flex-col gap-4 max-w-2xl mb-4">
           <span className="section-label">Sustainability</span>
           <h2 className="font-heading font-bold text-[30px] sm:text-[44px] lg:text-[50px] leading-[1.1] lg:leading-[1.05] text-heading tracking-tight m-0">
-            Sustainable &amp; Socially Responsible.
+            Sustainable &amp; Socially Responsible
           </h2>
         </motion.div>
 

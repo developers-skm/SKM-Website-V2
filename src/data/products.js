@@ -36,6 +36,19 @@ export const PRODUCT_CATEGORIES = {
   CUSTOMIZED: 'Customised Solutions',
 };
 
+// Shared pack-type rule for every egg powder product (and powder mixes).
+export const POWDER_PACK_TYPES = [
+  { type: 'Kraft paper bag', sizes: ['10kg'] },
+  { type: 'Cartons', sizes: ['20kg', '25kg'] },
+];
+
+// Shared pack-type rule for every liquid egg product.
+export const LIQUID_PACK_TYPES = [
+  { type: 'Bag-in-Box', sizes: ['5 L', '10 L', '20 L'] },
+  { type: 'Tetra Pack', sizes: ['250 mL', '500 mL', '1000 mL'] },
+  { type: 'On request', sizes: ['1000 L'] },
+];
+
 const products = [
   {
     id: 'whole_egg_powder',
@@ -113,7 +126,7 @@ const products = [
     image: SpecialityEggLiquidImg,
     category: PRODUCT_CATEGORIES.SPECIALITY,
     shortDescription: 'Custom liquid egg blends with tailored salt, sugar, or other ingredient additions, formulated to meet specific recipe requirements and provide consumers with greater convenience and ease of use.',
-    packagingOptions: ['250ml', '500ml', '1L'],
+    packagingOptions: ['250mL', '500mL', '1L'],
   },
   {
     id: 'egg_white_cube',
@@ -140,7 +153,7 @@ const products = [
     title: 'Customised Packaging',
     image: CustomizedPackagesImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,
-    shortDescription: 'Packaging options including corrugated bag-in-box, paper bag-in-bag, liquid pouches, and Tetra Pack formats, configured to meet your specific packaging and application requirements.',
+    shortDescription: 'Packaging options including corrugated bag-in-box, kraft paper bag-in-bag, liquid pouches, and Tetra Pack formats, configured to meet your specific packaging and application requirements.',
     packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
   },
 ];

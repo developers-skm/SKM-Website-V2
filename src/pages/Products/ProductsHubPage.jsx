@@ -97,12 +97,12 @@ function matchesPackaging(product, packaging) {
 const SIZE_PATTERN = /^\d+(\.\d+)?(kg|g|ml|l)$/i;
 
 // Formats any real per-product/category packagingOptions value (kg, g, mL,
-// L) into its display form - e.g. "20kg" -> "20 kg", "250ml" -> "250 ML".
+// L) into its display form - e.g. "20kg" -> "20 kg", "250ml" -> "250 mL".
 function formatSizeLabel(value) {
   const match = value.match(/^(\d+(?:\.\d+)?)(kg|g|ml|l)$/i);
   if (!match) return value;
   const [, amount, unit] = match;
-  const unitDisplay = { kg: 'kg', g: 'g', ml: 'ML', l: 'L' }[unit.toLowerCase()];
+  const unitDisplay = { kg: 'kg', g: 'g', ml: 'mL', l: 'L' }[unit.toLowerCase()];
   return `${amount} ${unitDisplay}`;
 }
 

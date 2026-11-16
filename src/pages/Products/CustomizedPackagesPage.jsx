@@ -44,13 +44,13 @@ const packagingData = [
     id: 'bag_in_bag',
     type: 'Powder',
     title: 'Bag in Bag',
-    subtitle: 'Paper Bag',
+    subtitle: 'Kraft Paper Bag',
     description:
-      'Eco-friendly multi-wall paper bag packaging for powder egg products. Designed for ease of handling, suitable for bakery and food-grade industrial dosing environments.',
+      'Eco-friendly multi-wall kraft paper bag packaging for powder egg products. Designed for ease of handling, suitable for bakery and food-grade industrial dosing environments.',
     skus: ['20 Kg', '10 Kg'],
     images: [
-      { src: PaperBagJpegImg, label: 'Paper Bag - Exterior View' },
-      { src: PaperBagJpgImg, label: 'Paper Bag - Detail View' },
+      { src: PaperBagJpegImg, label: 'Kraft Paper Bag - Exterior View' },
+      { src: PaperBagJpgImg, label: 'Kraft Paper Bag - Detail View' },
     ],
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -113,14 +113,14 @@ export default function CustomizedPackagesPage({ onPageChange }) {
       {/* SEO */}
       <SEO
         title="Egg Product Packaging | Bulk Egg Powder & Liquid Packaging Options"
-        description="SKM offers industrial egg product packaging - bag-in-box, 25kg paper bags, LDPE bags, Pallecon IBCs. Flexible bulk packaging for egg powder and liquid egg products. Exporter from India."
+        description="SKM offers industrial egg product packaging - bag-in-box, 25kg kraft paper bags, LDPE bags, Pallecon IBCs. Flexible bulk packaging for egg powder and liquid egg products. Exporter from India."
         keywords="egg powder packaging, bag-in-box egg powder, 25kg egg powder bag, liquid egg packaging, Pallecon egg, IBC egg liquid, egg product bulk packaging, LDPE egg bag, egg powder paper bag, bulk egg packaging options, egg product container, egg liquid bulk packaging"
         canonical="https://www.skmegg.com/customised_packages"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Product",
           "name": "Customised Egg Product Packages",
-          "description": "Industrial packaging options for egg powder and liquid egg products - bag-in-box, paper bags, LDPE bags, and Pallecon IBC containers.",
+          "description": "Industrial packaging options for egg powder and liquid egg products - bag-in-box, kraft paper bags, LDPE bags, and Pallecon IBC containers.",
           "brand": { "@type": "Brand", "name": "SKM Egg Products" },
           "manufacturer": { "@type": "Organization", "name": "SKM Egg Products", "url": "https://www.skmegg.com" },
           "category": "Egg Products",

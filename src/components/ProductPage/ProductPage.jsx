@@ -9,7 +9,7 @@ import ProductDocuments from './ProductDocuments';
 import RelatedProducts from './RelatedProducts';
 import EnquiryCTABand from '../common/EnquiryCTABand';
 import CurvedDivider from '../SectionContainer/CurvedDivider';
-import { getRelatedProducts, getTdsUrl, getProductById } from '../../data/products';
+import { getRelatedProducts, getTdsUrl, getProductById, PRODUCT_CATEGORIES, POWDER_PACK_TYPES, LIQUID_PACK_TYPES } from '../../data/products';
 
 // Shared shell for all 11 product detail pages (Whole Egg Powder, Egg Yolk
 // Powder, Egg Albumen Liquid, etc.) - composed from focused sub-components.
@@ -116,7 +116,13 @@ export default function ProductPage({
           <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
             <PackagingLogistics
               packagingOptions={productRecord.packagingOptions}
-              packTypesText={packTypesText}
+              packTypesText={
+                productRecord.category === PRODUCT_CATEGORIES.POWDERS
+                  ? POWDER_PACK_TYPES
+                  : productRecord.category === PRODUCT_CATEGORIES.LIQUIDS
+                    ? LIQUID_PACK_TYPES
+                    : packTypesText
+              }
               variantsData={variantsData}
               onViewPackaging={() => onPageChange('customised_packages')}
               onDiscussDelivery={() => onPageChange('contact-us')}
