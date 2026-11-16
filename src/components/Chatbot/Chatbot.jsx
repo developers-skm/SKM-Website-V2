@@ -93,6 +93,7 @@ export default function Chatbot({ onPageChange }) {
 
   const [isListening, setIsListening] = useState(false);
   const [voiceError, setVoiceError] = useState('');
+  const [micReady, setMicReady] = useState(false);
 
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -195,6 +196,7 @@ export default function Chatbot({ onPageChange }) {
     recognitionRef.current = null;
     try { rec?.stop(); } catch { /* already stopped */ }
     setIsListening(false);
+    setMicReady(false);
     if (send && text) {
       setInputValue('');
       handleSendRef.current(text);
@@ -214,6 +216,15 @@ export default function Chatbot({ onPageChange }) {
     rec.interimResults = true;
     transcriptRef.current = '';
 
+    // The browser needs a moment to open the microphone. Words spoken before
+    // that are lost (e.g. "what is the" clipped), so only show "speak now" and
+    // start the wait timer once audio capture has actually begun.
+    rec.onaudiostart = () => {
+      if (recognitionRef.current !== rec) return;
+      setMicReady(true);
+      clearTimeout(silenceTimerRef.current);
+      silenceTimerRef.current = setTimeout(() => stopListening(true), INITIAL_WAIT_MS);
+    };
     rec.onresult = (event) => {
       let text = '';
       for (let i = 0; i < event.results.length; i += 1) text += event.results[i][0].transcript;
@@ -242,8 +253,8 @@ export default function Chatbot({ onPageChange }) {
       rec.start();
       setIsListening(true);
       setInputValue('');
-      // Give the user time to begin speaking before giving up.
-      silenceTimerRef.current = setTimeout(() => stopListening(true), INITIAL_WAIT_MS);
+      // Safety net in case the audio-start event never fires.
+      silenceTimerRef.current = setTimeout(() => stopListening(true), INITIAL_WAIT_MS + 4000);
     } catch {
       recognitionRef.current = null;
     }
@@ -671,7 +682,7 @@ export default function Chatbot({ onPageChange }) {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder={isListening ? 'Listening… speak now' : 'Ask about egg powders, liquid products...'}
+                placeholder={isListening ? (micReady ? 'Listening… speak now' : 'Getting microphone ready…') : 'Ask about egg powders, liquid products...'}
                 className="flex-grow bg-transparent text-surface-800 placeholder-surface-400 text-[13px] py-2.5 focus:outline-none border-none"
                 disabled={isTyping || isListening}
               />
