@@ -1,5 +1,6 @@
 import journeyStages from '../data/journeyStages';
 import { siteAnswer, suggestProducts } from './siteKnowledge';
+import { resolveNavigation } from './chatNavigation';
 import officeLocations from '../data/officeLocations';
 import products, { getTdsUrl, getProductById, PRODUCT_CATEGORIES } from '../data/products';
 
@@ -448,6 +449,15 @@ export async function sendChatMessage(message) {
   if (talk) {
     const { answer } = talk;
     return { answer: Array.isArray(answer) ? answer[Math.floor(Math.random() * answer.length)] : answer, sources: [] };
+  }
+
+  // "open whole egg page", "go to contact us" -> open the page itself.
+  const nav = resolveNavigation(message);
+  if (nav?.type === 'page') {
+    return { answer: `Opening the **${nav.label}** page…`, sources: [], navigate: { page: nav.page, label: nav.label } };
+  }
+  if (nav?.type === 'choices') {
+    return productCardsReply(nav.items, 'Which one would you like to open? Tap a product below.');
   }
 
   if (LOCATION_INTENT.test(message)) return locationReply(message);

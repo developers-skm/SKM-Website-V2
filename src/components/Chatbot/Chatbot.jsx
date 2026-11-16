@@ -168,6 +168,13 @@ export default function Chatbot({ onPageChange }) {
         timestamp: new Date()
       };
       setMessages((prev) => [...prev, botMessage]);
+      // "Open X page" request: show "Opening…" briefly, then go there.
+      if (data.navigate && onPageChange) {
+        setTimeout(() => {
+          onPageChange(data.navigate.page);
+          setIsOpen(false);
+        }, 900);
+      }
     } catch {
       const errorMessage = {
         id: (Date.now() + 1).toString(),
