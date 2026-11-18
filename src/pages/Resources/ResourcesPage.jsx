@@ -132,11 +132,18 @@ function TechnicalDocumentsSection({ globalSearchQuery }) {
                       Official product details, microbiological parameters, shelf life, and storage conditions for {p.title}.
                     </p>
 
-                    <div className="flex items-center pt-4 border-t border-surface-200/60">
+                    <div className="flex items-center gap-3 pt-4 border-t border-surface-200/60">
                       <a
                         href={p.tdsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 font-body font-bold text-[12px] uppercase tracking-wider text-brand-600 hover:text-brand-700 px-4 py-2.5 rounded-xl border border-brand-600/30 hover:border-brand-600/60 transition-all duration-200 active:scale-[0.97]"
+                      >
+                        View
+                      </a>
+                      <a
+                        href={p.tdsUrl}
+                        download
                         className="inline-flex items-center gap-2 font-body font-bold text-[12px] uppercase tracking-wider text-white bg-brand-600 hover:bg-brand-700 px-4 py-2.5 rounded-xl shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30 transition-all duration-200 active:scale-[0.97]"
                       >
                         <span>Download</span>
@@ -416,7 +423,7 @@ const FAQ_CATEGORIES = [
   {
     category: 'Packaging',
     question: 'What packaging formats are available?',
-    answer: 'Bag-in-box and kraft paper bag for powders (10,15,25 Kg), LDPE bags for chilled/frozen liquids (5–20 Kg), and Pallecon IBC bulk containers (1000 Kg).',
+    answer: 'Powders ship in kraft paper bags (10 Kg) and cartons (20 Kg, 25 Kg). Liquids ship in Bag-in-Box (5 L, 10 L, 20 L) and Tetra Pack (250 mL, 500 mL, 1000 mL), with 1000 L available on request.',
   },
   {
     category: 'Storage',

@@ -1,4 +1,5 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
+import { POWDER_PACK_LABELS } from '../../data/products';
 
 import EggAlbumenPowderMainImg from '../../assets/ai-images/egg-albumen-powder.webp';
 import EggPastryImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Albumen Powder/Egg pastry 1.png';
@@ -79,7 +80,7 @@ export const variantNamesTable = [
 const variantStaticFilters = [
   { axis: 'Function', options: ['Gelling', 'Whipping', 'Foaming'] },
   { axis: 'Processing treatment', options: ['Fermented and heat treated'] },
-  { axis: 'Packaging', options: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'] },
+  { axis: 'Packaging', options: POWDER_PACK_LABELS },
 ];
 
 const applicationsData = [

@@ -4,7 +4,7 @@ import ScrollFrameSequence from '../../components/common/ScrollFrameSequence';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
 import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
-import products, { PRODUCT_CATEGORIES } from '../../data/products';
+import products, { PRODUCT_CATEGORIES, POWDER_PACK_TYPES, LIQUID_PACK_TYPES } from '../../data/products';
 import { getBrochureUrl } from '../../data/brochureUrl';
 import useMediaQuery from '../../components/GlobalEvents/useMediaQuery';
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
@@ -77,11 +77,14 @@ const CATEGORY_PACKAGING_LABEL = {
 
 // Egg Powders ship in two container types, each with its own weights, so
 // they're listed explicitly rather than derived from the flat option list.
+const toGroups = (types) =>
+  types.map((t) => ({ key: t.type, label: t.type, values: t.sizes.map((s) => s.replace(/\s+/g, '')) }));
+
+// Built from the shared pack types in products.js so the filter always matches
+// the "Available Pack Types" card on each product page.
 const CATEGORY_PACKAGING_GROUPS = {
-  [PRODUCT_CATEGORIES.POWDERS]: [
-    { key: 'Bag-in-Box', label: 'Bag-in-Box', values: ['20kg', '25kg'] },
-    { key: 'Bag-in-Bag', label: 'Bag-in-Bag', values: ['10kg', '20kg'] },
-  ],
+  [PRODUCT_CATEGORIES.POWDERS]: toGroups(POWDER_PACK_TYPES),
+  [PRODUCT_CATEGORIES.LIQUIDS]: toGroups(LIQUID_PACK_TYPES),
 };
 
 // Packaging filter values prefixed with this select a single product rather
@@ -250,6 +253,20 @@ function ProductFinder({ onPageChange }) {
     setPackaging(null);
   };
 
+  // Products that share a `group` (e.g. EggPro LIFE + SPORTS+) are shown as one
+  // card whose members each open their own page.
+  const cards = useMemo(() => {
+    const out = [];
+    const seen = new Set();
+    filtered.forEach((p) => {
+      if (!p.group) return out.push({ key: p.id, product: p });
+      if (seen.has(p.group)) return;
+      seen.add(p.group);
+      out.push({ key: `group:${p.group}`, group: p.group, members: filtered.filter((m) => m.group === p.group) });
+    });
+    return out;
+  }, [filtered]);
+
   return (
     <div
       id="product-finder"
@@ -378,9 +395,54 @@ function ProductFinder({ onPageChange }) {
 
         <motion.div layout={!reduceMotion} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
           <AnimatePresence initial={false} mode="popLayout">
-            {filtered.map((product, index) => (
+            {cards.map((card, index) => card.group ? (
               <motion.div
-                key={product.id}
+                key={card.key}
+                layout={!reduceMotion}
+                initial={{ opacity: 0, y: reduceMotion ? 0 : 22, scale: reduceMotion ? 1 : 0.985 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: reduceMotion ? 0 : 10, scale: reduceMotion ? 1 : 0.985 }}
+                transition={{
+                  duration: reduceMotion ? 0.01 : 0.55,
+                  ease: EASE_PREMIUM,
+                  delay: reduceMotion ? 0 : Math.min(index, 8) * 0.05,
+                }}
+                className="flex flex-col gap-4 p-5 sm:p-6 rounded-[14px] border border-surface-200/70 bg-white"
+              >
+                <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.14em] text-gold-600">
+                  {card.group}
+                </span>
+                <div className="flex flex-col gap-4">
+                  {card.members.map((product) => (
+                    <div
+                      key={product.id}
+                      className="group relative flex items-center gap-4 p-3 rounded-[12px] border border-surface-200/60 transition-[border-color,box-shadow] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-gold-500/60 hover:shadow-[0_18px_36px_-18px_rgba(20,16,12,0.2)] focus-within:border-gold-500/60"
+                    >
+                      <div className="w-[112px] sm:w-[128px] aspect-square flex-shrink-0 overflow-hidden rounded-[9px] bg-surface-50">
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          loading="lazy"
+                          className="w-full h-full object-contain p-2 transition-transform duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-1.5 min-w-0">
+                        <span className="font-heading font-bold text-[16.5px] text-heading tracking-[-0.005em]">{product.title}</span>
+                        <span className="font-body text-[13px] text-surface-500 leading-[1.5]">{product.shortDescription}</span>
+                      </div>
+                      <InternalLink
+                        route={product.page}
+                        onPageChange={onPageChange}
+                        aria-label={product.title}
+                        className="absolute inset-0 z-10 rounded-[12px] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key={card.key}
                 layout={!reduceMotion}
                 initial={{ opacity: 0, y: reduceMotion ? 0 : 22, scale: reduceMotion ? 1 : 0.985 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -400,18 +462,18 @@ function ProductFinder({ onPageChange }) {
                 />
                 <div className="w-full aspect-[4/3] overflow-hidden rounded-[9px] bg-surface-50">
                   <img
-                    src={product.image}
-                    alt={product.title}
+                    src={card.product.image}
+                    alt={card.product.title}
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
                   />
                 </div>
-                <span className="font-heading font-bold text-[16.5px] text-heading tracking-[-0.005em]">{product.title}</span>
-                <span className="font-body text-[13.5px] text-surface-500 leading-[1.55]">{product.shortDescription}</span>
+                <span className="font-heading font-bold text-[16.5px] text-heading tracking-[-0.005em]">{card.product.title}</span>
+                <span className="font-body text-[13.5px] text-surface-500 leading-[1.55]">{card.product.shortDescription}</span>
                 <InternalLink
-                  route={product.page}
+                  route={card.product.page}
                   onPageChange={onPageChange}
-                  aria-label={product.title}
+                  aria-label={card.product.title}
                   className="absolute inset-0 z-10 rounded-[14px] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
                 />
               </motion.div>

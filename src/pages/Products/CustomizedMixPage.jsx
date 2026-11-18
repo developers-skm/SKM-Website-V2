@@ -1,6 +1,6 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
 import InternalLink from '../../components/common/InternalLink';
-import { POWDER_PACK_TYPES } from '../../data/products';
+import { POWDER_PACK_TYPES, POWDER_PACK_LABELS } from '../../data/products';
 
 import CustomizedMixMainImg from '../../assets/3. PRODUCTS/Customized Mixes/CUSTOMIZED MIX_1000x667px.png';
 import { getBrochureUrl } from '../../data/brochureUrl';
@@ -29,7 +29,7 @@ export const variantNamesTable = [
 
 // Display-only labels shown beside the variant table (not clickable).
 const variantStaticFilters = [
-  { axis: 'Packaging', options: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'] },
+  { axis: 'Packaging', options: POWDER_PACK_LABELS },
 ];
 
 const extraDocuments = [

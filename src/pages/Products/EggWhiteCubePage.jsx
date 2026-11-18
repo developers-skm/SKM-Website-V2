@@ -9,6 +9,8 @@ import NutriInfoImg from '../../assets/3. PRODUCTS/Speciality products/Egg White
 import CurvedDivider from '../../components/SectionContainer/CurvedDivider';
 import ProductDocuments from '../../components/ProductPage/ProductDocuments';
 import { getTdsUrl } from '../../data/products';
+import RecentlyViewed from '../../components/ProductPage/RecentlyViewed';
+import { useRecentlyViewed } from '../../utils/recentlyViewed';
 
 const galleryImages = [
   { src: EggWhiteCubeImg, label: 'Egg White Cube' },
@@ -56,6 +58,7 @@ const features = [
 
 export default function EggWhiteCubePage({ onPageChange }) {
   const tdsUrl = getTdsUrl('egg_white_cube');
+  const recentProducts = useRecentlyViewed('egg_white_cube');
   return (
     <div className="w-full flex flex-col bg-page font-body text-left">
       <SEO
@@ -200,6 +203,14 @@ export default function EggWhiteCubePage({ onPageChange }) {
           />
         </div>
       </section>
+
+      {recentProducts.length > 0 && (
+        <section className="w-full bg-[#f8f4ee] py-12 sm:py-16 lg:py-20">
+          <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
+            <RecentlyViewed products={recentProducts} onPageChange={onPageChange} />
+          </div>
+        </section>
+      )}
     </div>
   );
 }

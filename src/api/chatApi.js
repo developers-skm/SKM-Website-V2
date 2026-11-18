@@ -57,10 +57,11 @@ const LOCAL_ANSWERS = [
     test: /\b(pack(ag(e|es|ing))?|bags?|cartons?|pallecon|ibc|pack sizes?)\b/i,
     answer:
       "SKM packaging options:\n" +
-      "• **Bag in Box (powder)** - HDPE inner bag in a corrugated carton: 25 Kg, 20 Kg, 10 Kg.\n" +
-      "• **Bag in Bag (powder)** - multi-wall kraft paper bag: 20 Kg, 10 Kg.\n" +
-      "• **Bag - LDPE (liquid)** - for chilled and frozen liquid egg: 20 Kg, 10 Kg, 5 Kg.\n" +
-      "• **Pallecon with inner LDPE (liquid)** - 1000 Kg bulk IBC container.\n" +
+      "• **Kraft paper bag (powder)** - multi-wall kraft paper bag: 10 Kg.\n" +
+      "• **Cartons (powder)** - HDPE inner bag in a corrugated carton: 20 Kg, 25 Kg.\n" +
+      "• **Bag-in-Box (liquid)** - for chilled and frozen liquid egg: 5 L, 10 L, 20 L.\n" +
+      "• **Tetra Pack (liquid)** - 250 mL, 500 mL, 1000 mL.\n" +
+      "• **Bulk (liquid)** - 1000 L on request.\n" +
       "Packaging can be configured to your handling and dosing needs. Choose your preferred packaging in the Get Quote form.",
     sources: [SITE + '/products/customised-packages'],
     productId: 'customised_packages',

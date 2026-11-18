@@ -7,6 +7,8 @@ import PackagingLogistics from './PackagingLogistics';
 import { ProductQualityAssurance } from '../Traceability/TraceabilityLoopJourney';
 import ProductDocuments from './ProductDocuments';
 import RelatedProducts from './RelatedProducts';
+import RecentlyViewed from './RecentlyViewed';
+import { useRecentlyViewed } from '../../utils/recentlyViewed';
 import EnquiryCTABand from '../common/EnquiryCTABand';
 import CurvedDivider from '../SectionContainer/CurvedDivider';
 import { getRelatedProducts, getTdsUrl, getProductById, PRODUCT_CATEGORIES, POWDER_PACK_TYPES, LIQUID_PACK_TYPES } from '../../data/products';
@@ -36,6 +38,8 @@ export default function ProductPage({
   const relatedProducts = productId ? getRelatedProducts(productId, 3) : [];
   const tdsUrl = productId ? getTdsUrl(productId) : null;
   const productRecord = productId ? getProductById(productId) : null;
+  const recentProducts = useRecentlyViewed(productId);
+  const hasRecent = recentProducts.length > 0;
 
   return (
     <div className="w-full flex flex-col bg-white font-body text-left">
@@ -152,19 +156,32 @@ export default function ProductPage({
         </div>
       </section>
 
-      {/* Related products - light eggshell chapter */}
-      {relatedProducts.length > 0 ? (
+      {/* Recently viewed (max 2, expires after 3 days) - eggshell chapter */}
+      {hasRecent && (
         <>
         <CurvedDivider cards bg="#fff" fill="#f8f4ee" />
         <section className="w-full bg-[#f8f4ee] py-12 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
+            <RecentlyViewed products={recentProducts} onPageChange={onPageChange} />
+          </div>
+        </section>
+        </>
+      )}
+
+      {/* Related products - alternates colour with the section above it */}
+      {relatedProducts.length > 0 ? (
+        <>
+        {hasRecent && <CurvedDivider cards bg="#f8f4ee" fill="#fff" />}
+        {!hasRecent && <CurvedDivider cards bg="#fff" fill="#f8f4ee" />}
+        <section className={`w-full ${hasRecent ? 'bg-white' : 'bg-[#f8f4ee]'} py-12 sm:py-16 lg:py-20`}>
+          <div className="mx-auto max-w-[1400px] w-full px-5 sm:px-8 lg:px-12">
             <RelatedProducts products={relatedProducts} currentCategory={productRecord?.category} onPageChange={onPageChange} />
           </div>
         </section>
-        <CurvedDivider cards bg="#f8f4ee" fill="#fdf1f0" />
+        <CurvedDivider cards bg={hasRecent ? '#fff' : '#f8f4ee'} fill="#fdf1f0" />
         </>
       ) : (
-        <CurvedDivider cards bg="#fff" fill="#fdf1f0" />
+        <CurvedDivider cards bg={hasRecent ? '#f8f4ee' : '#fff'} fill="#fdf1f0" />
       )}
 
       {/* Final CTA - soft red-tinted chapter, calm handoff into the footer. */}

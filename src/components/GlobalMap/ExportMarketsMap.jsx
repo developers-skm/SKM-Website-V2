@@ -1,29 +1,46 @@
 import React, { useId, useState, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker,
-  useMapContext,
-} from 'react-simple-maps';
 import exportMarkets from '../../data/exportMarkets';
-
-const GEO_URL =
-  'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+import worldMapImg from '../../assets/global-reach/world-map.webp';
 
 const EXPORT_MARKETS = exportMarkets;
 
-const HIGHLIGHTED_IDS = new Set(EXPORT_MARKETS.map(m => m.id));
+// The photo is a 1672x941 world image. We draw everything in an 800-wide SVG
+// space (so pin/arrow sizes stay as designed) and project lon/lat onto the
+// photo ourselves. Longitude is piecewise-linear between landmarks measured
+// on the image (the photo is not a perfectly uniform projection); latitude
+// is linear.
+const IMG_W = 1672;
+const IMG_H = 941;
+const VIEW_W = 800;
+const VIEW_H = (VIEW_W * IMG_H) / IMG_W;
+const K = VIEW_W / IMG_W;
+const LON_ANCHORS = [ // [longitude, image x px]
+  [-170, 0],
+  [-80, 385],
+  [-17.5, 640],
+  [18.4, 810],
+  [77.5, 1090],
+  [133.8, 1350],
+  [174, 1530],
+  [190, 1604],
+];
+function lonToX(lon) {
+  let l = lon;
+  if (l < LON_ANCHORS[0][0]) l += 360;
+  for (let i = 0; i < LON_ANCHORS.length - 1; i += 1) {
+    const [l0, x0] = LON_ANCHORS[i];
+    const [l1, x1] = LON_ANCHORS[i + 1];
+    if (l >= l0 && l <= l1) return x0 + ((l - l0) / (l1 - l0)) * (x1 - x0);
+  }
+  return l < LON_ANCHORS[0][0] ? 0 : IMG_W;
+}
+const project = ([lon, lat]) => [lonToX(lon) * K, (455 - lat * 5.3) * K];
 
-// ISO 3166-1 numeric code for India (world-atlas geo id) - the country of
-// origin, called out in gold rather than the export-market red so it reads
-// as "home base" on the map, not just another destination.
-const INDIA_ID = 356;
-
-// Approximate coordinates for India (origin point for the route line drawn
-// to whichever export market is currently hovered/focused).
-const INDIA_COORDINATES = [78, 21];
+// India is the origin of every route, shown as a gold home pin.
+// Tamil Nadu (Namakkal). Nudged west of the true 78.2E because the photo's
+// India sits ~1.5 deg east of the landmark-calibrated projection.
+const INDIA_COORDINATES = [76.6, 11.6];
 
 // Arrows per route scale with its length (short 1, medium 2, long 3) at one
 // constant speed. Each arrow travels from India to the market, pauses
@@ -35,16 +52,15 @@ const ARROW_PAUSE_SECONDS = 1.6;
 // Curved route from India to every export market, drawn as a faint guide
 // line plus animated direction chevrons. Each route is a gentle arc bowing
 // toward the north so the many routes fan out instead of overlapping on
-// the straight line between two points. Lives inside ComposableMap
-// because it needs the map's own projection to build the SVG paths.
+// the straight line between two points. Uses the photo projection
+// helper above to build the SVG paths.
 function RouteArrows({ focusId, animate }) {
-  const { projection } = useMapContext();
   const idPrefix = useId();
-  const origin = projection(INDIA_COORDINATES);
+  const origin = project(INDIA_COORDINATES);
   return (
     <g className="pointer-events-none">
       {EXPORT_MARKETS.map((market, routeIndex) => {
-        const target = projection(market.coordinates);
+        const target = project(market.coordinates);
         if (!origin || !target) return null;
         const dx = target[0] - origin[0];
         const dy = target[1] - origin[1];
@@ -76,9 +92,9 @@ function RouteArrows({ focusId, animate }) {
               id={pathId}
               d={d}
               fill="none"
-              stroke="#F5B700"
+              stroke="#FFFFFF"
               strokeWidth={isHovered ? 1.2 : 0.7}
-              strokeOpacity={isHovered ? 0.9 : 0.4}
+              strokeOpacity={isHovered ? 0.95 : 0.55}
               strokeLinecap="round"
             />
             {animate &&
@@ -89,7 +105,8 @@ function RouteArrows({ focusId, animate }) {
                 key={i}
                 d="M-3.5,-3.5 L1.5,0 L-3.5,3.5"
                 fill="none"
-                stroke="#FFD24D"
+                stroke="#FFFFFF"
+                style={{ filter: "drop-shadow(0 0 1.5px rgba(0,20,40,0.9))" }}
                 strokeWidth={isHovered ? 2.4 : 1.9}
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -167,11 +184,11 @@ export default function ExportMarketsMap() {
       transition={reduceMotion ? { duration: 0.01 } : { type: 'spring', stiffness: 90, damping: 15 }}
       className="relative rounded-[20px] border border-[#eee] bg-white overflow-hidden shadow-[5px_3px_40px_rgba(0,72,88,0.08)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.16)] transition-all duration-300"
     >
-      <div className="flex flex-col lg:flex-row lg:h-[820px]">
+      <div className="flex flex-col lg:flex-row">
 
         {/* ── Legend ──────────────────────────────────────────────── */}
-        <div className="order-2 lg:order-1 lg:w-[188px] xl:w-[208px] shrink-0 border-t lg:border-t-0 lg:border-r border-[#eee]">
-          <div className="p-4 lg:p-5 h-full flex flex-col">
+        <div className="order-2 lg:order-1 lg:w-[188px] xl:w-[208px] shrink-0 border-t lg:border-t-0 lg:border-r border-[#eee] lg:relative">
+          <div className="p-4 lg:p-5 h-full flex flex-col lg:absolute lg:inset-0">
             <p className="text-[10px] font-heading font-bold uppercase tracking-[0.1em] text-surface-400 mb-3 shrink-0">
               Export Markets · 30+ Countries
             </p>
@@ -208,63 +225,27 @@ export default function ExportMarketsMap() {
         {/* ── Map ─────────────────────────────────────────────────── */}
         <div
           ref={mapRef}
-          className="order-1 lg:order-2 flex-1 relative bg-[#dde6ef] min-h-[220px] sm:min-h-[300px]"
+          className="order-1 lg:order-2 flex-1 relative bg-[#0a2a4d] aspect-[1672/941]"
         >
           {/* Subtle brand-red gradient wash */}
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-600/4 to-transparent pointer-events-none z-10" />
-
-          <ComposableMap
-            projection="geoNaturalEarth1"
-            projectionConfig={{ scale: 158, center: [20, 5] }}
-            style={{ width: '100%', height: '100%', minHeight: '220px', display: 'block' }}
+          
+          <svg
+            viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-label="World map of SKM export markets"
+            style={{ width: '100%', height: '100%', display: 'block' }}
           >
-            <Geographies geography={GEO_URL}>
-              {({ geographies }) =>
-                geographies.map(geo => {
-                  const geoId = Number(geo.id);
-                  const isIndia = geoId === INDIA_ID;
-                  const isMarket = HIGHLIGHTED_IDS.has(geoId);
-                  const isActive = focusId !== null && focusId === geoId;
-                  return (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      onMouseEnter={() => isMarket && setHoveredId(geoId)}
-                      onMouseLeave={() => isMarket && setHoveredId(null)}
-                      onClick={() => isMarket && toggleSelected(geoId)}
-                      style={{
-                        default: {
-                          fill: isIndia ? '#F5B700' : isActive ? '#a80000' : 'var(--color-brand-600)',
-                          stroke: '#fff',
-                          strokeWidth: 0.4,
-                          outline: 'none',
-                        },
-                        hover: {
-                          fill: isIndia ? '#F5B700' : '#a80000',
-                          stroke: '#fff',
-                          strokeWidth: 0.4,
-                          outline: 'none',
-                          cursor: isMarket ? 'pointer' : 'default',
-                        },
-                        pressed: {
-                          fill: isIndia ? '#F5B700' : '#8B0000',
-                          outline: 'none',
-                        },
-                      }}
-                    />
-                  );
-                })
-              }
-            </Geographies>
+            <image href={worldMapImg} x="0" y="0" width={VIEW_W} height={VIEW_H} />
 
             {/* ── Route arrows - India to every export market ── */}
             <RouteArrows focusId={focusId} animate={!reduceMotion} />
 
             {/* ── Pin markers ──────────────────────────────────────── */}
             {EXPORT_MARKETS.map((market, i) => (
-              <Marker
+              <g
                 key={market.id}
-                coordinates={market.coordinates}
+                transform={`translate(${project(market.coordinates).join(',')})`}
                 onMouseEnter={e => handleMarkerEnter(market, e)}
                 onMouseLeave={handleMarkerLeave}
                 onClick={() => toggleSelected(market.id)}
@@ -307,9 +288,20 @@ export default function ExportMarketsMap() {
                     strokeLinejoin="round"
                   />
                 </motion.g>
-              </Marker>
+              </g>
             ))}
-          </ComposableMap>
+
+            {/* Home pin - India (origin of all routes) */}
+            <g transform={`translate(${project(INDIA_COORDINATES).join(',')})`} className="pointer-events-none">
+              <circle r="2.6" fill="#F5B700" stroke="#fff" strokeWidth="1" />
+              {!reduceMotion && (
+                <circle r="2.6" fill="none" stroke="#F5B700" strokeWidth="0.8">
+                  <animate attributeName="r" values="2.6;8" dur="2.2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.8;0" dur="2.2s" repeatCount="indefinite" />
+                </circle>
+              )}
+            </g>
+          </svg>
 
           {/* ── Tooltip ──────────────────────────────────────────── */}
           <AnimatePresence>

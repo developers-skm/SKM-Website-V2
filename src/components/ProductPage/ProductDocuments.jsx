@@ -66,13 +66,22 @@ export default function ProductDocuments({ tdsUrl, productName, extraDocuments =
                 {doc.label}
               </span>
             </div>
+            <div className="flex-shrink-0 flex items-center gap-2">
             <a
               href={doc.url}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`View ${doc.label}`}
+              className="inline-flex items-center gap-2 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] px-4 py-2.5 rounded-full border border-surface-200 hover:border-brand-600/30 transition-colors duration-200 focus:outline-none focus-gold"
+            >
+              View
+            </a>
+            <a
+              href={doc.url}
               download
+              aria-label={`Download ${doc.label}`}
               onClick={() => handleDownloadClick(doc.url)}
-              className="relative flex-shrink-0 inline-flex items-center gap-2 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] px-4 py-2.5 rounded-full border border-surface-200 hover:border-brand-600/30 transition-colors duration-200 focus:outline-none focus-gold"
+              className="relative inline-flex items-center gap-2 font-body font-bold text-[12px] uppercase tracking-[0.05em] text-brand-600 hover:text-[#a80000] px-4 py-2.5 rounded-full border border-surface-200 hover:border-brand-600/30 transition-colors duration-200 focus:outline-none focus-gold"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {confirmedUrl === doc.url ? (
@@ -96,6 +105,7 @@ export default function ProductDocuments({ tdsUrl, productName, extraDocuments =
                 )}
               </AnimatePresence>
             </a>
+            </div>
           </motion.div>
         ))}
       </motion.div>

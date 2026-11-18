@@ -29,7 +29,7 @@ const packagingData = [
     subtitle: 'Corrugated Box',
     description:
       'Primary containment uses a high-density polyethylene (HDPE) inner bag for moisture protection, enclosed within a robust corrugated carton box for safe stacking and transport.',
-    skus: ['25 Kg', '20 Kg', '10 Kg'],
+    skus: ['25 Kg', '20 Kg'],
     images: [
       { src: HdpeBagImg, label: 'Primary Container - HDPE Bag' },
       { src: CartonBoxImg, label: 'Secondary Container - Carton Box' },
@@ -47,7 +47,7 @@ const packagingData = [
     subtitle: 'Kraft Paper Bag',
     description:
       'Eco-friendly multi-wall kraft paper bag packaging for powder egg products. Designed for ease of handling, suitable for bakery and food-grade industrial dosing environments.',
-    skus: ['20 Kg', '10 Kg'],
+    skus: ['10 Kg'],
     images: [
       { src: PaperBagJpegImg, label: 'Kraft Paper Bag - Exterior View' },
       { src: PaperBagJpgImg, label: 'Kraft Paper Bag - Detail View' },
@@ -65,7 +65,7 @@ const packagingData = [
     subtitle: 'Low Density Polyethylene',
     description:
       'Food-grade LDPE flexible inner bag packaging optimised for chilled and frozen liquid egg products. Provides complete barrier against contamination and ensures easy dispensing.',
-    skus: ['20 Kg', '10 Kg', '5 Kg'],
+    skus: ['20 L', '10 L', '5 L'],
     images: [
       { src: FrozenLdpeImg, label: 'Frozen Product - LDPE Bag' },
       { src: LiquidLdpeImg, label: 'Liquid Product - LDPE Primary Pack' },
@@ -83,7 +83,7 @@ const packagingData = [
     subtitle: 'Bulk IBC Container',
     description:
       'Large-volume intermediate bulk container (IBC / Pallecon) with an inner LDPE liner, ideal for bulk liquid egg shipments. Stackable and compatible with standard fork-lift pallet systems.',
-    skus: ['1000 Kg'],
+    skus: ['1000 L (On Request)'],
     images: [
       { src: SaltedPrimaryImg, label: 'Primary Pack - LDPE Inner Bag' },
       { src: SaltedSecondaryImg, label: 'Secondary Pack - Pallecon IBC' },
@@ -113,7 +113,7 @@ export default function CustomizedPackagesPage({ onPageChange }) {
       {/* SEO */}
       <SEO
         title="Egg Product Packaging | Bulk Egg Powder & Liquid Packaging Options"
-        description="SKM offers industrial egg product packaging - bag-in-box, 25kg kraft paper bags, LDPE bags, Pallecon IBCs. Flexible bulk packaging for egg powder and liquid egg products. Exporter from India."
+        description="SKM offers industrial egg product packaging - 10kg kraft paper bags, 20kg and 25kg cartons, Bag-in-Box, Tetra Pack, Pallecon IBCs. Flexible bulk packaging for egg powder and liquid egg products. Exporter from India."
         keywords="egg powder packaging, bag-in-box egg powder, 25kg egg powder bag, liquid egg packaging, Pallecon egg, IBC egg liquid, egg product bulk packaging, LDPE egg bag, egg powder paper bag, bulk egg packaging options, egg product container, egg liquid bulk packaging"
         canonical="https://www.skmegg.com/customised_packages"
         jsonLd={{

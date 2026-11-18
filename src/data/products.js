@@ -11,6 +11,8 @@ import EggYolkLiquidImg from '../assets/3. PRODUCTS/Egg Liquids/Egg Yolk Liquid/
 import EggAlbumenLiquidImg from '../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/EGG ALBUMEN LIQUID.jpeg';
 import SpecialityEggLiquidImg from '../assets/3. PRODUCTS/Speciality products/Egg Liquids/EGG LIQUIDS TETRA PACK_1000x667px.png';
 import EggWhiteCubeImg from '../assets/3. PRODUCTS/Speciality products/Egg White Cube/EGG WHITE CUBE_1000x667px.png';
+import EggProImg from '../assets/3. PRODUCTS/Speciality products/EggPro/eggpro-life-500g.webp';
+import EggProSportsImg from '../assets/3. PRODUCTS/Speciality products/EggPro Sports/vanilla-500g.webp';
 import CustomizedMixImg from '../assets/3. PRODUCTS/Customized Mixes/CUSTOMIZED MIX_1000x667px.png';
 import CustomizedPackagesImg from '../assets/3. PRODUCTS/Customized Packages/Box Packaging.jpg';
 
@@ -49,6 +51,17 @@ export const LIQUID_PACK_TYPES = [
   { type: 'On request', sizes: ['1000 L'] },
 ];
 
+// Flat size list ("10kg", "5L", "250mL") derived from the pack types above, so
+// filters, spec panels and the quote form always match the Pack Types card.
+const flatSizes = (types) => types.flatMap((t) => t.sizes.map((s) => s.replace(/\s+/g, '')));
+const POWDER_SIZES = flatSizes(POWDER_PACK_TYPES);
+const LIQUID_SIZES = flatSizes(LIQUID_PACK_TYPES);
+
+// Display-only filter labels for product pages, e.g. "Kraft paper bag: 10 kg".
+const packLabels = (types) => types.map((t) => `${t.type}: ${t.sizes.join(', ')}`);
+export const POWDER_PACK_LABELS = packLabels(POWDER_PACK_TYPES);
+export const LIQUID_PACK_LABELS = packLabels(LIQUID_PACK_TYPES);
+
 const products = [
   {
     id: 'whole_egg_powder',
@@ -57,7 +70,7 @@ const products = [
     image: WholeEggPowderImg,
     category: PRODUCT_CATEGORIES.POWDERS,
     shortDescription: 'Pasteurised spray-dried whole egg powder for bakery, noodles and mayonnaise applications.',
-    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
+    packagingOptions: POWDER_SIZES,
     tdsUrl: WholeEggPowderTds,
   },
   {
@@ -67,7 +80,7 @@ const products = [
     image: EggYolkPowderImg,
     category: PRODUCT_CATEGORIES.POWDERS,
     shortDescription: 'Pasteurised spray-dried egg yolk powder with excellent emulsifying properties and natural colour, ideal for mayonnaise, dressings, and desert applications.',
-    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
+    packagingOptions: POWDER_SIZES,
     tdsUrl: EggYolkPowderTds,
   },
   {
@@ -77,7 +90,7 @@ const products = [
     image: EggYolkPowderHeatStableImg,
     category: PRODUCT_CATEGORIES.POWDERS,
     shortDescription: 'Modified egg yolk powder formulated to maintain its emulsifying stability under hot-process mayonnaise and sauce applications.',
-    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
+    packagingOptions: POWDER_SIZES,
   },
   {
     id: 'egg_albumen_powder',
@@ -86,7 +99,7 @@ const products = [
     image: EggAlbumenPowderImg,
     category: PRODUCT_CATEGORIES.POWDERS,
     shortDescription: 'Dried egg white powder with exceptional gelling and whipping performance for surimi, sausages, meringues, and confectionery.',
-    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
+    packagingOptions: POWDER_SIZES,
     tdsUrl: EggAlbumenPowderTds,
   },
   {
@@ -96,7 +109,7 @@ const products = [
     image: WholeEggLiquidImg,
     category: PRODUCT_CATEGORIES.LIQUIDS,
     shortDescription: 'Pasteurised liquid blend of egg yolk and egg white, formulated for industrial bakeries and standardised ready-meal recipes. Available in both chilled and frozen formats.',
-    packagingOptions: ['1kg', '5kg', '10kg', '20kg'],
+    packagingOptions: LIQUID_SIZES,
     tdsUrl: WholeEggLiquidTds,
   },
   {
@@ -106,7 +119,7 @@ const products = [
     image: EggYolkLiquidImg,
     category: PRODUCT_CATEGORIES.LIQUIDS,
     shortDescription: 'Chilled pasteurised liquid egg yolk available in plain and salted variants, formulated for mayonnaise, dressings, and hot-filled sauces. Available in chilled and frozen formats.',
-    packagingOptions: ['1kg', '5kg', '10kg', '20kg'],
+    packagingOptions: LIQUID_SIZES,
     tdsUrl: EggYolkLiquidTds,
   },
   {
@@ -116,7 +129,7 @@ const products = [
     image: EggAlbumenLiquidImg,
     category: PRODUCT_CATEGORIES.LIQUIDS,
     shortDescription: 'Pasteurised liquid egg white for health foods, sports nutrition, beverages, and bakery applications, available in chilled and frozen formats.',
-    packagingOptions: ['1kg', '5kg', '10kg', '20kg'],
+    packagingOptions: LIQUID_SIZES,
     tdsUrl: EggAlbumenLiquidTds,
   },
   {
@@ -126,7 +139,7 @@ const products = [
     image: SpecialityEggLiquidImg,
     category: PRODUCT_CATEGORIES.SPECIALITY,
     shortDescription: 'Custom liquid egg blends with tailored salt, sugar, or other ingredient additions, formulated to meet specific recipe requirements and provide consumers with greater convenience and ease of use.',
-    packagingOptions: ['250mL', '500mL', '1L'],
+    packagingOptions: ['250mL', '500mL', '1000mL'],
   },
   {
     id: 'egg_white_cube',
@@ -139,13 +152,35 @@ const products = [
     tdsUrl: EggWhiteCubeTds,
   },
   {
+    id: 'eggpro_life',
+    page: 'eggpro_life',
+    group: 'EggPro',
+    imageFit: 'contain',
+    title: 'EggPro LIFE',
+    image: EggProImg,
+    category: PRODUCT_CATEGORIES.SPECIALITY,
+    shortDescription: 'EGGPRO LIFE is a convenient and delicious instant protein drink mix made with a combination of Egg Albumen Powder and Skimmed Milk Powder.',
+    packagingOptions: [],
+  },
+  {
+    id: 'eggpro_sports',
+    page: 'eggpro_sports',
+    group: 'EggPro',
+    imageFit: 'contain',
+    title: 'EggPro SPORTS+',
+    image: EggProSportsImg,
+    category: PRODUCT_CATEGORIES.SPECIALITY,
+    shortDescription: 'EGGPRO SPORTS+ is a delicious and creamy instant protein drink mix made with a combination of Egg Albumen Powder, Skimmed Milk Powder and Whey Powder.',
+    packagingOptions: ['35g', '500g', '1kg'],
+  },
+  {
     id: 'customised_mix',
     page: 'customised_mix',
     title: 'Customised Mix',
     image: CustomizedMixImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,
     shortDescription: 'Egg powder formulations blended with salt, sugar, and other ingredients to match your exact recipe specifications, customised at our end for seamless handling and convenient use at your facility.',
-    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
+    packagingOptions: POWDER_SIZES,
   },
   {
     id: 'customised_packages',
@@ -154,7 +189,7 @@ const products = [
     image: CustomizedPackagesImg,
     category: PRODUCT_CATEGORIES.CUSTOMIZED,
     shortDescription: 'Packaging options including corrugated bag-in-box, kraft paper bag-in-bag, liquid pouches, and Tetra Pack formats, configured to meet your specific packaging and application requirements.',
-    packagingOptions: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'],
+    packagingOptions: POWDER_SIZES,
   },
 ];
 

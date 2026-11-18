@@ -1,4 +1,5 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
+import { LIQUID_PACK_LABELS } from '../../data/products';
 
 import WholeEggLiquidMainImg from '../../assets/ai-images/whole-egg-liquid.webp';
 import BakeryProductsImg from '../../assets/3. PRODUCTS/Egg Liquids/Whole Egg Liquid/Bakery products.png';
@@ -67,7 +68,7 @@ const variantStaticFilters = [
   { axis: 'Function', options: ['Binding', 'Texture'] },
   { axis: 'Various Ingredients', options: ['Sugared', 'Enriched'] },
   { axis: 'Chilled or frozen', options: ['Chilled', 'Frozen'] },
-  { axis: 'Packaging', options: ['1kg', '5kg', '10kg', '20kg'] },
+  { axis: 'Packaging', options: LIQUID_PACK_LABELS },
 ];
 
 const stripSuffix = (code) => code.replace('_Chilled', '').replace('_Frozen', '');

@@ -1,4 +1,5 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
+import { POWDER_PACK_LABELS } from '../../data/products';
 
 import WholeEggPowderMainImg from '../../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/WHOLE EGG POWDER_1000x667px.webp';
 import BakeryMixImg from '../../assets/3. PRODUCTS/Egg Powders/Whole Egg Powder/Bakery mix 1.webp';
@@ -131,7 +132,7 @@ const variantStaticFilters = [
   { axis: 'Processing treatment', options: ['De-Sugared', 'Enriched'] },
   { axis: 'Salt or sugar level', options: ['Sugared'] },
   { axis: 'Colour', options: ['High Colour'] },
-  { axis: 'Packaging', options: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'] },
+  { axis: 'Packaging', options: POWDER_PACK_LABELS },
 ];
 
 const applicationsData = [

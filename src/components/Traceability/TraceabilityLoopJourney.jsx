@@ -88,7 +88,7 @@ const processChapters = [
     step: '06',
     category: 'CHAPTER 06 • PROTECTIVE PACKAGING ',
     title: 'HEPA Cleanroom Packaging',
-    narrative:'Finished egg powder is sieved through a fine-mesh sifter and passed through high-intensity magnetic traps to control physical contaminants. The powder is packed in positive-pressure, HEPA-filtered cleanrooms, accurately weighed, and sealed in 20/25 kg HDPE bags. Each pack is assigned a unique barcode, enabling complete backward traceability throughout the supply chain.',
+    narrative:'Finished egg powder is sieved through a fine-mesh sifter and passed through high-intensity magnetic traps to control physical contaminants. The powder is packed in positive-pressure, HEPA-filtered cleanrooms, accurately weighed, and sealed in 10 kg kraft paper bags or 20/25 kg HDPE-lined cartons. Each pack is assigned a unique barcode, enabling complete backward traceability throughout the supply chain.',
     highlights: ['HEPA Positive-Pressure Cleanroom', 'High-Intensity Magnetic Traps', 'Barcode Lot Traceability'],
     illustrationSide: 'right',
     image: manufacturingImages.packaging,

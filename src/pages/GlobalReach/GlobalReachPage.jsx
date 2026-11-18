@@ -61,7 +61,7 @@ function regionForMarket(marketName) {
 }
 
 const ALL_CERT_NAMES = 'FSSAI, Export Inspection Council, BRCGS, ISO 22000, ISO 17025, Halal (JUHF & BPJPH) and Kosher';
-const DELIVERY_FORMATS = 'Powder (bag-in-box, kraft paper bag), chilled liquid, frozen liquid, and bulk IBC (Pallecon) formats.';
+const DELIVERY_FORMATS = 'Powder (kraft paper bag, cartons), chilled liquid, frozen liquid (Bag-in-Box, Tetra Pack), and bulk IBC (Pallecon) on request.';
 
 function MarketMapDetailSection({ onPageChange }) {
   const [selected, setSelected] = useState(exportMarkets[0]);
@@ -223,10 +223,10 @@ function ExportRegulatorySupportSection({ onPageChange }) {
 // "View Packaging Options" routes to the real Customised Packages page;
 // "Discuss Shipping Requirements" routes to the real Contact Us page.
 const PACKAGING_TRANSPORT = [
-  { id: 'powder', label: 'Powder', fact: 'Bag-in-box (HDPE inner bag + corrugated carton) or bag-in-bag (multi-wall kraft paper bag), 10 Kg, 20kg & 25Kg.' },
+  { id: 'powder', label: 'Powder', fact: 'Kraft paper bag (10 Kg) or cartons with HDPE inner bag (20 Kg, 25 Kg).' },
   { id: 'chilled', label: 'Chilled', fact: 'Chilled liquid egg products stored and transported at 0°C to 4°C.' },
   { id: 'frozen', label: 'Frozen', fact: 'Frozen liquid egg products stored and transported at ≤ -18°C, with extended shelf stability for long-distance export.' },
-  { id: 'bulk', label: 'Bulk', fact: 'Pallecon with inner LDPE liner - a 1000 Kg bulk IBC container, stackable and fork-lift pallet compatible.' },
+  { id: 'bulk', label: 'Bulk', fact: 'Pallecon with inner LDPE liner - a 1000 L bulk IBC container (on request), stackable and fork-lift pallet compatible.' },
 ];
 
 function PackagingTransportSection({ onPageChange }) {

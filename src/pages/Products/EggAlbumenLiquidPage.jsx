@@ -1,4 +1,5 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
+import { LIQUID_PACK_LABELS } from '../../data/products';
 
 import EggAlbumenLiquidMainImg from '../../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/EGG ALBUMEN LIQUID.jpeg';
 import CakesImg from '../../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/Cakes 2.png';
@@ -50,7 +51,7 @@ export const variantNamesTable = [
 const variantStaticFilters = [
   { axis: 'Function', options: ['Whipping', 'Foaming'] },
   { axis: 'Chilled or frozen', options: ['Chilled', 'Frozen'] },
-  { axis: 'Packaging', options: ['1kg', '5kg', '10kg', '20kg'] },
+  { axis: 'Packaging', options: LIQUID_PACK_LABELS },
 ];
 
 const applicationsData = [

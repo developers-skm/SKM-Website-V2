@@ -71,7 +71,7 @@ const CHALLENGES = [
   {
     id: 'packaging-handling',
     label: 'Packaging and handling',
-    fact: 'Bag-in-box, kraft paper bag, LDPE bag, and Pallecon IBC formats are configured to your handling and dosing requirements, from 5 Kg to 1000 Kg.',
+    fact: 'Kraft paper bag, carton, Bag-in-Box, Tetra Pack, and Pallecon IBC formats are configured to your handling and dosing requirements, from 250 mL to 1000 L.',
   },
   {
     id: 'regional-specification',

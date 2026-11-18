@@ -1,4 +1,5 @@
 import ProductPage from '../../components/ProductPage/ProductPage';
+import { POWDER_PACK_LABELS } from '../../data/products';
 
 import EggYolkHeatStablePowderMainImg from '../../assets/ai-images/egg-yolk-heat-stable-powder.webp';
 import DressingsImg from '../../assets/3. PRODUCTS/Egg Powders/Egg Yolk Powder - Heat Stable/Dressings 2.png';
@@ -72,7 +73,7 @@ export const variantNamesTable = [
 const variantStaticFilters = [
   { axis: 'Function', options: ['Emulsification'] },
   { axis: 'Colour', options: ['Standard colour'] },
-  { axis: 'Packaging', options: ['10kg', '20kg', '25kg', 'Bag-in-Box', 'Bag-in-Bag'] },
+  { axis: 'Packaging', options: POWDER_PACK_LABELS },
 ];
 
 const applicationsData = [

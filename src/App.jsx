@@ -26,6 +26,7 @@ const CustomizedMixPage = lazyWithRetry(() => import('./pages/Products/Customize
 const CustomizedPackagesPage = lazyWithRetry(() => import('./pages/Products/CustomizedPackagesPage'));
 const SpecialityEggLiquidPage = lazyWithRetry(() => import('./pages/Products/SpecialityEggLiquidPage'));
 const EggWhiteCubePage = lazyWithRetry(() => import('./pages/Products/EggWhiteCubePage'));
+const EggProPage = lazyWithRetry(() => import('./pages/Products/EggProPage'));
 
 const EggProcessingPlantPage = lazyWithRetry(() => import('./pages/Infra/EggProcessingPlantPage'));
 const PoultryFarmPage = lazyWithRetry(() => import('./pages/Infra/PoultryFarmPage'));
@@ -335,6 +336,10 @@ function App() {
         return <SpecialityEggLiquidPage onPageChange={handlePageChange} />;
       case 'egg_white_cube':
         return <EggWhiteCubePage onPageChange={handlePageChange} />;
+      case 'eggpro_life':
+        return <EggProPage variant="life" onPageChange={handlePageChange} />;
+      case 'eggpro_sports':
+        return <EggProPage variant="sports" onPageChange={handlePageChange} />;
       
       // Quality Subpages
       case 'policy':

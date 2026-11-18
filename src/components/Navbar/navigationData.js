@@ -38,6 +38,8 @@ export const productsMegaMenu = {
         { label: 'Customised Mix', route: 'customised_mix' },
         { label: 'Speciality Egg Liquids', route: 'speciality_egg_liquids' },
         { label: 'Egg White Cube', route: 'egg_white_cube' },
+        { label: 'EggPro LIFE', route: 'eggpro_life' },
+        { label: 'EggPro SPORTS+', route: 'eggpro_sports' },
       ],
     },
     {
