@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { scrollToSectionId } from '../../components/Navbar/useProductDiscoveryNavigation';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import InternalLink from '../../components/common/InternalLink';
@@ -556,9 +557,14 @@ function FaqSection({ onPageChange, globalSearchQuery }) {
 }
 
 // Root Component
-export default function ResourcesPage({ onPageChange }) {
+export default function ResourcesPage({ onPageChange, prefill }) {
   const reduceMotion = useReducedMotion();
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Contact Us "Sample or Technical Documents" card lands on the documents list.
+  useEffect(() => {
+    if (prefill?.scrollTarget) scrollToSectionId(prefill.scrollTarget);
+  }, [prefill]);
 
   return (
     <PageWrapper

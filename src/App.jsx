@@ -340,6 +340,8 @@ function App() {
         return <EggProPage variant="life" onPageChange={handlePageChange} />;
       case 'eggpro_sports':
         return <EggProPage variant="sports" onPageChange={handlePageChange} />;
+      case 'eggpro_albumen':
+        return <EggProPage variant="albumen" onPageChange={handlePageChange} />;
       
       // Quality Subpages
       case 'policy':
@@ -421,7 +423,7 @@ function App() {
       case 'global_reach':
         return <GlobalReachPage onPageChange={handlePageChange} />;
       case 'resources':
-        return <ResourcesPage onPageChange={handlePageChange} />;
+        return <ResourcesPage onPageChange={handlePageChange} prefill={prefill} />;
 
       default:
         return <NotFound onPageChange={handlePageChange} />;

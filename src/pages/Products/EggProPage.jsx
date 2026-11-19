@@ -7,7 +7,8 @@ import ProductDocuments from '../../components/ProductPage/ProductDocuments';
 import RecentlyViewed from '../../components/ProductPage/RecentlyViewed';
 import { useRecentlyViewed } from '../../utils/recentlyViewed';
 import { containerVariants, itemVariants } from '../../utils/animationVariants';
-import EggProImg from '../../assets/3. PRODUCTS/Speciality products/EggPro/eggpro-life-500g.webp';
+import LifePack from '../../assets/3. PRODUCTS/Speciality products/EggPro/eggpro-life-500g.webp';
+import AlbumenPack from '../../assets/3. PRODUCTS/Speciality products/EggPro/eggpro-albumen-500g.webp';
 import VanillaPack500 from '../../assets/3. PRODUCTS/Speciality products/EggPro Sports/vanilla-500g.webp';
 import VanillaPack1kg from '../../assets/3. PRODUCTS/Speciality products/EggPro Sports/vanilla-1kg.webp';
 import VanillaSachet from '../../assets/3. PRODUCTS/Speciality products/EggPro Sports/vanilla-sachet-box.webp';
@@ -37,6 +38,8 @@ const VARIANTS = [
   {
     id: 'life',
     name: 'EGGPRO LIFE',
+    tab: 'EGGPRO LIFE',
+    badge: { value: '11.4 g', label: 'Protein per 30 g serving' },
     subtitle: 'Egg White Instant Protein Mix',
     headline: 'Everyday Protein Nutrition for an Active Life',
     highlights: '11.4 g Protein Per Serving | Low Fat | Egg White & Milk Protein',
@@ -88,6 +91,8 @@ const VARIANTS = [
   {
     id: 'sports',
     name: 'EGGPRO SPORTS+',
+    tab: 'EGGPRO SPORTS+',
+    badge: { value: '22.4 g', label: 'Protein per 35 g serving' },
     subtitle: 'High-Protein Egg White Instant Protein Mix',
     headline: 'Quality Protein for Your Active Lifestyle',
     highlights: '22.4 g Protein per Serving | Low Fat | Three Protein Ingredients',
@@ -130,6 +135,64 @@ const VARIANTS = [
     ingredients: 'Egg Albumen Powder, Skimmed Milk Powder, Whey Powder and Nature-Identical Flavouring Substances.',
     allergens: 'Contains Egg and Milk.',
   },
+  {
+    id: 'albumen',
+    name: 'SKM EGG ALBUMEN POWDER',
+    tab: 'EGG ALBUMEN POWDER',
+    badge: { value: '2 Variants', label: 'High Gel & High Whip' },
+    subtitle: 'Dried Egg White Powder | High Gel & High Whip',
+    headline: 'Quality Egg White Protein for Food Applications',
+    highlights: 'Dried Egg White Powder | High Gel & High Whip',
+    tagline: 'Quality Egg Protein for Versatile Food Applications.',
+    description: [
+      'SKM Egg Albumen Powder is produced from egg whites through controlled processing, drying and heat treatment.',
+      'Available in two specialised variants, High Gel and High Whip, the powder is designed for different food-processing applications requiring gelling, binding, foaming or whipping properties.',
+      'Egg albumen is a source of complete protein containing all nine essential amino acids. Its functional properties make it a versatile ingredient for food manufacturers, bakeries and confectionery producers.',
+    ],
+    stats: [
+      { label: 'Source', value: 'Egg White' },
+      { label: 'Format', value: 'Dried Powder' },
+      { label: 'Protein', value: 'Complete' },
+      { label: 'Variants', value: 'Gel & Whip' },
+    ],
+    whyLabel: 'Highlights',
+    whyTitle: 'Product Highlights',
+    why: [
+      { title: 'Made from egg white (albumen).' },
+      { title: 'Heat-treated and dried.' },
+      { title: 'Contains complete egg protein.' },
+      { title: 'Available in High Gel and High Whip variants.' },
+      { title: 'Suitable for a range of food-processing applications.' },
+      { title: 'Convenient powdered format for storage, handling and formulation.' },
+    ],
+    variantsTitle: 'Available Variants',
+    variants: [
+      {
+        name: 'Egg Albumen Powder – High Gel',
+        text: 'Developed for food applications requiring gelling and binding properties.',
+        applications: [
+          'Noodles and pasta products',
+          'Sausages and processed meat products',
+          'Surimi and seafood products',
+          'Other food preparations requiring protein binding and gel formation',
+        ],
+      },
+      {
+        name: 'Egg Albumen Powder – High Whip',
+        text: 'Developed for applications requiring whipping, foaming and aeration properties.',
+        applications: [
+          'Bakery products',
+          'Cakes and meringues',
+          'Confectionery products',
+          'Whipped desserts and other aerated food preparations',
+        ],
+      },
+    ],
+    storage: 'Store in a cool, dry place away from moisture and direct sunlight. Keep the packaging tightly closed after opening and follow the storage instructions printed on the pack.',
+    nutrition: null,
+    ingredients: 'Egg Albumen Powder (Dried Egg White).',
+    allergens: 'Contains Egg.',
+  },
 ];
 
 export default function EggProPage({ variant = 'life', onPageChange }) {
@@ -138,10 +201,18 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
   const productId = `eggpro_${v.id}`;
   const [flavour, setFlavour] = useState('Vanilla');
   const [pack, setPack] = useState('500g');
-  const heroImage = v.id === 'sports' ? SPORTS_IMAGES[flavour][pack] : EggProImg;
-  const heroAlt = v.id === 'sports'
-    ? `EGGPRO SPORTS+ ${flavour} ${SPORTS_PACKS.find((p) => p.id === pack).label}`
-    : 'EggPro 500 g jar';
+  let heroImage;
+  let heroAlt;
+  if (v.id === 'sports') {
+    heroImage = SPORTS_IMAGES[flavour][pack];
+    heroAlt = `EGGPRO SPORTS+ ${flavour} ${SPORTS_PACKS.find((p) => p.id === pack).label}`;
+  } else if (v.id === 'life') {
+    heroImage = LifePack;
+    heroAlt = 'EGGPRO LIFE Vanilla 500 g jar';
+  } else {
+    heroImage = AlbumenPack;
+    heroAlt = 'SKM Egg Albumen Powder 500 g jar';
+  }
   const recentProducts = useRecentlyViewed(productId);
   const goQuote = () => onPageChange('get-quote', { productId });
 
@@ -168,11 +239,14 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
     const raw = (scrollY.get() - g.s0) / (g.s1 - g.s0);
     const p = Math.min(1, Math.max(0, raw));
     const e = p * p * (3 - 2 * p);
-    const lerp = (a, b) => a + (b - a) * e;
-    fLeft.set(lerp(g.H.x, g.C.x));
-    fTop.set(lerp(g.H.y, g.C.y));
-    fWidth.set(lerp(g.H.w, g.C.w));
-    fHeight.set(lerp(g.H.h, g.C.h));
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const top = lerp(g.H.y, g.C.y, e);
+    // One smooth diagonal glide from the hero (right) into the card (left).
+    // Page copy sits above the image (z-30), so it passes behind the text.
+    fLeft.set(lerp(g.H.x, g.C.x, e));
+    fTop.set(top);
+    fWidth.set(lerp(g.H.w, g.C.w, e));
+    fHeight.set(lerp(g.H.h, g.C.h, e));
   }, [scrollY, fLeft, fTop, fWidth, fHeight]);
 
   useLayoutEffect(() => {
@@ -247,7 +321,7 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col gap-6"
+            className="relative z-30 flex flex-col gap-6"
           >
             <span className="inline-flex items-center gap-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-600 self-start">
               <span className="w-5 h-px bg-brand-500" aria-hidden="true" />
@@ -299,7 +373,7 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
                     onClick={() => variantId !== x.id && onPageChange(`eggpro_${x.id}`)}
                     className={`${pills} min-h-[44px] px-5 text-[14px] ${variantId === x.id ? pillOn : pillOff}`}
                   >
-                    {x.name}
+                    {x.tab}
                   </button>
                 ))}
               </div>
@@ -346,7 +420,7 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
             </div>
 
             {v.id === 'sports' && (
-              <div className="w-full max-w-[520px] flex flex-col gap-4 p-5 rounded-[18px] bg-white border border-surface-200/70 shadow-[0_1px_2px_rgba(20,16,12,0.04),0_16px_40px_-16px_rgba(20,16,12,0.10)]">
+              <div className="relative z-30 w-full max-w-[520px] flex flex-col gap-4 p-5 rounded-[18px] bg-white border border-surface-200/70 shadow-[0_1px_2px_rgba(20,16,12,0.04),0_16px_40px_-16px_rgba(20,16,12,0.10)]">
                 <div className="flex flex-col gap-2">
                   <span className="font-body text-[11px] font-semibold uppercase tracking-[0.1em] text-surface-400">Flavour</span>
                   <div className="flex flex-wrap gap-2" role="group" aria-label="Flavour">
@@ -382,7 +456,7 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col gap-8"
+            className="relative z-30 flex flex-col gap-8"
           >
             <div className="flex flex-col gap-4">
               <span className="section-label">Product Description</span>
@@ -418,8 +492,8 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
               className="flex flex-col items-center gap-1 px-6 py-9 text-center border-b border-gold-500/30"
               style={{ background: 'radial-gradient(90% 120% at 50% 0%, rgba(232,182,74,0.28) 0%, rgba(232,182,74,0.06) 70%), #fdfbf7' }}
             >
-              <span className="font-heading font-black text-[56px] sm:text-[64px] leading-none text-brand-600">{v.stats[0].value}</span>
-              <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-heading">Protein per {v.stats[1].value} serving</span>
+              <span className={`font-heading font-black leading-none text-brand-600 ${v.badge.value.length > 7 ? 'text-[40px] sm:text-[46px]' : 'text-[56px] sm:text-[64px]'}`}>{v.badge.value}</span>
+              <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-heading">{v.badge.label}</span>
               <span className="mt-2 text-[13px] text-surface-500">{v.name}</span>
             </div>
 
@@ -449,7 +523,7 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
       <div className="w-full py-14 lg:py-20 bg-page">
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12 flex flex-col gap-10">
           <div className="flex flex-col gap-3">
-            <span className="section-label">Key Benefits</span>
+            <span className="section-label">{v.whyLabel ?? 'Key Benefits'}</span>
             <h2 className={h2}>{v.whyTitle}</h2>
           </div>
           <motion.div
@@ -471,7 +545,7 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <h3 className="font-heading font-bold text-[16px] text-heading m-0">{item.title}</h3>
-                <p className="text-[14px] text-surface-500 leading-[1.65] m-0">{item.text}</p>
+                {item.text && <p className="text-[14px] text-surface-500 leading-[1.65] m-0">{item.text}</p>}
               </motion.div>
             ))}
           </motion.div>
@@ -480,7 +554,49 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
 
       <CurvedDivider cards bg="#ececec" fill="#fff" />
 
+      {/* Available variants (albumen powder) */}
+      {v.variants && (
+        <>
+          <div className="w-full bg-white py-14 lg:py-20">
+            <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12 flex flex-col gap-10">
+              <div className="flex flex-col gap-3">
+                <span className="section-label">Choose Your Function</span>
+                <h2 className={h2}>{v.variantsTitle}</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {v.variants.map((variantItem, i) => (
+                  <div key={variantItem.name} className="flex flex-col gap-5 p-6 sm:p-8 rounded-[20px] bg-[#fdfbf7] border border-gold-500/30 hover:border-gold-500/60 transition-colors duration-300">
+                    <div className="flex items-center gap-4">
+                      <span className="w-11 h-11 rounded-full bg-gold-500 text-heading font-heading font-black text-[18px] flex items-center justify-center shadow-[0_4px_14px_rgba(232,182,74,0.4)] flex-shrink-0">
+                        {i + 1}
+                      </span>
+                      <h3 className="font-heading font-bold text-[20px] text-heading leading-tight m-0">{variantItem.name}</h3>
+                    </div>
+                    <p className="text-[15px] text-surface-600 leading-[1.7] m-0">{variantItem.text}</p>
+                    <div className="flex flex-col gap-3 pt-5 border-t border-surface-200/70">
+                      <span className="font-body text-[11px] font-semibold uppercase tracking-[0.1em] text-surface-400">Suitable applications include</span>
+                      <ul className="flex flex-col gap-2.5 m-0 p-0 list-none">
+                        {variantItem.applications.map((a) => (
+                          <li key={a} className="flex items-start gap-3 text-[14.5px] text-heading leading-[1.55]">
+                            <span className="mt-0.5 text-brand-600 flex-shrink-0">{checkIcon}</span>
+                            {a}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <CurvedDivider cards bg="#fff" fill="#ececec" />
+        </>
+      )}
+
       {/* How to use */}
+      {v.directions && (
+      <>
       <div className="w-full bg-white py-14 lg:py-20">
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12 flex flex-col gap-10">
           <div className="flex flex-col gap-3">
@@ -501,8 +617,30 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
       </div>
 
       <CurvedDivider cards bg="#fff" fill="#ececec" />
+      </>
+      )}
+
+      {/* Storage (albumen powder) */}
+      {v.storage && (
+        <div className="w-full py-14 lg:py-20 bg-page">
+          <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+            <div className="flex flex-col sm:flex-row items-start gap-5 sm:gap-7 p-6 sm:p-8 rounded-[20px] bg-white border border-surface-200/70">
+              <span className="w-12 h-12 rounded-full bg-gold-500/20 text-brand-600 flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 7l9-4 9 4v10l-9 4-9-4V7zm9 4v10M3 7l9 4 9-4" />
+                </svg>
+              </span>
+              <div className="flex flex-col gap-2">
+                <h3 className="font-heading font-bold text-[22px] text-heading m-0">Storage Instructions</h3>
+                <p className="text-[15px] text-surface-600 leading-[1.75] m-0 max-w-[80ch]">{v.storage}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Recommended for + nutrition */}
+      {v.recommended && (
       <div className="w-full py-14 lg:py-20 bg-page">
         <div className={`mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12 grid grid-cols-1 gap-10 lg:gap-14 ${v.nutrition ? 'lg:grid-cols-[1.3fr_1fr]' : ''}`}>
           <div className="flex flex-col gap-8">
@@ -552,6 +690,7 @@ export default function EggProPage({ variant = 'life', onPageChange }) {
           )}
         </div>
       </div>
+      )}
 
       {/* Closing call to action */}
       <div className="w-full bg-white pt-14 lg:pt-20">

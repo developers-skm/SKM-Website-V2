@@ -13,6 +13,7 @@ const officeLocations = [
     contactLabel: "Contact",
     phone: "0424-2268391",
     phoneLink: "tel:04242268391",
+    coords: [11.3305406, 77.7265171],
     mapEmbedUrl: "https://maps.google.com/maps?q=11.3305406,77.7265171&t=m&z=17&output=embed",
     directionsLink: "https://www.google.com/maps/dir/?api=1&destination=11.3305406,77.7265171"
   },
@@ -25,8 +26,9 @@ const officeLocations = [
     contactLabel: "Call",
     phone: "0424-2351532",
     phoneLink: "tel:04242351532",
+    coords: [11.215801788960954, 77.8377695740967],
     mapEmbedUrl: "https://maps.google.com/maps?q=11.215801788960954,77.8377695740967&t=m&z=16&output=embed",
-    directionsLink: "https://maps.google.com/?q=SKM+Egg+Products+Export+ Punjai+Kilambadi"
+    directionsLink: "https://maps.google.com/?q=SKM+Egg+Products+Export+Punjai+Kilambadi"
   }
 ];
 

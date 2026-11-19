@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { departmentDescriptions, departmentIcons } from '../../../data/careersContent';
 import { formatJobDate } from '../../../data/jobs';
@@ -118,10 +118,37 @@ function JobCard({ job, onApply }) {
   );
 }
 
+// Compact row used in the role picker when a department has several openings.
+function RoleRow({ job, onSelect }) {
+  const meta = [job.location, job.experience, job.employmentType].filter(Boolean);
+  return (
+    <li className="list-none">
+      <button
+        type="button"
+        onClick={onSelect}
+        className="group w-full text-left rounded-2xl border border-[#e8e4dd] bg-white hover:border-brand-600/40 hover:shadow-[0_8px_22px_rgba(0,0,0,0.07)] px-5 py-4 flex items-center justify-between gap-4 transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+      >
+        <div className="flex flex-col gap-1 min-w-0">
+          <span className="font-heading font-bold text-[18px] text-heading leading-snug">{job.title}</span>
+          {meta.length > 0 && (
+            <span className="font-body text-[13px] text-surface-500">{meta.join(' · ')}</span>
+          )}
+        </div>
+        <span className="flex-shrink-0 w-9 h-9 rounded-full bg-brand-600/8 text-brand-650 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-200">
+          <CareerIcon name="arrow" className="w-4 h-4" />
+        </span>
+      </button>
+    </li>
+  );
+}
+
 // Department detail dialog. Open roles → their HR-entered details + Apply Now
 // (vacancy form). No open roles → "I'm Interested" (general talent-pool form).
 export default function CareerAreaModal({ department, jobs, onClose, onPageChange }) {
   const openCount = jobs.length;
+  // One role opens straight to its details; several show a role picker first.
+  const [selectedId, setSelectedId] = useState(null);
+  const selectedJob = openCount === 1 ? jobs[0] : jobs.find((j) => j.id === selectedId) || null;
   const closeRef = useRef(null);
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
@@ -217,13 +244,41 @@ export default function CareerAreaModal({ department, jobs, onClose, onPageChang
           </div>
           )}
 
-          {openCount > 0 ? (
-            <ul className="flex flex-col gap-5 m-0 p-0 list-none">
-              {jobs.map((job) => (
-                <JobCard key={job.id} job={job} onApply={handleApply} />
-              ))}
-            </ul>
-          ) : (
+          {openCount > 1 && !selectedJob && (
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1">
+                <span className="font-heading font-bold text-[18px] text-heading">Select a role</span>
+                <span className="font-body text-[14px] text-surface-500">
+                  {openCount} open roles in {department}. Choose one to see the details.
+                </span>
+              </div>
+              <ul className="flex flex-col gap-3 m-0 p-0 list-none">
+                {jobs.map((job) => (
+                  <RoleRow key={job.id} job={job} onSelect={() => setSelectedId(job.id)} />
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {openCount > 0 && selectedJob && (
+            <div className="flex flex-col gap-4">
+              {openCount > 1 && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedId(null)}
+                  className="self-start inline-flex items-center gap-2 font-body text-[13.5px] font-bold text-brand-650 hover:text-brand-700 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded"
+                >
+                  <CareerIcon name="arrow" className="w-4 h-4 rotate-180" />
+                  Back to all roles
+                </button>
+              )}
+              <ul className="m-0 p-0 list-none">
+                <JobCard job={selectedJob} onApply={handleApply} />
+              </ul>
+            </div>
+          )}
+
+          {openCount === 0 && (
             <div className="flex flex-col gap-4 rounded-2xl border border-dashed border-[#d9d3c7] bg-[#fcfbf9] p-5">
               <div className="font-body text-[14px] text-surface-600 leading-[1.7]">
                 There are no open positions in this department right now. Share your profile once and our HR team will contact you when a matching role opens.

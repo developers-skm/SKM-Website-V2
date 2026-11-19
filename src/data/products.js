@@ -11,7 +11,8 @@ import EggYolkLiquidImg from '../assets/3. PRODUCTS/Egg Liquids/Egg Yolk Liquid/
 import EggAlbumenLiquidImg from '../assets/3. PRODUCTS/Egg Liquids/Egg Albumen Liquid/EGG ALBUMEN LIQUID.jpeg';
 import SpecialityEggLiquidImg from '../assets/3. PRODUCTS/Speciality products/Egg Liquids/EGG LIQUIDS TETRA PACK_1000x667px.png';
 import EggWhiteCubeImg from '../assets/3. PRODUCTS/Speciality products/Egg White Cube/EGG WHITE CUBE_1000x667px.png';
-import EggProImg from '../assets/3. PRODUCTS/Speciality products/EggPro/eggpro-life-500g.webp';
+import EggProLifeImg from '../assets/3. PRODUCTS/Speciality products/EggPro/eggpro-life-500g.webp';
+import EggProAlbumenImg from '../assets/3. PRODUCTS/Speciality products/EggPro/eggpro-albumen-500g.webp';
 import EggProSportsImg from '../assets/3. PRODUCTS/Speciality products/EggPro Sports/vanilla-500g.webp';
 import CustomizedMixImg from '../assets/3. PRODUCTS/Customized Mixes/CUSTOMIZED MIX_1000x667px.png';
 import CustomizedPackagesImg from '../assets/3. PRODUCTS/Customized Packages/Box Packaging.jpg';
@@ -157,7 +158,7 @@ const products = [
     group: 'EggPro',
     imageFit: 'contain',
     title: 'EggPro LIFE',
-    image: EggProImg,
+    image: EggProLifeImg,
     category: PRODUCT_CATEGORIES.SPECIALITY,
     shortDescription: 'EGGPRO LIFE is a convenient and delicious instant protein drink mix made with a combination of Egg Albumen Powder and Skimmed Milk Powder.',
     packagingOptions: [],
@@ -172,6 +173,17 @@ const products = [
     category: PRODUCT_CATEGORIES.SPECIALITY,
     shortDescription: 'EGGPRO SPORTS+ is a delicious and creamy instant protein drink mix made with a combination of Egg Albumen Powder, Skimmed Milk Powder and Whey Powder.',
     packagingOptions: ['35g', '500g', '1kg'],
+  },
+  {
+    id: 'eggpro_albumen',
+    page: 'eggpro_albumen',
+    group: 'EggPro',
+    imageFit: 'contain',
+    title: 'SKM Egg Albumen Powder',
+    image: EggProAlbumenImg,
+    category: PRODUCT_CATEGORIES.SPECIALITY,
+    shortDescription: 'SKM Egg Albumen Powder is produced from egg whites through controlled processing, drying and heat treatment.',
+    packagingOptions: ['500g'],
   },
   {
     id: 'customised_mix',

@@ -40,6 +40,7 @@ export const productsMegaMenu = {
         { label: 'Egg White Cube', route: 'egg_white_cube' },
         { label: 'EggPro LIFE', route: 'eggpro_life' },
         { label: 'EggPro SPORTS+', route: 'eggpro_sports' },
+        { label: 'SKM Egg Albumen Powder', route: 'eggpro_albumen' },
       ],
     },
     {

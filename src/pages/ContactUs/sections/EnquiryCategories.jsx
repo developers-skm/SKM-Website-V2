@@ -18,6 +18,8 @@ import { makeContainerVariants, makeItemVariants } from '../../../utils/animatio
 const primaryIntents = [
   {
     id: 'product-recommendation',
+    page: 'applications',
+    prefill: { enquiryIntent: 'product-recommendation' },
     title: 'Request Product Recommendation',
     desc: "Not sure which egg powder or liquid fits your application? Tell us your requirement and we'll recommend the right product.",
     icon: (
@@ -28,6 +30,8 @@ const primaryIntents = [
   },
   {
     id: 'sample-or-documents',
+    page: 'resources',
+    prefill: { enquiryIntent: 'sample-or-documents', scrollTarget: 'technical-documents' },
     title: 'Request Sample or Technical Documents',
     desc: 'Request a physical sample, product detail, or product documentation for evaluation.',
     icon: (
@@ -38,6 +42,8 @@ const primaryIntents = [
   },
   {
     id: 'price-quotation',
+    page: 'get-quote',
+    prefill: { enquiryIntent: 'price-quotation' },
     title: 'Request Price Quotation',
     desc: 'Get a commercial quote for a specific product, volume, and destination.',
     icon: (
@@ -48,6 +54,8 @@ const primaryIntents = [
   },
   {
     id: 'general',
+    action: 'modal',
+    modalType: 'general',
     title: 'General Enquiry',
     desc: "Have a different question? Reach our team and we'll route it to the right department.",
     icon: (
@@ -78,8 +86,13 @@ export default function EnquiryCategories({ onOpenEnquiry, onPageChange }) {
   const containerVariants = makeContainerVariants(0.1);
   const itemVariants = makeItemVariants({ y: 25 });
 
-  const handleSelectIntent = (intentId) => {
-    onPageChange('get-quote', { enquiryIntent: intentId });
+  // Each card opens its own destination instead of one shared form.
+  const handleSelectIntent = (intent) => {
+    if (intent.action === 'modal') {
+      onOpenEnquiry(intent.modalType);
+      return;
+    }
+    onPageChange(intent.page, intent.prefill);
   };
 
   return (
@@ -110,7 +123,7 @@ export default function EnquiryCategories({ onOpenEnquiry, onPageChange }) {
               type="button"
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              onClick={() => handleSelectIntent(intent.id)}
+              onClick={() => handleSelectIntent(intent)}
               className="relative overflow-hidden rounded-[10px] bg-white border border-[#eee] p-6 sm:p-8 flex items-start gap-5 text-left transition-all duration-300 shadow-[5px_3px_40px_rgba(0,72,88,0.06)] hover:shadow-[5px_3px_40px_rgba(0,72,88,0.14)] hover:border-brand-600/30 cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
             >
               <div className="flex-shrink-0 w-12 h-12 rounded-[10px] bg-brand-600/6 border border-brand-600/12 flex items-center justify-center text-brand-600 group-hover:scale-105 transition-transform duration-300">

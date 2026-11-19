@@ -407,28 +407,30 @@ function ProductFinder({ onPageChange }) {
                   ease: EASE_PREMIUM,
                   delay: reduceMotion ? 0 : Math.min(index, 8) * 0.05,
                 }}
-                className="flex flex-col gap-4 p-5 sm:p-6 rounded-[14px] border border-surface-200/70 bg-white"
+                className={`flex flex-col gap-5 p-5 sm:p-6 rounded-[14px] border border-surface-200/70 bg-white ${
+                  card.members.length > 1 ? 'sm:col-span-2' : ''
+                } ${card.members.length > 2 ? 'lg:col-span-3' : ''}`}
               >
                 <span className="font-body text-[11.5px] font-semibold uppercase tracking-[0.14em] text-gold-600">
                   {card.group}
                 </span>
-                <div className="flex flex-col gap-4">
+                <div className={`grid grid-cols-1 gap-5 ${card.members.length > 1 ? 'sm:grid-cols-2' : ''} ${card.members.length > 2 ? 'lg:grid-cols-3' : ''}`}>
                   {card.members.map((product) => (
                     <div
                       key={product.id}
-                      className="group relative flex items-center gap-4 p-3 rounded-[12px] border border-surface-200/60 transition-[border-color,box-shadow] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-gold-500/60 hover:shadow-[0_18px_36px_-18px_rgba(20,16,12,0.2)] focus-within:border-gold-500/60"
+                      className="group relative flex flex-col gap-3.5 p-4 rounded-[12px] border border-surface-200/60 transition-[border-color,box-shadow,transform] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-gold-500/60 hover:shadow-[0_22px_44px_-18px_rgba(20,16,12,0.2)] focus-within:border-gold-500/60"
                     >
-                      <div className="w-[112px] sm:w-[128px] aspect-square flex-shrink-0 overflow-hidden rounded-[9px] bg-surface-50">
+                      <div className="w-full aspect-[4/3] overflow-hidden rounded-[9px] bg-surface-50">
                         <img
                           src={product.image}
                           alt={product.title}
                           loading="lazy"
-                          className="w-full h-full object-contain p-2 transition-transform duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                          className="w-full h-full object-contain p-3 transition-transform duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
                         />
                       </div>
                       <div className="flex flex-col gap-1.5 min-w-0">
                         <span className="font-heading font-bold text-[16.5px] text-heading tracking-[-0.005em]">{product.title}</span>
-                        <span className="font-body text-[13px] text-surface-500 leading-[1.5]">{product.shortDescription}</span>
+                        <span className="font-body text-[13.5px] text-surface-500 leading-[1.55]">{product.shortDescription}</span>
                       </div>
                       <InternalLink
                         route={product.page}
